@@ -24,17 +24,13 @@ i18n
     .init({
         fallbackLng: 'en',
         debug: true,
-        defaultNs: 'dukeI18n',
-        fallbackNs: 'dukeI18n',
-        ns: ['dukeI18n'],
+        defaultNs: 'translation',
+        fallbackNs: 'translation',
+        ns: ['translation', 'entity', 'empty-message', 'form', 'entity-subtype', 'lookback-windows', 'owner-type', 'react-cron'],
         backend: {
             loadPath: '/conf/locales/{{lng}}/{{ns}}.json',
             allowMultiLoading: true,
         },
-        // resources: {
-        //     en: {translation: en.default},
-        //     fr: {translation: fr.default}
-        // },
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         },

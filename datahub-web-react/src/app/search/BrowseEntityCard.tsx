@@ -17,6 +17,7 @@ const BrowseEntityCardWrapper = styled.div``;
 export const BrowseEntityCard = ({ entityType, count }: { entityType: EntityType; count: number }) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
+    const {t} = useTranslation();
     const showBrowseV2 = useIsBrowseV2();
     const isGlossaryEntityCard = entityType === EntityType.GlossaryTerm;
     const entityPathName = entityRegistry.getPathName(entityType);
@@ -44,7 +45,7 @@ export const BrowseEntityCard = ({ entityType, count }: { entityType: EntityType
         <BrowseEntityCardWrapper onClick={browse} data-testid={`entity-type-browse-card-${entityType}`}>
             <LogoCountCard
                 logoComponent={entityRegistry.getIcon(entityType, 18, IconStyleType.HIGHLIGHT)}
-                name={entityRegistry.getCollectionName(entityType)}
+                name={entityRegistry.getEntityNameTrans(entityType, t, 2)}
                 count={count}
                 onClick={onBrowseEntityCardClick}
             />

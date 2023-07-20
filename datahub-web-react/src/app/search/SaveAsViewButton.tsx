@@ -37,14 +37,14 @@ export const SaveAsViewButton = ({ onClick }: Props) => {
             placement="right"
             title={
                 <>
-                    <ToolTipHeader>Save these filters as a new View.</ToolTipHeader>
-                    <div>Views allow you to easily save or share search filters.</div>
+                    <ToolTipHeader>{t('filter.view.saveTheseFiltersAsANewView')}</ToolTipHeader>
+                    <div>{t('filter.view.viewsAllowYouToEasilySaveOrShareSearchFilters')}</div>
                 </>
             }
         >
             <StyledButton type="link" onClick={onClick}>
                 <StyledFilterOutlined />
-                <SaveAsViewText>Save as View</SaveAsViewText>
+                <SaveAsViewText>{t('filter.view.saveAsView')}</SaveAsViewText>
             </StyledButton>
         </Tooltip>
     );

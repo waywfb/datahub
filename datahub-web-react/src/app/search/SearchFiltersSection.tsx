@@ -84,6 +84,7 @@ export const SearchFiltersSection = ({
     onChangeFilters,
     onChangeUnionType,
 }: Props) => {
+    const {t} = useTranslation();
     const userContext = useUserContext();
     const onlyShowAdvancedFilters = hasAdvancedFilters(selectedFilters, unionType);
     const [showViewBuilder, setShowViewBuilder] = useState(false);
@@ -101,7 +102,7 @@ export const SearchFiltersSection = ({
     return (
         <FiltersContainer>
             <FiltersHeader>
-                <span>Filter</span>
+                <span>{t('common.filter')}</span>
                 <span>
                     <Button
                         disabled={onlyShowAdvancedFilters}
@@ -109,7 +110,7 @@ export const SearchFiltersSection = ({
                         onClick={() => setSeeAdvancedFilters(!seeAdvancedFilters)}
                         id={SEARCH_RESULTS_ADVANCED_SEARCH_ID}
                     >
-                        {seeAdvancedFilters ? 'Basic' : 'Advanced'}
+                        {seeAdvancedFilters ? t('common.basic'): t('common.advanced')}
                     </Button>
                 </span>
             </FiltersHeader>

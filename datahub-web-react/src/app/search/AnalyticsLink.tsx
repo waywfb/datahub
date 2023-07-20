@@ -20,7 +20,7 @@ export default function AnalyticsLink() {
     return (
         <Link to="/analytics">
             <StyledAnalyticsLink strong>
-                Analytics <Tag>Beta</Tag>
+                {t('common.Analytics')} <Tag>{t('common.beta')}</Tag>
             </StyledAnalyticsLink>
         </Link>
     );

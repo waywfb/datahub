@@ -19,12 +19,57 @@
     "noData": "No Data",
     "return": "Return",
     "less": "Less",
-    "more":"More"
+    "more": "More",
+    "loading": "Loading",
+    "settings": "Settings",
+    "setting": "Setting",
+    "developer": "Developer",
+    "access": "Access",
+    "manage": "Manage",
+    "filter": "Filter",
+    "basic":"Basic",
+    "advanced": "Advanced",
+    "preferences": "Preferences",
+    "appearance": "Appearance",
+    "announcement": "Announcement",
+    "token": "Token",
+    "tokens": "Tokens",
+    "new": "New",
+    "Beta": "beta",
+    "name": "Name",
+    "description": "Description",
+    "owner": "Owner",
+    "owners": "Owners",
+    "revoke": "Revoke",
+    "column": "Column",
+    "environment": "Environment",
+    "subType": "Subtype",
+    "entityType": "Entity Type",
+    "usage": "Usage",
+    "learnMore": "Learn More"
   },
   "token": {
+    "accessToken": "Access Tokens",
     "personal": "Personal",
     "tokenWillNeverExpire": "This token will never expire.",
-    "tokenWillExpireOnAt": "The token will expire on {{date}} at {{time}}}."
+    "tokenWillExpireOnAt": "The token will expire on {{date}} at {{time}}}.",
+    "expireIn": "Expires in",
+    "expireAt": "Expires At",
+    "validateTokenRevoke": "Are you sure you want to revoke this token?",
+    "validateTokenRevokeDescription": "Anyone using this token will no longer be able to access the DataHub API. You cannot undo this action.",
+    "manageAccessToken": "Manage Access Tokens",
+    "manageAccessTokenForUseWithAPI": "Manage Access Tokens for use with DataHub APIs.",
+    "basedAuthIsDisabled": "Token based authentication is currently disabled. Contact your DataHub administrator to enable this feature.",
+    "personalAccessToken": "Personal Access Tokens",
+    "personalAccessTokenDescription": "Personal Access Tokens allow you to make programmatic requests to DataHub's APIs. They inherit your privileges and have a finite lifespan. Do not share Personal Access Tokens.",
+    "generateNewToken": "Generate new token",
+    "noAccessToken": "No Access Tokens!",
+    "newPersonalAccessToken": "New Personal Access Token",
+    "makeSureYouCopyYourAccessToken": "Make sure to copy your personal access token now. You won’t be able to see it again.",
+    "learnMoreLink_html": "To learn more about the DataHub APIs, check out the <a href=\"{{link}}\"> DataHub Docs.</a>",
+    "toUseATokenExplanationStart": "To use the token, provide it as a",
+    "toUseATokenExplanationMiddle": "token in the",
+    "toUseATokenExplanationEnd": "header when making API requests:"
   },
   "duration": {
     "never": "Never",
@@ -33,7 +78,8 @@
     "day_interval": "(0-1){{count}} day;",
     "day_other": "{{count}} days",
     "hour_interval": "(0-1){{count}} hour;",
-    "hour_other": "{{count}} hours"
+    "hour_other": "{{count}} hours",
+    "dateAtTimeWithTimeZone": "{{date}} at {{time}} ({{timeZone}})"
   },
   "adminHeader": {
     "analyticsText": "Analytics",
@@ -46,12 +92,59 @@
     "domainsDescription": "Manage related groups of data assets",
     "settingsTitle": "Manage your DataHub settings"
   },
+  "settings": {
+    "manageYourSettings": "Manage your DataHub settings.",
+    "usersAndGroups": "Users & Groups",
+    "myViews": "My Views",
+    "ownershipTypes": "Ownership Types",
+    "manageYourAppearanceSettings": "Manage your appearance settings.",
+    "showSimplifiedHomepage": "Show simplified homepage",
+    "showSimplifiedHomepageDescription": "Limits entity browse cards on homepage to Domains, Charts, Datasets, Dashboards and Glossary Terms",
+    "giveYourNewTokenAName": "Give your new token a name.",
+    "enterATokenName": "Enter a token name.",
+    "aNameForYourToken": "A name for your token",
+    "anOptionalDescriptionForYourNewToken": "An optional description for your new token.",
+    "aDescriptionForYourToken": "A description for your token"
+  },
   "search": {
-    "viewAllResultsFor":"View all results for"
+    "viewAllResultsFor":"View all results for",
+    "seeAllResultsWithName_html": "See all <b>{{name}}</b> results",
+    "moreYouMayBeInterestedIn": "More you may be interested in",
+    "showingNumberOfTotalResults_html_interval": "(0-1)Showing <b>{{number}} - {{index}}</b> of {{count}} result;(2-inf)Showing <b>{{number}} - {{index}}</b> of {{count}} results;",
+    "noResultsFoundFor":"No results found for {{name}}",
+    "exploreAll": "Explore all",
+    "selectWithName": "Select {{name}}"
+  },
+  "filter": {
+    "filterBy": "Filter by",
+    "filterByWithName": "Filter by {{name}}",
+    "noFilterApplied":"No filters applied.",
+    "showResultsThatMatch": "Show results that match",
+    "allFilters": "All filters",
+    "anyFilter":"Any filter",
+    "dataProduct": "Data Product",
+    "contains": {
+      "true": "contains",
+      "false": "does not contain"
+    },
+    "equals":{
+      "true": "equals",
+      "false": "not equal"
+    },
+    "isOf": {
+      "true": "is any of",
+      "false": "is not"
+    },
+    "view": {
+      "saveAsView": "Save as View",
+      "saveTheseFiltersAsANewView":"Save these filters as a new View.",
+      "viewsAllowYouToEasilySaveOrShareSearchFilters":"Views allow you to easily save or share search filters."
+    }
   },
   "placeholder": {
     "searchForWithName": "Search for {{name}}...",
-    "addDescriptionForNewTag": "Add a description for your new tag..."
+    "addDescriptionForNewTag": "Add a description for your new tag...",
+    "datasetsDashboardsChartsAndMore":"Datasets, Dashboards, Charts, and more..."
   },
   "share": {
     "shareThisViaMail": "Share this {{type}} via email",
@@ -74,13 +167,17 @@
     "createWithName": "Create {{name}}",
     "success": {
       "addWithName": "Added {{name}}!",
-      "removeWithName": "Removed {{name}}!"
+      "removeWithName": "Removed {{name}}!",
+      "updateWithName": "{{name}} updated!"
     },
     "error": {
       "addWithName": "Failed to add {{name}}",
+      "loadWithName": "Failed to load {{name}}",
       "add": "Failed to add",
       "createWithName": "Failed to create {{name}}",
       "removeWithName": "Failed to remove {{name}}",
+      "revokeWithName": "Failed to revoke {{name}}",
+      "updateWithName": "Failed to update {{name}}",
       "remove": "Failed to remove"
     },
     "doYouWantToRemove": {

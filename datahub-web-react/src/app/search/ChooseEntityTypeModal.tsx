@@ -37,7 +37,7 @@ export const ChooseEntityTypeModal = ({ defaultValues, onCloseModal, onOk, title
             footer={
                 <>
                     <Button onClick={onCloseModal} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button disabled={stagedValues.length === 0} onClick={() => onOk?.(stagedValues)}>
                         {t('common.done')}
@@ -48,18 +48,18 @@ export const ChooseEntityTypeModal = ({ defaultValues, onCloseModal, onOk, title
             <Select
                 mode="multiple"
                 style={{ width: '100%' }}
-                placeholder="Datasets, Dashboards, Charts, and more..."
+                placeholder={t('placeholder.datasetsDashboardsChartsAndMore')}
                 onSelect={(newValue) => addEntityType(newValue)}
                 onDeselect={(newValue) => removeEntityType(newValue)}
                 value={stagedValues.map((stagedEntityType) => ({
                     value: stagedEntityType,
-                    label: entityRegistry.getCollectionName(stagedEntityType as EntityType),
+                    label: entityRegistry.getEntityNameTrans(stagedEntityType as EntityType, t, 2),
                 }))}
                 dropdownMatchSelectWidth={false}
             >
                 {entityTypes.map((type) => (
                     <Option key={type} value={type}>
-                        {entityRegistry.getCollectionName(type)}
+                        {entityRegistry.getEntityNameTrans(type, t, 2)}
                     </Option>
                 ))}
             </Select>

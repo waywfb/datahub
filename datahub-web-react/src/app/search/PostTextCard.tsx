@@ -47,7 +47,7 @@ export const PostTextCard = ({ textPost }: Props) => {
     return (
         <CardContainer>
             <TextContainer>
-                <HeaderText type="secondary">Announcement</HeaderText>
+                <HeaderText type="secondary">{t('common.announcement')}</HeaderText>
                 <TitleText
                     ellipsis={{
                         rows: 1,

@@ -70,6 +70,7 @@ export const ORDERED_FIELDS = [
     DEGREE_FILTER_NAME,
 ];
 
+// TODO ndespouy à traduire là où c'est utilisé
 export const FIELD_TO_LABEL = {
     owners: 'Owner',
     tags: 'Tag',

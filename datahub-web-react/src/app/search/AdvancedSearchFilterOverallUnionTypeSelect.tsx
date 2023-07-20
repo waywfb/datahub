@@ -29,7 +29,7 @@ export const AdvancedSearchFilterOverallUnionTypeSelect = ({ unionType, onUpdate
                 bordered={false}
                 disabled={disabled}
                 // these values are just for display purposes- the actual value is the unionType prop
-                value={unionType === UnionType.AND ? 'all filters' : 'any filter'}
+                value={unionType === UnionType.AND ? t('filter.allFilters') : t('filter.anyFilter')}
                 onChange={(newValue) => {
                     if ((newValue as any) !== unionType) {
                         onUpdate(newValue as any);
@@ -38,8 +38,8 @@ export const AdvancedSearchFilterOverallUnionTypeSelect = ({ unionType, onUpdate
                 size="small"
                 dropdownMatchSelectWidth={false}
             >
-                <Option value={UnionType.AND}>all filters</Option>
-                <Option value={UnionType.OR}>any filter</Option>
+                <Option value={UnionType.AND}>{t('filter.allFilters')}</Option>
+                <Option value={UnionType.OR}>{t('filter.anyFilter')}</Option>
             </StyledSelect>
         </>
     );

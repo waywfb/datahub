@@ -1,6 +1,7 @@
-import { CheckOutlined, CopyOutlined } from '@ant-design/icons';
-import { Button, Tooltip } from 'antd';
+import {CheckOutlined, CopyOutlined} from '@ant-design/icons';
+import {Button, Tooltip} from 'antd';
 import React from 'react';
+import {useTranslation} from "react-i18next";
 
 interface CopyUrnProps {
     urn: string;
@@ -8,18 +9,19 @@ interface CopyUrnProps {
     onClick: () => void;
 }
 
-export default function CopyUrn({ urn, isActive, onClick }: CopyUrnProps) {
+export default function CopyUrn({urn, isActive, onClick}: CopyUrnProps) {
+    const {t} = useTranslation();
     if (navigator.clipboard) {
         return (
-            <Tooltip title="Copy URN. An URN uniquely identifies an entity on DataHub.">
-                <Button
-                    icon={isActive ? <CheckOutlined /> : <CopyOutlined />}
-                    onClick={() => {
-                        navigator.clipboard.writeText(urn);
-                        onClick();
-                    }}
-                />
-            </Tooltip>
+              <Tooltip title={t('copy.urnTooltip')}>
+                  <Button
+                        icon={isActive ? <CheckOutlined/> : <CopyOutlined/>}
+                        onClick={() => {
+                            navigator.clipboard.writeText(urn);
+                            onClick();
+                        }}
+                  />
+              </Tooltip>
         );
     }
 

@@ -1,5 +1,6 @@
 import { Button, Input, Modal } from 'antd';
 import React, { useState } from 'react';
+import {useTranslation} from "react-i18next";
 
 type Props = {
     onCloseModal: () => void;
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export const EditTextModal = ({ defaultValue, onCloseModal, onOk, title }: Props) => {
+    const {t} = useTranslation();
     const [stagedValue, setStagedValue] = useState(defaultValue || '');
     return (
         <Modal
@@ -26,7 +28,7 @@ export const EditTextModal = ({ defaultValue, onCloseModal, onOk, title }: Props
                         disabled={stagedValue.trim().length === 0}
                         onClick={() => onOk?.(stagedValue)}
                     >
-                        Done
+                        {t('common.done')}
                     </Button>
                 </>
             }

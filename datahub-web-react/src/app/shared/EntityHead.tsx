@@ -3,10 +3,12 @@ import { Helmet } from 'react-helmet-async';
 import { useEntityData } from '../entity/shared/EntityContext';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { capitalizeFirstLetterOnly } from './textUtil';
+import {useTranslation} from "react-i18next";
 
 export const EntityHead = () => {
     const entityRegistry = useEntityRegistry();
     const { entityType, entityData } = useEntityData();
+    const {t} = useTranslation();
 
     if (!entityData) {
         return null;
@@ -14,7 +16,7 @@ export const EntityHead = () => {
 
     const entityDisplayName = entityRegistry.getDisplayName(entityType, entityData);
     const type =
-        capitalizeFirstLetterOnly(entityData?.subTypes?.typeNames?.[0]) || entityRegistry.getEntityName(entityType);
+        capitalizeFirstLetterOnly(entityData?.subTypes?.typeNames?.[0]) || entityRegistry.getEntityNameTrans(entityType, t);
 
     return (
         <Helmet>

@@ -7,6 +7,7 @@ import { SchemaField, SchemaFieldBlame } from '../../../../../../../types.genera
 import { pathMatchesNewPath } from '../../../../../dataset/profile/schema/utils/utils';
 import { toRelativeTimeString } from '../../../../../../shared/time/timeUtils';
 import { navigateToVersionedDatasetUrl } from './navigateToVersionedDatasetUrl';
+import {useTranslation} from "react-i18next";
 
 const HeadingDiv = styled.div`
     vertical-align: top;
@@ -43,6 +44,7 @@ const SchemaBlameBlameButton = styled(Button)`
 export default function useSchemaBlameRenderer(schemaBlameList?: Array<SchemaFieldBlame> | null) {
     const history = useHistory();
     const location = useLocation();
+    const {i18n} = useTranslation();
     const schemaBlameRenderer = (record: SchemaField) => {
         const relevantSchemaFieldBlame = schemaBlameList?.find((candidateSchemaBlame) =>
             pathMatchesNewPath(candidateSchemaBlame.fieldPath, String(record)),
@@ -61,7 +63,7 @@ export default function useSchemaBlameRenderer(schemaBlameList?: Array<SchemaFie
                     <SubheadingDiv>
                         {relevantSchemaFieldBlame?.schemaFieldChange?.timestampMillis ? (
                             <SchemaBlameTimestampText>
-                                {toRelativeTimeString(relevantSchemaFieldBlame?.schemaFieldChange?.timestampMillis)}
+                                {toRelativeTimeString(relevantSchemaFieldBlame?.schemaFieldChange?.timestampMillis, i18n.language)}
                             </SchemaBlameTimestampText>
                         ) : (
                             'unknown'

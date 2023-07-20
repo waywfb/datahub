@@ -87,6 +87,10 @@ const client = new ApolloClient({
 });
 
 const App: React.VFC = () => {
+    // Change form alert language
+    const {t, i18n} = useTranslation();
+    const [validateMessages, setValidateMessages] = useState(t('form.validateMessages', {returnObjects: true}) as any);
+    i18n.on('languageChanged', () => setValidateMessages(t('form.validateMessages', {returnObjects: true})));
     const [dynamicThemeConfig, setDynamicThemeConfig] = useState<Theme>(defaultThemeConfig);
 
     useEffect(() => {

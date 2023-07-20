@@ -17,6 +17,7 @@ import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
 import { ANTD_GRAY } from '../../shared/constants';
 import { toRelativeTimeString } from '../../../shared/time/timeUtils';
+import { useTranslation } from 'react-i18next';
 
 const StatText = styled(Typography.Text)`
     color: ${ANTD_GRAY[8]};
@@ -56,6 +57,7 @@ export const Preview = ({
     externalUrl?: string | null;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const {i18n} = useTranslation();
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.DataJob, urn)}
@@ -80,7 +82,7 @@ export const Preview = ({
                 (lastRunTimeMs && [
                     <StatText>
                         <ClockCircleOutlined style={{ paddingRight: 8 }} />
-                        Last run {toRelativeTimeString(lastRunTimeMs)}
+                        Last run {toRelativeTimeString(lastRunTimeMs, i18n.language)}
                     </StatText>,
                 ]) ||
                 undefined

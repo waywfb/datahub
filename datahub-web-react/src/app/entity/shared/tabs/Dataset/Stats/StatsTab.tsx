@@ -9,6 +9,7 @@ import ColumnStats from './snapshot/ColumnStats';
 import TableStats from './snapshot/TableStats';
 import StatsHeader from './StatsHeader';
 import { ViewType } from './viewType';
+import {useTranslation} from "react-i18next";
 
 export default function StatsTab() {
     const baseEntity = useBaseEntity<GetDatasetQuery>();
@@ -36,8 +37,8 @@ export default function StatsTab() {
     // Used for rendering operation info.
     const operations = (hasOperations && (baseEntity?.dataset?.operations as Array<Operation>)) || undefined;
     const latestOperation = operations && operations[0];
-    const lastUpdatedTime = latestOperation && toLocalDateTimeString(latestOperation?.lastUpdatedTimestamp);
-    const lastReportedTime = latestOperation && toLocalDateTimeString(latestOperation?.timestampMillis);
+    const lastUpdatedTime = latestOperation && toLocalDateTimeString(latestOperation?.lastUpdatedTimestamp, i18n.language);
+    const lastReportedTime = latestOperation && toLocalDateTimeString(latestOperation?.timestampMillis, i18n.language);
     // Okay so if we are disabled, we don't have both or the other. Let's render
 
     // const emptyView = <Empty description="TODO: Stats!" image={Empty.PRESENTED_IMAGE_SIMPLE} />;

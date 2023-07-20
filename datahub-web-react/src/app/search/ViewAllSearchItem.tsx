@@ -27,17 +27,17 @@ const ReturnKey = styled(Typography.Text)`
     font-size: 12px;
 `;
 
-function ViewAllSearchItem({ searchTarget: searchText }: { searchTarget?: string }) {
+function ViewAllSearchItem({ searchLabel, searchTarget: searchText, returnLabel }: { searchLabel?: string, searchTarget?: string, returnLabel?: string}) {
     return (
         <ViewAllContainer>
             <ExploreForEntity>
                 <SearchOutlined />
                 <ExploreForEntityText>
-                    View all results for <Typography.Text strong>{searchText}</Typography.Text>
+                    {searchLabel} <Typography.Text strong>{searchText}</Typography.Text>
                 </ExploreForEntityText>
             </ExploreForEntity>
             <ReturnKey keyboard disabled>
-                ⮐ return
+                ⮐ {returnLabel}
             </ReturnKey>
         </ViewAllContainer>
     );

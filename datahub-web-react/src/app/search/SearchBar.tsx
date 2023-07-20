@@ -22,6 +22,7 @@ import { useUserContext } from '../context/useUserContext';
 import { navigateToSearchUrl } from './utils/navigateToSearchUrl';
 import { getQuickFilterDetails } from './autoComplete/quickFilters/utils';
 import ViewAllSearchItem from './ViewAllSearchItem';
+import {useTranslation} from "react-i18next";
 
 const StyledAutoComplete = styled(AutoComplete)`
     width: 100%;
@@ -132,6 +133,7 @@ export const SearchBar = ({
     onBlur,
 }: Props) => {
     const history = useHistory();
+    const {t} = useTranslation();
     const [searchQuery, setSearchQuery] = useState<string | undefined>(initialQuery);
     const [selected, setSelected] = useState<string>();
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -199,7 +201,7 @@ export const SearchBar = ({
         return [
             {
                 value: `${EXACT_SEARCH_PREFIX}${text}`,
-                label: <ViewAllSearchItem searchTarget={text} />,
+                label: <ViewAllSearchItem searchLabel={t('search.viewAllResultsFor')} searchTarget={text} returnLabel={t('common.return')}/>,
                 type: EXACT_AUTOCOMPLETE_OPTION_TYPE,
             },
         ];

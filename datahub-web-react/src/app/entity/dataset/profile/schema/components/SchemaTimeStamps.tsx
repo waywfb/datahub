@@ -47,13 +47,13 @@ function SchemaTimeStamps(props: Props) {
             <CurrentVersionTimestampText>
                 {lastObserved && (
                     <span>
-                        <StyledClockIcon /> Last observed {toRelativeTimeString(lastObserved)}
+                        <StyledClockIcon /> Last observed {toRelativeTimeString(lastObserved, i18n.language)}
                     </span>
                 )}
                 {!lastObserved && lastUpdated && (
                     <span>
                         <StyledClockIcon />
-                        Reported {toRelativeTimeString(lastUpdated)}
+                        Reported {toRelativeTimeString(lastUpdated, i18n.language)}
                     </span>
                 )}
             </CurrentVersionTimestampText>

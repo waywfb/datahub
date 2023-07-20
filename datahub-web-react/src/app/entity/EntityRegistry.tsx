@@ -1,9 +1,10 @@
-import { Entity as EntityInterface, EntityType, SearchResult } from '../../types.generated';
-import { FetchedEntity } from '../lineage/types';
-import { Entity, EntityCapabilityType, IconStyleType, PreviewType } from './Entity';
-import { GLOSSARY_ENTITY_TYPES } from './shared/constants';
-import { GenericEntityProperties } from './shared/types';
-import { dictToQueryStringParams, getFineGrainedLineageWithSiblings, urlEncodeUrn } from './shared/utils';
+import {Entity as EntityInterface, EntityType, SearchResult} from '../../types.generated';
+import {FetchedEntity} from '../lineage/types';
+import {Entity, EntityCapabilityType, IconStyleType, PreviewType} from './Entity';
+import {GLOSSARY_ENTITY_TYPES} from './shared/constants';
+import {GenericEntityProperties} from './shared/types';
+import {dictToQueryStringParams, getFineGrainedLineageWithSiblings, urlEncodeUrn} from './shared/utils';
+import {TFunction} from 'i18next';
 
 function validatedGet<K, V>(key: K, map: Map<K, V>): V {
     if (map.has(key)) {
@@ -77,9 +78,17 @@ export default class EntityRegistry {
         return entity.getCollectionName();
     }
 
+    // TODO ndespouy remplacer tout ces appels par getEntityNameTrans
     getEntityName(type: EntityType): string | undefined {
         const entity = validatedGet(type, this.entityTypeToEntity);
         return entity.getEntityName?.();
+    }
+
+    getEntityNameTrans(type: EntityType, t: TFunction, count: number = 1): string {
+        // When you use this function, you have to precise the ns 'entity' in
+        // const {t} = useTranslation(['entity']);
+        const entity = validatedGet(type, this.entityTypeToEntity);
+        return t(entity.type, {ns: 'entity', count: count});
     }
 
     getTypeFromCollectionName(name: string): EntityType {
@@ -138,44 +147,44 @@ export default class EntityRegistry {
         const genericEntityProperties = this.getGenericEntityProperties(type, data);
         // combine fineGrainedLineages from this node as well as its siblings
         const fineGrainedLineages = getFineGrainedLineageWithSiblings(
-            genericEntityProperties,
-            (t: EntityType, d: EntityInterface) => this.getGenericEntityProperties(t, d),
+              genericEntityProperties,
+              (t: EntityType, d: EntityInterface) => this.getGenericEntityProperties(t, d),
         );
         return (
-            ({
-                ...entity.getLineageVizConfig?.(data),
-                downstreamChildren: genericEntityProperties?.downstream?.relationships
-                    ?.filter((relationship) => relationship.entity)
-                    ?.map((relationship) => ({
-                        entity: relationship.entity as EntityInterface,
-                        type: (relationship.entity as EntityInterface).type,
-                    })),
-                downstreamRelationships: genericEntityProperties?.downstream?.relationships?.filter(
-                    (relationship) => relationship.entity,
-                ),
-                numDownstreamChildren:
-                    (genericEntityProperties?.downstream?.total || 0) -
-                    (genericEntityProperties?.downstream?.filtered || 0),
-                upstreamChildren: genericEntityProperties?.upstream?.relationships
-                    ?.filter((relationship) => relationship.entity)
-                    ?.map((relationship) => ({
-                        entity: relationship.entity as EntityInterface,
-                        type: (relationship.entity as EntityInterface).type,
-                    })),
-                upstreamRelationships: genericEntityProperties?.upstream?.relationships?.filter(
-                    (relationship) => relationship.entity,
-                ),
-                numUpstreamChildren:
-                    (genericEntityProperties?.upstream?.total || 0) -
-                    (genericEntityProperties?.upstream?.filtered || 0),
-                status: genericEntityProperties?.status,
-                siblingPlatforms: genericEntityProperties?.siblingPlatforms,
-                fineGrainedLineages,
-                siblings: genericEntityProperties?.siblings,
-                schemaMetadata: genericEntityProperties?.schemaMetadata,
-                inputFields: genericEntityProperties?.inputFields,
-                canEditLineage: genericEntityProperties?.privileges?.canEditLineage,
-            } as FetchedEntity) || undefined
+              ({
+                  ...entity.getLineageVizConfig?.(data),
+                  downstreamChildren: genericEntityProperties?.downstream?.relationships
+                        ?.filter((relationship) => relationship.entity)
+                        ?.map((relationship) => ({
+                            entity: relationship.entity as EntityInterface,
+                            type: (relationship.entity as EntityInterface).type,
+                        })),
+                  downstreamRelationships: genericEntityProperties?.downstream?.relationships?.filter(
+                        (relationship) => relationship.entity,
+                  ),
+                  numDownstreamChildren:
+                        (genericEntityProperties?.downstream?.total || 0) -
+                        (genericEntityProperties?.downstream?.filtered || 0),
+                  upstreamChildren: genericEntityProperties?.upstream?.relationships
+                        ?.filter((relationship) => relationship.entity)
+                        ?.map((relationship) => ({
+                            entity: relationship.entity as EntityInterface,
+                            type: (relationship.entity as EntityInterface).type,
+                        })),
+                  upstreamRelationships: genericEntityProperties?.upstream?.relationships?.filter(
+                        (relationship) => relationship.entity,
+                  ),
+                  numUpstreamChildren:
+                        (genericEntityProperties?.upstream?.total || 0) -
+                        (genericEntityProperties?.upstream?.filtered || 0),
+                  status: genericEntityProperties?.status,
+                  siblingPlatforms: genericEntityProperties?.siblingPlatforms,
+                  fineGrainedLineages,
+                  siblings: genericEntityProperties?.siblings,
+                  schemaMetadata: genericEntityProperties?.schemaMetadata,
+                  inputFields: genericEntityProperties?.inputFields,
+                  canEditLineage: genericEntityProperties?.privileges?.canEditLineage,
+              } as FetchedEntity) || undefined
         );
     }
 
@@ -196,9 +205,9 @@ export default class EntityRegistry {
 
     getTypesWithSupportedCapabilities(capability: EntityCapabilityType): Set<EntityType> {
         return new Set(
-            this.getEntities()
-                .filter((entity) => entity.supportedCapabilities().has(capability))
-                .map((entity) => entity.type),
+              this.getEntities()
+                    .filter((entity) => entity.supportedCapabilities().has(capability))
+                    .map((entity) => entity.type),
         );
     }
 }

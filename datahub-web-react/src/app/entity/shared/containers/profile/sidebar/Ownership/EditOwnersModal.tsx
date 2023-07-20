@@ -20,6 +20,7 @@ import { useGetRecommendations } from '../../../../../../shared/recommendation';
 import { OwnerLabel } from '../../../../../../shared/OwnerLabel';
 import { handleBatchError } from '../../../../utils';
 import { useListOwnershipTypesQuery } from '../../../../../../../graphql/ownership.generated';
+import {useTranslation} from "react-i18next";
 
 const SelectInput = styled(Select)`
     width: 480px;
@@ -72,6 +73,7 @@ export const EditOwnersModal = ({
     defaultValues,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const {t} = useTranslation();
 
     // Renders a search result in the select dropdown.
     const renderSearchResult = (entity: Entity) => {
@@ -344,7 +346,7 @@ export const EditOwnersModal = ({
                         Cancel
                     </Button>
                     <Button id="addOwnerButton" disabled={selectedOwners.length === 0} onClick={onOk}>
-                        Done
+                        {t('common.done')}
                     </Button>
                 </>
             }

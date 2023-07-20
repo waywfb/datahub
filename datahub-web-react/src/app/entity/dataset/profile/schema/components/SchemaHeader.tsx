@@ -19,6 +19,7 @@ import { ANTD_GRAY, REDESIGN_COLORS } from '../../../../shared/constants';
 import { navigateToVersionedDatasetUrl } from '../../../../shared/tabs/Dataset/Schema/utils/navigateToVersionedDatasetUrl';
 import SchemaTimeStamps from './SchemaTimeStamps';
 import getSchemaFilterFromQueryString from '../../../../shared/tabs/Dataset/Schema/utils/getSchemaFilterFromQueryString';
+import {useTranslation} from "react-i18next";
 
 const SchemaHeaderContainer = styled.div`
     display: flex;
@@ -169,6 +170,7 @@ export default function SchemaHeader({
 }: Props) {
     const history = useHistory();
     const location = useLocation();
+    const {i18n} = useTranslation();
     const onVersionChange = (version1, version2) => {
         if (version1 === null || version2 === null) {
             return;
@@ -179,7 +181,7 @@ export default function SchemaHeader({
     const semanticVersionDisplayString = (semanticVersion: SemanticVersionStruct) => {
         const semanticVersionTimestampString =
             (semanticVersion?.semanticVersionTimestamp &&
-                toRelativeTimeString(semanticVersion?.semanticVersionTimestamp)) ||
+                toRelativeTimeString(semanticVersion?.semanticVersionTimestamp, i18n.language)) ||
             'unknown';
         return `${semanticVersion.semanticVersion} - ${semanticVersionTimestampString}`;
     };

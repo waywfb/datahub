@@ -6,14 +6,14 @@ import SchemaTimeStamps from '../../schema/components/SchemaTimeStamps';
 describe('SchemaTimeStamps', () => {
     it('should render last observed text if lastObserved is not null', () => {
         const { getByText, queryByText } = render(<SchemaTimeStamps lastUpdated={123} lastObserved={123} />);
-        expect(getByText(`Last observed ${toRelativeTimeString(123)}`)).toBeInTheDocument();
-        expect(queryByText(`Reported ${toRelativeTimeString(123)}`)).toBeNull();
+        expect(getByText(`Last observed ${toRelativeTimeString(123, 'en')}`)).toBeInTheDocument();
+        expect(queryByText(`Reported ${toRelativeTimeString(123, 'en')}`)).toBeNull();
     });
 
     it('should render last updated text if lastObserved is null', () => {
         const { getByText, queryByText } = render(<SchemaTimeStamps lastUpdated={123} lastObserved={null} />);
-        expect(queryByText(`Last observed ${toRelativeTimeString(123)}`)).toBeNull();
-        expect(getByText(`Reported ${toRelativeTimeString(123)}`)).toBeInTheDocument();
+        expect(queryByText(`Last observed ${toRelativeTimeString(123, 'en')}`)).toBeNull();
+        expect(getByText(`Reported ${toRelativeTimeString(123, 'en')}`)).toBeInTheDocument();
     });
 
     it('should return null if lastUpdated and lastObserved are both null', () => {

@@ -8,6 +8,7 @@ import { toLocalDateTimeString, toRelativeTimeString } from '../../../shared/tim
 import { StatsSummary } from '../../shared/components/styled/StatsSummary';
 import { countFormatter, needsFormatting } from '../../../../utils/formatter';
 import ExpandingStat from '../../dataset/shared/ExpandingStat';
+import {useTranslation} from "react-i18next";
 
 const StatText = styled.span`
     color: ${ANTD_GRAY[8]};
@@ -33,6 +34,7 @@ export const DashboardStatsSummary = ({
     lastUpdatedMs,
     createdMs,
 }: Props) => {
+    const {i18n} = useTranslation();
     const statsViews = [
         (!!chartCount && (
             <ExpandingStat
@@ -64,9 +66,9 @@ export const DashboardStatsSummary = ({
             <Popover
                 content={
                     <>
-                        {createdMs && <div>Created on {toLocalDateTimeString(createdMs)}.</div>}
+                        {createdMs && <div>Created on {toLocalDateTimeString(createdMs, i18n.language)}.</div>}
                         <div>
-                            Changed on {toLocalDateTimeString(lastUpdatedMs)}.{' '}
+                            Changed on {toLocalDateTimeString(lastUpdatedMs, i18n.language)}.{' '}
                             <Tooltip title="The time at which the dashboard was last changed in the source platform">
                                 <HelpIcon />
                             </Tooltip>
@@ -76,7 +78,7 @@ export const DashboardStatsSummary = ({
             >
                 <StatText>
                     <ClockCircleOutlined style={{ marginRight: 8, color: ANTD_GRAY[7] }} />
-                    Changed {toRelativeTimeString(lastUpdatedMs)}
+                    Changed {toRelativeTimeString(lastUpdatedMs, i18n.language)}
                 </StatText>
             </Popover>
         )) ||

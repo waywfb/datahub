@@ -100,9 +100,9 @@ export const toLocalTimeString = (timeMs: number) => {
     return date.toLocaleTimeString();
 };
 
-export const toLocalDateTimeString = (timeMs: number) => {
+export const toLocalDateTimeString = (timeMs: number, locale: string) => {
     const date = new Date(timeMs);
-    return date.toLocaleString([], {
+    return date.toLocaleString([locale], {
         year: 'numeric',
         month: 'numeric',
         day: 'numeric',
@@ -129,8 +129,8 @@ export const getLocaleTimezone = () => {
     return Intl.DateTimeFormat().resolvedOptions().timeZone;
 };
 
-export const toRelativeTimeString = (timeMs: number) => {
-    const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+export const toRelativeTimeString = (timeMs: number, locale: string) => {
+    const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
 
     const diffInMs = timeMs - new Date().getTime();
 

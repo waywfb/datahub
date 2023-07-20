@@ -63,6 +63,7 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
         userContext.updateLocalState({ selectedViewUrn: undefined });
     };
     const version = config?.appVersion;
+    // TODO ndespouy traduction depuis le thème
     const menu = (
         <Menu style={{ width: '120px' }}>
             {version && (

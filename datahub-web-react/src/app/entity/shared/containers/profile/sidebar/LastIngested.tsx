@@ -10,6 +10,7 @@ import { useEntityData } from '../../../EntityContext';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
 import { getPlatformName } from '../../../utils';
 import { getDisplayedEntityType } from '../header/PlatformContent/PlatformContentContainer';
+import {useTranslation} from "react-i18next";
 
 const StyledDot = styled.div<{ color: string }>`
     border: 1px solid ${ANTD_GRAY[5]};
@@ -120,6 +121,7 @@ function LastIngested({ lastIngested }: Props) {
     const displayedEntityType = getDisplayedEntityType(entityData, entityRegistry, entityType);
     const lastIngestedColor = getLastIngestedColor(lastIngested);
     const platformName = getPlatformName(entityData);
+    const {i18n} = useTranslation();
     const platformLogoUrl = entityData?.platform?.properties?.logoUrl;
 
     return (
@@ -134,16 +136,16 @@ function LastIngested({ lastIngested }: Props) {
                         </Title>
                         <RelativeDescription>
                             This {displayedEntityType.toLocaleLowerCase()} was last synchronized&nbsp;
-                            <b>{toRelativeTimeString(lastIngested)}</b>
+                            <b>{toRelativeTimeString(lastIngested, i18n.language)}</b>
                         </RelativeDescription>
-                        <SubText>Synchronized on {toLocalDateTimeString(lastIngested)}</SubText>
+                        <SubText>Synchronized on {toLocalDateTimeString(lastIngested, i18n.language)}</SubText>
                     </PopoverContentWrapper>
                 }
             >
                 <MainContent>
                     <StyledDot color={lastIngestedColor} />
                     Last synchronized&nbsp;
-                    <b>{toRelativeTimeString(lastIngested)}</b>
+                    <b>{toRelativeTimeString(lastIngested, i18n.language)}</b>
                 </MainContent>
             </Popover>
             <Popover

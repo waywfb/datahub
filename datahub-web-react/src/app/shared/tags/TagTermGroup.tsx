@@ -6,11 +6,12 @@ import Highlight from 'react-highlighter';
 
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { Domain, EntityType, GlobalTags, GlossaryTerms, SubResourceType } from '../../../types.generated';
-import { EMPTY_MESSAGES, ANTD_GRAY } from '../../entity/shared/constants';
+import { ANTD_GRAY } from '../../entity/shared/constants';
 import { DomainLink } from './DomainLink';
 import EditTagTermsModal from './AddTagsTermsModal';
 import StyledTerm from './term/StyledTerm';
 import Tag from './tag/Tag';
+import {useTranslation} from "react-i18next";
 
 type Props = {
     uneditableTags?: GlobalTags | null;
@@ -69,6 +70,7 @@ export default function TagTermGroup({
     readOnly,
 }: Props) {
     const entityRegistry = useEntityRegistry();
+    const {t} = useTranslation(['translation', 'empty-message']);
     const [showAddModal, setShowAddModal] = useState(false);
     const [addModalType, setAddModalType] = useState(EntityType.Tag);
     const tagsEmpty = !editableTags?.tags?.length && !uneditableTags?.tags?.length;
@@ -166,12 +168,12 @@ export default function TagTermGroup({
             })}
             {showEmptyMessage && canAddTag && tagsEmpty && (
                 <Typography.Paragraph type="secondary">
-                    {EMPTY_MESSAGES.tags.title}. {EMPTY_MESSAGES.tags.description}
+                    {t('tags.title',{ns:'empty-message'})}. {t('tags.description',{ns:'empty-message'})}
                 </Typography.Paragraph>
             )}
             {showEmptyMessage && canAddTerm && termsEmpty && (
                 <Typography.Paragraph type="secondary">
-                    {EMPTY_MESSAGES.terms.title}. {EMPTY_MESSAGES.terms.description}
+                    {t('terms.title',{ns:'empty-message'})}. {t('terms.description',{ns:'empty-message'})}
                 </Typography.Paragraph>
             )}
             {canAddTag && !readOnly && (
@@ -197,7 +199,7 @@ export default function TagTermGroup({
                     {...buttonProps}
                 >
                     <PlusOutlined />
-                    <span>Add Terms</span>
+                    <span>{t('crud.addWithName', {name: entityRegistry.getEntityNameTrans(EntityType.GLOSSARY_TERMS, t, 2)})}</span>
                 </NoElementButton>
             )}
             {showAddModal && !!entityUrn && !!entityType && (

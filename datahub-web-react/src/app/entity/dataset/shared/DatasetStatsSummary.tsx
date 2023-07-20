@@ -9,6 +9,7 @@ import { StatsSummary } from '../../shared/components/styled/StatsSummary';
 import { FormattedBytesStat } from './FormattedBytesStat';
 import { countFormatter, needsFormatting } from '../../../../utils/formatter';
 import ExpandingStat from './ExpandingStat';
+import {useTranslation} from "react-i18next";
 
 const StatText = styled.span<{ color: string }>`
     color: ${(props) => props.color};
@@ -97,7 +98,7 @@ export const DatasetStatsSummary = ({
             >
                 <StatText color={displayedColor}>
                     <ClockCircleOutlined style={{ marginRight: 8, color: ANTD_GRAY[7] }} />
-                    Updated {toRelativeTimeString(lastUpdatedMs)}
+                    Updated {toRelativeTimeString(lastUpdatedMs, i18n.language)}
                 </StatText>
             </Popover>
         ),

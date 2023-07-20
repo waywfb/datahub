@@ -9,6 +9,7 @@ import ConnectionCapabilityView from './ConnectionCapabilityView';
 import { CapabilityReport, SourceCapability, TestConnectionResult } from './types';
 import { SourceConfig } from '../../types';
 import useGetSourceLogoUrl from '../../useGetSourceLogoUrl';
+import {useTranslation} from "react-i18next";
 
 const LoadingWrapper = styled.div`
     display: flex;
@@ -97,13 +98,14 @@ function TestConnectionModal({
     testConnectionResult,
     hideModal,
 }: Props) {
+    const {t} = useTranslation();
     const logoUrl = useGetSourceLogoUrl(sourceConfig?.name || '');
 
     return (
         <Modal
             visible
             onCancel={hideModal}
-            footer={<Button onClick={hideModal}>Done</Button>}
+            footer={<Button onClick={hideModal}>{t('common.done')}</Button>}
             title={
                 <ModalHeader style={{ margin: 0 }}>
                     <SourceIcon alt="source logo" src={logoUrl} />

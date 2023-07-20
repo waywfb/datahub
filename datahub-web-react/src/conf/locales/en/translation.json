@@ -1,8 +1,113 @@
 {
+  "common": {
+    "analytics": "Analytics",
+    "permissions": "Permissions",
+    "close": "Close",
+    "share": "Share",
+    "details": "Details",
+    "back": "Back",
+    "copy": "Copy",
+    "add": "Add",
+    "create": "Create",
+    "remove": "Remove",
+    "yes": "Yes",
+    "cancel": "Cancel",
+    "done": "Done",
+    "group": "Group",
+    "role": "Role",
+    "govern": "Govern",
+    "noData": "No Data",
+    "return": "Return",
+    "less": "Less",
+    "more":"More"
+  },
+  "token": {
+    "personal": "Personal",
+    "tokenWillNeverExpire": "This token will never expire.",
+    "tokenWillExpireOnAt": "The token will expire on {{date}} at {{time}}}."
+  },
+  "duration": {
+    "never": "Never",
+    "month_interval": "(0-1){{count}} month;",
+    "month_other": "{{count}} months",
+    "day_interval": "(0-1){{count}} day;",
+    "day_other": "{{count}} days",
+    "hour_interval": "(0-1){{count}} hour;",
+    "hour_other": "{{count}} hours"
+  },
+  "adminHeader": {
+    "analyticsText": "Analytics",
+    "analyticsTitle": "View DataHub usage analytics",
+    "ingestionText": "Ingestion",
+    "ingestionTitle": "Connect DataHub to your organization's data sources",
+    "glossaryText": "Glossary",
+    "glossaryDescription": "View and modify your data dictionary",
+    "domainsText": "Domains",
+    "domainsDescription": "Manage related groups of data assets",
+    "settingsTitle": "Manage your DataHub settings"
+  },
+  "search": {
+    "viewAllResultsFor":"View all results for"
+  },
+  "placeholder": {
+    "searchForWithName": "Search for {{name}}...",
+    "addDescriptionForNewTag": "Add a description for your new tag..."
+  },
+  "share": {
+    "shareThisViaMail": "Share this {{type}} via email",
+    "checkoutThisOn": "Check out this {{type}} on DataHub: {{linkText}}"
+  },
   "user": {
     "error": {
-      "fetchFromCache": "",
-      "notFound": ""
+      "fetchFromCache": "Could not fetch logged in user from cache.",
+      "notFound": "Could not find logged in user."
+    }
+  },
+  "navigation": {
+    "backToHome": "Back to Home",
+    "yourProfile": "Your Profile",
+    "openPanel":"Open the navigation panel",
+    "hidePanel":"Hide the navigation panel"
+  },
+  "crud": {
+    "addWithName": "Add {{name}}",
+    "createWithName": "Create {{name}}",
+    "success": {
+      "addWithName": "Added {{name}}!",
+      "removeWithName": "Removed {{name}}!"
+    },
+    "error": {
+      "addWithName": "Failed to add {{name}}",
+      "add": "Failed to add",
+      "createWithName": "Failed to create {{name}}",
+      "removeWithName": "Failed to remove {{name}}",
+      "remove": "Failed to remove"
+    },
+    "doYouWantToRemove": {
+      "titleWithName": "Do you want to remove {{name}} ?",
+      "contentWithTheName": "Are you sure you want to remove the {{name}} ?",
+      "contentWithThisName": "Are you sure you want to remove this {{name}} ?"
+    }
+  },
+  "copy": {
+    "copyLink": "Copy Link",
+    "urnTooltip": "Copy URN. An URN uniquely identifies an entity on DataHub.",
+    "copyUrnForThis": "Copy the URN for this {{type}}. An URN uniquely identifies an entity on DataHub.",
+    "copyShareableLinkToEntity": "Copy a shareable link to this entity."
+  },
+  "error": {
+    "pageNotFound": "The page your requested was not found",
+    "errorSection" : {
+      "ressourcesLabel": {
+        "project": "DataHub Project",
+        "docs": "DataHub Docs",
+        "github": "DataHub GitHub"
+      },
+      "somethingWentWrong": "Something went wrong.",
+      "anUnexpectedErrorOccurred": "An unexpected error occurred. Please try again later, or reach out to your administrator",
+      "needSupport": "Need support?",
+      "checkOutThisRessources": "Check out these resources:",
+      "needSupport_html": "<b>Need support?</b> Check out these resources:"
     }
   }
 }

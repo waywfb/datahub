@@ -7,6 +7,7 @@ import Sider from 'antd/lib/layout/Sider';
 import { useGetAuthenticatedUser } from './useGetAuthenticatedUser';
 import { useAppConfig } from './useAppConfig';
 import { ANTD_GRAY } from './entity/shared/constants';
+import {useTranslation} from "react-i18next";
 
 const ToggleContainer = styled.div`
     background-color: ${ANTD_GRAY[4]};
@@ -36,6 +37,7 @@ export const AdminConsole = (): JSX.Element => {
 
     const [adminConsoleOpen, setAdminConsoleOpen] = useState(false);
     const { config } = useAppConfig();
+    const {t} = useTranslation();
 
     const isAnalyticsEnabled = config?.analyticsConfig.enabled;
     const isPoliciesEnabled = config?.policiesConfig.enabled;
@@ -77,14 +79,14 @@ export const AdminConsole = (): JSX.Element => {
                         {showAnalytics && (
                             <Menu.Item key="analytics" icon={<BarChartOutlined />}>
                                 <Link onClick={onMenuItemClick} to="/analytics">
-                                    Analytics
+                                    {t('common.analytics')}
                                 </Link>
                             </Menu.Item>
                         )}
                         {showPolicyBuilder && (
                             <Menu.Item key="permissions" icon={<BankOutlined />}>
                                 <Link onClick={onMenuItemClick} to="/permissions">
-                                    Permissions
+                                    {t('common.permissions')}
                                 </Link>
                             </Menu.Item>
                         )}

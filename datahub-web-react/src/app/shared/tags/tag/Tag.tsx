@@ -8,6 +8,7 @@ import { StyledTag } from '../../../entity/shared/components/styled/StyledTag';
 import { HoverEntityTooltip } from '../../../recommendations/renderer/component/HoverEntityTooltip';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { TagProfileDrawer } from '../TagProfileDrawer';
+import {useTranslation} from "react-i18next";
 
 const TagLink = styled.span`
     display: inline-block;
@@ -40,6 +41,7 @@ export default function Tag({
     fontSize,
 }: Props) {
     const entityRegistry = useEntityRegistry();
+    const {t} = useTranslation();
     const [removeTagMutation] = useRemoveTagMutation();
 
     const [tagProfileDrawerVisible, setTagProfileDrawerVisible] = useState(false);
@@ -60,8 +62,8 @@ export default function Tag({
         const tagToRemove = tagAssociationToRemove.tag;
         onOpenModal?.();
         Modal.confirm({
-            title: `Do you want to remove ${tagToRemove?.name} tag?`,
-            content: `Are you sure you want to remove the ${tagToRemove?.name} tag?`,
+            title: t('crud.doYouWantToRemove.titleWithName', {name:tagToRemove?.name + ' ' + entityRegistry.getEntityNameTrans(EntityType.Tags,t).toLowerCase()}),
+            content: t('crud.doYouWantToRemove.contentWithTheName', {name:tagToRemove?.name + ' ' + entityRegistry.getEntityNameTrans(EntityType.Tags,t).toLowerCase()}),
             onOk() {
                 if (tagAssociationToRemove.associatedUrn || entityUrn) {
                     removeTagMutation({
@@ -76,18 +78,19 @@ export default function Tag({
                     })
                         .then(({ errors }) => {
                             if (!errors) {
-                                message.success({ content: 'Removed Tag!', duration: 2 });
+                                message.success({ content: t('crud.success.removeWithName',{name: entityRegistry.getEntityNameTrans(EntityType.Tags,t)}), duration: 2 });
                             }
                         })
                         .then(refetch)
                         .catch((e) => {
                             message.destroy();
-                            message.error({ content: `Failed to remove tag: \n ${e.message || ''}`, duration: 3 });
+                            message.error({ content: `${t('crud.error.removeWithName',{name: entityRegistry.getEntityNameTrans(EntityType.Tags,t).toLowerCase()})}: \n ${e.message || ''}`, duration: 3 });
                         });
                 }
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

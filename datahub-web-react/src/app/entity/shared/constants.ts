@@ -20,6 +20,7 @@ export const ANTD_GRAY = {
     9: '#434343',
 };
 
+// TODO ndespouy supprimer ?
 export const EMPTY_MESSAGES = {
     documentation: {
         title: 'No documentation yet',

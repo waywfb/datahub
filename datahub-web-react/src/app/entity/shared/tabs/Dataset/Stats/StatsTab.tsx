@@ -12,6 +12,7 @@ import { ViewType } from './viewType';
 import {useTranslation} from "react-i18next";
 
 export default function StatsTab() {
+    const {i18n} = useTranslation();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
 
     const [viewType, setViewType] = useState(ViewType.LATEST);

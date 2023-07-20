@@ -3,6 +3,7 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import dataHubLogo from '../../../images/datahublogo.png';
 import { ANTD_GRAY } from '../../entity/shared/constants';
+import {Trans, useTranslation} from "react-i18next";
 
 const Section = styled.div`
     width: auto;
@@ -40,17 +41,17 @@ const ResourceListItem = styled.li`
 
 const resources = [
     {
-        label: 'DataHub Project',
+        key:'error.errorSection.ressourcesLabel.project',
         path: 'https://datahubproject.io',
         shouldOpenInNewTab: true,
     },
     {
-        label: 'DataHub Docs',
+        key:'error.errorSection.ressourcesLabel.docs',
         path: 'https://datahubproject.io/docs',
         shouldOpenInNewTab: true,
     },
     {
-        label: 'DataHub GitHub',
+        key:'error.errorSection.ressourcesLabel.github',
         path: 'https://github.com/datahub-project/datahub',
         shouldOpenInNewTab: true,
     },
@@ -58,6 +59,7 @@ const resources = [
 
 export const ErrorSection = (): JSX.Element => {
     const themeConfig = useTheme();
+    const {t} = useTranslation();
 
     return (
         <Section>
@@ -67,14 +69,14 @@ export const ErrorSection = (): JSX.Element => {
                     <TitleText strong>{themeConfig.content.title}</TitleText>
                 </TitleSection>
                 <MessageSection>
-                    <Typography.Title level={2}>Something went wrong.</Typography.Title>
+                    <Typography.Title level={2}>{t('error.errorSection.somethingWentWrong')}</Typography.Title>
                     <DetailParagraph type="secondary">
-                        An unexpected error occurred. Please try again later, or reach out to your administrator
+                        {t('error.errorSection.anUnexpectedErrorOccurred')}
                     </DetailParagraph>
                 </MessageSection>
                 <div>
                     <DetailParagraph type="secondary">
-                        <b>Need support?</b> Check out these resources:
+                        <Trans i18nKey="error.errorSection.needSupport_html"/>
                     </DetailParagraph>
                     <ResourceList>
                         {resources.map((resource) => (

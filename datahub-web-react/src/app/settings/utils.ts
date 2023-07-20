@@ -1,30 +1,35 @@
 import { AccessTokenDuration, AccessTokenType } from '../../types.generated';
+import {useTranslation} from "react-i18next";
+import i18next from "i18next";
 
 /** A type of DataHub Access Token. */
-export const ACCESS_TOKEN_TYPES = [{ text: 'Personal', type: AccessTokenType.Personal }];
+export const ACCESS_TOKEN_TYPES = [{ key: 'token.personal', type: AccessTokenType.Personal }];
 
 /** The duration for which an Access Token is valid. */
 export const ACCESS_TOKEN_DURATIONS = [
-    { text: '1 hour', duration: AccessTokenDuration.OneHour },
-    { text: '1 day', duration: AccessTokenDuration.OneDay },
-    { text: '1 month', duration: AccessTokenDuration.OneMonth },
-    { text: '3 months', duration: AccessTokenDuration.ThreeMonths },
-    { text: 'Never', duration: AccessTokenDuration.NoExpiry },
+    { keyParam: {key:'duration.hour',  params: {count: 1} }, text: `${i18next.t('duration.hour', { count: 1 })}`, duration: AccessTokenDuration.OneHour },
+    { text: `${i18next.t('duration.day', { count: 1 })}`, duration: AccessTokenDuration.OneDay },
+    { text: `${i18next.t('duration.month', { count: 1 })}`, duration: AccessTokenDuration.OneMonth },
+    { text: `${i18next.t('duration.month', { count: 3 })}`, duration: AccessTokenDuration.ThreeMonths },
+    { text: i18next.t('never'), duration: AccessTokenDuration.NoExpiry },
 ];
 
 const addHours = (hour: number) => {
+    const {t} = useTranslation();
     const result = new Date();
     result.setHours(result.getHours() + hour);
-    return `The token will expire on ${result.toLocaleDateString()} at ${result.toLocaleTimeString()}.`;
+    return t('token.tokenWillExpireOnAt', { date: result.toLocaleDateString(), time: result.toLocaleTimeString() });
 };
 
 const addDays = (days: number) => {
+    const {t} = useTranslation();
     const result = new Date();
     result.setDate(result.getDate() + days);
-    return `The token will expire on ${result.toLocaleDateString()} at ${result.toLocaleTimeString()}.`;
+    return t('token.tokenWillExpireOnAt', { date: result.toLocaleDateString(), time: result.toLocaleTimeString() });
 };
 
 export const getTokenExpireDate = (duration: AccessTokenDuration) => {
+    const {t} = useTranslation();
     switch (duration) {
         case AccessTokenDuration.OneHour:
             return addHours(1);
@@ -35,7 +40,7 @@ export const getTokenExpireDate = (duration: AccessTokenDuration) => {
         case AccessTokenDuration.ThreeMonths:
             return addDays(90);
         case AccessTokenDuration.NoExpiry:
-            return 'This token will never expire.';
+            return t('token.tokenWillNeverExpire');
         default:
             return AccessTokenDuration.OneMonth;
     }

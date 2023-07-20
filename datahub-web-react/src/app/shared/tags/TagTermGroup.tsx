@@ -186,7 +186,7 @@ export default function TagTermGroup({
                     {...buttonProps}
                 >
                     <PlusOutlined />
-                    <span>Add Tags</span>
+                    <span>{t('crud.addWithName', {name: entityRegistry.getEntityNameTrans(EntityType.TAGS, t, 2)})}</span>
                 </NoElementButton>
             )}
             {canAddTerm && !readOnly && (

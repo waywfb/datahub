@@ -3,6 +3,7 @@ import { TooltipPlacement } from 'antd/lib/tooltip';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import {useTranslation} from "react-i18next";
 
 import defaultAvatar from '../../../images/default_avatar.png';
 import getAvatarColor from './getAvatarColor';
@@ -50,6 +51,7 @@ export default function CustomAvatar({
     isRole = false,
     hideTooltip = false,
 }: Props) {
+    const {t} = useTranslation();
     const avatarWithInitial = name ? (
         <AvatarStyled style={style} size={size} $backgroundColor={getAvatarColor(name)}>
             {name.charAt(0).toUpperCase()}
@@ -71,11 +73,11 @@ export default function CustomAvatar({
     const renderTitle = (input) => {
         let title = `${input}`;
         if (isGroup) {
-            title = `${title} - Group`;
+            title = `${title} - ${t('common.group')}`;
         } else if (isPolicy) {
             title = `${title}`;
         } else if (isRole) {
-            title = `${title} - Role`;
+            title = `${title} - ${t('common.role')}`;
         }
         return title;
     };

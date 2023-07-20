@@ -42,6 +42,7 @@ export const DatasetStatsSummary = ({
     color,
     mode = 'normal',
 }: Props) => {
+    const {i18n} = useTranslation();
     const isTooltipMode = mode === 'tooltip-content';
     const displayedColor = isTooltipMode ? '' : color ?? ANTD_GRAY[7];
 
@@ -92,7 +93,7 @@ export const DatasetStatsSummary = ({
                 content={
                     <PopoverContent>
                         Data was last updated in the source platform on{' '}
-                        <strong>{toLocalDateTimeString(lastUpdatedMs)}</strong>
+                        <strong>{toLocalDateTimeString(lastUpdatedMs, i18n.language)}</strong>
                     </PopoverContent>
                 }
             >

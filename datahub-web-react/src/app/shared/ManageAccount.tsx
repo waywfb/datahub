@@ -12,6 +12,7 @@ import analytics, { EventType } from '../analytics';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import { useAppConfig } from '../useAppConfig';
 import { useUserContext } from '../context/useUserContext';
+import {useTranslation} from "react-i18next";
 
 const MenuItem = styled(Menu.Item)`
     display: flex;
@@ -52,6 +53,7 @@ const defaultProps = {
 };
 
 export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Props) => {
+    const {t} = useTranslation();
     const entityRegistry = useEntityRegistry();
     const themeConfig = useTheme();
     const { config } = useAppConfig();
@@ -78,7 +80,7 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
                     rel="noopener noreferrer"
                     tabIndex={0}
                 >
-                    Your Profile
+                    {t('navigation.yourProfile')}
                 </a>
             </MenuItem>
             <Menu.Divider />

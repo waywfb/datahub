@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { toLocalDateTimeString, toRelativeTimeString } from '../../../../../shared/time/timeUtils';
 import { ANTD_GRAY } from '../../../../shared/constants';
+import {useTranslation} from "react-i18next";
 
 const CurrentVersionTimestampText = styled(Typography.Text)`
     &&& {
@@ -29,6 +30,7 @@ interface Props {
 }
 
 function SchemaTimeStamps(props: Props) {
+    const {i18n} = useTranslation();
     const { lastUpdated, lastObserved } = props;
 
     if (!lastUpdated && !lastObserved) return null;
@@ -38,9 +40,9 @@ function SchemaTimeStamps(props: Props) {
             content={
                 <>
                     {lastObserved && (
-                        <TimeStampWrapper>Last observed on {toLocalDateTimeString(lastObserved)}.</TimeStampWrapper>
+                        <TimeStampWrapper>Last observed on {toLocalDateTimeString(lastObserved, i18n.language)}.</TimeStampWrapper>
                     )}
-                    {lastUpdated && <div>First reported on {toLocalDateTimeString(lastUpdated)}.</div>}
+                    {lastUpdated && <div>First reported on {toLocalDateTimeString(lastUpdated, i18n.language)}.</div>}
                 </>
             }
         >

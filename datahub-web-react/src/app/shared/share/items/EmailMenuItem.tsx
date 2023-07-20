@@ -5,6 +5,7 @@ import { CheckOutlined, MailOutlined } from '@ant-design/icons';
 import EmailShare from 'react-email-share-link';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import { ANTD_GRAY } from '../../../entity/shared/constants';
+import {useTranslation} from "react-i18next";
 
 interface EmailMenuItemProps {
     urn: string;
@@ -30,7 +31,9 @@ export default function EmailMenuItem({ urn, name, type, key }: EmailMenuItemPro
      */
     const [isClicked, setIsClicked] = useState(false);
     const linkText = window.location.href;
+    const {t} = useTranslation();
 
+    // TODO ndespouy traduction du type
     return (
         <StyledMenuItem
             key={key}
@@ -39,9 +42,9 @@ export default function EmailMenuItem({ urn, name, type, key }: EmailMenuItemPro
                 setIsClicked(true);
             }}
         >
-            <EmailShare subject={`${name} | ${type}`} body={`Check out this ${type} on DataHub: ${linkText}`}>
+            <EmailShare subject={`${name} | ${type}`} body={t('share.checkoutThisOn', { type: type, linkText: linkText })}>
                 {(link) => (
-                    <Tooltip title={`Share this ${type} via email`}>
+                    <Tooltip title={t('share.shareThisViaMail', { type: type })}>
                         {isClicked ? <CheckOutlined /> : <MailOutlined />}
                         <TextSpan>
                             <a href={link} target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>

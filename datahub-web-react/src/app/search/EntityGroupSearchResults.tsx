@@ -9,6 +9,7 @@ import { IconStyleType } from '../entity/Entity';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { navigateToSearchUrl } from './utils/navigateToSearchUrl';
 import analytics, { EventType } from '../analytics';
+import {Trans, useTranslation} from "react-i18next";
 
 const styles = {
     header: { marginBottom: 20 },
@@ -37,6 +38,7 @@ interface Props {
 export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
+    const {t} = useTranslation();
 
     const onResultClick = (result: SearchResult, index: number) => {
         analytics.event({
@@ -75,7 +77,10 @@ export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) 
                             }
                         >
                             <Typography.Text>
-                                See all <b>{entityRegistry.getCollectionName(type)}</b> results
+                                <Trans {...{
+                                    i18nKey : 'search.seeAllResultsWithName_html',
+                                    name: entityRegistry.getEntityNameTrans(type, t, 2)
+                                }}/>
                             </Typography.Text>
                             <ArrowRightOutlined />
                         </Button>

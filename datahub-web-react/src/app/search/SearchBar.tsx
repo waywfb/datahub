@@ -60,9 +60,10 @@ const ClearIcon = styled(CloseCircleFilled)`
 const EXACT_AUTOCOMPLETE_OPTION_TYPE = 'exact_query';
 const RECOMMENDED_QUERY_OPTION_TYPE = 'recommendation';
 
-const QUICK_FILTER_AUTO_COMPLETE_OPTION = {
-    label: <EntityTypeLabel>Filter by</EntityTypeLabel>,
-    options: [
+const getQuickFilterAutoCompleteOption = (label:string):any => {
+    return {
+        label: <EntityTypeLabel>{label}</EntityTypeLabel>,
+            options: [
         {
             value: 'quick-filter-unique-key',
             type: '',
@@ -71,6 +72,7 @@ const QUICK_FILTER_AUTO_COMPLETE_OPTION = {
             disabled: true,
         },
     ],
+    }
 };
 
 const renderItem = (query: string, entity: Entity) => {
@@ -174,7 +176,7 @@ export const SearchBar = ({
             type: '',
             label: (
                 <Button type="link" onClick={onClickExploreAll}>
-                    Explore all →
+                    {t('search.exploreAll')} →
                 </Button>
             ),
             style: { marginLeft: 'auto', cursor: 'auto' },
@@ -232,7 +234,7 @@ export const SearchBar = ({
     }, [setSelectedQuickFilter]);
 
     const quickFilterOption = useMemo(() => {
-        return showQuickFilters && quickFilters && quickFilters.length > 0 ? [QUICK_FILTER_AUTO_COMPLETE_OPTION] : [];
+        return showQuickFilters && quickFilters && quickFilters.length > 0 ? [getQuickFilterAutoCompleteOption(t('filter.filterBy'))] : [];
     }, [quickFilters, showQuickFilters]);
 
     const options = useMemo(() => {
@@ -241,7 +243,7 @@ export const SearchBar = ({
         return [...quickFilterOption, ...autoCompleteQueryOptions, ...tail];
     }, [emptyQueryOptions, autoCompleteEntityOptions, autoCompleteQueryOptions, quickFilterOption]);
 
-    const searchBarWrapperRef = useRef<HTMLDivElement>(null);
+    const searchBarWrapperRef = useRef<HTMLDivElement|null>(null);
 
     function handleSearchBarClick(isSearchBarFocused: boolean) {
         if (

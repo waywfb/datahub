@@ -12,6 +12,7 @@ import { SearchResult } from '../../types.generated';
 import analytics, { EventType } from '../analytics';
 import { EntityAndType } from '../entity/shared/types';
 import { useIsSearchV2 } from './useSearchAndBrowseVersion';
+import {useTranslation} from "react-i18next";
 
 const ResultList = styled(List)`
     &&& {
@@ -80,6 +81,7 @@ export const SearchResultList = ({
 }: Props) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
+    const {t} = useTranslation();
     const selectedEntityUrns = selectedEntities.map((entity) => entity.urn);
     const showSearchFiltersV2 = useIsSearchV2();
 
@@ -121,10 +123,10 @@ export const SearchResultList = ({
                         <NoDataContainer>
                             <Empty
                                 style={{ fontSize: 18, color: ANTD_GRAY[8] }}
-                                description={`No results found for "${query}"`}
+                                description={t('search.noResultsFoundFor',{name: query})}
                             />
                             <Button onClick={onClickExploreAll}>
-                                <RocketOutlined /> Explore all
+                                <RocketOutlined /> {t('search.exploreAll')}
                             </Button>
                         </NoDataContainer>
                     ),

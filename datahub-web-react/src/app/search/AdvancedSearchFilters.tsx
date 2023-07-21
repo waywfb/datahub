@@ -98,7 +98,7 @@ export const AdvancedSearchFilters = ({
             )}
             {selectedFilters?.length >= 2 && (
                 <AnyAllSection>
-                    Show results that match{' '}
+                    {t('filter.showResultsThatMatch')+' '}
                     <AdvancedSearchFilterOverallUnionTypeSelect
                         unionType={unionType}
                         onUpdate={(newValue) => onChangeUnionType(newValue)}
@@ -107,7 +107,7 @@ export const AdvancedSearchFilters = ({
                 </AnyAllSection>
             )}
             {selectedFilters?.length === 0 && direction === LayoutDirection.Vertical && (
-                <EmptyStateSection>No filters applied.</EmptyStateSection>
+                <EmptyStateSection>{t('filter.noFilterApplied')}</EmptyStateSection>
             )}
         </>
     );

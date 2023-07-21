@@ -21,7 +21,7 @@ export const EditTextModal = ({ defaultValue, onCloseModal, onOk, title }: Props
             footer={
                 <>
                     <Button onClick={onCloseModal} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button
                         data-testid="edit-text-done-btn"

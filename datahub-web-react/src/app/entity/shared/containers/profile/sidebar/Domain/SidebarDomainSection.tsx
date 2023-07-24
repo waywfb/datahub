@@ -2,13 +2,13 @@ import { Typography, Button, Modal, message } from 'antd';
 import React, { useState } from 'react';
 import { EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useEntityData, useMutationUrn, useRefetch } from '../../../../EntityContext';
 import { SidebarHeader } from '../SidebarHeader';
 import { SetDomainModal } from './SetDomainModal';
 import { useUnsetDomainMutation } from '../../../../../../../graphql/mutations.generated';
 import { DomainLink } from '../../../../../../shared/tags/DomainLink';
 import { ENTITY_PROFILE_DOMAINS_ID } from '../../../../../../onboarding/config/EntityProfileOnboardingConfig';
-import { useTranslation } from 'react-i18next';
 
 const StyledButton = styled(Button)`
     display: block;
@@ -38,7 +38,7 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
     const { entityData } = useEntityData();
     const refetch = useRefetch();
     const urn = useMutationUrn();
-    const {t} = useTranslation(['empty-message']);
+    const { t } = useTranslation(['empty-message']);
     const [unsetDomainMutation] = useUnsetDomainMutation();
     const [showModal, setShowModal] = useState(false);
     const domain = entityData?.domain?.domain;
@@ -92,7 +92,8 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
                         <>
                             {!domain && (
                                 <Typography.Paragraph type="secondary">
-                                    {t('domain.title',{ns:'empty-message'})}. {t('domain.description',{ns:'empty-message'})}
+                                    {t('domain.title', { ns: 'empty-message' })}.{' '}
+                                    {t('domain.description', { ns: 'empty-message' })}
                                 </Typography.Paragraph>
                             )}
                             {!readOnly && (

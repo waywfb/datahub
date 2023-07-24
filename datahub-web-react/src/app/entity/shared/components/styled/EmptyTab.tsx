@@ -27,14 +27,16 @@ type Props = {
 };
 
 export const EmptyTab = ({ tab, children }: Props) => {
-    const {t} = useTranslation(['empty-message']);
+    const { t } = useTranslation(['empty-message']);
 
     return (
         <StyledEmpty
             description={
                 <EmptyDescription>
-                    <Typography.Title level={4}>{t(tab+'.title',{ns:'empty-message'})}</Typography.Title>
-                    <Typography.Text type="secondary">{t(tab+'.description',{ns:'empty-message'})}</Typography.Text>
+                    <Typography.Title level={4}>{t(`${tab}.title`, { ns: 'empty-message' })}</Typography.Title>
+                    <Typography.Text type="secondary">
+                        {t(`${tab}.description`, { ns: 'empty-message' })}
+                    </Typography.Text>
                 </EmptyDescription>
             }
         >

@@ -88,6 +88,7 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
             </ModalSection>
             <ModalSection>
                 <ModalSectionHeader strong>{t('common.usage')}</ModalSectionHeader>
+                {/* TODO jm : valider cette trad la dessous */}
                 <ModalSectionParagraph>
                     {t('token.toUseATokenExplanationStart')} <Typography.Text keyboard>Bearer</Typography.Text>{' '}
                     {t('token.toUseATokenExplanationMiddle')} <Typography.Text keyboard>Authorization</Typography.Text>{' '}
@@ -99,6 +100,7 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
             </ModalSection>
             <ModalSection>
                 <ModalSectionHeader strong>{t('common.learnMore')}</ModalSectionHeader>
+                {/* TODO jm : valider cette trad la dessous */}
                 <ModalSectionParagraph>
                     {t('token.learnMoreLink_html', { link: 'https://www.datahubproject.io/docs/' })}
                 </ModalSectionParagraph>

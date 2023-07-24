@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 // import { ExpandedOwner } from '../../../../../components/styled/ExpandedOwner/ExpandedOwner';
+import { useTranslation } from 'react-i18next';
 import { Owner, OwnershipType, OwnershipTypeEntity } from '../../../../../../../../types.generated';
 import { useEntityData, useMutationUrn, useRefetch } from '../../../../../EntityContext';
 import { SidebarHeader } from '../../SidebarHeader';
@@ -9,7 +10,6 @@ import { EditOwnersModal } from '../EditOwnersModal';
 import { ENTITY_PROFILE_OWNERS_ID } from '../../../../../../../onboarding/config/EntityProfileOnboardingConfig';
 import { OwnershipTypeSection } from './OwnershipTypeSection';
 import { getOwnershipTypeName } from '../ownershipUtils';
-import { useTranslation } from 'react-i18next';
 
 interface Props {
     properties?: any;
@@ -19,7 +19,7 @@ interface Props {
 export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
     const { entityType, entityData } = useEntityData();
     const mutationUrn = useMutationUrn();
-    const {t} = useTranslation(['empty-message']);
+    const { t } = useTranslation(['empty-message']);
 
     const refetch = useRefetch();
     const [showAddModal, setShowAddModal] = useState(false);
@@ -67,7 +67,7 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
                 })}
                 {ownersEmpty && (
                     <Typography.Paragraph type="secondary">
-                        {t('owners.title',{ns:'empty-message'})}. {t('owners.description',{ns:'empty-message'})}
+                        {t('owners.title', { ns: 'empty-message' })}. {t('owners.description', { ns: 'empty-message' })}
                     </Typography.Paragraph>
                 )}
                 {!readOnly && (

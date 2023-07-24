@@ -1,5 +1,6 @@
 import { FolderFilled } from '@ant-design/icons';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { dataPlatform, dataPlatformInstance, dataset1, glossaryTerm1, user1 } from '../../../../Mocks';
 import { EntityType } from '../../../../types.generated';
 import { getTestEntityRegistry } from '../../../../utils/test-utils/TestPageContainer';
@@ -117,9 +118,16 @@ describe('filter utils - isAnyOptionSelected', () => {
 
 describe('filter utils - getFilterIconAndLabel', () => {
     const mockEntityRegistry = getTestEntityRegistry();
+    const { t: mockTranslation } = useTranslation();
 
     it('should get the correct icon and label for entity filters', () => {
-        const { icon, label } = getFilterIconAndLabel('entity', EntityType.Dataset, mockEntityRegistry, dataset1);
+        const { icon, label } = getFilterIconAndLabel(
+            'entity',
+            EntityType.Dataset,
+            mockEntityRegistry,
+            mockTranslation,
+            dataset1,
+        );
 
         expect(icon).toMatchObject(
             mockEntityRegistry.getIcon(EntityType.Dataset, 12, IconStyleType.ACCENT, ANTD_GRAY[9]),
@@ -128,14 +136,26 @@ describe('filter utils - getFilterIconAndLabel', () => {
     });
 
     it('should get the correct icon and label for platform filters', () => {
-        const { icon, label } = getFilterIconAndLabel('platform', dataPlatform.urn, mockEntityRegistry, dataPlatform);
+        const { icon, label } = getFilterIconAndLabel(
+            'platform',
+            dataPlatform.urn,
+            mockEntityRegistry,
+            mockTranslation,
+            dataPlatform,
+        );
 
         expect(icon).toMatchObject(<PlatformIcon src={dataPlatform.properties.logoUrl} />);
         expect(label).toBe(mockEntityRegistry.getDisplayName(EntityType.DataPlatform, dataPlatform));
     });
 
     it('should get the correct icon and label for filters with associated entity', () => {
-        const { icon, label } = getFilterIconAndLabel('domains', glossaryTerm1.urn, mockEntityRegistry, glossaryTerm1);
+        const { icon, label } = getFilterIconAndLabel(
+            'domains',
+            glossaryTerm1.urn,
+            mockEntityRegistry,
+            mockTranslation,
+            glossaryTerm1,
+        );
 
         expect(icon).toMatchObject(
             mockEntityRegistry.getIcon(EntityType.GlossaryTerm, 12, IconStyleType.ACCENT, ANTD_GRAY[9]),
@@ -148,6 +168,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
             'domains',
             glossaryTerm1.urn,
             mockEntityRegistry,
+            mockTranslation,
             dataPlatformInstance,
         );
 
@@ -156,7 +177,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
     });
 
     it('should get the correct icon and label for filters with no associated entity', () => {
-        const { icon, label } = getFilterIconAndLabel('origin', 'PROD', mockEntityRegistry, null);
+        const { icon, label } = getFilterIconAndLabel('origin', 'PROD', mockEntityRegistry, mockTranslation, null);
 
         expect(icon).toBe(null);
         expect(label).toBe('PROD');
@@ -167,6 +188,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
             'browsePathV2',
             '␟long-tail-companions␟view',
             mockEntityRegistry,
+            mockTranslation,
             null,
         );
 
@@ -179,6 +201,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
             'browsePathV2',
             '␟long-tail-companions␟view',
             mockEntityRegistry,
+            mockTranslation,
             null,
             12,
             'TESTING',

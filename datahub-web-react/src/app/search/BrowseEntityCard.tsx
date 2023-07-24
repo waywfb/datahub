@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { PageRoutes } from '../../conf/Global';
 import { IconStyleType } from '../entity/Entity';
@@ -17,7 +18,7 @@ const BrowseEntityCardWrapper = styled.div``;
 export const BrowseEntityCard = ({ entityType, count }: { entityType: EntityType; count: number }) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const showBrowseV2 = useIsBrowseV2();
     const isGlossaryEntityCard = entityType === EntityType.GlossaryTerm;
     const entityPathName = entityRegistry.getPathName(entityType);

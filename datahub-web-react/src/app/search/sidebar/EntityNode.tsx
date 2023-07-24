@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { IconStyleType } from '../../entity/Entity';
@@ -15,7 +16,6 @@ import useToggle from '../../shared/useToggle';
 import { BrowseProvider, useEntityAggregation, useEntityType, useIsEntitySelected } from './BrowseContext';
 import useSidebarAnalytics from './useSidebarAnalytics';
 import { useHasFilterField } from './SidebarContext';
-import { useTranslation } from 'react-i18next';
 
 const Count = styled(Typography.Text)`
     font-size: 12px;

@@ -89,8 +89,9 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
             <ModalSection>
                 <ModalSectionHeader strong>{t('common.usage')}</ModalSectionHeader>
                 <ModalSectionParagraph>
-                    {t('token.toUseATokenExplanationStart')} <Typography.Text keyboard>Bearer</Typography.Text> {t('token.toUseATokenExplanationMiddle')}{' '}
-                    <Typography.Text keyboard>Authorization</Typography.Text> {t('token.toUseATokenExplanationEnd')}
+                    {t('token.toUseATokenExplanationStart')} <Typography.Text keyboard>Bearer</Typography.Text>{' '}
+                    {t('token.toUseATokenExplanationMiddle')} <Typography.Text keyboard>Authorization</Typography.Text>{' '}
+                    {t('token.toUseATokenExplanationEnd')}
                 </ModalSectionParagraph>
                 <Typography.Paragraph copyable={{ text: accessTokenCurl }}>
                     <pre>{accessTokenCurl}</pre>
@@ -99,7 +100,7 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
             <ModalSection>
                 <ModalSectionHeader strong>{t('common.learnMore')}</ModalSectionHeader>
                 <ModalSectionParagraph>
-                    {t('token.learnMoreLink_html', { link: "https://www.datahubproject.io/docs/"})}
+                    {t('token.learnMoreLink_html', { link: 'https://www.datahubproject.io/docs/' })}
                 </ModalSectionParagraph>
             </ModalSection>
         </Modal>

@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import { Menu, Dropdown } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import styled, { useTheme } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../types.generated';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { GlobalCfg } from '../../conf';
@@ -12,7 +13,6 @@ import analytics, { EventType } from '../analytics';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import { useAppConfig } from '../useAppConfig';
 import { useUserContext } from '../context/useUserContext';
-import { useTranslation } from "react-i18next";
 
 const MenuItem = styled(Menu.Item)`
     display: flex;
@@ -53,7 +53,7 @@ const defaultProps = {
 };
 
 export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Props) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const themeConfig = useTheme();
     const { config } = useAppConfig();

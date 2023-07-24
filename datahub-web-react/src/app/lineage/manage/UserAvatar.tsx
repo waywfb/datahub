@@ -6,7 +6,7 @@ import { CorpUser, EntityType } from '../../../types.generated';
 import getAvatarColor from '../../shared/avatar/getAvatarColor';
 import { toLocalDateTimeString } from '../../shared/time/timeUtils';
 import { useEntityRegistry } from '../../useEntityRegistry';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const StyledAvatar = styled(Avatar)<{ backgroundColor: string }>`
     color: #fff;
@@ -39,7 +39,7 @@ export default function UserAvatar({ createdActor, createdOn }: Props) {
     const entityRegistry = useEntityRegistry();
     const avatarPhotoUrl = createdActor?.editableProperties?.pictureLink;
     const userName = entityRegistry.getDisplayName(EntityType.CorpUser, createdActor);
-    const {i18n} = useTranslation();
+    const { i18n } = useTranslation();
 
     return (
         <Popover

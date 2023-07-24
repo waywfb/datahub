@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useAggregateAcrossEntitiesQuery } from '../../../graphql/search.generated';
 import { EntityType } from '../../../types.generated';
 import { GLOSSARY_ENTITY_TYPES } from '../../entity/shared/constants';
@@ -5,7 +6,6 @@ import { useEntityRegistry } from '../../useEntityRegistry';
 import { ENTITY_FILTER_NAME, ORIGIN_FILTER_NAME, PLATFORM_FILTER_NAME } from '../utils/constants';
 import { MAX_AGGREGATION_VALUES } from './constants';
 import { useSidebarFilters } from './useSidebarFilters';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     facets: string[];
@@ -50,8 +50,8 @@ const useAggregationsQuery = ({ facets, skip }: Props) => {
             return registry.getEntity(type).isBrowseEnabled() && !GLOSSARY_ENTITY_TYPES.includes(type);
         })
         .sort((a, b) => {
-            const nameA = registry.getEntityNameTrans(a.value as EntityType, t,2);
-            const nameB = registry.getEntityNameTrans(b.value as EntityType, t,2);
+            const nameA = registry.getEntityNameTrans(a.value as EntityType, t, 2);
+            const nameB = registry.getEntityNameTrans(b.value as EntityType, t, 2);
             return nameA.localeCompare(nameB);
         });
 

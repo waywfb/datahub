@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Icon from '@ant-design/icons/lib/components/Icon';
+import { useTranslation } from 'react-i18next';
 import { useBrowseDisplayName, useIsBrowsePathSelected } from './BrowseContext';
 import ExpandableNode from './ExpandableNode';
 import { ReactComponent as ExternalLink } from '../../../images/link-out.svg';
@@ -10,7 +11,6 @@ import { useEntityRegistry } from '../../useEntityRegistry';
 import { Entity, Maybe } from '../../../types.generated';
 import useSidebarAnalytics from './useSidebarAnalytics';
 import { BrowseV2EntityLinkClickEvent } from '../../analytics';
-import { useTranslation } from 'react-i18next';
 
 const Linkicon = styled(Icon)<{ isSelected: boolean }>`
     && {
@@ -48,7 +48,7 @@ const EntityLink = ({ entity, targetNode }: Props) => {
     if (!entityUrl) return null;
 
     return (
-        <Tooltip placement="top" title={{ t('entity.viewEntityWithName',{name: displayName})}} mouseEnterDelay={1}>
+        <Tooltip placement="top" title={t('entity.viewEntityWithName', { name: displayName })} mouseEnterDelay={1}>
             <Link to={entityUrl}>
                 <ExpandableNode.StaticButton
                     icon={<Linkicon isSelected={isBrowsePathSelected} component={ExternalLink} />}

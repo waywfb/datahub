@@ -3,7 +3,7 @@ import { TooltipPlacement } from 'antd/lib/tooltip';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 import defaultAvatar from '../../../images/default_avatar.png';
 import getAvatarColor from './getAvatarColor';
@@ -51,7 +51,7 @@ export default function CustomAvatar({
     isRole = false,
     hideTooltip = false,
 }: Props) {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const avatarWithInitial = name ? (
         <AvatarStyled style={style} size={size} $backgroundColor={getAvatarColor(name)}>
             {name.charAt(0).toUpperCase()}

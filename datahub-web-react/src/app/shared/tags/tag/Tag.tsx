@@ -2,13 +2,13 @@ import { message, Modal } from 'antd';
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import Highlight from 'react-highlighter';
+import { useTranslation } from 'react-i18next';
 import { useRemoveTagMutation } from '../../../../graphql/mutations.generated';
 import { EntityType, SubResourceType, TagAssociation } from '../../../../types.generated';
 import { StyledTag } from '../../../entity/shared/components/styled/StyledTag';
 import { HoverEntityTooltip } from '../../../recommendations/renderer/component/HoverEntityTooltip';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { TagProfileDrawer } from '../TagProfileDrawer';
-import { useTranslation } from "react-i18next";
 
 const TagLink = styled.span`
     display: inline-block;
@@ -41,7 +41,7 @@ export default function Tag({
     fontSize,
 }: Props) {
     const entityRegistry = useEntityRegistry();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const [removeTagMutation] = useRemoveTagMutation();
 
     const [tagProfileDrawerVisible, setTagProfileDrawerVisible] = useState(false);
@@ -62,8 +62,12 @@ export default function Tag({
         const tagToRemove = tagAssociationToRemove.tag;
         onOpenModal?.();
         Modal.confirm({
-            title: t('crud.doYouWantToRemove.titleWithName', {name:tagToRemove?.name + ' ' + entityRegistry.getEntityNameTrans(EntityType.Tags,t).toLowerCase()}),
-            content: t('crud.doYouWantToRemove.contentWithTheName', {name:tagToRemove?.name + ' ' + entityRegistry.getEntityNameTrans(EntityType.Tags,t).toLowerCase()}),
+            title: t('crud.doYouWantToRemove.titleWithName', {
+                name: `${tagToRemove?.name} ${entityRegistry.getEntityNameTrans(EntityType.Tag, t).toLowerCase()}`,
+            }),
+            content: t('crud.doYouWantToRemove.contentWithTheName', {
+                name: `${tagToRemove?.name} ${entityRegistry.getEntityNameTrans(EntityType.Tag, t).toLowerCase()}`,
+            }),
             onOk() {
                 if (tagAssociationToRemove.associatedUrn || entityUrn) {
                     removeTagMutation({
@@ -78,13 +82,23 @@ export default function Tag({
                     })
                         .then(({ errors }) => {
                             if (!errors) {
-                                message.success({ content: t('crud.success.removeWithName',{name: entityRegistry.getEntityNameTrans(EntityType.Tags,t)}), duration: 2 });
+                                message.success({
+                                    content: t('crud.success.removeWithName', {
+                                        name: entityRegistry.getEntityNameTrans(EntityType.Tag, t),
+                                    }),
+                                    duration: 2,
+                                });
                             }
                         })
                         .then(refetch)
                         .catch((e) => {
                             message.destroy();
-                            message.error({ content: `${t('crud.error.removeWithName',{name: entityRegistry.getEntityNameTrans(EntityType.Tags,t).toLowerCase()})}: \n ${e.message || ''}`, duration: 3 });
+                            message.error({
+                                content: `${t('crud.error.removeWithName', {
+                                    name: entityRegistry.getEntityNameTrans(EntityType.Tag, t).toLowerCase(),
+                                })}: \n ${e.message || ''}`,
+                                duration: 3,
+                            });
                         });
                 }
             },

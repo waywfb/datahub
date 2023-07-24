@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Button, Form, message, Modal, Select, Tag, Typography } from 'antd';
 import styled from 'styled-components/macro';
 
+import { useTranslation } from 'react-i18next';
 import {
     CorpUser,
     Entity,
@@ -20,7 +21,6 @@ import { useGetRecommendations } from '../../../../../../shared/recommendation';
 import { OwnerLabel } from '../../../../../../shared/OwnerLabel';
 import { handleBatchError } from '../../../../utils';
 import { useListOwnershipTypesQuery } from '../../../../../../../graphql/ownership.generated';
-import { useTranslation } from "react-i18next";
 
 const SelectInput = styled(Select)`
     width: 480px;
@@ -73,7 +73,7 @@ export const EditOwnersModal = ({
     defaultValues,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     // Renders a search result in the select dropdown.
     const renderSearchResult = (entity: Entity) => {

@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Divider, Typography, Switch, Card, message } from 'antd';
 
+import { useTranslation } from 'react-i18next';
 import { useUpdateUserSettingMutation } from '../../graphql/me.generated';
 import { UserSetting } from '../../types.generated';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import analytics, { EventType } from '../analytics';
 import { useUserContext } from '../context/useUserContext';
-import { useTranslation } from "react-i18next";
 
 const Page = styled.div`
     width: 100%;
@@ -55,7 +55,7 @@ const SettingText = styled(Typography.Text)`
 export const Preferences = () => {
     // Current User Urn
     const { user, refetchUser } = useUserContext();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const showSimplifiedHomepage = !!user?.settings?.appearance?.showSimplifiedHomepage;
     const [updateUserSettingMutation] = useUpdateUserSettingMutation();
@@ -66,7 +66,9 @@ export const Preferences = () => {
                 <TokensContainer>
                     <TokensHeaderContainer>
                         <TokensTitle level={2}>{t('common.appearance')}</TokensTitle>
-                        <Typography.Paragraph type="secondary">{t('settings.manageYourAppearanceSettings')}</Typography.Paragraph>
+                        <Typography.Paragraph type="secondary">
+                            {t('settings.manageYourAppearanceSettings')}
+                        </Typography.Paragraph>
                     </TokensHeaderContainer>
                 </TokensContainer>
                 <Divider />
@@ -75,9 +77,7 @@ export const Preferences = () => {
                         <span>
                             <SettingText>{t('settings.showSimplifiedHomepage')}</SettingText>
                             <div>
-                                <DescriptionText>
-                                    {t('showSimplifiedHomepageDescription')}
-                                </DescriptionText>
+                                <DescriptionText>{t('showSimplifiedHomepageDescription')}</DescriptionText>
                             </div>
                         </span>
                         <Switch
@@ -96,7 +96,10 @@ export const Preferences = () => {
                                         ? EventType.ShowStandardHomepageEvent
                                         : EventType.ShowSimplifiedHomepageEvent,
                                 });
-                                message.success({ content: t('crud.success.updateWithName', { name: t('common.setting') }), duration: 2 });
+                                message.success({
+                                    content: t('crud.success.updateWithName', { name: t('common.setting') }),
+                                    duration: 2,
+                                });
                                 refetchUser?.();
                             }}
                         />

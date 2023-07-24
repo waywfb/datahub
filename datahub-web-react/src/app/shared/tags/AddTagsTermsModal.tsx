@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { message, Button, Modal, Select, Typography, Tag as CustomTag } from 'antd';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsLazyQuery } from '../../../graphql/search.generated';
 import { EntityType, Tag, Entity, ResourceRefInput } from '../../../types.generated';
 import CreateTagModal from './CreateTagModal';
@@ -19,7 +20,6 @@ import { useGetRecommendations } from '../recommendation';
 import { FORBIDDEN_URN_CHARS_REGEX, handleBatchError } from '../../entity/shared/utils';
 import { TagTermLabel } from './TagTermLabel';
 import { ENTER_KEY_CODE } from '../constants';
-import { useTranslation } from "react-i18next";
 
 export enum OperationType {
     ADD,
@@ -94,7 +94,7 @@ export default function EditTagTermsModal({
     onOkOverride,
 }: EditTagsModalProps) {
     const entityRegistry = useEntityRegistry();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const [inputValue, setInputValue] = useState('');
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [disableAction, setDisableAction] = useState(false);
@@ -166,7 +166,9 @@ export default function EditTagTermsModal({
     ) {
         tagSearchOptions?.push(
             <Select.Option value={CREATE_TAG_VALUE} key={CREATE_TAG_VALUE}>
-                <Typography.Link> {t('common.create')} {inputValue}</Typography.Link>
+                <Typography.Link>
+                    {t('common.create')} {inputValue}
+                </Typography.Link>
             </Select.Option>,
         );
     }
@@ -262,7 +264,13 @@ export default function EditTagTermsModal({
             .then(({ errors }) => {
                 if (!errors) {
                     message.success({
-                        content: t('crud.success.addWithName',{name: entityRegistry.getEntityNameTrans(type === EntityType.GlossaryTerm ? EntityType.GlossaryTerms : EntityType.Tags, t,2)}),
+                        content: t('crud.success.addWithName', {
+                            name: entityRegistry.getEntityNameTrans(
+                                type === EntityType.GlossaryTerm ? EntityType.GlossaryTerm : EntityType.Tag,
+                                t,
+                                2,
+                            ),
+                        }),
                         duration: 2,
                     });
                 }
@@ -270,7 +278,10 @@ export default function EditTagTermsModal({
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, { content: `${t('crud.error.add')}: \n ${e.message || ''}`, duration: 3 }),
+                    handleBatchError(urns, e, {
+                        content: `${t('crud.error.add')}: \n ${e.message || ''}`,
+                        duration: 3,
+                    }),
                 );
             })
             .finally(() => {
@@ -292,7 +303,13 @@ export default function EditTagTermsModal({
             .then(({ errors }) => {
                 if (!errors) {
                     message.success({
-                        content: t('crud.success.addWithName',{name: entityRegistry.getEntityNameTrans(type === EntityType.GlossaryTerm ? EntityType.GlossaryTerms : EntityType.Tags, t,2)}),
+                        content: t('crud.success.addWithName', {
+                            name: entityRegistry.getEntityNameTrans(
+                                type === EntityType.GlossaryTerm ? EntityType.GlossaryTerm : EntityType.Tag,
+                                t,
+                                2,
+                            ),
+                        }),
                         duration: 2,
                     });
                 }
@@ -300,7 +317,10 @@ export default function EditTagTermsModal({
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, { content: `${t('crud.error.add')}: \n ${e.message || ''}`, duration: 3 }),
+                    handleBatchError(urns, e, {
+                        content: `${t('crud.error.add')}: \n ${e.message || ''}`,
+                        duration: 3,
+                    }),
                 );
             })
             .finally(() => {
@@ -322,7 +342,9 @@ export default function EditTagTermsModal({
             .then(({ errors }) => {
                 if (!errors) {
                     message.success({
-                        content: t('crud.success.removeWithName',{name: entityRegistry.getEntityNameTrans(EntityType.Tags, t,2)}),
+                        content: t('crud.success.removeWithName', {
+                            name: entityRegistry.getEntityNameTrans(EntityType.Tag, t, 2),
+                        }),
                         duration: 2,
                     });
                 }
@@ -330,7 +352,10 @@ export default function EditTagTermsModal({
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, { content: `${t('crud.error.remove')}: \n ${e.message || ''}`, duration: 3 }),
+                    handleBatchError(urns, e, {
+                        content: `${t('crud.error.remove')}: \n ${e.message || ''}`,
+                        duration: 3,
+                    }),
                 );
             })
             .finally(() => {
@@ -352,7 +377,9 @@ export default function EditTagTermsModal({
             .then(({ errors }) => {
                 if (!errors) {
                     message.success({
-                        content: t('crud.success.removeWithName',{name: entityRegistry.getEntityNameTrans(EntityType.GlossaryTerms, t, 2)}),
+                        content: t('crud.success.removeWithName', {
+                            name: entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t, 2),
+                        }),
                         duration: 2,
                     });
                 }
@@ -360,7 +387,10 @@ export default function EditTagTermsModal({
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, { content: `${t('crud.error.remove')}: \n ${e.message || ''}`, duration: 3 }),
+                    handleBatchError(urns, e, {
+                        content: `${t('crud.error.remove')}: \n ${e.message || ''}`,
+                        duration: 3,
+                    }),
                 );
             })
             .finally(() => {
@@ -432,7 +462,9 @@ export default function EditTagTermsModal({
 
     return (
         <Modal
-            title={`${operationType === OperationType.ADD ? t('common.add') : t('common.remove')} ${entityRegistry.getEntityNameTrans(type, t, 2)}`}
+            title={`${
+                operationType === OperationType.ADD ? t('common.add') : t('common.remove')
+            } ${entityRegistry.getEntityNameTrans(type, t, 2)}`}
             visible={visible}
             onCancel={onCloseModal}
             footer={
@@ -459,7 +491,9 @@ export default function EditTagTermsModal({
                     mode="multiple"
                     ref={inputEl}
                     filterOption={false}
-                    placeholder={t('placeholder.searchForWithName',{name: entityRegistry.getEntityNameTrans(type, t)?.toLowerCase()})}
+                    placeholder={t('placeholder.searchForWithName', {
+                        name: entityRegistry.getEntityNameTrans(type, t)?.toLowerCase(),
+                    })}
                     showSearch
                     defaultActiveFirstOption={false}
                     onSelect={(asset: any) => onSelectValue(asset)}

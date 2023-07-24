@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Divider, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import {
     FacetFilterInput,
     RecommendationModule as RecommendationModuleType,
@@ -9,7 +10,6 @@ import {
 import { useListRecommendationsQuery } from '../../graphql/recommendations.generated';
 import { RecommendationModule } from '../recommendations/RecommendationModule';
 import { ANTD_GRAY } from '../entity/shared/constants';
-import { useTranslation } from "react-i18next";
 
 const RecommendationsContainer = styled.div`
     margin-left: 40px;
@@ -36,7 +36,7 @@ type Props = {
 };
 
 export const SearchResultsRecommendations = ({ userUrn, query, filters }: Props) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const scenario = ScenarioType.SearchResults;
     const { data } = useListRecommendationsQuery({
         variables: {

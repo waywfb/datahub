@@ -3,8 +3,8 @@ import styled from 'styled-components/macro';
 import { CheckOutlined, LinkOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import MenuItem from 'antd/lib/menu/MenuItem';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../entity/shared/constants';
-import { useTranslation } from "react-i18next";
 
 interface CopyLinkMenuItemProps {
     key: string;
@@ -30,7 +30,7 @@ export default function CopyLinkMenuItem({ key }: CopyLinkMenuItemProps) {
      * Whether button has been clicked
      */
     const [isClicked, setIsClicked] = useState(false);
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <StyledMenuItem

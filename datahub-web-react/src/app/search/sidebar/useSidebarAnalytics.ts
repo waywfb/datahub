@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../types.generated';
 import {
     BrowseV2EntityLinkClickEvent,
@@ -13,7 +14,6 @@ import {
     useMaybeEnvironmentAggregation,
     useMaybePlatformAggregation,
 } from './BrowseContext';
-import { useTranslation } from 'react-i18next';
 
 const useSidebarAnalytics = () => {
     const registry = useEntityRegistry();

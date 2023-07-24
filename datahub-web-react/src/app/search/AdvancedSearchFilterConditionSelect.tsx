@@ -1,6 +1,8 @@
 import { Select } from 'antd';
 import React from 'react';
 import styled from 'styled-components/macro';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput } from '../../types.generated';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import {
@@ -65,7 +67,7 @@ const StyledSelect = styled(Select)`
 `;
 
 export const AdvancedSearchFilterConditionSelect = ({ filter, onUpdate }: Props) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const labelsForField = getLabelsForField(filter.field, t);
 
     const selectedValue = filter.negated ? 'negated' : 'default';

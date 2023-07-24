@@ -4,10 +4,10 @@ import { Menu } from 'antd';
 import styled from 'styled-components';
 import { BankOutlined, BarChartOutlined, MenuOutlined } from '@ant-design/icons';
 import Sider from 'antd/lib/layout/Sider';
+import { useTranslation } from 'react-i18next';
 import { useGetAuthenticatedUser } from './useGetAuthenticatedUser';
 import { useAppConfig } from './useAppConfig';
 import { ANTD_GRAY } from './entity/shared/constants';
-import { useTranslation } from "react-i18next";
 
 const ToggleContainer = styled.div`
     background-color: ${ANTD_GRAY[4]};
@@ -37,7 +37,7 @@ export const AdminConsole = (): JSX.Element => {
 
     const [adminConsoleOpen, setAdminConsoleOpen] = useState(false);
     const { config } = useAppConfig();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const isAnalyticsEnabled = config?.analyticsConfig.enabled;
     const isPoliciesEnabled = config?.policiesConfig.enabled;

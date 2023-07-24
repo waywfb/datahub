@@ -5,10 +5,10 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata } from '../../types.generated';
 import { SearchFilterLabel } from './SearchFilterLabel';
 import { TRUNCATED_FILTER_LENGTH } from './utils/constants';
-import { useTranslation } from "react-i18next";
 
 const GRAPH_DEGREE_FILTER_FIELD = 'degree';
 
@@ -56,7 +56,7 @@ const StyledDownOutlined = styled(DownOutlined)`
 `;
 
 export const SimpleSearchFilter = ({ facet, selectedFilters, onFilterSelect, defaultDisplayFilters }: Props) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const [areFiltersVisible, setAreFiltersVisible] = useState(defaultDisplayFilters);
     const [expanded, setExpanded] = useState(false);
 

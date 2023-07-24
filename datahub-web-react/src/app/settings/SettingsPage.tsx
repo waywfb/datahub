@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import { Redirect, Route, useHistory, useLocation, useRouteMatch, Switch } from 'react-router';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import { ManageIdentities } from '../identity/ManageIdentities';
 import { ManagePermissions } from '../permissions/ManagePermissions';
@@ -19,7 +20,6 @@ import { Preferences } from './Preferences';
 import { ManageViews } from '../entity/view/ManageViews';
 import { useUserContext } from '../context/useUserContext';
 import { ManageOwnership } from '../entity/ownership/ManageOwnership';
-import { useTranslation } from "react-i18next";
 
 const PageContainer = styled.div`
     display: flex;
@@ -71,7 +71,7 @@ const PATHS = [
 const DEFAULT_PATH = PATHS[0];
 
 export const SettingsPage = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const { path, url } = useRouteMatch();
     const { pathname } = useLocation();
     const history = useHistory();

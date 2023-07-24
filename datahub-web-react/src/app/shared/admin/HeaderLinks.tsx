@@ -11,12 +11,12 @@ import {
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Button, Dropdown, Menu, Tooltip } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useAppConfig } from '../../useAppConfig';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { HOME_PAGE_INGESTION_ID } from '../../onboarding/config/HomePageOnboardingConfig';
 import { useUpdateEducationStepIdsAllowlist } from '../../onboarding/useUpdateEducationStepIdsAllowlist';
 import { useUserContext } from '../../context/useUserContext';
-import { useTranslation } from "react-i18next";
 
 const LinkWrapper = styled.span`
     margin-right: 0px;
@@ -63,7 +63,7 @@ interface Props {
 }
 
 export function HeaderLinks(props: Props) {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const { areLinksHidden } = props;
     const me = useUserContext();
     const { config } = useAppConfig();

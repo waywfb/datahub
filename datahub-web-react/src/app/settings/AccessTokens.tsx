@@ -4,6 +4,7 @@ import { Alert, Button, Divider, Empty, message, Modal, Pagination, Typography }
 import { DeleteOutlined, InfoCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { red } from '@ant-design/colors';
 
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput } from '../../types.generated';
 import { useListAccessTokensQuery, useRevokeAccessTokenMutation } from '../../graphql/auth.generated';
 import { Message } from '../shared/Message';
@@ -15,7 +16,6 @@ import { scrollToTop } from '../shared/searchUtils';
 import analytics, { EventType } from '../analytics';
 import { useUserContext } from '../context/useUserContext';
 import { useAppConfig } from '../useAppConfig';
-import { useTranslation } from "react-i18next";
 
 const SourceContainer = styled.div`
     width: 100%;
@@ -142,7 +142,12 @@ export const AccessTokens = () => {
                     })
                     .catch((e) => {
                         message.destroy();
-                        message.error({ content: `${t('crud.error.revokeWithName', { name: t('common.token')})}!: \n ${e.message || ''}`, duration: 3 });
+                        message.error({
+                            content: `${t('crud.error.revokeWithName', { name: t('common.token') })}!: \n ${
+                                e.message || ''
+                            }`,
+                            duration: 3,
+                        });
                     })
                     .finally(() => {
                         setTimeout(() => {
@@ -192,7 +197,13 @@ export const AccessTokens = () => {
                 const localeTimezone = getLocaleTimezone();
                 const formattedExpireAt = new Date(expiresAt);
                 return (
-                    <span>{t('duration.dateAtTimeWithTimeZone', { date: formattedExpireAt.toLocaleDateString(), time: formattedExpireAt.toLocaleTimeString(), timeZone: localeTimezone})}</span>
+                    <span>
+                        {t('duration.dateAtTimeWithTimeZone', {
+                            date: formattedExpireAt.toLocaleDateString(),
+                            time: formattedExpireAt.toLocaleTimeString(),
+                            timeZone: localeTimezone,
+                        })}
+                    </span>
                 );
             },
         },
@@ -218,9 +229,14 @@ export const AccessTokens = () => {
     return (
         <SourceContainer>
             {tokensLoading && !tokensData && (
-                <Message type="loading" content={`${t('common.loading')} ${t('common.tokens').toLowerCase()}...`} style={{ marginTop: '10%' }} />
+                <Message
+                    type="loading"
+                    content={`${t('common.loading')} ${t('common.tokens').toLowerCase()}...`}
+                    style={{ marginTop: '10%' }}
+                />
             )}
-            {tokensError && message.error(`${t('crud.error.loadWithName', { name: t('common.tokens').toLowerCase() })} :(`)}
+            {tokensError &&
+                message.error(`${t('crud.error.loadWithName', { name: t('common.tokens').toLowerCase() })} :(`)}
             {revokeTokenError && message.error(`${t('crud.error.updateWithName', { name: t('common.token') })} :(`)}
             <TokensContainer>
                 <TokensHeaderContainer>

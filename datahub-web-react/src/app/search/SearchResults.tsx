@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pagination, Typography } from 'antd';
 import styled from 'styled-components/macro';
+import { Trans, useTranslation } from 'react-i18next';
 import { Message } from '../shared/Message';
 import { Entity, FacetFilterInput, FacetMetadata, MatchedField } from '../../types.generated';
 import { SearchCfg } from '../../conf';
@@ -25,7 +26,6 @@ import { SidebarProvider } from './sidebar/SidebarContext';
 import { BrowseProvider } from './sidebar/BrowseContext';
 import { useIsBrowseV2, useIsSearchV2 } from './useSearchAndBrowseVersion';
 import useToggleSidebar from './useToggleSidebar';
-import {Trans, useTranslation} from "react-i18next";
 
 const SearchResultsWrapper = styled.div<{ showUpdatedStyles: boolean }>`
     display: flex;
@@ -148,7 +148,7 @@ export const SearchResults = ({
     onChangeSelectAll,
     refetch,
 }: Props) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const showSearchFiltersV2 = useIsSearchV2();
     const showBrowseV2 = useIsBrowseV2();
     const { isSidebarOpen, toggleSidebar } = useToggleSidebar();
@@ -164,7 +164,7 @@ export const SearchResults = ({
 
     return (
         <>
-            {loading && <Message type="loading" content={t('common.loading')+"..."} style={{ marginTop: '10%' }} />}
+            {loading && <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />}
             <SearchResultsWrapper showUpdatedStyles={showSearchFiltersV2}>
                 <SearchBody>
                     {!showSearchFiltersV2 && (
@@ -191,12 +191,14 @@ export const SearchResults = ({
                             <LeftControlsContainer>
                                 {showBrowseV2 && <ToggleSidebarButton isOpen={isSidebarOpen} onClick={toggleSidebar} />}
                                 <Typography.Text>
-                                    <Trans {...{
-                                        i18nKey: 'search.showingNumberOfTotalResults_html',
-                                        number : lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0,
-                                        index: lastResultIndex,
-                                        count: totalResults
-                                    }}/>
+                                    <Trans
+                                        {...{
+                                            i18nKey: 'search.showingNumberOfTotalResults_html',
+                                            number: lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0,
+                                            index: lastResultIndex,
+                                            count: totalResults,
+                                        }}
+                                    />
                                 </Typography.Text>
                             </LeftControlsContainer>
                             <SearchMenuContainer>

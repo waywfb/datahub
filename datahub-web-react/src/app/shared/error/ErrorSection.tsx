@@ -1,9 +1,9 @@
 import { Image, Typography } from 'antd';
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
+import { Trans, useTranslation } from 'react-i18next';
 import dataHubLogo from '../../../images/datahublogo.png';
 import { ANTD_GRAY } from '../../entity/shared/constants';
-import {Trans, useTranslation} from "react-i18next";
 
 const Section = styled.div`
     width: auto;
@@ -41,17 +41,17 @@ const ResourceListItem = styled.li`
 
 const resources = [
     {
-        key:'error.errorSection.ressourcesLabel.project',
+        key: 'error.errorSection.ressourcesLabel.project',
         path: 'https://datahubproject.io',
         shouldOpenInNewTab: true,
     },
     {
-        key:'error.errorSection.ressourcesLabel.docs',
+        key: 'error.errorSection.ressourcesLabel.docs',
         path: 'https://datahubproject.io/docs',
         shouldOpenInNewTab: true,
     },
     {
-        key:'error.errorSection.ressourcesLabel.github',
+        key: 'error.errorSection.ressourcesLabel.github',
         path: 'https://github.com/datahub-project/datahub',
         shouldOpenInNewTab: true,
     },
@@ -59,7 +59,7 @@ const resources = [
 
 export const ErrorSection = (): JSX.Element => {
     const themeConfig = useTheme();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <Section>
@@ -76,7 +76,7 @@ export const ErrorSection = (): JSX.Element => {
                 </MessageSection>
                 <div>
                     <DetailParagraph type="secondary">
-                        <Trans i18nKey="error.errorSection.needSupport_html"/>
+                        <Trans i18nKey="error.errorSection.needSupport_html" />
                     </DetailParagraph>
                     <ResourceList>
                         {resources.map((resource) => (

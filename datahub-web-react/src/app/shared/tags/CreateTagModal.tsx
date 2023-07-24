@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { message, Button, Input, Modal, Space } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useBatchAddTagsMutation } from '../../../graphql/mutations.generated';
 import { useCreateTagMutation } from '../../../graphql/tag.generated';
 import { EntityType, ResourceRefInput } from '../../../types.generated';
 import { useEnterKeyListener } from '../useEnterKeyListener';
 import { handleBatchError } from '../../entity/shared/utils';
-import { useTranslation } from "react-i18next";
-import {useEntityRegistry} from "../../useEntityRegistry";
+import { useEntityRegistry } from '../../useEntityRegistry';
 
 type CreateTagModalProps = {
     visible: boolean;
@@ -23,14 +23,13 @@ const FullWidthSpace = styled(Space)`
 
 export default function CreateTagModal({ onClose, onBack, visible, tagName, resources }: CreateTagModalProps) {
     const entityRegistry = useEntityRegistry();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const [stagedDescription, setStagedDescription] = useState('');
     const [batchAddTagsMutation] = useBatchAddTagsMutation();
 
     const [createTagMutation] = useCreateTagMutation();
     const [disableCreate, setDisableCreate] = useState(false);
-
 
     const onOk = () => {
         setDisableCreate(true);
@@ -59,7 +58,9 @@ export default function CreateTagModal({ onClose, onBack, visible, tagName, reso
                         message.destroy();
                         message.error(
                             handleBatchError(resources, e, {
-                                content: `${t('crud.error.addWithName',{name:entityRegistry.getEntityNameTrans(EntityType.TAGS, t)})}: \n ${e.message || ''}`,
+                                content: `${t('crud.error.addWithName', {
+                                    name: entityRegistry.getEntityNameTrans(EntityType.Tag, t),
+                                })}: \n ${e.message || ''}`,
                                 duration: 3,
                             }),
                         );
@@ -73,7 +74,12 @@ export default function CreateTagModal({ onClose, onBack, visible, tagName, reso
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `${t('crud.error.createWithName',{name:entityRegistry.getEntityNameTrans(EntityType.TAGS, t)})}: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('crud.error.createWithName', {
+                        name: entityRegistry.getEntityNameTrans(EntityType.Tag, t),
+                    })}: \n ${e.message || ''}`,
+                    duration: 3,
+                });
                 onClose();
             });
     };
@@ -85,7 +91,7 @@ export default function CreateTagModal({ onClose, onBack, visible, tagName, reso
 
     return (
         <Modal
-            title={`${t('crud.createWithName', {name: tagName})}`}
+            title={`${t('crud.createWithName', { name: tagName })}`}
             visible={visible}
             onCancel={onClose}
             footer={

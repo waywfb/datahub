@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { GetDatasetQuery, useGetLastMonthUsageAggregationsQuery } from '../../../../../../graphql/dataset.generated';
 import { DatasetProfile, Operation, UsageQueryResult } from '../../../../../../types.generated';
 import { useBaseEntity } from '../../../EntityContext';
@@ -9,10 +10,9 @@ import ColumnStats from './snapshot/ColumnStats';
 import TableStats from './snapshot/TableStats';
 import StatsHeader from './StatsHeader';
 import { ViewType } from './viewType';
-import { useTranslation } from "react-i18next";
 
 export default function StatsTab() {
-    const {i18n} = useTranslation();
+    const { i18n } = useTranslation();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
 
     const [viewType, setViewType] = useState(ViewType.LATEST);
@@ -38,7 +38,8 @@ export default function StatsTab() {
     // Used for rendering operation info.
     const operations = (hasOperations && (baseEntity?.dataset?.operations as Array<Operation>)) || undefined;
     const latestOperation = operations && operations[0];
-    const lastUpdatedTime = latestOperation && toLocalDateTimeString(latestOperation?.lastUpdatedTimestamp, i18n.language);
+    const lastUpdatedTime =
+        latestOperation && toLocalDateTimeString(latestOperation?.lastUpdatedTimestamp, i18n.language);
     const lastReportedTime = latestOperation && toLocalDateTimeString(latestOperation?.timestampMillis, i18n.language);
     // Okay so if we are disabled, we don't have both or the other. Let's render
 

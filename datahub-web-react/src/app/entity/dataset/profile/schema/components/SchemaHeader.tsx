@@ -11,6 +11,7 @@ import {
     TableOutlined,
 } from '@ant-design/icons';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import CustomPagination from './CustomPagination';
 import TabToolbar from '../../../../shared/components/styled/TabToolbar';
 import { SemanticVersionStruct } from '../../../../../../types.generated';
@@ -19,7 +20,6 @@ import { ANTD_GRAY, REDESIGN_COLORS } from '../../../../shared/constants';
 import { navigateToVersionedDatasetUrl } from '../../../../shared/tabs/Dataset/Schema/utils/navigateToVersionedDatasetUrl';
 import SchemaTimeStamps from './SchemaTimeStamps';
 import getSchemaFilterFromQueryString from '../../../../shared/tabs/Dataset/Schema/utils/getSchemaFilterFromQueryString';
-import { useTranslation } from "react-i18next";
 
 const SchemaHeaderContainer = styled.div`
     display: flex;
@@ -170,7 +170,7 @@ export default function SchemaHeader({
 }: Props) {
     const history = useHistory();
     const location = useLocation();
-    const {i18n} = useTranslation();
+    const { i18n } = useTranslation();
     const onVersionChange = (version1, version2) => {
         if (version1 === null || version2 === null) {
             return;

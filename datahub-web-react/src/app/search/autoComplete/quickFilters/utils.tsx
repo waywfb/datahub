@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TFunction } from 'i18next';
 import { EntityType, QuickFilter } from '../../../../types.generated';
 import { IconStyleType } from '../../../entity/Entity';
 import EntityRegistry from '../../../entity/EntityRegistry';
@@ -14,7 +15,7 @@ export enum QuickFilterField {
     Entity = '_entityType',
 }
 
-export function getQuickFilterDetails(quickFilter: QuickFilter, entityRegistry: EntityRegistry) {
+export function getQuickFilterDetails(quickFilter: QuickFilter, entityRegistry: EntityRegistry, t: TFunction) {
     let label = '';
     let icon: JSX.Element | null = null;
     if (quickFilter.field === QuickFilterField.Platform) {
@@ -27,7 +28,7 @@ export function getQuickFilterDetails(quickFilter: QuickFilter, entityRegistry: 
             icon = entityRegistry.getIcon(EntityType.DataPlatform, 14, IconStyleType.ACCENT, 'black');
         }
     } else if (quickFilter.field === QuickFilterField.Entity) {
-        label = entityRegistry.getCollectionName(quickFilter.value as EntityType);
+        label = entityRegistry.getCollectionNameTrans(quickFilter.value as EntityType, t);
         icon = entityRegistry.getIcon(quickFilter.value as EntityType, 14, IconStyleType.ACCENT, 'black');
     }
 

@@ -3,6 +3,7 @@ import { Button, Checkbox, Divider, Empty, List, ListProps } from 'antd';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import { RocketOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { navigateToSearchUrl } from './utils/navigateToSearchUrl';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import { CombinedSearchResult, SEPARATE_SIBLINGS_URL_PARAM } from '../entity/shared/siblingUtils';
@@ -12,7 +13,6 @@ import { SearchResult } from '../../types.generated';
 import analytics, { EventType } from '../analytics';
 import { EntityAndType } from '../entity/shared/types';
 import { useIsSearchV2 } from './useSearchAndBrowseVersion';
-import { useTranslation } from "react-i18next";
 
 const ResultList = styled(List)`
     &&& {
@@ -43,7 +43,7 @@ const ThinDivider = styled(Divider)`
 const ResultWrapper = styled.div<{ showUpdatedStyles: boolean }>`
     ${(props) =>
         props.showUpdatedStyles &&
-        `    
+        `
         background-color: white;
         border-radius: 5px;
         margin: 0 auto 8px auto;
@@ -81,7 +81,7 @@ export const SearchResultList = ({
 }: Props) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const selectedEntityUrns = selectedEntities.map((entity) => entity.urn);
     const showSearchFiltersV2 = useIsSearchV2();
 
@@ -123,7 +123,7 @@ export const SearchResultList = ({
                         <NoDataContainer>
                             <Empty
                                 style={{ fontSize: 18, color: ANTD_GRAY[8] }}
-                                description={t('search.noResultsFoundFor',{name: query})}
+                                description={t('search.noResultsFoundFor', { name: query })}
                             />
                             <Button onClick={onClickExploreAll}>
                                 <RocketOutlined /> {t('search.exploreAll')}

@@ -3,9 +3,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { PlusOutlined } from '@ant-design/icons';
 
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput } from '../../types.generated';
 import { DEGREE_FILTER_NAME, FIELD_TO_LABEL, ORDERED_FIELDS } from './utils/constants';
-import { useTranslation } from "react-i18next";
 
 const StyledPlus = styled(PlusOutlined)`
     margin-right: 6px;
@@ -20,7 +20,7 @@ interface Props {
 const { Option } = Select;
 
 export const AdvancedSearchAddFilterSelect = ({ selectedFilters, onFilterFieldSelect, isCompact }: Props) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const selectStyle = {
         padding: isCompact ? 3 : 6,
         fontWeight: 500,
@@ -36,7 +36,7 @@ export const AdvancedSearchAddFilterSelect = ({ selectedFilters, onFilterFieldSe
                 label: (
                     <div>
                         <StyledPlus />
-                        {t('crud.addWithName',{name: t('common.filter')})}
+                        {t('crud.addWithName', { name: t('common.filter') })}
                     </div>
                 ),
             }}

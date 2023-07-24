@@ -1,4 +1,5 @@
 import React from 'react';
+import { TFunction } from 'i18next';
 import EntityRegistry from '../../entity/EntityRegistry';
 import FilterOption from './FilterOption';
 import { FilterOptionType } from './types';
@@ -15,6 +16,7 @@ export interface DisplayedFilterOption {
 interface CreateFilterOptionProps {
     filterOption: FilterOptionType;
     entityRegistry: EntityRegistry;
+    t: TFunction;
     selectedFilterOptions: FilterOptionType[];
     setSelectedFilterOptions: (values: FilterOptionType[]) => void;
     nestedOptions?: FilterOptionType[];
@@ -23,6 +25,7 @@ interface CreateFilterOptionProps {
 export function mapFilterOption({
     filterOption,
     entityRegistry,
+    t,
     selectedFilterOptions,
     setSelectedFilterOptions,
     nestedOptions,
@@ -31,6 +34,7 @@ export function mapFilterOption({
         filterOption.field,
         filterOption.value,
         entityRegistry,
+        t,
         filterOption.entity || null,
     );
 

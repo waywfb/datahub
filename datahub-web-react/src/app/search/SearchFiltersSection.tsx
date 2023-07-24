@@ -1,6 +1,7 @@
 import { Button } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata } from '../../types.generated';
 import { UnionType } from './utils/constants';
 import { hasAdvancedFilters } from './utils/hasAdvancedFilters';
@@ -84,7 +85,7 @@ export const SearchFiltersSection = ({
     onChangeFilters,
     onChangeUnionType,
 }: Props) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const userContext = useUserContext();
     const onlyShowAdvancedFilters = hasAdvancedFilters(selectedFilters, unionType);
     const [showViewBuilder, setShowViewBuilder] = useState(false);
@@ -110,7 +111,7 @@ export const SearchFiltersSection = ({
                         onClick={() => setSeeAdvancedFilters(!seeAdvancedFilters)}
                         id={SEARCH_RESULTS_ADVANCED_SEARCH_ID}
                     >
-                        {seeAdvancedFilters ? t('common.basic'): t('common.advanced')}
+                        {seeAdvancedFilters ? t('common.basic') : t('common.advanced')}
                     </Button>
                 </span>
             </FiltersHeader>

@@ -9,7 +9,7 @@ import ConnectionCapabilityView from './ConnectionCapabilityView';
 import { CapabilityReport, SourceCapability, TestConnectionResult } from './types';
 import { SourceConfig } from '../../types';
 import useGetSourceLogoUrl from '../../useGetSourceLogoUrl';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const LoadingWrapper = styled.div`
     display: flex;
@@ -98,7 +98,7 @@ function TestConnectionModal({
     testConnectionResult,
     hideModal,
 }: Props) {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const logoUrl = useGetSourceLogoUrl(sourceConfig?.name || '');
 
     return (

@@ -1,8 +1,8 @@
 import { Button, Modal, Select } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../types.generated';
 import { useEntityRegistry } from '../useEntityRegistry';
-import { useTranslation } from "react-i18next";
 
 type Props = {
     onCloseModal: () => void;
@@ -15,7 +15,7 @@ const { Option } = Select;
 
 export const ChooseEntityTypeModal = ({ defaultValues, onCloseModal, onOk, title }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const entityTypes = entityRegistry.getSearchEntityTypes();
 
     const [stagedValues, setStagedValues] = useState(defaultValues || []);

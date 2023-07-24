@@ -1,6 +1,7 @@
 import { FilterOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 const StyledButton = styled(Button)`
@@ -32,6 +33,7 @@ type Props = {
 };
 
 export const SaveAsViewButton = ({ onClick }: Props) => {
+    const { t } = useTranslation();
     return (
         <Tooltip
             placement="right"

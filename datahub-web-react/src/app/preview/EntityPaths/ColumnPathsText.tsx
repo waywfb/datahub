@@ -1,6 +1,7 @@
 import { Tooltip } from 'antd';
 import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { EntityPath, EntityType, LineageDirection, SchemaFieldEntity } from '../../../types.generated';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { LineageTabContext } from '../../entity/shared/tabs/Lineage/LineageTabContext';
@@ -38,13 +39,15 @@ interface Props {
 
 export default function ColumnPathsText({ paths, resultEntityUrn, openModal }: Props) {
     const { lineageDirection } = useContext(LineageTabContext);
+    const { t } = useTranslation();
 
     const displayedColumns = getDisplayedColumns(paths, resultEntityUrn);
 
     return (
         <>
             <DescriptionWrapper>
-                {lineageDirection === LineageDirection.Downstream ? 'Downstream' : 'Upstream'} column
+                {lineageDirection === LineageDirection.Downstream ? t('common.downstream') : t('common.upstream')}{' '}
+                {t('common.column').toLowerCase()}
                 {displayedColumns.length > 1 && 's'}
             </DescriptionWrapper>
             : &nbsp;
@@ -52,7 +55,7 @@ export default function ColumnPathsText({ paths, resultEntityUrn, openModal }: P
                 <Tooltip
                     title={
                         <span>
-                            Click to see column path{paths.length > 1 && 's'} from{' '}
+                            {t('lineage.clickToSeeColumnPathFrom', { count: paths.length || 0 })}
                             <ColumnsRelationshipText displayedColumns={displayedColumns} />
                         </span>
                     }

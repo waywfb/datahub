@@ -3,13 +3,13 @@ import { message, Button, Input, Modal, Typography, Form, Select } from 'antd';
 import styled from 'styled-components';
 import { red } from '@ant-design/colors';
 
+import { useTranslation } from 'react-i18next';
 import { useEnterKeyListener } from '../shared/useEnterKeyListener';
 import { ACCESS_TOKEN_DURATIONS, getTokenExpireDate } from './utils';
 import { useCreateAccessTokenMutation } from '../../graphql/auth.generated';
 import { AccessTokenDuration, AccessTokenType, CreateAccessTokenInput } from '../../types.generated';
 import { AccessTokenModal } from './AccessTokenModal';
 import analytics, { EventType } from '../analytics';
-import { useTranslation } from "react-i18next";
 
 type Props = {
     currentUserUrn: string;
@@ -41,7 +41,7 @@ const OptionText = styled.span<{ isRed: boolean }>`
 `;
 
 export default function CreateTokenModal({ currentUserUrn, visible, onClose, onCreateToken }: Props) {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const [selectedTokenDuration, setSelectedTokenDuration] = useState<AccessTokenDuration | null>(null);
 
     const [showModal, setShowModal] = useState(false);
@@ -93,7 +93,10 @@ export default function CreateTokenModal({ currentUserUrn, visible, onClose, onC
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `${t('crud.error.createWithName', { name: t('common.token') })}!: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('crud.error.createWithName', { name: t('common.token') })}!: \n ${e.message || ''}`,
+                    duration: 3,
+                });
             })
             .finally(() => {
                 onCreateToken();
@@ -102,7 +105,7 @@ export default function CreateTokenModal({ currentUserUrn, visible, onClose, onC
     };
 
     const accessToken = data && data.createAccessToken?.accessToken;
-    const selectedExpiresInText = selectedTokenDuration && getTokenExpireDate(selectedTokenDuration);
+    const selectedExpiresInText = selectedTokenDuration && getTokenExpireDate(selectedTokenDuration, t);
 
     // Handle the Enter press
     useEnterKeyListener({
@@ -114,7 +117,7 @@ export default function CreateTokenModal({ currentUserUrn, visible, onClose, onC
     return (
         <>
             <Modal
-                title={t('crud.createWithName', { name: `${t('common.new').toLowerCase()} ${t('common.token')}`})}
+                title={t('crud.createWithName', { name: `${t('common.new').toLowerCase()} ${t('common.token')}` })}
                 visible={visible}
                 onCancel={onModalClose}
                 footer={
@@ -154,7 +157,9 @@ export default function CreateTokenModal({ currentUserUrn, visible, onClose, onC
                         </Form.Item>
                     </Form.Item>
                     <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
-                        <Typography.Paragraph>{t('settings.anOptionalDescriptionForYourNewToken')}</Typography.Paragraph>
+                        <Typography.Paragraph>
+                            {t('settings.anOptionalDescriptionForYourNewToken')}
+                        </Typography.Paragraph>
                         <Form.Item name="description" rules={[{ whitespace: true }, { min: 1, max: 500 }]} hasFeedback>
                             <Input placeholder={t('aDescriptionForYourToken')} />
                         </Form.Item>
@@ -164,9 +169,12 @@ export default function CreateTokenModal({ currentUserUrn, visible, onClose, onC
                         <Form.Item name="duration" noStyle>
                             <ExpirationDurationSelect>
                                 {ACCESS_TOKEN_DURATIONS.map((duration) => (
-                                    <Select.Option key={t(duration.keyParam.key, {...duration.keyParam.params})} value={duration.duration}>
+                                    <Select.Option
+                                        key={t(duration.keyParam.key, { ...duration.keyParam.params })}
+                                        value={duration.duration}
+                                    >
                                         <OptionText isRed={duration.duration === AccessTokenDuration.NoExpiry}>
-                                            {t(duration.keyParam.key, {...duration.keyParam.params})}
+                                            {t(duration.keyParam.key, { ...duration.keyParam.params })}
                                         </OptionText>
                                     </Select.Option>
                                 ))}
@@ -178,7 +186,7 @@ export default function CreateTokenModal({ currentUserUrn, visible, onClose, onC
                                     type="secondary"
                                     style={hasSelectedNoExpiration ? { color: `${red[5]}` } : {}}
                                 >
-                                    {getFieldValue('duration') && getTokenExpireDate(getFieldValue('duration'))}
+                                    {getFieldValue('duration') && getTokenExpireDate(getFieldValue('duration'), t)}
                                 </Typography.Text>
                             )}
                         </Form.Item>

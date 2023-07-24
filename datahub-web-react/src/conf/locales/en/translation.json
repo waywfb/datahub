@@ -1,5 +1,17 @@
 {
   "common": {
+    "downstream":"Downstream",
+    "upstream":"Upstream",
+    "users": "Users",
+    "topWithName" : "Top {{name}}",
+    "showLess": "$t('common.show') $t('common.less')",
+    "showMore": "$t('common.show') $t('common.more')",
+    "show": "Show",
+    "none": "None",
+    "type": "Type",
+    "subtype": "Subtype",
+    "noResultsFound":"No results found",
+    "navigate": "Navigate",
     "analytics": "Analytics",
     "permissions": "Permissions",
     "close": "Close",
@@ -43,7 +55,6 @@
     "revoke": "Revoke",
     "column": "Column",
     "environment": "Environment",
-    "subType": "Subtype",
     "entityType": "Entity Type",
     "usage": "Usage",
     "learnMore": "Learn More",
@@ -74,6 +85,11 @@
   },
   "entity": {
     "viewEntityWithName": "View {{name}} profile"
+  },
+  "lineage": {
+    "entityDistanceFrom_withName": "This entity is a {{distance}} degree connection to {{name}}",
+    "entityDistanceFrom_withoutName": "This entity is a {{distance}} degree connection to the source entity",
+    "clickToSeeColumnPathFrom": "(0-1)Click to see column path from ;(2-inf)Click to see column paths from "
   },
   "duration": {
     "never": "Never",
@@ -130,6 +146,10 @@
     "contains": {
       "true": "contains",
       "false": "does not contain"
+    },
+    "is": {
+      "true": "is",
+      "false": "isn't"
     },
     "equals": {
       "true": "equals",
@@ -197,6 +217,7 @@
     "copyShareableLinkToEntity": "Copy a shareable link to this entity."
   },
   "error": {
+    "failedToFindRendererCorrespondingToRenderType": "Failed to find renderer corresponding to renderType {{name}}",
     "pageNotFound": "The page your requested was not found",
     "sidebarFailedToLoad": "The sidebar failed to load.",
     "errorSection": {

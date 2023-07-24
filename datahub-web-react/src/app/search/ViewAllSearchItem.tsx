@@ -27,7 +27,15 @@ const ReturnKey = styled(Typography.Text)`
     font-size: 12px;
 `;
 
-function ViewAllSearchItem({ searchLabel, searchTarget: searchText, returnLabel }: { searchLabel?: string, searchTarget?: string, returnLabel?: string}) {
+function ViewAllSearchItem({
+    searchLabel,
+    searchTarget: searchText,
+    returnLabel,
+}: {
+    searchLabel?: string;
+    searchTarget?: string;
+    returnLabel?: string;
+}) {
     return (
         <ViewAllContainer>
             <ExploreForEntity>

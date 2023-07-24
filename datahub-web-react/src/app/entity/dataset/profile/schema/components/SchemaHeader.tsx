@@ -19,7 +19,7 @@ import { ANTD_GRAY, REDESIGN_COLORS } from '../../../../shared/constants';
 import { navigateToVersionedDatasetUrl } from '../../../../shared/tabs/Dataset/Schema/utils/navigateToVersionedDatasetUrl';
 import SchemaTimeStamps from './SchemaTimeStamps';
 import getSchemaFilterFromQueryString from '../../../../shared/tabs/Dataset/Schema/utils/getSchemaFilterFromQueryString';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const SchemaHeaderContainer = styled.div`
     display: flex;

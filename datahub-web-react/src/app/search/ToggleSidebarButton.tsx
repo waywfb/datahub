@@ -4,7 +4,7 @@ import { Button, Tooltip } from 'antd';
 import styled from 'styled-components';
 import { ReactComponent as ExpandIcon } from '../../images/expand.svg';
 import { ReactComponent as CollapseIcon } from '../../images/collapse.svg';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const ToggleIcon = styled(Icon)`
     color: ${(props) => props.theme.styles['primary-color']};

@@ -9,7 +9,7 @@ import { StatsSummary } from '../../shared/components/styled/StatsSummary';
 import { FormattedBytesStat } from './FormattedBytesStat';
 import { countFormatter, needsFormatting } from '../../../../utils/formatter';
 import ExpandingStat from './ExpandingStat';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const StatText = styled.span<{ color: string }>`
     color: ${(props) => props.color};

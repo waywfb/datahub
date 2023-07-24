@@ -7,7 +7,7 @@ import { UserSetting } from '../../types.generated';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import analytics, { EventType } from '../analytics';
 import { useUserContext } from '../context/useUserContext';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const Page = styled.div`
     width: 100%;

@@ -16,7 +16,7 @@ import { ANTD_GRAY } from '../../entity/shared/constants';
 import { HOME_PAGE_INGESTION_ID } from '../../onboarding/config/HomePageOnboardingConfig';
 import { useUpdateEducationStepIdsAllowlist } from '../../onboarding/useUpdateEducationStepIdsAllowlist';
 import { useUserContext } from '../../context/useUserContext';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const LinkWrapper = styled.span`
     margin-right: 0px;

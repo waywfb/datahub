@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { toLocalDateTimeString, toRelativeTimeString } from '../../../../../shared/time/timeUtils';
 import { ANTD_GRAY } from '../../../../shared/constants';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const CurrentVersionTimestampText = styled(Typography.Text)`
     &&& {

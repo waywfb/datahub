@@ -12,7 +12,7 @@ import { SearchResult } from '../../types.generated';
 import analytics, { EventType } from '../analytics';
 import { EntityAndType } from '../entity/shared/types';
 import { useIsSearchV2 } from './useSearchAndBrowseVersion';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const ResultList = styled(List)`
     &&& {

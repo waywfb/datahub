@@ -9,7 +9,7 @@ import { useCreateAccessTokenMutation } from '../../graphql/auth.generated';
 import { AccessTokenDuration, AccessTokenType, CreateAccessTokenInput } from '../../types.generated';
 import { AccessTokenModal } from './AccessTokenModal';
 import analytics, { EventType } from '../analytics';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 type Props = {
     currentUserUrn: string;

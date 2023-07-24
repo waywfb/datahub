@@ -4,7 +4,7 @@ import { CheckOutlined, LinkOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import { ANTD_GRAY } from '../../../entity/shared/constants';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 interface CopyLinkMenuItemProps {
     key: string;

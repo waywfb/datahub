@@ -6,7 +6,7 @@ import { useCreateTagMutation } from '../../../graphql/tag.generated';
 import { EntityType, ResourceRefInput } from '../../../types.generated';
 import { useEnterKeyListener } from '../useEnterKeyListener';
 import { handleBatchError } from '../../entity/shared/utils';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import {useEntityRegistry} from "../../useEntityRegistry";
 
 type CreateTagModalProps = {

@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import {CLIENT_AUTH_COOKIE} from '../conf/Global';
 import {useGetMeQuery} from '../graphql/me.generated';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 /**
  * Fetch a CorpUser object corresponding to the currently authenticated user.

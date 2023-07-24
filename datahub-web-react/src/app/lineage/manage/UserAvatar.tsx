@@ -6,7 +6,7 @@ import { CorpUser, EntityType } from '../../../types.generated';
 import getAvatarColor from '../../shared/avatar/getAvatarColor';
 import { toLocalDateTimeString } from '../../shared/time/timeUtils';
 import { useEntityRegistry } from '../../useEntityRegistry';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const StyledAvatar = styled(Avatar)<{ backgroundColor: string }>`
     color: #fff;

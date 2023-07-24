@@ -6,7 +6,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import TagStyleEntity from '../TagStyleEntity';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { EntityType } from '../../../types.generated';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 type Props = {
     closeTagProfileDrawer?: () => void;

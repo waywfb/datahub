@@ -15,7 +15,7 @@ import { scrollToTop } from '../shared/searchUtils';
 import analytics, { EventType } from '../analytics';
 import { useUserContext } from '../context/useUserContext';
 import { useAppConfig } from '../useAppConfig';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const SourceContainer = styled.div`
     width: 100%;
@@ -75,7 +75,7 @@ const NeverExpireText = styled.span`
 const DEFAULT_PAGE_SIZE = 10;
 
 export const AccessTokens = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const [isCreatingToken, setIsCreatingToken] = useState(false);
     const [removedTokens, setRemovedTokens] = useState<string[]>([]);
 

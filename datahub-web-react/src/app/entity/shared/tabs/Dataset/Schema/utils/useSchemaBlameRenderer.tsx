@@ -7,7 +7,7 @@ import { SchemaField, SchemaFieldBlame } from '../../../../../../../types.genera
 import { pathMatchesNewPath } from '../../../../../dataset/profile/schema/utils/utils';
 import { toRelativeTimeString } from '../../../../../../shared/time/timeUtils';
 import { navigateToVersionedDatasetUrl } from './navigateToVersionedDatasetUrl';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const HeadingDiv = styled.div`
     vertical-align: top;

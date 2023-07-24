@@ -19,7 +19,7 @@ import { useGetRecommendations } from '../recommendation';
 import { FORBIDDEN_URN_CHARS_REGEX, handleBatchError } from '../../entity/shared/utils';
 import { TagTermLabel } from './TagTermLabel';
 import { ENTER_KEY_CODE } from '../constants';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export enum OperationType {
     ADD,

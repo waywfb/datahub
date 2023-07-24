@@ -5,7 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 
 import { FacetFilterInput } from '../../types.generated';
 import { DEGREE_FILTER_NAME, FIELD_TO_LABEL, ORDERED_FIELDS } from './utils/constants';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const StyledPlus = styled(PlusOutlined)`
     margin-right: 6px;

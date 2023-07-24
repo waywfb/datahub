@@ -11,7 +11,7 @@ import { DomainLink } from './DomainLink';
 import EditTagTermsModal from './AddTagsTermsModal';
 import StyledTerm from './term/StyledTerm';
 import Tag from './tag/Tag';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 type Props = {
     uneditableTags?: GlobalTags | null;

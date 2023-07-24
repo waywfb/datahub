@@ -6,7 +6,7 @@ import Highlight from 'react-highlighter';
 import { useRemoveTermMutation } from '../../../../graphql/mutations.generated';
 import { EntityType, GlossaryTermAssociation, SubResourceType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const highlightMatchStyle = { background: '#ffe58f', padding: '0' };
 

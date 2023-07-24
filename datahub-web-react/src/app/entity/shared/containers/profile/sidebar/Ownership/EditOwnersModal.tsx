@@ -20,7 +20,7 @@ import { useGetRecommendations } from '../../../../../../shared/recommendation';
 import { OwnerLabel } from '../../../../../../shared/OwnerLabel';
 import { handleBatchError } from '../../../../utils';
 import { useListOwnershipTypesQuery } from '../../../../../../../graphql/ownership.generated';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const SelectInput = styled(Select)`
     width: 480px;

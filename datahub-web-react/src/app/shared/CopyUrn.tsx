@@ -1,7 +1,7 @@
 import {CheckOutlined, CopyOutlined} from '@ant-design/icons';
 import {Button, Tooltip} from 'antd';
 import React from 'react';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 interface CopyUrnProps {
     urn: string;

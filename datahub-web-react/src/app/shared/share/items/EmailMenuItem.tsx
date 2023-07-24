@@ -5,7 +5,7 @@ import { CheckOutlined, MailOutlined } from '@ant-design/icons';
 import EmailShare from 'react-email-share-link';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import { ANTD_GRAY } from '../../../entity/shared/constants';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 interface EmailMenuItemProps {
     urn: string;

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useEntityData } from '../entity/shared/EntityContext';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { capitalizeFirstLetterOnly } from './textUtil';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export const EntityHead = () => {
     const entityRegistry = useEntityRegistry();

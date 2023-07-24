@@ -27,7 +27,7 @@ import {
 } from './utils/constants';
 import SetDataProductModal from '../entity/shared/containers/profile/sidebar/DataProduct/SetDataProductModal';
 import {useEntityRegistry} from "../useEntityRegistry";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 type Props = {
     facet?: FacetMetadata | null;

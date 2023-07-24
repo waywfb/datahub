@@ -9,7 +9,7 @@ import {
 import { useListRecommendationsQuery } from '../../graphql/recommendations.generated';
 import { RecommendationModule } from '../recommendations/RecommendationModule';
 import { ANTD_GRAY } from '../entity/shared/constants';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const RecommendationsContainer = styled.div`
     margin-left: 40px;

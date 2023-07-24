@@ -9,7 +9,7 @@ import ColumnStats from './snapshot/ColumnStats';
 import TableStats from './snapshot/TableStats';
 import StatsHeader from './StatsHeader';
 import { ViewType } from './viewType';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function StatsTab() {
     const {i18n} = useTranslation();

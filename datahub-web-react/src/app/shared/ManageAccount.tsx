@@ -12,7 +12,7 @@ import analytics, { EventType } from '../analytics';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import { useAppConfig } from '../useAppConfig';
 import { useUserContext } from '../context/useUserContext';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const MenuItem = styled(Menu.Item)`
     display: flex;

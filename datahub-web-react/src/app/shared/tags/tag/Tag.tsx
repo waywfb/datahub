@@ -8,7 +8,7 @@ import { StyledTag } from '../../../entity/shared/components/styled/StyledTag';
 import { HoverEntityTooltip } from '../../../recommendations/renderer/component/HoverEntityTooltip';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { TagProfileDrawer } from '../TagProfileDrawer';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const TagLink = styled.span`
     display: inline-block;

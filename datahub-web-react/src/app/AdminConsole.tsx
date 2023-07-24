@@ -7,7 +7,7 @@ import Sider from 'antd/lib/layout/Sider';
 import { useGetAuthenticatedUser } from './useGetAuthenticatedUser';
 import { useAppConfig } from './useAppConfig';
 import { ANTD_GRAY } from './entity/shared/constants';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const ToggleContainer = styled.div`
     background-color: ${ANTD_GRAY[4]};

@@ -19,7 +19,7 @@ import { Preferences } from './Preferences';
 import { ManageViews } from '../entity/view/ManageViews';
 import { useUserContext } from '../context/useUserContext';
 import { ManageOwnership } from '../entity/ownership/ManageOwnership';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const PageContainer = styled.div`
     display: flex;

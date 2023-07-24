@@ -2,6 +2,7 @@ import React from 'react';
 import { Alert, Button, Modal, Typography } from 'antd';
 import styled from 'styled-components';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 const ModalSection = styled.div`
     display: flex;
@@ -42,6 +43,7 @@ type Props = {
 };
 
 export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText }: Props) => {
+    const { t } = useTranslation();
     const baseUrl = window.location.origin;
     const accessTokenCurl = `curl -X POST '${baseUrl}/api/graphql' \\
 --header 'Authorization: Bearer ${accessToken}' \\

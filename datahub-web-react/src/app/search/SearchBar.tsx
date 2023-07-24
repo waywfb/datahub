@@ -22,7 +22,7 @@ import { useUserContext } from '../context/useUserContext';
 import { navigateToSearchUrl } from './utils/navigateToSearchUrl';
 import { getQuickFilterDetails } from './autoComplete/quickFilters/utils';
 import ViewAllSearchItem from './ViewAllSearchItem';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const StyledAutoComplete = styled(AutoComplete)`
     width: 100%;

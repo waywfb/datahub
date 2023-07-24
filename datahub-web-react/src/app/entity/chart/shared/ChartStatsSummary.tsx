@@ -8,7 +8,7 @@ import { toLocalDateTimeString, toRelativeTimeString } from '../../../shared/tim
 import { StatsSummary } from '../../shared/components/styled/StatsSummary';
 import { countFormatter, needsFormatting } from '../../../../utils/formatter';
 import ExpandingStat from '../../dataset/shared/ExpandingStat';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const StatText = styled.span`
     color: ${ANTD_GRAY[8]};

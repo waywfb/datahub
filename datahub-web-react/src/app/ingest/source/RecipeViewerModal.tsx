@@ -3,7 +3,7 @@ import { Button, Modal } from 'antd';
 import React from 'react';
 import styled from 'styled-components/macro';
 import { jsonToYaml } from './utils';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const YamlWrapper = styled.div`
     padding: 24px;

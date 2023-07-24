@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { FacetFilterInput, FacetMetadata } from '../../types.generated';
 import { SearchFilterLabel } from './SearchFilterLabel';
 import { TRUNCATED_FILTER_LENGTH } from './utils/constants';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const GRAPH_DEGREE_FILTER_FIELD = 'degree';
 

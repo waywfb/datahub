@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Empty, Typography } from 'antd';
-import { EMPTY_MESSAGES } from '../../constants';
+import { useTranslation } from 'react-i18next';
 
 const StyledEmpty = styled(Empty)`
     padding: 40px;
@@ -27,12 +27,14 @@ type Props = {
 };
 
 export const EmptyTab = ({ tab, children }: Props) => {
+    const {t} = useTranslation(['empty-message']);
+
     return (
         <StyledEmpty
             description={
                 <EmptyDescription>
-                    <Typography.Title level={4}>{EMPTY_MESSAGES[tab]?.title}</Typography.Title>
-                    <Typography.Text type="secondary">{EMPTY_MESSAGES[tab]?.description}</Typography.Text>
+                    <Typography.Title level={4}>{t(tab+'.title',{ns:'empty-message'})}</Typography.Title>
+                    <Typography.Text type="secondary">{t(tab+'.description',{ns:'empty-message'})}</Typography.Text>
                 </EmptyDescription>
             }
         >

@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { SidebarHeader } from '../SidebarHeader';
 import { useEntityData } from '../../../../EntityContext';
-import { EMPTY_MESSAGES } from '../../../../constants';
 import SetDataProductModal from './SetDataProductModal';
 import { DataProductLink } from '../../../../../../shared/tags/DataProductLink';
 import { useBatchSetDataProductMutation } from '../../../../../../../graphql/dataProduct.generated';
 import { DataProduct } from '../../../../../../../types.generated';
+import { useTranslation } from 'react-i18next';
 
 const EmptyText = styled(Typography.Paragraph)`
     &&& {
@@ -24,6 +24,7 @@ interface Props {
 export default function DataProductSection({ readOnly }: Props) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const { entityData, urn } = useEntityData();
+    const {t} = useTranslation(['empty-message']);
     const [batchSetDataProductMutation] = useBatchSetDataProductMutation();
     const [dataProduct, setDataProduct] = useState<DataProduct | null>(null);
     const dataProductRelationships = entityData?.dataProduct?.relationships;
@@ -84,6 +85,8 @@ export default function DataProductSection({ readOnly }: Props) {
             {!dataProduct && (
                 <>
                     <EmptyText type="secondary">
+                        {t('dataProduct.title',{ns:'empty-message'})}. {t('dataProduct.description',{ns:'empty-message'})}
+
                         {EMPTY_MESSAGES.dataProduct.title}. {EMPTY_MESSAGES.dataProduct.description}
                     </EmptyText>
                     {!readOnly && (

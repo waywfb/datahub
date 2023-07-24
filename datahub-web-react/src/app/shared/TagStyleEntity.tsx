@@ -10,7 +10,6 @@ import { PlusOutlined } from '@ant-design/icons';
 import { useGetTagQuery } from '../../graphql/tag.generated';
 import { EntityType, FacetMetadata, Maybe, Scalars } from '../../types.generated';
 import { ExpandedOwner } from '../entity/shared/components/styled/ExpandedOwner/ExpandedOwner';
-import { EMPTY_MESSAGES } from '../entity/shared/constants';
 import { navigateToSearchUrl } from '../search/utils/navigateToSearchUrl';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { useUpdateDescriptionMutation, useSetTagColorMutation } from '../../graphql/mutations.generated';
@@ -24,6 +23,7 @@ import { EntityMenuItems } from '../entity/shared/EntityDropdown/EntityDropdown'
 import { ErrorSection } from './error/ErrorSection';
 import { generateOrFilters } from '../search/utils/generateOrFilters';
 import { ENTITY_FILTER_NAME, UnionType } from '../search/utils/constants';
+import { useTranslation } from 'react-i18next';
 
 function useWrappedSearchResults(params: GetSearchResultsParams) {
     const { data, loading, error } = useGetSearchResultsForMultipleQuery(params);
@@ -183,6 +183,7 @@ const generateColor = new ColorHash({
 export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSearchResults }: Props) {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
+    const {t} = useTranslation(['empty-message']);
     const { error, data, refetch } = useGetTagQuery({ variables: { urn } });
     const [updateDescription] = useUpdateDescriptionMutation();
     const [setTagColorMutation] = useSetTagColorMutation();
@@ -416,7 +417,7 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
                         ))}
                         {ownersEmpty && (
                             <Typography.Paragraph type="secondary">
-                                {EMPTY_MESSAGES.owners.title}. {EMPTY_MESSAGES.owners.description}
+                                {t('owners.title',{ns:'empty-message'})}. {t('owners.description',{ns:'empty-message'})}
                             </Typography.Paragraph>
                         )}
                         <Button type={ownersEmpty ? 'default' : 'text'} onClick={() => setShowAddModal(true)}>

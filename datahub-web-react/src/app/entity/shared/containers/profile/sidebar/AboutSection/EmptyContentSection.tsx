@@ -3,8 +3,8 @@ import { EditOutlined } from '@ant-design/icons';
 import React from 'react';
 import styled from 'styled-components';
 import { useRefetch, useRouteToTab } from '../../../../EntityContext';
-import { EMPTY_MESSAGES } from '../../../../constants';
 import { AddLinkModal } from '../../../../components/styled/AddLinkModal';
+import { useTranslation } from 'react-i18next';
 
 const EmptyContentWrapper = styled.div`
     margin-bottom: 5px;
@@ -27,12 +27,13 @@ interface Props {
 export default function EmptyContentSection({ hideLinksButton, readOnly }: Props) {
     const routeToTab = useRouteToTab();
     const refetch = useRefetch();
+    const {t} = useTranslation(['empty-message']);
 
     return (
         <EmptyContentWrapper>
             <>
                 <EmptyContentMessage type="secondary">
-                    {EMPTY_MESSAGES.documentation.title}. {EMPTY_MESSAGES.documentation.description}
+                    {t('documentation.title',{ns:'empty-message'})}. {t('documentation.description',{ns:'empty-message'})}
                 </EmptyContentMessage>
                 {!readOnly && (
                     <Button onClick={() => routeToTab({ tabName: 'Documentation', tabParams: { editing: true } })}>

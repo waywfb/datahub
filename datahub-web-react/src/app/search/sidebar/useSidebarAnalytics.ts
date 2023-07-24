@@ -13,13 +13,15 @@ import {
     useMaybeEnvironmentAggregation,
     useMaybePlatformAggregation,
 } from './BrowseContext';
+import { useTranslation } from 'react-i18next';
 
 const useSidebarAnalytics = () => {
     const registry = useEntityRegistry();
+    const { t } = useTranslation();
     const entityType = useEntityType();
     const environmentAggregation = useMaybeEnvironmentAggregation();
     const platformAggregation = useMaybePlatformAggregation();
-    const entityDisplayName = registry.getCollectionName(entityType);
+    const entityDisplayName = registry.getEntityNameTrans(entityType, t, 2);
     const environmentDisplayName = environmentAggregation?.value;
     const platformDisplayName = platformAggregation?.entity
         ? registry.getDisplayName(EntityType.DataPlatform, platformAggregation.entity)

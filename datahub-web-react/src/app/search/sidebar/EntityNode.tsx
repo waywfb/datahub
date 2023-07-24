@@ -15,6 +15,7 @@ import useToggle from '../../shared/useToggle';
 import { BrowseProvider, useEntityAggregation, useEntityType, useIsEntitySelected } from './BrowseContext';
 import useSidebarAnalytics from './useSidebarAnalytics';
 import { useHasFilterField } from './SidebarContext';
+import { useTranslation } from 'react-i18next';
 
 const Count = styled(Typography.Text)`
     font-size: 12px;
@@ -29,6 +30,7 @@ const EntityNode = () => {
     const hasEnvironmentFilter = useHasFilterField(ORIGIN_FILTER_NAME);
     const { count } = entityAggregation;
     const registry = useEntityRegistry();
+    const { t } = useTranslation();
     const { trackToggleNodeEvent } = useSidebarAnalytics();
 
     const { isOpen, isClosing, toggle } = useToggle({
@@ -60,12 +62,12 @@ const EntityNode = () => {
                     showBorder
                     onClick={onClickHeader}
                     style={{ paddingTop: '16px' }}
-                    data-testid={`browse-entity-${registry.getCollectionName(entityType)}`}
+                    data-testid={`browse-entity-${registry.getEntityNameTrans(entityType, t, 2)}`}
                 >
                     <ExpandableNode.HeaderLeft>
                         {registry.getIcon(entityType, 16, IconStyleType.HIGHLIGHT, color)}
                         <ExpandableNode.Title color={color} size={16} padLeft>
-                            {registry.getCollectionName(entityType)}
+                            {registry.getEntityNameTrans(entityType, t, 2)}
                         </ExpandableNode.Title>
                         <Count color={color}>{formatNumber(entityAggregation.count)}</Count>
                     </ExpandableNode.HeaderLeft>

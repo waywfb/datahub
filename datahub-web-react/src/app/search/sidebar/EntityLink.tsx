@@ -10,6 +10,7 @@ import { useEntityRegistry } from '../../useEntityRegistry';
 import { Entity, Maybe } from '../../../types.generated';
 import useSidebarAnalytics from './useSidebarAnalytics';
 import { BrowseV2EntityLinkClickEvent } from '../../analytics';
+import { useTranslation } from 'react-i18next';
 
 const Linkicon = styled(Icon)<{ isSelected: boolean }>`
     && {
@@ -34,6 +35,7 @@ const EmptySpace = styled.span`
 
 const EntityLink = ({ entity, targetNode }: Props) => {
     const registry = useEntityRegistry();
+    const { t } = useTranslation();
     const isBrowsePathSelected = useIsBrowsePathSelected();
     const displayName = useBrowseDisplayName();
     const { trackEntityLinkClickEvent } = useSidebarAnalytics();
@@ -46,7 +48,7 @@ const EntityLink = ({ entity, targetNode }: Props) => {
     if (!entityUrl) return null;
 
     return (
-        <Tooltip placement="top" title={`View ${displayName} profile`} mouseEnterDelay={1}>
+        <Tooltip placement="top" title={{ t('entity.viewEntityWithName',{name: displayName})}} mouseEnterDelay={1}>
             <Link to={entityUrl}>
                 <ExpandableNode.StaticButton
                     icon={<Linkicon isSelected={isBrowsePathSelected} component={ExternalLink} />}

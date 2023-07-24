@@ -27,7 +27,7 @@
     "access": "Access",
     "manage": "Manage",
     "filter": "Filter",
-    "basic":"Basic",
+    "basic": "Basic",
     "advanced": "Advanced",
     "preferences": "Preferences",
     "appearance": "Appearance",
@@ -46,7 +46,8 @@
     "subType": "Subtype",
     "entityType": "Entity Type",
     "usage": "Usage",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "retry": "Retry"
   },
   "token": {
     "accessToken": "Access Tokens",
@@ -70,6 +71,9 @@
     "toUseATokenExplanationStart": "To use the token, provide it as a",
     "toUseATokenExplanationMiddle": "token in the",
     "toUseATokenExplanationEnd": "header when making API requests:"
+  },
+  "entity": {
+    "viewEntityWithName": "View {{name}} profile"
   },
   "duration": {
     "never": "Never",
@@ -107,27 +111,27 @@
     "aDescriptionForYourToken": "A description for your token"
   },
   "search": {
-    "viewAllResultsFor":"View all results for",
+    "viewAllResultsFor": "View all results for",
     "seeAllResultsWithName_html": "See all <b>{{name}}</b> results",
     "moreYouMayBeInterestedIn": "More you may be interested in",
     "showingNumberOfTotalResults_html_interval": "(0-1)Showing <b>{{number}} - {{index}}</b> of {{count}} result;(2-inf)Showing <b>{{number}} - {{index}}</b> of {{count}} results;",
-    "noResultsFoundFor":"No results found for {{name}}",
+    "noResultsFoundFor": "No results found for {{name}}",
     "exploreAll": "Explore all",
     "selectWithName": "Select {{name}}"
   },
   "filter": {
     "filterBy": "Filter by",
     "filterByWithName": "Filter by {{name}}",
-    "noFilterApplied":"No filters applied.",
+    "noFilterApplied": "No filters applied.",
     "showResultsThatMatch": "Show results that match",
     "allFilters": "All filters",
-    "anyFilter":"Any filter",
+    "anyFilter": "Any filter",
     "dataProduct": "Data Product",
     "contains": {
       "true": "contains",
       "false": "does not contain"
     },
-    "equals":{
+    "equals": {
       "true": "equals",
       "false": "not equal"
     },
@@ -137,14 +141,14 @@
     },
     "view": {
       "saveAsView": "Save as View",
-      "saveTheseFiltersAsANewView":"Save these filters as a new View.",
-      "viewsAllowYouToEasilySaveOrShareSearchFilters":"Views allow you to easily save or share search filters."
+      "saveTheseFiltersAsANewView": "Save these filters as a new View.",
+      "viewsAllowYouToEasilySaveOrShareSearchFilters": "Views allow you to easily save or share search filters."
     }
   },
   "placeholder": {
     "searchForWithName": "Search for {{name}}...",
     "addDescriptionForNewTag": "Add a description for your new tag...",
-    "datasetsDashboardsChartsAndMore":"Datasets, Dashboards, Charts, and more..."
+    "datasetsDashboardsChartsAndMore": "Datasets, Dashboards, Charts, and more..."
   },
   "share": {
     "shareThisViaMail": "Share this {{type}} via email",
@@ -159,8 +163,8 @@
   "navigation": {
     "backToHome": "Back to Home",
     "yourProfile": "Your Profile",
-    "openPanel":"Open the navigation panel",
-    "hidePanel":"Hide the navigation panel"
+    "openPanel": "Open the navigation panel",
+    "hidePanel": "Hide the navigation panel"
   },
   "crud": {
     "addWithName": "Add {{name}}",
@@ -194,7 +198,8 @@
   },
   "error": {
     "pageNotFound": "The page your requested was not found",
-    "errorSection" : {
+    "sidebarFailedToLoad": "The sidebar failed to load.",
+    "errorSection": {
       "ressourcesLabel": {
         "project": "DataHub Project",
         "docs": "DataHub Docs",

@@ -1,5 +1,7 @@
 {
   "common": {
+    "refresh": "Refresh",
+    "edit": "Edit",
     "email": "Email",
     "downstream": "Downstream",
     "upstream": "Upstream",
@@ -166,9 +168,11 @@
     }
   },
   "lineage": {
+    "clickToRefreshData": "Click to refresh data",
     "entityDistanceFrom_withName": "This entity is a {{distance}} degree connection to {{name}}",
     "entityDistanceFrom_withoutName": "This entity is a {{distance}} degree connection to the source entity",
     "clickToSeeColumnPathFrom": "(0-1)Click to see column path from ;(2-inf)Click to see column paths from ",
+    "visualizeLineage": "Visualize Lineage",
     "ordinalSuffix": [
       "th",
       "st",

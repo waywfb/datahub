@@ -1,12 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import { useHistory, useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { navigateToLineageUrl } from '../utils/navigateToLineageUrl';
 import analytics, { EventType } from '../../analytics';
 import { getTimeFromNow } from '../../shared/time/timeUtils';
 import LineageTimeSelector from '../LineageTimeSelector';
 import { useGetLineageTimeParams } from '../utils/useGetLineageTimeParams';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     isHideSiblingMode: boolean;

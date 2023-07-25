@@ -1,12 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import { useHistory, useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import analytics, { EventType } from '../../../../analytics';
 import LineageTimeSelector from '../../../../lineage/LineageTimeSelector';
 import { getTimeFromNow } from '../../../../shared/time/timeUtils';
 import updateQueryParams from '../../../../shared/updateQueryParams';
 import { useGetLineageTimeParams } from '../../../../lineage/utils/useGetLineageTimeParams';
-import { useTranslation } from 'react-i18next';
 
 export default function LineageTabTimeSelector() {
     const history = useHistory();

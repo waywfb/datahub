@@ -1,7 +1,6 @@
 import React from 'react';
 import { Divider, List, Checkbox } from 'antd';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
 import { Entity, EntityPath } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';

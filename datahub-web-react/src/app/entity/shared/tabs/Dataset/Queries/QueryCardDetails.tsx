@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../constants';
 import { toLocalDateString } from '../../../../../shared/time/timeUtils';
 import NoMarkdownViewer from '../../../components/styled/StripMarkdownText';
 import QueryCardDetailsMenu from './QueryCardDetailsMenu';
 import QueryCardEditButton from './QueryCardEditButton';
-import { useTranslation } from 'react-i18next';
 
 const Title = styled(Typography.Title)<{ secondary?: boolean }>`
     && {
@@ -127,7 +127,9 @@ export default function QueryCardDetails({
             </Description>
             <Date>
                 {(createdAtMs && (
-                    <Typography.Text type="secondary">Created on {toLocalDateString(createdAtMs, i18n.language)}</Typography.Text>
+                    <Typography.Text type="secondary">
+                        Created on {toLocalDateString(createdAtMs, i18n.language)}
+                    </Typography.Text>
                 )) ||
                     undefined}
             </Date>

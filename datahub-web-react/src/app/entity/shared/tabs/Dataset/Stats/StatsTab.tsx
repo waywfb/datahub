@@ -51,7 +51,8 @@ export default function StatsTab() {
     const reportedAt =
         latestProfile &&
         `Reported on ${toLocalDateString(latestProfile?.timestampMillis, i18n.language)} at ${toLocalTimeString(
-            latestProfile?.timestampMillis, i18n.language
+            latestProfile?.timestampMillis,
+            i18n.language,
         )}`;
 
     const totalSqlQueries = usageStats?.aggregations?.totalSqlQueries;

@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import moment from 'moment';
-import { DateInterval } from '../../../types.generated';
 import { TFunction } from 'i18next';
+import { DateInterval } from '../../../types.generated';
 
 dayjs.extend(relativeTime);
 
@@ -169,29 +169,32 @@ export const toRelativeTimeString = (timeMs: number, locale: string) => {
     return rtf.format(diffInYears, 'year');
 };
 
-export function getTimeFromNow(timestampMillis, t:TFunction, locale: string) {
+export function getTimeFromNow(timestampMillis, t: TFunction, locale: string) {
     if (!timestampMillis) {
         return '';
     }
-    const relativeTimeString = dayjs(timestampMillis,{locale:'en'}).fromNow();
+    const relativeTimeString = dayjs(timestampMillis, { locale: 'en' }).fromNow();
     if (relativeTimeString === 'a few seconds ago') {
         return t('duration.now').toLowerCase();
-    }else{
-        return dayjs(timestampMillis,{locale}).fromNow()
     }
+    return dayjs(timestampMillis, { locale }).fromNow();
 }
 
-export function getTimeRangeDescription(startDate: moment.Moment | null, endDate: moment.Moment | null, t: TFunction): string {
+export function getTimeRangeDescription(
+    startDate: moment.Moment | null,
+    endDate: moment.Moment | null,
+    t: TFunction,
+): string {
     if (!startDate && !endDate) {
         return t('duration.allTime');
     }
 
     if (!startDate && endDate) {
-        return t('duration.UntilWithDate', {date: endDate.format('ll')});
+        return t('duration.UntilWithDate', { date: endDate.format('ll') });
     }
 
     if (startDate && !endDate) {
-        return t('duration.fromWithDate', {date: startDate.format('ll')});
+        return t('duration.fromWithDate', { date: startDate.format('ll') });
     }
 
     if (startDate && endDate) {

@@ -254,7 +254,9 @@
     "backToHome": "Back to Home",
     "yourProfile": "Your Profile",
     "openPanel": "Open the navigation panel",
-    "hidePanel": "Hide the navigation panel"
+    "hidePanel": "Hide the navigation panel",
+    "viewInWithName": "View in {{name}}",
+    "viewLink": "View link"
   },
   "crud": {
     "addWithName": "Add {{name}}",

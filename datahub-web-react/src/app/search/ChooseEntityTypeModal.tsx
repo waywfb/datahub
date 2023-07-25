@@ -15,7 +15,7 @@ const { Option } = Select;
 
 export const ChooseEntityTypeModal = ({ defaultValues, onCloseModal, onOk, title }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const entityTypes = entityRegistry.getSearchEntityTypes();
 
     const [stagedValues, setStagedValues] = useState(defaultValues || []);
@@ -53,13 +53,14 @@ export const ChooseEntityTypeModal = ({ defaultValues, onCloseModal, onOk, title
                 onDeselect={(newValue) => removeEntityType(newValue)}
                 value={stagedValues.map((stagedEntityType) => ({
                     value: stagedEntityType,
-                    label: entityRegistry.getEntityNameTrans(stagedEntityType as EntityType, t, 2),
+                    label: entityRegistry.getCollectionNameTrans(stagedEntityType as EntityType, t),
                 }))}
                 dropdownMatchSelectWidth={false}
             >
                 {entityTypes.map((type) => (
                     <Option key={type} value={type}>
-                        {entityRegistry.getEntityNameTrans(type, t, 2)}
+                        {entityRegistry.getCollectionNameTrans(type, t)
+                          }
                     </Option>
                 ))}
             </Select>

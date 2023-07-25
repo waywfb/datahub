@@ -17,11 +17,11 @@ import {
 
 const useSidebarAnalytics = () => {
     const registry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const entityType = useEntityType();
     const environmentAggregation = useMaybeEnvironmentAggregation();
     const platformAggregation = useMaybePlatformAggregation();
-    const entityDisplayName = registry.getEntityNameTrans(entityType, t, 2);
+    const entityDisplayName = registry.getCollectionNameTrans(entityType, t);
     const environmentDisplayName = environmentAggregation?.value;
     const platformDisplayName = platformAggregation?.entity
         ? registry.getDisplayName(EntityType.DataPlatform, platformAggregation.entity)

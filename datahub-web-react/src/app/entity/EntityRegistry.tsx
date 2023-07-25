@@ -25,6 +25,7 @@ export default class EntityRegistry {
 
     pathNameToEntityType: Map<string, EntityType> = new Map<string, EntityType>();
 
+    // TODO ndespouy getCollectionName
     register(entity: Entity<any>) {
         this.entities.push(entity);
         this.entityTypeToEntity.set(entity.type, entity);
@@ -90,10 +91,8 @@ export default class EntityRegistry {
     }
 
     getEntityNameTrans(type: EntityType, t: TFunction, count = 1): string {
-        // When you use this function, you have to precise the ns 'entity' in
-        // const {t} = useTranslation(['entity']);
         const entity = validatedGet(type, this.entityTypeToEntity);
-        return t(entity.type, { ns: 'entity', count });
+        return t(entity.type, { count });
     }
 
     getTypeFromCollectionName(name: string): EntityType {

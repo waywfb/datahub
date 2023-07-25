@@ -14,7 +14,7 @@ type Props = {
 
 const useAggregationsQuery = ({ facets, skip }: Props) => {
     const registry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const sidebarFilters = useSidebarFilters();
 
     const {
@@ -50,8 +50,8 @@ const useAggregationsQuery = ({ facets, skip }: Props) => {
             return registry.getEntity(type).isBrowseEnabled() && !GLOSSARY_ENTITY_TYPES.includes(type);
         })
         .sort((a, b) => {
-            const nameA = registry.getEntityNameTrans(a.value as EntityType, t, 2);
-            const nameB = registry.getEntityNameTrans(b.value as EntityType, t, 2);
+            const nameA = registry.getCollectionNameTrans(a.value as EntityType, t);
+            const nameB = registry.getCollectionNameTrans(b.value as EntityType, t);
             return nameA.localeCompare(nameB);
         });
 

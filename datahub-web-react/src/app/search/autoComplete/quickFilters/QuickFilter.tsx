@@ -47,7 +47,7 @@ interface Props {
 
 export default function QuickFilter({ quickFilter }: Props) {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const { selectedQuickFilter, setSelectedQuickFilter } = useQuickFiltersContext();
 
     const isSelected = selectedQuickFilter?.value === quickFilter.value;

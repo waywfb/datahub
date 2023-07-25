@@ -45,7 +45,7 @@ export const AdvancedFilterSelectValueModal = ({
     facet,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     if (filterField === OWNERS_FILTER_NAME) {
         return (
             <EditOwnersModal

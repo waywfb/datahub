@@ -21,7 +21,7 @@ const DetailsLayout = styled.div`
 
 export const TagProfileDrawer = ({ closeTagProfileDrawer, tagProfileDrawerVisible, urn }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     return (
         <>
             <Drawer

@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { EntityType, EntityRelationship } from '../../../types.generated';
 import { EmptyValue, TagsSection, Tags, GroupsSeeMoreText } from './SidebarStyledComponents';
 import { useEntityRegistry } from '../../useEntityRegistry';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     readMore: boolean;

@@ -1,5 +1,13 @@
 {
   "common": {
+    "save": "Save",
+    "next": "Next",
+    "previous": "Previous",
+    "roles": "Roles",
+    "domains": "Domains",
+    "assets": "Assets",
+    "asset": "Asset",
+    "state": "State",
     "all": "All",
     "privileges": "Privileges",
     "domain": "Domain",
@@ -34,6 +42,7 @@
     "cancel": "Cancel",
     "done": "Done",
     "group": "Group",
+    "groups": "Groups",
     "role": "Role",
     "govern": "Govern",
     "noData": "No Data",
@@ -113,6 +122,16 @@
     "domainDescription": "Search for domains the policy should apply to. If <b>none</b> is selected, policy is applied to <b>all</b> resources in all domains.",
     "domainDescriptionPlaceHolder": "Apply to ALL domains by default. Select domains to apply to specific domains.",
     "privilegesLabel": "Select a set of privileges to permit.",
+    "appliesToWithName": "Applies to {{name}}",
+    "policyBuilderSteps": {
+      "configurePrivileges": "Configure Privileges",
+      "choosePolicyType": "Choose Policy Type",
+      "assignUserAndGroups": "Assign Users & Groups"
+    },
+    "exitPolicyEditorTitle": "Exit Policy Editor",
+    "exitPolicyEditorContent": "Are you sure you want to exit policy editor? All changes will be lost",
+    "editAPolicy": "Edit a Policy",
+    "createANewPolicy": "Create a new Policy",
     "permissionsTabTypes": {
       "roles": "Roles",
       "policies": "Policies"

@@ -30,7 +30,7 @@ const EntityNode = () => {
     const hasEnvironmentFilter = useHasFilterField(ORIGIN_FILTER_NAME);
     const { count } = entityAggregation;
     const registry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
     const { trackToggleNodeEvent } = useSidebarAnalytics();
 
     const { isOpen, isClosing, toggle } = useToggle({

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata } from '../../types.generated';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import { AdvancedSearchFilterConditionSelect } from './AdvancedSearchFilterConditionSelect';
@@ -10,7 +11,6 @@ import { AdvancedSearchFilterValuesSection } from './AdvancedSearchFilterValuesS
 import AdvancedFilterCloseButton from './advanced/AdvancedFilterCloseButton';
 import { FilterContainer } from './advanced/styles';
 import EntitySubTypeAdvancedFilterLabel from './advanced/EntitySubTypeAdvancedFilterLabel';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     facet: FacetMetadata;
@@ -78,7 +78,9 @@ export const AdvancedSearchFilter = ({
             >
                 <FieldFilterSection isCompact={isCompact}>
                     <FieldFilterSelect isCompact={isCompact}>
-                        <FilterFieldLabel>{t(FIELD_TO_LABEL[filter.field].transKey, {...FIELD_TO_LABEL[filter.field]})} </FilterFieldLabel>
+                        <FilterFieldLabel>
+                            {t(FIELD_TO_LABEL[filter.field].transKey, { ...FIELD_TO_LABEL[filter.field] })}{' '}
+                        </FilterFieldLabel>
                         <AdvancedSearchFilterConditionSelect filter={filter} onUpdate={onUpdate} />
                     </FieldFilterSelect>
                     {!loading && isCompact && (

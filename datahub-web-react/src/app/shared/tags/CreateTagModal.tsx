@@ -23,7 +23,7 @@ const FullWidthSpace = styled(Space)`
 
 export default function CreateTagModal({ onClose, onBack, visible, tagName, resources }: CreateTagModalProps) {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
 
     const [stagedDescription, setStagedDescription] = useState('');
     const [batchAddTagsMutation] = useBatchAddTagsMutation();
@@ -57,12 +57,17 @@ export default function CreateTagModal({ onClose, onBack, visible, tagName, reso
                     .catch((e) => {
                         message.destroy();
                         message.error(
-                            handleBatchError(resources, e, {
-                                content: `${t('crud.error.addWithName', {
-                                    name: entityRegistry.getEntityNameTrans(EntityType.Tag, t), 
-                                })}: \n ${e.message || ''}`,
-                                duration: 3,
-                            }),
+                            handleBatchError(
+                                resources,
+                                e,
+                                {
+                                    content: `${t('crud.error.addWithName', {
+                                        name: entityRegistry.getEntityNameTrans(EntityType.Tag, t),
+                                    })}: \n ${e.message || ''}`,
+                                    duration: 3,
+                                },
+                                t,
+                            ),
                         );
                         onClose();
                     })
@@ -76,7 +81,7 @@ export default function CreateTagModal({ onClose, onBack, visible, tagName, reso
                 message.destroy();
                 message.error({
                     content: `${t('crud.error.createWithName', {
-                        name: entityRegistry.getEntityNameTrans(EntityType.Tag, t), 
+                        name: entityRegistry.getEntityNameTrans(EntityType.Tag, t),
                     })}: \n ${e.message || ''}`,
                     duration: 3,
                 });

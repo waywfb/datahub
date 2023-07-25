@@ -84,6 +84,14 @@
     "learnMoreLink_html": "To learn more about the DataHub APIs, check out the <a href=\"{{link}}\"> DataHub Docs.</a>",
     "toUseATokenExplanation_component": "To use the token, provide it as a <typographyText keyboard>Bearer</typographyText> token in the <typographyText keyboard>Authorization</typographyText> header when making API requests:"
   },
+  "permissions": {
+    "managePermissions": "Manage Permissions",
+    "managePermissionsDescription": "View your DataHub permissions. Take administrative actions.",
+    "associatedPolicies": "Associated Policies",
+    "assignedRoleToUsers": "Assigned Role to users!",
+    "noAssignedUsers": "No assigned users",
+    "assignRoleToUsers": "Assign the {{role}} role to users"
+  },
   "entity": {
     "viewEntityWithName": "View {{name}} profile",
     "type": {
@@ -294,6 +302,7 @@
     "pageNotFound": "The page your requested was not found",
     "sidebarFailedToLoad": "The sidebar failed to load.",
     "bulkEditIncludeUnauthorizedEntity": "Your bulk edit selection included entities that you are unauthorized to update. The bulk edit being performed will not be saved.",
+    "failedToAssignRoleToUsers": "Failed to assign Role to users",
     "errorSection": {
       "ressourcesLabel": {
         "project": "DataHub Project",

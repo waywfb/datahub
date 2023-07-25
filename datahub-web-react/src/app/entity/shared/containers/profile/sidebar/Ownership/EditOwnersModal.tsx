@@ -263,10 +263,15 @@ export const EditOwnersModal = ({
             message.destroy();
             if (e instanceof Error) {
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to add owners: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `Failed to add owners: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             }
         } finally {
@@ -291,10 +296,15 @@ export const EditOwnersModal = ({
             message.destroy();
             if (e instanceof Error) {
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to remove owners: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `Failed to remove owners: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             }
         } finally {

@@ -1,5 +1,6 @@
 import { message, Modal } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ActionDropdown from './ActionDropdown';
 import { handleBatchError } from '../../../../utils';
 import { useBatchSetDataProductMutation } from '../../../../../../../graphql/dataProduct.generated';
@@ -13,6 +14,7 @@ type Props = {
 
 // eslint-disable-next-line
 export default function DataProductsDropdown({ urns, disabled = false, refetch }: Props) {
+    const { t } = useTranslation();
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [batchSetDataProductMutation] = useBatchSetDataProductMutation();
 
@@ -36,10 +38,15 @@ export default function DataProductsDropdown({ urns, disabled = false, refetch }
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to remove assets from Data Product: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `Failed to remove assets from Data Product: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };

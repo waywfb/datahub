@@ -1,5 +1,6 @@
 import { message, Modal } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useBatchSetDomainMutation } from '../../../../../../../graphql/mutations.generated';
 import { SetDomainModal } from '../../../../containers/profile/sidebar/Domain/SetDomainModal';
 import ActionDropdown from './ActionDropdown';
@@ -13,6 +14,7 @@ type Props = {
 
 // eslint-disable-next-line
 export default function DomainsDropdown({ urns, disabled = false, refetch }: Props) {
+    const { t } = useTranslation();
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [batchSetDomainMutation] = useBatchSetDomainMutation();
 
@@ -33,10 +35,15 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to remove assets from Domain: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `Failed to remove assets from Domain: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };

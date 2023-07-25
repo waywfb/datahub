@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Button, Form, message, Modal, Select } from 'antd';
 
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsLazyQuery } from '../../../../../../../graphql/search.generated';
 import { Entity, EntityType } from '../../../../../../../types.generated';
 import { useBatchSetDomainMutation } from '../../../../../../../graphql/mutations.generated';
@@ -27,6 +28,7 @@ type SelectedDomain = {
 };
 
 export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOkOverride, titleOverride }: Props) => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const [inputValue, setInputValue] = useState('');
     const [selectedDomain, setSelectedDomain] = useState<SelectedDomain | undefined>(
@@ -129,10 +131,15 @@ export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOk
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to add assets to Domain: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `Failed to add assets to Domain: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };

@@ -14,7 +14,7 @@ type Props = {
 
 const useAggregationsQuery = ({ facets, skip }: Props) => {
     const registry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
     const sidebarFilters = useSidebarFilters();
 
     const {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import * as QueryString from 'query-string';
+import { useTranslation } from 'react-i18next';
 import { SearchHeader } from './SearchHeader';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { EntityType, FacetFilterInput } from '../../types.generated';
@@ -15,7 +16,6 @@ import { PageRoutes } from '../../conf/Global';
 import { getAutoCompleteInputFromQuickFilter } from './utils/filterUtils';
 import { useQuickFiltersContext } from '../../providers/QuickFiltersContext';
 import { useUserContext } from '../context/useUserContext';
-import { useTranslation } from 'react-i18next';
 
 const styles = {
     children: {
@@ -122,7 +122,7 @@ export const SearchablePage = ({ onSearch, onAutoComplete, children }: Props) =>
         <>
             <SearchHeader
                 initialQuery={currentQuery as string}
-                placeholderText={t('searchbarMessage', {ns:['theme']})}
+                placeholderText={t('searchbarMessage', { ns: ['theme'] })}
                 suggestions={
                     (newSuggestionData &&
                         newSuggestionData?.autoCompleteForMultiple &&

@@ -3,6 +3,7 @@ import { Alert, Button, Modal, Typography } from 'antd';
 import styled from 'styled-components';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import { ReactiveTrans } from '../../utils/i18n-utils/ReactiveTrans';
 
 const ModalSection = styled.div`
     display: flex;
@@ -90,9 +91,10 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
                 <ModalSectionHeader strong>{t('common.usage')}</ModalSectionHeader>
                 {/* TODO jm : valider cette trad la dessous */}
                 <ModalSectionParagraph>
-                    {t('token.toUseATokenExplanationStart')} <Typography.Text keyboard>Bearer</Typography.Text>{' '}
-                    {t('token.toUseATokenExplanationMiddle')} <Typography.Text keyboard>Authorization</Typography.Text>{' '}
-                    {t('token.toUseATokenExplanationEnd')}
+                    <ReactiveTrans
+                        i18nKey="token.toUseATokenExplanation_component"
+                        components={{ typographyText: <Typography.Text keyboard /> }}
+                    />
                 </ModalSectionParagraph>
                 <Typography.Paragraph copyable={{ text: accessTokenCurl }}>
                     <pre>{accessTokenCurl}</pre>
@@ -100,7 +102,6 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
             </ModalSection>
             <ModalSection>
                 <ModalSectionHeader strong>{t('common.learnMore')}</ModalSectionHeader>
-                {/* TODO jm : valider cette trad la dessous */}
                 <ModalSectionParagraph>
                     {t('token.learnMoreLink_html', { link: 'https://www.datahubproject.io/docs/' })}
                 </ModalSectionParagraph>

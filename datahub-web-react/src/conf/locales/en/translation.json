@@ -82,9 +82,7 @@
     "newPersonalAccessToken": "New Personal Access Token",
     "makeSureYouCopyYourAccessToken": "Make sure to copy your personal access token now. You won’t be able to see it again.",
     "learnMoreLink_html": "To learn more about the DataHub APIs, check out the <a href=\"{{link}}\"> DataHub Docs.</a>",
-    "toUseATokenExplanationStart": "To use the token, provide it as a",
-    "toUseATokenExplanationMiddle": "token in the",
-    "toUseATokenExplanationEnd": "header when making API requests:"
+    "toUseATokenExplanation_component": "To use the token, provide it as a <typographyText keyboard>Bearer</typographyText> token in the <typographyText keyboard>Authorization</typographyText> header when making API requests:"
   },
   "entity": {
     "viewEntityWithName": "View {{name}} profile",

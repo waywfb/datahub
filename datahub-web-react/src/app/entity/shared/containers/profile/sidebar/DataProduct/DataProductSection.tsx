@@ -87,7 +87,6 @@ export default function DataProductSection({ readOnly }: Props) {
                     <EmptyText type="secondary">
                         {t('dataProduct.title', { ns: 'empty-message' })}.{' '}
                         {t('dataProduct.description', { ns: 'empty-message' })}
-                        {EMPTY_MESSAGES.dataProduct.title}. {EMPTY_MESSAGES.dataProduct.description}
                     </EmptyText>
                     {!readOnly && (
                         <Button type="default" onClick={() => setIsModalVisible(true)}>

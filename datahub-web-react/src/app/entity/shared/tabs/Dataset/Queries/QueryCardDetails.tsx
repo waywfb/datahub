@@ -6,6 +6,7 @@ import { toLocalDateString } from '../../../../../shared/time/timeUtils';
 import NoMarkdownViewer from '../../../components/styled/StripMarkdownText';
 import QueryCardDetailsMenu from './QueryCardDetailsMenu';
 import QueryCardEditButton from './QueryCardEditButton';
+import { useTranslation } from 'react-i18next';
 
 const Title = styled(Typography.Title)<{ secondary?: boolean }>`
     && {
@@ -92,6 +93,8 @@ export default function QueryCardDetails({
     onDeleted,
     index,
 }: Props) {
+    const { i18n } = useTranslation();
+
     return (
         <Details>
             <Header>
@@ -124,7 +127,7 @@ export default function QueryCardDetails({
             </Description>
             <Date>
                 {(createdAtMs && (
-                    <Typography.Text type="secondary">Created on {toLocalDateString(createdAtMs)}</Typography.Text>
+                    <Typography.Text type="secondary">Created on {toLocalDateString(createdAtMs, i18n.language)}</Typography.Text>
                 )) ||
                     undefined}
             </Date>

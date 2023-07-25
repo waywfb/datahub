@@ -6,6 +6,7 @@ import analytics, { EventType } from '../../analytics';
 import { getTimeFromNow } from '../../shared/time/timeUtils';
 import LineageTimeSelector from '../LineageTimeSelector';
 import { useGetLineageTimeParams } from '../utils/useGetLineageTimeParams';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     isHideSiblingMode: boolean;
@@ -15,6 +16,7 @@ type Props = {
 export default function LineageVizTimeSelector({ isHideSiblingMode, showColumns }: Props) {
     const history = useHistory();
     const location = useLocation();
+    const { t, i18n } = useTranslation();
     const { startTimeMillis, endTimeMillis } = useGetLineageTimeParams();
 
     const lineageTimeSelectorOnChange = (dates, _dateStrings) => {
@@ -22,8 +24,8 @@ export default function LineageVizTimeSelector({ isHideSiblingMode, showColumns 
             const [start, end] = dates;
             const startTimeMillisValue = start?.valueOf();
             const endTimeMillisValue = end?.valueOf();
-            const relativeStartDate = getTimeFromNow(startTimeMillisValue);
-            const relativeEndDate = getTimeFromNow(endTimeMillisValue);
+            const relativeStartDate = getTimeFromNow(startTimeMillisValue, t, i18n.language);
+            const relativeEndDate = getTimeFromNow(endTimeMillisValue, t, i18n.language);
             analytics.event({
                 type: EventType.LineageGraphTimeRangeSelectionEvent,
                 relativeStartDate,

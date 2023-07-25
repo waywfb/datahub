@@ -88,7 +88,6 @@ export const EntityNameList = ({
     bordered = true,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
     const selectedEntityUrns = selectedEntities?.map((entity) => entity.urn) || [];
 
     if (
@@ -122,7 +121,7 @@ export const EntityNameList = ({
                 const genericProps = entityRegistry.getGenericEntityProperties(entity.type, entity);
                 const platformLogoUrl = genericProps?.platform?.properties?.logoUrl;
                 const platformName = getPlatformName(genericProps);
-                const entityTypeName = entityRegistry.getEntityName(entity.type, t);
+                const entityTypeName = entityRegistry.getEntityName(entity.type);
                 const displayName = entityRegistry.getDisplayName(entity.type, entity);
                 const url = entityRegistry.getEntityUrl(entity.type, entity.urn);
                 const fallbackIcon = entityRegistry.getIcon(entity.type, 18, IconStyleType.ACCENT);

@@ -78,7 +78,7 @@ export const AdvancedSearchFilter = ({
             >
                 <FieldFilterSection isCompact={isCompact}>
                     <FieldFilterSelect isCompact={isCompact}>
-                        <FilterFieldLabel>{t(FIELD_TO_LABEL[filter.field].key, {...FIELD_TO_LABEL[filter.field]})} </FilterFieldLabel>
+                        <FilterFieldLabel>{t(FIELD_TO_LABEL[filter.field].transKey, {...FIELD_TO_LABEL[filter.field]})} </FilterFieldLabel>
                         <AdvancedSearchFilterConditionSelect filter={filter} onUpdate={onUpdate} />
                     </FieldFilterSelect>
                     {!loading && isCompact && (

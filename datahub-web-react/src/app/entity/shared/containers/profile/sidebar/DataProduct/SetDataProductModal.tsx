@@ -2,6 +2,7 @@ import Modal from 'antd/lib/modal/Modal';
 import { Button, Select, message } from 'antd';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsForMultipleQuery } from '../../../../../../../graphql/search.generated';
 import { DataProduct, EntityType } from '../../../../../../../types.generated';
 import { useEnterKeyListener } from '../../../../../../shared/useEnterKeyListener';
@@ -38,6 +39,7 @@ export default function SetDataProductModal({
     setDataProduct,
     refetch,
 }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const [batchSetDataProductMutation] = useBatchSetDataProductMutation();
     const [selectedDataProduct, setSelectedDataProduct] = useState<DataProduct | null>(currentDataProduct);
@@ -79,10 +81,15 @@ export default function SetDataProductModal({
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to add assets to Data Product: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `Failed to add assets to Data Product: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     }

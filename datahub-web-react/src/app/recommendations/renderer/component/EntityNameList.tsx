@@ -1,6 +1,7 @@
 import React from 'react';
 import { Divider, List, Checkbox } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { Entity, EntityPath } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
@@ -8,7 +9,6 @@ import { IconStyleType } from '../../../entity/Entity';
 import { EntityAndType } from '../../../entity/shared/types';
 import { getPlatformName } from '../../../entity/shared/utils';
 import { capitalizeFirstLetterOnly } from '../../../shared/textUtil';
-import { useTranslation } from 'react-i18next';
 
 const StyledCheckbox = styled(Checkbox)`
     margin-right: 12px;
@@ -88,7 +88,6 @@ export const EntityNameList = ({
     bordered = true,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
     const selectedEntityUrns = selectedEntities?.map((entity) => entity.urn) || [];
 
     if (
@@ -122,7 +121,7 @@ export const EntityNameList = ({
                 const genericProps = entityRegistry.getGenericEntityProperties(entity.type, entity);
                 const platformLogoUrl = genericProps?.platform?.properties?.logoUrl;
                 const platformName = getPlatformName(genericProps);
-                const entityTypeName = entityRegistry.getEntityName(entity.type, t);
+                const entityTypeName = entityRegistry.getEntityName(entity.type);
                 const displayName = entityRegistry.getDisplayName(entity.type, entity);
                 const url = entityRegistry.getEntityUrl(entity.type, entity.urn);
                 const fallbackIcon = entityRegistry.getIcon(entity.type, 18, IconStyleType.ACCENT);

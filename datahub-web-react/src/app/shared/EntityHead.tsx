@@ -8,7 +8,7 @@ import { capitalizeFirstLetterOnly } from './textUtil';
 export const EntityHead = () => {
     const entityRegistry = useEntityRegistry();
     const { entityType, entityData } = useEntityData();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
 
     if (!entityData) {
         return null;

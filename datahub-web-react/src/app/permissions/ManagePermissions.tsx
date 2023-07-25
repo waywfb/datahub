@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { RoutedTabs } from '../shared/RoutedTabs';
 import { ManagePolicies } from './policy/ManagePolicies';
 import { ManageRoles } from './roles/ManageRoles';
@@ -68,13 +69,14 @@ export const ManagePermissions = () => {
 
     const defaultTabPath = getTabs() && getTabs()?.length > 0 ? getTabs()[0].path : '';
     const onTabChange = () => null;
+    const { t } = useTranslation();
 
     return (
         <PageContainer>
             <PageHeaderContainer>
-                <PageTitle level={3}>Manage Permissions</PageTitle>
+                <PageTitle level={3}>{t('permissions.managePermissions')}</PageTitle>
                 <Typography.Paragraph type="secondary">
-                    View your DataHub permissions. Take administrative actions.
+                    {t('permissions.managePermissionsDescription')}
                 </Typography.Paragraph>
             </PageHeaderContainer>
             <Content>

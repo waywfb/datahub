@@ -38,7 +38,7 @@ export default function TermContent({
     refetch,
 }: Props) {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
     const [removeTermMutation] = useRemoveTermMutation();
 
     const removeTerm = (termToRemove: GlossaryTermAssociation) => {
@@ -78,7 +78,7 @@ export default function TermContent({
                             message.destroy();
                             message.error({
                                 content: `${t('crud.error.removeWithName', {
-                                    name: entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t), 
+                                    name: entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t),
                                 })}: \n ${e.message || ''}`,
                                 duration: 3,
                             });

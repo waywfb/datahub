@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, DatePicker, Form, Input, message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useBatchUpdateDeprecationMutation } from '../../../../graphql/mutations.generated';
 import { handleBatchError } from '../utils';
 
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
+    const { t } = useTranslation();
     const [batchUpdateDeprecation] = useBatchUpdateDeprecationMutation();
     const [form] = Form.useForm();
 
@@ -37,10 +39,15 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
             message.destroy();
             if (e instanceof Error) {
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to update Deprecation: \n ${e.message || ''}`,
-                        duration: 2,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `Failed to update Deprecation: \n ${e.message || ''}`,
+                            duration: 2,
+                        },
+                        t,
+                    ),
                 );
             }
         }

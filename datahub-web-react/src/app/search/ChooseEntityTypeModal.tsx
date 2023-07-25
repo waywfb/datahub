@@ -15,7 +15,7 @@ const { Option } = Select;
 
 export const ChooseEntityTypeModal = ({ defaultValues, onCloseModal, onOk, title }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
     const entityTypes = entityRegistry.getSearchEntityTypes();
 
     const [stagedValues, setStagedValues] = useState(defaultValues || []);
@@ -59,8 +59,7 @@ export const ChooseEntityTypeModal = ({ defaultValues, onCloseModal, onOk, title
             >
                 {entityTypes.map((type) => (
                     <Option key={type} value={type}>
-                        {entityRegistry.getCollectionNameTrans(type, t)
-                          }
+                        {entityRegistry.getCollectionNameTrans(type, t)}
                     </Option>
                 ))}
             </Select>

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { Typography, Image, Row, Button, Tag } from 'antd';
 import styled, { useTheme } from 'styled-components/macro';
 import { RightOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { ManageAccount } from '../shared/ManageAccount';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { navigateToSearchUrl } from '../search/utils/navigateToSearchUrl';
@@ -24,7 +25,6 @@ import { getAutoCompleteInputFromQuickFilter } from '../search/utils/filterUtils
 import { useUserContext } from '../context/useUserContext';
 import AcrylDemoBanner from './AcrylDemoBanner';
 import DemoButton from '../entity/shared/components/styled/DemoButton';
-import { useTranslation } from 'react-i18next';
 
 const Background = styled.div`
     width: 100%;
@@ -262,12 +262,12 @@ export const HomePageHeader = () => {
                     preview={false}
                     style={styles.logoImage}
                 />
-                {i18n.exists('subtitle', { ns: ['theme']}) && (
-                    <Typography.Text style={styles.subtitle}>{t('subtitle', { ns: ['theme']})}</Typography.Text>
+                {i18n.exists('subtitle', { ns: ['theme'] }) && (
+                    <Typography.Text style={styles.subtitle}>{t('subtitle', { ns: ['theme'] })}</Typography.Text>
                 )}
                 <SearchBarContainer id={HOME_PAGE_SEARCH_BAR_ID}>
                     <SearchBar
-                        placeholderText={t('searchbarMessage', { ns: ['theme']})}
+                        placeholderText={t('searchbarMessage', { ns: ['theme'] })}
                         suggestions={newSuggestionData?.autoCompleteForMultiple?.suggestions || []}
                         onSearch={onSearch}
                         onQueryChange={onAutoComplete}

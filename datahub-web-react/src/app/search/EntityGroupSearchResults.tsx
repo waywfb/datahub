@@ -4,12 +4,13 @@ import { ListProps } from 'antd/lib/list';
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { EntityType, SearchResult } from '../../types.generated';
 import { IconStyleType } from '../entity/Entity';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { navigateToSearchUrl } from './utils/navigateToSearchUrl';
 import analytics, { EventType } from '../analytics';
+import { ReactiveTrans } from '../../utils/i18n-utils/ReactiveTrans';
 
 const styles = {
     header: { marginBottom: 20 },
@@ -38,7 +39,7 @@ interface Props {
 export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
 
     const onResultClick = (result: SearchResult, index: number) => {
         analytics.event({
@@ -77,7 +78,7 @@ export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) 
                             }
                         >
                             <Typography.Text>
-                                <Trans
+                                <ReactiveTrans
                                     {...{
                                         i18nKey: 'search.seeAllResultsWithName_html',
                                         name: entityRegistry.getCollectionNameTrans(type, t),

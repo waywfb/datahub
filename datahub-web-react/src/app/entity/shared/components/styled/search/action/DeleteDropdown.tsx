@@ -1,5 +1,6 @@
 import { message, Modal } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useBatchUpdateSoftDeletedMutation } from '../../../../../../../graphql/mutations.generated';
 import ActionDropdown from './ActionDropdown';
 import { handleBatchError } from '../../../../utils';
@@ -12,6 +13,7 @@ type Props = {
 
 // eslint-disable-next-line
 export default function DeleteDropdown({ urns, disabled = false, refetch }: Props) {
+    const { t } = useTranslation();
     const [batchUpdateSoftDeletedMutation] = useBatchUpdateSoftDeletedMutation();
 
     const batchSoftDelete = () => {
@@ -32,10 +34,15 @@ export default function DeleteDropdown({ urns, disabled = false, refetch }: Prop
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to delete assets: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `Failed to delete assets: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };

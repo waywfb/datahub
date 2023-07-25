@@ -7,6 +7,7 @@ import { onError } from '@apollo/client/link/error';
 import { ThemeProvider } from 'styled-components';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import './App.less';
+import { useTranslation } from 'react-i18next';
 import { Routes } from './app/Routes';
 import EntityRegistry from './app/entity/EntityRegistry';
 import { DashboardEntity } from './app/entity/dashboard/DashboardEntity';
@@ -34,7 +35,6 @@ import { ContainerEntity } from './app/entity/container/ContainerEntity';
 import GlossaryNodeEntity from './app/entity/glossaryNode/GlossaryNodeEntity';
 import { DataPlatformEntity } from './app/entity/dataPlatform/DataPlatformEntity';
 import { DataProductEntity } from './app/entity/dataProduct/DataProductEntity';
-import { useTranslation } from 'react-i18next';
 
 /*
     Construct Apollo Client
@@ -126,7 +126,7 @@ const App: React.VFC = () => {
             <ThemeProvider theme={dynamicThemeConfig}>
                 <Router>
                     <Helmet>
-                        <title>{t('title', {  ns:['theme']})}</title>
+                        <title>{t('title', { ns: ['theme'] })}</title>
                     </Helmet>
                     <EntityRegistryContext.Provider value={entityRegistry}>
                         <ApolloProvider client={client}>

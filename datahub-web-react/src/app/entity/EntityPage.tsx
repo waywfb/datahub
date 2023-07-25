@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../types.generated';
 import { BrowsableEntityPage } from '../browse/BrowsableEntityPage';
 import LineageExplorer from '../lineage/LineageExplorer';
@@ -13,7 +14,6 @@ import { UnauthorizedPage } from '../authorization/UnauthorizedPage';
 import { ErrorSection } from '../shared/error/ErrorSection';
 import { VIEW_ENTITY_PAGE } from './shared/constants';
 import { useUserContext } from '../context/useUserContext';
-import { useTranslation } from 'react-i18next';
 
 interface RouteParams {
     urn: string;
@@ -73,7 +73,7 @@ export const EntityPage = ({ entityType }: Props) => {
 
     return (
         <>
-            {loading && <Message type="loading" content={t('common.loading')+'...'} style={{ marginTop: '10%' }} />}
+            {loading && <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />}
             {error && <ErrorSection />}
             {data && !canViewEntityPage && <UnauthorizedPage />}
             {canViewEntityPage &&

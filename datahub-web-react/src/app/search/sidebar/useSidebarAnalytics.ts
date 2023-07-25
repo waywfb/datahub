@@ -17,7 +17,7 @@ import {
 
 const useSidebarAnalytics = () => {
     const registry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
     const entityType = useEntityType();
     const environmentAggregation = useMaybeEnvironmentAggregation();
     const platformAggregation = useMaybePlatformAggregation();

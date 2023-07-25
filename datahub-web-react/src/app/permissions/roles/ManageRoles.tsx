@@ -3,6 +3,7 @@ import { Button, Empty, message, Pagination, Tooltip, Typography } from 'antd';
 import styled from 'styled-components';
 import * as QueryString from 'query-string';
 import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { useListRolesQuery } from '../../../graphql/role.generated';
 import { Message } from '../../shared/Message';
 import TabToolbar from '../../entity/shared/components/styled/TabToolbar';
@@ -51,6 +52,7 @@ const DEFAULT_PAGE_SIZE = 10;
 
 // TODO: Cleanup the styling.
 export const ManageRoles = () => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const location = useLocation();
     const params = QueryString.parse(location.search, { arrayFormat: 'comma' });
@@ -116,7 +118,7 @@ export const ManageRoles = () => {
                         userUrns: actorUrns,
                     });
                     message.success({
-                        content: `Assigned Role to users!`,
+                        content: t('permissions.assignedRoleToUsers'),
                         duration: 2,
                     });
                     setTimeout(() => {
@@ -127,7 +129,10 @@ export const ManageRoles = () => {
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to assign Role to users: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('error.failedToAssignRoleToUsers')}: \n ${e.message || ''}`,
+                    duration: 3,
+                });
             })
             .finally(() => {
                 resetRoleState();
@@ -140,7 +145,7 @@ export const ManageRoles = () => {
 
     const tableColumns = [
         {
-            title: 'Name',
+            title: t('common.name'),
             dataIndex: 'name',
             key: 'name',
             render: (_, record: any) => {
@@ -157,13 +162,13 @@ export const ManageRoles = () => {
             },
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: 'description',
             key: 'description',
             render: (description: string) => description || '',
         },
         {
-            title: 'Users',
+            title: t('common.users'),
             dataIndex: 'users',
             key: 'users',
             render: (_: any, record: any) => {
@@ -177,7 +182,7 @@ export const ManageRoles = () => {
                                 maxCount={3}
                                 size={28}
                             />
-                        )) || <Typography.Text type="secondary">No assigned users</Typography.Text>}
+                        )) || <Typography.Text type="secondary">{t('permissions.noAssignedUsers')}</Typography.Text>}
                     </>
                 );
             },
@@ -188,14 +193,14 @@ export const ManageRoles = () => {
             render: (_: any, record: any) => {
                 return (
                     <ActionsContainer>
-                        <Tooltip title={`Assign the ${record.name} role to users`}>
+                        <Tooltip title={t('permissions.assignRoleToUsers', { role: record.name })}>
                             <AddUsersButton
                                 onClick={() => {
                                     setIsBatchAddRolesModalVisible(true);
                                     setFocusRole(record.role);
                                 }}
                             >
-                                ADD USERS
+                                {`${t('common.add').toUpperCase()} ${t('common.users').toUpperCase()}`}
                             </AddUsersButton>
                         </Tooltip>
                     </ActionsContainer>

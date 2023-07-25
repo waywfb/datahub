@@ -87,7 +87,10 @@
   "permissions": {
     "managePermissions": "Manage Permissions",
     "managePermissionsDescription": "View your DataHub permissions. Take administrative actions.",
-    "associatedPolicies": "Associated Policies"
+    "associatedPolicies": "Associated Policies",
+    "assignedRoleToUsers": "Assigned Role to users!",
+    "noAssignedUsers": "No assigned users",
+    "assignRoleToUsers": "Assign the {{role}} role to users"
   },
   "entity": {
     "viewEntityWithName": "View {{name}} profile",
@@ -297,6 +300,7 @@
     "pageNotFound": "The page your requested was not found",
     "sidebarFailedToLoad": "The sidebar failed to load.",
     "bulkEditIncludeUnauthorizedEntity": "Your bulk edit selection included entities that you are unauthorized to update. The bulk edit being performed will not be saved.",
+    "failedToAssignRoleToUsers": "Failed to assign Role to users",
     "errorSection": {
       "ressourcesLabel": {
         "project": "DataHub Project",

@@ -47,7 +47,7 @@ export default function EmailMenuItem({ urn, name, type, key }: EmailMenuItemPro
                         {isClicked ? <CheckOutlined /> : <MailOutlined />}
                         <TextSpan>
                             <a href={link} target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>
-                                <b>Email</b>
+                                <b>{t('common.email')}</b>
                             </a>
                         </TextSpan>
                     </Tooltip>

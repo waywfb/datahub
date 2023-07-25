@@ -1,5 +1,6 @@
 {
   "common": {
+    "email": "Email",
     "downstream": "Downstream",
     "upstream": "Upstream",
     "users": "Users",

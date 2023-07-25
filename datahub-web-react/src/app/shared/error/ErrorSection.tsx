@@ -1,6 +1,6 @@
 import { Image, Typography } from 'antd';
 import React from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { Trans, useTranslation } from 'react-i18next';
 import dataHubLogo from '../../../images/datahublogo.png';
 import { ANTD_GRAY } from '../../entity/shared/constants';
@@ -58,15 +58,14 @@ const resources = [
 ];
 
 export const ErrorSection = (): JSX.Element => {
-    const themeConfig = useTheme();
-    const { t } = useTranslation();
+    const { t } = useTranslation(['translation', 'theme']);
 
     return (
         <Section>
             <div>
                 <TitleSection>
                     <Image src={dataHubLogo} preview={false} style={{ width: 40 }} />
-                    <TitleText strong>{themeConfig.content.title}</TitleText>
+                    <TitleText strong>{t('title', { ns: 'theme' })}</TitleText>
                 </TitleSection>
                 <MessageSection>
                     <Typography.Title level={2}>{t('error.errorSection.somethingWentWrong')}</Typography.Title>

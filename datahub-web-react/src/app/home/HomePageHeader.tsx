@@ -24,6 +24,7 @@ import { getAutoCompleteInputFromQuickFilter } from '../search/utils/filterUtils
 import { useUserContext } from '../context/useUserContext';
 import AcrylDemoBanner from './AcrylDemoBanner';
 import DemoButton from '../entity/shared/components/styled/DemoButton';
+import { useTranslation } from 'react-i18next';
 
 const Background = styled.div`
     width: 100%;
@@ -143,6 +144,7 @@ function sortRandom() {
 export const HomePageHeader = () => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
+    const { t, i18n } = useTranslation(['theme']);
     const [getAutoCompleteResultsForMultiple, { data: suggestionsData }] = useGetAutoCompleteMultipleResultsLazyQuery();
     const userContext = useUserContext();
     const themeConfig = useTheme();
@@ -260,12 +262,12 @@ export const HomePageHeader = () => {
                     preview={false}
                     style={styles.logoImage}
                 />
-                {!!themeConfig.content.subtitle && (
-                    <Typography.Text style={styles.subtitle}>{themeConfig.content.subtitle}</Typography.Text>
+                {i18n.exists('subtitle', { ns: ['theme']}) && (
+                    <Typography.Text style={styles.subtitle}>{t('subtitle', { ns: ['theme']})}</Typography.Text>
                 )}
                 <SearchBarContainer id={HOME_PAGE_SEARCH_BAR_ID}>
                     <SearchBar
-                        placeholderText={themeConfig.content.search.searchbarMessage}
+                        placeholderText={t('searchbarMessage', { ns: ['theme']})}
                         suggestions={newSuggestionData?.autoCompleteForMultiple?.suggestions || []}
                         onSearch={onSearch}
                         onQueryChange={onAutoComplete}

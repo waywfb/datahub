@@ -22,21 +22,4 @@ export type Theme = {
     assets: {
         logoUrl: string;
     };
-    content: {
-        title: string;
-        subtitle?: string;
-        homepage: {
-            homepageMessage: string;
-        };
-        search: {
-            searchbarMessage: string;
-        };
-        menu: {
-            items: {
-                label: string;
-                path: string;
-                shouldOpenInNewTab: boolean;
-            }[];
-        };
-    };
 };

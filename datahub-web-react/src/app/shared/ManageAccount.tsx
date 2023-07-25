@@ -2,7 +2,7 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import { Menu, Dropdown } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../types.generated';
 import { useEntityRegistry } from '../useEntityRegistry';
@@ -53,9 +53,8 @@ const defaultProps = {
 };
 
 export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Props) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['translation','theme']);
     const entityRegistry = useEntityRegistry();
-    const themeConfig = useTheme();
     const { config } = useAppConfig();
     const userContext = useUserContext();
     const handleLogout = () => {
@@ -84,9 +83,8 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
                 </a>
             </MenuItem>
             <Menu.Divider />
-            {themeConfig.content.menu.items.map((value) => {
-                return (
-                    <MenuItem key={value.label}>
+            {(t('menuItems', { ns: ['theme'], returnObjects: true }) as any[]).map((value) =>
+                <MenuItem key={value.label}>
                         <a
                             href={value.path || ''}
                             target={value.shouldOpenInNewTab ? '_blank' : ''}
@@ -96,8 +94,8 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
                             {value.label}
                         </a>
                     </MenuItem>
-                );
-            })}
+                )
+            }
             <MenuItem key="graphiQLLink">
                 <a href="/api/graphiql">GraphiQL</a>
             </MenuItem>

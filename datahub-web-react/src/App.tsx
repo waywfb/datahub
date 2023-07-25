@@ -34,6 +34,7 @@ import { ContainerEntity } from './app/entity/container/ContainerEntity';
 import GlossaryNodeEntity from './app/entity/glossaryNode/GlossaryNodeEntity';
 import { DataPlatformEntity } from './app/entity/dataPlatform/DataPlatformEntity';
 import { DataProductEntity } from './app/entity/dataProduct/DataProductEntity';
+import { useTranslation } from 'react-i18next';
 
 /*
     Construct Apollo Client
@@ -88,6 +89,7 @@ const client = new ApolloClient({
 
 const App: React.VFC = () => {
     const [dynamicThemeConfig, setDynamicThemeConfig] = useState<Theme>(defaultThemeConfig);
+    const { t } = useTranslation(['theme']);
 
     useEffect(() => {
         import(`./conf/theme/${process.env.REACT_APP_THEME_CONFIG}`).then((theme) => {
@@ -124,7 +126,7 @@ const App: React.VFC = () => {
             <ThemeProvider theme={dynamicThemeConfig}>
                 <Router>
                     <Helmet>
-                        <title>{dynamicThemeConfig.content.title}</title>
+                        <title>{t('title', {  ns:['theme']})}</title>
                     </Helmet>
                     <EntityRegistryContext.Provider value={entityRegistry}>
                         <ApolloProvider client={client}>

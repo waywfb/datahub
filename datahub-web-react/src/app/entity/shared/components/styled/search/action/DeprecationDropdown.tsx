@@ -1,5 +1,6 @@
 import { message, Modal } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useBatchUpdateDeprecationMutation } from '../../../../../../../graphql/mutations.generated';
 import { UpdateDeprecationModal } from '../../../../EntityDropdown/UpdateDeprecationModal';
 import ActionDropdown from './ActionDropdown';
@@ -13,6 +14,7 @@ type Props = {
 
 // eslint-disable-next-line
 export default function DeprecationDropdown({ urns, disabled = false, refetch }: Props) {
+    const { t } = useTranslation();
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [batchUpdateDeprecationMutation] = useBatchUpdateDeprecationMutation();
 
@@ -34,10 +36,15 @@ export default function DeprecationDropdown({ urns, disabled = false, refetch }:
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to mark assets as un-deprecated: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `Failed to mark assets as un-deprecated: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };

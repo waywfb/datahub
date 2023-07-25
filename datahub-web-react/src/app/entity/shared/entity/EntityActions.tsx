@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, message } from 'antd';
 import { LinkOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { SearchSelectModal } from '../components/styled/search/SearchSelectModal';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { EntityCapabilityType } from '../../Entity';
@@ -41,6 +42,7 @@ function EntityActions(props: Props) {
     const [batchAddTermsMutation] = useBatchAddTermsMutation();
     const [batchSetDomainMutation] = useBatchSetDomainMutation();
     const [batchSetDataProductMutation] = useBatchSetDataProductMutation();
+    const { t } = useTranslation();
 
     // eslint-disable-next-line
     const batchAddGlossaryTerms = (entityUrns: Array<string>) => {
@@ -71,10 +73,15 @@ function EntityActions(props: Props) {
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(entityUrns, e, {
-                        content: `Failed to add glossary term: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        entityUrns,
+                        e,
+                        {
+                            content: `Failed to add glossary term: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };
@@ -108,10 +115,15 @@ function EntityActions(props: Props) {
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(entityUrns, e, {
-                        content: `Failed to add assets to Domain: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        entityUrns,
+                        e,
+                        {
+                            content: `Failed to add assets to Domain: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };
@@ -143,10 +155,15 @@ function EntityActions(props: Props) {
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(entityUrns, e, {
-                        content: `Failed to add assets to Data Product. An unknown error occurred.`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        entityUrns,
+                        e,
+                        {
+                            content: `Failed to add assets to Data Product. An unknown error occurred.`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };

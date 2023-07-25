@@ -18,7 +18,7 @@ const BrowseEntityCardWrapper = styled.div``;
 export const BrowseEntityCard = ({ entityType, count }: { entityType: EntityType; count: number }) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
     const showBrowseV2 = useIsBrowseV2();
     const isGlossaryEntityCard = entityType === EntityType.GlossaryTerm;
     const entityPathName = entityRegistry.getPathName(entityType);

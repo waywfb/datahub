@@ -94,7 +94,7 @@ export default function EditTagTermsModal({
     onOkOverride,
 }: EditTagsModalProps) {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
     const [inputValue, setInputValue] = useState('');
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [disableAction, setDisableAction] = useState(false);
@@ -267,7 +267,8 @@ export default function EditTagTermsModal({
                         content: t('crud.success.addWithName', {
                             name: entityRegistry.getCollectionNameTrans(
                                 type === EntityType.GlossaryTerm ? EntityType.GlossaryTerm : EntityType.Tag,
-                                t),
+                                t,
+                            ),
                         }),
                         duration: 2,
                     });
@@ -276,10 +277,15 @@ export default function EditTagTermsModal({
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `${t('crud.error.add')}: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `${t('crud.error.add')}: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             })
             .finally(() => {
@@ -304,7 +310,7 @@ export default function EditTagTermsModal({
                         content: t('crud.success.addWithName', {
                             name: entityRegistry.getCollectionNameTrans(
                                 type === EntityType.GlossaryTerm ? EntityType.GlossaryTerm : EntityType.Tag,
-                                t
+                                t,
                             ),
                         }),
                         duration: 2,
@@ -314,10 +320,15 @@ export default function EditTagTermsModal({
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `${t('crud.error.add')}: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `${t('crud.error.add')}: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             })
             .finally(() => {
@@ -349,10 +360,15 @@ export default function EditTagTermsModal({
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `${t('crud.error.remove')}: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `${t('crud.error.remove')}: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             })
             .finally(() => {
@@ -384,10 +400,15 @@ export default function EditTagTermsModal({
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `${t('crud.error.remove')}: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `${t('crud.error.remove')}: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             })
             .finally(() => {

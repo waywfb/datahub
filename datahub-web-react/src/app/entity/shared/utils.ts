@@ -1,11 +1,11 @@
 import * as QueryString from 'query-string';
 import { Maybe } from 'graphql/jsutils/Maybe';
 
+import { TFunction } from 'i18next';
 import { Entity, EntityType, MatchedField, EntityRelationshipsResult, DataProduct } from '../../../types.generated';
 import { capitalizeFirstLetterOnly } from '../../shared/textUtil';
 import { FIELDS_TO_HIGHLIGHT } from '../dataset/search/highlights';
 import { GenericEntityProperties } from './types';
-import { TFunction } from 'i18next';
 
 export function dictToQueryStringParams(params: Record<string, string | boolean>) {
     return Object.keys(params)
@@ -138,7 +138,7 @@ function getGraphqlErrorCode(e) {
     return undefined;
 }
 
-export const handleBatchError = (urns, e, defaultMessage, t:TFunction) => {
+export const handleBatchError = (urns, e, defaultMessage, t: TFunction) => {
     if (urns.length > 1 && getGraphqlErrorCode(e) === 403) {
         return {
             content: t('error.bulkEditIncludeUnauthorizedEntity'),

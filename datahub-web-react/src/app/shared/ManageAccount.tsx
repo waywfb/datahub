@@ -53,7 +53,7 @@ const defaultProps = {
 };
 
 export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Props) => {
-    const { t } = useTranslation(['translation','theme']);
+    const { t } = useTranslation(['translation', 'theme']);
     const entityRegistry = useEntityRegistry();
     const { config } = useAppConfig();
     const userContext = useUserContext();
@@ -82,19 +82,18 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
                 </a>
             </MenuItem>
             <Menu.Divider />
-            {(t('menuItems', { ns: ['theme'], returnObjects: true }) as any[]).map((value) =>
+            {(t('menuItems', { ns: ['theme'], returnObjects: true }) as any[]).map((value) => (
                 <MenuItem key={value.label}>
-                        <a
-                            href={value.path || ''}
-                            target={value.shouldOpenInNewTab ? '_blank' : ''}
-                            rel="noopener noreferrer"
-                            tabIndex={0}
-                        >
-                            {value.label}
-                        </a>
-                    </MenuItem>
-                )
-            }
+                    <a
+                        href={value.path || ''}
+                        target={value.shouldOpenInNewTab ? '_blank' : ''}
+                        rel="noopener noreferrer"
+                        tabIndex={0}
+                    >
+                        {value.label}
+                    </a>
+                </MenuItem>
+            ))}
             <MenuItem key="graphiQLLink">
                 <a href="/api/graphiql">GraphiQL</a>
             </MenuItem>

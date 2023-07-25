@@ -54,7 +54,7 @@ export const AdvancedSearchAddFilterSelect = ({ selectedFilters, onFilterFieldSe
                     data-testid={`adv-search-add-filter-${key}`}
                     key={key}
                 >
-                    {t(FIELD_TO_LABEL[key].transKey, {...FIELD_TO_LABEL[key]})}
+                    {t(FIELD_TO_LABEL[key].transKey, { ...FIELD_TO_LABEL[key] })}
                 </Option>
             ))}
         </Select>

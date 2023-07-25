@@ -39,7 +39,7 @@ interface Props {
 export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation([]);
+    const { t } = useTranslation();
 
     const onResultClick = (result: SearchResult, index: number) => {
         analytics.event({

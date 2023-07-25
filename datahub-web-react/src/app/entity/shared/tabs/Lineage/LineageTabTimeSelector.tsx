@@ -6,10 +6,12 @@ import LineageTimeSelector from '../../../../lineage/LineageTimeSelector';
 import { getTimeFromNow } from '../../../../shared/time/timeUtils';
 import updateQueryParams from '../../../../shared/updateQueryParams';
 import { useGetLineageTimeParams } from '../../../../lineage/utils/useGetLineageTimeParams';
+import { useTranslation } from 'react-i18next';
 
 export default function LineageTabTimeSelector() {
     const history = useHistory();
     const location = useLocation();
+    const { t, i18n } = useTranslation();
     const { startTimeMillis, endTimeMillis } = useGetLineageTimeParams();
 
     const lineageTimeSelectorOnChange = (dates, _dateStrings) => {
@@ -17,8 +19,8 @@ export default function LineageTabTimeSelector() {
             const [start, end] = dates;
             const startTimeMillisValue = start?.valueOf();
             const endTimeMillisValue = end?.valueOf();
-            const relativeStartDate = getTimeFromNow(startTimeMillisValue);
-            const relativeEndDate = getTimeFromNow(endTimeMillisValue);
+            const relativeStartDate = getTimeFromNow(startTimeMillisValue, t, i18n.language);
+            const relativeEndDate = getTimeFromNow(endTimeMillisValue, t, i18n.language);
             analytics.event({
                 type: EventType.LineageGraphTimeRangeSelectionEvent,
                 relativeStartDate,

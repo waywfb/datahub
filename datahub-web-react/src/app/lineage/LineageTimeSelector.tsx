@@ -6,6 +6,7 @@ import { CalendarOutlined, CaretDownOutlined } from '@ant-design/icons';
 import ClickOutside from '../shared/ClickOutside';
 import { getTimeRangeDescription } from '../shared/time/timeUtils';
 import { ANTD_GRAY } from '../entity/shared/constants';
+import { useTranslation } from 'react-i18next';
 
 const RangePickerWrapper = styled.div`
     transition: color 0s;
@@ -35,13 +36,14 @@ type Props = {
 };
 
 export default function LineageTimeSelector({ onChange, initialDates }: Props) {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [headerText, setHeaderText] = useState('No time range selected');
     const [startDate, setStartDate] = useState<moment.Moment | null>(initialDates[0]);
     const [endDate, setEndDate] = useState<moment.Moment | null>(initialDates[1]);
 
     useEffect(() => {
-        const timeRangeDescription = getTimeRangeDescription(startDate, endDate);
+        const timeRangeDescription = getTimeRangeDescription(startDate, endDate, t);
         setHeaderText(timeRangeDescription);
     }, [startDate, endDate]);
 

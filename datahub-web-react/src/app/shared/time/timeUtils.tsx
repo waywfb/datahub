@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import moment from 'moment';
 import { DateInterval } from '../../../types.generated';
+import { TFunction } from 'i18next';
 
 dayjs.extend(relativeTime);
 
@@ -90,14 +91,14 @@ export const getFixedLookbackWindow = (windowSize: TimeWindowSize): TimeWindow =
     };
 };
 
-export const toLocalDateString = (timeMs: number) => {
+export const toLocalDateString = (timeMs: number, locale: string) => {
     const date = new Date(timeMs);
-    return date.toLocaleDateString();
+    return date.toLocaleDateString([locale]);
 };
 
-export const toLocalTimeString = (timeMs: number) => {
+export const toLocalTimeString = (timeMs: number, locale: string) => {
     const date = new Date(timeMs);
-    return date.toLocaleTimeString();
+    return date.toLocaleTimeString([locale]);
 };
 
 export const toLocalDateTimeString = (timeMs: number, locale: string) => {
@@ -112,9 +113,9 @@ export const toLocalDateTimeString = (timeMs: number, locale: string) => {
     });
 };
 
-export const toUTCDateTimeString = (timeMs: number) => {
+export const toUTCDateTimeString = (timeMs: number, locale: string) => {
     const date = new Date(timeMs);
-    return date.toLocaleString([], {
+    return date.toLocaleString([locale], {
         year: 'numeric',
         month: 'numeric',
         day: 'numeric',
@@ -168,34 +169,35 @@ export const toRelativeTimeString = (timeMs: number, locale: string) => {
     return rtf.format(diffInYears, 'year');
 };
 
-export function getTimeFromNow(timestampMillis) {
+export function getTimeFromNow(timestampMillis, t:TFunction, locale: string) {
     if (!timestampMillis) {
         return '';
     }
-    const relativeTimeString = dayjs(timestampMillis).fromNow();
+    const relativeTimeString = dayjs(timestampMillis,{locale:'en'}).fromNow();
     if (relativeTimeString === 'a few seconds ago') {
-        return 'now';
+        return t('duration.now').toLowerCase();
+    }else{
+        return dayjs(timestampMillis,{locale}).fromNow()
     }
-    return relativeTimeString;
 }
 
-export function getTimeRangeDescription(startDate: moment.Moment | null, endDate: moment.Moment | null): string {
+export function getTimeRangeDescription(startDate: moment.Moment | null, endDate: moment.Moment | null, t: TFunction): string {
     if (!startDate && !endDate) {
-        return 'All Time';
+        return t('duration.allTime');
     }
 
     if (!startDate && endDate) {
-        return `Until ${endDate.format('ll')}`;
+        return t('duration.UntilWithDate', {date: endDate.format('ll')});
     }
 
     if (startDate && !endDate) {
-        return `From ${startDate.format('ll')}`;
+        return t('duration.fromWithDate', {date: startDate.format('ll')});
     }
 
     if (startDate && endDate) {
         if (endDate && endDate.isSame(moment(), 'day')) {
             const startDateRelativeTime = moment().diff(startDate, 'days');
-            return `Last ${startDateRelativeTime} days`;
+            return t('duration.lastDay', { count: startDateRelativeTime });
         }
 
         if (endDate.isSame(startDate, 'day')) {
@@ -204,5 +206,5 @@ export function getTimeRangeDescription(startDate: moment.Moment | null, endDate
         return `${startDate.format('ll')} - ${endDate.format('ll')}`;
     }
 
-    return 'Unknown time range';
+    return t('duration.unknownTimeRange');
 }

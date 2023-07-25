@@ -171,13 +171,19 @@
   },
   "duration": {
     "never": "Never",
+    "now": "Now",
     "month_interval": "(0-1){{count}} month;",
     "month_other": "{{count}} months",
     "day_interval": "(0-1){{count}} day;",
     "day_other": "{{count}} days",
     "hour_interval": "(0-1){{count}} hour;",
     "hour_other": "{{count}} hours",
-    "dateAtTimeWithTimeZone": "{{date}} at {{time}} ({{timeZone}})"
+    "dateAtTimeWithTimeZone": "{{date}} at {{time}} ({{timeZone}})",
+    "allTime": "All Time",
+    "UntilWithDate":"Until {{date}}",
+    "fromWithDate": "From {{date}}",
+    "lastDay_interval": "(0-1)Last {{count}} day;(2-inf)Last {{count}} days",
+    "unknownTimeRange": "Unknown time range"
   },
   "adminHeader": {
     "analyticsText": "Analytics",

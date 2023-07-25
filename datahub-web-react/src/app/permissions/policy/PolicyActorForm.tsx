@@ -149,6 +149,7 @@ export default function PolicyActorForm({ policyType, actors, setActors }: Props
             result.entity.type === EntityType.CorpUser
                 ? (result.entity as CorpUser).editableProperties?.pictureLink || undefined
                 : undefined;
+        // TODO: jm translate this ?
         const displayName = entityRegistry.getDisplayName(result.entity.type, result.entity);
         return (
             <SearchResultContainer>

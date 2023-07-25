@@ -10,6 +10,7 @@ interface Props extends TabsProps {
     defaultPath: string;
     tabs: Array<{
         name: string;
+        title: string;
         path: string;
         content: React.ReactNode;
         display?: {
@@ -44,7 +45,7 @@ export const RoutedTabs = ({ defaultPath, tabs, onTabChange, ...props }: Props) 
             >
                 {tabs.map((tab) => {
                     return (
-                        <TabPane tab={tab.name} key={tab.path.replace('/', '')} disabled={!tab.display?.enabled()} />
+                        <TabPane tab={tab.title} key={tab.path.replace('/', '')} disabled={!tab.display?.enabled()} />
                     );
                 })}
             </Tabs>

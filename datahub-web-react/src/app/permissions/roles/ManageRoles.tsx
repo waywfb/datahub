@@ -209,6 +209,7 @@ export const ManageRoles = () => {
         },
     ];
 
+    // TODO: jm translate roles ?
     const tableData = roles?.map((role) => ({
         role,
         urn: role?.urn,
@@ -263,7 +264,9 @@ export const ManageRoles = () => {
                     dataSource={tableData}
                     rowKey="urn"
                     locale={{
-                        emptyText: <Empty description="No Roles!" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                        emptyText: (
+                            <Empty description={t('permissions.noRoles')} image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                        ),
                     }}
                     pagination={false}
                 />

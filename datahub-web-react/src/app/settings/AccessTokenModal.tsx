@@ -92,8 +92,10 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
                 {/* TODO jm : valider cette trad la dessous */}
                 <ModalSectionParagraph>
                     <ReactiveTrans
-                        i18nKey="token.toUseATokenExplanation_component"
-                        components={{ typographyText: <Typography.Text keyboard /> }}
+                        {...{
+                            i18nKey: 'token.toUseATokenExplanation_component',
+                            components: { typographyText: <Typography.Text keyboard /> },
+                        }}
                     />
                 </ModalSectionParagraph>
                 <Typography.Paragraph copyable={{ text: accessTokenCurl }}>
@@ -103,7 +105,12 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
             <ModalSection>
                 <ModalSectionHeader strong>{t('common.learnMore')}</ModalSectionHeader>
                 <ModalSectionParagraph>
-                    {t('token.learnMoreLink_html', { link: 'https://www.datahubproject.io/docs/' })}
+                    <ReactiveTrans
+                        {...{
+                            i18nKey: 'token.learnMoreLink_html',
+                            link: 'https://www.datahubproject.io/docs/',
+                        }}
+                    />
                 </ModalSectionParagraph>
             </ModalSection>
         </Modal>

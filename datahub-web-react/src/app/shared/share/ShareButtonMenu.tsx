@@ -7,6 +7,7 @@ import CopyLinkMenuItem from './items/CopyLinkMenuItem';
 import CopyUrnMenuItem from './items/CopyUrnMenuItem';
 import EmailMenuItem from './items/EmailMenuItem';
 import { useEntityRegistry } from '../../useEntityRegistry';
+import { useTranslation } from 'react-i18next';
 
 interface ShareButtonMenuProps {
     urn: string;
@@ -27,8 +28,9 @@ const StyledMenu = styled(Menu)`
 
 export default function ShareButtonMenu({ urn, entityType, subType, name }: ShareButtonMenuProps) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const displayName = name || urn;
-    const displayType = subType || entityRegistry.getEntityName(entityType) || entityType;
+    const displayType = subType || entityRegistry.getEntityNameTrans(entityType, t) || entityType;
 
     return (
         <StyledMenu selectable={false}>

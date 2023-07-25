@@ -33,7 +33,6 @@ export default function EmailMenuItem({ urn, name, type, key }: EmailMenuItemPro
     const linkText = window.location.href;
     const { t } = useTranslation();
 
-    // TODO ndespouy traduction du type
     return (
         <StyledMenuItem
             key={key}

@@ -29,7 +29,6 @@ export default function CopyUrnMenuItem({ urn, key, type }: CopyUrnMenuItemProps
      */
     const [isClicked, setIsClicked] = useState(false);
     const { t } = useTranslation();
-    // TODO ndespouy traduction du type
     return (
         <StyledMenuItem
             key={key}

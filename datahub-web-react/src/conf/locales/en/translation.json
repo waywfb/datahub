@@ -84,6 +84,11 @@
     "learnMoreLink_html": "To learn more about the DataHub APIs, check out the <a href=\"{{link}}\"> DataHub Docs.</a>",
     "toUseATokenExplanation_component": "To use the token, provide it as a <typographyText keyboard>Bearer</typographyText> token in the <typographyText keyboard>Authorization</typographyText> header when making API requests:"
   },
+  "permissions": {
+    "managePermissions": "Manage Permissions",
+    "managePermissionsDescription": "View your DataHub permissions. Take administrative actions.",
+    "associatedPolicies": "Associated Policies"
+  },
   "entity": {
     "viewEntityWithName": "View {{name}} profile"
   },

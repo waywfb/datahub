@@ -31,97 +31,80 @@ export const LEGACY_ENTITY_FILTER_FIELDS = [ENTITY_FILTER_NAME, LEGACY_ENTITY_FI
 
 export const FILTER_DELIMITER = '␞';
 
-export const ENTITY_SUB_TYPE_FILTER_FIELDS = [
-    ENTITY_FILTER_NAME,
-    ENTITY_SUB_TYPE_FILTER_NAME,
-    LEGACY_ENTITY_FILTER_NAME,
-    TYPE_NAMES_FILTER_NAME,
-];
+export const ENTITY_SUB_TYPE_FILTER_FIELDS = [ENTITY_FILTER_NAME, ENTITY_SUB_TYPE_FILTER_NAME,
+    LEGACY_ENTITY_FILTER_NAME, TYPE_NAMES_FILTER_NAME,];
 
-export const FILTERS_TO_TRUNCATE = [
-    TAGS_FILTER_NAME,
-    GLOSSARY_TERMS_FILTER_NAME,
-    CONTAINER_FILTER_NAME,
-    DOMAINS_FILTER_NAME,
-    OWNERS_FILTER_NAME,
-    ENTITY_FILTER_NAME,
-    TYPE_NAMES_FILTER_NAME,
-    PLATFORM_FILTER_NAME,
-];
+export const FILTERS_TO_TRUNCATE = [TAGS_FILTER_NAME, GLOSSARY_TERMS_FILTER_NAME, CONTAINER_FILTER_NAME,
+    DOMAINS_FILTER_NAME, OWNERS_FILTER_NAME, ENTITY_FILTER_NAME, TYPE_NAMES_FILTER_NAME, PLATFORM_FILTER_NAME,];
 export const TRUNCATED_FILTER_LENGTH = 5;
 
-export const ORDERED_FIELDS = [
-    ENTITY_FILTER_NAME,
-    PLATFORM_FILTER_NAME,
-    OWNERS_FILTER_NAME,
-    TAGS_FILTER_NAME,
-    GLOSSARY_TERMS_FILTER_NAME,
-    DOMAINS_FILTER_NAME,
-    DATA_PRODUCTS_FILTER_NAME,
-    FIELD_TAGS_FILTER_NAME,
-    FIELD_GLOSSARY_TERMS_FILTER_NAME,
-    FIELD_PATHS_FILTER_NAME,
-    FIELD_DESCRIPTIONS_FILTER_NAME,
-    DESCRIPTION_FILTER_NAME,
-    CONTAINER_FILTER_NAME,
-    REMOVED_FILTER_NAME,
-    TYPE_NAMES_FILTER_NAME,
-    ORIGIN_FILTER_NAME,
-    DEGREE_FILTER_NAME,
-];
+export const ORDERED_FIELDS = [ENTITY_FILTER_NAME, PLATFORM_FILTER_NAME, OWNERS_FILTER_NAME, TAGS_FILTER_NAME,
+    GLOSSARY_TERMS_FILTER_NAME, DOMAINS_FILTER_NAME, DATA_PRODUCTS_FILTER_NAME, FIELD_TAGS_FILTER_NAME,
+    FIELD_GLOSSARY_TERMS_FILTER_NAME, FIELD_PATHS_FILTER_NAME, FIELD_DESCRIPTIONS_FILTER_NAME, DESCRIPTION_FILTER_NAME,
+    CONTAINER_FILTER_NAME, REMOVED_FILTER_NAME, TYPE_NAMES_FILTER_NAME, ORIGIN_FILTER_NAME, DEGREE_FILTER_NAME,];
 
-// TODO ndespouy à traduire là où c'est utilisé
-export const FIELD_TO_LABEL = {
-    owners: 'Owner',
-    tags: 'Tag',
-    domains: 'Domain',
-    [DATA_PRODUCTS_FILTER_NAME]: 'Data Product',
-    platform: 'Platform',
-    fieldTags: 'Column Tag',
-    glossaryTerms: 'Glossary Term',
-    fieldGlossaryTerms: 'Column Glossary Term',
-    fieldPaths: 'Column Name',
-    description: 'Description',
-    fieldDescriptions: 'Column Description',
-    removed: 'Soft Deleted',
-    entity: 'Entity Type',
-    entityType: 'Entity Type',
-    _entityType: 'Entity Type',
-    container: 'Container',
-    typeNames: 'Sub Type',
-    origin: 'Environment',
-    degree: 'Degree',
-    [BROWSE_PATH_V2_FILTER_NAME]: 'Browse',
+export const FIELD_TO_LABEL: { [key: string]: { name: string, transKey: string, ns: string[], count?: number } } = {
+    owners: {
+        name: 'Owner', transKey: 'common.owner', ns: ['translation']
+    }, tags: {
+        name: 'Tag', transKey: 'TAG', ns: ['entity'], count: 1
+    }, domains: {
+        name: 'Domain', transKey: 'DOMAIN', ns: ['entity'], count: 1
+    }, platform: {
+        name: 'Platform', transKey: 'DATA_PLATFORM', ns: ['entity'], count: 1
+    }, fieldTags: {
+        name: 'Column Tag', transKey: 'common.column $t(entity:TAG)', ns: ['translation', 'entity'], count: 1
+    }, glossaryTerms: {
+        name: 'Glossary Term', transKey: 'GLOSSARY_TERM', ns: ['entity'], count: 1
+    }, fieldGlossaryTerms: {
+        name: 'Column Glossary Term',
+        transKey: 'common.column $t(entity:GLOSSARY_TERM)',
+        ns: ['translation', 'entity'],
+        count: 1
+    }, fieldPaths: {
+        name: 'Column Name', transKey: 'common.column $t(translation:common.name)', ns: ['translation']
+    }, description: {
+        name: 'Description', transKey: 'common.description', ns: ['translation']
+    }, fieldDescriptions: {
+        name: 'Column Description', transKey: 'common.column $t(translation:common.description)', ns: ['translation']
+    }, removed: {
+        name: 'Soft Deleted', transKey: 'crud.success.softDelete', ns: ['translation']
+    }, entity: {
+        name: 'Entity Type', transKey: 'common.entityType', ns: ['translation']
+    }, entityType: {
+        name: 'Entity Type', transKey: 'common.entityType', ns: ['translation']
+    }, _entityType: {
+        name: 'Entity Type', transKey: 'common.entityType', ns: ['translation']
+    }, container: {
+        name: 'Container', transKey: 'CONTAINER', ns: ['entity'], count: 1
+    }, typeNames: {
+        name: 'Sub Type', transKey: 'common.subtype', ns: ['translation']
+    }, origin: {
+        name: 'Environment', transKey: 'common.environment', ns: ['translation']
+    }, degree: {
+        name: 'Degree', transKey: 'common.degree', ns: ['translation']
+    }, [DATA_PRODUCTS_FILTER_NAME]: {
+        name: 'Data Product', transKey: 'filter.dataProduct', ns: ['translation']
+    }, [BROWSE_PATH_V2_FILTER_NAME]: {
+        name: 'Browse', transKey: 'common.browse', ns: ['translation']
+    },
 };
 
-export const FIELDS_THAT_USE_CONTAINS_OPERATOR = [
-    DESCRIPTION_FILTER_NAME,
-    FIELD_DESCRIPTIONS_FILTER_NAME,
-    FIELD_PATHS_FILTER_NAME,
-];
+export const FIELDS_THAT_USE_CONTAINS_OPERATOR = [DESCRIPTION_FILTER_NAME, FIELD_DESCRIPTIONS_FILTER_NAME,
+    FIELD_PATHS_FILTER_NAME,];
 
-export const ADVANCED_SEARCH_ONLY_FILTERS = [
-    FIELD_GLOSSARY_TERMS_FILTER_NAME,
-    EDITED_FIELD_GLOSSARY_TERMS_FILTER_NAME,
-    FIELD_TAGS_FILTER_NAME,
-    EDITED_FIELD_TAGS_FILTER_NAME,
-    FIELD_PATHS_FILTER_NAME,
-    DESCRIPTION_FILTER_NAME,
-    FIELD_DESCRIPTIONS_FILTER_NAME,
-    EDITED_FIELD_DESCRIPTIONS_FILTER_NAME,
-    REMOVED_FILTER_NAME,
-];
+export const ADVANCED_SEARCH_ONLY_FILTERS = [FIELD_GLOSSARY_TERMS_FILTER_NAME, EDITED_FIELD_GLOSSARY_TERMS_FILTER_NAME,
+    FIELD_TAGS_FILTER_NAME, EDITED_FIELD_TAGS_FILTER_NAME, FIELD_PATHS_FILTER_NAME, DESCRIPTION_FILTER_NAME,
+    FIELD_DESCRIPTIONS_FILTER_NAME, EDITED_FIELD_DESCRIPTIONS_FILTER_NAME, REMOVED_FILTER_NAME,];
 
 export enum UnionType {
-    AND,
-    OR,
+    AND, OR,
 }
 
 export const UNIT_SEPARATOR = '␟';
 
 export const FilterModes = {
-    BASIC: 'basic',
-    ADVANCED: 'advanced',
+    BASIC: 'basic', ADVANCED: 'advanced',
 } as const;
 
 export type FilterMode = typeof FilterModes[keyof typeof FilterModes];

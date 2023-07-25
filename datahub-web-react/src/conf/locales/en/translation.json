@@ -1,16 +1,16 @@
 {
   "common": {
-    "downstream":"Downstream",
-    "upstream":"Upstream",
+    "downstream": "Downstream",
+    "upstream": "Upstream",
     "users": "Users",
-    "topWithName" : "Top {{name}}",
+    "topWithName": "Top {{name}}",
     "showLess": "$t('common.show') $t('common.less')",
     "showMore": "$t('common.show') $t('common.more')",
     "show": "Show",
     "none": "None",
     "type": "Type",
     "subtype": "Subtype",
-    "noResultsFound":"No results found",
+    "noResultsFound": "No results found",
     "navigate": "Navigate",
     "analytics": "Analytics",
     "permissions": "Permissions",
@@ -58,7 +58,9 @@
     "entityType": "Entity Type",
     "usage": "Usage",
     "learnMore": "Learn More",
-    "retry": "Retry"
+    "retry": "Retry",
+    "degree": "Degree",
+    "browse": "Browse"
   },
   "token": {
     "accessToken": "Access Tokens",
@@ -192,7 +194,8 @@
     "success": {
       "addWithName": "Added {{name}}!",
       "removeWithName": "Removed {{name}}!",
-      "updateWithName": "{{name}} updated!"
+      "updateWithName": "{{name}} updated!",
+      "softDelete": "Soft Deleted"
     },
     "error": {
       "addWithName": "Failed to add {{name}}",

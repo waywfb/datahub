@@ -187,7 +187,7 @@ export default function TagTermGroup({
                 >
                     <PlusOutlined />
                     <span>
-                        {t('crud.addWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Tag, t, 2) })}
+                        {t('crud.addWithName', { name: entityRegistry.getCollectionNameTrans(EntityType.Tag, t) })}
                     </span>
                 </NoElementButton>
             )}
@@ -203,7 +203,7 @@ export default function TagTermGroup({
                     <PlusOutlined />
                     <span>
                         {t('crud.addWithName', {
-                            name: entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t, 2),
+                            name: entityRegistry.getCollectionNameTrans(EntityType.GlossaryTerm, t),
                         })}
                     </span>
                 </NoElementButton>

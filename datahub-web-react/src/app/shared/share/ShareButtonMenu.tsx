@@ -28,7 +28,7 @@ const StyledMenu = styled(Menu)`
 
 export default function ShareButtonMenu({ urn, entityType, subType, name }: ShareButtonMenuProps) {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const displayName = name || urn;
     const displayType = subType || entityRegistry.getEntityNameTrans(entityType, t) || entityType;
 

@@ -135,7 +135,7 @@ export const SearchBar = ({
     onBlur,
 }: Props) => {
     const history = useHistory();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const [searchQuery, setSearchQuery] = useState<string | undefined>(initialQuery);
     const [selected, setSelected] = useState<string>();
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);

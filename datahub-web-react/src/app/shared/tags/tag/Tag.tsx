@@ -41,7 +41,7 @@ export default function Tag({
     fontSize,
 }: Props) {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const [removeTagMutation] = useRemoveTagMutation();
 
     const [tagProfileDrawerVisible, setTagProfileDrawerVisible] = useState(false);
@@ -95,7 +95,7 @@ export default function Tag({
                             message.destroy();
                             message.error({
                                 content: `${t('crud.error.removeWithName', {
-                                    name: entityRegistry.getEntityNameTrans(EntityType.Tag, t).toLowerCase(),
+                                    name: entityRegistry.getEntityNameTrans(EntityType.Tag, t).toLowerCase(), 
                                 })}: \n ${e.message || ''}`,
                                 duration: 3,
                             });

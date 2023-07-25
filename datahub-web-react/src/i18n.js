@@ -26,13 +26,12 @@ i18n
         fallbackNs: 'translation',
         ns: [
             'translation',
-            'entity',
             'empty-message',
             'form',
-            'entity-subtype',
             'lookback-windows',
             'owner-type',
             'react-cron',
+            'theme'
         ],
         backend: {
             loadPath: '/conf/locales/{{lng}}/{{ns}}.json',

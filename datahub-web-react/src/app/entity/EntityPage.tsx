@@ -13,6 +13,7 @@ import { UnauthorizedPage } from '../authorization/UnauthorizedPage';
 import { ErrorSection } from '../shared/error/ErrorSection';
 import { VIEW_ENTITY_PAGE } from './shared/constants';
 import { useUserContext } from '../context/useUserContext';
+import { useTranslation } from 'react-i18next';
 
 interface RouteParams {
     urn: string;
@@ -29,6 +30,7 @@ export const EntityPage = ({ entityType }: Props) => {
     const { urn: encodedUrn } = useParams<RouteParams>();
     const urn = decodeUrn(encodedUrn);
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const entity = entityRegistry.getEntity(entityType);
     const isBrowsable = entity.isBrowseEnabled();
     const isLineageSupported = entity.isLineageEnabled();
@@ -71,7 +73,7 @@ export const EntityPage = ({ entityType }: Props) => {
 
     return (
         <>
-            {loading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+            {loading && <Message type="loading" content={t('common.loading')+'...'} style={{ marginTop: '10%' }} />}
             {error && <ErrorSection />}
             {data && !canViewEntityPage && <UnauthorizedPage />}
             {canViewEntityPage &&

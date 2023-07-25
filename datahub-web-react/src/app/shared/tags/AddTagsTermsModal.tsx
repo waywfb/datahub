@@ -94,7 +94,7 @@ export default function EditTagTermsModal({
     onOkOverride,
 }: EditTagsModalProps) {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const [inputValue, setInputValue] = useState('');
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [disableAction, setDisableAction] = useState(false);
@@ -265,11 +265,9 @@ export default function EditTagTermsModal({
                 if (!errors) {
                     message.success({
                         content: t('crud.success.addWithName', {
-                            name: entityRegistry.getEntityNameTrans(
+                            name: entityRegistry.getCollectionNameTrans(
                                 type === EntityType.GlossaryTerm ? EntityType.GlossaryTerm : EntityType.Tag,
-                                t,
-                                2,
-                            ),
+                                t),
                         }),
                         duration: 2,
                     });
@@ -304,10 +302,9 @@ export default function EditTagTermsModal({
                 if (!errors) {
                     message.success({
                         content: t('crud.success.addWithName', {
-                            name: entityRegistry.getEntityNameTrans(
+                            name: entityRegistry.getCollectionNameTrans(
                                 type === EntityType.GlossaryTerm ? EntityType.GlossaryTerm : EntityType.Tag,
-                                t,
-                                2,
+                                t
                             ),
                         }),
                         duration: 2,
@@ -343,7 +340,7 @@ export default function EditTagTermsModal({
                 if (!errors) {
                     message.success({
                         content: t('crud.success.removeWithName', {
-                            name: entityRegistry.getEntityNameTrans(EntityType.Tag, t, 2),
+                            name: entityRegistry.getCollectionNameTrans(EntityType.Tag, t),
                         }),
                         duration: 2,
                     });
@@ -378,7 +375,7 @@ export default function EditTagTermsModal({
                 if (!errors) {
                     message.success({
                         content: t('crud.success.removeWithName', {
-                            name: entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t, 2),
+                            name: entityRegistry.getCollectionNameTrans(EntityType.GlossaryTerm, t),
                         }),
                         duration: 2,
                     });
@@ -464,7 +461,7 @@ export default function EditTagTermsModal({
         <Modal
             title={`${
                 operationType === OperationType.ADD ? t('common.add') : t('common.remove')
-            } ${entityRegistry.getEntityNameTrans(type, t, 2)}`}
+            } ${entityRegistry.getCollectionNameTrans(type, t)}`}
             visible={visible}
             onCancel={onCloseModal}
             footer={

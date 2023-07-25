@@ -39,7 +39,7 @@ interface Props {
 export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
 
     const onResultClick = (result: SearchResult, index: number) => {
         analytics.event({
@@ -81,7 +81,7 @@ export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) 
                                 <ReactiveTrans
                                     {...{
                                         i18nKey: 'search.seeAllResultsWithName_html',
-                                        name: entityRegistry.getEntityNameTrans(type, t, 2),
+                                        name: entityRegistry.getCollectionNameTrans(type, t),
                                     }}
                                 />
                             </Typography.Text>

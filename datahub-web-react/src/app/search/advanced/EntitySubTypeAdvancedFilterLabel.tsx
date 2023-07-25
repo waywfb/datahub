@@ -53,7 +53,7 @@ interface Props {
 
 export default function EntitySubTypeAdvancedFilterLabel({ filter, isCompact, disabled, onClose }: Props) {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const entityTypes = useMemo(
         () => filter.values?.filter((value) => !value.includes(FILTER_DELIMITER)),
         [filter.values],
@@ -75,6 +75,7 @@ export default function EntitySubTypeAdvancedFilterLabel({ filter, isCompact, di
                             {entityTypes?.map((entityType, index) => (
                                 <>
                                     {entityRegistry.getCollectionNameTrans(entityType as EntityType, t)}
+
                                     {index !== entityTypes.length - 1 && ', '}
                                 </>
                             ))}

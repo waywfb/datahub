@@ -71,7 +71,7 @@ const EntityTitle = styled(Typography.Text)<{ $titleSizePx?: number }>`
     }
 
     &&& {
-        margin-right 8px;
+        margin-right: 8px;
         font-size: ${(props) => props.$titleSizePx || 16}px;
         font-weight: 600;
         vertical-align: middle;
@@ -235,6 +235,7 @@ export default function DefaultPreviewCard({
     // in those cases, we may want to enrich the preview w/ context about the container entity
     const { entityData } = useEntityData();
     const { t } = useTranslation();
+    const suffixList: string[] = t('lineage.ordinalSuffix', { returnObjects: true });
     const insightViews: Array<ReactNode> = [
         ...(insights?.map((insight) => (
             <>
@@ -305,12 +306,12 @@ export default function DefaultPreviewCard({
                     {degree !== undefined && degree !== null && (
                         <Tooltip
                             title={t('lineage.entityDistanceFrom', {
-                                duration: getNumberWithOrdinal(degree),
+                                duration: getNumberWithOrdinal(degree, suffixList),
                                 name: entityData?.name || '',
                                 context: entityData?.name ? 'withName' : 'withoutName',
                             })}
                         >
-                            <PlatformText>{getNumberWithOrdinal(degree)}</PlatformText>
+                            <PlatformText>{getNumberWithOrdinal(degree, suffixList)}</PlatformText>
                         </Tooltip>
                     )}
                     {!!degree && entityCount && <PlatformDivider />}

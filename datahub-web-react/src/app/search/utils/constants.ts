@@ -43,50 +43,49 @@ export const ORDERED_FIELDS = [ENTITY_FILTER_NAME, PLATFORM_FILTER_NAME, OWNERS_
     FIELD_GLOSSARY_TERMS_FILTER_NAME, FIELD_PATHS_FILTER_NAME, FIELD_DESCRIPTIONS_FILTER_NAME, DESCRIPTION_FILTER_NAME,
     CONTAINER_FILTER_NAME, REMOVED_FILTER_NAME, TYPE_NAMES_FILTER_NAME, ORIGIN_FILTER_NAME, DEGREE_FILTER_NAME,];
 
-export const FIELD_TO_LABEL: { [key: string]: { name: string, transKey: string, ns: string[], count?: number } } = {
+export const FIELD_TO_LABEL: { [key: string]: { name: string, transKey: string, count?: number } } = {
     owners: {
-        name: 'Owner', transKey: 'common.owner', ns: ['translation']
+        name: 'Owner', transKey: 'common.owner'
     }, tags: {
-        name: 'Tag', transKey: 'TAG', ns: ['entity'], count: 1
+        name: 'Tag', transKey: 'TAG', count: 1
     }, domains: {
-        name: 'Domain', transKey: 'DOMAIN', ns: ['entity'], count: 1
+        name: 'Domain', transKey: 'DOMAIN', count: 1
     }, platform: {
-        name: 'Platform', transKey: 'DATA_PLATFORM', ns: ['entity'], count: 1
+        name: 'Platform', transKey: 'DATA_PLATFORM', count: 1
     }, fieldTags: {
-        name: 'Column Tag', transKey: 'common.column $t(entity:TAG)', ns: ['translation', 'entity'], count: 1
+        name: 'Column Tag', transKey: 'common.column $t(TAG)', count: 1
     }, glossaryTerms: {
-        name: 'Glossary Term', transKey: 'GLOSSARY_TERM', ns: ['entity'], count: 1
+        name: 'Glossary Term', transKey: 'GLOSSARY_TERM', count: 1
     }, fieldGlossaryTerms: {
         name: 'Column Glossary Term',
-        transKey: 'common.column $t(entity:GLOSSARY_TERM)',
-        ns: ['translation', 'entity'],
+        transKey: 'common.column $t(GLOSSARY_TERM)',
         count: 1
     }, fieldPaths: {
-        name: 'Column Name', transKey: 'common.column $t(translation:common.name)', ns: ['translation']
+        name: 'Column Name', transKey: 'common.column $t(common.name)'
     }, description: {
-        name: 'Description', transKey: 'common.description', ns: ['translation']
+        name: 'Description', transKey: 'common.description'
     }, fieldDescriptions: {
-        name: 'Column Description', transKey: 'common.column $t(translation:common.description)', ns: ['translation']
+        name: 'Column Description', transKey: 'common.column $t(common.description)'
     }, removed: {
-        name: 'Soft Deleted', transKey: 'crud.success.softDelete', ns: ['translation']
+        name: 'Soft Deleted', transKey: 'crud.success.softDelete'
     }, entity: {
-        name: 'Entity Type', transKey: 'common.entityType', ns: ['translation']
+        name: 'Entity Type', transKey: 'common.entityType'
     }, entityType: {
-        name: 'Entity Type', transKey: 'common.entityType', ns: ['translation']
+        name: 'Entity Type', transKey: 'common.entityType'
     }, _entityType: {
-        name: 'Entity Type', transKey: 'common.entityType', ns: ['translation']
+        name: 'Entity Type', transKey: 'common.entityType'
     }, container: {
-        name: 'Container', transKey: 'CONTAINER', ns: ['entity'], count: 1
+        name: 'Container', transKey: 'CONTAINER', count: 1
     }, typeNames: {
-        name: 'Sub Type', transKey: 'common.subtype', ns: ['translation']
+        name: 'Sub Type', transKey: 'common.subtype'
     }, origin: {
-        name: 'Environment', transKey: 'common.environment', ns: ['translation']
+        name: 'Environment', transKey: 'common.environment'
     }, degree: {
-        name: 'Degree', transKey: 'common.degree', ns: ['translation']
+        name: 'Degree', transKey: 'common.degree'
     }, [DATA_PRODUCTS_FILTER_NAME]: {
-        name: 'Data Product', transKey: 'filter.dataProduct', ns: ['translation']
+        name: 'Data Product', transKey: 'filter.dataProduct'
     }, [BROWSE_PATH_V2_FILTER_NAME]: {
-        name: 'Browse', transKey: 'common.browse', ns: ['translation']
+        name: 'Browse', transKey: 'common.browse'
     },
 };
 

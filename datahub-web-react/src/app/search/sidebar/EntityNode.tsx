@@ -30,7 +30,7 @@ const EntityNode = () => {
     const hasEnvironmentFilter = useHasFilterField(ORIGIN_FILTER_NAME);
     const { count } = entityAggregation;
     const registry = useEntityRegistry();
-    const { t } = useTranslation();
+    const { t } = useTranslation([]);
     const { trackToggleNodeEvent } = useSidebarAnalytics();
 
     const { isOpen, isClosing, toggle } = useToggle({
@@ -62,12 +62,12 @@ const EntityNode = () => {
                     showBorder
                     onClick={onClickHeader}
                     style={{ paddingTop: '16px' }}
-                    data-testid={`browse-entity-${registry.getEntityNameTrans(entityType, t, 2)}`}
+                    data-testid={`browse-entity-${registry.getCollectionNameTrans(entityType, t)}`}
                 >
                     <ExpandableNode.HeaderLeft>
                         {registry.getIcon(entityType, 16, IconStyleType.HIGHLIGHT, color)}
                         <ExpandableNode.Title color={color} size={16} padLeft>
-                            {registry.getEntityNameTrans(entityType, t, 2)}
+                            {registry.getCollectionNameTrans(entityType, t)}
                         </ExpandableNode.Title>
                         <Count color={color}>{formatNumber(entityAggregation.count)}</Count>
                     </ExpandableNode.HeaderLeft>

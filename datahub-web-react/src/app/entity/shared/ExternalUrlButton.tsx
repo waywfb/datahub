@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { EntityType } from '../../../types.generated';
 import analytics, { EventType, EntityActionType } from '../../analytics';
+import { useTranslation } from 'react-i18next';
 
 const GITHUB_LINK = 'github.com';
 const GITHUB = 'GitHub';
@@ -31,6 +32,8 @@ interface Props {
 }
 
 export default function ExternalUrlButton({ externalUrl, platformName, entityType, entityUrn }: Props) {
+    const { t } = useTranslation();
+
     function sendAnalytics() {
         analytics.event({
             type: EventType.EntityActionEvent,
@@ -54,7 +57,7 @@ export default function ExternalUrlButton({ externalUrl, platformName, entityTyp
                 rel="noreferrer noopener"
                 onClick={sendAnalytics}
             >
-                {displayedName ? `View in ${displayedName}` : 'View link'}{' '}
+                {displayedName ? t('navigation.viewInWithName', {name: displayedName}) : t('navigation.viewLink')}{' '}
                 <ArrowRightOutlined style={{ fontSize: 12 }} />
             </StyledButton>
         </ExternalUrlWrapper>

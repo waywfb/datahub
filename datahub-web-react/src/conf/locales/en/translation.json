@@ -61,7 +61,9 @@
     "learnMore": "Learn More",
     "retry": "Retry",
     "degree": "Degree",
-    "browse": "Browse"
+    "browse": "Browse",
+    "value": "Value",
+    "partOfWithName": "Part of {{name}}"
   },
   "token": {
     "accessToken": "Access Tokens",
@@ -167,7 +169,12 @@
     "entityDistanceFrom_withName": "This entity is a {{distance}} degree connection to {{name}}",
     "entityDistanceFrom_withoutName": "This entity is a {{distance}} degree connection to the source entity",
     "clickToSeeColumnPathFrom": "(0-1)Click to see column path from ;(2-inf)Click to see column paths from ",
-    "ordinalSuffix": ["th", "st", "nd", "rd"]
+    "ordinalSuffix": [
+      "th",
+      "st",
+      "nd",
+      "rd"
+    ]
   },
   "duration": {
     "never": "Never",

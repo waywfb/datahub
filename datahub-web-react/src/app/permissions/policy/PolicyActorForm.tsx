@@ -235,14 +235,11 @@ export default function PolicyActorForm({ policyType, actors, setActors }: Props
                 </Select>
             </Form.Item>
             <Form.Item label={<Typography.Text strong>{t('common.groups')}</Typography.Text>}>
-                <Typography.Paragraph>
-                    Search for specific groups that this policy should apply to, or select `All Groups` to apply it to
-                    all groups.
-                </Typography.Paragraph>
+                <Typography.Paragraph>{t('permissions.policyAppliesToGroupsDescription')}</Typography.Paragraph>
                 <Select
                     value={groupsSelectValue}
                     mode="multiple"
-                    placeholder="Search for groups..."
+                    placeholder={t('permissions.policyAppliesToGroupPlaceHolder')}
                     onSelect={(asset: any) => onSelectGroupActor(asset)}
                     onDeselect={(asset: any) => onDeselectGroupActor(asset)}
                     onSearch={handleGroupSearch}

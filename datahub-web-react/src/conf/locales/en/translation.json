@@ -88,6 +88,7 @@
     "models": "Models",
     "edit": "Edit",
     "delete": "Delete",
+    "deleteWithName": "Delete {{name}}",
     "update": "Update",
     "download": "Download",
     "filters": "Filters",
@@ -103,7 +104,8 @@
     "tag": "Tag",
     "username": "Username",
     "password": "Password",
-    "fullName": "Full Name"
+    "fullName": "Full Name",
+    "execute": "Execute"
   },
   "token": {
     "accessToken": "Access Tokens",
@@ -127,6 +129,10 @@
     "toUseATokenExplanation_component": "To use the token, provide it as a <typographyText keyboard>Bearer</typographyText> token in the <typographyText keyboard>Authorization</typographyText> header when making API requests:"
   },
   "permissions": {
+    "SuccessfullyRemovedPolicy": "Successfully removed policy.",
+    "areYouSureRemovePolicy": "Are you sure you want to remove policy?",
+    "policyAppliesToGroupPlaceHolder": "Search for groups...",
+    "policyAppliesToGroupsDescription": "Search for specific groups that this policy should apply to, or select `All Groups` to apply it to all groups.",
     "managePermissions": "Manage Permissions",
     "managePermissionsDescription": "View your DataHub permissions. Take administrative actions.",
     "associatedPolicies": "Associated Policies",

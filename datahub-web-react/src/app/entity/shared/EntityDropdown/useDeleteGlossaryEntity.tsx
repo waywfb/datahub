@@ -1,10 +1,12 @@
 import { message, Modal } from 'antd';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEntityData } from '../EntityContext';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { useDeleteGlossaryEntityMutation } from '../../../../graphql/glossary.generated';
 
 function useDeleteGlossaryEntity() {
+    const { t } = useTranslation();
     const [hasBeenDeleted, setHasBeenDeleted] = useState(false);
     const { entityData, urn: entityDataUrn, entityType } = useEntityData();
     const entityRegistry = useEntityRegistry();
@@ -44,7 +46,8 @@ function useDeleteGlossaryEntity() {
                 handleDeleteGlossaryEntity();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

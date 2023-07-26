@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useApolloClient } from '@apollo/client';
 import { MoreOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { DataHubView, DataHubViewType } from '../../../../types.generated';
 import { useUserContext } from '../../../context/useUserContext';
 import { useUpdateCorpUserViewsSettingsMutation } from '../../../../graphql/user.generated';
@@ -58,6 +59,7 @@ export const ViewDropdownMenu = ({
     onClickPreview,
     onClickDelete,
 }: Props) => {
+    const { t } = useTranslation();
     const userContext = useUserContext();
     const client = useApolloClient();
 
@@ -209,7 +211,8 @@ export const ViewDropdownMenu = ({
                     deleteView(view.urn);
                 },
                 onCancel() {},
-                okText: 'Yes',
+                okText: t('common.yes'),
+                cancelText: t('common.cancel'),
                 maskClosable: true,
                 closable: true,
             });

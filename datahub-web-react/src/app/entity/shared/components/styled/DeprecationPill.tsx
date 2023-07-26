@@ -4,6 +4,7 @@ import { Divider, message, Modal, Popover, Tooltip, Typography } from 'antd';
 import { blue } from '@ant-design/colors';
 import styled from 'styled-components';
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 import { Deprecation } from '../../../../../types.generated';
 import { getLocaleTimezone } from '../../../../shared/time/timeUtils';
 import { ANTD_GRAY } from '../../constants';
@@ -80,6 +81,7 @@ type Props = {
 };
 
 export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndeprecate }: Props) => {
+    const { t } = useTranslation();
     const [batchUpdateDeprecationMutation] = useBatchUpdateDeprecationMutation();
     /**
      * Deprecation Decommission Timestamp
@@ -150,7 +152,8 @@ export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndepr
                                             batchUndeprecate();
                                         },
                                         onCancel() {},
-                                        okText: 'Yes',
+                                        okText: t('common.yes'),
+                                        cancelText: t('common.cancel'),
                                         maskClosable: true,
                                         closable: true,
                                     })

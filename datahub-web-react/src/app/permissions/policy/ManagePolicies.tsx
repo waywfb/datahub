@@ -96,7 +96,7 @@ const toFilterInput = (filter: PolicyMatchFilter): PolicyMatchFilterInput => {
         }),
     };
 };
-
+// TODO: jm translate name, etc ... ?
 const toPolicyInput = (policy: Omit<Policy, 'urn'>): PolicyUpdateInput => {
     let policyInput: PolicyUpdateInput = {
         type: policy.type,
@@ -249,8 +249,8 @@ export const ManagePolicies = () => {
     // On Delete Policy handler
     const onRemovePolicy = (policy: Policy) => {
         Modal.confirm({
-            title: `Delete ${policy?.name}`,
-            content: `Are you sure you want to remove policy?`,
+            title: t('common.deleteWithName', { name: policy?.name }),
+            content: t('permissions.areYouSureRemovePolicy'),
             onOk() {
                 deletePolicy({ variables: { urn: policy?.urn as string } }); // There must be a focus policy urn.
                 analytics.event({
@@ -258,14 +258,15 @@ export const ManagePolicies = () => {
                     entityUrn: policy?.urn,
                     entityType: EntityType.DatahubPolicy,
                 });
-                message.success('Successfully removed policy.');
+                message.success(t('permissions.SuccessfullyRemovedPolicy'));
                 setTimeout(() => {
                     policiesRefetch();
                 }, 3000);
                 onCancelViewPolicy();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

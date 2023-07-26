@@ -61,7 +61,8 @@ export default function DataProductSection({ readOnly }: Props) {
                 removeDataProduct();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

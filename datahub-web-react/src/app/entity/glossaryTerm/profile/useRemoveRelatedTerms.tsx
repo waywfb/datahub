@@ -1,10 +1,12 @@
 import { message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { useEntityData, useRefetch } from '../../shared/EntityContext';
 import { useRemoveRelatedTermsMutation } from '../../../../graphql/glossaryTerm.generated';
 import { TermRelationshipType } from '../../../../types.generated';
 
 function useRemoveRelatedTerms(termUrn: string, relationshipType: TermRelationshipType, displayName: string) {
+    const { t } = useTranslation();
     const { urn, entityType } = useEntityData();
     const entityRegistry = useEntityRegistry();
     const refetch = useRefetch();
@@ -48,7 +50,8 @@ function useRemoveRelatedTerms(termUrn: string, relationshipType: TermRelationsh
                 handleRemoveRelatedTerms();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

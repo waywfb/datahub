@@ -2,6 +2,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Modal, message } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { DataProduct, EntityType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { PreviewType } from '../../Entity';
@@ -58,6 +59,7 @@ interface Props {
 }
 
 export default function DataProductResult({ dataProduct, onUpdateDataProduct, setDeletedDataProductUrns }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [deleteDataProductMutation] = useDeleteDataProductMutation();
@@ -82,7 +84,8 @@ export default function DataProductResult({ dataProduct, onUpdateDataProduct, se
                 deleteDataProduct();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

@@ -325,7 +325,8 @@ export const IngestionSourceList = () => {
                 executeIngestionSource(urn);
             },
             onCancel() {},
-            okText: 'Execute',
+            okText: t('common.execute'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -339,7 +340,8 @@ export const IngestionSourceList = () => {
                 deleteIngestionSource(urn);
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

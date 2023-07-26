@@ -2,6 +2,7 @@ import { Button, Empty, Image, message, Modal, Tag, Tooltip, Typography } from '
 import React from 'react';
 import styled from 'styled-components';
 import { DeleteOutlined, DownOutlined, RightOutlined, StopOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { DatasetAssertionDescription } from './DatasetAssertionDescription';
 import { StyledTable } from '../../../components/styled/StyledTable';
 import { DatasetAssertionDetails } from './DatasetAssertionDetails';
@@ -42,6 +43,7 @@ type Props = {
  * Currently this component supports rendering Dataset Assertions only.
  */
 export const DatasetAssertionsList = ({ assertions, onDelete }: Props) => {
+    const { t } = useTranslation();
     const [deleteAssertionMutation] = useDeleteAssertionMutation();
 
     const deleteAssertion = async (urn: string) => {
@@ -67,7 +69,8 @@ export const DatasetAssertionsList = ({ assertions, onDelete }: Props) => {
                 deleteAssertion(urn);
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

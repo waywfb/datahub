@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import ClickOutside from '../../../../../shared/ClickOutside';
 import { DescriptionEditor } from './DescriptionEditor';
 import { DescriptionPreview } from './DescriptionPreview';
@@ -25,6 +26,7 @@ type DescriptionPreviewModalProps = {
 };
 
 export const DescriptionPreviewModal = ({ description, editMode, onClose }: DescriptionPreviewModalProps) => {
+    const { t } = useTranslation();
     const routeToTab = useRouteToTab();
 
     const onConfirmClose = () => {
@@ -36,7 +38,8 @@ export const DescriptionPreviewModal = ({ description, editMode, onClose }: Desc
                     onClose();
                 },
                 onCancel() {},
-                okText: 'Yes',
+                okText: t('common.yes'),
+                cancelText: t('common.cancel'),
                 maskClosable: true,
                 closable: true,
             });

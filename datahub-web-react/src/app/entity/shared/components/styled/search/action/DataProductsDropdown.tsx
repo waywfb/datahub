@@ -72,7 +72,8 @@ export default function DataProductsDropdown({ urns, disabled = false, refetch }
                                     batchUnsetDataProducts();
                                 },
                                 onCancel() {},
-                                okText: 'Yes',
+                                okText: t('common.yes'),
+                                cancelText: t('common.cancel'),
                                 maskClosable: true,
                                 closable: true,
                             });

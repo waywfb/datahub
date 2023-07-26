@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Checkbox, Modal, Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../constants';
 import { EntityAndType } from '../../../types';
 import { SearchSelectActions } from './SearchSelectActions';
@@ -53,6 +54,7 @@ export const SearchSelectBar = ({
     onCancel,
     refetch,
 }: Props) => {
+    const { t } = useTranslation();
     const selectedEntityCount = selectedEntities.length;
     const onClickCancel = () => {
         if (selectedEntityCount > 0) {
@@ -87,7 +89,7 @@ export const SearchSelectBar = ({
                 {showActions && <SearchSelectActions selectedEntities={selectedEntities} refetch={refetch} />}
                 {showCancel && (
                     <CancelButton onClick={onClickCancel} type="link">
-                        Done
+                        {t('common.done')}
                     </CancelButton>
                 )}
             </ActionsContainer>

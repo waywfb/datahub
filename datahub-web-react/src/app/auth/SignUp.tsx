@@ -4,6 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useReactiveVar } from '@apollo/client';
 import styled, { useTheme } from 'styled-components/macro';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './login.module.css';
 import { Message } from '../shared/Message';
 import { isLoggedInVar } from './checkAuthStatus';
@@ -63,6 +64,7 @@ const StyledFormItem = styled(Form.Item)`
 export type SignUpProps = Record<string, never>;
 
 export const SignUp: React.VFC<SignUpProps> = () => {
+    const { t } = useTranslation();
     const history = useHistory();
     const isLoggedIn = useReactiveVar(isLoggedInVar);
     const inviteToken = useGetInviteTokenFromUrlParams();
@@ -206,7 +208,7 @@ export const SignUp: React.VFC<SignUpProps> = () => {
                             rules={[{ required: true, message: 'Please fill in your title!' }]}
                             name="title"
                             // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                            label={<label style={{ color: 'white' }}>Title</label>}
+                            label={<label style={{ color: 'white' }}>{t('common.title')}</label>}
                         >
                             <TitleSelector placeholder="Title">
                                 <Select.Option value="Data Analyst">Data Analyst</Select.Option>

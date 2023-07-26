@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { message, Modal, Button, Form, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { useEntityData, useMutationUrn } from '../../EntityContext';
 import { useAddLinkMutation } from '../../../../../graphql/mutations.generated';
 import analytics, { EventType, EntityActionType } from '../../../../analytics';
@@ -12,6 +13,7 @@ type AddLinkProps = {
 };
 
 export const AddLinkModal = ({ buttonProps, refetch }: AddLinkProps) => {
+    const { t } = useTranslation();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const mutationUrn = useMutationUrn();
     const user = useUserContext();
@@ -67,10 +69,10 @@ export const AddLinkModal = ({ buttonProps, refetch }: AddLinkProps) => {
                 onCancel={handleClose}
                 footer={[
                     <Button type="text" onClick={handleClose}>
-                        Cancel
+                        {t('common.cancel')}
                     </Button>,
                     <Button form="addLinkForm" key="submit" htmlType="submit">
-                        Add
+                        {t('common.add')}
                     </Button>,
                 ]}
             >

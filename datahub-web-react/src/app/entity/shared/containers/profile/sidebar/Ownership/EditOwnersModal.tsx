@@ -353,7 +353,7 @@ export const EditOwnersModal = ({
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="addOwnerButton" disabled={selectedOwners.length === 0} onClick={onOk}>
                         {t('common.done')}
@@ -362,7 +362,11 @@ export const EditOwnersModal = ({
             }
         >
             <Form layout="vertical" colon={false}>
-                <Form.Item key="owners" name="owners" label={<Typography.Text strong>Owner</Typography.Text>}>
+                <Form.Item
+                    key="owners"
+                    name="owners"
+                    label={<Typography.Text strong>{t('common.owner')}</Typography.Text>}
+                >
                     <Typography.Paragraph>Find a user or group</Typography.Paragraph>
                     <Form.Item name="owner">
                         <SelectInput
@@ -397,7 +401,7 @@ export const EditOwnersModal = ({
                     </Form.Item>
                 </Form.Item>
                 {!hideOwnerType && (
-                    <Form.Item label={<Typography.Text strong>Type</Typography.Text>}>
+                    <Form.Item label={<Typography.Text strong>{t('common.type')}</Typography.Text>}>
                         <Typography.Paragraph>Choose an owner type</Typography.Paragraph>
                         <Form.Item name="type">
                             {loading && <Select />}

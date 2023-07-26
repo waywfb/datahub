@@ -2,6 +2,7 @@ import { Button, Input } from 'antd';
 import { FormOutlined, SearchOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { LogoCountCard } from '../../../shared/LogoCountCard';
 import { SourceConfig, SourceBuilderState, StepProps } from './types';
 import { IngestionSourceBuilderStep } from './steps';
@@ -57,6 +58,7 @@ function SourceOption({ source, onClick }: SourceOptionProps) {
  * Component responsible for selecting the mechanism for constructing a new Ingestion Source
  */
 export const SelectTemplateStep = ({ state, updateState, goTo, cancel, ingestionSources }: StepProps) => {
+    const { t } = useTranslation();
     const [searchFilter, setSearchFilter] = useState('');
 
     const onSelectTemplate = (type: string) => {
@@ -89,7 +91,7 @@ export const SelectTemplateStep = ({ state, updateState, goTo, cancel, ingestion
                     ))}
                 </PlatformListContainer>
             </Section>
-            <CancelButton onClick={cancel}>Cancel</CancelButton>
+            <CancelButton onClick={cancel}>{t('common.cancel')}</CancelButton>
         </>
     );
 };

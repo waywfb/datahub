@@ -1,6 +1,7 @@
 import { Typography, Modal, Button, Form } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { Editor } from '../../tabs/Documentation/components/editor/Editor';
 import { ANTD_GRAY } from '../../constants';
 
@@ -29,6 +30,7 @@ type Props = {
 };
 
 export default function UpdateDescriptionModal({ title, description, original, onClose, onSubmit, isAddDesc }: Props) {
+    const { t } = useTranslation();
     const [updatedDesc, setDesc] = useState(description || original || '');
 
     return (
@@ -40,9 +42,9 @@ export default function UpdateDescriptionModal({ title, description, original, o
             okText={isAddDesc ? 'Submit' : 'Update'}
             footer={
                 <>
-                    <Button onClick={onClose}>Cancel</Button>
+                    <Button onClick={onClose}>{t('common.cancel')}</Button>
                     <Button onClick={() => onSubmit(updatedDesc)} disabled={updatedDesc === description}>
-                        Update
+                        {t('common.update')}
                     </Button>
                 </>
             }

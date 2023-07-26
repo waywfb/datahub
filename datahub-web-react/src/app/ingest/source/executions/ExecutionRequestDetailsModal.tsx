@@ -2,6 +2,7 @@ import { DownloadOutlined } from '@ant-design/icons';
 import { Button, message, Modal, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetIngestionExecutionRequestQuery } from '../../../../graphql/ingestion.generated';
 import { ANTD_GRAY } from '../../../entity/shared/constants';
 import { downloadFile } from '../../../search/utils/csvUtils';
@@ -90,6 +91,7 @@ type Props = {
 };
 
 export const ExecutionDetailsModal = ({ urn, visible, onClose }: Props) => {
+    const { t } = useTranslation();
     const [showExpandedLogs, setShowExpandedLogs] = useState(false);
     const { data, loading, error, refetch } = useGetIngestionExecutionRequestQuery({ variables: { urn } });
     const output = data?.executionRequest?.result?.report || 'No output found.';
@@ -125,7 +127,7 @@ export const ExecutionDetailsModal = ({ urn, visible, onClose }: Props) => {
     return (
         <Modal
             width={800}
-            footer={<Button onClick={onClose}>Close</Button>}
+            footer={<Button onClick={onClose}>{t('common.close')}</Button>}
             style={modalStyle}
             bodyStyle={modalBodyStyle}
             title={
@@ -140,7 +142,7 @@ export const ExecutionDetailsModal = ({ urn, visible, onClose }: Props) => {
             {error && message.error('Failed to load execution details :(')}
             <Section>
                 <StatusSection>
-                    <Typography.Title level={5}>Status</Typography.Title>
+                    <Typography.Title level={5}>{t('common.status')}</Typography.Title>
                     <ResultText>{resultText}</ResultText>
                     <SubHeaderParagraph>{resultSummaryText}</SubHeaderParagraph>
                 </StatusSection>
@@ -150,7 +152,7 @@ export const ExecutionDetailsModal = ({ urn, visible, onClose }: Props) => {
                     </IngestedAssetsSection>
                 )}
                 <LogsSection>
-                    <SectionHeader level={5}>Logs</SectionHeader>
+                    <SectionHeader level={5}>{t('common.logs')}</SectionHeader>
                     <SectionSubHeader>
                         <SubHeaderParagraph type="secondary">
                             View logs that were collected during the ingestion run.

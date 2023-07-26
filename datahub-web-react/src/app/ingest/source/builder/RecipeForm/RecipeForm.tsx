@@ -4,6 +4,7 @@ import { get } from 'lodash';
 import YAML from 'yamljs';
 import { ApiOutlined, FilterOutlined, QuestionCircleOutlined, SettingOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { jsonToYaml } from '../../utils';
 import { CONNECTORS_WITH_TEST_CONNECTION, RecipeSections, RECIPE_FIELDS } from './constants';
 import FormField from './FormField';
@@ -100,6 +101,7 @@ interface Props {
 }
 
 function RecipeForm(props: Props) {
+    const { t } = useTranslation();
     const { state, isEditing, displayRecipe, sourceConfigs, setStagedRecipe, onClickNext, goToPrevious } = props;
     const { type } = state;
     const version = state.config?.version;
@@ -226,9 +228,9 @@ function RecipeForm(props: Props) {
             </StyledCollapse>
             <ControlsContainer>
                 <Button disabled={isEditing} onClick={goToPrevious}>
-                    Previous
+                    {t('common.previous')}
                 </Button>
-                <Button htmlType="submit">Next</Button>
+                <Button htmlType="submit">{t('common.next')}</Button>
             </ControlsContainer>
         </Form>
     );

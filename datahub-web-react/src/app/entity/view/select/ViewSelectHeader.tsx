@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Button, Typography } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 const ButtonContainer = styled.div`
     display: flex;
@@ -20,6 +21,7 @@ type Props = {
 };
 
 export const ViewSelectHeader = ({ onClickCreateView, onClickClear }: Props) => {
+    const { t } = useTranslation();
     const clearButtonRef = useRef(null);
 
     const onHandleClickClear = () => {
@@ -39,7 +41,7 @@ export const ViewSelectHeader = ({ onClickCreateView, onClickClear }: Props) => 
                 ref={clearButtonRef}
                 onClick={onHandleClickClear}
             >
-                Clear
+                {t('common.clear')}
             </NoMarginButton>
         </ButtonContainer>
     );

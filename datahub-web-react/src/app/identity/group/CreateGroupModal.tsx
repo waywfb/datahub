@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { message, Button, Input, Modal, Typography, Form, Collapse } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useCreateGroupMutation } from '../../../graphql/group.generated';
 import { useEnterKeyListener } from '../../shared/useEnterKeyListener';
 import { validateCustomUrnId } from '../../shared/textUtil';
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export default function CreateGroupModal({ onClose, onCreate }: Props) {
+    const { t } = useTranslation();
     const [stagedName, setStagedName] = useState('');
     const [stagedDescription, setStagedDescription] = useState('');
     const [stagedId, setStagedId] = useState<string | undefined>(undefined);
@@ -73,10 +75,10 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="createGroupButton" onClick={onCreateGroup} disabled={createButtonEnabled}>
-                        Create
+                        {t('common.create')}
                     </Button>
                 </>
             }
@@ -89,7 +91,7 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
                     setCreateButtonEnabled(form.getFieldsError().some((field) => field.errors.length > 0))
                 }
             >
-                <Form.Item label={<Typography.Text strong>Name</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.name')}</Typography.Text>}>
                     <Typography.Paragraph>Give your new group a name.</Typography.Paragraph>
                     <Form.Item
                         name="name"
@@ -110,7 +112,7 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
                         />
                     </Form.Item>
                 </Form.Item>
-                <Form.Item label={<Typography.Text strong>Description</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
                     <Typography.Paragraph>An optional description for your new group.</Typography.Paragraph>
                     <Form.Item name="description" rules={[{ whitespace: true }, { min: 1, max: 500 }]} hasFeedback>
                         <Input

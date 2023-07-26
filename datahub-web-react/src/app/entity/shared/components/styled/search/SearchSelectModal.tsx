@@ -1,6 +1,7 @@
 import { Button, Modal } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../../../../types.generated';
 import ClickOutside from '../../../../../shared/ClickOutside';
 import { EntityAndType } from '../../../types';
@@ -37,6 +38,7 @@ export const SearchSelectModal = ({
     onContinue,
     onCancel,
 }: Props) => {
+    const { t } = useTranslation();
     const [selectedEntities, setSelectedEntities] = useState<EntityAndType[]>([]);
 
     const onCancelSelect = () => {
@@ -69,7 +71,7 @@ export const SearchSelectModal = ({
                 footer={
                     <>
                         <Button onClick={onCancel} type="text">
-                            Cancel
+                            {t('common.cancel')}
                         </Button>
                         <Button
                             id="continueButton"

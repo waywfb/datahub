@@ -77,7 +77,30 @@
     "learnMore": "Learn More",
     "retry": "Retry",
     "degree": "Degree",
-    "browse": "Browse"
+    "browse": "Browse",
+    "reads": "Reads",
+    "writes": "Writes",
+    "title": "Title",
+    "key": "Key",
+    "value": "Value",
+    "backAction": "Back",
+    "saveChanges": "Save Changes",
+    "models": "Models",
+    "edit": "Edit",
+    "delete": "Delete",
+    "update": "Update",
+    "download": "Download",
+    "filters": "Filters",
+    "lineage": "Lineage",
+    "ok": "Ok",
+    "text": "Text",
+    "about": "About",
+    "clear": "Clear",
+    "glossary": "Glossary",
+    "status": "Status",
+    "logs": "Logs",
+    "rollback": "Rollback",
+    "tag": "Tag"
   },
   "token": {
     "accessToken": "Access Tokens",
@@ -122,7 +145,12 @@
     "domainDescription": "Search for domains the policy should apply to. If <b>none</b> is selected, policy is applied to <b>all</b> resources in all domains.",
     "domainDescriptionPlaceHolder": "Apply to ALL domains by default. Select domains to apply to specific domains.",
     "privilegesLabel": "Select a set of privileges to permit.",
+    "appliesTo": "Applies to",
     "appliesToWithName": "Applies to {{name}}",
+    "policyAppliesToLabel": "Select the users & groups that this policy should apply to.",
+    "policyAppliesToDescription": "Whether this policy should be apply to owners of the Metadata asset. If true, those who are marked as owners of a Metadata Asset, either directly or indirectly via a Group, will have the selected privileges.",
+    "policyAppliesToUserDescription": "Search for specific users that this policy should apply to, or select `All Users` to apply it to all users.",
+    "policyAppliesToUserPlaceHolder": "Search for users...",
     "policyBuilderSteps": {
       "configurePrivileges": "Configure Privileges",
       "choosePolicyType": "Choose Policy Type",
@@ -212,7 +240,12 @@
     "entityDistanceFrom_withName": "This entity is a {{distance}} degree connection to {{name}}",
     "entityDistanceFrom_withoutName": "This entity is a {{distance}} degree connection to the source entity",
     "clickToSeeColumnPathFrom": "(0-1)Click to see column path from ;(2-inf)Click to see column paths from ",
-    "ordinalSuffix": ["th", "st", "nd", "rd"]
+    "ordinalSuffix": [
+      "th",
+      "st",
+      "nd",
+      "rd"
+    ]
   },
   "duration": {
     "never": "Never",
@@ -225,7 +258,7 @@
     "hour_other": "{{count}} hours",
     "dateAtTimeWithTimeZone": "{{date}} at {{time}} ({{timeZone}})",
     "allTime": "All Time",
-    "UntilWithDate":"Until {{date}}",
+    "UntilWithDate": "Until {{date}}",
     "fromWithDate": "From {{date}}",
     "lastDay_interval": "(0-1)Last {{count}} day;(2-inf)Last {{count}} days",
     "unknownTimeRange": "Unknown time range"

@@ -3,6 +3,7 @@ import { Form, Input, Modal, Typography } from 'antd';
 import { FromToProps } from '@remirror/core-types';
 import { useAttrs, useCommands, useEditorState, useHelpers } from '@remirror/react';
 import { getMarkRange } from '@remirror/core-utils';
+import { useTranslation } from 'react-i18next';
 
 type LinkModalProps = {
     visible: boolean;
@@ -10,6 +11,7 @@ type LinkModalProps = {
 };
 
 export const LinkModal = (props: LinkModalProps) => {
+    const { t } = useTranslation();
     const { visible, handleClose } = props;
 
     const [trPos, setTrPos] = useState<FromToProps>({ from: 0, to: 0 });
@@ -73,7 +75,7 @@ export const LinkModal = (props: LinkModalProps) => {
                 >
                     <Input placeholder="https://www.google.com" autoFocus />
                 </Form.Item>
-                <Form.Item name="text" label={<Typography.Text strong>Text</Typography.Text>}>
+                <Form.Item name="text" label={<Typography.Text strong>{t('common.text')}</Typography.Text>}>
                     <Input />
                 </Form.Item>
             </Form>

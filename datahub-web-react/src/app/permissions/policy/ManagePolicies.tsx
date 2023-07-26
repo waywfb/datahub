@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import * as QueryString from 'query-string';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import PolicyBuilderModal from './PolicyBuilderModal';
 import {
     Policy,
@@ -131,6 +132,7 @@ const toPolicyInput = (policy: Omit<Policy, 'urn'>): PolicyUpdateInput => {
 
 // TODO: Cleanup the styling.
 export const ManagePolicies = () => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const location = useLocation();
     const params = QueryString.parse(location.search, { arrayFormat: 'comma' });
@@ -357,9 +359,11 @@ export const ManagePolicies = () => {
                             maxCount={3}
                             size={28}
                         />
-                        {record?.allUsers ? <ActorTag>All Users</ActorTag> : null}
-                        {record?.allGroups ? <ActorTag>All Groups</ActorTag> : null}
-                        {record?.resourceOwners ? <ActorTag>All Owners</ActorTag> : null}
+                        {record?.allUsers ? <ActorTag>{`${t('common.all')} ${t('common.users')}`}</ActorTag> : null}
+                        {record?.allGroups ? <ActorTag>{`${t('common.all')} ${t('common.groups')}`}</ActorTag> : null}
+                        {record?.resourceOwners ? (
+                            <ActorTag>{`${t('common.all')} ${t('common.owners')}`}</ActorTag>
+                        ) : null}
                     </>
                 );
             },

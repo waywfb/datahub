@@ -4,6 +4,7 @@ import { Button, Image, Tooltip, Typography } from 'antd';
 import cronstrue from 'cronstrue';
 import React from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { capitalizeFirstLetter } from '../../shared/textUtil';
 import useGetSourceLogoUrl from './builder/useGetSourceLogoUrl';
@@ -145,6 +146,7 @@ export function ActionsColumn({
     onExecute,
     onDelete,
 }: ActionsColumnProps) {
+    const { t } = useTranslation();
     return (
         <ActionButtonContainer>
             {navigator.clipboard && (
@@ -179,7 +181,7 @@ export function ActionsColumn({
             )}
             {record.lastExecStatus === RUNNING && (
                 <Button style={{ marginRight: 16 }} onClick={() => setFocusExecutionUrn(record.lastExecUrn)}>
-                    DETAILS
+                    {t('common.details').toUpperCase()}
                 </Button>
             )}
             <Button data-testid="delete-button" onClick={() => onDelete(record.urn)} type="text" shape="circle" danger>

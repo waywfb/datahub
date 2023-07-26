@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, Modal, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { DEFAULT_BUILDER_STATE, ViewBuilderState } from '../types';
 import { ViewBuilderForm } from './ViewBuilderForm';
 import ClickOutside from '../../../shared/ClickOutside';
@@ -41,6 +42,7 @@ const getTitleText = (mode, urn) => {
 };
 
 export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }: Props) => {
+    const { t } = useTranslation();
     const [viewBuilderState, setViewBuilderState] = useState<ViewBuilderState>(initialState || DEFAULT_BUILDER_STATE);
 
     useEffect(() => {
@@ -84,7 +86,7 @@ export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }
                 <ViewBuilderForm urn={urn} mode={mode} state={viewBuilderState} updateState={setViewBuilderState} />
                 <SaveButtonContainer>
                     <CancelButton data-testid="view-builder-cancel" onClick={onCancel}>
-                        Cancel
+                        {t('common.cancel')}
                     </CancelButton>
                     {mode === ViewBuilderMode.EDITOR && (
                         <Button
@@ -93,7 +95,7 @@ export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }
                             disabled={!canSave}
                             onClick={() => onSubmit(viewBuilderState)}
                         >
-                            Save
+                            {t('common.save')}
                         </Button>
                     )}
                 </SaveButtonContainer>

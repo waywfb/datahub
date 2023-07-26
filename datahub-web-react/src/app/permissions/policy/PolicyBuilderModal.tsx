@@ -161,7 +161,7 @@ export default function PolicyBuilderModal({ policy, setPolicy, visible, onClose
         });
     };
 
-    // TODO: jm translate item.title ?
+    // TODO: jm translate item.title & item.content ?
     return (
         <ClickOutside onClickOutside={modalClosePopup} wrapperClassName="PolicyBuilderModal">
             <Modal

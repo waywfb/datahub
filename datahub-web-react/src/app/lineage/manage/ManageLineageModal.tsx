@@ -2,6 +2,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Button, message, Modal } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useGetEntityLineageQuery } from '../../../graphql/lineage.generated';
 import { Direction, UpdatedLineages } from '../types';
 import AddEntityEdge from './AddEntityEdge';
@@ -56,6 +57,7 @@ export default function ManageLineageModal({
     entityType,
     entityPlatform,
 }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const [entitiesToAdd, setEntitiesToAdd] = useState<Entity[]>([]);
     const [entitiesToRemove, setEntitiesToRemove] = useState<Entity[]>([]);
@@ -123,10 +125,10 @@ export default function ManageLineageModal({
             footer={
                 <ModalFooter>
                     <Button onClick={closeModal} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button onClick={saveLineageChanges} disabled={isSaveDisabled}>
-                        Save Changes
+                        {t('common.saveChanges')}
                     </Button>
                 </ModalFooter>
             }

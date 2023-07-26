@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { message, Button, Input, Modal, Typography, Form } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useUpdateCorpGroupPropertiesMutation } from '../../../graphql/group.generated';
 import { useEnterKeyListener } from '../../shared/useEnterKeyListener';
 
@@ -19,6 +20,7 @@ type Props = {
 export const USER_NAME_REGEX = new RegExp('^[a-zA-Z ]*$');
 
 export default function GroupEditModal({ visible, onClose, onSave, editModalData }: Props) {
+    const { t } = useTranslation();
     const [updateCorpGroupPropertiesMutation] = useUpdateCorpGroupPropertiesMutation();
     const [form] = Form.useForm();
 
@@ -77,10 +79,10 @@ export default function GroupEditModal({ visible, onClose, onSave, editModalData
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="editGroupButton" onClick={onSaveChanges} disabled={saveButtonEnabled}>
-                        Save Changes
+                        {t('common.saveChanges')}
                     </Button>
                 </>
             }

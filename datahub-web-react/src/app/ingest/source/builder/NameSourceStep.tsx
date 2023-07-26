@@ -1,6 +1,7 @@
 import { Button, Checkbox, Collapse, Form, Input, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { SourceBuilderState, StepProps } from './types';
 
 const ControlsContainer = styled.div`
@@ -14,6 +15,7 @@ const SaveButton = styled(Button)`
 `;
 
 export const NameSourceStep = ({ state, updateState, prev, submit }: StepProps) => {
+    const { t } = useTranslation();
     const setName = (stagedName: string) => {
         const newState: SourceBuilderState = {
             ...state,
@@ -68,7 +70,7 @@ export const NameSourceStep = ({ state, updateState, prev, submit }: StepProps) 
                     required
                     label={
                         <Typography.Text strong style={{ marginBottom: 0 }}>
-                            Name
+                            {t('common.name')}
                         </Typography.Text>
                     }
                     style={{ marginBottom: 8 }}
@@ -120,13 +122,13 @@ export const NameSourceStep = ({ state, updateState, prev, submit }: StepProps) 
                 </Collapse>
             </Form>
             <ControlsContainer>
-                <Button onClick={prev}>Previous</Button>
+                <Button onClick={prev}>{t('common.previous')}</Button>
                 <div>
                     <SaveButton
                         disabled={!(state.name !== undefined && state.name.length > 0)}
                         onClick={() => onClickCreate(false)}
                     >
-                        Save
+                        {t('common.save')}
                     </SaveButton>
                     <Button
                         disabled={!(state.name !== undefined && state.name.length > 0)}

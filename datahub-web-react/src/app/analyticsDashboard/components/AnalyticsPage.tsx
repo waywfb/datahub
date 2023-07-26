@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Alert, Divider, Input, Select } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { ChartGroup } from './ChartGroup';
 import { useGetAnalyticsChartsQuery, useGetMetadataAnalyticsChartsQuery } from '../../../graphql/analytics.generated';
 import { useGetHighlightsQuery } from '../../../graphql/highlights.generated';
@@ -47,6 +48,7 @@ const StyledSearchBar = styled(Input)`
 `;
 
 export const AnalyticsPage = () => {
+    const { t } = useTranslation();
     const me = useUserContext();
     const canManageDomains = me?.platformPrivileges?.createDomains;
     const { data: chartData, loading: chartLoading, error: chartError } = useGetAnalyticsChartsQuery();
@@ -124,7 +126,7 @@ export const AnalyticsPage = () => {
                                     option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                 }
                             >
-                                <Select.Option value="ALL">All</Select.Option>
+                                <Select.Option value="ALL">{t('common.all')}</Select.Option>
                                 {domainData?.listDomains?.domains.map((domainChoice) => (
                                     <Select.Option value={domainChoice.urn}>
                                         {domainChoice?.properties?.name}

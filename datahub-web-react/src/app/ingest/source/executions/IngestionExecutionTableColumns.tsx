@@ -2,6 +2,7 @@ import React from 'react';
 import { CopyOutlined } from '@ant-design/icons';
 import { Button, Typography, Tooltip } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     getExecutionRequestStatusDisplayColor,
     getExecutionRequestStatusIcon,
@@ -74,6 +75,7 @@ export function ButtonsColumn({
     handleCancelExecution,
     handleRollbackExecution,
 }: ButtonsColumnProps) {
+    const { t } = useTranslation();
     return (
         <div style={{ display: 'flex', justifyContent: 'right' }}>
             {record.urn && navigator.clipboard && (
@@ -89,17 +91,17 @@ export function ButtonsColumn({
             )}
             {record.duration && (
                 <Button style={{ marginRight: 16 }} onClick={() => handleViewDetails(record.urn)}>
-                    DETAILS
+                    {t('common.details').toUpperCase()}
                 </Button>
             )}
             {record.status === RUNNING && (
                 <Button style={{ marginRight: 16 }} onClick={() => handleCancelExecution(record.urn)}>
-                    CANCEL
+                    {t('common.cancel').toUpperCase()}
                 </Button>
             )}
             {record.status === SUCCESS && record.showRollback && (
                 <Button style={{ marginRight: 16 }} onClick={() => handleRollbackExecution(record.id)}>
-                    ROLLBACK
+                    {t('common.rollback').toUpperCase()}
                 </Button>
             )}
         </div>

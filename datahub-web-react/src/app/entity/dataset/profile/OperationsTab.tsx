@@ -4,6 +4,7 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { useGetDatasetRunsQuery } from '../../../../graphql/dataset.generated';
 import {
     DataProcessInstanceRunResultType,
@@ -129,6 +130,7 @@ const columns = [
 const PAGE_SIZE = 20;
 
 export const OperationsTab = () => {
+    const { t } = useTranslation();
     const { urn } = useEntityData();
     const [page, setPage] = useState(1);
     const [direction, setDirection] = useState(RelationshipDirection.Incoming);
@@ -163,13 +165,13 @@ export const OperationsTab = () => {
                     type={direction === RelationshipDirection.Incoming ? 'primary' : 'default'}
                     onClick={() => setDirection(RelationshipDirection.Incoming)}
                 >
-                    Reads
+                    {t('common.reads')}
                 </Button>
                 <Button
                     type={direction === RelationshipDirection.Outgoing ? 'primary' : 'default'}
                     onClick={() => setDirection(RelationshipDirection.Outgoing)}
                 >
-                    Writes
+                    {t('common.writes')}
                 </Button>
             </ReadWriteButtonGroup>
             {loading && (

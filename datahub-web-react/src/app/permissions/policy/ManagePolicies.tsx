@@ -258,7 +258,7 @@ export const ManagePolicies = () => {
                     entityUrn: policy?.urn,
                     entityType: EntityType.DatahubPolicy,
                 });
-                message.success(t('permissions.SuccessfullyRemovedPolicy'));
+                message.success(t('permissions.successfullyRemovedPolicy'));
                 setTimeout(() => {
                     policiesRefetch();
                 }, 3000);
@@ -285,6 +285,7 @@ export const ManagePolicies = () => {
                 input: toPolicyInput(newPolicy),
             },
         });
+        // TODO: jm add translation ?
         message.success(`Successfully ${newState === PolicyState.Active ? 'activated' : 'deactivated'} policy.`);
         setTimeout(() => {
             policiesRefetch();
@@ -308,7 +309,7 @@ export const ManagePolicies = () => {
                 type: EventType.CreatePolicyEvent,
             });
         }
-        message.success('Successfully saved policy.');
+        message.success(t('permissions.successfullySavedPolicy'));
         setTimeout(() => {
             policiesRefetch();
         }, 3000);
@@ -317,7 +318,7 @@ export const ManagePolicies = () => {
 
     const tableColumns = [
         {
-            title: 'Name',
+            title: t('common.name'),
             dataIndex: 'name',
             key: 'name',
             render: (_, record: any) => {
@@ -332,7 +333,7 @@ export const ManagePolicies = () => {
             },
         },
         {
-            title: 'Type',
+            title: t('common.type'),
             dataIndex: 'type',
             key: 'type',
             render: (type: string) => {
@@ -341,13 +342,13 @@ export const ManagePolicies = () => {
             },
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: 'description',
             key: 'description',
             render: (description: string) => description || '',
         },
         {
-            title: 'Actors',
+            title: t('common.actors'),
             dataIndex: 'actors',
             key: 'actors',
             render: (_, record: any) => {
@@ -370,7 +371,7 @@ export const ManagePolicies = () => {
             },
         },
         {
-            title: 'State',
+            title: t('common.state'),
             dataIndex: 'state',
             key: 'state',
             render: (state: string) => {

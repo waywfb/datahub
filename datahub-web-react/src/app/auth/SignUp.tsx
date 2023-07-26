@@ -154,7 +154,7 @@ export const SignUp: React.VFC<SignUpProps> = () => {
                             rules={[{ required: true, message: 'Please fill in your email' }]}
                             name="email"
                             // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                            label={<label style={{ color: 'white' }}>Email</label>}
+                            label={<label style={{ color: 'white' }}>{t('common.email')}</label>}
                         >
                             <FormInput prefix={<UserOutlined />} data-testid="email" />
                         </StyledFormItem>
@@ -162,7 +162,7 @@ export const SignUp: React.VFC<SignUpProps> = () => {
                             rules={[{ required: true, message: 'Please fill in your name' }]}
                             name="fullName"
                             // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                            label={<label style={{ color: 'white' }}>Full Name</label>}
+                            label={<label style={{ color: 'white' }}>{t('common.fullName')}</label>}
                         >
                             <FormInput prefix={<UserOutlined />} data-testid="name" />
                         </StyledFormItem>
@@ -182,7 +182,7 @@ export const SignUp: React.VFC<SignUpProps> = () => {
                             ]}
                             name="password"
                             // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                            label={<label style={{ color: 'white' }}>Password</label>}
+                            label={<label style={{ color: 'white' }}>{t('common.password')}</label>}
                         >
                             <FormInput prefix={<LockOutlined />} type="password" data-testid="password" />
                         </StyledFormItem>

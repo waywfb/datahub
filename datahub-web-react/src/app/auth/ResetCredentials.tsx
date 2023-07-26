@@ -4,6 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useReactiveVar } from '@apollo/client';
 import styled, { useTheme } from 'styled-components/macro';
 import { Redirect } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import styles from './login.module.css';
 import { Message } from '../shared/Message';
 import { isLoggedInVar } from './checkAuthStatus';
@@ -49,6 +50,7 @@ const StyledFormItem = styled(Form.Item)`
 export type ResetCredentialsProps = Record<string, never>;
 
 export const ResetCredentials: React.VFC<ResetCredentialsProps> = () => {
+    const { t } = useTranslation();
     const isLoggedIn = useReactiveVar(isLoggedInVar);
     const resetToken = useGetResetTokenFromUrlParams();
 
@@ -106,7 +108,7 @@ export const ResetCredentials: React.VFC<ResetCredentialsProps> = () => {
                             rules={[{ required: true, message: 'Please fill in your email' }]}
                             name="email"
                             // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                            label={<label style={{ color: 'white' }}>Email</label>}
+                            label={<label style={{ color: 'white' }}>{t('common.email')}</label>}
                         >
                             <FormInput prefix={<UserOutlined />} data-testid="email" />
                         </StyledFormItem>
@@ -126,7 +128,7 @@ export const ResetCredentials: React.VFC<ResetCredentialsProps> = () => {
                             ]}
                             name="password"
                             // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                            label={<label style={{ color: 'white' }}>Password</label>}
+                            label={<label style={{ color: 'white' }}>{t('common.password')}</label>}
                         >
                             <FormInput prefix={<LockOutlined />} type="password" data-testid="password" />
                         </StyledFormItem>

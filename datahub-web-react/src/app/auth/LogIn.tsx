@@ -5,6 +5,7 @@ import { UserOutlined, LockOutlined, LoginOutlined } from '@ant-design/icons';
 import { useReactiveVar } from '@apollo/client';
 import styled, { useTheme } from 'styled-components/macro';
 import { Redirect, useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import styles from './login.module.css';
 import { Message } from '../shared/Message';
 import { isLoggedInVar } from './checkAuthStatus';
@@ -64,6 +65,7 @@ const SsoTextSpan = styled.span`
 export type LogInProps = Record<string, never>;
 
 export const LogIn: React.VFC<LogInProps> = () => {
+    const { t } = useTranslation();
     const isLoggedIn = useReactiveVar(isLoggedInVar);
     const location = useLocation();
     const params = QueryString.parse(location.search);
@@ -122,14 +124,14 @@ export const LogIn: React.VFC<LogInProps> = () => {
                         <Form.Item
                             name="username"
                             // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                            label={<label style={{ color: 'white' }}>Username</label>}
+                            label={<label style={{ color: 'white' }}>{t('common.username')}</label>}
                         >
                             <FormInput prefix={<UserOutlined />} data-testid="username" />
                         </Form.Item>
                         <Form.Item
                             name="password"
                             // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                            label={<label style={{ color: 'white' }}>Password</label>}
+                            label={<label style={{ color: 'white' }}>{t('common.password')}</label>}
                         >
                             <FormInput prefix={<LockOutlined />} type="password" data-testid="password" />
                         </Form.Item>

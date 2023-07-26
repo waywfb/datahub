@@ -100,7 +100,10 @@
     "status": "Status",
     "logs": "Logs",
     "rollback": "Rollback",
-    "tag": "Tag"
+    "tag": "Tag",
+    "username": "Username",
+    "password": "Password",
+    "fullName": "Full Name"
   },
   "token": {
     "accessToken": "Access Tokens",

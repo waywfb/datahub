@@ -15,6 +15,7 @@
     "resource": "Resource",
     "platform": "Platform",
     "metadata": "Metadata",
+    "refresh": "Refresh",
     "email": "Email",
     "downstream": "Downstream",
     "upstream": "Upstream",
@@ -78,11 +79,16 @@
     "retry": "Retry",
     "degree": "Degree",
     "browse": "Browse",
+    "value": "Value",
+    "partOfWithName": "Part of {{name}}",
+    "containsWithNameNNumber": "Contains {{count}} {{name}}",
+    "consumesWithNameNNumber": "Consumes {{count}} {{name}}",
+    "foundInWithNameNNumber": "Found in {{count}} {{name}}",
+    "noPreviewWasFound": "No preview was found."
     "reads": "Reads",
     "writes": "Writes",
     "title": "Title",
     "key": "Key",
-    "value": "Value",
     "backAction": "Back",
     "saveChanges": "Save Changes",
     "models": "Models",
@@ -245,9 +251,14 @@
     }
   },
   "lineage": {
+    "hideColumnLevelLineage": "Hide column level lineage",
+    "showColumnLevelLineage":"Show column level lineage",
+    "columnLineage": "Column Lineage",
+    "clickToRefreshData": "Click to refresh data",
     "entityDistanceFrom_withName": "This entity is a {{distance}} degree connection to {{name}}",
     "entityDistanceFrom_withoutName": "This entity is a {{distance}} degree connection to the source entity",
     "clickToSeeColumnPathFrom": "(0-1)Click to see column path from ;(2-inf)Click to see column paths from ",
+    "visualizeLineage": "Visualize Lineage",
     "ordinalSuffix": [
       "th",
       "st",
@@ -337,6 +348,7 @@
   },
   "placeholder": {
     "searchForWithName": "Search for {{name}}...",
+    "selectAColumn": "Select column",
     "addDescriptionForNewTag": "Add a description for your new tag...",
     "datasetsDashboardsChartsAndMore": "Datasets, Dashboards, Charts, and more..."
   },
@@ -366,7 +378,7 @@
     "update": "Update",
     "success": {
       "addWithName": "Added {{name}}!",
-      "removeWithName": "Removed {{name}}!",
+      "removeWithName": "{{name}} removed!",
       "updateWithName": "{{name}} updated!",
       "softDelete": "Soft Deleted"
     },

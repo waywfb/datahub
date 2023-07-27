@@ -74,7 +74,7 @@ export default class EntityRegistry {
         return entity.icon(fontSize, styleType, color);
     }
 
-    // TODO ndespouy remplacer tout ces appels par getEntityNameTrans
+    // TODO ndespouy remplacer tout ces appels par getCollectionNameTrans
     getCollectionName(type: EntityType): string {
         const entity = validatedGet(type, this.entityTypeToEntity);
         return entity.getCollectionName();

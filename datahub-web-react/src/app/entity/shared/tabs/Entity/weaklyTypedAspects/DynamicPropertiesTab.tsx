@@ -2,10 +2,10 @@ import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { StyledTable } from '../../../components/styled/StyledTable';
 import { ANTD_GRAY } from '../../../constants';
 import TableValueElement from './TableValueElement';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     payload: string | undefined | null;

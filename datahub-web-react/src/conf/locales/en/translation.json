@@ -84,7 +84,7 @@
     "containsWithNameNNumber": "Contains {{count}} {{name}}",
     "consumesWithNameNNumber": "Consumes {{count}} {{name}}",
     "foundInWithNameNNumber": "Found in {{count}} {{name}}",
-    "noPreviewWasFound": "No preview was found."
+    "noPreviewWasFound": "No preview was found.",
     "reads": "Reads",
     "writes": "Writes",
     "title": "Title",

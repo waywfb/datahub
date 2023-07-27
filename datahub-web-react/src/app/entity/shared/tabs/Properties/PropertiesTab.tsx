@@ -2,10 +2,10 @@ import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../constants';
 import { StyledTable } from '../../components/styled/StyledTable';
 import { useEntityData } from '../../EntityContext';
-import { useTranslation } from 'react-i18next';
 
 const NameText = styled(Typography.Text)`
     font-family: 'Roboto Mono', monospace;

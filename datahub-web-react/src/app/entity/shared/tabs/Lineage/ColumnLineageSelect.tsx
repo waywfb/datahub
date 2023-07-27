@@ -4,12 +4,12 @@ import { CaretDownOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
 import { blue } from '@ant-design/colors';
 import { useHistory, useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { ImpactAnalysisIcon } from '../Dataset/Schema/components/MenuColumn';
 import updateQueryParams from '../../../../shared/updateQueryParams';
 import { downgradeV2FieldPath } from '../../../dataset/profile/schema/utils/utils';
 import { useEntityData } from '../../EntityContext';
 import { useGetEntityWithSchema } from '../Dataset/Schema/useGetEntitySchema';
-import { useTranslation } from 'react-i18next';
 
 const StyledSelect = styled(Select)`
     margin-right: 5px;
@@ -60,7 +60,9 @@ export default function ColumnsLineageSelect({
         setSelectedColumn(column);
     }
 
-    const columnButtonTooltip = isColumnLevelLineage ? t('lineage.hideColumnLevelLineage') : t('lineage.showColumnLevelLineage');
+    const columnButtonTooltip = isColumnLevelLineage
+        ? t('lineage.hideColumnLevelLineage')
+        : t('lineage.showColumnLevelLineage');
 
     return (
         <>

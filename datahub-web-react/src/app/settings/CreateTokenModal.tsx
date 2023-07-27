@@ -123,10 +123,10 @@ export default function CreateTokenModal({ currentUserUrn, visible, onClose, onC
                 footer={
                     <>
                         <Button onClick={onModalClose} type="text">
-                            Cancel
+                            {t('common.cancel')}
                         </Button>
                         <Button id="createTokenButton" onClick={onCreateNewToken} disabled={createButtonEnabled}>
-                            Create
+                            {t('common.create')}
                         </Button>
                     </>
                 }

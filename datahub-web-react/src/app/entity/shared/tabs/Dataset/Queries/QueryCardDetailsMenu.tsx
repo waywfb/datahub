@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { DeleteOutlined, MoreOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useDeleteQueryMutation } from '../../../../../../graphql/query.generated';
 
 const StyledMoreOutlined = styled(MoreOutlined)`
@@ -15,6 +16,7 @@ export type Props = {
 };
 
 export default function QueryCardDetailsMenu({ urn, onDeleted, index }: Props) {
+    const { t } = useTranslation();
     const [deleteQueryMutation] = useDeleteQueryMutation();
 
     const deleteQuery = () => {
@@ -42,7 +44,8 @@ export default function QueryCardDetailsMenu({ urn, onDeleted, index }: Props) {
                 deleteQuery();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

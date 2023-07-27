@@ -39,17 +39,19 @@ enum TabType {
     Roles = 'Roles',
     Policies = 'Policies',
 }
-const ENABLED_TAB_TYPES = [TabType.Roles, TabType.Policies];
+const ENABLED_TAB_TYPES: string[] = [TabType.Roles, TabType.Policies];
 
 export const ManagePermissions = () => {
     /**
      * Determines which view should be visible: roles or policies.
      */
 
+    const { t } = useTranslation();
     const getTabs = () => {
         return [
             {
                 name: TabType.Roles,
+                title: t('permissions.permissionsTabTypes.roles'),
                 path: TabType.Roles.toLocaleLowerCase(),
                 content: <ManageRoles />,
                 display: {
@@ -58,6 +60,7 @@ export const ManagePermissions = () => {
             },
             {
                 name: TabType.Policies,
+                title: t('permissions.permissionsTabTypes.policies'),
                 path: TabType.Policies.toLocaleLowerCase(),
                 content: <ManagePolicies />,
                 display: {
@@ -69,7 +72,6 @@ export const ManagePermissions = () => {
 
     const defaultTabPath = getTabs() && getTabs()?.length > 0 ? getTabs()[0].path : '';
     const onTabChange = () => null;
-    const { t } = useTranslation();
 
     return (
         <PageContainer>

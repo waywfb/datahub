@@ -1,6 +1,7 @@
 import { Popover, Typography, Button } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     AssertionStdAggregation,
     AssertionStdOperator,
@@ -320,6 +321,7 @@ const TOOLTIP_MAX_WIDTH = 440;
  * For example, Column 'X' values are in [1, 2, 3]
  */
 export const DatasetAssertionDescription = ({ assertionInfo }: Props) => {
+    const { t } = useTranslation();
     const { scope, aggregation, fields, operator, parameters, nativeType, nativeParameters, logic } = assertionInfo;
     const [isLogicVisible, setIsLogicVisible] = useState(false);
     /**
@@ -337,10 +339,10 @@ export const DatasetAssertionDescription = ({ assertionInfo }: Props) => {
     return (
         <Popover
             overlayStyle={{ maxWidth: TOOLTIP_MAX_WIDTH }}
-            title={<Typography.Text strong>Details</Typography.Text>}
+            title={<Typography.Text strong>{t('common.details')}</Typography.Text>}
             content={
                 <>
-                    <Typography.Text strong>type</Typography.Text>: {nativeType || 'N/A'}
+                    <Typography.Text strong>{t('common.type').toLowerCase()}</Typography.Text>: {nativeType || 'N/A'}
                     {nativeParameters?.map((parameter) => (
                         <div>
                             <Typography.Text strong>{parameter.key}</Typography.Text>: {parameter.value}

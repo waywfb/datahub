@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button, message, Modal, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useCreateQueryMutation, useUpdateQueryMutation } from '../../../../../../graphql/query.generated';
 import { QueryLanguage } from '../../../../../../types.generated';
 import { QueryBuilderState } from './types';
@@ -37,6 +38,7 @@ type Props = {
 };
 
 export default function QueryBuilderModal({ initialState, datasetUrn, onClose, onSubmit }: Props) {
+    const { t } = useTranslation();
     const isUpdating = initialState?.urn !== undefined;
 
     const [builderState, setBuilderState] = useState<QueryBuilderState>(initialState || DEFAULT_STATE);
@@ -134,7 +136,8 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                 onClose?.();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -152,7 +155,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                 footer={
                     <>
                         <Button onClick={onClose} data-testid="query-builder-cancel-button" type="text">
-                            Cancel
+                            {t('common.cancel')}
                         </Button>
                         <Button
                             id="createQueryButton"
@@ -160,7 +163,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                             onClick={saveQuery}
                             type="primary"
                         >
-                            Save
+                            {t('common.save')}
                         </Button>
                     </>
                 }

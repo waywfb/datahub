@@ -168,6 +168,7 @@ export default function SchemaHeader({
     setFilterText,
     numRows,
 }: Props) {
+    const { t } = useTranslation();
     const history = useHistory();
     const location = useLocation();
     const { i18n } = useTranslation();
@@ -233,10 +234,10 @@ export default function SchemaHeader({
                     {hasKeySchema && (
                         <KeyValueButtonGroup>
                             <KeyButton $highlighted={showKeySchema} onClick={() => setShowKeySchema(true)}>
-                                Key
+                                {t('common.key')}
                             </KeyButton>
                             <ValueButton $highlighted={!showKeySchema} onClick={() => setShowKeySchema(false)}>
-                                Value
+                                {t('common.value')}
                             </ValueButton>
                         </KeyValueButtonGroup>
                     )}
@@ -244,7 +245,9 @@ export default function SchemaHeader({
                         (editMode ? (
                             <ShowVersionButton onClick={() => setEditMode?.(false)}>Version Blame</ShowVersionButton>
                         ) : (
-                            <ShowVersionButton onClick={() => setEditMode?.(true)}>Back</ShowVersionButton>
+                            <ShowVersionButton onClick={() => setEditMode?.(true)}>
+                                {t('common.backAction')}
+                            </ShowVersionButton>
                         ))}
                     {!showRaw && (
                         <StyledInput

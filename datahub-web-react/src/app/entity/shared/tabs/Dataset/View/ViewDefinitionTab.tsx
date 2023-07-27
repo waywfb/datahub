@@ -2,6 +2,7 @@ import { Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { useTranslation } from 'react-i18next';
 import { GetDatasetQuery } from '../../../../../../graphql/dataset.generated';
 import { ANTD_GRAY } from '../../../constants';
 import { useBaseEntity } from '../../../EntityContext';
@@ -36,6 +37,7 @@ const NestedSyntax = styled(SyntaxHighlighter)`
 `;
 
 export default function ViewDefinitionTab() {
+    const { t } = useTranslation();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
     const logic = baseEntity?.dataset?.viewProperties?.logic || 'UNKNOWN';
     const materialized = (baseEntity?.dataset?.viewProperties?.materialized && true) || false;
@@ -44,7 +46,7 @@ export default function ViewDefinitionTab() {
     return (
         <>
             <InfoSection>
-                <Typography.Title level={5}>Details</Typography.Title>
+                <Typography.Title level={5}>{t('common.details')}</Typography.Title>
                 <InfoItemContainer justifyContent="left">
                     <InfoItem title="Materialized">
                         <InfoItemContent>{materialized ? 'True' : 'False'}</InfoItemContent>

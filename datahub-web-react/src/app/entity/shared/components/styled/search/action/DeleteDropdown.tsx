@@ -63,7 +63,8 @@ export default function DeleteDropdown({ urns, disabled = false, refetch }: Prop
                                     batchSoftDelete();
                                 },
                                 onCancel() {},
-                                okText: 'Yes',
+                                okText: t('common.yes'),
+                                cancelText: t('common.cancel'),
                                 maskClosable: true,
                                 closable: true,
                             });

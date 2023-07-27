@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { Button, Drawer } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { Message } from '../shared/Message';
 import { useEntityRegistry } from '../useEntityRegistry';
 import CompactContext from '../shared/CompactContext';
@@ -55,6 +56,7 @@ type Props = {
 };
 
 export default function LineageExplorer({ urn, type }: Props) {
+    const { t } = useTranslation();
     const previousUrn = usePrevious(urn);
     const history = useHistory();
     const [fineGrainedMap] = useState<any>({ forward: {}, reverse: {} });
@@ -206,7 +208,7 @@ export default function LineageExplorer({ urn, type }: Props) {
                     selectedEntity && (
                         <FooterButtonGroup>
                             <Button onClick={handleClose} type="text">
-                                Close
+                                {t('common.close')}
                             </Button>
                             <Button href={entityRegistry.getEntityUrl(selectedEntity.type, selectedEntity.urn)}>
                                 <InfoCircleOutlined /> {entityRegistry.getEntityName(selectedEntity.type)} Details

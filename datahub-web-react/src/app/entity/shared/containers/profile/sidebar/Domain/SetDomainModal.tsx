@@ -163,10 +163,10 @@ export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOk
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="setDomainButton" disabled={selectedDomain === undefined} onClick={onOk}>
-                        Add
+                        {t('common.add')}
                     </Button>
                 </>
             }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { message, Button, Input, Modal, Typography, Form, Tooltip } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useUpdateCorpUserPropertiesMutation } from '../../../graphql/user.generated';
 import { useEnterKeyListener } from '../../shared/useEnterKeyListener';
 import { useAppConfig } from '../../useAppConfig';
@@ -25,6 +26,7 @@ type Props = {
 export const USER_NAME_REGEX = new RegExp('^[a-zA-Z ]*$');
 
 export default function UserEditProfileModal({ visible, onClose, onSave, editModalData }: Props) {
+    const { t } = useTranslation();
     const { config } = useAppConfig();
     const { readOnlyModeEnabled } = config.featureFlags;
     const [updateCorpUserPropertiesMutation] = useUpdateCorpUserPropertiesMutation();
@@ -100,10 +102,10 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="editUserButton" onClick={onSaveChanges} disabled={saveButtonEnabled}>
-                        Save Changes
+                        {t('common.saveChanges')}
                     </Button>
                 </>
             }
@@ -119,7 +121,7 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
             >
                 <Form.Item
                     name="name"
-                    label={<Typography.Text strong>Name</Typography.Text>}
+                    label={<Typography.Text strong>{t('common.name')}</Typography.Text>}
                     rules={[
                         {
                             required: true,
@@ -142,7 +144,7 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
                 </Form.Item>
                 <Form.Item
                     name="title"
-                    label={<Typography.Text strong>Title/Role</Typography.Text>}
+                    label={<Typography.Text strong>{`${t('common.title')}/${t('common.role')}`}</Typography.Text>}
                     rules={[{ whitespace: true }, { min: 2, max: 50 }]}
                     hasFeedback
                 >

@@ -4,6 +4,7 @@ import * as QueryString from 'query-string';
 import { useLocation } from 'react-router';
 import { Button, message, Modal, Pagination, Select } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     useCreateIngestionExecutionRequestMutation,
     useCreateIngestionSourceMutation,
@@ -80,6 +81,7 @@ const removeExecutionsFromIngestionSource = (source) => {
 };
 
 export const IngestionSourceList = () => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const location = useLocation();
     const params = QueryString.parse(location.search, { arrayFormat: 'comma' });
@@ -323,7 +325,8 @@ export const IngestionSourceList = () => {
                 executeIngestionSource(urn);
             },
             onCancel() {},
-            okText: 'Execute',
+            okText: t('common.execute'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -337,7 +340,8 @@ export const IngestionSourceList = () => {
                 deleteIngestionSource(urn);
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -370,7 +374,7 @@ export const IngestionSourceList = () => {
                             value={sourceFilter}
                             onChange={(selection) => setSourceFilter(selection as IngestionSourceType)}
                         >
-                            <Select.Option value={IngestionSourceType.ALL}>All</Select.Option>
+                            <Select.Option value={IngestionSourceType.ALL}>{t('common.all')}</Select.Option>
                             <Select.Option value={IngestionSourceType.UI}>UI</Select.Option>
                             <Select.Option value={IngestionSourceType.CLI}>CLI</Select.Option>
                         </StyledSelect>

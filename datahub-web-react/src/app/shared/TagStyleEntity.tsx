@@ -326,7 +326,7 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
             {/* Tag Title */}
             <TagHeader>
                 <div>
-                    <TitleLabel>Tag</TitleLabel>
+                    <TitleLabel>{t('common.tag')}</TitleLabel>
                     <TagName>
                         <ColorPicker>
                             <ColorPickerButton style={{ backgroundColor: colorValue }} onClick={handlePickerClick} />
@@ -353,7 +353,7 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
             </TagHeader>
             <Divider />
             {/* Tag Description */}
-            <DescriptionLabel>About</DescriptionLabel>
+            <DescriptionLabel>{t('common.about')}</DescriptionLabel>
             <Paragraph
                 style={{ fontSize: '12px', lineHeight: '15px', padding: '5px 0px' }}
                 editable={{ onChange: handleSaveDescription }}
@@ -410,7 +410,7 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
                         })}
                 </StatsBox>
                 <div>
-                    <StatsLabel>Owners</StatsLabel>
+                    <StatsLabel>{t('common.owners')}</StatsLabel>
                     <div>
                         {data?.tag?.ownership?.owners?.map((owner) => (
                             <ExpandedOwner entityUrn={urn} owner={owner} refetch={refetch} hidePopOver />

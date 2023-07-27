@@ -5,6 +5,7 @@ import 'react-js-cron/dist/styles.css';
 import styled from 'styled-components';
 import cronstrue from 'cronstrue';
 import { CheckCircleOutlined, WarningOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { SourceBuilderState, StepProps } from './types';
 import { TimezoneSelect } from './TimezoneSelect';
 import { ANTD_GRAY, REDESIGN_COLORS } from '../../../entity/shared/constants';
@@ -65,6 +66,7 @@ const ItemDescriptionText = styled(Typography.Paragraph)``;
 const DAILY_MIDNIGHT_CRON_INTERVAL = '0 0 * * *';
 
 export const CreateScheduleStep = ({ state, updateState, goTo, prev }: StepProps) => {
+    const { t } = useTranslation();
     const { schedule } = state;
     const interval = schedule?.interval?.replaceAll(', ', ' ') || DAILY_MIDNIGHT_CRON_INTERVAL;
     const timezone = schedule?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -165,10 +167,10 @@ export const CreateScheduleStep = ({ state, updateState, goTo, prev }: StepProps
                 </Form.Item>
             </Form>
             <ControlsContainer>
-                <Button onClick={prev}>Previous</Button>
+                <Button onClick={prev}>{t('common.previous')}</Button>
                 <div>
                     <Button disabled={!interval || interval.length === 0 || cronAsText.error} onClick={onClickNext}>
-                        Next
+                        {t('common.next')}
                     </Button>
                 </div>
             </ControlsContainer>

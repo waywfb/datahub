@@ -2,6 +2,7 @@ import React from 'react';
 import { Dropdown, MenuProps, Popconfirm, Typography, message, notification } from 'antd';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { OwnershipTypeEntity } from '../../../../types.generated';
 import { useDeleteOwnershipTypeMutation } from '../../../../graphql/ownership.generated';
 
@@ -43,6 +44,7 @@ type Props = {
 };
 
 export const ActionsColumn = ({ ownershipType, setIsOpen, setOwnershipType, refetch }: Props) => {
+    const { t } = useTranslation();
     const editOnClick = () => {
         setIsOpen(true);
         setOwnershipType(ownershipType);
@@ -84,7 +86,7 @@ export const ActionsColumn = ({ ownershipType, setIsOpen, setOwnershipType, refe
             icon: (
                 <MenuButtonContainer data-testid={EDIT_OWNERSHIP_TYPE_TEST_ID}>
                     <EditOutlined />
-                    <MenuButtonText>Edit</MenuButtonText>
+                    <MenuButtonText>{t('common.edit')}</MenuButtonText>
                 </MenuButtonContainer>
             ),
         },
@@ -101,7 +103,7 @@ export const ActionsColumn = ({ ownershipType, setIsOpen, setOwnershipType, refe
                 >
                     <MenuButtonContainer data-testid={DELETE_OWNERSHIP_TYPE_TEST_ID}>
                         <DeleteOutlined />
-                        <MenuButtonText>Delete</MenuButtonText>
+                        <MenuButtonText>{t('common.delete')}</MenuButtonText>
                     </MenuButtonContainer>
                 </Popconfirm>
             ),

@@ -1,6 +1,7 @@
 import React from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../types.generated';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { useDeleteDomainMutation } from '../../graphql/domain.generated';
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export default function DomainItemMenu({ name, urn, onDelete }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const [deleteDomainMutation] = useDeleteDomainMutation();
 
@@ -42,7 +44,8 @@ export default function DomainItemMenu({ name, urn, onDelete }: Props) {
                 deleteDomain();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

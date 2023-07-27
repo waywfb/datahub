@@ -1,6 +1,7 @@
 import { message, Button, Modal, Select, Tag } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useAddRelatedTermsMutation } from '../../../../graphql/glossaryTerm.generated';
 import { useGetSearchResultsLazyQuery } from '../../../../graphql/search.generated';
 import { EntityType, SearchResult, TermRelationshipType } from '../../../../types.generated';
@@ -21,6 +22,7 @@ interface Props {
 }
 
 function AddRelatedTermsModal(props: Props) {
+    const { t } = useTranslation();
     const { onClose, relationshipType } = props;
 
     const [inputValue, setInputValue] = useState('');
@@ -161,10 +163,10 @@ function AddRelatedTermsModal(props: Props) {
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button onClick={addTerms} disabled={!selectedUrns.length}>
-                        Add
+                        {t('common.add')}
                     </Button>
                 </>
             }

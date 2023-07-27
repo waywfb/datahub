@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router';
 import { Button, Input, Modal, Spin, notification } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { AndFilterInput } from '../../../../../../types.generated';
 import { getSearchCsvDownloadHeader, transformResultsToCsvRow } from './downloadAsCsvUtil';
 import { downloadRowsAsCsv } from '../../../../../search/utils/csvUtils';
@@ -33,6 +34,7 @@ export default function DownloadAsCsvModal({
     showDownloadAsCsvModal,
     setShowDownloadAsCsvModal,
 }: Props) {
+    const { t } = useTranslation();
     const { entityData: entitySearchIsEmbeddedWithin } = useEntityData();
     const location = useLocation();
 
@@ -127,7 +129,7 @@ export default function DownloadAsCsvModal({
             footer={
                 <>
                     <Button onClick={() => setShowDownloadAsCsvModal(false)} type="text">
-                        Close
+                        {t('common.close')}
                     </Button>
                     <Button
                         onClick={() => {
@@ -136,7 +138,7 @@ export default function DownloadAsCsvModal({
                         }}
                         disabled={saveAsTitle.length === 0}
                     >
-                        Download
+                        {t('common.download')}
                     </Button>
                 </>
             }

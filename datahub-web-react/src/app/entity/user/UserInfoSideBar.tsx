@@ -1,6 +1,7 @@
 import { Divider, message, Space, Button, Typography, Tag } from 'antd';
 import React, { useState } from 'react';
 import { EditOutlined, MailOutlined, PhoneOutlined, SlackOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { useUpdateCorpUserPropertiesMutation } from '../../../graphql/user.generated';
 import { EntityRelationship, DataHubRole } from '../../../types.generated';
 import UserEditProfileModal from './UserEditProfileModal';
@@ -50,6 +51,7 @@ const AVATAR_STYLE = { marginTop: '14px' };
  * UserInfoSideBar- Sidebar section for users profiles.
  */
 export default function UserInfoSideBar({ sideBarData, refetch }: Props) {
+    const { t } = useTranslation();
     const { name, aboutText, avatarName, email, groupsDetails, phone, photoUrl, role, slack, team, dataHubRoles, urn } =
         sideBarData;
 
@@ -126,7 +128,7 @@ export default function UserInfoSideBar({ sideBarData, refetch }: Props) {
                     </SocialDetails>
                     <Divider className="divider-aboutSection" />
                     <AboutSection>
-                        About
+                        {t('common.about')}
                         <AboutSectionText>
                             <Paragraph
                                 editable={isProfileOwner ? { onChange: onSaveAboutMe } : false}
@@ -138,7 +140,7 @@ export default function UserInfoSideBar({ sideBarData, refetch }: Props) {
                     </AboutSection>
                     <Divider className="divider-groupsSection" />
                     <GroupsSection>
-                        Groups
+                        {t('common.groups')}
                         <EntityGroups
                             readMore={groupSectionExpanded}
                             setReadMore={() => setGroupSectionExpanded(!groupSectionExpanded)}

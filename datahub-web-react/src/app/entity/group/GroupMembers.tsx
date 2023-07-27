@@ -3,6 +3,7 @@ import { MoreOutlined, UserAddOutlined, UserDeleteOutlined } from '@ant-design/i
 import { Col, Dropdown, message, Modal, Pagination, Row, Empty, Button, Typography, MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetAllGroupMembersQuery, useRemoveGroupMembersMutation } from '../../../graphql/group.generated';
 import { CorpUser, EntityType } from '../../../types.generated';
 import { CustomAvatar } from '../../shared/avatar';
@@ -85,6 +86,7 @@ type Props = {
 };
 
 export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeMembers }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
 
     const [page, setPage] = useState(1);
@@ -145,7 +147,8 @@ export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeM
                 removeGroupMember(memberUrn);
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

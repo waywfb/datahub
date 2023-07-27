@@ -1,5 +1,6 @@
 import { Button, Form, Input, Modal, Typography } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEnterKeyListener } from '../../shared/useEnterKeyListener';
 import { SecretBuilderState } from './types';
 
@@ -15,6 +16,7 @@ type Props = {
 };
 
 export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }: Props) => {
+    const { t } = useTranslation();
     const [createButtonEnabled, setCreateButtonEnabled] = useState(false);
     const [form] = Form.useForm();
 
@@ -37,7 +39,7 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
             footer={
                 <>
                     <Button onClick={onCancel} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button
                         id="createSecretButton"
@@ -53,7 +55,7 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
                         }
                         disabled={!createButtonEnabled}
                     >
-                        Create
+                        {t('common.create')}
                     </Button>
                 </>
             }
@@ -66,7 +68,7 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
                     setCreateButtonEnabled(!form.getFieldsError().some((field) => field.errors.length > 0))
                 }
             >
-                <Form.Item label={<Typography.Text strong>Name</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.name')}</Typography.Text>}>
                     <Typography.Paragraph>
                         Give your secret a name. This is what you&apos;ll use to reference the secret from your recipes.
                     </Typography.Paragraph>
@@ -86,7 +88,7 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
                         <Input placeholder="A name for your secret" />
                     </Form.Item>
                 </Form.Item>
-                <Form.Item label={<Typography.Text strong>Value</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.value')}</Typography.Text>}>
                     <Typography.Paragraph>
                         The value of your secret, which will be encrypted and stored securely within DataHub.
                     </Typography.Paragraph>
@@ -105,7 +107,7 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
                         <Input.TextArea placeholder="The value of your secret" autoComplete="false" />
                     </Form.Item>
                 </Form.Item>
-                <Form.Item label={<Typography.Text strong>Description</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
                     <Typography.Paragraph>
                         An optional description to help keep track of your secret.
                     </Typography.Paragraph>

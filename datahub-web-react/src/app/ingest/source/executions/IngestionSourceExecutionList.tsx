@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { message, Modal } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     useGetIngestionSourceQuery,
     useCancelIngestionExecutionRequestMutation,
@@ -29,6 +30,7 @@ type Props = {
 };
 
 export const IngestionSourceExecutionList = ({ urn, isExpanded, lastRefresh, onRefresh }: Props) => {
+    const { t } = useTranslation();
     const [focusExecutionUrn, setFocusExecutionUrn] = useState<undefined | string>(undefined);
 
     const start = 0;
@@ -97,8 +99,8 @@ export const IngestionSourceExecutionList = ({ urn, isExpanded, lastRefresh, onR
                 onCancelExecutionRequest(executionUrn);
             },
             onCancel() {},
-            okText: 'Cancel',
-            cancelText: 'Close',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -131,8 +133,8 @@ export const IngestionSourceExecutionList = ({ urn, isExpanded, lastRefresh, onR
                     });
             },
             onCancel() {},
-            okText: 'Rollback',
-            cancelText: 'Close',
+            okText: t('common.rollback'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

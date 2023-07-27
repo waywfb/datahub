@@ -1,5 +1,6 @@
 import { Button, Modal, message } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import DataProductBuilderForm from './DataProductBuilderForm';
 import { DataProductBuilderState } from './types';
 import { useCreateDataProductMutation } from '../../../../graphql/dataProduct.generated';
@@ -24,6 +25,7 @@ type Props = {
 };
 
 export default function CreateDataProductModal({ domain, onCreateDataProduct, onClose }: Props) {
+    const { t } = useTranslation();
     const [builderState, updateBuilderState] = useState<DataProductBuilderState>(DEFAULT_STATE);
     const [createDataProductMutation] = useCreateDataProductMutation();
 
@@ -66,10 +68,10 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button onClick={createDataProduct} disabled={!builderState.name}>
-                        Create
+                        {t('common.create')}
                     </Button>
                 </>
             }

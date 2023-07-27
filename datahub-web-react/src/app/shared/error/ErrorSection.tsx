@@ -76,7 +76,11 @@ export const ErrorSection = (): JSX.Element => {
                 </MessageSection>
                 <div>
                     <DetailParagraph type="secondary">
-                        <ReactiveTrans i18nKey="error.errorSection.needSupport_html" />
+                        <ReactiveTrans
+                            {...{
+                                i18nKey: 'error.errorSection.needSupport_html',
+                            }}
+                        />
                     </DetailParagraph>
                     <ResourceList>
                         {resources.map((resource) => (

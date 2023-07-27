@@ -126,10 +126,10 @@ export default function SetDataProductModal({
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="setDataProductButton" disabled={!selectedDataProduct} onClick={onOk}>
-                        Add
+                        {t('common.add')}
                     </Button>
                 </>
             }

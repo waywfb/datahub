@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { getDeleteEntityMutation } from '../../../shared/deleteUtils';
@@ -22,6 +23,7 @@ function useDeleteEntity(
     hideMessage?: boolean,
     skipWait?: boolean,
 ) {
+    const { t } = useTranslation();
     const [hasBeenDeleted, setHasBeenDeleted] = useState(false);
     const entityRegistry = useEntityRegistry();
     const { isInGlossaryContext, urnsToUpdate, setUrnsToUpdate } = useGlossaryEntityData();
@@ -81,7 +83,8 @@ function useDeleteEntity(
                 handleDeleteEntity();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

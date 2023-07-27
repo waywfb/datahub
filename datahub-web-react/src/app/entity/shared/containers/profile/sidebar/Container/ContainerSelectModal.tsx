@@ -1,6 +1,7 @@
 import { Button, Form, Modal, Select, Tag, Tooltip } from 'antd';
 import React, { ReactNode, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsLazyQuery } from '../../../../../../../graphql/search.generated';
 import { Container, Entity, EntityType } from '../../../../../../../types.generated';
 import { useEnterKeyListener } from '../../../../../../shared/useEnterKeyListener';
@@ -35,6 +36,7 @@ const PreviewImage = styled.img`
 `;
 
 export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride, titleOverride }: Props) => {
+    const { t } = useTranslation();
     const [containerSearch, { data: platforSearchData }] = useGetSearchResultsLazyQuery();
     const entityRegistry = useEntityRegistry();
 
@@ -145,10 +147,10 @@ export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="setContainerButton" disabled={selectedContainers?.length === 0} onClick={onOk}>
-                        Add
+                        {t('common.add')}
                     </Button>
                 </>
             }

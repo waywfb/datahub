@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import * as QueryString from 'query-string';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import PolicyBuilderModal from './PolicyBuilderModal';
 import {
     Policy,
@@ -95,7 +96,7 @@ const toFilterInput = (filter: PolicyMatchFilter): PolicyMatchFilterInput => {
         }),
     };
 };
-
+// TODO: jm translate name, etc ... ?
 const toPolicyInput = (policy: Omit<Policy, 'urn'>): PolicyUpdateInput => {
     let policyInput: PolicyUpdateInput = {
         type: policy.type,
@@ -131,6 +132,7 @@ const toPolicyInput = (policy: Omit<Policy, 'urn'>): PolicyUpdateInput => {
 
 // TODO: Cleanup the styling.
 export const ManagePolicies = () => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const location = useLocation();
     const params = QueryString.parse(location.search, { arrayFormat: 'comma' });
@@ -247,8 +249,8 @@ export const ManagePolicies = () => {
     // On Delete Policy handler
     const onRemovePolicy = (policy: Policy) => {
         Modal.confirm({
-            title: `Delete ${policy?.name}`,
-            content: `Are you sure you want to remove policy?`,
+            title: t('common.deleteWithName', { name: policy?.name }),
+            content: t('permissions.areYouSureRemovePolicy'),
             onOk() {
                 deletePolicy({ variables: { urn: policy?.urn as string } }); // There must be a focus policy urn.
                 analytics.event({
@@ -256,14 +258,15 @@ export const ManagePolicies = () => {
                     entityUrn: policy?.urn,
                     entityType: EntityType.DatahubPolicy,
                 });
-                message.success('Successfully removed policy.');
+                message.success(t('permissions.successfullyRemovedPolicy'));
                 setTimeout(() => {
                     policiesRefetch();
                 }, 3000);
                 onCancelViewPolicy();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -282,6 +285,7 @@ export const ManagePolicies = () => {
                 input: toPolicyInput(newPolicy),
             },
         });
+        // TODO: jm add translation ?
         message.success(`Successfully ${newState === PolicyState.Active ? 'activated' : 'deactivated'} policy.`);
         setTimeout(() => {
             policiesRefetch();
@@ -305,7 +309,7 @@ export const ManagePolicies = () => {
                 type: EventType.CreatePolicyEvent,
             });
         }
-        message.success('Successfully saved policy.');
+        message.success(t('permissions.successfullySavedPolicy'));
         setTimeout(() => {
             policiesRefetch();
         }, 3000);
@@ -314,7 +318,7 @@ export const ManagePolicies = () => {
 
     const tableColumns = [
         {
-            title: 'Name',
+            title: t('common.name'),
             dataIndex: 'name',
             key: 'name',
             render: (_, record: any) => {
@@ -329,7 +333,7 @@ export const ManagePolicies = () => {
             },
         },
         {
-            title: 'Type',
+            title: t('common.type'),
             dataIndex: 'type',
             key: 'type',
             render: (type: string) => {
@@ -338,13 +342,13 @@ export const ManagePolicies = () => {
             },
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: 'description',
             key: 'description',
             render: (description: string) => description || '',
         },
         {
-            title: 'Actors',
+            title: t('common.actors'),
             dataIndex: 'actors',
             key: 'actors',
             render: (_, record: any) => {
@@ -357,15 +361,17 @@ export const ManagePolicies = () => {
                             maxCount={3}
                             size={28}
                         />
-                        {record?.allUsers ? <ActorTag>All Users</ActorTag> : null}
-                        {record?.allGroups ? <ActorTag>All Groups</ActorTag> : null}
-                        {record?.resourceOwners ? <ActorTag>All Owners</ActorTag> : null}
+                        {record?.allUsers ? <ActorTag>{`${t('common.all')} ${t('common.users')}`}</ActorTag> : null}
+                        {record?.allGroups ? <ActorTag>{`${t('common.all')} ${t('common.groups')}`}</ActorTag> : null}
+                        {record?.resourceOwners ? (
+                            <ActorTag>{`${t('common.all')} ${t('common.owners')}`}</ActorTag>
+                        ) : null}
                     </>
                 );
             },
         },
         {
-            title: 'State',
+            title: t('common.state'),
             dataIndex: 'state',
             key: 'state',
             render: (state: string) => {

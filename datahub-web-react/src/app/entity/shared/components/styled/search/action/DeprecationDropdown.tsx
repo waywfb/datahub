@@ -70,7 +70,8 @@ export default function DeprecationDropdown({ urns, disabled = false, refetch }:
                                     batchUndeprecate();
                                 },
                                 onCancel() {},
-                                okText: 'Yes',
+                                okText: t('common.yes'),
+                                cancelText: t('common.cancel'),
                                 maskClosable: true,
                                 closable: true,
                             });

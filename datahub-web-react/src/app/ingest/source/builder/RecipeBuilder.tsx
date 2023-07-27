@@ -3,6 +3,7 @@ import { Button, message, Typography } from 'antd';
 import YAML from 'yamljs';
 import { CodeOutlined, FormOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../entity/shared/constants';
 import { YamlEditor } from './YamlEditor';
 import RecipeForm from './RecipeForm/RecipeForm';
@@ -62,6 +63,7 @@ interface Props {
 }
 
 function RecipeBuilder(props: Props) {
+    const { t } = useTranslation();
     const { state, isEditing, displayRecipe, sourceConfigs, setStagedRecipe, onClickNext, goToPrevious } = props;
     const { type } = state;
     const [isViewingForm, setIsViewingForm] = useState(true);
@@ -112,9 +114,9 @@ function RecipeBuilder(props: Props) {
                     </BorderedSection>
                     <ControlsContainer>
                         <Button disabled={isEditing} onClick={goToPrevious}>
-                            Previous
+                            {t('common.previous')}
                         </Button>
-                        <Button onClick={onClickNext}>Next</Button>
+                        <Button onClick={onClickNext}>{t('common.next')}</Button>
                     </ControlsContainer>
                 </>
             )}

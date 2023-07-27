@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, Modal, Typography, message, notification } from 'antd';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useCreateOwnershipTypeMutation, useUpdateOwnershipTypeMutation } from '../../../graphql/ownership.generated';
 import { OwnershipTypeEntity } from '../../../types.generated';
 import { OwnershipTypeBuilderState } from './table/types';
@@ -50,6 +51,7 @@ type Props = {
 };
 
 export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType }: Props) => {
+    const { t } = useTranslation();
     // State
     const [ownershipTypeBuilderState, setOwnershipTypeBuilderState] = useState<OwnershipTypeBuilderState>({
         name: ownershipType?.info?.name || ownershipType?.urn || '',
@@ -173,7 +175,7 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
         >
             <Form form={form}>
                 <FormItemContainer>
-                    <FormItemTitle>Name</FormItemTitle>
+                    <FormItemTitle>{t('common.name')}</FormItemTitle>
                     <StyledFormItem
                         name="name"
                         rules={[
@@ -195,7 +197,7 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
                     </StyledFormItem>
                 </FormItemContainer>
                 <FormItemContainer>
-                    <FormItemTitle>Description</FormItemTitle>
+                    <FormItemTitle>{t('common.description')}</FormItemTitle>
                     <StyledFormItem name="description" rules={[{ whitespace: true }, { min: 1, max: 250 }]}>
                         <Input
                             data-testid={DESCRIPTION_INPUT_TEST_ID}
@@ -209,7 +211,7 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
             </Form>
             <SaveButtonContainer>
                 <CancelButton data-testid="ownership-builder-cancel" onClick={onClose}>
-                    Cancel
+                    {t('common.cancel')}
                 </CancelButton>
                 <Button
                     data-testid="ownership-builder-save"
@@ -217,7 +219,7 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
                     disabled={!ownershipTypeBuilderState.name}
                     onClick={onUpsert}
                 >
-                    Save
+                    {t('common.save')}
                 </Button>
             </SaveButtonContainer>
         </Modal>

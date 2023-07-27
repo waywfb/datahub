@@ -65,7 +65,8 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
                 removeDomain(urnToRemoveFrom);
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

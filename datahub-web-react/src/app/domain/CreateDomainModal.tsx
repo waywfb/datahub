@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { message, Button, Input, Modal, Typography, Form, Collapse, Tag } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useCreateDomainMutation } from '../../graphql/domain.generated';
 import { useEnterKeyListener } from '../shared/useEnterKeyListener';
 import { validateCustomUrnId } from '../shared/textUtil';
@@ -28,6 +29,7 @@ const NAME_FIELD_NAME = 'name';
 const DESCRIPTION_FIELD_NAME = 'description';
 
 export default function CreateDomainModal({ onClose, onCreate }: Props) {
+    const { t } = useTranslation();
     const [createDomainMutation] = useCreateDomainMutation();
     const [createButtonEnabled, setCreateButtonEnabled] = useState(false);
     const [form] = Form.useForm();
@@ -80,7 +82,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button
                         id="createDomainButton"
@@ -88,7 +90,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                         onClick={onCreateDomain}
                         disabled={!createButtonEnabled}
                     >
-                        Create
+                        {t('common.create')}
                     </Button>
                 </>
             }
@@ -101,7 +103,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                     setCreateButtonEnabled(!form.getFieldsError().some((field) => field.errors.length > 0));
                 }}
             >
-                <Form.Item label={<Typography.Text strong>Name</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.name')}</Typography.Text>}>
                     <Typography.Paragraph>Give your new Domain a name. </Typography.Paragraph>
                     <Form.Item
                         name={NAME_FIELD_NAME}
@@ -135,7 +137,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                         })}
                     </SuggestedNamesGroup>
                 </Form.Item>
-                <Form.Item label={<Typography.Text strong>Description</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
                     <Typography.Paragraph>
                         An optional description for your new domain. You can change this later.
                     </Typography.Paragraph>

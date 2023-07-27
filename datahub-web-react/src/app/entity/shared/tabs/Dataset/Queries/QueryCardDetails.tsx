@@ -93,7 +93,7 @@ export default function QueryCardDetails({
     onDeleted,
     index,
 }: Props) {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     return (
         <Details>
@@ -119,7 +119,7 @@ export default function QueryCardDetails({
                     <NoMarkdownViewer
                         shouldWrap
                         limit={200}
-                        readMore={<MoreButton onClick={onClickExpand}>more</MoreButton>}
+                        readMore={<MoreButton onClick={onClickExpand}>{t('common.more').toLowerCase()}</MoreButton>}
                     >
                         {description}
                     </NoMarkdownViewer>

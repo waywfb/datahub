@@ -1,7 +1,9 @@
 import React from 'react';
 import { Form, Input, Select, Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { PolicyType } from '../../../types.generated';
+import { ReactiveTrans } from '../../../utils/i18n-utils/ReactiveTrans';
 
 type Props = {
     policyType: string;
@@ -32,44 +34,47 @@ export default function PolicyTypeForm({
     policyDescription,
     setPolicyDescription,
 }: Props) {
+    const { t } = useTranslation();
     const updatePolicyName = (name: string) => {
         setPolicyName(name);
     };
 
     return (
         <TypeForm layout="vertical">
-            <Form.Item name="policyName" labelAlign="right" label={<Typography.Text strong>Name</Typography.Text>}>
-                <Typography.Paragraph>A name for your new policy.</Typography.Paragraph>
+            <Form.Item
+                name="policyName"
+                labelAlign="right"
+                label={<Typography.Text strong>{t('common.name')}</Typography.Text>}
+            >
+                <Typography.Paragraph>{t('nameForNewPolicy')}</Typography.Paragraph>
                 <Input
-                    placeholder="Your policy name"
+                    placeholder={t('permissions.yourPolicyNamePlaceholder')}
                     value={policyName}
                     onChange={(event) => updatePolicyName(event.target.value)}
                 />
             </Form.Item>
-            <Form.Item name="policyType" label={<Typography.Text strong>Type</Typography.Text>}>
-                <Typography.Paragraph>The type of policy you would like to create.</Typography.Paragraph>
+            <Form.Item name="policyType" label={<Typography.Text strong>{t('common.type')}</Typography.Text>}>
+                <Typography.Paragraph>{t('permissions.typeOfPolicyToCreate')}</Typography.Paragraph>
                 <Select defaultValue={policyType} onSelect={(value) => setPolicyType(value as PolicyType)}>
-                    <Select.Option value={PolicyType.Platform}>Platform</Select.Option>
-                    <Select.Option value={PolicyType.Metadata}>Metadata</Select.Option>
+                    <Select.Option value={PolicyType.Platform}>{t('common.platform')}</Select.Option>
+                    <Select.Option value={PolicyType.Metadata}>{t('common.metadata')}</Select.Option>
                 </Select>
                 <TypeDescriptionParagraph type="secondary">
-                    The <b>Platform</b> policy type allows you to assign top-level DataHub Platform privileges to users.
-                    These include managing users and groups, creating policies, viewing analytics dashboards and more.
-                    <br />
-                    <br />
-                    The <b>Metadata</b> policy type allows you to assign metadata privileges to users. These include the
-                    ability to manipulate metadata like ownership, tags, documentation associated with Datasets, Charts,
-                    Dashboards, & more.
+                    <ReactiveTrans
+                        {...{
+                            i18nKey: 'permissions.typeOfPolicyDescription_html',
+                        }}
+                    />
                 </TypeDescriptionParagraph>
             </Form.Item>
             <Form.Item
                 name="policyDescription"
                 labelAlign="right"
-                label={<Typography.Text strong>Description</Typography.Text>}
+                label={<Typography.Text strong>{t('common.description')}</Typography.Text>}
             >
-                <Typography.Paragraph>An optional description for your new policy.</Typography.Paragraph>
+                <Typography.Paragraph>{t('permissions.newPolicyDescription')}</Typography.Paragraph>
                 <Input
-                    placeholder="Your policy description"
+                    placeholder={t('permissions.newPolicyDescriptionPlaceHolder')}
                     value={policyDescription}
                     onChange={(event) => setPolicyDescription(event.target.value)}
                 />

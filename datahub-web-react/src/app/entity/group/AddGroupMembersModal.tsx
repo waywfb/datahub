@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { message, Modal, Button, Form, Select, Tag } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useAddGroupMembersMutation } from '../../../graphql/group.generated';
 import { CorpUser, Entity, EntityType } from '../../../types.generated';
 import { useGetSearchResultsLazyQuery } from '../../../graphql/search.generated';
@@ -30,6 +31,7 @@ const StyleTag = styled(Tag)`
 `;
 
 export const AddGroupMembersModal = ({ urn, visible, onCloseModal, onSubmit }: Props) => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const [selectedMembers, setSelectedMembers] = useState<any[]>([]);
     const [inputValue, setInputValue] = useState('');
@@ -139,10 +141,10 @@ export const AddGroupMembersModal = ({ urn, visible, onCloseModal, onSubmit }: P
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button disabled={selectedMembers.length === 0} onClick={onAdd}>
-                        Add
+                        {t('common.add')}
                     </Button>
                 </>
             }

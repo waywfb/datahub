@@ -64,10 +64,10 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
             footer={
                 <>
                     <Button onClick={handleClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button form="addDeprecationForm" key="submit" htmlType="submit">
-                        Ok
+                        {t('common.ok')}
                     </Button>
                 </>
             }

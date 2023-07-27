@@ -69,7 +69,8 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
                                     batchUnsetDomains();
                                 },
                                 onCancel() {},
-                                okText: 'Yes',
+                                okText: t('common.yes'),
+                                cancelText: t('common.cancel'),
                                 maskClosable: true,
                                 closable: true,
                             });

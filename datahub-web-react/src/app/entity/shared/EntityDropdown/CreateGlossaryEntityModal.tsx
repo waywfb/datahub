@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { EditOutlined } from '@ant-design/icons';
 import { message, Button, Input, Modal, Typography, Form, Collapse } from 'antd';
 import DOMPurify from 'dompurify';
+import { useTranslation } from 'react-i18next';
 import {
     useCreateGlossaryTermMutation,
     useCreateGlossaryNodeMutation,
@@ -36,6 +37,7 @@ interface Props {
 }
 
 function CreateGlossaryEntityModal(props: Props) {
+    const { t } = useTranslation();
     const { entityType, onClose, refetchData } = props;
     const entityData = useEntityData();
     const { isInGlossaryContext, urnsToUpdate, setUrnsToUpdate } = useGlossaryEntityData();
@@ -110,10 +112,10 @@ function CreateGlossaryEntityModal(props: Props) {
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button onClick={createGlossaryEntity} disabled={createButtonDisabled}>
-                        Create
+                        {t('common.create')}
                     </Button>
                 </>
             }
@@ -128,7 +130,7 @@ function CreateGlossaryEntityModal(props: Props) {
                     setCreateButtonDisabled(form.getFieldsError().some((field) => field.errors.length > 0))
                 }
             >
-                <Form.Item label={<Typography.Text strong>Name</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.name')}</Typography.Text>}>
                     <StyledItem
                         name="name"
                         rules={[

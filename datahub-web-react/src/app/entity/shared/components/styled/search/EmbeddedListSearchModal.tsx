@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput } from '../../../../../../types.generated';
 import { EmbeddedListSearch } from './EmbeddedListSearch';
 import { UnionType } from '../../../../../search/utils/constants';
@@ -40,6 +41,7 @@ export const EmbeddedListSearchModal = ({
     searchBarStyle,
     searchBarInputStyle,
 }: Props) => {
+    const { t } = useTranslation();
     // Component state
     const [query, setQuery] = useState<string>('');
     const [page, setPage] = useState(1);
@@ -67,7 +69,7 @@ export const EmbeddedListSearchModal = ({
             title="View Ingested Assets"
             visible
             onCancel={onClose}
-            footer={<Button onClick={onClose}>Close</Button>}
+            footer={<Button onClick={onClose}>{t('common.close')}</Button>}
         >
             <SearchContainer>
                 <EmbeddedListSearch

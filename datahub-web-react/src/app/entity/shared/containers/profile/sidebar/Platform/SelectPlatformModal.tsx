@@ -1,6 +1,7 @@
 import { Button, Form, Modal, Select, Tag, Tooltip } from 'antd';
 import React, { ReactNode, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsLazyQuery } from '../../../../../../../graphql/search.generated';
 import { DataPlatform, Entity, EntityType } from '../../../../../../../types.generated';
 import { useEnterKeyListener } from '../../../../../../shared/useEnterKeyListener';
@@ -34,6 +35,7 @@ const PreviewImage = styled.img`
 `;
 
 export const SelectPlatformModal = ({ onCloseModal, defaultValues, onOk, titleOverride }: Props) => {
+    const { t } = useTranslation();
     const [platformSearch, { data: platforSearchData }] = useGetSearchResultsLazyQuery();
     const platformSearchResults =
         platforSearchData?.search?.searchResults?.map((searchResult) => searchResult.entity) || [];
@@ -142,10 +144,10 @@ export const SelectPlatformModal = ({ onCloseModal, defaultValues, onOk, titleOv
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="setPlatformButton" disabled={selectedPlatforms?.length === 0} onClick={handleOk}>
-                        Add
+                        {t('common.add')}
                     </Button>
                 </>
             }

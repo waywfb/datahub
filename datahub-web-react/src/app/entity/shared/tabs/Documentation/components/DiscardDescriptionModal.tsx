@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     cancelModalVisible?: boolean;
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export const DiscardDescriptionModal = ({ cancelModalVisible, onDiscard, onCancel }: Props) => {
+    const { t } = useTranslation();
     return (
         <>
             <Modal
@@ -17,9 +19,9 @@ export const DiscardDescriptionModal = ({ cancelModalVisible, onDiscard, onCance
                 onCancel={onCancel}
                 footer={[
                     <Button type="text" onClick={onCancel}>
-                        Cancel
+                        {t('common.cancel')}
                     </Button>,
-                    <Button onClick={onDiscard}>Yes</Button>,
+                    <Button onClick={onDiscard}>{t('common.yes')}</Button>,
                 ]}
             >
                 <p>Are you sure you want to close the documentation editor? Any unsaved changes will be lost.</p>

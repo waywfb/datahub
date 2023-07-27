@@ -4,6 +4,7 @@ import Link from 'antd/lib/typography/Link';
 import { ColumnsType } from 'antd/es/table';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { EntityType, MlModelGroup } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { useBaseEntity } from '../../shared/EntityContext';
@@ -14,6 +15,7 @@ const TabContent = styled.div`
 `;
 
 export default function MLModelGroupsTab() {
+    const { t } = useTranslation();
     const baseEntity = useBaseEntity<GetMlModelQuery>();
     const model = baseEntity?.mlModel;
 
@@ -36,7 +38,7 @@ export default function MLModelGroupsTab() {
     return (
         <TabContent>
             <Space direction="vertical" style={{ width: '100%' }} size="large">
-                <Typography.Title level={3}>Groups</Typography.Title>
+                <Typography.Title level={3}>{t('common.groups')}</Typography.Title>
                 <Table
                     pagination={false}
                     columns={propertyTableColumns}

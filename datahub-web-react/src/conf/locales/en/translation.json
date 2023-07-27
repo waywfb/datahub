@@ -93,6 +93,8 @@
     "saveChanges": "Save Changes",
     "models": "Models",
     "edit": "Edit",
+    "deactivate": "DEACTIVATE",
+    "activate": "ACTIVATE",
     "download": "Download",
     "filters": "Filters",
     "lineage": "Lineage",
@@ -133,6 +135,12 @@
     "toUseATokenExplanation_component": "To use the token, provide it as a <typographyText keyboard>Bearer</typographyText> token in the <typographyText keyboard>Authorization</typographyText> header when making API requests:"
   },
   "permissions": {
+    "noPolicies": "No Policies!",
+    "searchPolicies": "Search policies...",
+    "createNewPolicy": "Create new policy",
+    "failedToUpdatePolicies": "Failed to update policies. An unexpected error occurred.",
+    "failedToLoadPolicies": "Failed to load policies! An unexpected error occurred.",
+    "loadingPolicies": "Loading policies...",
     "successfullySavedPolicy": "Successfully saved policy.",
     "successfullyRemovedPolicy": "Successfully removed policy.",
     "areYouSureRemovePolicy": "Are you sure you want to remove policy?",

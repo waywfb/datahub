@@ -9,6 +9,7 @@ import { useEntityRegistry } from '../../../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../../constants';
 import { formatDateString } from '../../../containers/profile/utils';
 import { useRemoveLinkMutation } from '../../../../../../graphql/mutations.generated';
+import { useTranslation } from 'react-i18next';
 
 const LinkListItem = styled(List.Item)`
     border-radius: 5px;
@@ -35,6 +36,7 @@ type LinkListProps = {
 export const LinkList = ({ refetch }: LinkListProps) => {
     const { entityData } = useEntityData();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const [removeLinkMutation] = useRemoveLinkMutation();
     const links = entityData?.institutionalMemory?.elements || [];
 
@@ -43,11 +45,11 @@ export const LinkList = ({ refetch }: LinkListProps) => {
             await removeLinkMutation({
                 variables: { input: { linkUrl: metadata.url, resourceUrn: metadata.associatedUrn } },
             });
-            message.success({ content: 'Link Removed', duration: 2 });
+            message.success({ content: t('crud.success.removeWithName', { name: t('common.link') }), duration: 2 });
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
-                message.error({ content: `Error removing link: \n ${e.message || ''}`, duration: 2 });
+                message.error({ content: `${t('crud.error.removeWithName', { name: t('common.link') })}: \n ${e.message || ''}`, duration: 2 });
             }
         }
         refetch?.();

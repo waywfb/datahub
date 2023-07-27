@@ -65,7 +65,11 @@
     "degree": "Degree",
     "browse": "Browse",
     "value": "Value",
-    "partOfWithName": "Part of {{name}}"
+    "partOfWithName": "Part of {{name}}",
+    "containsWithNameNNumber": "Contains {{count}} {{name}}",
+    "consumesWithNameNNumber": "Consumes {{count}} {{name}}",
+    "foundInWithNameNNumber": "Found in {{count}} {{name}}",
+    "noPreviewWasFound": "No preview was found."
   },
   "token": {
     "accessToken": "Access Tokens",
@@ -168,6 +172,9 @@
     }
   },
   "lineage": {
+    "hideColumnLevelLineage": "Hide column level lineage",
+    "showColumnLevelLineage":"Show column level lineage",
+    "columnLineage": "Column Lineage",
     "clickToRefreshData": "Click to refresh data",
     "entityDistanceFrom_withName": "This entity is a {{distance}} degree connection to {{name}}",
     "entityDistanceFrom_withoutName": "This entity is a {{distance}} degree connection to the source entity",
@@ -262,6 +269,7 @@
   },
   "placeholder": {
     "searchForWithName": "Search for {{name}}...",
+    "selectAColumn": "Select column",
     "addDescriptionForNewTag": "Add a description for your new tag...",
     "datasetsDashboardsChartsAndMore": "Datasets, Dashboards, Charts, and more..."
   },
@@ -288,7 +296,7 @@
     "createWithName": "Create {{name}}",
     "success": {
       "addWithName": "Added {{name}}!",
-      "removeWithName": "Removed {{name}}!",
+      "removeWithName": "{{name}} removed!",
       "updateWithName": "{{name}} updated!",
       "softDelete": "Soft Deleted"
     },

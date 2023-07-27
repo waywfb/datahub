@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
 import { PreviewType } from '../../../../Entity';
 import { EntityType } from '../../../../../../types.generated';
+import { useTranslation } from 'react-i18next';
 
 const StyledList = styled(List)`
     padding-left: 40px;
@@ -37,11 +38,13 @@ type EntityListProps = {
 
 export const EntityList = ({ type, entities, title }: EntityListProps) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
+    let numberOfEntity = entities.length || 0;
     return (
         <StyledList
             bordered
             dataSource={entities}
-            header={title || `${entities.length || 0} ${entityRegistry.getCollectionName(type)}`}
+            header={title || `${numberOfEntity} ${entityRegistry.getEntityNameTrans(type, t, numberOfEntity)}`}
             renderItem={(item) => (
                 <StyledListItem>{entityRegistry.renderPreview(type, PreviewType.PREVIEW, item)}</StyledListItem>
             )}

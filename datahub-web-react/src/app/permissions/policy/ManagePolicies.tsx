@@ -249,7 +249,7 @@ export const ManagePolicies = () => {
     // On Delete Policy handler
     const onRemovePolicy = (policy: Policy) => {
         Modal.confirm({
-            title: t('common.deleteWithName', { name: policy?.name }),
+            title: t('crud.deleteWithName', { name: policy?.name }),
             content: t('permissions.areYouSureRemovePolicy'),
             onOk() {
                 deletePolicy({ variables: { urn: policy?.urn as string } }); // There must be a focus policy urn.

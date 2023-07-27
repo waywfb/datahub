@@ -44,7 +44,7 @@ export default function UpdateDescriptionModal({ title, description, original, o
                 <>
                     <Button onClick={onClose}>{t('common.cancel')}</Button>
                     <Button onClick={() => onSubmit(updatedDesc)} disabled={updatedDesc === description}>
-                        {t('common.update')}
+                        {t('crud.update')}
                     </Button>
                 </>
             }

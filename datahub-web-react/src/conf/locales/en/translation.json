@@ -87,9 +87,6 @@
     "saveChanges": "Save Changes",
     "models": "Models",
     "edit": "Edit",
-    "delete": "Delete",
-    "deleteWithName": "Delete {{name}}",
-    "update": "Update",
     "download": "Download",
     "filters": "Filters",
     "lineage": "Lineage",
@@ -364,6 +361,9 @@
   "crud": {
     "addWithName": "Add {{name}}",
     "createWithName": "Create {{name}}",
+    "delete": "Delete",
+    "deleteWithName": "Delete {{name}}",
+    "update": "Update",
     "success": {
       "addWithName": "Added {{name}}!",
       "removeWithName": "Removed {{name}}!",

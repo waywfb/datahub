@@ -103,7 +103,7 @@ export const ActionsColumn = ({ ownershipType, setIsOpen, setOwnershipType, refe
                 >
                     <MenuButtonContainer data-testid={DELETE_OWNERSHIP_TYPE_TEST_ID}>
                         <DeleteOutlined />
-                        <MenuButtonText>{t('common.delete')}</MenuButtonText>
+                        <MenuButtonText>{t('crud.delete')}</MenuButtonText>
                     </MenuButtonContainer>
                 </Popconfirm>
             ),

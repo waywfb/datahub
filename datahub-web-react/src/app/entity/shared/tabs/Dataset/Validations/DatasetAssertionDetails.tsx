@@ -12,6 +12,7 @@ import { LOOKBACK_WINDOWS } from '../Stats/lookbackWindows';
 import { getResultColor, getResultIcon, getResultText } from './assertionUtils';
 import { BooleanTimeline } from './BooleanTimeline';
 import { DatasetAssertionResultDetails } from './DatasetAssertionResultDetails';
+import { useTranslation } from 'react-i18next';
 
 const RESULT_CHART_WIDTH_PX = 800;
 
@@ -71,6 +72,7 @@ type Props = {
 };
 
 export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) => {
+    const { t, i18n } = useTranslation();
     const [getAssertionRuns, { data }] = useGetAssertionRunsLazyQuery({ fetchPolicy: 'cache-first' });
 
     /**
@@ -116,11 +118,11 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
     /**
      * Start and end date bounds for Chart
      */
-    const startDate = new Date(selectedWindowTimeRange.startMs).toLocaleDateString('en-us', {
+    const startDate = new Date(selectedWindowTimeRange.startMs).toLocaleDateString(i18n.language, {
         month: 'short',
         day: 'numeric',
     });
-    const endDate = new Date(selectedWindowTimeRange.endMs).toLocaleDateString('en-us', {
+    const endDate = new Date(selectedWindowTimeRange.endMs).toLocaleDateString(i18n.language, {
         month: 'short',
         day: 'numeric',
     });
@@ -177,7 +179,7 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
     return (
         <ContentContainer>
             <div>
-                <Typography.Title level={5}>Evaluations</Typography.Title>
+                <Typography.Title level={5}>{t('assertion.evaluations')}</Typography.Title>
                 <Tooltip placement="topLeft" title={lastEvaluatedTimeGMT}>
                     <LastEvaluatedAtLabel>{lastEvaluatedTimeLocal}</LastEvaluatedAtLabel>
                 </Tooltip>
@@ -194,7 +196,7 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
                                     >
                                         {formatNumber(succeededCount)}
                                     </Typography.Text>{' '}
-                                    passed
+                                    {t('assertion.passed').toLowerCase()}
                                 </SucceededEvaluationsCount>
                                 <FailedEvaluationsCount>
                                     <Typography.Text
@@ -202,12 +204,12 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
                                     >
                                         {formatNumber(failedCount)}
                                     </Typography.Text>{' '}
-                                    failed
+                                    {t('assertion.failed').toLowerCase()}
                                 </FailedEvaluationsCount>
                             </div>
                         </EvaluationsSummary>
                         <PrefixedSelect
-                            prefixText="Show "
+                            prefixText={t('common.show') + " "}
                             values={Object.values(LOOKBACK_WINDOWS).map((window) => window.text)}
                             value={lookbackWindow.text}
                             setValue={onChangeLookbackWindow}

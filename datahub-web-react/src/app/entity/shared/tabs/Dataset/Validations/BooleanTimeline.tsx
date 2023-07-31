@@ -5,6 +5,7 @@ import { Group } from '@vx/group';
 import { AxisBottom } from '@vx/axis';
 import { scaleUtc } from '@vx/scale';
 import { ANTD_GRAY } from '../../../constants';
+import { useTranslation } from 'react-i18next';
 
 export type BooleanResult = {
     result: boolean;
@@ -35,6 +36,7 @@ const FAILURE_COLOR_HEX = '#F5222D';
  * True / false results displayed on a horizontal timeline.
  */
 export const BooleanTimeline = ({ data, timeRange, width }: Props) => {
+    const { i18n } = useTranslation();
     const yMax = 60;
     const left = 0;
 
@@ -96,7 +98,7 @@ export const BooleanTimeline = ({ data, timeRange, width }: Props) => {
                     scale={xScale}
                     numTicks={7}
                     stroke={ANTD_GRAY[5]}
-                    tickFormat={(v: any) => v.toLocaleDateString('en-us', { month: 'short', day: 'numeric' })}
+                    tickFormat={(v: any) => v.toLocaleDateString(i18n.language, { month: 'short', day: 'numeric' })}
                     tickLabelProps={(_) => ({
                         fontSize: 11,
                         angle: 0,

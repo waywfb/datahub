@@ -51,11 +51,11 @@ export const DatasetAssertionsList = ({ assertions, onDelete }: Props) => {
             await deleteAssertionMutation({
                 variables: { urn },
             });
-            message.success({ content: 'Removed assertion.', duration: 2 });
+            message.success({ content: t('crud.success.removeWithName', { name: t('common.assertion') }), duration: 2 });
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
-                message.error({ content: `Failed to remove assertion: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.removeWithName', { name: t('common.assertion') })}: \n ${e.message || ''}`, duration: 3 });
             }
         }
         onDelete?.(urn);
@@ -63,8 +63,8 @@ export const DatasetAssertionsList = ({ assertions, onDelete }: Props) => {
 
     const onDeleteAssertion = (urn: string) => {
         Modal.confirm({
-            title: `Confirm Assertion Removal`,
-            content: `Are you sure you want to remove this assertion from the dataset?`,
+            title: t('assertion.deleteAssertionModal.title'),
+            content: t('assertion.deleteAssertionModal.content'),
             onOk() {
                 deleteAssertion(urn);
             },
@@ -97,12 +97,12 @@ export const DatasetAssertionsList = ({ assertions, onDelete }: Props) => {
                 const executionDate = record.lastExecTime && new Date(record.lastExecTime);
                 const localTime = executionDate && `${executionDate.toLocaleDateString()}`;
                 const resultColor = (record.lastExecResult && getResultColor(record.lastExecResult)) || 'default';
-                const resultText = (record.lastExecResult && getResultText(record.lastExecResult)) || 'No Evaluations';
+                const resultText = (record.lastExecResult && getResultText(record.lastExecResult)) || t('assertion.noEvaluations');
                 const resultIcon = (record.lastExecResult && getResultIcon(record.lastExecResult)) || <StopOutlined />;
                 return (
                     <ResultContainer>
                         <div>
-                            <Tooltip title={(localTime && `Last evaluated on ${localTime}`) || 'No Evaluations'}>
+                            <Tooltip title={(localTime && t('assertion.lastEvaluatedWithDate', { date: localTime })) || t('assertion.noEvaluations')}>
                                 <Tag style={{ borderColor: resultColor }}>
                                     {resultIcon}
                                     <ResultTypeText style={{ color: resultColor }}>{resultText}</ResultTypeText>
@@ -156,7 +156,7 @@ export const DatasetAssertionsList = ({ assertions, onDelete }: Props) => {
                 dataSource={assertionsTableData}
                 rowKey="urn"
                 locale={{
-                    emptyText: <Empty description="No Assertions Found :(" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                    emptyText: <Empty description={t('assertion.noAssertionsFound') + " :("} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
                 }}
                 expandable={{
                     defaultExpandAllRows: false,

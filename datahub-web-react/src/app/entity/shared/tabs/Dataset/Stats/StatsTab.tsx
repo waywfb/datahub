@@ -12,7 +12,7 @@ import StatsHeader from './StatsHeader';
 import { ViewType } from './viewType';
 
 export default function StatsTab() {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
 
     const [viewType, setViewType] = useState(ViewType.LATEST);
@@ -49,11 +49,12 @@ export default function StatsTab() {
     // Column Stats
 
     const reportedAt =
-        latestProfile &&
-        `Reported on ${toLocalDateString(latestProfile?.timestampMillis, i18n.language)} at ${toLocalTimeString(
-            latestProfile?.timestampMillis,
-            i18n.language,
-        )}`;
+        latestProfile && t('reporting.reportedOnAtWithDateTime',{
+            date: toLocalDateString(latestProfile?.timestampMillis, i18n.language),
+            time: toLocalTimeString(
+              latestProfile?.timestampMillis,
+              i18n.language)
+        });
 
     const totalSqlQueries = usageStats?.aggregations?.totalSqlQueries;
     const queryCountLast30Days = baseEntity.dataset?.statsSummary?.queryCountLast30Days;
@@ -65,6 +66,7 @@ export default function StatsTab() {
             reportedAt={reportedAt || ''}
             lookbackWindow={lookbackWindow}
             setLookbackWindow={setLookbackWindow}
+            t={t}
         />
     );
 

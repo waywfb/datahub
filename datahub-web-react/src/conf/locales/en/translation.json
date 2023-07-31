@@ -1,5 +1,11 @@
 {
   "common": {
+    "na": "N/A",
+    "withValue": "With value",
+    "betweenAndLowercaseWithName_component": "Between <component1>{{name1}}<component1> and <component2>{{name2}}<component2>",
+    "undefined": "Undefined",
+    "image": "Image",
+    "link": "Link",
     "save": "Save",
     "next": "Next",
     "previous": "Previous",
@@ -72,6 +78,8 @@
     "owners": "Owners",
     "revoke": "Revoke",
     "column": "Column",
+    "row": "Row",
+    "table": "Table",
     "environment": "Environment",
     "entityType": "Entity Type",
     "usage": "Usage",
@@ -109,7 +117,70 @@
     "password": "Password",
     "fullName": "Full Name",
     "execute": "Execute",
-    "actors": "Actors"
+    "actors": "Actors",
+    "unknown": "Unknown",
+    "materialized": "Materialized",
+    "language": "Language",
+    "logic": "Logic",
+    "assertion": "Assertion",
+    "assertions": "Assertions",
+    "test": "Tests",
+    "noDescription": "No description",
+    "actual": "Actual",
+    "rowCount": "Row Count",
+    "latest":  "Latest",
+    "historical": "Historical"
+  },
+  "test": {
+    "testResults": "Test Results",
+    "passing": "Passing",
+    "failing": "Failing",
+    "noEvaluations": "No Evaluations",
+    "noTestHaveRun": "No tests have run",
+    "allPassing": "All tests are passing",
+    "allFailing": "All tests are failing",
+    "someFailing": "Some tests are failing",
+    "noTestsFound": "No Tests Found",
+    "testResume": "{{passingCount}} passing tests, {{failingCount}} failing tests",
+    "testStatusTooltip": "This status is based on the most recent run of each test."
+  },
+  "assertion": {
+    "viewLogic": "View Logic",
+    "passingAssertion": "Passing assertion",
+    "passingOperator": "Passing operator",
+    "invalidCount": "Invalid Count",
+    "passed": "Passed",
+    "failed": "Failed",
+    "evaluations": "Evaluations",
+    "noEvaluations": "No Evaluations",
+    "noAssertionsHaveRun": "No assertions have run",
+    "allPassing": "All assertions have passed",
+    "allFailing": "All assertions have failed",
+    "someFailing": "Some assertions have failed",
+    "noAssertionsFound": "No Assertions Found",
+    "assertionResume": "{{successCount}} successful assertions, {{failedCount}} failed assertions",
+    "assertionStatusTooltip": "This status is based on the most recent run of each assertion.",
+    "lastEvaluatedWithDate" : "Last evaluated on {{date}}",
+    "datasetColumnCountIs": "Dataset column count is",
+    "datasetColumnsAre":"Dataset columns are",
+    "dataSetColumnsAre_component" : "Dataset columns <typographyTextStrong>{{fieldNames}}</typographyTextStrong> are",
+    "datasetRowCountIs": "Dataset row count is",
+    "datasetRowsAre":"Dataset rows are",
+    "uniqueValueCountForColumnIs_component": "Unique value count for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
+    "uniqueValueProportionForColumnIs_component": "Unique value proportion for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
+    "nullCountForColumnIs_component": "Null count for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
+    "nullProportionForColumnIs_component": "Null proportion for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
+    "minimumValueForColumnIs_component": "Minimum value for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
+    "maximumValueForColumnIs_component": "Maximum value for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
+    "meanValueForColumnIs_component": "Mean value for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
+    "medianValueForColumnIs_component": "Median value for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
+    "standardDeviationForColumnIs_component": "Standard deviation for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
+    "columnValuesAre_component": "Column <typographyTextStrong>{{columnText}}</typographyTextStrong> values are",
+    "datasetIs": "Dataset is",
+    "deleteAssertionModal": {
+      "title": "`Confirm Assertion Removal`",
+      "content": "`Are you sure you want to remove this assertion from the dataset?`"
+    }
   },
   "token": {
     "accessToken": "Access Tokens",
@@ -136,7 +207,6 @@
     "successfullySavedPolicy": "Successfully saved policy.",
     "successfullyRemovedPolicy": "Successfully removed policy.",
     "areYouSureRemovePolicy": "Are you sure you want to remove policy?",
-    "policyAppliesToGroupPlaceHolder": "Search for groups...",
     "policyAppliesToGroupsDescription": "Search for specific groups that this policy should apply to, or select `All Groups` to apply it to all groups.",
     "managePermissions": "Manage Permissions",
     "managePermissionsDescription": "View your DataHub permissions. Take administrative actions.",
@@ -146,25 +216,19 @@
     "assignRoleToUsers": "Assign the {{role}} role to users",
     "noRoles": "No Roles!",
     "nameForNewPolicy": "A name for your new policy.",
-    "yourPolicyNamePlaceholder": "Your policy name",
     "typeOfPolicyToCreate": "The type of policy you would like to create.",
     "typeOfPolicyDescription_html": "The <b>Platform</b> policy type allows you to assign top-level DataHub Platform privileges to users.These include managing users and groups, creating policies, viewing analytics dashboards and more.<br /><br />The <b>Metadata</b> policy type allows you to assign metadata privileges to users. These include the ability to manipulate metadata like ownership, tags, documentation associated with Datasets, Charts, Dashboards, & more.",
     "newPolicyDescription": "An optional description for your new policy.",
-    "newPolicyDescriptionPlaceHolder": "Your policy description",
     "resourceTypeDescription": "Select the types of resources this policy should apply to. If <b>none</b> is selected, policy is applied to <b>all</b> types of resources.",
-    "resourceTypeDescriptionPlaceHolder": "Apply to ALL resource types by default. Select types to apply to specific types of entities.",
     "resourceDescription": "Search for specific resources the policy should apply to. If <b>none</b> is selected, policy is applied to <b>all</b> resources of the given type.",
-    "resourceDescriptionPlaceHolder": "Apply to ALL resources by default. Select specific resources to apply to.",
     "noSearchResultsFound": "No search results found",
     "domainDescription": "Search for domains the policy should apply to. If <b>none</b> is selected, policy is applied to <b>all</b> resources in all domains.",
-    "domainDescriptionPlaceHolder": "Apply to ALL domains by default. Select domains to apply to specific domains.",
     "privilegesLabel": "Select a set of privileges to permit.",
     "appliesTo": "Applies to",
     "appliesToWithName": "Applies to {{name}}",
     "policyAppliesToLabel": "Select the users & groups that this policy should apply to.",
     "policyAppliesToDescription": "Whether this policy should be apply to owners of the Metadata asset. If true, those who are marked as owners of a Metadata Asset, either directly or indirectly via a Group, will have the selected privileges.",
     "policyAppliesToUserDescription": "Search for specific users that this policy should apply to, or select `All Users` to apply it to all users.",
-    "policyAppliesToUserPlaceHolder": "Search for users...",
     "policyBuilderSteps": {
       "configurePrivileges": "Configure Privileges",
       "choosePolicyType": "Choose Policy Type",
@@ -180,7 +244,19 @@
     }
   },
   "entity": {
+    "noDocumentationAddedYet": "No documentation added yet.",
     "viewEntityWithName": "View {{name}} profile",
+    "authorNameWithLink_component": "Added {{timestamp}} by <linkComponent>{{authorName}}</linkComponent>",
+    "editor": {
+      "exitEditor": "Exit Editor",
+      "sureToCloseEditor": "Are you sure you want to close the documentation editor? Any unsaved changes will be lost.",
+      "insertRow": {
+        "above": "Insert row above",
+        "below": "Insert row below",
+        "left": "Insert column left",
+        "right": "Insert column right"
+      }
+    },
     "type": {
       "DOMAIN_interval": "(0-1)Domain;",
       "DOMAIN_other": "Domains",
@@ -252,7 +328,7 @@
   },
   "lineage": {
     "hideColumnLevelLineage": "Hide column level lineage",
-    "showColumnLevelLineage":"Show column level lineage",
+    "showColumnLevelLineage": "Show column level lineage",
     "columnLineage": "Column Lineage",
     "clickToRefreshData": "Click to refresh data",
     "entityDistanceFrom_withName": "This entity is a {{distance}} degree connection to {{name}}",
@@ -281,6 +357,9 @@
     "fromWithDate": "From {{date}}",
     "lastDay_interval": "(0-1)Last {{count}} day;(2-inf)Last {{count}} days",
     "unknownTimeRange": "Unknown time range"
+  },
+  "reporting": {
+    "reportedOnAtWithDateTime": "Reported on {{date}} at {{time}}"
   },
   "adminHeader": {
     "analyticsText": "Analytics",
@@ -340,17 +419,45 @@
       "true": "is any of",
       "false": "is not"
     },
+    "in": {
+      "true": "in",
+      "false": "not in"
+    },
+    "null": {
+      "true": "is null",
+      "false": "not null"
+    },
+    "greater": {
+      "true": "greater than",
+      "false": "less than or equal to"
+    },
+    "less": {
+      "true": "less than",
+      "false": "greater than or equal to"
+    },
+    "text": {
+      "startWith": "start with",
+      "endWith": "end with"
+    },
     "view": {
       "saveAsView": "Save as View",
       "saveTheseFiltersAsANewView": "Save these filters as a new View.",
       "viewsAllowYouToEasilySaveOrShareSearchFilters": "Views allow you to easily save or share search filters."
     }
   },
+  "form": {
+    "altText": "Alt Text"
+  },
   "placeholder": {
     "searchForWithName": "Search for {{name}}...",
     "selectAColumn": "Select column",
     "addDescriptionForNewTag": "Add a description for your new tag...",
-    "datasetsDashboardsChartsAndMore": "Datasets, Dashboards, Charts, and more..."
+    "datasetsDashboardsChartsAndMore": "Datasets, Dashboards, Charts, and more...",
+    "yourPolicyNamePlaceholder": "Your policy name",
+    "newPolicyDescriptionPlaceHolder": "Your policy description",
+    "resourceTypeDescriptionPlaceHolder": "Apply to ALL resource types by default. Select types to apply to specific types of entities.",
+    "resourceDescriptionPlaceHolder": "Apply to ALL resources by default. Select specific resources to apply to.",
+    "domainDescriptionPlaceHolder": "Apply to ALL domains by default. Select domains to apply to specific domains."
   },
   "share": {
     "shareThisViaMail": "Share this {{type}} via email",
@@ -376,6 +483,7 @@
     "delete": "Delete",
     "deleteWithName": "Delete {{name}}",
     "update": "Update",
+    "saving": "Saving",
     "success": {
       "addWithName": "Added {{name}}!",
       "removeWithName": "{{name}} removed!",
@@ -410,6 +518,7 @@
     "sidebarFailedToLoad": "The sidebar failed to load.",
     "bulkEditIncludeUnauthorizedEntity": "Your bulk edit selection included entities that you are unauthorized to update. The bulk edit being performed will not be saved.",
     "failedToAssignRoleToUsers": "Failed to assign Role to users",
+    "unsupportedTestResultType" : "Unsupported Test Result Type {{result}} provided.",
     "errorSection": {
       "ressourcesLabel": {
         "project": "DataHub Project",

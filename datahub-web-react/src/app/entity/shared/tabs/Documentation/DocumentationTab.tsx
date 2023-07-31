@@ -16,6 +16,7 @@ import { useEntityData, useRefetch, useRouteToTab } from '../../EntityContext';
 import { EDITED_DESCRIPTIONS_CACHE_NAME } from '../../utils';
 import { Editor } from './components/editor/Editor';
 import { DescriptionPreviewModal } from './components/DescriptionPreviewModal';
+import { useTranslation } from 'react-i18next';
 
 const DocumentationContainer = styled.div`
     margin: 0 32px;
@@ -28,6 +29,7 @@ interface Props {
 }
 
 export const DocumentationTab = ({ properties }: { properties?: Props }) => {
+    const { t } = useTranslation();
     const hideLinksButton = properties?.hideLinksButton;
     const { urn, entityData } = useEntityData();
     const refetch = useRefetch();
@@ -63,7 +65,7 @@ export const DocumentationTab = ({ properties }: { properties?: Props }) => {
                                 type="text"
                                 onClick={() => routeToTab({ tabName: 'Documentation', tabParams: { editing: true } })}
                             >
-                                <EditOutlined /> Edit
+                                <EditOutlined /> {t('common.edit')}
                             </Button>
                             {!hideLinksButton && <AddLinkModal buttonProps={{ type: 'text' }} refetch={refetch} />}
                         </div>
@@ -86,7 +88,7 @@ export const DocumentationTab = ({ properties }: { properties?: Props }) => {
                             <Editor content={description} readOnly />
                         ) : (
                             <DocumentationContainer>
-                                <Typography.Text type="secondary">No documentation added yet.</Typography.Text>
+                                <Typography.Text type="secondary">{t('entity.noDocumentationAddedYet')}</Typography.Text>
                             </DocumentationContainer>
                         )}
                         <Divider />
@@ -98,7 +100,7 @@ export const DocumentationTab = ({ properties }: { properties?: Props }) => {
             ) : (
                 <EmptyTab tab="documentation">
                     <Button onClick={() => routeToTab({ tabName: 'Documentation', tabParams: { editing: true } })}>
-                        <EditOutlined /> Add Documentation
+                        <EditOutlined /> {t('crud.addWithName',{ name: t('common.description') })}
                     </Button>
                     {!hideLinksButton && <AddLinkModal refetch={refetch} />}
                 </EmptyTab>

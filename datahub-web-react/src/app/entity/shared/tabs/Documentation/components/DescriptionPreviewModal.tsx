@@ -32,8 +32,8 @@ export const DescriptionPreviewModal = ({ description, editMode, onClose }: Desc
     const onConfirmClose = () => {
         if (editMode) {
             Modal.confirm({
-                title: `Exit Editor`,
-                content: `Are you sure you want to exit the editor? Any unsaved changes will be lost.`,
+                title: t('entity.editor.exitEditor'),
+                content: t('entity.editor.sureToCloseEditor'),
                 onOk() {
                     onClose();
                 },

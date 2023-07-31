@@ -13,7 +13,7 @@ export const DiscardDescriptionModal = ({ cancelModalVisible, onDiscard, onCance
     return (
         <>
             <Modal
-                title="Exit Editor"
+                title={t('entity.editor.exitEditor')}
                 visible={cancelModalVisible}
                 destroyOnClose
                 onCancel={onCancel}
@@ -24,7 +24,7 @@ export const DiscardDescriptionModal = ({ cancelModalVisible, onDiscard, onCance
                     <Button onClick={onDiscard}>{t('common.yes')}</Button>,
                 ]}
             >
-                <p>Are you sure you want to close the documentation editor? Any unsaved changes will be lost.</p>
+                <p>{t('entity.editor.sureToCloseEditor')}</p>
             </Modal>
         </>
     );

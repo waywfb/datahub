@@ -297,7 +297,7 @@ export default function PolicyPrivilegeForm({
                     <Select
                         value={resourceTypeSelectValue}
                         mode="multiple"
-                        placeholder={t('permissions.resourceTypeDescriptionPlaceHolder')}
+                        placeholder={t('placeholder.resourceTypeDescriptionPlaceHolder')}
                         onSelect={onSelectResourceType}
                         onDeselect={onDeselectResourceType}
                         tagRender={(tagProps) => (
@@ -332,7 +332,7 @@ export default function PolicyPrivilegeForm({
                         value={resourceSelectValue}
                         mode="multiple"
                         filterOption={false}
-                        placeholder={t('permissions.resourceDescriptionPlaceHolder')}
+                        placeholder={t('placeholder.resourceDescriptionPlaceHolder')}
                         onSelect={onSelectResource}
                         onDeselect={onDeselectResource}
                         onSearch={handleResourceSearch}
@@ -368,7 +368,7 @@ export default function PolicyPrivilegeForm({
                         value={domainSelectValue}
                         mode="multiple"
                         filterOption={false}
-                        placeholder={t('permissions.domainDescriptionPlaceHolder')}
+                        placeholder={t('placeholder.domainDescriptionPlaceHolder')}
                         onSelect={onSelectDomain}
                         onDeselect={onDeselectDomain}
                         onSearch={handleDomainSearch}

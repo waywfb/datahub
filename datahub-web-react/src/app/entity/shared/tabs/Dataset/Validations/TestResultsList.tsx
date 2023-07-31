@@ -5,6 +5,7 @@ import React from 'react';
 import { TestResult } from '../../../../../../types.generated';
 import { StyledTable } from '../../../components/styled/StyledTable';
 import { getResultColor, getResultIcon, getResultText } from './testUtils';
+import { useTranslation } from 'react-i18next';
 
 const ResultContainer = styled.div`
     display: flex;
@@ -17,8 +18,8 @@ const TestResultsContainer = styled.div`
 `;
 
 const TestName = styled(Typography.Title)`
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 
     && {
         margin-bottom: 4px;
@@ -26,8 +27,8 @@ const TestName = styled(Typography.Title)`
 `;
 
 const TestCategory = styled(Typography.Text)`
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 `;
 
 const ResultTypeText = styled(Typography.Text)`
@@ -40,6 +41,7 @@ type Props = {
 };
 
 export const TestResultsList = ({ title, results }: Props) => {
+    const { t } = useTranslation();
     const resultsTableData = results.map((result) => ({
         urn: result.test?.urn,
         name: result?.test?.name,
@@ -54,9 +56,9 @@ export const TestResultsList = ({ title, results }: Props) => {
             dataIndex: '',
             key: '',
             render: (_, record: any) => {
-                const resultColor = (record.resultType && getResultColor(record.resultType)) || 'default';
-                const resultText = (record.resultType && getResultText(record.resultType)) || 'No Evaluations';
-                const resultIcon = (record.resultType && getResultIcon(record.resultType)) || <StopOutlined />;
+                const resultColor = (record.resultType && getResultColor(record.resultType, t)) || 'default';
+                const resultText = (record.resultType && getResultText(record.resultType, t)) || t('test.noEvaluations');
+                const resultIcon = (record.resultType && getResultIcon(record.resultType, t)) || <StopOutlined />;
                 return (
                     <ResultContainer>
                         <div>
@@ -72,12 +74,12 @@ export const TestResultsList = ({ title, results }: Props) => {
                                     <TestCategory type="secondary">{record.category}</TestCategory>
                                     <Divider type="vertical" />
                                     <Typography.Text type={record.description ? undefined : 'secondary'}>
-                                        {record.description || 'No description'}
+                                        {record.description || t('common.noDescription')}
                                     </Typography.Text>
                                 </div>
                             </div>
                             {navigator.clipboard && (
-                                <Tooltip title="Copy URN. An URN uniquely identifies an entity on DataHub.">
+                                <Tooltip title={t('copy.urnTooltip')}>
                                     <Button
                                         icon={<CopyOutlined />}
                                         onClick={() => {
@@ -101,7 +103,7 @@ export const TestResultsList = ({ title, results }: Props) => {
                 dataSource={resultsTableData}
                 rowKey="urn"
                 locale={{
-                    emptyText: <Empty description="No Tests Found :(" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                    emptyText: <Empty description={t('test.noTestsFound') +" :("} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
                 }}
                 showHeader={false}
                 pagination={false}

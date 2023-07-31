@@ -39,25 +39,25 @@ const NestedSyntax = styled(SyntaxHighlighter)`
 export default function ViewDefinitionTab() {
     const { t } = useTranslation();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
-    const logic = baseEntity?.dataset?.viewProperties?.logic || 'UNKNOWN';
+    const logic = baseEntity?.dataset?.viewProperties?.logic || t('common.unknown').toUpperCase();
     const materialized = (baseEntity?.dataset?.viewProperties?.materialized && true) || false;
-    const language = baseEntity?.dataset?.viewProperties?.language || 'UNKNOWN';
+    const language = baseEntity?.dataset?.viewProperties?.language || t('common.unknown').toUpperCase();
 
     return (
         <>
             <InfoSection>
                 <Typography.Title level={5}>{t('common.details')}</Typography.Title>
                 <InfoItemContainer justifyContent="left">
-                    <InfoItem title="Materialized">
-                        <InfoItemContent>{materialized ? 'True' : 'False'}</InfoItemContent>
+                    <InfoItem title={t('common.materialized')}>
+                        <InfoItemContent>{materialized ? t('common.true') : t('common.false')}</InfoItemContent>
                     </InfoItem>
-                    <InfoItem title="Language">
+                    <InfoItem title={t('common.language')}>
                         <InfoItemContent>{language.toUpperCase()}</InfoItemContent>
                     </InfoItem>
                 </InfoItemContainer>
             </InfoSection>
             <InfoSection>
-                <Typography.Title level={5}>Logic</Typography.Title>
+                <Typography.Title level={5}>{t('common.logic')}</Typography.Title>
                 <QueryText>
                     <NestedSyntax language="sql">{logic}</NestedSyntax>
                 </QueryText>

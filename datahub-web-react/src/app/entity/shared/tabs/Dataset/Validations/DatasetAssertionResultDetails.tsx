@@ -1,12 +1,14 @@
 import { Typography } from 'antd';
 import React from 'react';
 import { AssertionResult } from '../../../../../../types.generated';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     result: AssertionResult;
 };
 
 export const DatasetAssertionResultDetails = ({ result }: Props) => {
+    const { t } = useTranslation();
     const maybeActualValue = result.actualAggValue;
     const maybeUnexpectedCount = result.unexpectedCount;
     const maybeRowCount = result.rowCount;
@@ -15,17 +17,17 @@ export const DatasetAssertionResultDetails = ({ result }: Props) => {
         <>
             {maybeActualValue !== null && maybeActualValue !== undefined && (
                 <div>
-                    <Typography.Text strong>Actual</Typography.Text>: {maybeActualValue}
+                    <Typography.Text strong>{t('common.actual')}</Typography.Text>: {maybeActualValue}
                 </div>
             )}
             {maybeUnexpectedCount !== null && maybeUnexpectedCount !== undefined && (
                 <div>
-                    <Typography.Text strong>Invalid Count</Typography.Text>: {maybeUnexpectedCount}
+                    <Typography.Text strong>{t('assertion.invalidCount')}</Typography.Text>: {maybeUnexpectedCount}
                 </div>
             )}
             {maybeRowCount !== null && maybeRowCount !== undefined && (
                 <div>
-                    <Typography.Text strong>Row Count</Typography.Text>: {maybeRowCount}
+                    <Typography.Text strong>{t('common.rowCount')}</Typography.Text>: {maybeRowCount}
                 </div>
             )}
             {maybeNativeResults && (

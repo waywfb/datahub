@@ -60,7 +60,7 @@ export const LinkModal = (props: LinkModalProps) => {
     };
 
     return (
-        <Modal title="Add Link" okText="Save" onCancel={handleClose} onOk={handleOk} visible={visible}>
+        <Modal title={t('crud.addWithName', { name: t('common.link') })} okText={t('common.save')} cancelText={t('common.cancel')} onCancel={handleClose} onOk={handleOk} visible={visible}>
             <Form
                 form={form}
                 layout="vertical"
@@ -70,7 +70,7 @@ export const LinkModal = (props: LinkModalProps) => {
             >
                 <Form.Item
                     name="href"
-                    label={<Typography.Text strong>Link URL</Typography.Text>}
+                    label={<Typography.Text strong>{t('common.link')} URL</Typography.Text>}
                     rules={[{ required: true }]}
                 >
                     <Input placeholder="https://www.google.com" autoFocus />

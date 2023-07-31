@@ -9,6 +9,7 @@ import { Assertions } from './Assertions';
 import TabToolbar from '../../../components/styled/TabToolbar';
 import { useGetValidationsTab } from './useGetValidationsTab';
 import { ANTD_GRAY } from '../../../constants';
+import { useTranslation } from 'react-i18next';
 
 const TabTitle = styled.span`
     margin-left: 4px;
@@ -30,6 +31,7 @@ const DEFAULT_TAB = TabPaths.ASSERTIONS;
  * Component used for rendering the Entity Validations Tab.
  */
 export const ValidationsTab = () => {
+    const { t } = useTranslation();
     const { entityData } = useEntityData();
     const history = useHistory();
     const { pathname } = useLocation();
@@ -57,7 +59,7 @@ export const ValidationsTab = () => {
             title: (
                 <>
                     <FileProtectOutlined />
-                    <TabTitle>Assertions ({totalAssertions})</TabTitle>
+                    <TabTitle>{t('common.assertions')} ({totalAssertions})</TabTitle>
                 </>
             ),
             path: TabPaths.ASSERTIONS,
@@ -68,7 +70,7 @@ export const ValidationsTab = () => {
             title: (
                 <>
                     <FileDoneOutlined />
-                    <TabTitle>Tests ({totalTests})</TabTitle>
+                    <TabTitle>{t('common.tests')} ({totalTests})</TabTitle>
                 </>
             ),
             path: TabPaths.TESTS,

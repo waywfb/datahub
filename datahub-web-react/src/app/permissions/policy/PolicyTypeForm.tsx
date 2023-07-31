@@ -48,7 +48,7 @@ export default function PolicyTypeForm({
             >
                 <Typography.Paragraph>{t('nameForNewPolicy')}</Typography.Paragraph>
                 <Input
-                    placeholder={t('permissions.yourPolicyNamePlaceholder')}
+                    placeholder={t('placeholder.yourPolicyNamePlaceholder')}
                     value={policyName}
                     onChange={(event) => updatePolicyName(event.target.value)}
                 />
@@ -74,7 +74,7 @@ export default function PolicyTypeForm({
             >
                 <Typography.Paragraph>{t('permissions.newPolicyDescription')}</Typography.Paragraph>
                 <Input
-                    placeholder={t('permissions.newPolicyDescriptionPlaceHolder')}
+                    placeholder={t('placeholder.newPolicyDescriptionPlaceHolder')}
                     value={policyDescription}
                     onChange={(event) => setPolicyDescription(event.target.value)}
                 />

@@ -8,6 +8,7 @@ import TabToolbar from '../../../components/styled/TabToolbar';
 import { ANTD_GRAY, REDESIGN_COLORS } from '../../../constants';
 import { LookbackWindow } from './lookbackWindows';
 import LookbackWindowSelect from './historical/LookbackWindowSelect';
+import { TFunction } from 'i18next';
 
 const StatsHeaderContainer = styled.div`
     display: flex;
@@ -30,14 +31,15 @@ type Props = {
     reportedAt: string;
     lookbackWindow: LookbackWindow;
     setLookbackWindow: (window: LookbackWindow) => void;
+    t: TFunction
 };
 
-export default function StatsHeader({ viewType, setViewType, reportedAt, lookbackWindow, setLookbackWindow }: Props) {
+export default function StatsHeader({ viewType, setViewType, reportedAt, lookbackWindow, setLookbackWindow, t }: Props) {
     const latestButtonColor = viewType === ViewType.LATEST ? REDESIGN_COLORS.BLUE : ANTD_GRAY[8];
     const latestButton = (
         <Button type="text" onClick={() => setViewType(ViewType.LATEST)}>
             <LineChartOutlined style={{ color: latestButtonColor }} />
-            <Typography.Text style={{ color: latestButtonColor }}>Latest</Typography.Text>
+            <Typography.Text style={{ color: latestButtonColor }}>{t('common.latest')}</Typography.Text>
         </Button>
     );
 
@@ -45,7 +47,7 @@ export default function StatsHeader({ viewType, setViewType, reportedAt, lookbac
     const historicalButton = (
         <Button type="text" onClick={() => setViewType(ViewType.HISTORICAL)}>
             <ClockCircleOutlined style={{ color: historicalButtonColor }} />
-            <Typography.Text style={{ color: historicalButtonColor }}>Historical</Typography.Text>
+            <Typography.Text style={{ color: historicalButtonColor }}>{t('common.historical')}</Typography.Text>
         </Button>
     );
 

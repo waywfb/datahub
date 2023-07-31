@@ -3,6 +3,7 @@ import { Dropdown, Menu } from 'antd';
 import styled from 'styled-components';
 import { useActive, useCommands } from '@remirror/react';
 import { DeleteOutlined, DownOutlined, PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 const StyledDropdownButton = styled(Dropdown.Button)`
     position: absolute;
@@ -21,6 +22,7 @@ const StyledDropdownButton = styled(Dropdown.Button)`
 `;
 
 export const TableCellMenu = () => {
+    const { t } = useTranslation();
     const active = useActive();
     const commands = useCommands();
 
@@ -31,16 +33,16 @@ export const TableCellMenu = () => {
                 disabled={active.tableHeaderCell()}
                 onClick={() => commands.addTableRowBefore()}
             >
-                Insert row above
+                {t('entity.editor.insertRow.above')}
             </Menu.Item>
             <Menu.Item icon={<PlusOutlined />} onClick={() => commands.addTableRowAfter()}>
-                Insert row below
+                {t('entity.editor.insertRow.below')}
             </Menu.Item>
             <Menu.Item icon={<PlusOutlined />} onClick={() => commands.addTableColumnBefore()}>
-                Insert column left
+                {t('entity.editor.insertRow.left')}
             </Menu.Item>
             <Menu.Item icon={<PlusOutlined />} onClick={() => commands.addTableColumnAfter()}>
-                Insert column right
+                {t('entity.editor.insertRow.right')}
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item
@@ -48,13 +50,13 @@ export const TableCellMenu = () => {
                 disabled={active.tableHeaderCell()}
                 onClick={() => commands.deleteTableRow()}
             >
-                Delete row
+                {t('crud.deleteWithName', { name: t('common.row')})}
             </Menu.Item>
             <Menu.Item icon={<DeleteOutlined />} onClick={() => commands.deleteTableColumn()}>
-                Delete column
+                {t('crud.deleteWithName', { name: t('common.column')})}
             </Menu.Item>
             <Menu.Item icon={<DeleteOutlined />} onClick={() => commands.deleteTable()}>
-                Delete table
+                {t('crud.deleteWithName', { name: t('common.table')})}
             </Menu.Item>
         </Menu>
     );

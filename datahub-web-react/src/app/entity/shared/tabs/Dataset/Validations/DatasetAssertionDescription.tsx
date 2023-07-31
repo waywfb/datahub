@@ -13,10 +13,12 @@ import {
 import { decodeSchemaField } from '../../../../../lineage/utils/columnLineageUtils';
 import { getFormattedParameterValue } from './assertionUtils';
 import { DatasetAssertionLogicModal } from './DatasetAssertionLogicModal';
+import { TFunction } from 'i18next';
+import { ReactiveTrans } from '../../../../../../utils/i18n-utils/ReactiveTrans';
 
 const ViewLogicButton = styled(Button)`
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 `;
 
 type Props = {
@@ -32,23 +34,29 @@ type Props = {
 const getSchemaAggregationText = (
     aggregation: AssertionStdAggregation | undefined | null,
     fields: Array<SchemaFieldRef> | undefined | null,
+    t: TFunction
 ) => {
     switch (aggregation) {
         case AssertionStdAggregation.ColumnCount:
-            return <Typography.Text>Dataset column count is</Typography.Text>;
+            return <Typography.Text>{t('assertion.datasetColumnCount')}</Typography.Text>;
         case AssertionStdAggregation.Columns:
-            return <Typography.Text>Dataset columns are</Typography.Text>;
+            return <Typography.Text>{t('assertion.datasetColumnsAre')}</Typography.Text>;
         case AssertionStdAggregation.Native: {
             const fieldNames = fields?.map((field) => decodeSchemaField(field.path)) || [];
             return (
                 <Typography.Text>
-                    Dataset columns <Typography.Text strong>{JSON.stringify(fieldNames)}</Typography.Text> are
+                    <ReactiveTrans
+                      {...{
+                          i18nKey: 'assertion.dataSetColumnsAre_component',
+                          fieldNames: JSON.stringify(fieldNames),
+                          components: { typographyTextStrong: <Typography.Text strong/> },
+                      }}/>
                 </Typography.Text>
             );
         }
         default:
             console.error(`Unsupported schema aggregation assertion ${aggregation} provided.`);
-            return <Typography.Text>Dataset columns are</Typography.Text>;
+            return <Typography.Text>{t('assertion.datasetColumnsAre')}</Typography.Text>;
     }
 };
 
@@ -58,15 +66,15 @@ const getSchemaAggregationText = (
  *
  * Row assertions require an aggregation.
  */
-const getRowsAggregationText = (aggregation: AssertionStdAggregation | undefined | null) => {
+const getRowsAggregationText = (aggregation: AssertionStdAggregation | undefined | null, t:TFunction) => {
     switch (aggregation) {
         case AssertionStdAggregation.RowCount:
-            return <Typography.Text>Dataset row count is</Typography.Text>;
+            return <Typography.Text>{t('assertion.datasetRowCountIs')}</Typography.Text>;
         case AssertionStdAggregation.Native:
-            return <Typography.Text>Dataset rows are</Typography.Text>;
+            return <Typography.Text>{t('assertion.datasetRowsAre')}</Typography.Text>;
         default:
             console.error(`Unsupported Dataset Rows Aggregation ${aggregation} provided`);
-            return <Typography.Text>Dataset rows are</Typography.Text>;
+            return <Typography.Text>{t('assertion.datasetRowsAre')}</Typography.Text>;
     }
 };
 
@@ -77,10 +85,11 @@ const getRowsAggregationText = (aggregation: AssertionStdAggregation | undefined
 const getColumnAggregationText = (
     aggregation: AssertionStdAggregation | undefined | null,
     field: SchemaFieldRef | undefined,
+    t: TFunction
 ) => {
     let columnText = decodeSchemaField(field?.path || '');
     if (field === undefined) {
-        columnText = 'undefined';
+        columnText = t('common.undefined');
         console.error(`Invalid field provided for Dataset Assertion with scope Column ${JSON.stringify(field)}`);
     }
     switch (aggregation) {
@@ -88,28 +97,44 @@ const getColumnAggregationText = (
         case AssertionStdAggregation.UniqueCount: {
             return (
                 <Typography.Text>
-                    Unique value count for column <Typography.Text strong>{columnText}</Typography.Text> is
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.uniqueValueCountForColumnIs_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.UniquePropotion: {
             return (
                 <Typography.Text>
-                    Unique value proportion for column <Typography.Text strong>{columnText}</Typography.Text> is
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.uniqueValueProportionForColumnIs_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.NullCount: {
             return (
                 <Typography.Text>
-                    Null count for column <Typography.Text strong>{columnText}</Typography.Text> is
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.nullCountForColumnIs_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.NullProportion: {
             return (
                 <Typography.Text>
-                    Null proportion for column <Typography.Text strong>{columnText}</Typography.Text> is
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.nullProportionForColumnIs_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
@@ -117,51 +142,69 @@ const getColumnAggregationText = (
         case AssertionStdAggregation.Min: {
             return (
                 <Typography.Text>
-                    Minimum value for column <Typography.Text strong>{columnText}</Typography.Text> is
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.minimumValueForColumnIs_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.Max: {
             return (
                 <Typography.Text>
-                    Maximum value for column <Typography.Text strong>{columnText}</Typography.Text> is
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.maximumValueForColumnIs_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.Mean: {
             return (
                 <Typography.Text>
-                    Mean value for column <Typography.Text strong>{columnText}</Typography.Text> is
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.meanValueForColumnIs_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.Median: {
             return (
                 <Typography.Text>
-                    Median value for column <Typography.Text strong>{columnText}</Typography.Text> is
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.medianValueForColumnIs_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.Stddev: {
             return (
                 <Typography.Text>
-                    Standard deviation for column <Typography.Text strong>{columnText}</Typography.Text> is
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.standardDeviationForColumnIs_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
         // Native Aggregations
-        case AssertionStdAggregation.Native: {
-            return (
-                <Typography.Text>
-                    Column <Typography.Text strong>{columnText}</Typography.Text> values are
-                </Typography.Text>
-            );
-        }
+        case AssertionStdAggregation.Native:
         default:
             // No aggregation on the column at hand. Treat the column as a set of values.
             return (
                 <Typography.Text>
-                    Column <Typography.Text strong>{columnText}</Typography.Text> values are
+                    <ReactiveTrans {...{
+                        i18nKey: 'assertion.columnValuesAre_component',
+                        columnText,
+                        component: {typographyTextStrong: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
     }
@@ -174,17 +217,18 @@ const getAggregationText = (
     scope: DatasetAssertionScope,
     aggregation: AssertionStdAggregation | undefined | null,
     fields: Array<SchemaFieldRef> | undefined | null,
+    t: TFunction
 ) => {
     switch (scope) {
         case DatasetAssertionScope.DatasetSchema:
-            return getSchemaAggregationText(aggregation, fields);
+            return getSchemaAggregationText(aggregation, fields, t);
         case DatasetAssertionScope.DatasetRows:
-            return getRowsAggregationText(aggregation);
+            return getRowsAggregationText(aggregation, t);
         case DatasetAssertionScope.DatasetColumn:
-            return getColumnAggregationText(aggregation, fields?.length === 1 ? fields[0] : undefined);
+            return getColumnAggregationText(aggregation, fields?.length === 1 ? fields[0] : undefined, t);
         default:
             console.error(`Unsupported Dataset Assertion scope ${scope} provided`);
-            return 'Dataset is';
+            return t('assertion.datasetIs');
     }
 };
 
@@ -195,20 +239,26 @@ const getOperatorText = (
     op: AssertionStdOperator,
     parameters: AssertionStdParameters | undefined,
     nativeType: string | undefined,
+    t: TFunction
 ) => {
     switch (op) {
         // Hybrid Operators
         case AssertionStdOperator.Between: {
             return (
                 <Typography.Text>
-                    between{' '}
-                    <Typography.Text strong>{getFormattedParameterValue(parameters?.minValue)} </Typography.Text>
-                    and <Typography.Text strong>{getFormattedParameterValue(parameters?.maxValue)}</Typography.Text>
+                    <ReactiveTrans {...{
+                        i18nKey: 'common.betweenAndLowercaseWithName_component',
+                        name1: getFormattedParameterValue(parameters?.minValue),
+                        name2: getFormattedParameterValue(parameters?.maxValue),
+                        component: {
+                            component1: <Typography.Text strong />,
+                            component2: <Typography.Text strong />}
+                    }}/>
                 </Typography.Text>
             );
         }
         case AssertionStdOperator.EqualTo: {
-            const operatorText = 'equal to';
+            const operatorText = t('filter.equals.true');
             return (
                 <Typography.Text>
                     {operatorText}{' '}
@@ -217,7 +267,7 @@ const getOperatorText = (
             );
         }
         case AssertionStdOperator.Contain: {
-            const operatorText = 'contains';
+            const operatorText = t('filter.contains.true');
             return (
                 <Typography.Text>
                     {operatorText}{' '}
@@ -226,7 +276,7 @@ const getOperatorText = (
             );
         }
         case AssertionStdOperator.In: {
-            const operatorText = 'in';
+            const operatorText = t('filter.in.true');
             return (
                 <Typography.Text>
                     {operatorText}{' '}
@@ -235,12 +285,12 @@ const getOperatorText = (
             );
         }
         case AssertionStdOperator.NotNull: {
-            const operatorText = 'not null';
+            const operatorText = t('filter.null.false');
             return <Typography.Text strong>{operatorText}</Typography.Text>;
         }
         // Numeric Operators
         case AssertionStdOperator.GreaterThan: {
-            const operatorText = 'greater than';
+            const operatorText = t('filter.greater.true');
             return (
                 <Typography.Text>
                     {operatorText}{' '}
@@ -249,7 +299,7 @@ const getOperatorText = (
             );
         }
         case AssertionStdOperator.GreaterThanOrEqualTo: {
-            const operatorText = 'greater than or equal to';
+            const operatorText = t('filter.lower.false');
             return (
                 <Typography.Text>
                     {operatorText}{' '}
@@ -258,7 +308,7 @@ const getOperatorText = (
             );
         }
         case AssertionStdOperator.LessThan: {
-            const operatorText = 'less than';
+            const operatorText = t('filter.less.true');
             return (
                 <Typography.Text>
                     {operatorText}{' '}
@@ -267,7 +317,7 @@ const getOperatorText = (
             );
         }
         case AssertionStdOperator.LessThanOrEqualTo: {
-            const operatorText = 'less than or equal to';
+            const operatorText = t('less.lower.false');
             return (
                 <Typography.Text>
                     {operatorText}{' '}
@@ -277,7 +327,7 @@ const getOperatorText = (
         }
         // String Operators
         case AssertionStdOperator.StartWith: {
-            const operatorText = 'starts with';
+            const operatorText = t('filter.text.startWith');
             return (
                 <Typography.Text>
                     {operatorText}{' '}
@@ -286,7 +336,7 @@ const getOperatorText = (
             );
         }
         case AssertionStdOperator.EndWith: {
-            const operatorText = 'ends with';
+            const operatorText = t('filter.text.endWith');
             return (
                 <Typography.Text>
                     {operatorText}{' '}
@@ -297,16 +347,16 @@ const getOperatorText = (
         case AssertionStdOperator.Native: {
             return (
                 <Typography.Text>
-                    passing assertion <Typography.Text strong>{nativeType}</Typography.Text>
+                    {t('assertion.passingAssertion').toLowerCase()} <Typography.Text strong>{nativeType}</Typography.Text>
                 </Typography.Text>
             );
         }
         default:
             return (
                 <Typography.Text>
-                    passing operator{' '}
+                    {t('assertion.passingOperator').toLowerCase() + ' '}
                     <Typography.Text strong>
-                        {op} with value ${getFormattedParameterValue(parameters?.value)}
+                        {op + ' ' + t('common.withValue') + ' ' + getFormattedParameterValue(parameters?.value)}
                     </Typography.Text>
                 </Typography.Text>
             );
@@ -330,8 +380,8 @@ export const DatasetAssertionDescription = ({ assertionInfo }: Props) => {
     const description = (
         <>
             <Typography.Text>
-                {getAggregationText(scope, aggregation, fields)}{' '}
-                {getOperatorText(operator, parameters || undefined, nativeType || undefined)}
+                {getAggregationText(scope, aggregation, fields, t)}{' '}
+                {getOperatorText(operator, parameters || undefined, nativeType || undefined, t)}
             </Typography.Text>
         </>
     );
@@ -355,12 +405,12 @@ export const DatasetAssertionDescription = ({ assertionInfo }: Props) => {
             {logic && (
                 <div>
                     <ViewLogicButton onClick={() => setIsLogicVisible(true)} type="link">
-                        View Logic
+                        {t('assertion.viewLogic')}
                     </ViewLogicButton>
                 </div>
             )}
             <DatasetAssertionLogicModal
-                logic={logic || 'N/A'}
+                logic={logic || t('common.na')}
                 visible={isLogicVisible}
                 onClose={() => setIsLogicVisible(false)}
             />

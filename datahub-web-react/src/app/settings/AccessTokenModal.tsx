@@ -2,8 +2,7 @@ import React from 'react';
 import { Alert, Button, Modal, Typography } from 'antd';
 import styled from 'styled-components';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
-import { ReactiveTrans } from '../../utils/i18n-utils/ReactiveTrans';
+import { Trans, useTranslation } from 'react-i18next';
 
 const ModalSection = styled.div`
     display: flex;
@@ -91,7 +90,10 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
                 <ModalSectionHeader strong>{t('common.usage')}</ModalSectionHeader>
                 {/* TODO jm : valider cette trad la dessous */}
                 <ModalSectionParagraph>
-                    <ReactiveTrans
+                    {t('token.toUseATokenExplanationOne')} <Typography.Text keyboard>Bearer</Typography.Text>{' '}
+                    {t('token.toUseATokenExplanationTwo')} <Typography.Text keyboard>Authorization</Typography.Text>{' '}
+                    {t('token.toUseATokenExplanationThree')}
+                    <Trans
                         {...{
                             i18nKey: 'token.toUseATokenExplanation_component',
                             components: { typographyText: <Typography.Text keyboard /> },
@@ -105,12 +107,8 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
             <ModalSection>
                 <ModalSectionHeader strong>{t('common.learnMore')}</ModalSectionHeader>
                 <ModalSectionParagraph>
-                    <ReactiveTrans
-                        {...{
-                            i18nKey: 'token.learnMoreLink_html',
-                            link: 'https://www.datahubproject.io/docs/',
-                        }}
-                    />
+                    {t('token.learnMoreLink')}
+                    <a href="https://www.datahubproject.io/docs/"> {t('token.learnMoreLinkText')}.</a>
                 </ModalSectionParagraph>
             </ModalSection>
         </Modal>

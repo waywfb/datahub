@@ -1,10 +1,9 @@
 import { Image, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import dataHubLogo from '../../../images/datahublogo.png';
 import { ANTD_GRAY } from '../../entity/shared/constants';
-import { ReactiveTrans } from '../../../utils/i18n-utils/ReactiveTrans';
 
 const Section = styled.div`
     width: auto;
@@ -76,11 +75,7 @@ export const ErrorSection = (): JSX.Element => {
                 </MessageSection>
                 <div>
                     <DetailParagraph type="secondary">
-                        <ReactiveTrans
-                            {...{
-                                i18nKey: 'error.errorSection.needSupport_html',
-                            }}
-                        />
+                        <Trans i18nKey="error.errorSection.needSupport_html" />
                     </DetailParagraph>
                     <ResourceList>
                         {resources.map((resource) => (

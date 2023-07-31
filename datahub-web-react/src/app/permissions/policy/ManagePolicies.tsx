@@ -386,7 +386,7 @@ export const ManagePolicies = () => {
             render: (_, record: any) => (
                 <ActionButtonContainer>
                     <EditPolicyButton disabled={!record?.editable} onClick={() => onEditPolicy(record?.policy)}>
-                        EDIT
+                        {t('common.edit').toUpperCase()}
                     </EditPolicyButton>
                     {record?.state === PolicyState.Active ? (
                         <Button
@@ -400,7 +400,7 @@ export const ManagePolicies = () => {
                             }}
                             style={{ color: record?.editable ? 'red' : ANTD_GRAY[6], width: 100 }}
                         >
-                            DEACTIVATE
+                            {t('common.deactivate').toUpperCase()}
                         </Button>
                     ) : (
                         <Button
@@ -414,7 +414,7 @@ export const ManagePolicies = () => {
                             }}
                             style={{ color: record?.editable ? 'green' : ANTD_GRAY[6], width: 100 }}
                         >
-                            ACTIVATE
+                            {t('common.activate').toUpperCase()}
                         </Button>
                     )}
                     <Button
@@ -431,6 +431,7 @@ export const ManagePolicies = () => {
         },
     ];
 
+    // TODO: jm translate name, etc ... ?
     const tableData = policies?.map((policy) => ({
         allGroups: policy?.actors?.allGroups,
         allUsers: policy?.actors?.allUsers,
@@ -452,10 +453,10 @@ export const ManagePolicies = () => {
         <PageContainer>
             <OnboardingTour stepIds={[POLICIES_INTRO_ID, POLICIES_CREATE_POLICY_ID]} />
             {policiesLoading && !policiesData && (
-                <Message type="loading" content="Loading policies..." style={{ marginTop: '10%' }} />
+                <Message type="loading" content={t('permissions.loadingPolicies')} style={{ marginTop: '10%' }} />
             )}
-            {policiesError && <Message type="error" content="Failed to load policies! An unexpected error occurred." />}
-            {updateError && message.error('Failed to update policies. An unexpected error occurred.')}
+            {policiesError && <Message type="error" content={t('permissions.failedToLoadPolicies')} />}
+            {updateError && message.error(t('permissions.failedToUpdatePolicies'))}
             <SourceContainer>
                 <TabToolbar>
                     <div>
@@ -465,12 +466,12 @@ export const ManagePolicies = () => {
                             onClick={onClickNewPolicy}
                             data-testid="add-policy-button"
                         >
-                            <PlusOutlined /> Create new policy
+                            <PlusOutlined /> {t('permissions.createNewPolicy')}
                         </Button>
                     </div>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText="Search policies..."
+                        placeholderText={t('permissions.searchPolicies')}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,
@@ -491,7 +492,9 @@ export const ManagePolicies = () => {
                     dataSource={tableData}
                     rowKey="urn"
                     locale={{
-                        emptyText: <Empty description="No Policies!" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                        emptyText: (
+                            <Empty description={t('permissions.noPolicies')} image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                        ),
                     }}
                     pagination={false}
                 />

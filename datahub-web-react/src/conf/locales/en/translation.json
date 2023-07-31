@@ -101,6 +101,8 @@
     "saveChanges": "Save Changes",
     "models": "Models",
     "edit": "Edit",
+    "deactivate": "DEACTIVATE",
+    "activate": "ACTIVATE",
     "download": "Download",
     "filters": "Filters",
     "lineage": "Lineage",
@@ -182,6 +184,18 @@
       "content": "`Are you sure you want to remove this assertion from the dataset?`"
     }
   },
+  "onBoarding": {
+    "users" : {
+      "stepToRenderTitle_component": "<StepTitle level={5}>{{title}}</StepTitle>",
+      "usersAssignRoleID_html": "<p>You can assign <strong>Roles</strong> to existing <strong>Users</strong> here.</p><p>Learn more about <strong>Roles</strong> <a target=\"_blank\" rel=\"noreferrer noopener\" href=\"{{link}}\" > here.</a></p>",
+      "usersAssignRoleIDTitle": "Assigning Roles",
+      "usersInviteLink_html": "<p>Easily share an invite link with your colleagues to onboard them onto DataHub. Optionally assign a <strong>Role</strong> to anyone who joins using the link.</p><p>Learn more about configuring invite links <a target=\"_blank\" rel=\"noreferrer noopener\" href=\"{{link}}\" > here.</a></p>",
+      "usersInviteLinkTitle": "Invite New Users",
+      "usersSSO_html": "<p>The preferred way to onboard new <strong>Users</strong> is to use <strong>Single Sign-On</strong>.Currently, DataHub supports OIDC SSO.</p><p>Learn more about how to configure <strong>Single Sign-On</strong> <a target=\"_blank\" rel=\"noreferrer noopener\" href=\"{{link}}\" > here.</a></p>",
+      "usersSSOTitle": "Configuring Single Sign-On (SSO)",
+      "usersIntro_html": "<p>Welcome to DataHub <strong>Users</strong>!</p><p>There are a few different ways to onboard new <strong>Users</strong> onto DataHub.</p>"
+    }
+  },
   "token": {
     "accessToken": "Access Tokens",
     "personal": "Personal",
@@ -200,10 +214,19 @@
     "noAccessToken": "No Access Tokens!",
     "newPersonalAccessToken": "New Personal Access Token",
     "makeSureYouCopyYourAccessToken": "Make sure to copy your personal access token now. You won’t be able to see it again.",
-    "learnMoreLink_html": "To learn more about the DataHub APIs, check out the <a href=\"{{link}}\"> DataHub Docs.</a>",
-    "toUseATokenExplanation_component": "To use the token, provide it as a <typographyText keyboard>Bearer</typographyText> token in the <typographyText keyboard>Authorization</typographyText> header when making API requests:"
+    "learnMoreLink": "To learn more about the DataHub APIs, check out the",
+    "learnMoreLinkText": "DataHub Docs",
+    "toUseATokenExplanationOne": "To use the token, provide it as a",
+    "toUseATokenExplanationTwo": "token in the",
+    "toUseATokenExplanationThree": "header when making API requests:"
   },
   "permissions": {
+    "noPolicies": "No Policies!",
+    "searchPolicies": "Search policies...",
+    "createNewPolicy": "Create new policy",
+    "failedToUpdatePolicies": "Failed to update policies. An unexpected error occurred.",
+    "failedToLoadPolicies": "Failed to load policies! An unexpected error occurred.",
+    "loadingPolicies": "Loading policies...",
     "successfullySavedPolicy": "Successfully saved policy.",
     "successfullyRemovedPolicy": "Successfully removed policy.",
     "areYouSureRemovePolicy": "Are you sure you want to remove policy?",

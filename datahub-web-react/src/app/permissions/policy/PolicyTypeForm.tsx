@@ -1,9 +1,8 @@
 import React from 'react';
 import { Form, Input, Select, Typography } from 'antd';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { PolicyType } from '../../../types.generated';
-import { ReactiveTrans } from '../../../utils/i18n-utils/ReactiveTrans';
 
 type Props = {
     policyType: string;
@@ -60,7 +59,7 @@ export default function PolicyTypeForm({
                     <Select.Option value={PolicyType.Metadata}>{t('common.metadata')}</Select.Option>
                 </Select>
                 <TypeDescriptionParagraph type="secondary">
-                    <ReactiveTrans
+                    <Trans
                         {...{
                             i18nKey: 'permissions.typeOfPolicyDescription_html',
                         }}

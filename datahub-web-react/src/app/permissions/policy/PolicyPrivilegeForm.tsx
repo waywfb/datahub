@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Select, Tag, Tooltip, Typography } from 'antd';
 import styled from 'styled-components/macro';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { useAppConfig } from '../../useAppConfig';
 import {
@@ -22,7 +22,6 @@ import {
     mapResourceTypeToPrivileges,
     setFieldValues,
 } from './policyUtils';
-import { ReactiveTrans } from '../../../utils/i18n-utils/ReactiveTrans';
 
 type Props = {
     policyType: PolicyType;
@@ -288,7 +287,7 @@ export default function PolicyPrivilegeForm({
                     labelAlign="right"
                 >
                     <Typography.Paragraph>
-                        <ReactiveTrans
+                        <Trans
                             {...{
                                 i18nKey: 'permissions.resourceTypeDescription',
                             }}
@@ -321,7 +320,7 @@ export default function PolicyPrivilegeForm({
             {showResourceFilterInput && (
                 <Form.Item label={<Typography.Text strong>{t('common.resource')}</Typography.Text>}>
                     <Typography.Paragraph>
-                        <ReactiveTrans
+                        <Trans
                             {...{
                                 i18nKey: 'permissions.resourceDescription',
                             }}
@@ -357,7 +356,7 @@ export default function PolicyPrivilegeForm({
             {showResourceFilterInput && (
                 <Form.Item label={<Typography.Text strong>{t('common.domain')}</Typography.Text>}>
                     <Typography.Paragraph>
-                        <ReactiveTrans
+                        <Trans
                             {...{
                                 i18nKey: 'permissions.domainDescription',
                             }}

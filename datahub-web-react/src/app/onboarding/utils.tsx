@@ -1,6 +1,7 @@
 import { Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { TFunction } from 'i18next';
 import { StepStateResult } from '../../types.generated';
 import { OnboardingConfig } from './OnboardingConfig';
 import { OnboardingStep } from './OnboardingStep';
@@ -59,11 +60,13 @@ const StepTitle = styled(Typography.Title)`
     margin-botton: 5px;
 `;
 
+// TODO: jm translate step.title, step.content, etc ... ?
 export function getStepsToRender(
     educationSteps: StepStateResult[] | null,
     stepIds: string[],
     userUrn: string,
     reshow: boolean,
+    t: TFunction,
 ): OnboardingStep[] {
     if (!educationSteps) return [];
     const filteredStepIds: string[] = reshow
@@ -80,7 +83,9 @@ export function getStepsToRender(
             ...step,
             content: (
                 <div>
-                    <StepTitle level={5}>{step?.title}</StepTitle>
+                    <StepTitle level={5}>
+                        {step !== undefined && typeof step.title === 'string' ? t(step.title) : step?.title}
+                    </StepTitle>
                     <div>{step?.content}</div>
                 </div>
             ),

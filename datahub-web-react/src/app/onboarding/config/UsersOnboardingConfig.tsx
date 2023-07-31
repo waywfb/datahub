@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from 'antd';
+import { Trans } from 'react-i18next';
 import { OnboardingStep } from '../OnboardingStep';
 
 export const USERS_INTRO_ID = 'users-intro';
@@ -10,85 +11,58 @@ export const USERS_ASSIGN_ROLE_ID = 'users-assign-role';
 export const UsersOnboardingConfig: OnboardingStep[] = [
     {
         id: USERS_INTRO_ID,
-        title: 'Users',
+        title: 'common.users',
         content: (
             <Typography.Paragraph>
-                <p>
-                    Welcome to DataHub <strong>Users</strong>!
-                </p>
-                <p>
-                    There are a few different ways to onboard new <strong>Users</strong> onto DataHub.
-                </p>
+                <Trans
+                    {...{
+                        i18nKey: 'onBoarding.users.usersIntro_html',
+                    }}
+                />
             </Typography.Paragraph>
         ),
     },
     {
         id: USERS_SSO_ID,
-        title: 'Configuring Single Sign-On (SSO)',
+        title: 'onBoarding.users.usersSSOTitle',
         content: (
             <Typography.Paragraph>
-                <p>
-                    The preferred way to onboard new <strong>Users</strong> is to use <strong>Single Sign-On</strong>.
-                    Currently, DataHub supports OIDC SSO.
-                </p>
-                <p>
-                    Learn more about how to configure <strong>Single Sign-On</strong>{' '}
-                    <a
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        href="https://datahubproject.io/docs/authentication/guides/sso/configure-oidc-react/#configuring-oidc-in-react"
-                    >
-                        {' '}
-                        here.
-                    </a>
-                </p>
+                <Trans
+                    {...{
+                        i18nKey: 'onBoarding.users.usersSSO_html',
+                        link: 'https://datahubproject.io/docs/authentication/guides/sso/configure-oidc-react/#configuring-oidc-in-react',
+                    }}
+                />
             </Typography.Paragraph>
         ),
     },
     {
         id: USERS_INVITE_LINK_ID,
         selector: `#${USERS_INVITE_LINK_ID}`,
-        title: 'Invite New Users',
+        title: 'onBoarding.users.usersInviteLinkTitle',
         content: (
             <Typography.Paragraph>
-                <p>
-                    Easily share an invite link with your colleagues to onboard them onto DataHub. Optionally assign a{' '}
-                    <strong>Role</strong> to anyone who joins using the link.
-                </p>
-                <p>
-                    Learn more about configuring invite links{' '}
-                    <a
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        href="https://datahubproject.io/docs/authentication/guides/add-users/#send-prospective-users-an-invite-link"
-                    >
-                        {' '}
-                        here.
-                    </a>
-                </p>
+                <Trans
+                    {...{
+                        i18nKey: 'onBoarding.users.usersInviteLink_html',
+                        link: 'https://datahubproject.io/docs/authentication/guides/add-users/#send-prospective-users-an-invite-link',
+                    }}
+                />
             </Typography.Paragraph>
         ),
     },
     {
         id: USERS_ASSIGN_ROLE_ID,
         selector: `#${USERS_ASSIGN_ROLE_ID}`,
-        title: 'Assigning Roles',
+        title: 'onBoarding.users.usersAssignRoleIDTitle',
         content: (
             <Typography.Paragraph>
-                <p>
-                    You can assign <strong>Roles</strong> to existing <strong>Users</strong> here.
-                </p>
-                <p>
-                    Learn more about <strong>Roles</strong>{' '}
-                    <a
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        href="https://datahubproject.io/docs/authorization/roles"
-                    >
-                        {' '}
-                        here.
-                    </a>
-                </p>
+                <Trans
+                    {...{
+                        i18nKey: 'onBoarding.users.usersAssignRoleID_html',
+                        link: 'https://datahubproject.io/docs/authorization/roles',
+                    }}
+                />
             </Typography.Paragraph>
         ),
     },

@@ -5,7 +5,7 @@ import { ANTD_GRAY } from '../../../../../constants';
 
 type Props = {
     prefixText: string;
-    values: Array<string>;
+    values: Array<{ label: string, value: string }>;
     value: string;
     setValue: (value: string) => void;
 };
@@ -25,7 +25,7 @@ export default function PrefixedSelect({ prefixText, values, value, setValue }: 
             <SubHeaderText>{prefixText}</SubHeaderText>
             <EmbeddedSelect value={value} onChange={(val) => setValue(val as string)}>
                 {values.map((val) => (
-                    <Select.Option value={val}>{val}</Select.Option>
+                    <Select.Option value={val.value}>{val.label}</Select.Option>
                 ))}
             </EmbeddedSelect>
         </span>

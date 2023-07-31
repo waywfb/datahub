@@ -89,7 +89,7 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
      * Invoked when user selects new lookback window (e.g. 1 year)
      */
     const onChangeLookbackWindow = (value: SelectValue) => {
-        const newLookbackWindow = Object.values(LOOKBACK_WINDOWS).filter((window) => window.text === value?.valueOf());
+        const newLookbackWindow = Object.values(LOOKBACK_WINDOWS).filter((window) => window.value === value?.valueOf());
         setLookbackWindow(newLookbackWindow[0]);
     };
     const selectedWindow = getFixedLookbackWindow(lookbackWindow.windowSize);
@@ -210,8 +210,10 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
                         </EvaluationsSummary>
                         <PrefixedSelect
                             prefixText={t('common.show') + " "}
-                            values={Object.values(LOOKBACK_WINDOWS).map((window) => window.text)}
-                            value={lookbackWindow.text}
+                            values={Object.values(LOOKBACK_WINDOWS).map((window) => ({
+                                label: t(lookbackWindow.translateKey, {count: lookbackWindow.windowSize.count}),
+                                value: window.value}))}
+                            value={lookbackWindow.value}
                             setValue={onChangeLookbackWindow}
                         />
                     </EvaluationsHeader>

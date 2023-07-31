@@ -53,7 +53,7 @@ export default function StatsHeader({ viewType, setViewType, reportedAt, lookbac
 
     const actionView =
         viewType === ViewType.HISTORICAL ? (
-            <LookbackWindowSelect lookbackWindow={lookbackWindow} setLookbackWindow={setLookbackWindow} />
+            <LookbackWindowSelect lookbackWindow={lookbackWindow} setLookbackWindow={setLookbackWindow} t={t}/>
         ) : (
             <ReportedAtLabel>{reportedAt}</ReportedAtLabel>
         );

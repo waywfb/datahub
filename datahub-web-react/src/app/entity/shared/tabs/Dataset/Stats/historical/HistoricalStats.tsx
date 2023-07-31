@@ -92,12 +92,15 @@ const computeChartTickInterval = (windowSize: TimeWindowSize): DateInterval => {
     }
 };
 
-const computeAllFieldPaths = (profiles: Array<DatasetProfile>): Set<string> => {
-    const uniqueFieldPaths = new Set<string>();
+const computeAllFieldPaths = (profiles: Array<DatasetProfile>): Set<{ value: string; label: string }> => {
+    const uniqueFieldPaths = new Set<{ value: string; label: string }>();
     profiles.forEach((profile) => {
         const fieldProfiles = profile.fieldProfiles || [];
         fieldProfiles.forEach((fieldProfile) => {
-            uniqueFieldPaths.add(fieldProfile.fieldPath);
+            uniqueFieldPaths.add({
+                label: fieldProfile.fieldPath,
+                value: fieldProfile.fieldPath
+            });
         });
     });
     return uniqueFieldPaths;
@@ -150,7 +153,7 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
 
     if (selectedFieldPath === '' && allFieldPaths.length > 0) {
         // Set initially selected field path.
-        setSelectedFieldPath(allFieldPaths[0]);
+        setSelectedFieldPath(allFieldPaths[0].value);
     }
 
     const columnSelectView = (

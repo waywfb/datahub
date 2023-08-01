@@ -187,13 +187,13 @@
   "onBoarding": {
     "users" : {
       "stepToRenderTitle_component": "<StepTitle level={5}>{{title}}</StepTitle>",
-      "usersAssignRoleID_html": "<paraph>You can assign <bold>Roles</bold> to existing <bold>Users</bold> here.</paraph><paraph>Learn more about <bold>Roles</bold> <aLink> here.</aLink></paraph>",
+      "usersAssignRoleID_component": "<paraph>You can assign <bold>Roles</bold> to existing <bold>Users</bold> here.</paraph><paraph>Learn more about <bold>Roles</bold> <aLink> here.</aLink></paraph>",
       "usersAssignRoleIDTitle": "Assigning Roles",
-      "usersInviteLink_html": "<paraph>Easily share an invite link with your colleagues to onboard them onto DataHub. Optionally assign a <bold>Role</bold> to anyone who joins using the link.</paraph><paraph>Learn more about configuring invite links <aLink> here.</aLink></paraph>",
+      "usersInviteLink_component": "<paraph>Easily share an invite link with your colleagues to onboard them onto DataHub. Optionally assign a <bold>Role</bold> to anyone who joins using the link.</paraph><paraph>Learn more about configuring invite links <aLink> here.</aLink></paraph>",
       "usersInviteLinkTitle": "Invite New Users",
-      "usersSSO_html": "<paraph>The preferred way to onboard new <bold>Users</bold> is to use <bold>Single Sign-On</bold>.Currently, DataHub supports OIDC SSO.</paraph><paraph>Learn more about how to configure <bold>Single Sign-On</bold> <aLink> here.</aLink></paraph>",
+      "usersSSO_component": "<paraph>The preferred way to onboard new <bold>Users</bold> is to use <bold>Single Sign-On</bold>.Currently, DataHub supports OIDC SSO.</paraph><paraph>Learn more about how to configure <bold>Single Sign-On</bold> <aLink> here.</aLink></paraph>",
       "usersSSOTitle": "Configuring Single Sign-On (SSO)",
-      "usersIntro_html": "<paraph>Welcome to DataHub <bold>Users</bold>!</paraph><paraph>There are a few different ways to onboard new <bold>Users</bold> onto DataHub.</paraph>"
+      "usersIntro_component": "<paraph>Welcome to DataHub <bold>Users</bold>!</paraph><paraph>There are a few different ways to onboard new <bold>Users</bold> onto DataHub.</paraph>"
     }
   },
   "token": {
@@ -238,7 +238,7 @@
     "noRoles": "No Roles!",
     "nameForNewPolicy": "A name for your new policy.",
     "typeOfPolicyToCreate": "The type of policy you would like to create.",
-    "typeOfPolicyDescription_html": "The <bold>Platform</bold> policy type allows you to assign top-level DataHub Platform privileges to users.These include managing users and groups, creating policies, viewing analytics dashboards and more.<br /><br />The <bold>Metadata</bold> policy type allows you to assign metadata privileges to users. These include the ability to manipulate metadata like ownership, tags, documentation associated with Datasets, Charts, Dashboards, & more.",
+    "typeOfPolicyDescription_component": "The <bold>Platform</bold> policy type allows you to assign top-level DataHub Platform privileges to users.These include managing users and groups, creating policies, viewing analytics dashboards and more.<br /><br />The <bold>Metadata</bold> policy type allows you to assign metadata privileges to users. These include the ability to manipulate metadata like ownership, tags, documentation associated with Datasets, Charts, Dashboards, & more.",
     "newPolicyDescription": "An optional description for your new policy.",
     "resourceTypeDescription": "Select the types of resources this policy should apply to. If <bold>none</bold> is selected, policy is applied to <bold>all</bold> types of resources.",
     "resourceDescription": "Search for specific resources the policy should apply to. If <bold>none</bold> is selected, policy is applied to <bold>all</bold> resources of the given type.",
@@ -408,9 +408,9 @@
   },
   "search": {
     "viewAllResultsFor": "View all results for",
-    "seeAllResultsWithName_html": "See all <bold>{{name}}</bold> results",
+    "seeAllResultsWithName_component": "See all <bold>{{name}}</bold> results",
     "moreYouMayBeInterestedIn": "More you may be interested in",
-    "showingNumberOfTotalResults_html_interval": "(0-1)Showing <bold>{{number}} - {{index}}</bold> of {{count}} result;(2-inf)Showing <bold>{{number}} - {{index}}</bold> of {{count}} results;",
+    "showingNumberOfTotalResults_component_interval": "(0-1)Showing <bold>{{number}} - {{index}}</bold> of {{count}} result;(2-inf)Showing <bold>{{number}} - {{index}}</bold> of {{count}} results;",
     "noResultsFoundFor": "No results found for {{name}}",
     "exploreAll": "Explore all",
     "selectWithName": "Select {{name}}"
@@ -549,7 +549,7 @@
       "anUnexpectedErrorOccurred": "An unexpected error occurred. Please try again later, or reach out to your administrator",
       "needSupport": "Need support?",
       "checkOutThisRessources": "Check out these resources:",
-      "needSupport_html": "<bold>Need support?</bold> Check out these resources:"
+      "needSupport_component": "<bold>Need support?</bold> Check out these resources:"
     }
   }
 }

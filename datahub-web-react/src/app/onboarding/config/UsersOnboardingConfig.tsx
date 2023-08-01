@@ -16,7 +16,7 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
             <Typography.Paragraph>
                 <Trans
                     {...{
-                        i18nKey: 'onBoarding.users.usersIntro_html',
+                        i18nKey: 'onBoarding.users.usersIntro_component',
                         components: {
                             paraph: <p />,
                             bold: <strong />,
@@ -33,7 +33,7 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
             <Typography.Paragraph>
                 <Trans
                     {...{
-                        i18nKey: 'onBoarding.users.usersSSO_html',
+                        i18nKey: 'onBoarding.users.usersSSO_component',
                         components: {
                             paraph: <p />,
                             bold: <strong />,
@@ -59,7 +59,7 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
             <Typography.Paragraph>
                 <Trans
                     {...{
-                        i18nKey: 'onBoarding.users.usersInviteLink_html',
+                        i18nKey: 'onBoarding.users.usersInviteLink_component',
                         components: {
                             paraph: <p />,
                             bold: <strong />,
@@ -85,7 +85,7 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
             <Typography.Paragraph>
                 <Trans
                     {...{
-                        i18nKey: 'onBoarding.users.usersAssignRoleID_html',
+                        i18nKey: 'onBoarding.users.usersAssignRoleID_component',
                         components: {
                             paraph: <p />,
                             bold: <strong />,

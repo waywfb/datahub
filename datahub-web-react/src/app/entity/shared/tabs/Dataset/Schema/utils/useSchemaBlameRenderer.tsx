@@ -23,7 +23,7 @@ const SubheadingDiv = styled.div`
 `;
 
 const SchemaBlameText = styled(Typography.Text)`
-    font-size: 14x;
+    font-size: 14px;
     line-height: 22px;
     font-family: 'Roboto Mono', monospace;
     font-weight: 500;
@@ -44,7 +44,7 @@ const SchemaBlameBlameButton = styled(Button)`
 export default function useSchemaBlameRenderer(schemaBlameList?: Array<SchemaFieldBlame> | null) {
     const history = useHistory();
     const location = useLocation();
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const schemaBlameRenderer = (record: SchemaField) => {
         const relevantSchemaFieldBlame = schemaBlameList?.find((candidateSchemaBlame) =>
             pathMatchesNewPath(candidateSchemaBlame.fieldPath, String(record)),
@@ -68,11 +68,9 @@ export default function useSchemaBlameRenderer(schemaBlameList?: Array<SchemaFie
                                     i18n.language,
                                 )}
                             </SchemaBlameTimestampText>
-                        ) : (
-                            'unknown'
-                        )}
+                        ) : t('common.unknown')}
                         <span>
-                            <Tooltip title="View blame prior to this version">
+                            <Tooltip title={t('reporting.viewBlamePriorToThisVersion')}>
                                 <SchemaBlameBlameButton
                                     data-testid={`${relevantSchemaFieldBlame.fieldPath}-view-prior-blame-button`}
                                     onClick={() => {

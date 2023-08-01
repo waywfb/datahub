@@ -4,6 +4,7 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { UsageQueryResult } from '../../../../../../../types.generated';
 import { pathMatchesNewPath } from '../../../../../dataset/profile/schema/utils/utils';
+import { TFunction } from 'i18next';
 
 const USAGE_BAR_MAX_WIDTH = 50;
 
@@ -19,7 +20,7 @@ const UsageBarContainer = styled.div`
     height: 100%;
 `;
 
-export default function useUsageStatsRenderer(usageStats?: UsageQueryResult | null) {
+export default function useUsageStatsRenderer(usageStats?: UsageQueryResult | null, t: TFunction) {
     const maxFieldUsageCount = useMemo(
         () => Math.max(...(usageStats?.aggregations?.fields?.map((field) => field?.count || 0) || [])),
         [usageStats],
@@ -35,7 +36,7 @@ export default function useUsageStatsRenderer(usageStats?: UsageQueryResult | nu
         }
 
         return (
-            <Tooltip placement="topLeft" title={`${relevantUsageStats.count} queries / month`}>
+            <Tooltip placement="topLeft" title={t('reporting.queryByMonth', { count: relevantUsageStats.count })}>
                 <UsageBarContainer>
                     <UsageBar width={((relevantUsageStats.count || 0) / maxFieldUsageCount) * USAGE_BAR_MAX_WIDTH} />
                 </UsageBarContainer>

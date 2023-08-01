@@ -1,5 +1,8 @@
 {
   "common": {
+    "usage": "Usage",
+    "field": "Field",
+    "date": "Date",
     "na": "N/A",
     "withValue": "With value",
     "betweenAndLowercaseWithName_component": "Between <component1>{{name1}}<component1> and <component2>{{name2}}<component2>",
@@ -82,7 +85,6 @@
     "table": "Table",
     "environment": "Environment",
     "entityType": "Entity Type",
-    "usage": "Usage",
     "learnMore": "Learn More",
     "retry": "Retry",
     "degree": "Degree",
@@ -267,6 +269,7 @@
     }
   },
   "entity": {
+    "foreignKeyTo": "Foreign Key to",
     "noDocumentationAddedYet": "No documentation added yet.",
     "viewEntityWithName": "View {{name}} profile",
     "authorNameWithLink_component": "Added {{timestamp}} by <linkComponent>{{authorName}}</linkComponent>",
@@ -350,6 +353,7 @@
     }
   },
   "lineage": {
+    "seeColumnLineage": "See Column Lineage",
     "hideColumnLevelLineage": "Hide column level lineage",
     "showColumnLevelLineage": "Show column level lineage",
     "columnLineage": "Column Lineage",
@@ -381,7 +385,21 @@
     "unknownTimeRange": "Unknown time range"
   },
   "reporting": {
-    "reportedOnAtWithDateTime": "Reported on {{date}} at {{time}}"
+    "viewBlamePriorToThisVersion": "View blame prior to this version",
+    "profilingRuns":  "Profiling Runs",
+    "tableStats":  "Table Stats",
+    "columnStats": "Column Stats",
+    "rowCount": "Row Count",
+    "columnCount":"Column Count",
+    "rowCountOverTime": "Row Count Over Time",
+    "columnCountOverTime":"Column Count Over Time",
+    "nullCountOverTime": "Null Count Over Time",
+    "nullPercentageOverTime":"Null Percentage Over Time",
+    "distinctCountOverTime": "Distinct Count Over Time",
+    "distinctPercentageOverTime":"Distinct Percentage Over Time",
+    "showingProfileFromAtWithDateTime": "Showing profile from {{date}} at {{time}}",
+    "reportedOnAtWithDateTime": "Reported on {{date}} at {{time}}",
+    "queryByMonth_interval": "(0-1){{count}} query / month;(2-inf){{count}} queries / month;"
   },
   "adminHeader": {
     "analyticsText": "Analytics",
@@ -529,6 +547,8 @@
     }
   },
   "copy": {
+    "copyColumnUrn": "Copy Column Urn",
+    "copyColumnFieldPath": "Copy Column Field Path",
     "copyLink": "Copy Link",
     "urnTooltip": "Copy URN. An URN uniquely identifies an entity on DataHub.",
     "copyUrnForThis": "Copy the URN for this {{type}}. An URN uniquely identifies an entity on DataHub.",

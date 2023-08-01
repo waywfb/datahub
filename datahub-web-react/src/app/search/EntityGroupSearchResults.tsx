@@ -83,6 +83,7 @@ export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) 
                                         values: {
                                             name: entityRegistry.getCollectionNameTrans(type, t),
                                         },
+                                        components: { bold: <b /> },
                                     }}
                                 />
                             </Typography.Text>

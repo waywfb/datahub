@@ -78,6 +78,7 @@ export const ErrorSection = (): JSX.Element => {
                         <Trans
                             {...{
                                 i18nKey: 'error.errorSection.needSupport_html',
+                                components: { bold: <b /> },
                             }}
                         />
                     </DetailParagraph>

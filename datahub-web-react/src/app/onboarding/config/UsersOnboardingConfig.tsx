@@ -17,6 +17,10 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
                 <Trans
                     {...{
                         i18nKey: 'onBoarding.users.usersIntro_html',
+                        components: {
+                            paraph: <p />,
+                            bold: <strong />,
+                        },
                     }}
                 />
             </Typography.Paragraph>
@@ -30,8 +34,17 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
                 <Trans
                     {...{
                         i18nKey: 'onBoarding.users.usersSSO_html',
-                        values: {
-                            link: 'https://datahubproject.io/docs/authentication/guides/sso/configure-oidc-react/#configuring-oidc-in-react',
+                        components: {
+                            paraph: <p />,
+                            bold: <strong />,
+                            aLink: (
+                                // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                <a
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    href="https://datahubproject.io/docs/authentication/guides/sso/configure-oidc-react/#configuring-oidc-in-react"
+                                />
+                            ),
                         },
                     }}
                 />
@@ -47,8 +60,17 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
                 <Trans
                     {...{
                         i18nKey: 'onBoarding.users.usersInviteLink_html',
-                        values: {
-                            link: 'https://datahubproject.io/docs/authentication/guides/add-users/#send-prospective-users-an-invite-link',
+                        components: {
+                            paraph: <p />,
+                            bold: <strong />,
+                            aLink: (
+                                // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                <a
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    href="https://datahubproject.io/docs/authentication/guides/add-users/#send-prospective-users-an-invite-link"
+                                />
+                            ),
                         },
                     }}
                 />
@@ -64,8 +86,17 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
                 <Trans
                     {...{
                         i18nKey: 'onBoarding.users.usersAssignRoleID_html',
-                        values: {
-                            link: 'https://datahubproject.io/docs/authorization/roles',
+                        components: {
+                            paraph: <p />,
+                            bold: <strong />,
+                            aLink: (
+                                // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                <a
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    href="https://datahubproject.io/docs/authorization/roles"
+                                />
+                            ),
                         },
                     }}
                 />

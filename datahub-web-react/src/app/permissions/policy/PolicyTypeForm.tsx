@@ -62,6 +62,7 @@ export default function PolicyTypeForm({
                     <Trans
                         {...{
                             i18nKey: 'permissions.typeOfPolicyDescription_html',
+                            components: { bold: <b /> },
                         }}
                     />
                 </TypeDescriptionParagraph>

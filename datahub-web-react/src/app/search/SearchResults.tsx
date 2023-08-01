@@ -199,6 +199,7 @@ export const SearchResults = ({
                                                 index: lastResultIndex,
                                                 count: totalResults,
                                             },
+                                            components: { bold: <b /> },
                                         }}
                                     />
                                 </Typography.Text>

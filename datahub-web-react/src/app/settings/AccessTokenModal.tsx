@@ -88,11 +88,7 @@ export const AccessTokenModal = ({ visible, onClose, accessToken, expiresInText 
             </ModalSection>
             <ModalSection>
                 <ModalSectionHeader strong>{t('common.usage')}</ModalSectionHeader>
-                {/* TODO jm : valider cette trad la dessous */}
                 <ModalSectionParagraph>
-                    {t('token.toUseATokenExplanationOne')} <Typography.Text keyboard>Bearer</Typography.Text>{' '}
-                    {t('token.toUseATokenExplanationTwo')} <Typography.Text keyboard>Authorization</Typography.Text>{' '}
-                    {t('token.toUseATokenExplanationThree')}
                     <Trans
                         {...{
                             i18nKey: 'token.toUseATokenExplanation_component',

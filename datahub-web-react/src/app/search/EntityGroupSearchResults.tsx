@@ -80,7 +80,9 @@ export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) 
                                 <Trans
                                     {...{
                                         i18nKey: 'search.seeAllResultsWithName_html',
-                                        name: entityRegistry.getCollectionNameTrans(type, t),
+                                        values: {
+                                            name: entityRegistry.getCollectionNameTrans(type, t),
+                                        },
                                     }}
                                 />
                             </Typography.Text>

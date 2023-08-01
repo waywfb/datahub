@@ -87,8 +87,10 @@ export const LinkList = ({ refetch }: LinkListProps) => {
                                     <Trans
                                         {...{
                                             i18nKey: 'entity.authorNameWithLink_component',
-                                            timestamp: formatDateString(link.created.time),
-                                            authorName: link.author.username,
+                                            values: {
+                                                timestamp: formatDateString(link.created.time),
+                                                authorName: link.author.username,
+                                            },
                                             components: {
                                                 linkComponent: (
                                                     <Link

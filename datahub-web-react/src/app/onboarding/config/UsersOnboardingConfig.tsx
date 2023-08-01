@@ -30,7 +30,9 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
                 <Trans
                     {...{
                         i18nKey: 'onBoarding.users.usersSSO_html',
-                        link: 'https://datahubproject.io/docs/authentication/guides/sso/configure-oidc-react/#configuring-oidc-in-react',
+                        values: {
+                            link: 'https://datahubproject.io/docs/authentication/guides/sso/configure-oidc-react/#configuring-oidc-in-react',
+                        },
                     }}
                 />
             </Typography.Paragraph>
@@ -45,7 +47,9 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
                 <Trans
                     {...{
                         i18nKey: 'onBoarding.users.usersInviteLink_html',
-                        link: 'https://datahubproject.io/docs/authentication/guides/add-users/#send-prospective-users-an-invite-link',
+                        values: {
+                            link: 'https://datahubproject.io/docs/authentication/guides/add-users/#send-prospective-users-an-invite-link',
+                        },
                     }}
                 />
             </Typography.Paragraph>
@@ -60,7 +64,9 @@ export const UsersOnboardingConfig: OnboardingStep[] = [
                 <Trans
                     {...{
                         i18nKey: 'onBoarding.users.usersAssignRoleID_html',
-                        link: 'https://datahubproject.io/docs/authorization/roles',
+                        values: {
+                            link: 'https://datahubproject.io/docs/authorization/roles',
+                        },
                     }}
                 />
             </Typography.Paragraph>

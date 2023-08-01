@@ -47,7 +47,9 @@ const getSchemaAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.dataSetColumnsAre_component',
-                            fieldNames: JSON.stringify(fieldNames),
+                            values: {
+                                fieldNames: JSON.stringify(fieldNames),
+                            },
                             components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
@@ -100,8 +102,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.uniqueValueCountForColumnIs_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -113,8 +117,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.uniqueValueProportionForColumnIs_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -126,8 +132,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.nullCountForColumnIs_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -139,8 +147,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.nullProportionForColumnIs_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -153,8 +163,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.minimumValueForColumnIs_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -166,8 +178,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.maximumValueForColumnIs_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -179,8 +193,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.meanValueForColumnIs_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -192,8 +208,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.medianValueForColumnIs_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -205,8 +223,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.standardDeviationForColumnIs_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -221,8 +241,10 @@ const getColumnAggregationText = (
                     <Trans
                         {...{
                             i18nKey: 'assertion.columnValuesAre_component',
-                            columnText,
-                            component: { typographyTextStrong: <Typography.Text strong /> },
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
                         }}
                     />
                 </Typography.Text>
@@ -269,9 +291,11 @@ const getOperatorText = (
                     <Trans
                         {...{
                             i18nKey: 'common.betweenAndLowercaseWithName_component',
-                            name1: getFormattedParameterValue(parameters?.minValue),
-                            name2: getFormattedParameterValue(parameters?.maxValue),
-                            component: {
+                            values: {
+                                name1: getFormattedParameterValue(parameters?.minValue),
+                                name2: getFormattedParameterValue(parameters?.maxValue),
+                            },
+                            components: {
                                 component1: <Typography.Text strong />,
                                 component2: <Typography.Text strong />,
                             },

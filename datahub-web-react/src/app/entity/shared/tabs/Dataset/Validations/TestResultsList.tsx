@@ -2,10 +2,10 @@ import { CopyOutlined, StopOutlined } from '@ant-design/icons';
 import { Button, Divider, Empty, Tag, Tooltip, Typography } from 'antd';
 import styled from 'styled-components';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { TestResult } from '../../../../../../types.generated';
 import { StyledTable } from '../../../components/styled/StyledTable';
 import { getResultColor, getResultIcon, getResultText } from './testUtils';
-import { useTranslation } from 'react-i18next';
 
 const ResultContainer = styled.div`
     display: flex;
@@ -57,7 +57,8 @@ export const TestResultsList = ({ title, results }: Props) => {
             key: '',
             render: (_, record: any) => {
                 const resultColor = (record.resultType && getResultColor(record.resultType, t)) || 'default';
-                const resultText = (record.resultType && getResultText(record.resultType, t)) || t('test.noEvaluations');
+                const resultText =
+                    (record.resultType && getResultText(record.resultType, t)) || t('test.noEvaluations');
                 const resultIcon = (record.resultType && getResultIcon(record.resultType, t)) || <StopOutlined />;
                 return (
                     <ResultContainer>
@@ -103,7 +104,9 @@ export const TestResultsList = ({ title, results }: Props) => {
                 dataSource={resultsTableData}
                 rowKey="urn"
                 locale={{
-                    emptyText: <Empty description={t('test.noTestsFound') +" :("} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                    emptyText: (
+                        <Empty description={`${t('test.noTestsFound')} :(`} image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                    ),
                 }}
                 showHeader={false}
                 pagination={false}

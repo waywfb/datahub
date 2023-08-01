@@ -50,13 +50,13 @@ export const TableCellMenu = () => {
                 disabled={active.tableHeaderCell()}
                 onClick={() => commands.deleteTableRow()}
             >
-                {t('crud.deleteWithName', { name: t('common.row')})}
+                {t('crud.deleteWithName', { name: t('common.row') })}
             </Menu.Item>
             <Menu.Item icon={<DeleteOutlined />} onClick={() => commands.deleteTableColumn()}>
-                {t('crud.deleteWithName', { name: t('common.column')})}
+                {t('crud.deleteWithName', { name: t('common.column') })}
             </Menu.Item>
             <Menu.Item icon={<DeleteOutlined />} onClick={() => commands.deleteTable()}>
-                {t('crud.deleteWithName', { name: t('common.table')})}
+                {t('crud.deleteWithName', { name: t('common.table') })}
             </Menu.Item>
         </Menu>
     );

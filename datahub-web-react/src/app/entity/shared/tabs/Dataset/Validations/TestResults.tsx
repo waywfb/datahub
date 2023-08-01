@@ -1,8 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { TestResult } from '../../../../../../types.generated';
 import { TestResultsList } from './TestResultsList';
 import { TestResultsSummary } from './TestResultsSummary';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     passing: Array<TestResult>;
@@ -25,7 +25,10 @@ export const TestResults = ({ passing, failing }: Props) => {
                 }}
             />
             {totalTests > 0 && (
-                <TestResultsList title={t('test.common.testResults')} results={[...filteredFailing, ...filteredPassing]} />
+                <TestResultsList
+                    title={t('test.common.testResults')}
+                    results={[...filteredFailing, ...filteredPassing]}
+                />
             )}
         </>
     );

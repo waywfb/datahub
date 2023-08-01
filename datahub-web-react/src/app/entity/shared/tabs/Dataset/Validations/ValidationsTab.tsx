@@ -3,13 +3,13 @@ import { Button } from 'antd';
 import { useHistory, useLocation } from 'react-router';
 import styled from 'styled-components';
 import { FileDoneOutlined, FileProtectOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { useEntityData } from '../../../EntityContext';
 import { TestResults } from './TestResults';
 import { Assertions } from './Assertions';
 import TabToolbar from '../../../components/styled/TabToolbar';
 import { useGetValidationsTab } from './useGetValidationsTab';
 import { ANTD_GRAY } from '../../../constants';
-import { useTranslation } from 'react-i18next';
 
 const TabTitle = styled.span`
     margin-left: 4px;
@@ -59,7 +59,9 @@ export const ValidationsTab = () => {
             title: (
                 <>
                     <FileProtectOutlined />
-                    <TabTitle>{t('common.assertions')} ({totalAssertions})</TabTitle>
+                    <TabTitle>
+                        {t('common.assertions')} ({totalAssertions})
+                    </TabTitle>
                 </>
             ),
             path: TabPaths.ASSERTIONS,
@@ -70,7 +72,9 @@ export const ValidationsTab = () => {
             title: (
                 <>
                     <FileDoneOutlined />
-                    <TabTitle>{t('common.tests')} ({totalTests})</TabTitle>
+                    <TabTitle>
+                        {t('common.tests')} ({totalTests})
+                    </TabTitle>
                 </>
             ),
             path: TabPaths.TESTS,

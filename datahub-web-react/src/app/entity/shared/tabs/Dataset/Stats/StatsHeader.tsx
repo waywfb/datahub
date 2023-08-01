@@ -3,12 +3,12 @@ import { Button, Typography } from 'antd';
 import { ClockCircleOutlined, LineChartOutlined } from '@ant-design/icons';
 
 import styled from 'styled-components';
+import { TFunction } from 'i18next';
 import { ViewType } from './viewType';
 import TabToolbar from '../../../components/styled/TabToolbar';
 import { ANTD_GRAY, REDESIGN_COLORS } from '../../../constants';
 import { LookbackWindow } from './lookbackWindows';
 import LookbackWindowSelect from './historical/LookbackWindowSelect';
-import { TFunction } from 'i18next';
 
 const StatsHeaderContainer = styled.div`
     display: flex;
@@ -31,10 +31,17 @@ type Props = {
     reportedAt: string;
     lookbackWindow: LookbackWindow;
     setLookbackWindow: (window: LookbackWindow) => void;
-    t: TFunction
+    t: TFunction;
 };
 
-export default function StatsHeader({ viewType, setViewType, reportedAt, lookbackWindow, setLookbackWindow, t }: Props) {
+export default function StatsHeader({
+    viewType,
+    setViewType,
+    reportedAt,
+    lookbackWindow,
+    setLookbackWindow,
+    t,
+}: Props) {
     const latestButtonColor = viewType === ViewType.LATEST ? REDESIGN_COLORS.BLUE : ANTD_GRAY[8];
     const latestButton = (
         <Button type="text" onClick={() => setViewType(ViewType.LATEST)}>
@@ -53,7 +60,7 @@ export default function StatsHeader({ viewType, setViewType, reportedAt, lookbac
 
     const actionView =
         viewType === ViewType.HISTORICAL ? (
-            <LookbackWindowSelect lookbackWindow={lookbackWindow} setLookbackWindow={setLookbackWindow} t={t}/>
+            <LookbackWindowSelect lookbackWindow={lookbackWindow} setLookbackWindow={setLookbackWindow} t={t} />
         ) : (
             <ReportedAtLabel>{reportedAt}</ReportedAtLabel>
         );

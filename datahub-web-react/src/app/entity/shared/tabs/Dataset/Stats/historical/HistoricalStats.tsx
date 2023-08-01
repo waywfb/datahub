@@ -99,7 +99,7 @@ const computeAllFieldPaths = (profiles: Array<DatasetProfile>): Set<{ value: str
         fieldProfiles.forEach((fieldProfile) => {
             uniqueFieldPaths.add({
                 label: fieldProfile.fieldPath,
-                value: fieldProfile.fieldPath
+                value: fieldProfile.fieldPath,
             });
         });
     });

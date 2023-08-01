@@ -60,7 +60,14 @@ export const LinkModal = (props: LinkModalProps) => {
     };
 
     return (
-        <Modal title={t('crud.addWithName', { name: t('common.link') })} okText={t('common.save')} cancelText={t('common.cancel')} onCancel={handleClose} onOk={handleOk} visible={visible}>
+        <Modal
+            title={t('crud.addWithName', { name: t('common.link') })}
+            okText={t('common.save')}
+            cancelText={t('common.cancel')}
+            onCancel={handleClose}
+            onOk={handleOk}
+            visible={visible}
+        >
             <Form
                 form={form}
                 layout="vertical"

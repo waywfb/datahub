@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
-import { TestResultType } from '../../../../../../types.generated';
 import { TFunction } from 'i18next';
+import { TestResultType } from '../../../../../../types.generated';
 
 /**
  * Returns the display text assoociated with an Test Result Type

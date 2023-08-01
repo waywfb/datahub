@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Button, Divider, Typography } from 'antd';
 import { EditOutlined, ExpandAltOutlined } from '@ant-design/icons';
 
+import { useTranslation } from 'react-i18next';
 import TabToolbar from '../../components/styled/TabToolbar';
 import { AddLinkModal } from '../../components/styled/AddLinkModal';
 import { EmptyTab } from '../../components/styled/EmptyTab';
@@ -16,7 +17,6 @@ import { useEntityData, useRefetch, useRouteToTab } from '../../EntityContext';
 import { EDITED_DESCRIPTIONS_CACHE_NAME } from '../../utils';
 import { Editor } from './components/editor/Editor';
 import { DescriptionPreviewModal } from './components/DescriptionPreviewModal';
-import { useTranslation } from 'react-i18next';
 
 const DocumentationContainer = styled.div`
     margin: 0 32px;
@@ -88,7 +88,9 @@ export const DocumentationTab = ({ properties }: { properties?: Props }) => {
                             <Editor content={description} readOnly />
                         ) : (
                             <DocumentationContainer>
-                                <Typography.Text type="secondary">{t('entity.noDocumentationAddedYet')}</Typography.Text>
+                                <Typography.Text type="secondary">
+                                    {t('entity.noDocumentationAddedYet')}
+                                </Typography.Text>
                             </DocumentationContainer>
                         )}
                         <Divider />
@@ -100,7 +102,7 @@ export const DocumentationTab = ({ properties }: { properties?: Props }) => {
             ) : (
                 <EmptyTab tab="documentation">
                     <Button onClick={() => routeToTab({ tabName: 'Documentation', tabParams: { editing: true } })}>
-                        <EditOutlined /> {t('crud.addWithName',{ name: t('common.description') })}
+                        <EditOutlined /> {t('crud.addWithName', { name: t('common.description') })}
                     </Button>
                     {!hideLinksButton && <AddLinkModal refetch={refetch} />}
                 </EmptyTab>

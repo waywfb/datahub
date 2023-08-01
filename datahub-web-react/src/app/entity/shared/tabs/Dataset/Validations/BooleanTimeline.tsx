@@ -4,8 +4,8 @@ import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
 import { AxisBottom } from '@vx/axis';
 import { scaleUtc } from '@vx/scale';
-import { ANTD_GRAY } from '../../../constants';
 import { useTranslation } from 'react-i18next';
+import { ANTD_GRAY } from '../../../constants';
 
 export type BooleanResult = {
     result: boolean;

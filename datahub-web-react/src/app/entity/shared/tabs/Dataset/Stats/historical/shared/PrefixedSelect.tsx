@@ -5,7 +5,7 @@ import { ANTD_GRAY } from '../../../../../constants';
 
 type Props = {
     prefixText: string;
-    values: Array<{ label: string, value: string }>;
+    values: Array<{ label: string; value: string }>;
     value: string;
     setValue: (value: string) => void;
 };

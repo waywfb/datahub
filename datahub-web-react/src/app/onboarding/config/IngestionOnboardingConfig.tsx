@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from 'antd';
+import { Trans } from 'react-i18next';
 import { OnboardingStep } from '../OnboardingStep';
 
 export const INGESTION_CREATE_SOURCE_ID = 'ingestion-create-source';
@@ -9,35 +10,42 @@ export const IngestionOnboardingConfig: OnboardingStep[] = [
     {
         id: INGESTION_CREATE_SOURCE_ID,
         selector: `#${INGESTION_CREATE_SOURCE_ID}`,
-        title: 'Create a new Ingestion Source',
+        title: 'onBoarding.ingestion.ingestionCreateTitle',
         content: (
             <Typography.Paragraph>
-                <p>
-                    Configure new Integrations from DataHub to your <strong>Data Platforms</strong>, including
-                    Transactional Databases like <strong>MySQL</strong>, Data Warehouses such as{' '}
-                    <strong>Snowflake</strong>, Dashboarding tools like <strong>Looker</strong>, and more!
-                </p>
-                <p>
-                    Learn more about ingestion and view the full list of supported Integrations{' '}
-                    <a
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        href="https://datahubproject.io/docs/metadata-ingestion"
-                    >
-                        {' '}
-                        here.
-                    </a>
-                </p>
+                <Trans
+                    {...{
+                        i18nKey: 'onBoarding.ingestion.ingestionCreate_component',
+                        components: {
+                            paraph: <p />,
+                            bold: <strong />,
+                            aLink: (
+                                // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                <a
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    href="https://datahubproject.io/docs/metadata-ingestion"
+                                />
+                            ),
+                        },
+                    }}
+                />
             </Typography.Paragraph>
         ),
     },
     {
         id: INGESTION_REFRESH_SOURCES_ID,
         selector: `#${INGESTION_REFRESH_SOURCES_ID}`,
-        title: 'Refresh Ingestion Sources',
+        title: 'onBoarding.ingestion.ingestionRefreshSourceTitle',
         content: (
             <Typography.Paragraph>
-                <p>Click to force a refresh of running ingestion sources.</p>
+                <p>
+                    <Trans
+                        {...{
+                            i18nKey: 'onBoarding.ingestion.ingestionRefreshSource_component',
+                        }}
+                    />
+                </p>
             </Typography.Paragraph>
         ),
     },

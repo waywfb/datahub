@@ -1,5 +1,8 @@
 {
   "common": {
+    "glossaryTerms": "Glossary Terms",
+    "tags": "Tags",
+    "policies": "Policies",
     "na": "N/A",
     "withValue": "With value",
     "betweenAndLowercaseWithName_component": "Between <component1>{{name1}}<component1> and <component2>{{name2}}<component2>",
@@ -185,6 +188,94 @@
     }
   },
   "onBoarding": {
+    "entityProfile": {
+      "domains_component": "<paraph>You can view and set this asset's <bold>Domain</bold> here.</paraph><paraph><bold>Domains</bold> are collections of related data assets associated with a specific part of your organization, such as the <bold>Marketing</bold> department.</paraph><paraph>Learn more about <bold>Domains</bold> <aLink>here.</aLink></paraph>",
+      "glossaryTerm_component": "<paraph>You can view and add <bold>Glossary Terms</bold> to this asset here.</paraph><paraph><bold>Glossary Terms</bold> are structured, standarized labels for organizing your mission-critical data. For example, if you're marking assets containing PII fields, you might add the Term <bold>Email</bold>.</paraph><paraph>Learn more about <bold>Glossary Terms</bold> <aLink>here.</aLink></paraph>",
+      "tags_component": "<paraph>You can view and add <bold>Tags</bold> to this asset here.</paraph><paraph><bold>Tags</bold> are labels for organizing your data. For example, you can add a Tag to mark an asset as <bold>Mission Critical</bold>.</paraph><paraph>Learn more about <bold>Tags</bold> <aLink>here.</aLink></paraph>",
+      "owners_component": "<paraph>You can view and add <bold>Owners</bold> to this asset here.</paraph><paraph><bold>Owners</bold> are <bold>Users</bold> or <bold>Groups</bold> who are responsible for managing this asset.</paraph>",
+      "schema_component": "<paraph>You can view a Dataset's <bold>Schema</bold> on this tab.</paraph><paraph>You can also view or add <bold>Documentation</bold>, <bold>Tags</bold>, and <bold>Glossary Terms</bold> for specific columns.</paraph>",
+      "schemaTitle": "Schema Tab",
+      "lineage_component": "<paraph>You can view an entity's <bold>Lineage</bold> on this tab.</paraph><paraph>Data <bold>Lineage</bold> allows you to visualize and understand both the upstream dependencies and downstream consumers of this entity.</paraph><paraph>If this tab is disabled, <bold>Lineage</bold> have not been ingested for this entity.</paraph>",
+      "lineageTitle": "Lineage Tab",
+      "documentation_component": "<paraph>You can view and edit an entity's <bold>Documentation</bold> on this tab.</paraph><paraph><bold>Documentation</bold> should provide descriptive information about this data asset. It can also contain links to external resources.</paraph>",
+      "documentationTitle": "Documentation Tab",
+      "properties_component": "<paraph>You can view an entity's key-value <bold>Properties</bold> on this tab. These are sourced from the original Data Platform.</paraph><paraph>If this tab is disabled, <bold>Properties</bold> have not been ingested for this entity.</paraph>",
+      "propertiesTitle": "Properties Tab",
+      "entities_component": "You can view the <bold>Entities</bold> that belong to a <bold>Container</bold> on this tab.",
+      "entitiesTitle": "Entities Tab"
+    },
+    "homePage": {
+      "welcomeParaph": {
+        "intro_component": "<bold>DataHub</bold> helps you discover and organize the important data within your organization. You can:",
+        "listFeatures": {
+          "quicklySearch_component": "Quickly <bold>search</bold> for Datasets, Dashboards, Data Pipelines, and more",
+          "viewAndUnderstand_component": "View and understand the full <bold>end-to-end Lineage</bold> of how data is created, transformed, and consumed",
+          "gainInsight_component": "Gain <bold>insights</bold> about how others within your organization are using data",
+          "defineOwnership_component": "Define <bold>ownership</bold> and capture <bold>knowledge</bold> to empower others"
+        },
+        "getStarted_component": "Let's get started! 🚀",
+        "pressKey_component": "Press <bold> Cmd + Ctrl + T</bold> to open up this tutorial at any time."
+      },
+      "welcomeTitle": "Welcome to DataHub! 👋",
+      "ingestion_component": "Start integrating your data sources immediately by navigating to the <bold>Ingestion</bold> page.",
+      "ingestionTitle": "Ingest Data",
+      "domains_component": "Here are your organization's <bold>Domains</bold>. Domains are collections of data assets - such as Tables, Dashboards, and ML Models - that make it easy to discover information relevant to a particular part of your organization.",
+      "domainsTitle": "Explore by Domain",
+      "platforms_component": "Here are your organization's <bold>Data Platforms</bold>. Data Platforms represent specific third-party Data Systems or Tools. Examples include Data Warehouses like <bold>Snowflake</bold>, Orchestrators like <bold>Airflow</bold>, and Dashboarding tools like <bold>Looker</bold>.",
+      "platformsTitle": "Explore by Platform",
+      "mostPopular_component": "Here you'll find the assets that are viewed most frequently within your organization.",
+      "mostPopularTitle": "Explore Most Popular",
+      "searchBar_component": "<paraph>This is the <bold>Search Bar</bold>. It will serve as your launch point for discovering and collaborating around the data most important to you.</paraph><paraph>Not sure where to start? Click on <bold>Explore All</bold>!</paraph>",
+      "searchBarTitle": "Find your Data 🔍"
+    },
+    "businessGlossary": {
+      "businessGlossaryCreateTermGroup_component": "<paraph>Click here to create a new <bold>Term Group</bold>.</paraph><paraph><bold>Term Groups</bold> act as folders, containing Terms and nested Term Groups.</paraph><paraph>For example, there could be a <bold>PII Term Group</bold> containing Terms for different types of PII, such as <bold>Email</bold> or <bold>Phone Number</bold>.</paraph><paraph>Learn more about the <bold>Business Glossary</bold> <aLink>here.</aLink></paraph>",
+      "businessGlossaryCreateTermGroupTitle": "Glossary Term Groups",
+      "businessGlossaryCreateTerm_component": "<paraph>Click here to create a new <bold>Term</bold> .</paraph><paraph><bold>Terms</bold> are words or phrases with a specific business definition assigned to them.</paraph>",
+      "businessGlossaryCreateTermTitle": "Glossary Terms",
+      "businessGlossaryIntro_component": "<paraph>Welcome to the <bold>Business Glossary</bold>!</paraph><paraph>The Glossary is a collection of structured, standarized labels you can use to categorize data assets. You can view and create both <bold>Terms</bold> and <bold>Term Groups</bold> here.</paraph>",
+      "businessGlossaryIntroTitle": "Business Glossary 📖"
+    },
+    "domains": {
+      "domainIntro_component": "<paraph>Welcome to DataHub <bold>Domains</bold>!</paraph><paraph><bold>Domains</bold> are collections of related data assets associated with a specific part of your organization, such as the <bold>Marketing</bold> department.</paraph><paraph>Learn more about <bold>Domains</bold> <aLink>here.</aLink></paraph>",
+      "createDomains_component": "Click here to create a new <bold>Domain</bold>.",
+      "createDomainTitle": "Create a new Domain"
+    },
+    "groups": {
+      "createGroups_component": "Click here to create a new <bold>Group</bold>.",
+      "createGroupsTitle": "Create a new Group",
+      "groupsIntro_component": "<paraph>Welcome to Datahub <bold>Groups</bold>!</paraph><paraph><bold>Groups</bold> are collections of users which can be used to assign ownership to assets and manage access.</paraph><paraph><bold>Groups</bold> can be created natively within DataHub, or synced from your Identity Provider.</paraph><paraph>Learn more about <bold>Groups</bold> <aLink>here.</aLink></paraph>"
+    },
+    "ingestion": {
+      "ingestionCreate_component": "<paraph>Configure new Integrations from DataHub to your <bold>Data Platforms</bold>, including Transactional Databases like <bold>MySQL</bold>, Data Warehouses such as <bold>Snowflake</bold>, Dashboarding tools like <bold>Looker</bold>, and more!</paraph><paraph>Learn more about ingestion and view the full list of supported Integrations <aLink>here.</aLink></paraph>",
+      "ingestionCreateTitle": "Create a new Ingestion Source",
+      "ingestionRefreshSource_component": "Click to force a refresh of running ingestion sources.",
+      "ingestionRefreshSourceTitle": "Refresh Ingestion Sources"
+    },
+    "lineageGraph": {
+      "introLineageGraph_component": "<paraph>You can view the <bold>Lineage Graph</bold> for an entity on this page.</paraph><paraph>Data <bold>Lineage</bold> allows you to visualize and understand both the upstream dependencies and downstream consumers of this entity.</paraph><paraph>Learn more about <bold>Lineage</bold> <aLink>here.</aLink></paraph>",
+      "introLineageGraphTitle": "Lineage Graph",
+      "timeFilter_component": "You can click which dates you would like to see lineage edges for on this graph. By default, the graph will show edges observed in the last 14 days. Note that manual lineage edges and edges without time information will always be shown.",
+      "timeFilterTitle": "Filter Lineage Edges by Date"
+    },
+    "policies": {
+      "introPolicies_component": "<paraph>Welcome to DataHub <bold>Policies</bold>!</paraph><paraph>In most cases, <bold>Roles</bold> are the best option for granting privileges to DataHub users.</paraph><paraph>When more fine-grained control over user and group permissions is required, then <bold>Policies</bold> will do the trick.</paraph><paraph>Learn more about <bold>Policies</bold> <aLink>here.</aLink></paraph>",
+      "createPolicies_component": "Click here to create a new <bold>Policy</bold>.",
+      "createPoliciesTitle": "Create a new Policy"
+    },
+    "roles": {
+      "introID_component": "<paraph>Welcome to DataHub <bold>Roles</bold>!</paraph><paraph><bold>Roles</bold> are the recommended way to manage permissions on DataHub.</paraph><paraph>DataHub currently supports three out-of-the-box Roles: <bold>Admin</bold>, <bold>Editor</bold> and <bold>Reader</bold>.</paraph><paraph>Learn more about <bold>Roles</bold> and the different permissions for each Role <aLink>here.</aLink></paraph>"
+    },
+    "search": {
+      "searchResultFilterV2_component": "Quickly find relevant assets with our new and improved filter interface! Our latest update has relocated filters to the top of the screen for ease of access.",
+      "searchResultFilterV2Title": "Filters Have Moved",
+      "searchResultBrowse_component": "Have a clear idea of the schema or folder you're searching for? Easily navigate your organization's platforms inline. Then select a specific container you want to filter your results by.",
+      "searchResultBrowseTitle": "🧭 Explore and refine your search by platform",
+      "searchResultAdvancedSearch_component": "<bold>Advanced Filters</bold> offer additional capabilities to create more specific search queries.",
+      "searchResultAdvancedSearchTitle": "💪 Dive deeper with advanced filters",
+      "searchResultFilter_component": "Quickly find relevant assets by applying one or more filters. Try filtering by <bold>Type</bold>, <bold>Owner</bold>, and more!",
+      "searchResultFilterTitle": "🕵️ Narrow your search"
+    },
     "users" : {
       "stepToRenderTitle_component": "<StepTitle level={5}>{{title}}</StepTitle>",
       "usersAssignRoleID_component": "<paraph>You can assign <bold>Roles</bold> to existing <bold>Users</bold> here.</paraph><paraph>Learn more about <bold>Roles</bold> <aLink> here.</aLink></paraph>",

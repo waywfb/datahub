@@ -3,6 +3,7 @@ import { ColumnsType } from 'antd/es/table';
 import { useVT } from 'virtualizedtableforantd4';
 import ResizeObserver from 'rc-resize-observer';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     EditableSchemaMetadata,
     ForeignKeyConstraint,
@@ -24,7 +25,6 @@ import useSchemaBlameRenderer from './utils/useSchemaBlameRenderer';
 import { ANTD_GRAY } from '../../../constants';
 import MenuColumn from './components/MenuColumn';
 import translateFieldPath from '../../../../dataset/profile/schema/utils/translateFieldPath';
-import { useTranslation } from 'react-i18next';
 
 const TableContainer = styled.div`
     overflow: inherit;
@@ -137,7 +137,7 @@ export default function SchemaTable({
 
     const tagColumn = {
         width: '13%',
-        title: t('entity.type.TAG', { count: 2}),
+        title: t('entity.type.TAG', { count: 2 }),
         dataIndex: 'globalTags',
         key: 'tag',
         render: tagRenderer,
@@ -146,7 +146,7 @@ export default function SchemaTable({
 
     const termColumn = {
         width: '13%',
-        title: t('entity.type.GLOSSARY_TERM', { count: 2}),
+        title: t('entity.type.GLOSSARY_TERM', { count: 2 }),
         dataIndex: 'globalTags',
         key: 'tag',
         render: termRenderer,

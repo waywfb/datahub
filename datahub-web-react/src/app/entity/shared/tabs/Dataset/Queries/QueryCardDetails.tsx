@@ -130,7 +130,8 @@ export default function QueryCardDetails({
                     <Typography.Text type="secondary">
                         {t('reporting.createdOnWithDate', { date: toLocalDateString(createdAtMs, i18n.language) })}
                     </Typography.Text>
-                )) || undefined}
+                )) ||
+                    undefined}
             </Date>
         </Details>
     );

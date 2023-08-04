@@ -46,13 +46,21 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
     const removeDomain = (urnToRemoveFrom) => {
         unsetDomainMutation({ variables: { entityUrn: urnToRemoveFrom } })
             .then(() => {
-                message.success({ content: t('crud.success.removeWithName', { name: t('common.domain') }), duration: 2 });
+                message.success({
+                    content: t('crud.success.removeWithName', { name: t('common.domain') }),
+                    duration: 2,
+                });
                 refetch?.();
             })
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `${t('crud.error.removeWithName', { name: t('common.domain') })}: \n ${e.message || ''}`, duration: 3 });
+                    message.error({
+                        content: `${t('crud.error.removeWithName', { name: t('common.domain') })}: \n ${
+                            e.message || ''
+                        }`,
+                        duration: 3,
+                    });
                 }
             });
     };

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../../../useEntityRegistry';
 import FailingEntity from './FailingEntity';
 import { getNumAssertionsFailing, UpstreamSummary } from './utils';
-import { useTranslation } from 'react-i18next';
 
 const FailingSectionWrapper = styled.div`
     margin: 5px 0 0 34px;

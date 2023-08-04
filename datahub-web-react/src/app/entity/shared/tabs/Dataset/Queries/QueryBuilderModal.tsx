@@ -68,7 +68,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                             type: EventType.CreateQueryEvent,
                         });
                         message.success({
-                            content: t('crud.success.createWithName', {name: t('common.query')}),
+                            content: t('crud.success.createWithName', { name: t('common.query') }),
                             duration: 3,
                         });
                         onSubmit?.(data?.createQuery);
@@ -77,7 +77,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                 })
                 .catch(() => {
                     message.destroy();
-                    message.error({ content: t('crud.error.createWithName', {name: t('common.query')}) });
+                    message.error({ content: t('crud.error.createWithName', { name: t('common.query') }) });
                 });
         }
     };
@@ -105,7 +105,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                             type: EventType.UpdateQueryEvent,
                         });
                         message.success({
-                            content: t('crud.success.editWithName', {name: t('common.query')}),
+                            content: t('crud.success.editWithName', { name: t('common.query') }),
                             duration: 3,
                         });
                         onSubmit?.(data?.updateQuery);
@@ -114,7 +114,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                 })
                 .catch(() => {
                     message.destroy();
-                    message.error({ content: t('crud.error.editWithName', {name: t('common.query')}) });
+                    message.error({ content: t('crud.error.editWithName', { name: t('common.query') }) });
                 });
         }
     };

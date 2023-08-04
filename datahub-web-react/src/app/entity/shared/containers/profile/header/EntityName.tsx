@@ -1,12 +1,12 @@
 import { message, Typography } from 'antd';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useUpdateNameMutation } from '../../../../../../graphql/mutations.generated';
 import { getParentNodeToUpdate, updateGlossarySidebar } from '../../../../../glossary/utils';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
 import { useEntityData, useRefetch } from '../../../EntityContext';
 import { useGlossaryEntityData } from '../../../GlossaryEntityContext';
-import { useTranslation } from 'react-i18next';
 
 const EntityTitle = styled(Typography.Title)`
     margin-right: 10px;
@@ -56,7 +56,10 @@ function EntityName(props: Props) {
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `${t('crud.error.updateWithName', { name: t('common.name') })}: \n ${e.message || ''}`, duration: 3 });
+                    message.error({
+                        content: `${t('crud.error.updateWithName', { name: t('common.name') })}: \n ${e.message || ''}`,
+                        duration: 3,
+                    });
                 }
             });
     };

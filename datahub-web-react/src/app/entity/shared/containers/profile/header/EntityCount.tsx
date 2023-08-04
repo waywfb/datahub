@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../constants';
 
 export const EntityCountText = styled(Typography.Text)`
@@ -24,10 +25,10 @@ function EntityCount(props: Props) {
 
     return (
         <EntityCountText className="entityCount">
-            {entityCount.toLocaleString() + ' ' +  t(
-              displayAssetsText ? 'entity.subtype.asset': 'entity.subtype.entity',
-              { count: entityCount }
-            )}
+            {`${entityCount.toLocaleString()} ${t(
+                displayAssetsText ? 'entity.subtype.asset' : 'entity.subtype.entity',
+                { count: entityCount },
+            )}`}
         </EntityCountText>
     );
 }

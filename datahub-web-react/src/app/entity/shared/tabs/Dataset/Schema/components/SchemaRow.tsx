@@ -2,6 +2,7 @@ import { Badge } from 'antd';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { GetDatasetQuery } from '../../../../../../../graphql/dataset.generated';
 import { EntityType } from '../../../../../../../types.generated';
 import { decodeSchemaField } from '../../../../../../lineage/utils/columnLineageUtils';
@@ -10,7 +11,6 @@ import { useEntityRegistry } from '../../../../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../../../constants';
 import { useBaseEntity } from '../../../../EntityContext';
 import { FkContext } from '../utils/selectedFkContext';
-import { useTranslation } from 'react-i18next';
 
 const ForeignKeyContent = styled.tr`
     position: absolute;
@@ -105,7 +105,7 @@ export const SchemaRow = React.forwardRef<HTMLTableRowElement>((props, ref) => {
                 <ForeignKeyContent>
                     <ForiegnKeyTd>
                         <HeaderContent>
-                            {t('entity.foreignKeyTo') + ' '}
+                            {`${t('entity.foreignKeyTo')} `}
                             <DatasetLink
                                 to={entityRegistry.getEntityUrl(
                                     EntityType.Dataset,

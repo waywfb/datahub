@@ -2,10 +2,10 @@ import { orange } from '@ant-design/colors';
 import { DownOutlined, WarningFilled } from '@ant-design/icons';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../constants';
 import FailingAssertions from './FailingAssertions';
 import { UpstreamSummary } from './utils';
-import { useTranslation } from 'react-i18next';
 
 const TextWrapper = styled.span`
     font-size: 16px;

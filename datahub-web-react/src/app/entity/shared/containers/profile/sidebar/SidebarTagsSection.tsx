@@ -2,6 +2,7 @@ import React from 'react';
 import { Divider } from 'antd';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import TagTermGroup from '../../../../../shared/tags/TagTermGroup';
 import { SidebarHeader } from './SidebarHeader';
 import { useEntityData, useMutationUrn, useRefetch } from '../../../EntityContext';
@@ -9,7 +10,6 @@ import {
     ENTITY_PROFILE_GLOSSARY_TERMS_ID,
     ENTITY_PROFILE_TAGS_ID,
 } from '../../../../../onboarding/config/EntityProfileOnboardingConfig';
-import { useTranslation } from 'react-i18next';
 
 const StyledDivider = styled(Divider)`
     margin: 16px 0;

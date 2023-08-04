@@ -267,7 +267,9 @@ export const EditOwnersModal = ({
                         urns,
                         e,
                         {
-                            content: `${t('crud.error.addWithName', { name: t('common.owners') })}: \n ${e.message || ''}`,
+                            content: `${t('crud.error.addWithName', { name: t('common.owners') })}: \n ${
+                                e.message || ''
+                            }`,
                             duration: 3,
                         },
                         t,
@@ -300,7 +302,9 @@ export const EditOwnersModal = ({
                         urns,
                         e,
                         {
-                            content: `${t('crud.error.removeWithName', { name: t('common.owners') })}: \n ${e.message || ''}`,
+                            content: `${t('crud.error.removeWithName', { name: t('common.owners') })}: \n ${
+                                e.message || ''
+                            }`,
                             duration: 3,
                         },
                         t,
@@ -346,10 +350,11 @@ export const EditOwnersModal = ({
 
     return (
         <Modal
-            title={title ||
-            operationType === OperationType.ADD ?
-              t('crud.addWithName', { name: t('common.owners') })
-              : t('crud.removeWithName', { name: t('common.owners') })}
+            title={
+                title || operationType === OperationType.ADD
+                    ? t('crud.addWithName', { name: t('common.owners') })
+                    : t('crud.removeWithName', { name: t('common.owners') })
+            }
             visible
             onCancel={onModalClose}
             keyboard

@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { useDataNotCombinedWithSiblings, useEntityData } from '../../../EntityContext';
 import { SidebarHeader } from './SidebarHeader';
 import { CompactEntityNameList } from '../../../../../recommendations/renderer/component/CompactEntityNameList';
 import { Entity } from '../../../../../../types.generated';
 import { SEPARATE_SIBLINGS_URL_PARAM, stripSiblingsFromEntity, useIsSeparateSiblingsMode } from '../../../siblingUtils';
 import { GetDatasetQuery } from '../../../../../../graphql/dataset.generated';
-import { useTranslation } from 'react-i18next';
 
 const EntityListContainer = styled.div`
     margin-left: -8px;

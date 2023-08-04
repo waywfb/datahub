@@ -25,13 +25,15 @@ function useDeleteGlossaryEntity() {
             })
             .finally(() => {
                 message.loading({
-                    content: t('crud.deleting') + '...',
+                    content: `${t('crud.deleting')}...`,
                     duration: 2,
                 });
                 setTimeout(() => {
                     setHasBeenDeleted(true);
                     message.success({
-                        content: t('crud.success.deleteWithName', { name: entityRegistry.getEntityNameTrans(entityType, t) }),
+                        content: t('crud.success.deleteWithName', {
+                            name: entityRegistry.getEntityNameTrans(entityType, t),
+                        }),
                         duration: 2,
                     });
                 }, 2000);
@@ -41,7 +43,9 @@ function useDeleteGlossaryEntity() {
     function onDeleteEntity() {
         Modal.confirm({
             title: t('crud.deleteWithName', { name: entityRegistry.getDisplayName(entityType, entityData) }),
-            content: t('crud.doYouWantTo.removeContentWithThisName', { name: entityRegistry.getEntityNameTrans(entityType, t) }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', {
+                name: entityRegistry.getEntityNameTrans(entityType, t),
+            }),
             onOk() {
                 handleDeleteGlossaryEntity();
             },

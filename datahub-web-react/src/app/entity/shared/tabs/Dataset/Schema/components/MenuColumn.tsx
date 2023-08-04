@@ -3,11 +3,11 @@ import { VscGraphLeft } from 'react-icons/vsc';
 import { CopyOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
 import { Dropdown, Menu } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { MenuIcon } from '../../../../EntityDropdown/EntityDropdown';
 import { useEntityData, useRouteToTab } from '../../../../EntityContext';
 import { SchemaField } from '../../../../../../../types.generated';
 import { generateSchemaFieldUrn } from '../../../Lineage/utils';
-import { useTranslation } from 'react-i18next';
 
 export const ImpactAnalysisIcon = styled(VscGraphLeft)`
     transform: scaleX(-1);

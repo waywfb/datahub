@@ -1,10 +1,10 @@
 import { Select, Tag, Tooltip } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsForMultipleLazyQuery } from '../../../../graphql/search.generated';
 import { EntityType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { EntitySearchInputResult } from './EntitySearchInputResult';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     selectedUrns: string[];
@@ -73,7 +73,9 @@ export const EntitySearchInput = ({
             mode="multiple"
             style={style}
             filterOption={false}
-            placeholder={placeholder || t('placeholder.searchForWithName', { name: t('entity.subtype.entity', { count: 2 }) })}
+            placeholder={
+                placeholder || t('placeholder.searchForWithName', { name: t('entity.subtype.entity', { count: 2 }) })
+            }
             onSelect={onSelect}
             onDeselect={onDeselect}
             onSearch={onSearch}

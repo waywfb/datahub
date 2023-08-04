@@ -68,7 +68,9 @@ export default function useSchemaBlameRenderer(schemaBlameList?: Array<SchemaFie
                                     i18n.language,
                                 )}
                             </SchemaBlameTimestampText>
-                        ) : t('common.unknown')}
+                        ) : (
+                            t('common.unknown')
+                        )}
                         <span>
                             <Tooltip title={t('reporting.viewBlamePriorToThisVersion')}>
                                 <SchemaBlameBlameButton

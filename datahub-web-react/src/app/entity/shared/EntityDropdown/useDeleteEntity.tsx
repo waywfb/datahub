@@ -45,7 +45,7 @@ function useDeleteEntity(
                 });
                 if (!hideMessage && !skipWait) {
                     message.loading({
-                        content: t('crud.deleting') + '...',
+                        content: `${t('crud.deleting')}...`,
                         duration: 2,
                     });
                 }
@@ -59,7 +59,9 @@ function useDeleteEntity(
                         }
                         if (!hideMessage) {
                             message.success({
-                                content: t('crud.success.deleteWithName', { name: entityRegistry.getEntityNameTrans(type, t) }),
+                                content: t('crud.success.deleteWithName', {
+                                    name: entityRegistry.getEntityNameTrans(type, t),
+                                }),
                                 duration: 2,
                             });
                         }
@@ -76,9 +78,13 @@ function useDeleteEntity(
     function onDeleteEntity() {
         Modal.confirm({
             title: t('crud.deleteWithName', {
-                name: (entityData && entityRegistry.getDisplayName(type, entityData)) || entityRegistry.getEntityNameTrans(type, t)
+                name:
+                    (entityData && entityRegistry.getDisplayName(type, entityData)) ||
+                    entityRegistry.getEntityNameTrans(type, t),
             }),
-            content: t('crud.doYouWantTo.removeContentWithThisName', { name: entityRegistry.getEntityNameTrans(type, t) }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', {
+                name: entityRegistry.getEntityNameTrans(type, t),
+            }),
             onOk() {
                 handleDeleteEntity();
             },

@@ -1,12 +1,12 @@
 import { Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import CompactContext from '../../../../../../shared/CompactContext';
 import MarkdownViewer, { MarkdownView } from '../../../../components/legacy/MarkdownViewer';
 import NoMarkdownViewer, { removeMarkdown } from '../../../../components/styled/StripMarkdownText';
 import { useRouteToTab } from '../../../../EntityContext';
 import { useIsOnTab } from '../../utils';
-import { useTranslation } from 'react-i18next';
 
 const ABBREVIATED_LIMIT = 150;
 
@@ -44,14 +44,18 @@ export default function DescriptionSection({ description }: Props) {
             {isExpanded && (
                 <>
                     <MarkdownViewer source={description} ignoreLimit />
-                    {isOverLimit && <Typography.Link onClick={() => setIsExpanded(false)}>{t('common.readLess')}</Typography.Link>}
+                    {isOverLimit && (
+                        <Typography.Link onClick={() => setIsExpanded(false)}>{t('common.readLess')}</Typography.Link>
+                    )}
                 </>
             )}
             {!isExpanded && (
                 <NoMarkdownViewer
                     limit={ABBREVIATED_LIMIT}
                     readMore={
-                        shouldShowReadMore ? <Typography.Link onClick={readMore}>{t('common.readMore')}</Typography.Link> : undefined
+                        shouldShowReadMore ? (
+                            <Typography.Link onClick={readMore}>{t('common.readMore')}</Typography.Link>
+                        ) : undefined
                     }
                     shouldWrap
                 >

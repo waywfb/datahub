@@ -3,6 +3,7 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components/macro';
 import Link from 'antd/lib/typography/Link';
 import { ArrowRightOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { DEFAULT_APP_CONFIG } from '../../../../appConfigContext';
 import { useAppConfig } from '../../../useAppConfig';
 import { useEntityRegistry } from '../../../useEntityRegistry';
@@ -12,7 +13,6 @@ import { getDisplayedEntityType } from '../containers/profile/header/PlatformCon
 import { ANTD_GRAY } from '../constants';
 import analytics from '../../../analytics/analytics';
 import { EventType } from '../../../analytics';
-import { useTranslation } from 'react-i18next';
 
 const HeaderWrapper = styled.div`
     display: flex;

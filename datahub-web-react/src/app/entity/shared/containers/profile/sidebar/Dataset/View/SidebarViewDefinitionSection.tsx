@@ -1,12 +1,12 @@
 import { Button, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { GetDatasetQuery } from '../../../../../../../../graphql/dataset.generated';
 import { InfoItem } from '../../../../../components/styled/InfoItem';
 import { ANTD_GRAY } from '../../../../../constants';
 import { useBaseEntity, useRouteToTab } from '../../../../../EntityContext';
 import { SidebarHeader } from '../../SidebarHeader';
-import { useTranslation } from 'react-i18next';
 
 const HeaderInfoBody = styled(Typography.Text)`
     font-size: 16px;

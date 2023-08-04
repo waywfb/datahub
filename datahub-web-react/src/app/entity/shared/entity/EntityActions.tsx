@@ -59,10 +59,12 @@ function EntityActions(props: Props) {
             .then(({ errors }) => {
                 if (!errors) {
                     setIsBatchAddGlossaryTermModalVisible(false);
-                    message.loading({ content: t('common.updating') + '...', duration: 3 });
+                    message.loading({ content: `${t('common.updating')}...`, duration: 3 });
                     setTimeout(() => {
                         message.success({
-                            content: t('crud.success.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) }),
+                            content: t('crud.success.addWithName', {
+                                name: t('entity.type.GLOSSARY_TERM', { count: 1 }),
+                            }),
                             duration: 2,
                         });
                         refetchForEntity?.();
@@ -77,7 +79,9 @@ function EntityActions(props: Props) {
                         entityUrns,
                         e,
                         {
-                            content: `${t('crud.error.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}: \n ${e.message || ''}`,
+                            content: `${t('crud.error.addWithName', {
+                                name: t('entity.type.GLOSSARY_TERM', { count: 1 }),
+                            })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
                         t,
@@ -101,10 +105,12 @@ function EntityActions(props: Props) {
             .then(({ errors }) => {
                 if (!errors) {
                     setIsBatchSetDomainModalVisible(false);
-                    message.loading({ content: t('common.updating') + '...', duration: 3 });
+                    message.loading({ content: `${t('common.updating')}...`, duration: 3 });
                     setTimeout(() => {
                         message.success({
-                            content: t('crud.success.addAssetsToWithName', { name: t('entity.type.DOMAIN', { count: 1 }) }),
+                            content: t('crud.success.addAssetsToWithName', {
+                                name: t('entity.type.DOMAIN', { count: 1 }),
+                            }),
                             duration: 3,
                         });
                         refetchForEntity?.();
@@ -119,7 +125,9 @@ function EntityActions(props: Props) {
                         entityUrns,
                         e,
                         {
-                            content: `${t('crud.error.addAssetsToWithName', { name: t('entity.type.DOMAIN', { count: 1 }) })}: \n ${e.message || ''}`,
+                            content: `${t('crud.error.addAssetsToWithName', {
+                                name: t('entity.type.DOMAIN', { count: 1 }),
+                            })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
                         t,
@@ -141,7 +149,7 @@ function EntityActions(props: Props) {
             .then(({ errors }) => {
                 if (!errors) {
                     setIsBatchSetDataProductModalVisible(false);
-                    message.loading({ content: t('common.updating') + '...', duration: 3 });
+                    message.loading({ content: `${t('common.updating')}...`, duration: 3 });
                     setTimeout(() => {
                         message.success({
                             content: t('crud.success.addAssetsToWithName', { name: t('common.dataProduct') }),
@@ -160,7 +168,7 @@ function EntityActions(props: Props) {
                         e,
                         {
                             content: t('crud.error.addAssetsToWithName', { name: t('common.dataProduct') }),
-                            duration: 3
+                            duration: 3,
                         },
                         t,
                     ),

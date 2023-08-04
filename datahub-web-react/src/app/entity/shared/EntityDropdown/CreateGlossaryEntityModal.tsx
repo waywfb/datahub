@@ -70,7 +70,7 @@ function CreateGlossaryEntityModal(props: Props) {
             },
         })
             .then(() => {
-                message.loading({ content: t('crud.updating') + '...', duration: 2 });
+                message.loading({ content: `${t('crud.updating')}...`, duration: 2 });
                 setTimeout(() => {
                     analytics.event({
                         type: EventType.CreateGlossaryEntityEvent,
@@ -136,7 +136,9 @@ function CreateGlossaryEntityModal(props: Props) {
                         rules={[
                             {
                                 required: true,
-                                message: t('form.enterANameWithName', { name: entityRegistry.getEntityNameTrans(entityType, t) }),
+                                message: t('form.enterANameWithName', {
+                                    name: entityRegistry.getEntityNameTrans(entityType, t),
+                                }),
                             },
                             { whitespace: true },
                             { min: 1, max: 100 },
@@ -173,7 +175,7 @@ function CreateGlossaryEntityModal(props: Props) {
                     </StyledButton>
                     {isDocumentationModalVisible && (
                         <DescriptionModal
-                            title={t('crud.addWithName', {  name: t('common.documentation') })}
+                            title={t('crud.addWithName', { name: t('common.documentation') })}
                             onClose={() => setIsDocumentationModalVisible(false)}
                             onSubmit={addDocumentation}
                             description={documentation}
@@ -181,7 +183,10 @@ function CreateGlossaryEntityModal(props: Props) {
                     )}
                 </StyledItem>
                 <Collapse ghost>
-                    <Collapse.Panel header={<Typography.Text type="secondary">{t('common.advanced')}</Typography.Text>} key="1">
+                    <Collapse.Panel
+                        header={<Typography.Text type="secondary">{t('common.advanced')}</Typography.Text>}
+                        key="1"
+                    >
                         <Form.Item
                             label={
                                 <Typography.Text strong>

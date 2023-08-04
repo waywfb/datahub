@@ -3,6 +3,7 @@ import { Alert, Divider } from 'antd';
 import { MutationHookOptions, MutationTuple, QueryHookOptions, QueryResult } from '@apollo/client/react/types/types';
 import styled from 'styled-components/macro';
 import { useHistory } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { EntityType, Exact } from '../../../../../types.generated';
 import { Message } from '../../../../shared/Message';
 import {
@@ -43,7 +44,6 @@ import {
     LINEAGE_GRAPH_INTRO_ID,
     LINEAGE_GRAPH_TIME_FILTER_ID,
 } from '../../../../onboarding/config/LineageGraphOnboardingConfig';
-import { useTranslation } from 'react-i18next';
 
 type Props<T, U> = {
     urn: string;
@@ -270,7 +270,9 @@ export const EntityProfile = <T, U>({
                 }}
             >
                 <>
-                    {loading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
+                    {loading && (
+                        <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />
+                    )}
                     {(error && <ErrorSection />) ||
                         (!loading && (
                             <CompactProfile>
@@ -313,13 +315,10 @@ export const EntityProfile = <T, U>({
                 <OnboardingTour stepIds={stepIds} />
                 <EntityHead />
                 {showBrowseBar && <EntityProfileNavBar urn={urn} entityType={entityType} />}
-                {entityData?.status?.removed === true && (
-                    <Alert
-                        message={t('entity.entityRemovedAlert')}
-                        banner
-                    />
+                {entityData?.status?.removed === true && <Alert message={t('entity.entityRemovedAlert')} banner />}
+                {loading && (
+                    <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />
                 )}
-                {loading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
                 {(error && <ErrorSection />) || (
                     <ContentContainer>
                         {isLineageMode ? (

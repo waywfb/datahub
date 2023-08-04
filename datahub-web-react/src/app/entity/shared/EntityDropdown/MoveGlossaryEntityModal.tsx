@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { message, Button, Modal, Typography, Form } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useEntityData, useRefetch } from '../EntityContext';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { useUpdateParentNodeMutation } from '../../../../graphql/glossary.generated';
 import NodeParentSelect from './NodeParentSelect';
 import { useGlossaryEntityData } from '../GlossaryEntityContext';
 import { getGlossaryRootToUpdate, getParentNodeToUpdate, updateGlossarySidebar } from '../../../glossary/utils';
-import { useTranslation } from 'react-i18next';
 
 const StyledItem = styled(Form.Item)`
     margin-bottom: 0;
@@ -43,10 +43,12 @@ function MoveGlossaryEntityModal(props: Props) {
             },
         })
             .then(() => {
-                message.loading({ content: t('common.updating') + '...', duration: 2 });
+                message.loading({ content: `${t('common.updating')}...`, duration: 2 });
                 setTimeout(() => {
                     message.success({
-                        content: t('crud.success.moveWithName', { name: entityRegistry.getEntityNameTrans(entityType, t) }),
+                        content: t('crud.success.moveWithName', {
+                            name: entityRegistry.getEntityNameTrans(entityType, t),
+                        }),
                         duration: 2,
                     });
                     refetch();
@@ -82,7 +84,8 @@ function MoveGlossaryEntityModal(props: Props) {
                 <Form.Item
                     label={
                         <Typography.Text strong>
-                            {t('common.moveTo')} <OptionalWrapper>({t('common.optional').toLowerCase()})</OptionalWrapper>
+                            {t('common.moveTo')}{' '}
+                            <OptionalWrapper>({t('common.optional').toLowerCase()})</OptionalWrapper>
                         </Typography.Text>
                     }
                 >

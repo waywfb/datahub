@@ -69,7 +69,10 @@ export default function SetDataProductModal({
             variables: { input: { resourceUrns: urns, dataProductUrn: selectedDataProduct.urn } },
         })
             .then(() => {
-                message.success({ content: t('crud.success.updateWithName', { name: t('common.dataProduct') }), duration: 3 });
+                message.success({
+                    content: t('crud.success.updateWithName', { name: t('common.dataProduct') }),
+                    duration: 3,
+                });
                 setDataProduct?.(selectedDataProduct);
                 onModalClose();
                 setSelectedDataProduct(null);
@@ -85,7 +88,9 @@ export default function SetDataProductModal({
                         urns,
                         e,
                         {
-                            content: `${t('crud.error.addAssetsToWithName', { name: t('common.dataProduct') })}: \n ${e.message || ''}`,
+                            content: `${t('crud.error.addAssetsToWithName', { name: t('common.dataProduct') })}: \n ${
+                                e.message || ''
+                            }`,
                             duration: 3,
                         },
                         t,

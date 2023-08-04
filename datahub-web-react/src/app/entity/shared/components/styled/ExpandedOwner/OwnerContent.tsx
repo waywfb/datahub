@@ -1,11 +1,11 @@
 import React from 'react';
 import { Popover, Typography } from 'antd';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { Owner } from '../../../../../../types.generated';
 import { CustomAvatar } from '../../../../../shared/avatar';
 import { getDescriptionFromType, getNameFromType } from '../../../containers/profile/sidebar/Ownership/ownershipUtils';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
-import { useTranslation } from 'react-i18next';
 
 const TextWrapper = styled.span<{ fontSize?: number }>`
     ${(props) => props.fontSize && `font-size: ${props.fontSize}px;`}

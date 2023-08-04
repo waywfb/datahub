@@ -1,6 +1,7 @@
 import { Button, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { GetDatasetQuery } from '../../../../../../../graphql/dataset.generated';
 import { DatasetProfile, Operation, UsageQueryResult } from '../../../../../../../types.generated';
 import UsageFacepile from '../../../../../dataset/profile/UsageFacepile';
@@ -9,7 +10,6 @@ import { useBaseEntity, useRouteToTab } from '../../../../EntityContext';
 import { SidebarHeader } from '../SidebarHeader';
 import { InfoItem } from '../../../../components/styled/InfoItem';
 import { formatNumberWithoutAbbreviation } from '../../../../../../shared/formatNumber';
-import { useTranslation } from 'react-i18next';
 
 const HeaderInfoBody = styled(Typography.Text)`
     font-size: 16px;
@@ -73,7 +73,7 @@ export const SidebarStatsSection = () => {
             <HeaderContainer>
                 <SidebarHeader title={t('common.stats')} />
                 <StatsButton onClick={() => routeToTab({ tabName: 'Stats' })} type="link">
-                    {t('common.more') + ' ' + t('common.stats').toLowerCase()} &gt;
+                    {`${t('common.more')} ${t('common.stats').toLowerCase()}`} &gt;
                 </StatsButton>
             </HeaderContainer>
             {/* Dataset Profile Entry */}

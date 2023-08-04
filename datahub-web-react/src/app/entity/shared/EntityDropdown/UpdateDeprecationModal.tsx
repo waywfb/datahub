@@ -21,7 +21,7 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
     };
 
     const handleOk = async (formData: any) => {
-        message.loading({ content: t('crud.updating') + '...' });
+        message.loading({ content: `${t('crud.updating')}...` });
         try {
             await batchUpdateDeprecation({
                 variables: {
@@ -34,7 +34,10 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
                 },
             });
             message.destroy();
-            message.success({ content: t('crud.success.updateWithName', { name: t('common.deprecation') }), duration: 2 });
+            message.success({
+                content: t('crud.success.updateWithName', { name: t('common.deprecation') }),
+                duration: 2,
+            });
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
@@ -43,7 +46,9 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
                         urns,
                         e,
                         {
-                            content: `${t('crud.error.updateWithName', { name: t('common.deprecation') })}: \n ${e.message || ''}`,
+                            content: `${t('crud.error.updateWithName', { name: t('common.deprecation') })}: \n ${
+                                e.message || ''
+                            }`,
                             duration: 2,
                         },
                         t,
@@ -57,7 +62,7 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
 
     return (
         <Modal
-            title={t('crud.addWithName', { name: t('common.deprecation') + ' ' + t('common.details') })}
+            title={t('crud.addWithName', { name: `${t('common.deprecation')} ${t('common.details')}` })}
             visible
             onCancel={handleClose}
             keyboard

@@ -88,13 +88,13 @@ function TooltipContent() {
     return (
         <div>
             <TooltipSection>
-                <StyledDot color={green[5]} /> <Trans i18nKey={'reporting.synchronizedInThePastWeek_component'}/>
+                <StyledDot color={green[5]} /> <Trans i18nKey="reporting.synchronizedInThePastWeek_component" />
             </TooltipSection>
             <TooltipSection>
-                <StyledDot color={orange[5]} /> <Trans i18nKey={'reporting.synchronizedInThePastMonth_component'}/>
+                <StyledDot color={orange[5]} /> <Trans i18nKey="reporting.synchronizedInThePastMonth_component" />
             </TooltipSection>
             <TooltipSection>
-                <StyledDot color={red[5]} /> <Trans i18nKey={'reporting.synchronizedMoreThanAMonthAgo_component'}/>
+                <StyledDot color={red[5]} /> <Trans i18nKey="reporting.synchronizedMoreThanAMonthAgo_component" />
             </TooltipSection>
         </div>
     );
@@ -136,13 +136,19 @@ function LastIngested({ lastIngested }: Props) {
                             {t('reporting.lastSynchronized')}
                         </Title>
                         <RelativeDescription>
-                            <Trans i18nKey={'reporting.lastSynchronizedWithNameAndTime_component'}
-                                   values={{
-                                       name: displayedEntityType.toLocaleLowerCase(),
-                                       time: toRelativeTimeString(lastIngested, i18n.language)
-                                   }}/>
+                            <Trans
+                                i18nKey="reporting.lastSynchronizedWithNameAndTime_component"
+                                values={{
+                                    name: displayedEntityType.toLocaleLowerCase(),
+                                    time: toRelativeTimeString(lastIngested, i18n.language),
+                                }}
+                            />
                         </RelativeDescription>
-                        <SubText>{t('reporting.reporting.synchronizedOnWithTime', { time: toLocalDateTimeString(lastIngested, i18n.language) })}</SubText>
+                        <SubText>
+                            {t('reporting.reporting.synchronizedOnWithTime', {
+                                time: toLocalDateTimeString(lastIngested, i18n.language),
+                            })}
+                        </SubText>
                     </PopoverContentWrapper>
                 }
             >
@@ -155,18 +161,22 @@ function LastIngested({ lastIngested }: Props) {
             <Popover
                 title={
                     <HelpHeader>
-                        {platformName ? <>
-                            {t('reporting.lastSynchronizedDescriptionNoPlatform')}
-                            <strong>
-                                {platformLogoUrl && (
-                                    <>
-                                        <PreviewImage preview={false} src={platformLogoUrl} alt={platformName} />
-                                        &nbsp;
-                                    </>
-                                )}
-                                {platformName}
-                            </strong>
-                        </> : t('reporting.lastSynchronizedDescriptionNoPlatform')}
+                        {platformName ? (
+                            <>
+                                {t('reporting.lastSynchronizedDescriptionNoPlatform')}
+                                <strong>
+                                    {platformLogoUrl && (
+                                        <>
+                                            <PreviewImage preview={false} src={platformLogoUrl} alt={platformName} />
+                                            &nbsp;
+                                        </>
+                                    )}
+                                    {platformName}
+                                </strong>
+                            </>
+                        ) : (
+                            t('reporting.lastSynchronizedDescriptionNoPlatform')
+                        )}
                     </HelpHeader>
                 }
                 content={TooltipContent}

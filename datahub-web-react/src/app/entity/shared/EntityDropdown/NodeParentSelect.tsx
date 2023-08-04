@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Select } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsLazyQuery } from '../../../../graphql/search.generated';
 import { EntityType, GlossaryNode } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
@@ -7,7 +8,6 @@ import { useEntityData } from '../EntityContext';
 import ClickOutside from '../../../shared/ClickOutside';
 import GlossaryBrowser from '../../../glossary/GlossaryBrowser/GlossaryBrowser';
 import { BrowserWrapper } from '../../../shared/tags/AddTagsTermsModal';
-import { useTranslation } from 'react-i18next';
 
 // filter out entity itself and its children
 export function filterResultsForMove(entity: GlossaryNode, entityUrn: string) {

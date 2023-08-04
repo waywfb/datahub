@@ -163,7 +163,9 @@ export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride
                         showSearch
                         mode="multiple"
                         defaultActiveFirstOption={false}
-                        placeholder={t('placeholder.searchForWithName', { name: t('entity.subtype.CONTAINER', { count: 2 }) })}
+                        placeholder={t('placeholder.searchForWithName', {
+                            name: t('entity.subtype.CONTAINER', { count: 2 }),
+                        })}
                         onSelect={(containerUrn: any) => onSelectContainer(containerUrn)}
                         onDeselect={onDeselectContainer}
                         onSearch={(value: string) => {

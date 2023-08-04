@@ -1,10 +1,10 @@
 import { Button, Modal, Table, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { DatasetProfile } from '../../../../../../../../types.generated';
 import ColumnStats from '../../snapshot/ColumnStats';
 import TableStats from '../../snapshot/TableStats';
-import { useTranslation } from 'react-i18next';
 
 export const ChartTable = styled(Table)`
     margin-top: 16px;
@@ -65,10 +65,11 @@ export default function ProfilingRunsChart({ profiles }: Props) {
 
     const selectedProfile = (selectedProfileIndex >= 0 && profiles[selectedProfileIndex]) || undefined;
     const profileModalTitle =
-        selectedProfile && t('reporting.showingProfileFromAtWithDateTime',{
-              date: new Date(selectedProfile?.timestampMillis).toLocaleDateString(),
-              time: new Date(selectedProfile?.timestampMillis).toLocaleTimeString()
-          });
+        selectedProfile &&
+        t('reporting.showingProfileFromAtWithDateTime', {
+            date: new Date(selectedProfile?.timestampMillis).toLocaleDateString(),
+            time: new Date(selectedProfile?.timestampMillis).toLocaleTimeString(),
+        });
 
     return (
         <>

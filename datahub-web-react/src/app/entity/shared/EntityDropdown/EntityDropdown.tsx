@@ -11,6 +11,7 @@ import {
     PlusOutlined,
 } from '@ant-design/icons';
 import { Redirect } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../../types.generated';
 import CreateGlossaryEntityModal from './CreateGlossaryEntityModal';
 import { UpdateDeprecationModal } from './UpdateDeprecationModal';
@@ -21,7 +22,6 @@ import { useEntityRegistry } from '../../../useEntityRegistry';
 import useDeleteEntity from './useDeleteEntity';
 import { getEntityProfileDeleteRedirectPath } from '../../../shared/deleteUtils';
 import { isDeleteDisabled } from './utils';
-import { useTranslation } from 'react-i18next';
 
 export enum EntityMenuItems {
     COPY_URL,
@@ -108,7 +108,7 @@ function EntityDropdown(props: Props) {
     const [isMoveModalVisible, setIsMoveModalVisible] = useState(false);
 
     const handleUpdateDeprecation = async (deprecatedStatus: boolean) => {
-        message.loading({ content: t('crud.updating') + '...' });
+        message.loading({ content: `${t('crud.updating')}...` });
         try {
             await updateDeprecation({
                 variables: {
@@ -121,11 +121,19 @@ function EntityDropdown(props: Props) {
                 },
             });
             message.destroy();
-            message.success({ content: t('crud.success.updateWithName', { name: t('common.deprecation') }), duration: 2 });
+            message.success({
+                content: t('crud.success.updateWithName', { name: t('common.deprecation') }),
+                duration: 2,
+            });
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
-                message.error({ content: `${t('crud.error.updateWithName', { name: t('common.deprecation') })}: \n ${e.message || ''}`, duration: 2 });
+                message.error({
+                    content: `${t('crud.error.updateWithName', { name: t('common.deprecation') })}: \n ${
+                        e.message || ''
+                    }`,
+                    duration: 2,
+                });
             }
         }
         refetchForEntity?.();
@@ -152,7 +160,7 @@ function EntityDropdown(props: Props) {
                                 <MenuItem
                                     onClick={() => {
                                         navigator.clipboard.writeText(pageUrl);
-                                        message.info(t('copy.copiedUrl') + '!', 1.2);
+                                        message.info(`${t('copy.copiedUrl')}!`, 1.2);
                                     }}
                                 >
                                     <LinkOutlined /> &nbsp; {t('common.copy')} URL
@@ -179,7 +187,8 @@ function EntityDropdown(props: Props) {
                                 onClick={() => setIsCreateTermModalVisible(true)}
                             >
                                 <MenuItem>
-                                    <PlusOutlined /> &nbsp;{t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1}) })}
+                                    <PlusOutlined /> &nbsp;
+                                    {t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}
                                 </MenuItem>
                             </StyledMenuItem>
                         )}
@@ -190,7 +199,8 @@ function EntityDropdown(props: Props) {
                                 onClick={() => setIsCreateNodeModalVisible(true)}
                             >
                                 <MenuItem>
-                                    <FolderAddOutlined /> &nbsp;{t('crud.addWithName', { name: t('entity.type.GLOSSARY_NODE', { count: 1}) })}
+                                    <FolderAddOutlined /> &nbsp;
+                                    {t('crud.addWithName', { name: t('entity.type.GLOSSARY_NODE', { count: 1 }) })}
                                 </MenuItem>
                             </StyledMenuItem>
                         )}
@@ -213,7 +223,7 @@ function EntityDropdown(props: Props) {
                             >
                                 <Tooltip
                                     title={t('entity.cantDeleteWithChildEntityWithName', {
-                                        name: entityRegistry.getEntityNameTrans(entityType, t)
+                                        name: entityRegistry.getEntityNameTrans(entityType, t),
                                     })}
                                     overlayStyle={
                                         isGlossaryEntity && canManageGlossaryEntity && entityHasChildren

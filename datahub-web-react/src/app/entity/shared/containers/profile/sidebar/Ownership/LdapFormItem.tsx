@@ -1,9 +1,9 @@
 import { AutoComplete, Form } from 'antd';
 import { FormInstance } from 'antd/es/form/Form';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGetAutoCompleteResultsLazyQuery } from '../../../../../../../graphql/search.generated';
 import { EntityType } from '../../../../../../../types.generated';
-import { useTranslation } from 'react-i18next';
 
 const OWNER_SEARCH_PLACEHOLDER = 'Search an LDAP';
 

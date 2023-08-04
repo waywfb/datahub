@@ -1,8 +1,8 @@
 import React from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { EmptyTab } from '../../../components/styled/EmptyTab';
 import { useTranslation } from 'react-i18next';
+import { EmptyTab } from '../../../components/styled/EmptyTab';
 
 export type Props = {
     message?: string;
@@ -16,7 +16,8 @@ export default function EmptyQueries({ message, readOnly = false, onClickAddQuer
         <EmptyTab tab="queries">
             {!readOnly && !message && (
                 <Button onClick={onClickAddQuery}>
-                    <PlusOutlined />{t('crud.addWithName', { name: t('common.query') })}
+                    <PlusOutlined />
+                    {t('crud.addWithName', { name: t('common.query') })}
                 </Button>
             )}
         </EmptyTab>

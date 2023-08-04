@@ -39,7 +39,10 @@ export default function DataProductSection({ readOnly }: Props) {
     function removeDataProduct() {
         batchSetDataProductMutation({ variables: { input: { resourceUrns: [urn, ...siblingUrns] } } })
             .then(() => {
-                message.success({ content: t('crud.success.removeWithName', { name: t('common.dataProduct') }), duration: 2 });
+                message.success({
+                    content: t('crud.success.removeWithName', { name: t('common.dataProduct') }),
+                    duration: 2,
+                });
                 setDataProduct(null);
             })
             .catch((e: unknown) => {

@@ -3,6 +3,7 @@ import { CheckCircleFilled, LoadingOutlined } from '@ant-design/icons';
 import Icon from '@ant-design/icons/lib/components/Icon';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useSearchAcrossLineageQuery } from '../../../../../graphql/search.generated';
 import { Entity, EntityType, FilterOperator, LineageDirection } from '../../../../../types.generated';
 import { ANTD_GRAY } from '../../constants';
@@ -10,7 +11,6 @@ import { useEntityData } from '../../EntityContext';
 import { extractUpstreamSummary } from './utils';
 import FailingInputs from './FailingInputs';
 import { ReactComponent as SubtractIcon } from '../../../../../images/subtractIcon.svg';
-import { useTranslation } from 'react-i18next';
 
 const LoadingWrapper = styled.div`
     display: flex;

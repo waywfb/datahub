@@ -122,7 +122,10 @@ export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOk
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: t('crud.success.updateWithName', { name: t('common.domain') }), duration: 2 });
+                    message.success({
+                        content: t('crud.success.updateWithName', { name: t('common.domain') }),
+                        duration: 2,
+                    });
                     refetch?.();
                     onModalClose();
                     setSelectedDomain(undefined);
@@ -135,7 +138,9 @@ export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOk
                         urns,
                         e,
                         {
-                            content: `${t('crud.error.updateWithName', { name: t('common.domain') })}: \n ${e.message || ''}`,
+                            content: `${t('crud.error.updateWithName', { name: t('common.domain') })}: \n ${
+                                e.message || ''
+                            }`,
                             duration: 3,
                         },
                         t,

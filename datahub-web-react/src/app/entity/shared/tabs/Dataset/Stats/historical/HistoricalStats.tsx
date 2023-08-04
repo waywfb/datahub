@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Divider, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import ProfilingRunsChart from './charts/ProfilingRunsChart';
 import StatChart from './charts/StatChart';
 import { DatasetProfile, DateInterval } from '../../../../../../../types.generated';
@@ -10,7 +11,6 @@ import { Message } from '../../../../../../shared/Message';
 import { LookbackWindow } from '../lookbackWindows';
 import { ANTD_GRAY } from '../../../../constants';
 import PrefixedSelect from './shared/PrefixedSelect';
-import { useTranslation } from 'react-i18next';
 
 // TODO: Reuse stat sections.
 const StatSection = styled.div`
@@ -120,8 +120,6 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
     const { t } = useTranslation();
     const [getDataProfiles, { data: profilesData, loading: profilesLoading }] = useGetDataProfilesLazyQuery();
 
-
-
     /**
      * Perform initial fetch of default lookback window stats.
      */
@@ -201,7 +199,9 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
 
     return (
         <>
-            {profilesLoading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
+            {profilesLoading && (
+                <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />
+            )}
             <StatSection>
                 <Typography.Title level={5}>{t('reporting.profilingRuns')}</Typography.Title>
                 <ProfilingRunsChart profiles={profiles} />

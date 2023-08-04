@@ -24,6 +24,7 @@ import useSchemaBlameRenderer from './utils/useSchemaBlameRenderer';
 import { ANTD_GRAY } from '../../../constants';
 import MenuColumn from './components/MenuColumn';
 import translateFieldPath from '../../../../dataset/profile/schema/utils/translateFieldPath';
+import { useTranslation } from 'react-i18next';
 
 const TableContainer = styled.div`
     overflow: inherit;
@@ -31,7 +32,7 @@ const TableContainer = styled.div`
 
     &&& .ant-table-tbody > tr > .ant-table-cell-with-append {
         border-right: none;
-        padding: 0px;
+        padding: 0;
     }
 
     &&& .ant-table-tbody > tr > .ant-table-cell {
@@ -69,6 +70,7 @@ export default function SchemaTable({
     expandedRowsFromFilter = EMPTY_SET,
     filterText = '',
 }: Props): JSX.Element {
+    const { t } = useTranslation();
     const hasUsageStats = useMemo(() => (usageStats?.aggregations?.fields?.length || 0) > 0, [usageStats]);
     const [tableHeight, setTableHeight] = useState(0);
     const [tagHoveredIndex, setTagHoveredIndex] = useState<string | undefined>(undefined);
@@ -76,7 +78,7 @@ export default function SchemaTable({
         useState<null | { fieldPath: string; constraint?: ForeignKeyConstraint | null }>(null);
 
     const descriptionRender = useDescriptionRenderer(editableSchemaMetadata);
-    const usageStatsRenderer = useUsageStatsRenderer(usageStats);
+    const usageStatsRenderer = useUsageStatsRenderer(usageStats, t);
     const tagRenderer = useTagsAndTermsRenderer(
         editableSchemaMetadata,
         tagHoveredIndex,
@@ -115,7 +117,7 @@ export default function SchemaTable({
 
     const fieldColumn = {
         width: '22%',
-        title: 'Field',
+        title: t('common.field'),
         dataIndex: 'fieldPath',
         key: 'fieldPath',
         render: schemaTitleRenderer,
@@ -127,7 +129,7 @@ export default function SchemaTable({
 
     const descriptionColumn = {
         width: '22%',
-        title: 'Description',
+        title: t('common.description'),
         dataIndex: 'description',
         key: 'description',
         render: descriptionRender,
@@ -135,7 +137,7 @@ export default function SchemaTable({
 
     const tagColumn = {
         width: '13%',
-        title: 'Tags',
+        title: t('entity.type.TAG', { count: 2}),
         dataIndex: 'globalTags',
         key: 'tag',
         render: tagRenderer,
@@ -144,7 +146,7 @@ export default function SchemaTable({
 
     const termColumn = {
         width: '13%',
-        title: 'Glossary Terms',
+        title: t('entity.type.GLOSSARY_TERM', { count: 2}),
         dataIndex: 'globalTags',
         key: 'tag',
         render: termRenderer,
@@ -177,7 +179,7 @@ export default function SchemaTable({
 
     const usageColumn = {
         width: '10%',
-        title: 'Usage',
+        title: t('common.usage'),
         dataIndex: 'fieldPath',
         key: 'usage',
         render: usageStatsRenderer,

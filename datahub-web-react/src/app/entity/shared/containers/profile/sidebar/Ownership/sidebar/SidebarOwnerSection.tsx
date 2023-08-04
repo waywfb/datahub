@@ -19,7 +19,7 @@ interface Props {
 export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
     const { entityType, entityData } = useEntityData();
     const mutationUrn = useMutationUrn();
-    const { t } = useTranslation(['empty-message']);
+    const { t } = useTranslation(['translation', 'empty-message']);
 
     const refetch = useRefetch();
     const [showAddModal, setShowAddModal] = useState(false);
@@ -28,7 +28,7 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
     const ownersByTypeMap: Map<string, Owner[]> = new Map();
     entityData?.ownership?.owners?.forEach((owner) => {
         const ownershipType = owner?.ownershipType;
-        const ownershipTypeName = getOwnershipTypeName(ownershipType);
+        const ownershipTypeName = getOwnershipTypeName(t, ownershipType);
         // If ownership type is not in the map, add it
         if (ownershipType && !ownershipTypesMap.has(ownershipTypeName)) {
             ownershipTypesMap.set(ownershipTypeName, ownershipType);
@@ -58,7 +58,7 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
 
     return (
         <div id={ENTITY_PROFILE_OWNERS_ID}>
-            <SidebarHeader title="Owners" />
+            <SidebarHeader title={t('common.owners')} />
             <div>
                 {ownershipTypeNames.map((ownershipTypeName) => {
                     const ownershipType = ownershipTypesMap.get(ownershipTypeName) as OwnershipTypeEntity;
@@ -72,7 +72,7 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
                 )}
                 {!readOnly && (
                     <Button type={ownersEmpty ? 'default' : 'text'} onClick={() => setShowAddModal(true)}>
-                        <PlusOutlined /> Add Owners
+                        <PlusOutlined /> {t('crud.addWithName', { name: t('common.owners') })}
                     </Button>
                 )}
             </div>

@@ -10,8 +10,8 @@ import QueryCardEditButton from './QueryCardEditButton';
 
 const Title = styled(Typography.Title)<{ secondary?: boolean }>`
     && {
-        margin: 0px;
-        padding: 0px;
+        margin: 0;
+        padding: 0;
         color: ${(props) => (props.secondary && ANTD_GRAY[6]) || ANTD_GRAY[9]};
     }
     max-height: 40px;
@@ -21,7 +21,7 @@ const Title = styled(Typography.Title)<{ secondary?: boolean }>`
 `;
 
 const Details = styled.div`
-    padding: 0px 20px 0px 20px;
+    padding: 0 20px 0 20px;
 `;
 
 const Header = styled.div`
@@ -37,8 +37,8 @@ const Actions = styled.div`
 
 const EditQueryAction = styled.span`
     && {
-        margin: 0px;
-        padding: 0px;
+        margin: 0;
+        padding: 0;
         margin-left: 4px;
     }
 `;
@@ -99,7 +99,7 @@ export default function QueryCardDetails({
         <Details>
             <Header>
                 <Title secondary={!title} level={5}>
-                    {title || 'No title'}
+                    {title || t('common.noTitle')}
                 </Title>
                 <Actions>
                     {showEdit && (
@@ -123,15 +123,14 @@ export default function QueryCardDetails({
                     >
                         {description}
                     </NoMarkdownViewer>
-                )) || <EmptyText>No description</EmptyText>}
+                )) || <EmptyText>{t('common.noDescription')}</EmptyText>}
             </Description>
             <Date>
                 {(createdAtMs && (
                     <Typography.Text type="secondary">
-                        Created on {toLocalDateString(createdAtMs, i18n.language)}
+                        {t('reporting.createdOnWithDate', { date: toLocalDateString(createdAtMs, i18n.language) })}
                     </Typography.Text>
-                )) ||
-                    undefined}
+                )) || undefined}
             </Date>
         </Details>
     );

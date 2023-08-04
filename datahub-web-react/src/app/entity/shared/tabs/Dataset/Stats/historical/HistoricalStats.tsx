@@ -10,6 +10,7 @@ import { Message } from '../../../../../../shared/Message';
 import { LookbackWindow } from '../lookbackWindows';
 import { ANTD_GRAY } from '../../../../constants';
 import PrefixedSelect from './shared/PrefixedSelect';
+import { useTranslation } from 'react-i18next';
 
 // TODO: Reuse stat sections.
 const StatSection = styled.div`
@@ -116,7 +117,10 @@ export type Props = {
 };
 
 export default function HistoricalStats({ urn, lookbackWindow }: Props) {
+    const { t } = useTranslation();
     const [getDataProfiles, { data: profilesData, loading: profilesLoading }] = useGetDataProfilesLazyQuery();
+
+
 
     /**
      * Perform initial fetch of default lookback window stats.
@@ -197,23 +201,23 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
 
     return (
         <>
-            {profilesLoading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+            {profilesLoading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
             <StatSection>
-                <Typography.Title level={5}>Profiling Runs</Typography.Title>
+                <Typography.Title level={5}>{t('reporting.profilingRuns')}</Typography.Title>
                 <ProfilingRunsChart profiles={profiles} />
             </StatSection>
             <StatSection>
-                <Typography.Title level={5}>Table Stats</Typography.Title>
+                <Typography.Title level={5}>{t('reporting.tableStats')}</Typography.Title>
                 <ChartRow>
                     <StatChart
-                        title="Row Count Over Time"
+                        title={t('reporting.rowCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={rowCountChartValues}
                     />
                     <ChartDivider type="vertical" height={360} width={1} />
                     <StatChart
-                        title="Column Count Over Time"
+                        title={t('reporting.columnCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={columnCountChartValues}
@@ -222,19 +226,19 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
             </StatSection>
             <StatSection>
                 <ColumnStatsHeader>
-                    <Typography.Title level={5}>Column Stats</Typography.Title>
+                    <Typography.Title level={5}>{t('reporting.columnStats')}</Typography.Title>
                     {columnSelectView}
                 </ColumnStatsHeader>
                 <ChartRow>
                     <StatChart
-                        title="Null Count Over Time"
+                        title={t('reporting.nullCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={nullCountChartValues}
                     />
                     <ChartDivider type="vertical" height={360} width={1} />
                     <StatChart
-                        title="Null Percentage Over Time"
+                        title={t('reporting.nullPercentageOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={nullPercentageChartValues}
@@ -243,14 +247,14 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
                 <ChartDivider type="horizontal" height={1} width={400} />
                 <ChartRow>
                     <StatChart
-                        title="Distinct Count Over Time"
+                        title={t('reporting.distinctCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={distinctCountChartValues}
                     />
                     <ChartDivider type="vertical" height={360} width={1} />
                     <StatChart
-                        title="Distinct Percentage Over Time"
+                        title={t('reporting.distinctPercentageOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={distinctPercentageChartValues}

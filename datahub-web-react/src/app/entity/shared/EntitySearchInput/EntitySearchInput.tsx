@@ -4,6 +4,7 @@ import { useGetSearchResultsForMultipleLazyQuery } from '../../../../graphql/sea
 import { EntityType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { EntitySearchInputResult } from './EntitySearchInputResult';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     selectedUrns: string[];
@@ -23,6 +24,7 @@ export const EntitySearchInput = ({
     onChangeSelectedUrns,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const [searchResources, { data: resourcesSearchData }] = useGetSearchResultsForMultipleLazyQuery();
     const searchResults = resourcesSearchData?.searchAcrossEntities?.searchResults || [];
 
@@ -71,7 +73,7 @@ export const EntitySearchInput = ({
             mode="multiple"
             style={style}
             filterOption={false}
-            placeholder={placeholder || 'Search for entities...'}
+            placeholder={placeholder || t('placeholder.searchForWithName', { name: t('entity.subtype.entity', { count: 2 }) })}
             onSelect={onSelect}
             onDeselect={onDeselect}
             onSearch={onSearch}

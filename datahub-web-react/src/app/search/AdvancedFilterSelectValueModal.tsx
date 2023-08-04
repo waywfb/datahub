@@ -89,7 +89,7 @@ export const AdvancedFilterSelectValueModal = ({
     if (filterField === DATA_PRODUCTS_FILTER_NAME) {
         return (
             <SetDataProductModal
-                titleOverride={t('search.selectWithName', { name: t('filter.dataProduct') })}
+                titleOverride={t('search.selectWithName', { name: t('common.dataProduct') })}
                 urns={[]}
                 currentDataProduct={
                     facet?.aggregations.find((agg) => initialValues?.includes(agg?.entity?.urn || ''))?.entity || null

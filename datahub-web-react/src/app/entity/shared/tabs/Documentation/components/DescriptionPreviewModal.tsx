@@ -33,7 +33,7 @@ export const DescriptionPreviewModal = ({ description, editMode, onClose }: Desc
         if (editMode) {
             Modal.confirm({
                 title: t('entity.editor.exitEditor'),
-                content: t('entity.editor.sureToCloseEditor'),
+                content: t('entity.editor.sureToCloseDocumentationEditor'),
                 onOk() {
                     onClose();
                 },

@@ -45,10 +45,10 @@ export default function TermContent({
         onOpenModal?.();
         const termName = termToRemove && entityRegistry.getDisplayName(termToRemove.term.type, termToRemove.term);
         Modal.confirm({
-            title: t('crud.doYouWantToRemove.titleWithName', {
+            title: t('crud.doYouWantTo.removeTitleWithName', {
                 name: `${termName} ${entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t).toLowerCase()}`,
             }),
-            content: t('crud.doYouWantToRemove.contentWithTheName', {
+            content: t('crud.doYouWantTo.removeContentWithTheName', {
                 name: `${termName} ${entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t).toLowerCase()}`,
             }),
             onOk() {

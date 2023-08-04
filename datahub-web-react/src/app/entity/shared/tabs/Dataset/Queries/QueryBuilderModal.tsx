@@ -68,7 +68,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                             type: EventType.CreateQueryEvent,
                         });
                         message.success({
-                            content: `Created Query!`,
+                            content: t('crud.success.createWithName', {name: t('common.query')}),
                             duration: 3,
                         });
                         onSubmit?.(data?.createQuery);
@@ -77,7 +77,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                 })
                 .catch(() => {
                     message.destroy();
-                    message.error({ content: 'Failed to create Query! An unexpected error occurred' });
+                    message.error({ content: t('crud.error.createWithName', {name: t('common.query')}) });
                 });
         }
     };
@@ -105,7 +105,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                             type: EventType.UpdateQueryEvent,
                         });
                         message.success({
-                            content: `Edited Query!`,
+                            content: t('crud.success.editWithName', {name: t('common.query')}),
                             duration: 3,
                         });
                         onSubmit?.(data?.updateQuery);
@@ -114,7 +114,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
                 })
                 .catch(() => {
                     message.destroy();
-                    message.error({ content: 'Failed to edit Query! An unexpected error occurred' });
+                    message.error({ content: t('crud.error.editWithName', {name: t('common.query')}) });
                 });
         }
     };
@@ -129,8 +129,8 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
 
     const confirmClose = () => {
         Modal.confirm({
-            title: `Exit Query Editor`,
-            content: `Are you sure you want to exit the editor? Any unsaved changes will be lost.`,
+            title: t('entity.editor.exitQueryEditor'),
+            content: t('entity.editor.sureToExitEditor'),
             onOk() {
                 setBuilderState(DEFAULT_STATE);
                 onClose?.();
@@ -148,7 +148,7 @@ export default function QueryBuilderModal({ initialState, datasetUrn, onClose, o
             <StyledModal
                 width={MODAL_WIDTH}
                 bodyStyle={MODAL_BODY_STYLE}
-                title={<Typography.Text>{isUpdating ? 'Edit' : 'New'} Query</Typography.Text>}
+                title={<Typography.Text>{isUpdating ? t('common.edit') : t('common.new')} Query</Typography.Text>}
                 className="query-builder-modal"
                 visible
                 onCancel={confirmClose}

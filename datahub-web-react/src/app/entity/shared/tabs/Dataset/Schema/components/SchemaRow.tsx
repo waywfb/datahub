@@ -10,6 +10,7 @@ import { useEntityRegistry } from '../../../../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../../../constants';
 import { useBaseEntity } from '../../../../EntityContext';
 import { FkContext } from '../utils/selectedFkContext';
+import { useTranslation } from 'react-i18next';
 
 const ForeignKeyContent = styled.tr`
     position: absolute;
@@ -92,6 +93,7 @@ export const SchemaRow = React.forwardRef<HTMLTableRowElement>((props, ref) => {
     const { children, ...rest } = props;
     const selectedFk = useContext(FkContext);
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
 
     return (
@@ -103,7 +105,7 @@ export const SchemaRow = React.forwardRef<HTMLTableRowElement>((props, ref) => {
                 <ForeignKeyContent>
                     <ForiegnKeyTd>
                         <HeaderContent>
-                            Foreign Key to{' '}
+                            {t('entity.foreignKeyTo') + ' '}
                             <DatasetLink
                                 to={entityRegistry.getEntityUrl(
                                     EntityType.Dataset,

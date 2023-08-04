@@ -43,6 +43,7 @@ import {
     LINEAGE_GRAPH_INTRO_ID,
     LINEAGE_GRAPH_TIME_FILTER_ID,
 } from '../../../../onboarding/config/LineageGraphOnboardingConfig';
+import { useTranslation } from 'react-i18next';
 
 type Props<T, U> = {
     urn: string;
@@ -108,7 +109,7 @@ const HeaderAndTabsFlex = styled.div`
     &::-webkit-scrollbar-thumb {
         background: #cccccc;
         -webkit-border-radius: 1ex;
-        -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
     }
 `;
 const Sidebar = styled.div<{ $width: number }>`
@@ -167,6 +168,7 @@ export const EntityProfile = <T, U>({
     const isLineageMode = useIsLineageMode();
     const isHideSiblingMode = useIsSeparateSiblingsMode();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const history = useHistory();
     const isCompact = React.useContext(CompactContext);
     const tabsWithDefaults = tabs.map((tab) => ({ ...tab, display: { ...defaultTabDisplayConfig, ...tab.display } }));
@@ -268,7 +270,7 @@ export const EntityProfile = <T, U>({
                 }}
             >
                 <>
-                    {loading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+                    {loading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
                     {(error && <ErrorSection />) ||
                         (!loading && (
                             <CompactProfile>
@@ -313,11 +315,11 @@ export const EntityProfile = <T, U>({
                 {showBrowseBar && <EntityProfileNavBar urn={urn} entityType={entityType} />}
                 {entityData?.status?.removed === true && (
                     <Alert
-                        message="This entity is not discoverable via search or lineage graph. Contact your DataHub admin for more information."
+                        message={t('entity.entityRemovedAlert')}
                         banner
                     />
                 )}
-                {loading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+                {loading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
                 {(error && <ErrorSection />) || (
                     <ContentContainer>
                         {isLineageMode ? (

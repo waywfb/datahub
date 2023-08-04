@@ -20,7 +20,7 @@ type SelectedContainer = {
 };
 
 const StyleTag = styled(Tag)`
-    padding: 0px 7px;
+    padding: 0 7px;
     margin-right: 3px;
     display: flex;
     justify-content: start;
@@ -141,7 +141,7 @@ export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride
 
     return (
         <Modal
-            title={titleOverride || 'Select Container'}
+            title={titleOverride || t('search.selectWithName', { name: t('entity.subtype.CONTAINER', { count: 1 }) })}
             visible
             onCancel={onModalClose}
             footer={
@@ -163,7 +163,7 @@ export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride
                         showSearch
                         mode="multiple"
                         defaultActiveFirstOption={false}
-                        placeholder="Search for Containers..."
+                        placeholder={t('placeholder.searchForWithName', { name: t('entity.subtype.CONTAINER', { count: 2 }) })}
                         onSelect={(containerUrn: any) => onSelectContainer(containerUrn)}
                         onDeselect={onDeselectContainer}
                         onSearch={(value: string) => {

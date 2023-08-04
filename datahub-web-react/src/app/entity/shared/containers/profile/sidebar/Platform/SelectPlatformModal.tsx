@@ -19,7 +19,7 @@ type SelectedPlatform = {
 };
 
 const StyleTag = styled(Tag)`
-    padding: 0px 7px;
+    padding: 0 7px;
     margin-right: 3px;
     display: flex;
     justify-content: start;
@@ -138,7 +138,7 @@ export const SelectPlatformModal = ({ onCloseModal, defaultValues, onOk, titleOv
 
     return (
         <Modal
-            title={titleOverride || 'Select Platform'}
+            title={titleOverride || t('search.selectWithName', { name: t('common.platform') })}
             visible
             onCancel={onModalClose}
             footer={
@@ -160,7 +160,7 @@ export const SelectPlatformModal = ({ onCloseModal, defaultValues, onOk, titleOv
                         showSearch
                         mode="multiple"
                         defaultActiveFirstOption={false}
-                        placeholder="Search for Platforms..."
+                        placeholder={t('placeholder.searchForWithName', { name: t('common.platforms') })}
                         onSelect={(platformUrn: any) => onSelectPlatform(platformUrn)}
                         onDeselect={onDeselectPlatform}
                         onSearch={(value: string) => {

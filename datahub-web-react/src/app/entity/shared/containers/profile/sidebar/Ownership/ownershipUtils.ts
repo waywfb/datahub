@@ -1,4 +1,5 @@
 import { OwnershipType, OwnershipTypeEntity } from '../../../../../../../types.generated';
+import { TFunction } from 'i18next';
 
 /**
  * A mapping from OwnershipType to it's display name & description. In the future,
@@ -7,23 +8,23 @@ import { OwnershipType, OwnershipTypeEntity } from '../../../../../../../types.g
 export const OWNERSHIP_DISPLAY_TYPES = [
     {
         type: OwnershipType.TechnicalOwner,
-        name: 'Technical Owner',
-        description: 'Involved in the production, maintenance, or distribution of the asset(s).',
+        name: 'ownerType.TECHNICAL_OWNER.name',
+        description: 'ownerType.TECHNICAL_OWNER.description',
     },
     {
         type: OwnershipType.BusinessOwner,
-        name: 'Business Owner',
-        description: 'Principle stakeholders or domain experts associated with the asset(s).',
+        name: 'ownerType.BUSINESS_OWNER.name',
+        description: 'ownerType.BUSINESS_OWNER.description',
     },
     {
         type: OwnershipType.DataSteward,
-        name: 'Data Steward',
-        description: 'Involved in governance of the asset(s).',
+        name: 'ownerType.DATA_STEWARD.name',
+        description: 'ownerType.DATA_STEWARD.description',
     },
     {
         type: OwnershipType.None,
-        name: 'None',
-        description: 'No ownership type specified.',
+        name: 'ownerType.NONE.name',
+        description: 'ownerType.NONE.description',
     },
 ];
 
@@ -36,10 +37,10 @@ export const getNameFromType = (type: OwnershipType) => {
     return ownershipTypeToDetails.get(type)?.name || type;
 };
 
-export const getDescriptionFromType = (type: OwnershipType) => {
-    return ownershipTypeToDetails.get(type)?.description || 'No description';
+export const getDescriptionFromType = (t: TFunction, type: OwnershipType) => {
+    return (ownershipTypeToDetails.get(type)?.description && t(ownershipTypeToDetails.get(type)?.description)) || t('common.noDescription');
 };
 
-export function getOwnershipTypeName(ownershipType?: OwnershipTypeEntity | null) {
-    return ownershipType?.info?.name || 'Other';
+export function getOwnershipTypeName(t: TFunction, ownershipType?: OwnershipTypeEntity | null) {
+    return (ownershipType?.info?.name && t(ownershipType?.info?.name)) || t('common.other');
 }

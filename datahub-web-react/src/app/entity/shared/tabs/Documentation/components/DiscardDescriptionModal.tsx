@@ -24,7 +24,7 @@ export const DiscardDescriptionModal = ({ cancelModalVisible, onDiscard, onCance
                     <Button onClick={onDiscard}>{t('common.yes')}</Button>,
                 ]}
             >
-                <p>{t('entity.editor.sureToCloseEditor')}</p>
+                <p>{t('entity.editor.sureToCloseDocumentationEditor')}</p>
             </Modal>
         </>
     );

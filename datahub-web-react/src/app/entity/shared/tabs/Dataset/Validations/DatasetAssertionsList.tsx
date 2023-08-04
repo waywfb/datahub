@@ -71,7 +71,7 @@ export const DatasetAssertionsList = ({ assertions, onDelete }: Props) => {
 
     const onDeleteAssertion = (urn: string) => {
         Modal.confirm({
-            title: t('assertion.deleteAssertionModal.title'),
+            title: t('crud.doYouWantTo.confirmRemovalWithName', { name: t('common.assertion') }),
             content: t('assertion.deleteAssertionModal.content'),
             onOk() {
                 deleteAssertion(urn);

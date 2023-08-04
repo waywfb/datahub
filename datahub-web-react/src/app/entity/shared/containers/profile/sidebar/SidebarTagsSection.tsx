@@ -9,6 +9,7 @@ import {
     ENTITY_PROFILE_GLOSSARY_TERMS_ID,
     ENTITY_PROFILE_TAGS_ID,
 } from '../../../../../onboarding/config/EntityProfileOnboardingConfig';
+import { useTranslation } from 'react-i18next';
 
 const StyledDivider = styled(Divider)`
     margin: 16px 0;
@@ -24,6 +25,7 @@ export const SidebarTagsSection = ({ properties, readOnly }: Props) => {
     const canAddTerm = properties?.hasTerms;
 
     const mutationUrn = useMutationUrn();
+    const { t } = useTranslation();
 
     const { entityType, entityData } = useEntityData();
 
@@ -32,7 +34,7 @@ export const SidebarTagsSection = ({ properties, readOnly }: Props) => {
     return (
         <div>
             <span id={ENTITY_PROFILE_TAGS_ID}>
-                <SidebarHeader title="Tags" />
+                <SidebarHeader title={t('entity.type.TAG', { count: 2 })} />
                 <TagTermGroup
                     editableTags={entityData?.globalTags}
                     canAddTag={canAddTag}
@@ -47,7 +49,7 @@ export const SidebarTagsSection = ({ properties, readOnly }: Props) => {
             </span>
             <StyledDivider />
             <span id={ENTITY_PROFILE_GLOSSARY_TERMS_ID}>
-                <SidebarHeader title="Glossary Terms" />
+                <SidebarHeader title={t('entity.type.GLOSSARY_TERM', { count: 2 })} />
                 <TagTermGroup
                     editableGlossaryTerms={entityData?.glossaryTerms}
                     canAddTerm={canAddTerm}

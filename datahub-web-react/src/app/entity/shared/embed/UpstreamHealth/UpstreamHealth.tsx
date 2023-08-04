@@ -10,6 +10,7 @@ import { useEntityData } from '../../EntityContext';
 import { extractUpstreamSummary } from './utils';
 import FailingInputs from './FailingInputs';
 import { ReactComponent as SubtractIcon } from '../../../../../images/subtractIcon.svg';
+import { useTranslation } from 'react-i18next';
 
 const LoadingWrapper = styled.div`
     display: flex;
@@ -40,6 +41,7 @@ const StyledCheck = styled(CheckCircleFilled)`
 `;
 
 export default function UpstreamHealth() {
+    const { t } = useTranslation();
     const { entityData } = useEntityData();
     const { data, loading } = useSearchAcrossLineageQuery({
         variables: {
@@ -78,7 +80,7 @@ export default function UpstreamHealth() {
         return (
             <div>
                 <StyledCheck />
-                <TextWrapper>All data inputs are healthy</TextWrapper>
+                <TextWrapper>{t('entity.allDataInputsAreHealthy')}</TextWrapper>
             </div>
         );
     }
@@ -86,7 +88,7 @@ export default function UpstreamHealth() {
     return (
         <div>
             <StyledIcon component={SubtractIcon} />
-            <UnknownText>Unknown data input health</UnknownText>
+            <UnknownText>{t('entity.unknownDataInputHealth')}</UnknownText>
         </div>
     );
 }

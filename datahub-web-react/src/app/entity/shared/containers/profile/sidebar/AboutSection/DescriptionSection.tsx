@@ -6,6 +6,7 @@ import MarkdownViewer, { MarkdownView } from '../../../../components/legacy/Mark
 import NoMarkdownViewer, { removeMarkdown } from '../../../../components/styled/StripMarkdownText';
 import { useRouteToTab } from '../../../../EntityContext';
 import { useIsOnTab } from '../../utils';
+import { useTranslation } from 'react-i18next';
 
 const ABBREVIATED_LIMIT = 150;
 
@@ -22,6 +23,7 @@ interface Props {
 }
 
 export default function DescriptionSection({ description }: Props) {
+    const { t } = useTranslation();
     const isOverLimit = description && removeMarkdown(description).length > ABBREVIATED_LIMIT;
     const [isExpanded, setIsExpanded] = useState(!isOverLimit);
     const routeToTab = useRouteToTab();
@@ -42,14 +44,14 @@ export default function DescriptionSection({ description }: Props) {
             {isExpanded && (
                 <>
                     <MarkdownViewer source={description} ignoreLimit />
-                    {isOverLimit && <Typography.Link onClick={() => setIsExpanded(false)}>Read Less</Typography.Link>}
+                    {isOverLimit && <Typography.Link onClick={() => setIsExpanded(false)}>{t('common.readLess')}</Typography.Link>}
                 </>
             )}
             {!isExpanded && (
                 <NoMarkdownViewer
                     limit={ABBREVIATED_LIMIT}
                     readMore={
-                        shouldShowReadMore ? <Typography.Link onClick={readMore}>Read More</Typography.Link> : undefined
+                        shouldShowReadMore ? <Typography.Link onClick={readMore}>{t('common.readMore')}</Typography.Link> : undefined
                     }
                     shouldWrap
                 >

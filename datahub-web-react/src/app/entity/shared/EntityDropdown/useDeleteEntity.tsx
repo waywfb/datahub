@@ -45,7 +45,7 @@ function useDeleteEntity(
                 });
                 if (!hideMessage && !skipWait) {
                     message.loading({
-                        content: 'Deleting...',
+                        content: t('crud.deleting') + '...',
                         duration: 2,
                     });
                 }
@@ -59,7 +59,7 @@ function useDeleteEntity(
                         }
                         if (!hideMessage) {
                             message.success({
-                                content: `Deleted ${entityRegistry.getEntityName(type)}!`,
+                                content: t('crud.success.deleteWithName', { name: entityRegistry.getEntityNameTrans(type, t) }),
                                 duration: 2,
                             });
                         }
@@ -69,16 +69,16 @@ function useDeleteEntity(
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to delete: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.delete')}: \n ${e.message || ''}`, duration: 3 });
             });
     }
 
     function onDeleteEntity() {
         Modal.confirm({
-            title: `Delete ${
-                (entityData && entityRegistry.getDisplayName(type, entityData)) || entityRegistry.getEntityName(type)
-            }`,
-            content: `Are you sure you want to remove this ${entityRegistry.getEntityName(type)}?`,
+            title: t('crud.deleteWithName', {
+                name: (entityData && entityRegistry.getDisplayName(type, entityData)) || entityRegistry.getEntityNameTrans(type, t)
+            }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', { name: entityRegistry.getEntityNameTrans(type, t) }),
             onOk() {
                 handleDeleteEntity();
             },

@@ -9,6 +9,7 @@ import { useBaseEntity, useRouteToTab } from '../../../../EntityContext';
 import { SidebarHeader } from '../SidebarHeader';
 import { InfoItem } from '../../../../components/styled/InfoItem';
 import { formatNumberWithoutAbbreviation } from '../../../../../../shared/formatNumber';
+import { useTranslation } from 'react-i18next';
 
 const HeaderInfoBody = styled(Typography.Text)`
     font-size: 16px;
@@ -33,6 +34,7 @@ const INFO_ITEM_WIDTH_PX = '150px';
 const LAST_UPDATED_WIDTH_PX = '220px';
 
 export const SidebarStatsSection = () => {
+    const { t } = useTranslation();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
 
     const toLocalDateTimeString = (time: number) => {
@@ -69,9 +71,9 @@ export const SidebarStatsSection = () => {
     return (
         <div>
             <HeaderContainer>
-                <SidebarHeader title="Stats" />
+                <SidebarHeader title={t('common.stats')} />
                 <StatsButton onClick={() => routeToTab({ tabName: 'Stats' })} type="link">
-                    More stats &gt;
+                    {t('common.more') + ' ' + t('common.stats').toLowerCase()} &gt;
                 </StatsButton>
             </HeaderContainer>
             {/* Dataset Profile Entry */}
@@ -79,7 +81,7 @@ export const SidebarStatsSection = () => {
                 <StatsRow>
                     {latestProfile?.rowCount ? (
                         <InfoItem
-                            title="Rows"
+                            title={t('common.rows')}
                             onClick={() => routeToTab({ tabName: 'Queries' })}
                             width={INFO_ITEM_WIDTH_PX}
                         >

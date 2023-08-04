@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 let isResizing = false;
 
@@ -15,6 +16,7 @@ const ResizableDiv = styled.div<{ width }>`
 `;
 
 const HeaderAndTabs = ({ children }: Props) => {
+    const { t } = useTranslation();
     const initialWidth = 70 / (100 / document.documentElement.clientWidth);
 
     const [sidebarWidth, setSidebarWidth] = useState(initialWidth);
@@ -59,7 +61,7 @@ const HeaderAndTabs = ({ children }: Props) => {
             {children}
             {/* eslint-disable jsx-a11y/no-static-element-interactions */}
             <div onMouseDown={handleMousedown} style={{ backgroundColor: 'black', width: '5px', height: '100px' }}>
-                header
+                {t('common.header').toLowerCase()}
             </div>
         </ResizableDiv>
     );

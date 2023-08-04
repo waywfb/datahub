@@ -29,7 +29,6 @@ i18n
             'empty-message',
             'form',
             'lookback-windows',
-            'owner-type',
             'react-cron',
             'theme'
         ],

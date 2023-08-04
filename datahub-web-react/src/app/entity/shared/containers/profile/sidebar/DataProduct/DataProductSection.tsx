@@ -39,14 +39,14 @@ export default function DataProductSection({ readOnly }: Props) {
     function removeDataProduct() {
         batchSetDataProductMutation({ variables: { input: { resourceUrns: [urn, ...siblingUrns] } } })
             .then(() => {
-                message.success({ content: 'Removed Data Product.', duration: 2 });
+                message.success({ content: t('crud.success.removeWithName', { name: t('common.dataProduct') }), duration: 2 });
                 setDataProduct(null);
             })
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
                     message.error({
-                        content: `Failed to remove data product. An unknown error occurred.`,
+                        content: t('crud.error.removeWithName', { name: t('common.dataProduct') }),
                         duration: 3,
                     });
                 }
@@ -55,8 +55,8 @@ export default function DataProductSection({ readOnly }: Props) {
 
     const onRemoveDataProduct = () => {
         Modal.confirm({
-            title: `Confirm Data Product Removal`,
-            content: `Are you sure you want to remove this data product?`,
+            title: t('crud.doYouWantTo.confirmRemovalWithName', { name: t('common.dataProduct') }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', { name: t('common.dataProduct') }),
             onOk() {
                 removeDataProduct();
             },
@@ -70,7 +70,7 @@ export default function DataProductSection({ readOnly }: Props) {
 
     return (
         <>
-            <SidebarHeader title="Data Product" />
+            <SidebarHeader title={t('common.dataProduct')} />
             {dataProduct && (
                 <DataProductLink
                     dataProduct={dataProduct}
@@ -91,7 +91,7 @@ export default function DataProductSection({ readOnly }: Props) {
                     </EmptyText>
                     {!readOnly && (
                         <Button type="default" onClick={() => setIsModalVisible(true)}>
-                            <EditOutlined /> Set Data Product
+                            <EditOutlined /> {t('crud.setWithName', { name: t('common.dataProduct') })}
                         </Button>
                     )}
                 </>

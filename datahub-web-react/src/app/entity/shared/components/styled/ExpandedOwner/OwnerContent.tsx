@@ -5,6 +5,7 @@ import { Owner } from '../../../../../../types.generated';
 import { CustomAvatar } from '../../../../../shared/avatar';
 import { getDescriptionFromType, getNameFromType } from '../../../containers/profile/sidebar/Ownership/ownershipUtils';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
+import { useTranslation } from 'react-i18next';
 
 const TextWrapper = styled.span<{ fontSize?: number }>`
     ${(props) => props.fontSize && `font-size: ${props.fontSize}px;`}
@@ -67,6 +68,7 @@ interface Props {
 
 export default function OwnerContent({ name, owner, hidePopOver, pictureLink, fontSize }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const ownerEntity = owner.owner;
     const ownerEntityType = owner.owner.type;
     const ownerEntityTypeDisplayName = entityRegistry.getEntityName(ownerEntityType);
@@ -78,7 +80,7 @@ export default function OwnerContent({ name, owner, hidePopOver, pictureLink, fo
         ownershipTypeDescription = owner.ownershipType.info.description;
     } else if (owner.type) {
         ownershipTypeName = getNameFromType(owner.type);
-        ownershipTypeDescription = getDescriptionFromType(owner.type);
+        ownershipTypeDescription = getDescriptionFromType(t, owner.type);
     }
 
     const avatar: React.ReactNode = (

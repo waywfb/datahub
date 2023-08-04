@@ -290,6 +290,7 @@ export default function PolicyPrivilegeForm({
                         <Trans
                             {...{
                                 i18nKey: 'permissions.resourceTypeDescription',
+                                components: { bold: <b /> },
                             }}
                         />
                     </Typography.Paragraph>
@@ -323,6 +324,7 @@ export default function PolicyPrivilegeForm({
                         <Trans
                             {...{
                                 i18nKey: 'permissions.resourceDescription',
+                                components: { bold: <b /> },
                             }}
                         />
                     </Typography.Paragraph>
@@ -359,6 +361,7 @@ export default function PolicyPrivilegeForm({
                         <Trans
                             {...{
                                 i18nKey: 'permissions.domainDescription',
+                                components: { bold: <b /> },
                             }}
                         />
                     </Typography.Paragraph>

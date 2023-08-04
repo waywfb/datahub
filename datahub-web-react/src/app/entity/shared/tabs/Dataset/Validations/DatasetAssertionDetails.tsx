@@ -2,6 +2,7 @@ import { Tooltip, Typography } from 'antd';
 import { SelectValue } from 'antd/lib/select';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetAssertionRunsLazyQuery } from '../../../../../../graphql/assertion.generated';
 import { AssertionResultType, AssertionRunStatus } from '../../../../../../types.generated';
 import { formatNumber } from '../../../../../shared/formatNumber';
@@ -12,7 +13,6 @@ import { LOOKBACK_WINDOWS } from '../Stats/lookbackWindows';
 import { getResultColor, getResultIcon, getResultText } from './assertionUtils';
 import { BooleanTimeline } from './BooleanTimeline';
 import { DatasetAssertionResultDetails } from './DatasetAssertionResultDetails';
-import { useTranslation } from 'react-i18next';
 
 const RESULT_CHART_WIDTH_PX = 800;
 
@@ -209,10 +209,11 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
                             </div>
                         </EvaluationsSummary>
                         <PrefixedSelect
-                            prefixText={t('common.show') + " "}
+                            prefixText={`${t('common.show')} `}
                             values={Object.values(LOOKBACK_WINDOWS).map((window) => ({
-                                label: t(lookbackWindow.translateKey, {count: lookbackWindow.windowSize.count}),
-                                value: window.value}))}
+                                label: t(lookbackWindow.translateKey, { count: lookbackWindow.windowSize.count }),
+                                value: window.value,
+                            }))}
                             value={lookbackWindow.value}
                             setValue={onChangeLookbackWindow}
                         />

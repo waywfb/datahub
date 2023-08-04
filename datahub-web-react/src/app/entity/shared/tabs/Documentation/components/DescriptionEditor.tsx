@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { message } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import analytics, { EventType, EntityActionType } from '../../../../../analytics';
 import { GenericEntityUpdate } from '../../../types';
 import { useEntityData, useEntityUpdate, useMutationUrn, useRefetch } from '../../../EntityContext';
@@ -9,7 +10,6 @@ import { DiscardDescriptionModal } from './DiscardDescriptionModal';
 import { EDITED_DESCRIPTIONS_CACHE_NAME } from '../../../utils';
 import { DescriptionEditorToolbar } from './DescriptionEditorToolbar';
 import { Editor } from './editor/Editor';
-import { useTranslation } from 'react-i18next';
 
 const EditorContainer = styled.div`
     overflow: auto;
@@ -72,7 +72,7 @@ export const DescriptionEditor = ({ onComplete }: DescriptionEditorProps) => {
     };
 
     const handleSave = async () => {
-        message.loading({ content: t('crud.saving') + '...' });
+        message.loading({ content: `${t('crud.saving')}...` });
         try {
             if (updateEntity) {
                 // Use the legacy update description path.
@@ -88,7 +88,10 @@ export const DescriptionEditor = ({ onComplete }: DescriptionEditorProps) => {
                 entityType,
                 entityUrn: mutationUrn,
             });
-            message.success({ content: t('crud.success.updateWithName', { name: t('common.description') }), duration: 2 });
+            message.success({
+                content: t('crud.success.updateWithName', { name: t('common.description') }),
+                duration: 2,
+            });
             // Updating the localStorage after save
             delete editedDescriptions[mutationUrn];
             if (Object.keys(editedDescriptions).length === 0) {
@@ -100,7 +103,12 @@ export const DescriptionEditor = ({ onComplete }: DescriptionEditorProps) => {
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
-                message.error({ content: `${t('crud.error.updateWithName', { name: t('common.description') })}: \n ${e.message || ''}`, duration: 2 });
+                message.error({
+                    content: `${t('crud.error.updateWithName', { name: t('common.description') })}: \n ${
+                        e.message || ''
+                    }`,
+                    duration: 2,
+                });
             }
         }
         refetch?.();

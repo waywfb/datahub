@@ -2,9 +2,9 @@ import { CheckCircleFilled, CloseCircleFilled, StopOutlined } from '@ant-design/
 import { Tooltip, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
-import { ANTD_GRAY } from '../../../constants';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
+import { ANTD_GRAY } from '../../../constants';
 
 const SummaryHeader = styled.div`
     width: 100%;

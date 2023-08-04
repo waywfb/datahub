@@ -1,7 +1,8 @@
 import { Popover, Typography, Button } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import {
     AssertionStdAggregation,
     AssertionStdOperator,
@@ -13,8 +14,6 @@ import {
 import { decodeSchemaField } from '../../../../../lineage/utils/columnLineageUtils';
 import { getFormattedParameterValue } from './assertionUtils';
 import { DatasetAssertionLogicModal } from './DatasetAssertionLogicModal';
-import { TFunction } from 'i18next';
-import { ReactiveTrans } from '../../../../../../utils/i18n-utils/ReactiveTrans';
 
 const ViewLogicButton = styled(Button)`
     padding: 0;
@@ -34,7 +33,7 @@ type Props = {
 const getSchemaAggregationText = (
     aggregation: AssertionStdAggregation | undefined | null,
     fields: Array<SchemaFieldRef> | undefined | null,
-    t: TFunction
+    t: TFunction,
 ) => {
     switch (aggregation) {
         case AssertionStdAggregation.ColumnCount:
@@ -45,12 +44,15 @@ const getSchemaAggregationText = (
             const fieldNames = fields?.map((field) => decodeSchemaField(field.path)) || [];
             return (
                 <Typography.Text>
-                    <ReactiveTrans
-                      {...{
-                          i18nKey: 'assertion.dataSetColumnsAre_component',
-                          fieldNames: JSON.stringify(fieldNames),
-                          components: { typographyTextStrong: <Typography.Text strong/> },
-                      }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.dataSetColumnsAre_component',
+                            values: {
+                                fieldNames: JSON.stringify(fieldNames),
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
@@ -66,7 +68,7 @@ const getSchemaAggregationText = (
  *
  * Row assertions require an aggregation.
  */
-const getRowsAggregationText = (aggregation: AssertionStdAggregation | undefined | null, t:TFunction) => {
+const getRowsAggregationText = (aggregation: AssertionStdAggregation | undefined | null, t: TFunction) => {
     switch (aggregation) {
         case AssertionStdAggregation.RowCount:
             return <Typography.Text>{t('assertion.datasetRowCountIs')}</Typography.Text>;
@@ -85,7 +87,7 @@ const getRowsAggregationText = (aggregation: AssertionStdAggregation | undefined
 const getColumnAggregationText = (
     aggregation: AssertionStdAggregation | undefined | null,
     field: SchemaFieldRef | undefined,
-    t: TFunction
+    t: TFunction,
 ) => {
     let columnText = decodeSchemaField(field?.path || '');
     if (field === undefined) {
@@ -97,44 +99,60 @@ const getColumnAggregationText = (
         case AssertionStdAggregation.UniqueCount: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.uniqueValueCountForColumnIs_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.uniqueValueCountForColumnIs_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.UniquePropotion: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.uniqueValueProportionForColumnIs_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.uniqueValueProportionForColumnIs_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.NullCount: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.nullCountForColumnIs_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.nullCountForColumnIs_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.NullProportion: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.nullProportionForColumnIs_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.nullProportionForColumnIs_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
@@ -142,55 +160,75 @@ const getColumnAggregationText = (
         case AssertionStdAggregation.Min: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.minimumValueForColumnIs_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.minimumValueForColumnIs_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.Max: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.maximumValueForColumnIs_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.maximumValueForColumnIs_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.Mean: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.meanValueForColumnIs_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.meanValueForColumnIs_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.Median: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.medianValueForColumnIs_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.medianValueForColumnIs_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
         case AssertionStdAggregation.Stddev: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.standardDeviationForColumnIs_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.standardDeviationForColumnIs_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
@@ -200,11 +238,15 @@ const getColumnAggregationText = (
             // No aggregation on the column at hand. Treat the column as a set of values.
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'assertion.columnValuesAre_component',
-                        columnText,
-                        component: {typographyTextStrong: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'assertion.columnValuesAre_component',
+                            values: {
+                                columnText,
+                            },
+                            components: { typographyTextStrong: <Typography.Text strong /> },
+                        }}
+                    />
                 </Typography.Text>
             );
     }
@@ -217,7 +259,7 @@ const getAggregationText = (
     scope: DatasetAssertionScope,
     aggregation: AssertionStdAggregation | undefined | null,
     fields: Array<SchemaFieldRef> | undefined | null,
-    t: TFunction
+    t: TFunction,
 ) => {
     switch (scope) {
         case DatasetAssertionScope.DatasetSchema:
@@ -239,21 +281,26 @@ const getOperatorText = (
     op: AssertionStdOperator,
     parameters: AssertionStdParameters | undefined,
     nativeType: string | undefined,
-    t: TFunction
+    t: TFunction,
 ) => {
     switch (op) {
         // Hybrid Operators
         case AssertionStdOperator.Between: {
             return (
                 <Typography.Text>
-                    <ReactiveTrans {...{
-                        i18nKey: 'common.betweenAndLowercaseWithName_component',
-                        name1: getFormattedParameterValue(parameters?.minValue),
-                        name2: getFormattedParameterValue(parameters?.maxValue),
-                        component: {
-                            component1: <Typography.Text strong />,
-                            component2: <Typography.Text strong />}
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'common.betweenAndLowercaseWithName_component',
+                            values: {
+                                name1: getFormattedParameterValue(parameters?.minValue),
+                                name2: getFormattedParameterValue(parameters?.maxValue),
+                            },
+                            components: {
+                                component1: <Typography.Text strong />,
+                                component2: <Typography.Text strong />,
+                            },
+                        }}
+                    />
                 </Typography.Text>
             );
         }
@@ -347,16 +394,17 @@ const getOperatorText = (
         case AssertionStdOperator.Native: {
             return (
                 <Typography.Text>
-                    {t('assertion.passingAssertion').toLowerCase()} <Typography.Text strong>{nativeType}</Typography.Text>
+                    {t('assertion.passingAssertion').toLowerCase()}{' '}
+                    <Typography.Text strong>{nativeType}</Typography.Text>
                 </Typography.Text>
             );
         }
         default:
             return (
                 <Typography.Text>
-                    {t('assertion.passingOperator').toLowerCase() + ' '}
+                    {`${t('assertion.passingOperator').toLowerCase()} `}
                     <Typography.Text strong>
-                        {op + ' ' + t('common.withValue') + ' ' + getFormattedParameterValue(parameters?.value)}
+                        {`${op} ${t('common.withValue')} ${getFormattedParameterValue(parameters?.value)}`}
                     </Typography.Text>
                 </Typography.Text>
             );

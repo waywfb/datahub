@@ -1,7 +1,7 @@
 import { Typography } from 'antd';
 import React from 'react';
-import { AssertionResult } from '../../../../../../types.generated';
 import { useTranslation } from 'react-i18next';
+import { AssertionResult } from '../../../../../../types.generated';
 
 type Props = {
     result: AssertionResult;

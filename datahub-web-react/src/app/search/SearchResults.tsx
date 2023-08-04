@@ -193,10 +193,13 @@ export const SearchResults = ({
                                 <Typography.Text>
                                     <Trans
                                         {...{
-                                            i18nKey: 'search.showingNumberOfTotalResults_html',
-                                            number: lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0,
-                                            index: lastResultIndex,
-                                            count: totalResults,
+                                            i18nKey: 'search.showingNumberOfTotalResults_component',
+                                            values: {
+                                                number: lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0,
+                                                index: lastResultIndex,
+                                                count: totalResults,
+                                            },
+                                            components: { bold: <b /> },
                                         }}
                                     />
                                 </Typography.Text>

@@ -49,11 +49,10 @@ export default function StatsTab() {
     // Column Stats
 
     const reportedAt =
-        latestProfile && t('reporting.reportedOnAtWithDateTime',{
+        latestProfile &&
+        t('reporting.reportedOnAtWithDateTime', {
             date: toLocalDateString(latestProfile?.timestampMillis, i18n.language),
-            time: toLocalTimeString(
-              latestProfile?.timestampMillis,
-              i18n.language)
+            time: toLocalTimeString(latestProfile?.timestampMillis, i18n.language),
         });
 
     const totalSqlQueries = usageStats?.aggregations?.totalSqlQueries;

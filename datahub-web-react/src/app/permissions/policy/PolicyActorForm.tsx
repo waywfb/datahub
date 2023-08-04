@@ -222,7 +222,7 @@ export default function PolicyActorForm({ policyType, actors, setActors }: Props
                     value={usersSelectValue}
                     mode="multiple"
                     filterOption={false}
-                    placeholder={t('placeholder.searchWithName', { name: t('common.users')})}
+                    placeholder={t('placeholder.searchWithName', { name: t('common.users') })}
                     onSelect={(asset: any) => onSelectUserActor(asset)}
                     onDeselect={(asset: any) => onDeselectUserActor(asset)}
                     onSearch={handleUserSearch}
@@ -239,7 +239,7 @@ export default function PolicyActorForm({ policyType, actors, setActors }: Props
                 <Select
                     value={groupsSelectValue}
                     mode="multiple"
-                    placeholder={t('placeholder.searchWithName', { name: t('common.groups')})}
+                    placeholder={t('placeholder.searchWithName', { name: t('common.groups') })}
                     onSelect={(asset: any) => onSelectGroupActor(asset)}
                     onDeselect={(asset: any) => onDeselectGroupActor(asset)}
                     onSearch={handleGroupSearch}

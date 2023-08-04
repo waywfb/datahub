@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { message, Button, List, Typography } from 'antd';
 import { LinkOutlined, DeleteOutlined } from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { EntityType, InstitutionalMemoryMetadata } from '../../../../../../types.generated';
 import { useEntityData } from '../../../EntityContext';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../../constants';
 import { formatDateString } from '../../../containers/profile/utils';
 import { useRemoveLinkMutation } from '../../../../../../graphql/mutations.generated';
-import { ReactiveTrans } from '../../../../../../utils/i18n-utils/ReactiveTrans';
 
 const LinkListItem = styled(List.Item)`
     border-radius: 5px;
@@ -85,15 +84,24 @@ export const LinkList = ({ refetch }: LinkListProps) => {
                                     </Typography.Title>
                                 }
                                 description={
-                                    <ReactiveTrans
-                                      {...{
-                                          i18nKey: 'entity.authorNameWithLink_component',
-                                          timestamp: formatDateString(link.created.time),
-                                          authorName: link.author.username,
-                                          components: { linkComponent: <Link
-                                                  to={`${entityRegistry.getEntityUrl(EntityType.CorpUser, link.author.urn)}`}
-                                                /> },
-                                      }}
+                                    <Trans
+                                        {...{
+                                            i18nKey: 'entity.authorNameWithLink_component',
+                                            values: {
+                                                timestamp: formatDateString(link.created.time),
+                                                authorName: link.author.username,
+                                            },
+                                            components: {
+                                                linkComponent: (
+                                                    <Link
+                                                        to={`${entityRegistry.getEntityUrl(
+                                                            EntityType.CorpUser,
+                                                            link.author.urn,
+                                                        )}`}
+                                                    />
+                                                ),
+                                            },
+                                        }}
                                     />
                                 }
                             />

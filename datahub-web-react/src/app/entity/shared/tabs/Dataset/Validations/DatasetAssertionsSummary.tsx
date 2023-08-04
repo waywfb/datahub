@@ -2,9 +2,9 @@ import { CheckCircleFilled, CloseCircleFilled, StopOutlined } from '@ant-design/
 import { Tooltip, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
-import { ANTD_GRAY } from '../../../constants';
 import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { ANTD_GRAY } from '../../../constants';
 
 const SummaryHeader = styled.div`
     width: 100%;
@@ -71,7 +71,10 @@ export const DatasetAssertionsSummary = ({ summary }: Props) => {
     const { t } = useTranslation();
     const summaryIcon = getSummaryIcon(summary);
     const summaryMessage = getSummaryMessage(summary, t);
-    const subtitleMessage = t('assertion.assertionResume', { successCount: summary.succeededRuns, failedCount: summary.failedRuns });
+    const subtitleMessage = t('assertion.assertionResume', {
+        successCount: summary.succeededRuns,
+        failedCount: summary.failedRuns,
+    });
     return (
         <SummaryHeader>
             <SummaryContainer>

@@ -58,6 +58,7 @@ export default function constructTree(
     entityRegistry: EntityRegistry,
     updatedLineages: UpdatedLineages,
 ): NodeData {
+    // TODO jm translate name here
     if (!entityAndType?.entity) return { name: 'loading...', children: [] };
     const constructedNodes = {};
 

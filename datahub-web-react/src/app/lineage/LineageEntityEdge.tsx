@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
 import { LinePath } from '@vx/shape';
+import { useTranslation } from 'react-i18next';
 import { VizEdge } from './types';
 import { ANTD_GRAY } from '../entity/shared/constants';
 
@@ -31,6 +32,7 @@ type Props = {
 };
 
 export default function LineageEntityEdge({ edge, key, isHighlighted }: Props) {
+    const { t } = useTranslation();
     const createdOnTimestamp = edge?.createdOn;
     const updatedOnTimestamp = edge?.updatedOn;
     const createdOn = createdOnTimestamp ? dayjs(createdOnTimestamp).format('ll') : undefined;
@@ -46,12 +48,16 @@ export default function LineageEntityEdge({ edge, key, isHighlighted }: Props) {
                         <>
                             {createdOn && (
                                 <EdgeTimestamp>
-                                    <StyledClockCircleOutlined /> Created {isManual && 'manually '}on {createdOn}
+                                    <StyledClockCircleOutlined />{' '}
+                                    {t('reporting.createdOnDateWithText', {
+                                        text: `${t('common.manually').toLowerCase()} `,
+                                        date: createdOn,
+                                    })}
                                 </EdgeTimestamp>
                             )}
                             {updatedOn && !isManual && (
                                 <EdgeTimestamp>
-                                    <StyledEyeOutlined /> Last observed on {updatedOn}
+                                    <StyledEyeOutlined /> {t('reporting.lastObservedOnDate', { date: updatedOn })}
                                 </EdgeTimestamp>
                             )}
                         </>

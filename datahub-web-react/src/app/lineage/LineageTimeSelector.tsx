@@ -38,7 +38,7 @@ type Props = {
 export default function LineageTimeSelector({ onChange, initialDates }: Props) {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
-    const [headerText, setHeaderText] = useState('No time range selected');
+    const [headerText, setHeaderText] = useState(t('lineage.noTimeRangeSelected'));
     const [startDate, setStartDate] = useState<moment.Moment | null>(initialDates[0]);
     const [endDate, setEndDate] = useState<moment.Moment | null>(initialDates[1]);
 
@@ -48,7 +48,7 @@ export default function LineageTimeSelector({ onChange, initialDates }: Props) {
     }, [startDate, endDate, t]);
 
     return (
-        <Tooltip title="Filter lineage edges by observed date" placement="topLeft">
+        <Tooltip title={t('lineage.filterLineageByObservedDate')} placement="topLeft">
             <RangePickerWrapper>
                 <ClickOutside onClickOutside={() => setIsOpen(false)}>
                     <Header onClick={() => setIsOpen(!isOpen)}>

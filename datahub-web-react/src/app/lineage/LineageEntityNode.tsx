@@ -3,6 +3,7 @@ import { Group } from '@vx/group';
 import { LinkHorizontal } from '@vx/shape';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { IconStyleType } from '../entity/Entity';
 import { Direction, VizNode, EntitySelectParams, EntityAndType, UpdatedLineages } from './types';
@@ -61,6 +62,7 @@ export default function LineageEntityNode({
     nodesToRenderByUrn: Record<string, VizNode>;
     setUpdatedLineages: React.Dispatch<React.SetStateAction<UpdatedLineages>>;
 }) {
+    const { t } = useTranslation();
     const { direction } = node;
     const { expandTitles, collapsedColumnsNodes, showColumns, refetchCenterNode } = useContext(LineageExplorerContext);
     const { startTimeMillis, endTimeMillis } = useGetLineageTimeParams();
@@ -367,8 +369,11 @@ export default function LineageEntityNode({
                         fill="black"
                         y={centerY - 20}
                     >
-                        {unexploredHiddenChildren} hidden {direction === Direction.Upstream ? 'downstream' : 'upstream'}{' '}
-                        {unexploredHiddenChildren > 1 ? 'dependencies' : 'dependency'}
+                        {unexploredHiddenChildren} {t('common.hidden').toLowerCase()}{' '}
+                        {direction === Direction.Upstream
+                            ? t('common.downstream').toLowerCase()
+                            : t('common.upstream').toLowerCase()}{' '}
+                        {t('common.dependency_interval', { count: unexploredHiddenChildren }).toLowerCase()}
                     </UnselectableText>
                 ) : null}
                 {showColumns && (node.data.schemaMetadata || node.data.inputFields) && (

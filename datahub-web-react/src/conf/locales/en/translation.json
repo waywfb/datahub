@@ -1,5 +1,8 @@
 {
   "common": {
+    "manually": "Manually",
+    "dependency_interval": "(0-1)Dependency;(2-inf)Dependencies",
+    "hidden": "Hidden",
     "glossaryTerms": "Glossary Terms",
     "tags": "Tags",
     "policies": "Policies",
@@ -33,6 +36,7 @@
     "showLess": "$t('common.show') $t('common.less')",
     "showMore": "$t('common.show') $t('common.more')",
     "show": "Show",
+    "hide": "Hide",
     "none": "None",
     "type": "Type",
     "subtype": "Subtype",
@@ -439,13 +443,16 @@
     }
   },
   "lineage": {
+    "noTimeRangeSelected": "No time range selected",
+    "filterLineageByObservedDate": "Filter lineage edges by observed date",
+    "findColumn": "Find column...",
     "hideColumnLevelLineage": "Hide column level lineage",
     "showColumnLevelLineage": "Show column level lineage",
     "columnLineage": "Column Lineage",
     "clickToRefreshData": "Click to refresh data",
     "entityDistanceFrom_withName": "This entity is a {{distance}} degree connection to {{name}}",
     "entityDistanceFrom_withoutName": "This entity is a {{distance}} degree connection to the source entity",
-    "clickToSeeColumnPathFrom": "(0-1)Click to see column path from ;(2-inf)Click to see column paths from ",
+    "clickToSeeColumnPathFrom_interval": "(0-1)Click to see column path from ;(2-inf)Click to see column paths from ",
     "visualizeLineage": "Visualize Lineage",
     "ordinalSuffix": [
       "th",
@@ -455,6 +462,7 @@
     ]
   },
   "duration": {
+    "lastXDays_interval": "(0-1)Yesterday;(2-inf)Last {{count}} days",
     "never": "Never",
     "now": "Now",
     "year_interval": "(0-1){{count}} year;(2-inf){{count}} years;",
@@ -470,6 +478,8 @@
     "unknownTimeRange": "Unknown time range"
   },
   "reporting": {
+    "lastObservedOnDate": "Last observed on {{date}}",
+    "createdOnDateWithText": "Created {{text}}on {{date}}",
     "reportedOnAtWithDateTime": "Reported on {{date}} at {{time}}"
   },
   "adminHeader": {

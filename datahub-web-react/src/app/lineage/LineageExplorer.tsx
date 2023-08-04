@@ -162,7 +162,7 @@ export default function LineageExplorer({ urn, type }: Props) {
     return (
         <>
             {error && <ErrorSection />}
-            {loading && <LoadingMessage type="loading" content="Loading..." />}
+            {loading && <LoadingMessage type="loading" content={t('common.loading')} />}
             {!!data && (
                 <div>
                     <LineageViz

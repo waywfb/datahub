@@ -4,6 +4,7 @@ import { Group } from '@vx/group';
 import styled from 'styled-components';
 import { DownOutlined, SearchOutlined, UpOutlined } from '@ant-design/icons';
 import { blue } from '@ant-design/colors';
+import { useTranslation } from 'react-i18next';
 import { NodeData } from './types';
 import { getTitleHeight } from './utils/titleUtils';
 import { LineageExplorerContext } from './utils/LineageExplorerContext';
@@ -47,6 +48,7 @@ interface Props {
 }
 
 export default function NodeColumnsHeader({ node, filterText, setFilterText }: Props) {
+    const { t } = useTranslation();
     const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
     const { expandTitles, collapsedColumnsNodes, setCollapsedColumnsNodes } = useContext(LineageExplorerContext);
     const areColumnsCollapsed = !!collapsedColumnsNodes[node?.data?.urn || 'noop'];
@@ -85,11 +87,11 @@ export default function NodeColumnsHeader({ node, filterText, setFilterText }: P
                 <HeaderWrapper>
                     {areColumnsCollapsed ? (
                         <ExpandCollapseText onClick={expandColumns}>
-                            Show&nbsp; <DownOutlined />
+                            {t('common.show')}&nbsp; <DownOutlined />
                         </ExpandCollapseText>
                     ) : (
                         <ExpandCollapseText onClick={collapseColumns}>
-                            Hide&nbsp; <UpOutlined />
+                            {t('common.hide')}&nbsp; <UpOutlined />
                         </ExpandCollapseText>
                     )}
                     {!areColumnsCollapsed && (
@@ -97,7 +99,7 @@ export default function NodeColumnsHeader({ node, filterText, setFilterText }: P
                             {isSearchBarVisible && (
                                 <StyledInput
                                     defaultValue={filterText}
-                                    placeholder="Find column..."
+                                    placeholder={t('lineage.findColumn')}
                                     onChange={(e) => setFilterText(e.target.value)}
                                     onBlur={hideIfSearchIsEmpty}
                                     allowClear

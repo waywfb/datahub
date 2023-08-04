@@ -12,6 +12,7 @@ import { getDisplayedEntityType } from '../containers/profile/header/PlatformCon
 import { ANTD_GRAY } from '../constants';
 import analytics from '../../../analytics/analytics';
 import { EventType } from '../../../analytics';
+import { useTranslation } from 'react-i18next';
 
 const HeaderWrapper = styled.div`
     display: flex;
@@ -59,6 +60,7 @@ const EntityNameWrapper = styled.div`
 
 export default function EmbeddedHeader() {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const { entityData, entityType } = useEntityData();
     const appConfig = useAppConfig();
     const themeConfig = useTheme();
@@ -98,7 +100,7 @@ export default function EmbeddedHeader() {
                         rel="noreferrer noopener"
                         onClick={trackClickViewInDataHub}
                     >
-                        view in DataHub <ArrowRightOutlined />
+                        {t('entity.viewInDataHub')} <ArrowRightOutlined />
                     </StyledLink>
                 </EntityNameWrapper>
             </EntityContent>

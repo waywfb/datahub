@@ -59,10 +59,10 @@ function EntityActions(props: Props) {
             .then(({ errors }) => {
                 if (!errors) {
                     setIsBatchAddGlossaryTermModalVisible(false);
-                    message.loading({ content: 'Updating...', duration: 3 });
+                    message.loading({ content: t('common.updating') + '...', duration: 3 });
                     setTimeout(() => {
                         message.success({
-                            content: `Added Glossary Term to entities!`,
+                            content: t('crud.success.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) }),
                             duration: 2,
                         });
                         refetchForEntity?.();
@@ -77,7 +77,7 @@ function EntityActions(props: Props) {
                         entityUrns,
                         e,
                         {
-                            content: `Failed to add glossary term: \n ${e.message || ''}`,
+                            content: `${t('crud.error.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
                         t,
@@ -101,10 +101,10 @@ function EntityActions(props: Props) {
             .then(({ errors }) => {
                 if (!errors) {
                     setIsBatchSetDomainModalVisible(false);
-                    message.loading({ content: 'Updating...', duration: 3 });
+                    message.loading({ content: t('common.updating') + '...', duration: 3 });
                     setTimeout(() => {
                         message.success({
-                            content: `Added assets to Domain!`,
+                            content: t('crud.success.addAssetsToWithName', { name: t('entity.type.DOMAIN', { count: 1 }) }),
                             duration: 3,
                         });
                         refetchForEntity?.();
@@ -119,7 +119,7 @@ function EntityActions(props: Props) {
                         entityUrns,
                         e,
                         {
-                            content: `Failed to add assets to Domain: \n ${e.message || ''}`,
+                            content: `${t('crud.error.addAssetsToWithName', { name: t('entity.type.DOMAIN', { count: 1 }) })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
                         t,
@@ -141,10 +141,10 @@ function EntityActions(props: Props) {
             .then(({ errors }) => {
                 if (!errors) {
                     setIsBatchSetDataProductModalVisible(false);
-                    message.loading({ content: 'Updating...', duration: 3 });
+                    message.loading({ content: t('common.updating') + '...', duration: 3 });
                     setTimeout(() => {
                         message.success({
-                            content: `Added assets to Data Product!`,
+                            content: t('crud.success.addAssetsToWithName', { name: t('common.dataProduct') }),
                             duration: 3,
                         });
                         refetchForEntity?.();
@@ -159,8 +159,8 @@ function EntityActions(props: Props) {
                         entityUrns,
                         e,
                         {
-                            content: `Failed to add assets to Data Product. An unknown error occurred.`,
-                            duration: 3,
+                            content: t('crud.error.addAssetsToWithName', { name: t('common.dataProduct') }),
+                            duration: 3
                         },
                         t,
                     ),
@@ -173,24 +173,24 @@ function EntityActions(props: Props) {
             <div style={{ marginRight: 12 }}>
                 {actionItems.has(EntityActionItem.BATCH_ADD_GLOSSARY_TERM) && (
                     <Button onClick={() => setIsBatchAddGlossaryTermModalVisible(true)}>
-                        <LinkOutlined /> Add to assets
+                        <LinkOutlined /> {t('crud.addToAssets')}
                     </Button>
                 )}
                 {actionItems.has(EntityActionItem.BATCH_ADD_DOMAIN) && (
                     <Button onClick={() => setIsBatchSetDomainModalVisible(true)}>
-                        <LinkOutlined /> Add assets
+                        <LinkOutlined /> {t('crud.addAssets')}
                     </Button>
                 )}
                 {actionItems.has(EntityActionItem.BATCH_ADD_DATA_PRODUCT) && (
                     <Button onClick={() => setIsBatchSetDataProductModalVisible(true)}>
-                        <LinkOutlined /> Add assets
+                        <LinkOutlined /> {t('crud.addAssets')}
                     </Button>
                 )}
             </div>
             {isBatchAddGlossaryTermModalVisible && (
                 <SearchSelectModal
-                    titleText="Add Glossary Term to assets"
-                    continueText="Add"
+                    titleText={t('crud.addToAssetsWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}
+                    continueText={t('common.add')}
                     onContinue={batchAddGlossaryTerms}
                     onCancel={() => setIsBatchAddGlossaryTermModalVisible(false)}
                     fixedEntityTypes={Array.from(
@@ -200,8 +200,8 @@ function EntityActions(props: Props) {
             )}
             {isBatchSetDomainModalVisible && (
                 <SearchSelectModal
-                    titleText="Add assets to Domain"
-                    continueText="Add"
+                    titleText={t('crud.addAssetsToWithName', { name: t('entity.type.DOMAIN', { count: 1 }) })}
+                    continueText={t('common.add')}
                     onContinue={batchSetDomain}
                     onCancel={() => setIsBatchSetDomainModalVisible(false)}
                     fixedEntityTypes={Array.from(
@@ -211,8 +211,8 @@ function EntityActions(props: Props) {
             )}
             {isBatchSetDataProductModalVisible && (
                 <SearchSelectModal
-                    titleText="Add assets to Data Product"
-                    continueText="Add"
+                    titleText={t('crud.addAssetsToWithName', { name: t('common.dataProduct') })}
+                    continueText={t('common.add')}
                     onContinue={batchSetDataProduct}
                     onCancel={() => setIsBatchSetDataProductModalVisible(false)}
                     fixedEntityTypes={Array.from(

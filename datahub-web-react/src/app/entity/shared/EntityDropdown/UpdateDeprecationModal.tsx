@@ -21,7 +21,7 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
     };
 
     const handleOk = async (formData: any) => {
-        message.loading({ content: 'Updating...' });
+        message.loading({ content: t('crud.updating') + '...' });
         try {
             await batchUpdateDeprecation({
                 variables: {
@@ -34,7 +34,7 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
                 },
             });
             message.destroy();
-            message.success({ content: 'Deprecation Updated', duration: 2 });
+            message.success({ content: t('crud.success.updateWithName', { name: t('common.deprecation') }), duration: 2 });
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
@@ -43,7 +43,7 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
                         urns,
                         e,
                         {
-                            content: `Failed to update Deprecation: \n ${e.message || ''}`,
+                            content: `${t('crud.error.updateWithName', { name: t('common.deprecation') })}: \n ${e.message || ''}`,
                             duration: 2,
                         },
                         t,
@@ -57,7 +57,7 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
 
     return (
         <Modal
-            title="Add Deprecation Details"
+            title={t('crud.addWithName', { name: t('common.deprecation') + ' ' + t('common.details') })}
             visible
             onCancel={handleClose}
             keyboard
@@ -73,10 +73,10 @@ export const UpdateDeprecationModal = ({ urns, onClose, refetch }: Props) => {
             }
         >
             <Form form={form} name="addDeprecationForm" onFinish={handleOk} layout="vertical">
-                <Form.Item name="note" label="Note" rules={[{ whitespace: true }, { min: 0, max: 100 }]}>
-                    <Input placeholder="Add Note" autoFocus />
+                <Form.Item name="note" label={t('common.note')} rules={[{ whitespace: true }, { min: 0, max: 100 }]}>
+                    <Input placeholder={t('crud.addWithName', { name: t('common.note') })} autoFocus />
                 </Form.Item>
-                <Form.Item name="decommissionTime" label="Decommission Date">
+                <Form.Item name="decommissionTime" label={t('deprecation.decommissionDate')}>
                     <DatePicker style={{ width: '100%' }} />
                 </Form.Item>
             </Form>

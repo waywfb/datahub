@@ -69,7 +69,7 @@ export default function SetDataProductModal({
             variables: { input: { resourceUrns: urns, dataProductUrn: selectedDataProduct.urn } },
         })
             .then(() => {
-                message.success({ content: 'Updated Data Product!', duration: 3 });
+                message.success({ content: t('crud.success.updateWithName', { name: t('common.dataProduct') }), duration: 3 });
                 setDataProduct?.(selectedDataProduct);
                 onModalClose();
                 setSelectedDataProduct(null);
@@ -85,7 +85,7 @@ export default function SetDataProductModal({
                         urns,
                         e,
                         {
-                            content: `Failed to add assets to Data Product: \n ${e.message || ''}`,
+                            content: `${t('crud.error.addAssetsToWithName', { name: t('common.dataProduct') })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
                         t,
@@ -120,7 +120,7 @@ export default function SetDataProductModal({
 
     return (
         <Modal
-            title={titleOverride || 'Set Data Product'}
+            title={titleOverride || t('crud.setWithName', { name: t('common.dataProduct') })}
             open
             onCancel={onModalClose}
             footer={
@@ -141,7 +141,7 @@ export default function SetDataProductModal({
                 showSearch
                 mode="multiple"
                 defaultActiveFirstOption={false}
-                placeholder="Search for Data Products..."
+                placeholder={t('placeholder.searchForWithName', { name: t('common.dataProducts') })}
                 onSelect={(urn: string) => onSelectDataProduct(urn)}
                 onDeselect={onDeselect}
                 onSearch={(value: string) => setQuery(value.trim())}

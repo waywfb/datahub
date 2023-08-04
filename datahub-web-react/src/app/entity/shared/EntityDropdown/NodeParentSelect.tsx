@@ -7,6 +7,7 @@ import { useEntityData } from '../EntityContext';
 import ClickOutside from '../../../shared/ClickOutside';
 import GlossaryBrowser from '../../../glossary/GlossaryBrowser/GlossaryBrowser';
 import { BrowserWrapper } from '../../../shared/tags/AddTagsTermsModal';
+import { useTranslation } from 'react-i18next';
 
 // filter out entity itself and its children
 export function filterResultsForMove(entity: GlossaryNode, entityUrn: string) {
@@ -29,6 +30,7 @@ function NodeParentSelect(props: Props) {
     const [isFocusedOnInput, setIsFocusedOnInput] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const { entityData, urn: entityDataUrn, entityType } = useEntityData();
 
     const [nodeSearch, { data: nodeData }] = useGetSearchResultsLazyQuery();
@@ -95,7 +97,7 @@ function NodeParentSelect(props: Props) {
                 onSearch={handleSearch}
                 onClear={clearSelectedParent}
                 onFocus={() => setIsFocusedOnInput(true)}
-                dropdownStyle={isShowingGlossaryBrowser || !searchQuery ? { display: 'none' } : {}}
+                dropdownStyle={isShowingGlossaryBrowser || !searchQuery ? { display: t('common.none') } : {}}
             >
                 {nodeSearchResults?.map((result) => (
                     <Select.Option key={result?.entity?.urn} value={result.entity.urn}>

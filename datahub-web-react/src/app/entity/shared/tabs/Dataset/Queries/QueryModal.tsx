@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import CopyQuery from './CopyQuery';
 import { ANTD_GRAY } from '../../../constants';
 import { Editor as MarkdownEditor } from '../../Documentation/components/editor/Editor';
+import { useTranslation } from 'react-i18next';
 
 const StyledModal = styled(Modal)`
     top: 4vh;
@@ -24,7 +25,7 @@ const QueryActions = styled.div`
     align-items: center;
     justify-content: end;
     width: 100%;
-    height: 0px;
+    height: 0;
     transform: translate(-24px, 32px);
 `;
 
@@ -57,7 +58,7 @@ const NestedSyntax = styled(SyntaxHighlighter)`
     background-color: transparent !important;
     border: none !important;
     height: 100% !important;
-    margin: 0px !important;
+    margin: 0 !important;
     padding: 12px !important;
 `;
 
@@ -70,6 +71,7 @@ type Props = {
 };
 
 export default function QueryModal({ query, title, description, showDetails = true, onClose }: Props) {
+    const { t } = useTranslation();
     return (
         <StyledModal
             visible
@@ -81,7 +83,7 @@ export default function QueryModal({ query, title, description, showDetails = tr
             data-testid="query-modal"
             footer={
                 <Button onClick={onClose} type="text" data-testid="query-modal-close-button">
-                    Close
+                    {t('common.close')}
                 </Button>
             }
         >
@@ -96,9 +98,9 @@ export default function QueryModal({ query, title, description, showDetails = tr
             {showDetails && (
                 <QueryDetails>
                     <QueryTitle level={4} secondary={!title}>
-                        {title || 'No title'}
+                        {title || t('common.modal')}
                     </QueryTitle>
-                    <StyledViewer readOnly secondary={!title} content={description || 'No description'} />
+                    <StyledViewer readOnly secondary={!title} content={description || t('common.noDescription')} />
                 </QueryDetails>
             )}
         </StyledModal>

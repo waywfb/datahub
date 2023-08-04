@@ -3,6 +3,7 @@ import { FormInstance } from 'antd/es/form/Form';
 import React, { useState } from 'react';
 import { useGetAutoCompleteResultsLazyQuery } from '../../../../../../../graphql/search.generated';
 import { EntityType } from '../../../../../../../types.generated';
+import { useTranslation } from 'react-i18next';
 
 const OWNER_SEARCH_PLACEHOLDER = 'Search an LDAP';
 
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export const LdapFormItem = ({ form }: Props) => {
+    const { t } = useTranslation();
     const [getOwnerAutoCompleteResults, { data: searchOwnerSuggestionsData }] = useGetAutoCompleteResultsLazyQuery();
     const [ownerQuery, setOwnerQuery] = useState('');
 
@@ -27,7 +29,7 @@ export const LdapFormItem = ({ form }: Props) => {
                     input: {
                         type: row.type,
                         query,
-                        field: row.type === EntityType.CorpUser ? 'ldap' : 'name',
+                        field: row.type === EntityType.CorpUser ? 'ldap' : t('common.name').toLowerCase(),
                     },
                 },
             });
@@ -42,7 +44,7 @@ export const LdapFormItem = ({ form }: Props) => {
                 {
                     required: true,
                     type: 'string',
-                    message: `Please provide a valid LDAP!`,
+                    message: t('form.provideAValidLdap'),
                 },
             ]}
         >

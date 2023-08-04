@@ -11,8 +11,8 @@ const Header = styled.div`
 `;
 
 const Actions = styled.div<{ opacity?: number }>`
-    padding: 0px;
-    height: 0px;
+    padding: 0;
+    height: 0;
     transform: translate(-12px, 12px);
     opacity: ${(props) => props.opacity || 1.0};
 `;

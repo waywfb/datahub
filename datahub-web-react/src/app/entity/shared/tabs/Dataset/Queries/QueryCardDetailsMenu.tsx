@@ -24,7 +24,7 @@ export default function QueryCardDetailsMenu({ urn, onDeleted, index }: Props) {
             .then(({ errors }) => {
                 if (!errors) {
                     message.success({
-                        content: `Deleted Query!`,
+                        content: t('crud.success.deleteWithName', {name: t('common.query')}),
                         duration: 3,
                     });
                     onDeleted?.(urn);
@@ -32,14 +32,14 @@ export default function QueryCardDetailsMenu({ urn, onDeleted, index }: Props) {
             })
             .catch(() => {
                 message.destroy();
-                message.error({ content: 'Failed to delete Query! An unexpected error occurred' });
+                message.error({ content: t('crud.error.deleteWithName', {name: t('common.query')}) });
             });
     };
 
     const confirmDeleteQuery = () => {
         Modal.confirm({
-            title: `Delete Query`,
-            content: `Are you sure you want to delete this query?`,
+            title: t('crud.deleteWithName', {name: t('common.query')}),
+            content: t('crud.doYouWantTo.deleteContentWithThisName', {name: t('common.query').toLowerCase()}),
             onOk() {
                 deleteQuery();
             },
@@ -56,7 +56,7 @@ export default function QueryCardDetailsMenu({ urn, onDeleted, index }: Props) {
             overlay={
                 <Menu>
                     <Menu.Item key="0" onClick={confirmDeleteQuery} data-testid={`query-delete-button-${index}`}>
-                        <DeleteOutlined /> &nbsp; Delete
+                        <DeleteOutlined /> &nbsp; {t('crud.delete')}
                     </Menu.Item>
                 </Menu>
             }

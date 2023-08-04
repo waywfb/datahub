@@ -38,7 +38,7 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
     const { entityData } = useEntityData();
     const refetch = useRefetch();
     const urn = useMutationUrn();
-    const { t } = useTranslation(['empty-message']);
+    const { t } = useTranslation(['translation', 'empty-message']);
     const [unsetDomainMutation] = useUnsetDomainMutation();
     const [showModal, setShowModal] = useState(false);
     const domain = entityData?.domain?.domain;
@@ -46,21 +46,21 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
     const removeDomain = (urnToRemoveFrom) => {
         unsetDomainMutation({ variables: { entityUrn: urnToRemoveFrom } })
             .then(() => {
-                message.success({ content: 'Removed Domain.', duration: 2 });
+                message.success({ content: t('crud.success.removeWithName', { name: t('common.domain') }), duration: 2 });
                 refetch?.();
             })
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `Failed to remove domain: \n ${e.message || ''}`, duration: 3 });
+                    message.error({ content: `${t('crud.error.removeWithName', { name: t('common.domain') })}: \n ${e.message || ''}`, duration: 3 });
                 }
             });
     };
 
     const onRemoveDomain = (urnToRemoveFrom) => {
         Modal.confirm({
-            title: `Confirm Domain Removal`,
-            content: `Are you sure you want to remove this domain?`,
+            title: t('crud.doYouWantTo.confirmRemovalWithName', { name: t('common.domain') }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', { name: t('common.domain') }),
             onOk() {
                 removeDomain(urnToRemoveFrom);
             },
@@ -75,7 +75,7 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
     return (
         <div>
             <div id={ENTITY_PROFILE_DOMAINS_ID} className="sidebar-domain-section">
-                <SidebarHeader title="Domain" />
+                <SidebarHeader title={t('common.domain')} />
                 <ContentWrapper displayInline={!!domain}>
                     {domain && (
                         <DomainLink
@@ -99,7 +99,7 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
                             )}
                             {!readOnly && (
                                 <StyledButton type="default" onClick={() => setShowModal(true)}>
-                                    <EditOutlined /> Set Domain
+                                    <EditOutlined /> {t('crud.setWithname', { name: t('common.domain') })}
                                 </StyledButton>
                             )}
                         </>

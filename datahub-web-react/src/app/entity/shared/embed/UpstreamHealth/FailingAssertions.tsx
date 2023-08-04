@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useEntityRegistry } from '../../../../useEntityRegistry';
 import FailingEntity from './FailingEntity';
 import { getNumAssertionsFailing, UpstreamSummary } from './utils';
+import { useTranslation } from 'react-i18next';
 
 const FailingSectionWrapper = styled.div`
     margin: 5px 0 0 34px;
@@ -21,11 +22,11 @@ interface Props {
 export default function FailingAssertions({ upstreamSummary }: Props) {
     const { datasetsWithFailingAssertions } = upstreamSummary;
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     return (
         <FailingSectionWrapper>
-            {datasetsWithFailingAssertions.length} data source{datasetsWithFailingAssertions.length > 1 && 's'} with
-            failing assertions
+            {t('entity.nbrDataSourceWithFailedAssertion', { count: datasetsWithFailingAssertions.length })}
             <FailingDataWrapper>
                 {datasetsWithFailingAssertions.map((dataset) => {
                     const totalNumAssertions = dataset.assertions?.assertions.length;

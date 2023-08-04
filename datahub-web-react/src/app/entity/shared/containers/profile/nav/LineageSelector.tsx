@@ -149,9 +149,9 @@ export const LineageSelector = ({ urn, type }: Props): JSX.Element => {
             </LineageIconGroup>
             <LineageSummary>
                 <LineageBadge
-                    count={`${lineageLoading ? '-' : upstreamText} upstream, ${
+                    count={`${lineageLoading ? '-' : upstreamText} ${t('common.upstream')}, ${
                         lineageLoading ? '-' : downstreamText
-                    } downstream`}
+                    } ${t('common.downstream')}`}
                 />
             </LineageSummary>
         </LineageNavContainer>

@@ -5,6 +5,7 @@ import { Owner, OwnershipTypeEntity } from '../../../../../../../../types.genera
 import { ExpandedOwner } from '../../../../../components/styled/ExpandedOwner/ExpandedOwner';
 import { useMutationUrn, useRefetch } from '../../../../../EntityContext';
 import { getOwnershipTypeName } from '../ownershipUtils';
+import { useTranslation } from 'react-i18next';
 
 const OwnershipTypeContainer = styled.div`
     display: flex;
@@ -34,9 +35,10 @@ interface Props {
 }
 
 export const OwnershipTypeSection = ({ ownershipType, owners, readOnly }: Props) => {
+    const { t } = useTranslation();
     const mutationUrn = useMutationUrn();
     const refetch = useRefetch();
-    const ownershipTypeName = getOwnershipTypeName(ownershipType);
+    const ownershipTypeName = getOwnershipTypeName(t, ownershipType);
     return (
         <OwnershipTypeContainer>
             <OwnershipTypeNameText>{ownershipTypeName}</OwnershipTypeNameText>

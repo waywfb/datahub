@@ -62,10 +62,10 @@ export default function Tag({
         const tagToRemove = tagAssociationToRemove.tag;
         onOpenModal?.();
         Modal.confirm({
-            title: t('crud.doYouWantToRemove.titleWithName', {
+            title: t('crud.doYouWantTo.removeTitleWithName', {
                 name: `${tagToRemove?.name} ${entityRegistry.getEntityNameTrans(EntityType.Tag, t).toLowerCase()}`,
             }),
-            content: t('crud.doYouWantToRemove.contentWithTheName', {
+            content: t('crud.doYouWantTo.removeContentWithTheName', {
                 name: `${tagToRemove?.name} ${entityRegistry.getEntityNameTrans(EntityType.Tag, t).toLowerCase()}`,
             }),
             onOk() {

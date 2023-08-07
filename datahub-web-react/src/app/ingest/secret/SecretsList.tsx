@@ -124,7 +124,7 @@ export const SecretsList = () => {
             .catch((e) => {
                 message.destroy();
                 message.error({
-                    content: `${t('onBoarding.ingestion.failedToUpdateIngestionSource')}: \n ${e.message || ''}`,
+                    content: `${t('ingest.failedToUpdateIngestionSource')}: \n ${e.message || ''}`,
                     duration: 3,
                 });
             });
@@ -189,19 +189,19 @@ export const SecretsList = () => {
             {!data && loading && <Message type="loading" content={`${t('common.loading')}...`} />}
             {error &&
                 message.error({
-                    content: `${t('onBoarding.ingestion.failedToLoadSecrets')} \n ${error.message || ''}`,
+                    content: `${t('ingest.failedToLoadSecrets')} \n ${error.message || ''}`,
                     duration: 3,
                 })}
             <div>
                 <TabToolbar>
                     <div>
                         <Button type="text" onClick={() => setIsCreatingSecret(true)}>
-                            <PlusOutlined /> {t('onBoarding.ingestion.createNewSecret')}
+                            <PlusOutlined /> {t('ingest.createNewSecret')}
                         </Button>
                     </div>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText={t('onBoarding.ingestion.searchSecrets')}
+                        placeholderText={t('ingest.searchSecrets')}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,
@@ -224,7 +224,7 @@ export const SecretsList = () => {
                     locale={{
                         emptyText: (
                             <Empty
-                                description={t('onBoarding.ingestion.noSecretsFound')}
+                                description={t('ingest.noSecretsFound')}
                                 image={Empty.PRESENTED_IMAGE_SIMPLE}
                             />
                         ),

@@ -60,9 +60,9 @@ export const ManageIngestionPage = () => {
         <PageContainer>
             <OnboardingTour stepIds={[INGESTION_CREATE_SOURCE_ID, INGESTION_REFRESH_SOURCES_ID]} />
             <PageHeaderContainer>
-                <PageTitle level={3}>{t('onBoarding.ingestion.manageIngestion')}</PageTitle>
+                <PageTitle level={3}>{t('ingest.manageIngestion')}</PageTitle>
                 <Typography.Paragraph type="secondary">
-                    {t('onBoarding.ingestion.ingestionSourcesActions')}
+                    {t('ingest.ingestionSourcesActions')}
                 </Typography.Paragraph>
             </PageHeaderContainer>
             <StyledTabs activeKey={selectedTab} size="large" onTabClick={(tab: string) => onClickTab(tab)}>

@@ -32,7 +32,7 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
     return (
         <Modal
             width={540}
-            title={<Typography.Text>{t('onBoarding.ingestion.createANewSecret')}</Typography.Text>}
+            title={<Typography.Text>{t('ingest.createANewSecret')}</Typography.Text>}
             visible={visible}
             onCancel={onCancel}
             zIndex={1051} // one higher than other modals - needed for managed ingestion forms
@@ -69,31 +69,31 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
                 }
             >
                 <Form.Item label={<Typography.Text strong>{t('common.name')}</Typography.Text>}>
-                    <Typography.Paragraph>{t('onBoarding.ingestion.secretNameDescription')}</Typography.Paragraph>
+                    <Typography.Paragraph>{t('ingest.secretNameDescription')}</Typography.Paragraph>
                     <Form.Item
                         name={NAME_FIELD_NAME}
                         rules={[
                             {
                                 required: true,
-                                message: t('onBoarding.ingestion.secretNameRulePlaceHolder'),
+                                message: t('ingest.secretNameRulePlaceHolder'),
                             },
                             { whitespace: false },
                             { min: 1, max: 50 },
-                            { pattern: /^[^\s\t${}\\,'"]+$/, message: t('onBoarding.ingestion.secretNameNotAllowed') },
+                            { pattern: /^[^\s\t${}\\,'"]+$/, message: t('ingest.secretNameNotAllowed') },
                         ]}
                         hasFeedback
                     >
-                        <Input placeholder={t('onBoarding.ingestion.secretNameInputPlaceholder')} />
+                        <Input placeholder={t('ingest.secretNameInputPlaceholder')} />
                     </Form.Item>
                 </Form.Item>
                 <Form.Item label={<Typography.Text strong>{t('common.value')}</Typography.Text>}>
-                    <Typography.Paragraph>{t('onBoarding.ingestion.secretValueDescription')}</Typography.Paragraph>
+                    <Typography.Paragraph>{t('ingest.secretValueDescription')}</Typography.Paragraph>
                     <Form.Item
                         name={VALUE_FIELD_NAME}
                         rules={[
                             {
                                 required: true,
-                                message: t('onBoarding.ingestion.secretValueRulePlaceholder'),
+                                message: t('ingest.secretValueRulePlaceholder'),
                             },
                             // { whitespace: true },
                             { min: 1 },
@@ -101,21 +101,21 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
                         hasFeedback
                     >
                         <Input.TextArea
-                            placeholder={t('onBoarding.ingestion.secretValueInputPlaceholder')}
+                            placeholder={t('ingest.secretValueInputPlaceholder')}
                             autoComplete="false"
                         />
                     </Form.Item>
                 </Form.Item>
                 <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
                     <Typography.Paragraph>
-                        {t('onBoarding.ingestion.secretDescriptionDescription')}
+                        {t('ingest.secretDescriptionDescription')}
                     </Typography.Paragraph>
                     <Form.Item
                         name={DESCRIPTION_FIELD_NAME}
                         rules={[{ whitespace: true }, { min: 1, max: 500 }]}
                         hasFeedback
                     >
-                        <Input.TextArea placeholder={t('onBoarding.ingestion.secretDescriptionInputPlaceholder')} />
+                        <Input.TextArea placeholder={t('ingest.secretDescriptionInputPlaceholder')} />
                     </Form.Item>
                 </Form.Item>
             </Form>

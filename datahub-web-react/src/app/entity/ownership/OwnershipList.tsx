@@ -11,6 +11,7 @@ import { OwnershipTypeEntity } from '../../../types.generated';
 import { SearchBar } from '../../search/SearchBar';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { scrollToTop } from '../../shared/searchUtils';
+import { useTranslation } from 'react-i18next';
 
 const PaginationContainer = styled.div`
     display: flex;
@@ -39,6 +40,7 @@ export const OwnershipList = () => {
      * Context
      */
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     /**
      * State
@@ -82,19 +84,19 @@ export const OwnershipList = () => {
 
     return (
         <>
-            {!data && loading && <Message type="loading" content="Loading Ownership Types..." />}
+            {!data && loading && <Message type="loading" content={t('common.loading') + ' ' + t('common.ownershipTypes') + '...'} />}
             {error &&
                 message.error({
-                    content: `Failed to load Ownership Types! An unexpected error occurred.`,
+                    content: t('crud.error.loadWithName', { name: t('settings.ownershipTypes') }),
                     duration: 3,
                 })}
             <TabToolbar>
                 <Button type="text" onClick={onClickCreateOwnershipType}>
-                    <PlusOutlined /> Create new Ownership Type
+                    <PlusOutlined /> {t('crud.error.createWithName', { name: t('settings.ownershipType') })}
                 </Button>
                 <SearchBar
                     initialQuery=""
-                    placeholderText="Search by Name..."
+                    placeholderText={t('placeholder.searchByWithName', { name: t('common.name') })}
                     suggestions={[]}
                     style={searchBarStyle}
                     inputStyle={searchBarInputStyle}

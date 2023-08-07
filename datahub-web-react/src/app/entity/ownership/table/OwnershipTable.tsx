@@ -5,6 +5,7 @@ import { StyledTable } from '../../shared/components/styled/StyledTable';
 import { NameColumn } from './NameColumn';
 import { DescriptionColumn } from './DescriptionColumn';
 import { ActionsColumn } from './ActionsColumn';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     ownershipTypes: OwnershipTypeEntity[];
@@ -14,16 +15,17 @@ type Props = {
 };
 
 export const OwnershipTable = ({ ownershipTypes, setIsOpen, setOwnershipType, refetch }: Props) => {
+    const { t } = useTranslation();
     const tableColumns = [
         {
-            title: 'Name',
+            title: t('common.name'),
             dataIndex: 'name',
             sorter: (a: any, b: any) => a?.info?.name?.localeCompare(b?.info?.name),
             key: 'name',
             render: (_, record: any) => <NameColumn ownershipType={record} />,
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: 'description',
             key: 'description',
             render: (_, record: any) => <DescriptionColumn ownershipType={record} />,
@@ -52,7 +54,7 @@ export const OwnershipTable = ({ ownershipTypes, setIsOpen, setOwnershipType, re
             dataSource={ownershipTypes}
             rowKey={getRowKey}
             locale={{
-                emptyText: <Empty description="No Ownership Types found!" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                emptyText: <Empty description={t('settings.noOwnershipTypesFound')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
             }}
             pagination={false}
         />

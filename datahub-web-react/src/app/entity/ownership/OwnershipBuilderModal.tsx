@@ -102,8 +102,8 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
                     setDescription('');
                     onClose();
                     notification.success({
-                        message: `Success`,
-                        description: 'Successfully created ownership type.',
+                        message: t('common.success'),
+                        description: t('crud.success.createWithName', { name: t('common.ownershipType').toLowerCase() }),
                         placement: 'bottomLeft',
                         duration: 3,
                     });
@@ -115,7 +115,7 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
                     message.destroy();
                     if (e instanceof Error) {
                         message.error({
-                            content: `Failed to create ownership type`,
+                            content: t('crud.error.createWithName', { name: t('common.ownershipType').toLowerCase() }),
                             duration: 3,
                         });
                     }
@@ -139,8 +139,8 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
                     setDescription('');
                     onClose();
                     notification.success({
-                        message: `Success`,
-                        description: 'Successfully updated ownership type.',
+                        message: t('common.success'),
+                        description: t('crud.success.updateWithName', { name: t('common.ownershipType').toLowerCase() }),
                         placement: 'bottomLeft',
                         duration: 3,
                     });
@@ -152,7 +152,7 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
                     message.destroy();
                     if (e instanceof Error) {
                         message.error({
-                            content: `Failed to update ownership type`,
+                            content: t('crud.error.updateWithName', { name: t('common.ownershipType').toLowerCase() }),
                             duration: 3,
                         });
                     }
@@ -161,7 +161,9 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
     };
 
     const onUpsert = ownershipType ? onUpdateOwnershipType : onCreateOwnershipType;
-    const titleText = ownershipType ? 'Edit ownership type' : 'Add a new ownership type';
+    const titleText = ownershipType ?
+        t('crud.editWithName', { name: t('common.ownershipType').toLowerCase() })
+        : t('crud.addWithName', { name: t('common.ownershipType').toLowerCase() });
     return (
         <Modal
             open={isOpen}
@@ -181,7 +183,7 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input a name for the ownership type',
+                                message: t('form.ownershipTypeNameRequired'),
                             },
                             { whitespace: true },
                             { min: 1, max: 50 },
@@ -189,7 +191,7 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
                     >
                         <Input
                             data-testid={NAME_INPUT_TEST_ID}
-                            placeholder="Ownership type name"
+                            placeholder={t('common.name')}
                             onChange={(e) => {
                                 setName(e.target.value);
                             }}
@@ -201,7 +203,7 @@ export const OwnershipBuilderModal = ({ isOpen, onClose, refetch, ownershipType 
                     <StyledFormItem name="description" rules={[{ whitespace: true }, { min: 1, max: 250 }]}>
                         <Input
                             data-testid={DESCRIPTION_INPUT_TEST_ID}
-                            placeholder="Ownership type description"
+                            placeholder={t('common.description')}
                             onChange={(e) => {
                                 setDescription(e.target.value);
                             }}

@@ -68,14 +68,14 @@ export const getExecutionRequestStatusIcon = (status: string) => {
 
 export const getExecutionRequestStatusDisplayText = (status: string) => {
     return (
-        (status === RUNNING && 'Running') ||
-        (status === SUCCESS && 'Succeeded') ||
-        (status === FAILURE && 'Failed') ||
-        (status === CANCELLED && 'Cancelled') ||
-        (status === UP_FOR_RETRY && 'Up for Retry') ||
-        (status === ROLLED_BACK && 'Rolled Back') ||
-        (status === ROLLING_BACK && 'Rolling Back') ||
-        (status === ROLLBACK_FAILED && 'Rollback Failed') ||
+        (status === RUNNING && 'ingest.ExecutionStatusDisplayText.running') ||
+        (status === SUCCESS && 'ingest.ExecutionStatusDisplayText.succeeded') ||
+        (status === FAILURE && 'ingest.ExecutionStatusDisplayText.failed') ||
+        (status === CANCELLED && 'ingest.ExecutionStatusDisplayText.cancelled') ||
+        (status === UP_FOR_RETRY && 'ingest.ExecutionStatusDisplayText.upForRetry') ||
+        (status === ROLLED_BACK && 'ingest.ExecutionStatusDisplayText.rolledBack') ||
+        (status === ROLLING_BACK && 'ingest.ExecutionStatusDisplayText.rollingBack') ||
+        (status === ROLLBACK_FAILED && 'ingest.ExecutionStatusDisplayText.rollbackFailed') ||
         status
     );
 };
@@ -83,21 +83,21 @@ export const getExecutionRequestStatusDisplayText = (status: string) => {
 export const getExecutionRequestSummaryText = (status: string) => {
     switch (status) {
         case RUNNING:
-            return 'Ingestion is running';
+            return 'ingest.ExecutionSummaryText.ingestionIsRunning';
         case SUCCESS:
-            return 'Ingestion successfully completed';
+            return 'ingest.ExecutionSummaryText.ingestionSuccessfullyCompleted';
         case FAILURE:
-            return 'Ingestion completed with errors';
+            return 'ingest.ExecutionSummaryText.ingestionCompletedWithErrors';
         case CANCELLED:
-            return 'Ingestion was cancelled';
+            return 'ingest.ExecutionSummaryText.ingestionWasCancelled';
         case ROLLED_BACK:
-            return 'Ingestion was rolled back';
+            return 'ingest.ExecutionSummaryText.ingestionWasRolledBack';
         case ROLLING_BACK:
-            return 'Ingestion is in the process of rolling back';
+            return 'ingest.ExecutionSummaryText.ingestionIsInProcessOfRollingBack';
         case ROLLBACK_FAILED:
-            return 'Ingestion rollback failed';
+            return 'ingest.ExecutionSummaryText.ingestionRollbackFailed';
         default:
-            return 'Ingestion status not recognized';
+            return 'ingest.ExecutionSummaryText.ingestionStatusNotRecognized';
     }
 };
 

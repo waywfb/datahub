@@ -502,6 +502,26 @@
     }
   },
   "ingest": {
+    "ExecutionSummaryText": {
+      "ingestionStatusNotRecognized": "Ingestion status not recognized",
+      "ingestionRollbackFailed": "Ingestion rollback failed",
+      "ingestionIsInProcessOfRollingBack": "Ingestion is in the process of rolling back",
+      "ingestionWasRolledBack": "Ingestion was rolled back",
+      "ingestionWasCancelled": "Ingestion was cancelled",
+      "ingestionCompletedWithErrors": "Ingestion completed with errors",
+      "ingestionSuccessfullyCompleted": "Ingestion successfully completed",
+      "ingestionIsRunning": "Ingestion is running"
+    },
+    "ExecutionStatusDisplayText": {
+      "rollbackFailed": "Rollback Failed",
+      "rollingBack": "Rolling Back",
+      "rolledBack": "Rolled Back",
+      "upForRetry": "Up for Retry",
+      "cancelled": "Cancelled",
+      "failed": "Failed",
+      "succeeded": "Succeeded",
+      "running": "Running"
+    },
     "secretDescriptionInputPlaceholder": "A description for your secret",
     "secretDescriptionDescription": "An optional description to help keep track of your secret.",
     "secretValueInputPlaceholder": "The value of your secret",

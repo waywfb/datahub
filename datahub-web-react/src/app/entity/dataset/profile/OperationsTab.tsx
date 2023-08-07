@@ -4,7 +4,7 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useGetDatasetRunsQuery } from '../../../../graphql/dataset.generated';
 import {
     DataProcessInstanceRunResultType,
@@ -93,7 +93,7 @@ const columns = [
                     <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
                         {Icon && <Icon style={{ color }} />}
                         <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                            {text || 'N/A'}
+                            {<Trans i18nKey={text} /> || 'N/A'}
                         </Typography.Text>
                     </div>
                 </>

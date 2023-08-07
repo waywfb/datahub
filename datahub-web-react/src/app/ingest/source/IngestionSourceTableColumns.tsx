@@ -114,6 +114,7 @@ interface LastStatusProps {
 }
 
 export function LastStatusColumn({ status, record, setFocusExecutionUrn }: LastStatusProps) {
+    const { t } = useTranslation();
     const Icon = getExecutionRequestStatusIcon(status);
     const text = getExecutionRequestStatusDisplayText(status);
     const color = getExecutionRequestStatusDisplayColor(status);
@@ -122,7 +123,7 @@ export function LastStatusColumn({ status, record, setFocusExecutionUrn }: LastS
             {Icon && <Icon style={{ color, fontSize: 14 }} />}
             <StatusButton type="link" onClick={() => setFocusExecutionUrn(record.lastExecUrn)}>
                 <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                    {text || 'Pending...'}
+                    {t(text) || 'Pending...'}
                 </Typography.Text>
             </StatusButton>
         </StatusContainer>

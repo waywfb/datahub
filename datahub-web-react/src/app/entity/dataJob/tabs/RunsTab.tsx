@@ -3,6 +3,7 @@ import { Pagination, Table, Tooltip, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { Trans } from 'react-i18next';
 import { useGetDataJobRunsQuery } from '../../../../graphql/dataJob.generated';
 import { DataProcessInstanceRunResultType, DataProcessRunStatus } from '../../../../types.generated';
 import {
@@ -77,7 +78,7 @@ const columns = [
                     <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
                         {Icon && <Icon style={{ color }} />}
                         <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                            {text || 'N/A'}
+                            {<Trans i18nKey={text} /> || 'N/A'}
                         </Typography.Text>
                     </div>
                 </>

@@ -116,11 +116,11 @@ export const ExecutionDetailsModal = ({ urn, visible, onClose }: Props) => {
     const resultText = result && (
         <Typography.Text style={{ color: resultColor, fontSize: 14 }}>
             {ResultIcon && <ResultIcon style={{ marginRight: 4 }} />}
-            {getExecutionRequestStatusDisplayText(result)}
+            {t(getExecutionRequestStatusDisplayText(result))}
         </Typography.Text>
     );
     const resultSummaryText =
-        (result && <Typography.Text type="secondary">{getExecutionRequestSummaryText(result)}</Typography.Text>) ||
+        (result && <Typography.Text type="secondary">{t(getExecutionRequestSummaryText(result))}</Typography.Text>) ||
         undefined;
     const isOutputExpandable = output.length > 100;
 

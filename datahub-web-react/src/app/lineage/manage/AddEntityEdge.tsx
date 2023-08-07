@@ -2,6 +2,8 @@ import { LoadingOutlined, SubnodeOutlined } from '@ant-design/icons';
 import { AutoComplete, Empty } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { useGetSearchResultsForMultipleLazyQuery } from '../../../graphql/search.generated';
 import { Entity, EntityType, SearchResult } from '../../../types.generated';
@@ -46,15 +48,15 @@ const LoadingWrapper = styled.div`
     }
 `;
 
-function getPlaceholderText(validEntityTypes: EntityType[], entityRegistry: EntityRegistry) {
-    let placeholderText = 'Search for ';
+function getPlaceholderText(validEntityTypes: EntityType[], entityRegistry: EntityRegistry, t: TFunction) {
+    let placeholderText = `${t('placeholder.searchFor')} `;
     if (!validEntityTypes.length) {
-        placeholderText = `${placeholderText} entities to add...`;
+        placeholderText = `${placeholderText} ${t('lineage.addEntityPlaceHolderSecondPartWhenNoLength')}`;
     } else if (validEntityTypes.length === 1) {
-        placeholderText = `${placeholderText} ${entityRegistry.getCollectionName(validEntityTypes[0])}...`;
+        placeholderText = `${placeholderText} ${entityRegistry.getCollectionNameTrans(validEntityTypes[0], t)}...`;
     } else {
         validEntityTypes.forEach((type, index) => {
-            placeholderText = `${placeholderText} ${entityRegistry.getCollectionName(type)}${
+            placeholderText = `${placeholderText} ${entityRegistry.getCollectionNameTrans(type, t)}${
                 index !== validEntityTypes.length - 1 ? ', ' : '...'
             }`;
         });
@@ -81,6 +83,7 @@ export default function AddEntityEdge({
     entityUrn,
     entityType,
 }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const [search, { data: searchData, loading }] = useGetSearchResultsForMultipleLazyQuery();
     const [queryText, setQueryText] = useState<string>('');
@@ -124,7 +127,7 @@ export default function AddEntityEdge({
         .filter((result) => !existsInEntitiesToAdd(result, entitiesToAdd) && result.entity.urn !== entityUrn)
         .map((result) => renderSearchResult(result.entity));
 
-    const placeholderText = getPlaceholderText(validEntityTypes, entityRegistry);
+    const placeholderText = getPlaceholderText(validEntityTypes, entityRegistry, t);
 
     return (
         <AddEdgeWrapper>
@@ -140,10 +143,15 @@ export default function AddEntityEdge({
                 onSearch={handleSearch}
                 onSelect={(urn: any) => selectEntity(urn)}
                 filterOption={false}
-                notFoundContent={(queryText.length > 3 && <Empty description="No Assets Found" />) || undefined}
+                notFoundContent={
+                    (queryText.length > 3 && (
+                        <Empty description={t('common.notFoundWithName', { name: t('common.assets') })} />
+                    )) ||
+                    undefined
+                }
             >
                 {!searchData && loading && (
-                    <AutoComplete.Option value="loading">
+                    <AutoComplete.Option value={t('common.loading').toLowerCase()}>
                         <LoadingWrapper>
                             <LoadingOutlined />
                         </LoadingWrapper>

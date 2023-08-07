@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import { useGetEntityLineageQuery } from '../../../graphql/lineage.generated';
-import { Direction, UpdatedLineages } from '../types';
+import { Direction, DirectionTrans, UpdatedLineages } from '../types';
 import AddEntityEdge from './AddEntityEdge';
 import LineageEntityView from './LineageEntityView';
 import LineageEdges from './LineageEdges';
@@ -79,15 +79,15 @@ export default function ManageLineageModal({
                 if (res.data?.updateLineage) {
                     closeModal();
                     if (showLoading) {
-                        message.loading('Loading...');
+                        message.loading(`${t('common.loading')}...`);
                     } else {
-                        message.success('Updated lineage!');
+                        message.success(t('crud.success.updatedWithNameReverse', { name: t('common.lineage') }));
                     }
                     setTimeout(() => {
                         refetchEntity();
                         if (showLoading) {
                             message.destroy();
-                            message.success('Updated lineage!');
+                            message.success(t('crud.success.updatedWithNameReverse', { name: t('common.lineage') }));
                         }
                     }, 2000);
 
@@ -110,7 +110,7 @@ export default function ManageLineageModal({
                 }
             })
             .catch(() => {
-                message.error('Error updating lineage');
+                message.error(t('crud.error.updatingWithName', { name: t('common.lineage') }));
             });
     }
 
@@ -118,7 +118,11 @@ export default function ManageLineageModal({
 
     return (
         <StyledModal
-            title={<TitleText>Manage {lineageDirection} Lineage</TitleText>}
+            title={
+                <TitleText>
+                    {t('lineage.manageLineageWithDirection', { direction: DirectionTrans[lineageDirection] })}
+                </TitleText>
+            }
             visible
             onCancel={closeModal}
             keyboard

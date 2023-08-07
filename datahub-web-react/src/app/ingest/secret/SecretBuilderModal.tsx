@@ -32,7 +32,7 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
     return (
         <Modal
             width={540}
-            title={<Typography.Text>Create a new Secret</Typography.Text>}
+            title={<Typography.Text>{t('onBoarding.ingestion.createANewSecret')}</Typography.Text>}
             visible={visible}
             onCancel={onCancel}
             zIndex={1051} // one higher than other modals - needed for managed ingestion forms
@@ -69,54 +69,53 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
                 }
             >
                 <Form.Item label={<Typography.Text strong>{t('common.name')}</Typography.Text>}>
-                    <Typography.Paragraph>
-                        Give your secret a name. This is what you&apos;ll use to reference the secret from your recipes.
-                    </Typography.Paragraph>
+                    <Typography.Paragraph>{t('onBoarding.ingestion.secretNameDescription')}</Typography.Paragraph>
                     <Form.Item
                         name={NAME_FIELD_NAME}
                         rules={[
                             {
                                 required: true,
-                                message: 'Enter a name.',
+                                message: t('onBoarding.ingestion.secretNameRulePlaceHolder'),
                             },
                             { whitespace: false },
                             { min: 1, max: 50 },
-                            { pattern: /^[^\s\t${}\\,'"]+$/, message: 'This secret name is not allowed.' },
+                            { pattern: /^[^\s\t${}\\,'"]+$/, message: t('onBoarding.ingestion.secretNameNotAllowed') },
                         ]}
                         hasFeedback
                     >
-                        <Input placeholder="A name for your secret" />
+                        <Input placeholder={t('onBoarding.ingestion.secretNameInputPlaceholder')} />
                     </Form.Item>
                 </Form.Item>
                 <Form.Item label={<Typography.Text strong>{t('common.value')}</Typography.Text>}>
-                    <Typography.Paragraph>
-                        The value of your secret, which will be encrypted and stored securely within DataHub.
-                    </Typography.Paragraph>
+                    <Typography.Paragraph>{t('onBoarding.ingestion.secretValueDescription')}</Typography.Paragraph>
                     <Form.Item
                         name={VALUE_FIELD_NAME}
                         rules={[
                             {
                                 required: true,
-                                message: 'Enter a value.',
+                                message: t('onBoarding.ingestion.secretValueRulePlaceholder'),
                             },
                             // { whitespace: true },
                             { min: 1 },
                         ]}
                         hasFeedback
                     >
-                        <Input.TextArea placeholder="The value of your secret" autoComplete="false" />
+                        <Input.TextArea
+                            placeholder={t('onBoarding.ingestion.secretValueInputPlaceholder')}
+                            autoComplete="false"
+                        />
                     </Form.Item>
                 </Form.Item>
                 <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
                     <Typography.Paragraph>
-                        An optional description to help keep track of your secret.
+                        {t('onBoarding.ingestion.secretDescriptionDescription')}
                     </Typography.Paragraph>
                     <Form.Item
                         name={DESCRIPTION_FIELD_NAME}
                         rules={[{ whitespace: true }, { min: 1, max: 500 }]}
                         hasFeedback
                     >
-                        <Input.TextArea placeholder="A description for your secret" />
+                        <Input.TextArea placeholder={t('onBoarding.ingestion.secretDescriptionInputPlaceholder')} />
                     </Form.Item>
                 </Form.Item>
             </Form>

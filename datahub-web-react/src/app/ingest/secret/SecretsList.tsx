@@ -70,13 +70,21 @@ export const SecretsList = () => {
             variables: { urn },
         })
             .then(() => {
-                message.success({ content: 'Removed secret.', duration: 2 });
+                message.success({
+                    content: t('crud.success.moveWithNameReverse', { name: t('common.secret').toLowerCase() }),
+                    duration: 2,
+                });
                 removeSecretFromListSecretsCache(urn, client, page, pageSize);
             })
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `Failed to remove secret: \n ${e.message || ''}`, duration: 3 });
+                    message.error({
+                        content: `${t('crud.error.removeWithName', { name: t('common.secret').toLowerCase() })}: \n ${
+                            e.message || ''
+                        }`,
+                        duration: 3,
+                    });
                 }
             });
     };
@@ -98,7 +106,7 @@ export const SecretsList = () => {
         })
             .then((res) => {
                 message.success({
-                    content: `Successfully created Secret!`,
+                    content: t('crud.success.SuccessfullyCreateWithName', { name: t('common.secret') }),
                     duration: 3,
                 });
                 resetBuilderState();
@@ -116,7 +124,7 @@ export const SecretsList = () => {
             .catch((e) => {
                 message.destroy();
                 message.error({
-                    content: `Failed to update ingestion source!: \n ${e.message || ''}`,
+                    content: `${t('onBoarding.ingestion.failedToUpdateIngestionSource')}: \n ${e.message || ''}`,
                     duration: 3,
                 });
             });
@@ -139,17 +147,21 @@ export const SecretsList = () => {
 
     const tableColumns = [
         {
-            title: 'Name',
+            title: t('common.name'),
             dataIndex: 'name',
             key: 'name',
             render: (name: string) => <Typography.Text strong>{name}</Typography.Text>,
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: 'description',
             key: 'description',
             render: (description: any) => {
-                return <>{description || <Typography.Text type="secondary">No description</Typography.Text>}</>;
+                return (
+                    <>
+                        {description || <Typography.Text type="secondary">{t('common.noDescription')}</Typography.Text>}
+                    </>
+                );
             },
         },
         {
@@ -174,18 +186,22 @@ export const SecretsList = () => {
 
     return (
         <>
-            {!data && loading && <Message type="loading" content="Loading secrets..." />}
-            {error && message.error({ content: `Failed to load secrets! \n ${error.message || ''}`, duration: 3 })}
+            {!data && loading && <Message type="loading" content={`${t('common.loading')}...`} />}
+            {error &&
+                message.error({
+                    content: `${t('onBoarding.ingestion.failedToLoadSecrets')} \n ${error.message || ''}`,
+                    duration: 3,
+                })}
             <div>
                 <TabToolbar>
                     <div>
                         <Button type="text" onClick={() => setIsCreatingSecret(true)}>
-                            <PlusOutlined /> Create new secret
+                            <PlusOutlined /> {t('onBoarding.ingestion.createNewSecret')}
                         </Button>
                     </div>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText="Search secrets..."
+                        placeholderText={t('onBoarding.ingestion.searchSecrets')}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,
@@ -206,7 +222,12 @@ export const SecretsList = () => {
                     dataSource={tableData}
                     rowKey="urn"
                     locale={{
-                        emptyText: <Empty description="No Secrets found!" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                        emptyText: (
+                            <Empty
+                                description={t('onBoarding.ingestion.noSecretsFound')}
+                                image={Empty.PRESENTED_IMAGE_SIMPLE}
+                            />
+                        ),
                     }}
                     pagination={false}
                 />

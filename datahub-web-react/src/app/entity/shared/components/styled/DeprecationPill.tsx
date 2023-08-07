@@ -19,7 +19,7 @@ const DeprecatedContainer = styled.div`
     justify-content: center;
     align-items: center;
     color: #ef5b5b;
-    margin-left: 0px;
+    margin-left: 0;
     padding-top: 12px;
     padding-bottom: 12px;
 `;
@@ -88,10 +88,11 @@ export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndepr
      */
     const localeTimezone = getLocaleTimezone();
     const decommissionTimeLocal =
-        (deprecation.decommissionTime &&
-            `Scheduled to be decommissioned on ${moment
-                .unix(deprecation.decommissionTime)
-                .format('DD/MMM/YYYY')} (${localeTimezone})`) ||
+        (deprecation.decommissionTime && t('deprecation.scheduledToBeDecommissionedOnWithDate', {
+            date: moment
+              .unix(deprecation.decommissionTime)
+              .format('DD/MMM/YYYY'),
+            timezone: localeTimezone })) ||
         undefined;
     const decommissionTimeGMT =
         deprecation.decommissionTime &&
@@ -111,14 +112,14 @@ export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndepr
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: 'Marked assets as un-deprecated!', duration: 2 });
+                    message.success({ content: t('deprecation.markAssetsAsUnDeprecatedSuccess'), duration: 2 });
                     refetch?.();
                 }
             })
             .catch((e) => {
                 message.destroy();
                 message.error({
-                    content: `Failed to mark assets as un-deprecated: \n ${e.message || ''}`,
+                    content: `${t('deprecation.markAssetsAsUnDeprecatedError')}: \n ${e.message || ''}`,
                     duration: 3,
                 });
             });
@@ -146,8 +147,8 @@ export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndepr
                             <IconGroup
                                 onClick={() =>
                                     Modal.confirm({
-                                        title: `Confirm Mark as un-deprecated`,
-                                        content: `Are you sure you want to mark this asset as un-deprecated?`,
+                                        title: t('deprecation.markAssetsAsUnDeprecatedTitle'),
+                                        content: t('deprecation.markAssetsAsUnDeprecatedContent'),
                                         onOk() {
                                             batchUndeprecate();
                                         },
@@ -160,19 +161,17 @@ export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndepr
                                 }
                             >
                                 <UndeprecatedIcon />
-                                Mark as un-deprecated
+                                {t('deprecation.markAsUnDeprecated')}
                             </IconGroup>
                         )}
                     </>
-                ) : (
-                    'No additional details'
-                )
+                ) : t('common.noAdditionalDetails')
             }
         >
             {(preview && <StyledInfoCircleOutlined />) || (
                 <DeprecatedContainer>
                     <StyledInfoCircleOutlined />
-                    <DeprecatedText>Deprecated</DeprecatedText>
+                    <DeprecatedText>{t('deprecation.deprecated')}</DeprecatedText>
                 </DeprecatedContainer>
             )}
         </Popover>

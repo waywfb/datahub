@@ -44,8 +44,10 @@ export const SearchSelectModal = ({
     const onCancelSelect = () => {
         if (selectedEntities.length > 0) {
             Modal.confirm({
-                title: `Exit Selection`,
-                content: `Are you sure you want to exit? ${selectedEntities.length} selection(s) will be cleared.`,
+                title: t('search.modal.exitSelectionTitle'),
+                content: t('search.modal.exitSelectionContent', {
+                    count: selectedEntities.length
+                }),
                 onOk() {
                     onCancel?.();
                 },
@@ -65,7 +67,9 @@ export const SearchSelectModal = ({
             <StyledModal
                 wrapClassName="search-select-modal"
                 bodyStyle={MODAL_BODY_STYLE}
-                title={titleText || 'Select entities'}
+                title={titleText || t('search.selectWithName', {
+                    name: t('entity.subtype.entity', { count: 2 })
+                }) || 'Select entities'}
                 width={MODAL_WIDTH_PX}
                 visible
                 onCancel={onCancelSelect}
@@ -79,7 +83,7 @@ export const SearchSelectModal = ({
                             onClick={() => onContinue(selectedEntities.map((entity) => entity.urn))}
                             disabled={selectedEntities.length === 0}
                         >
-                            {continueText || 'Done'}
+                            {continueText || t('common.done')}
                         </Button>
                     </>
                 }

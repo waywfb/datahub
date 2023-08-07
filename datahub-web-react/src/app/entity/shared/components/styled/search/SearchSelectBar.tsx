@@ -20,14 +20,14 @@ const ActionsContainer = styled.div`
 const CancelButton = styled(Button)`
     && {
         margin-left: 8px;
-        padding: 0px;
+        padding: 0;
         color: ${ANTD_GRAY[7]};
     }
 `;
 
 const StyledCheckbox = styled(Checkbox)`
     margin-right: 12px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 `;
 
 type Props = {
@@ -59,8 +59,10 @@ export const SearchSelectBar = ({
     const onClickCancel = () => {
         if (selectedEntityCount > 0) {
             Modal.confirm({
-                title: `Exit Selection`,
-                content: `Are you sure you want to exit? ${selectedEntityCount} selection(s) will be cleared.`,
+                title: t('search.modal.exitSelectionTitle'),
+                content: t('search.modal.exitSelectionContent', {
+                    count: selectedEntityCount
+                }),
                 onOk() {
                     onCancel?.();
                 },
@@ -83,7 +85,7 @@ export const SearchSelectBar = ({
                     onChange={(e) => onChangeSelectAll(e.target.checked as boolean)}
                 />
                 <Typography.Text strong type="secondary">
-                    {selectedEntityCount} selected
+                    {t('common.selected', { count: selectedEntityCount})}
                 </Typography.Text>
             </CheckboxContainer>
             <ActionsContainer>

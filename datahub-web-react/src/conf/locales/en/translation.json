@@ -1,12 +1,13 @@
 {
   "common": {
+    "selected_interval": "(0-inf){{count}} Selected;",
     "manually": "Manually",
     "dependency_interval": "(0-1)Dependency;(2-inf)Dependencies",
     "hidden": "Hidden",
     "dataProduct": "Data Product",
     "dataProducts": "Data Products",
     "true": "True",
-    "false":  "False",
+    "false": "False",
     "stats": "Stats",
     "other": "Other",
     "header": "Header",
@@ -165,13 +166,20 @@
     "noDescription": "No description",
     "actual": "Actual",
     "rowCount": "Row Count",
-    "latest":  "Latest",
-    "historical": "Historical"
+    "latest": "Latest",
+    "historical": "Historical",
+    "noAdditionalDetails": "No additional details"
   },
   "deprecation": {
+    "deprecated": "Deprecated",
+    "scheduledToBeDecommissionedOnWithDateTimezone": "Scheduled to be decommissioned on {{date}} ({{timezone}})",
     "decommissionDate": "Decommission Date",
     "markAsDeprecated": "Mark as deprecated",
-    "markAsUnDeprecated": "Mark as un-deprecated"
+    "markAsUnDeprecated": "Mark as un-deprecated",
+    "markAssetsAsUnDeprecatedSuccess": "Marked assets as un-deprecated",
+    "markAssetsAsUnDeprecatedError": "Failed to mark assets as un-deprecated",
+    "markAssetsAsUnDeprecatedModalTitle": "Confirm Mark as un-deprecated",
+    "markAssetsAsUnDeprecatedModalContent": "Are you sure you want to mark this asset as un-deprecated?"
   },
   "test": {
     "testResults": "Test Results",
@@ -202,12 +210,12 @@
     "noAssertionsFound": "No Assertions Found",
     "assertionResume": "{{successCount}} successful assertions, {{failedCount}} failed assertions",
     "assertionStatusTooltip": "This status is based on the most recent run of each assertion.",
-    "lastEvaluatedWithDate" : "Last evaluated on {{date}}",
+    "lastEvaluatedWithDate": "Last evaluated on {{date}}",
     "datasetColumnCountIs": "Dataset column count is",
-    "datasetColumnsAre":"Dataset columns are",
-    "dataSetColumnsAre_component" : "Dataset columns <typographyTextStrong>{{fieldNames}}</typographyTextStrong> are",
+    "datasetColumnsAre": "Dataset columns are",
+    "dataSetColumnsAre_component": "Dataset columns <typographyTextStrong>{{fieldNames}}</typographyTextStrong> are",
     "datasetRowCountIs": "Dataset row count is",
-    "datasetRowsAre":"Dataset rows are",
+    "datasetRowsAre": "Dataset rows are",
     "uniqueValueCountForColumnIs_component": "Unique value count for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
     "uniqueValueProportionForColumnIs_component": "Unique value proportion for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
     "nullCountForColumnIs_component": "Null count for column <typographyTextStrong>{{columnText}}</typographyTextStrong> is",
@@ -312,7 +320,7 @@
       "searchResultFilter_component": "Quickly find relevant assets by applying one or more filters. Try filtering by <bold>Type</bold>, <bold>Owner</bold>, and more!",
       "searchResultFilterTitle": "🕵️ Narrow your search"
     },
-    "users" : {
+    "users": {
       "stepToRenderTitle_component": "<StepTitle level={5}>{{title}}</StepTitle>",
       "usersAssignRoleID_component": "<paraph>You can assign <bold>Roles</bold> to existing <bold>Users</bold> here.</paraph><paraph>Learn more about <bold>Roles</bold> <aLink> here.</aLink></paraph>",
       "usersAssignRoleIDTitle": "Assigning Roles",
@@ -397,18 +405,18 @@
     "entityRemovedAlert": "This entity is not discoverable via search or lineage graph. Contact your DataHub admin for more information.",
     "nbrDataSourceWithFailedAssertion_interval": "(0-1){{count}} data source with failing assertions;(2-inf){{count}} data sources with failing assertions;",
     "someDataInputsAreNotHealthy": "Some data inputs are not healthy",
-    "allDataInputsAreHealthy":  "All data inputs are healthy",
-    "unknownDataInputHealth":  "Unknown data input health",
+    "allDataInputsAreHealthy": "All data inputs are healthy",
+    "unknownDataInputHealth": "Unknown data input health",
     "viewInDataHub": "view in DataHub",
     "cantFindEntityPageContent": "Sorry, we are unable to find this entity in DataHub",
     "glossaryEntityUuidDescription": "By default, a random UUID will be generated to uniquely identify this entity. If you'd like to provide a custom id, you may provide it here. Note that it should be unique across the entire Glossary. Be careful, you cannot easily change the id after creation.",
     "cantDeleteWithChildEntityWithName": "Can't delete {{name}} with child entities.",
     "addAHighlightedQuery": "Add a highlighted query",
     "notAuthorizedToAddQueriesToEntity": "You are not authorized to add Queries to this entity.",
-    "highlightedQueries":  "Highlighted Queries",
+    "highlightedQueries": "Highlighted Queries",
     "sharedQueriesRelevantToThisDataset": "Shared queries relevant to this dataset",
     "recentQueries": "Recent Queries",
-    "queriesThatHaveBeenRecentlyRunAgainstThisDataset":"Queries that have been recently run against this dataset",
+    "queriesThatHaveBeenRecentlyRunAgainstThisDataset": "Queries that have been recently run against this dataset",
     "foreignKeyTo": "Foreign Key to",
     "noDocumentationAddedYet": "No documentation added yet.",
     "viewEntityWithName": "View {{name}} profile",
@@ -562,21 +570,21 @@
     "lastSynchronized": "Last Synchronized",
     "lastSynchronizedWithNameAndTime_component": "This {{name}} was last synchronized <b>{{time}}</b>",
     "synchronizedInThePastWeek_component": "Synchronized in the <b>past week</b>",
-    "synchronizedInThePastMonth_component":"Synchronized in the <b>past month</b>",
+    "synchronizedInThePastMonth_component": "Synchronized in the <b>past month</b>",
     "synchronizedMoreThanAMonthAgo_component": "Synchronized <b>more than a month ago</b>",
     "createdOnWithDate": "Created on {{date}}",
     "viewBlamePriorToThisVersion": "View blame prior to this version",
-    "profilingRuns":  "Profiling Runs",
-    "tableStats":  "Table Stats",
+    "profilingRuns": "Profiling Runs",
+    "tableStats": "Table Stats",
     "columnStats": "Column Stats",
     "rowCount": "Row Count",
-    "columnCount":"Column Count",
+    "columnCount": "Column Count",
     "rowCountOverTime": "Row Count Over Time",
-    "columnCountOverTime":"Column Count Over Time",
+    "columnCountOverTime": "Column Count Over Time",
     "nullCountOverTime": "Null Count Over Time",
-    "nullPercentageOverTime":"Null Percentage Over Time",
+    "nullPercentageOverTime": "Null Percentage Over Time",
     "distinctCountOverTime": "Distinct Count Over Time",
-    "distinctPercentageOverTime":"Distinct Percentage Over Time",
+    "distinctPercentageOverTime": "Distinct Percentage Over Time",
     "showingProfileFromAtWithDateTime": "Showing profile from {{date}} at {{time}}",
     "reportedOnAtWithDateTime": "Reported on {{date}} at {{time}}",
     "queryByMonth_interval": "(0-1){{count}} query / month;(2-inf){{count}} queries / month;"
@@ -615,7 +623,11 @@
     "showingNumberOfTotalResults_component_interval": "(0-1)Showing <bold>{{number}} - {{index}}</bold> of {{count}} result;(2-inf)Showing <bold>{{number}} - {{index}}</bold> of {{count}} results;",
     "noResultsFoundFor": "No results found for {{name}}",
     "exploreAll": "Explore all",
-    "selectWithName": "Select {{name}}"
+    "selectWithName": "Select {{name}}",
+    "modal": {
+      "exitSelectionTitle": "Exit Selection",
+      "exitSelectionContent_interval": "(0-1)Are you sure you want to exit? {{count}} selection will be cleared.;(2-inf)Are you sure you want to exit? {{count}} selections will be cleared.;"
+    }
   },
   "filter": {
     "filterBy": "Filter by",
@@ -670,9 +682,13 @@
     "altText": "Alt Text",
     "enterANameWithName": "Enter a {{name}} name.",
     "enterAValidEntityId": "Please enter a valid entity id",
-    "provideAValidLdap": "Please provide a valid LDAP!"
+    "provideAValidLdap": "Please provide a valid LDAP!",
+    "urlRequired": "A URL is required.",
+    "validUrlRequired": "This field must be a valid url.",
+    "labelRequired": "A URL is required."
   },
   "placeholder": {
+    "shortLabelForLink": "A short label for this link",
     "searchInWithName": "Search in {{name}}...",
     "searchForWithName": "Search for {{name}}...",
     "searchForUsersOrGroups": "Search for users or groups",
@@ -687,9 +703,11 @@
   },
   "share": {
     "shareThisViaMail": "Share this {{type}} via email",
-    "checkoutThisOn": "Check out this {{type}} on DataHub: {{linkText}}"
+    "checkoutThisOn": "Check out this {{type}} on DataHub: {{linkText}}",
+    "scheduleADemo": "Schedule a Demo"
   },
   "user": {
+    "noUser": "No user",
     "error": {
       "fetchFromCache": "Could not fetch logged in user from cache.",
       "notFound": "Could not find logged in user."
@@ -768,7 +786,7 @@
     "sidebarFailedToLoad": "The sidebar failed to load.",
     "bulkEditIncludeUnauthorizedEntity": "Your bulk edit selection included entities that you are unauthorized to update. The bulk edit being performed will not be saved.",
     "failedToAssignRoleToUsers": "Failed to assign Role to users",
-    "unsupportedTestResultType" : "Unsupported Test Result Type {{result}} provided.",
+    "unsupportedTestResultType": "Unsupported Test Result Type {{result}} provided.",
     "errorSection": {
       "ressourcesLabel": {
         "project": "DataHub Project",

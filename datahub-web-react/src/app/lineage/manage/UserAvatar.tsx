@@ -2,7 +2,7 @@ import { PartitionOutlined } from '@ant-design/icons';
 import { Avatar, Popover } from 'antd';
 import React from 'react';
 import styled from 'styled-components/macro';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { CorpUser, EntityType } from '../../../types.generated';
 import getAvatarColor from '../../shared/avatar/getAvatarColor';
 import { toLocalDateTimeString } from '../../shared/time/timeUtils';
@@ -45,11 +45,33 @@ export default function UserAvatar({ createdActor, createdOn }: Props) {
         <Popover
             content={
                 <PopoverWrapper>
-                    <LineageIcon /> Relationship added by&nbsp;<strong>{userName}</strong>&nbsp;
+                    <LineageIcon />
+                    {!createdOn && (
+                        <Trans
+                            {...{
+                                i18nKey: 'reporting.relationshipAddedByUser_component',
+                                values: {
+                                    userName,
+                                },
+                                components: {
+                                    bold: <strong />,
+                                },
+                            }}
+                        />
+                    )}
                     {createdOn && (
-                        <>
-                            on <strong>{toLocalDateTimeString(createdOn, i18n.language)}</strong>
-                        </>
+                        <Trans
+                            {...{
+                                i18nKey: 'reporting.relationshipAddedByUserOnDate_component',
+                                values: {
+                                    userName,
+                                    date: toLocalDateTimeString(createdOn, i18n.language),
+                                },
+                                components: {
+                                    bold: <strong />,
+                                },
+                            }}
+                        />
                     )}
                 </PopoverWrapper>
             }

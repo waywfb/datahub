@@ -35,6 +35,7 @@ export default function LineageEntityEdge({ edge, key, isHighlighted }: Props) {
     const { t } = useTranslation();
     const createdOnTimestamp = edge?.createdOn;
     const updatedOnTimestamp = edge?.updatedOn;
+    // TODO jm translate date
     const createdOn = createdOnTimestamp ? dayjs(createdOnTimestamp).format('ll') : undefined;
     const updatedOn = updatedOnTimestamp ? dayjs(updatedOnTimestamp).format('ll') : undefined;
     const hasTimestamps = createdOn || updatedOn;

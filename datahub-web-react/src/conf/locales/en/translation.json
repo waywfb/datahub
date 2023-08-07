@@ -551,6 +551,8 @@
     "unknownTimeRange": "Unknown time range"
   },
   "reporting": {
+    "relationshipAddedByUserOnDate_component": "Relationship added by <bold>{{userName}}</bold> on <bold>{{date}}</bold>",
+    "relationshipAddedByUser_component": "Relationship added by <bold>{{userName}}</bold>",
     "lastObservedOnDate": "Last observed on {{date}}",
     "createdOnDateWithText": "Created {{text}}on {{date}}",
     "lastSynchronizedDescriptionBeforePlatform": "This represents the time that the entity was last synchronized with ",

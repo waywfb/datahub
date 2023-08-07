@@ -79,7 +79,7 @@ export default function OwnerContent({ name, owner, hidePopOver, pictureLink, fo
         ownershipTypeName = owner.ownershipType.info.name;
         ownershipTypeDescription = owner.ownershipType.info.description;
     } else if (owner.type) {
-        ownershipTypeName = getNameFromType(owner.type);
+        ownershipTypeName = getNameFromType(t, owner.type);
         ownershipTypeDescription = getDescriptionFromType(t, owner.type);
     }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ApolloError } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata, SearchAcrossEntitiesInput } from '../../../../../../types.generated';
 import { UnionType } from '../../../../../search/utils/constants';
 import { SearchCfg } from '../../../../../../conf';
@@ -119,6 +120,7 @@ export const EmbeddedListSearch = ({
     shouldRefetch,
     resetShouldRefetch,
 }: Props) => {
+    const { t } = useTranslation();
     const { shouldRefetchEmbeddedListSearch, setShouldRefetchEmbeddedListSearch } = useEntityContext();
     // Adjust query based on props
     const finalQuery: string = addFixedQuery(query as string, fixedQuery as string, emptySearchQuery as string);
@@ -243,7 +245,7 @@ export const EmbeddedListSearch = ({
 
     return (
         <Container>
-            {error && <Message type="error" content="Failed to load results! An unexpected error occurred." />}
+            {error && <Message type="error" content={`${t('search.loadResultError')}...`} />}
             <EmbeddedListSearchHeader
                 onSearch={(q) => onChangeQuery(addFixedQuery(q, fixedQuery as string, emptySearchQuery as string))}
                 placeholderText={placeholderText}

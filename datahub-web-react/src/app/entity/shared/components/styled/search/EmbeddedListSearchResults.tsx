@@ -16,7 +16,7 @@ const SearchBody = styled.div`
 `;
 
 const PaginationInfo = styled(Typography.Text)`
-    padding: 0px;
+    padding: 0;
 `;
 
 const FiltersContainer = styled.div`
@@ -46,8 +46,8 @@ const PaginationInfoContainer = styled.span`
 `;
 
 const StyledPagination = styled(Pagination)`
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 `;
 
 const LoadingContainer = styled.div`

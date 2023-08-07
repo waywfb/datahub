@@ -33,14 +33,14 @@ OWNERSHIP_DISPLAY_TYPES.forEach((ownershipDetails) => {
     ownershipTypeToDetails.set(ownershipDetails.type, ownershipDetails);
 });
 
-export const getNameFromType = (type: OwnershipType) => {
-    return ownershipTypeToDetails.get(type)?.name || type;
+export const getNameFromType = (t: TFunction, type: OwnershipType) => {
+    return ownershipTypeToDetails.get(type)?.name ? t(ownershipTypeToDetails.get(type)?.name) : type;
 };
 
 export const getDescriptionFromType = (t: TFunction, type: OwnershipType) => {
-    return (ownershipTypeToDetails.get(type)?.description && t(ownershipTypeToDetails.get(type)?.description)) || t('common.noDescription');
+    return ownershipTypeToDetails.get(type)?.description ? t(ownershipTypeToDetails.get(type)?.description) : t('common.noDescription');
 };
 
 export function getOwnershipTypeName(t: TFunction, ownershipType?: OwnershipTypeEntity | null) {
-    return (ownershipType?.info?.name && t(ownershipType?.info?.name)) || t('common.other');
+    return ownershipType?.info?.name ? t(ownershipType?.info?.name) : t('common.other');
 }

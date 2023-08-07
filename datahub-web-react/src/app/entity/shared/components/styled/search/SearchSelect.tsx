@@ -145,7 +145,7 @@ export const SearchSelect = ({ fixedEntityTypes, placeholderText, selectedEntiti
 
     return (
         <Container>
-            {error && message.error(`Failed to complete search: ${error && error.message}`)}
+            {error && message.error(`${t('search.searchError')}: ${error && error.message}`)}
             <SearchBarContainer>
                 <Button type="text" onClick={onToggleFilters}>
                     <FilterOutlined />
@@ -153,7 +153,12 @@ export const SearchSelect = ({ fixedEntityTypes, placeholderText, selectedEntiti
                 </Button>
                 <SearchBar
                     initialQuery=""
-                    placeholderText={placeholderText || 'Search entities...'}
+                    placeholderText={
+                        placeholderText ||
+                        t('placeholder.searchWithName', {
+                            name: t('entity.subtype.entity', { count: 2 }),
+                        })
+                    }
                     suggestions={[]}
                     style={SEARCH_BAR_STYLE}
                     inputStyle={SEARCH_INPUT_STYLE}

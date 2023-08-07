@@ -39,7 +39,7 @@ export default function UpdateDescriptionModal({ title, description, original, o
             visible
             width={900}
             onCancel={onClose}
-            okText={isAddDesc ? 'Submit' : 'Update'}
+            okText={isAddDesc ? t('common.submit') : t('common.update')}
             footer={
                 <>
                     <Button onClick={onClose}>{t('common.cancel')}</Button>
@@ -54,7 +54,7 @@ export default function UpdateDescriptionModal({ title, description, original, o
                     <StyledEditor content={updatedDesc} onChange={setDesc} />
                 </Form.Item>
                 {!isAddDesc && description && original && (
-                    <Form.Item label={<FormLabel>Original:</FormLabel>}>
+                    <Form.Item label={<FormLabel>{t('common.original')}:</FormLabel>}>
                         <StyledViewer content={original || ''} readOnly />
                     </Form.Item>
                 )}

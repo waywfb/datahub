@@ -46,7 +46,7 @@ export const SearchSelectModal = ({
             Modal.confirm({
                 title: t('search.modal.exitSelectionTitle'),
                 content: t('search.modal.exitSelectionContent', {
-                    count: selectedEntities.length
+                    count: selectedEntities.length,
                 }),
                 onOk() {
                     onCancel?.();
@@ -67,9 +67,13 @@ export const SearchSelectModal = ({
             <StyledModal
                 wrapClassName="search-select-modal"
                 bodyStyle={MODAL_BODY_STYLE}
-                title={titleText || t('search.selectWithName', {
-                    name: t('entity.subtype.entity', { count: 2 })
-                }) || 'Select entities'}
+                title={
+                    titleText ||
+                    t('search.selectWithName', {
+                        name: t('entity.subtype.entity', { count: 2 }),
+                    }) ||
+                    'Select entities'
+                }
                 width={MODAL_WIDTH_PX}
                 visible
                 onCancel={onCancelSelect}

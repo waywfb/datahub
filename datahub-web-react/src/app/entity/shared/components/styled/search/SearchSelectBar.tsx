@@ -61,7 +61,7 @@ export const SearchSelectBar = ({
             Modal.confirm({
                 title: t('search.modal.exitSelectionTitle'),
                 content: t('search.modal.exitSelectionContent', {
-                    count: selectedEntityCount
+                    count: selectedEntityCount,
                 }),
                 onOk() {
                     onCancel?.();
@@ -85,7 +85,7 @@ export const SearchSelectBar = ({
                     onChange={(e) => onChangeSelectAll(e.target.checked as boolean)}
                 />
                 <Typography.Text strong type="secondary">
-                    {t('common.selected', { count: selectedEntityCount})}
+                    {t('common.selected', { count: selectedEntityCount })}
                 </Typography.Text>
             </CheckboxContainer>
             <ActionsContainer>

@@ -88,11 +88,11 @@ export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndepr
      */
     const localeTimezone = getLocaleTimezone();
     const decommissionTimeLocal =
-        (deprecation.decommissionTime && t('deprecation.scheduledToBeDecommissionedOnWithDate', {
-            date: moment
-              .unix(deprecation.decommissionTime)
-              .format('DD/MMM/YYYY'),
-            timezone: localeTimezone })) ||
+        (deprecation.decommissionTime &&
+            t('deprecation.scheduledToBeDecommissionedOnWithDate', {
+                date: moment.unix(deprecation.decommissionTime).format('DD/MMM/YYYY'),
+                timezone: localeTimezone,
+            })) ||
         undefined;
     const decommissionTimeGMT =
         deprecation.decommissionTime &&
@@ -165,7 +165,9 @@ export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndepr
                             </IconGroup>
                         )}
                     </>
-                ) : t('common.noAdditionalDetails')
+                ) : (
+                    t('common.noAdditionalDetails')
+                )
             }
         >
             {(preview && <StyledInfoCircleOutlined />) || (

@@ -47,15 +47,21 @@ export const AddLinkModal = ({ buttonProps, refetch }: AddLinkProps) => {
             } catch (e: unknown) {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `{${t('crud.error.addWithName', { name: t('common.link') })}: \n ${e.message || ''}`, duration: 3 });
+                    message.error({
+                        content: `{${t('crud.error.addWithName', { name: t('common.link') })}: \n ${e.message || ''}`,
+                        duration: 3,
+                    });
                 }
             }
             refetch?.();
             handleClose();
         } else {
-            message.error({ content: `${t('crud.error.addWithName', 
-                  { name: t('common.link') })
-            }: ${t('user.noUser').toLowerCase()}`, duration: 2 });
+            message.error({
+                content: `${t('crud.error.addWithName', { name: t('common.link') })}: ${t(
+                    'user.noUser',
+                ).toLowerCase()}`,
+                duration: 2,
+            });
         }
     };
 

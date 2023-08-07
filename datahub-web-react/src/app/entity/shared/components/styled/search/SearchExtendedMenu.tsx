@@ -6,6 +6,7 @@ import { AndFilterInput } from '../../../../../../types.generated';
 import DownloadAsCsvButton from './DownloadAsCsvButton';
 import DownloadAsCsvModal from './DownloadAsCsvModal';
 import { DownloadSearchResultsInput, DownloadSearchResults } from '../../../../../search/utils/types';
+import { useTranslation } from 'react-i18next';
 
 const MenuIcon = styled(MoreOutlined)`
     font-size: 20px;
@@ -19,7 +20,7 @@ const SelectButton = styled(Button)`
 `;
 
 const MenuItem = styled(Menu.Item)`
-    padding: 0px;
+    padding: 0;
 `;
 
 type Props = {
@@ -40,6 +41,7 @@ export default function SearchExtendedMenu({
     totalResults,
     setShowSelectMode,
 }: Props) {
+    const { t } = useTranslation();
     const [isDownloadingCsv, setIsDownloadingCsv] = useState(false);
     const [showDownloadAsCsvModal, setShowDownloadAsCsvModal] = useState(false);
 
@@ -55,7 +57,7 @@ export default function SearchExtendedMenu({
                 <MenuItem key="1">
                     <SelectButton type="text" onClick={() => setShowSelectMode(true)}>
                         <FormOutlined />
-                        Edit...
+                        {t('common.edit')}...
                     </SelectButton>
                 </MenuItem>
             )}

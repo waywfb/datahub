@@ -29,7 +29,7 @@ export default function DeprecationDropdown({ urns, disabled = false, refetch }:
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: 'Marked assets as un-deprecated!', duration: 2 });
+                    message.success({ content: t('deprecation.markAssetsAsUnDeprecatedSuccess'), duration: 2 });
                     refetch?.();
                 }
             })
@@ -40,7 +40,7 @@ export default function DeprecationDropdown({ urns, disabled = false, refetch }:
                         urns,
                         e,
                         {
-                            content: `Failed to mark assets as un-deprecated: \n ${e.message || ''}`,
+                            content: `${t('deprecation.markAssetsAsUnDeprecatedError')}: \n ${e.message || ''}`,
                             duration: 3,
                         },
                         t,
@@ -55,17 +55,17 @@ export default function DeprecationDropdown({ urns, disabled = false, refetch }:
                 name="Deprecation"
                 actions={[
                     {
-                        title: 'Mark as deprecated',
+                        title: t('deprecation.markAsDeprecated'),
                         onClick: () => {
                             setIsEditModalVisible(true);
                         },
                     },
                     {
-                        title: 'Mark as un-deprecated',
+                        title: t('deprecation.markAsUnDeprecated'),
                         onClick: () => {
                             Modal.confirm({
-                                title: `Confirm Mark as un-deprecated`,
-                                content: `Are you sure you want to mark these assets as un-deprecated?`,
+                                title: t('deprecation.markAssetsAsUnDeprecatedModalTitle'),
+                                content: t('deprecation.markAssetsAsUnDeprecatedModalContent'),
                                 onOk() {
                                     batchUndeprecate();
                                 },

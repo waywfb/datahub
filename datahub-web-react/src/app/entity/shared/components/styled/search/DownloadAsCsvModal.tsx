@@ -44,10 +44,10 @@ export default function DownloadAsCsvModal({
     const entityRegistry = useEntityRegistry();
     const openNotification = () => {
         notification.info({
-            message: 'Preparing Download',
+            message: t('share.csv.preparing.message'),
             description: totalResults
-                ? `Creating CSV with ${totalResults} entities to download`
-                : 'Creating CSV to download',
+                ? t('share.csv.preparing.descriptionWithCount', { count: totalResults })
+                : t('share.csv.preparing.description'),
             placement: 'bottomRight',
             duration: null,
             icon: <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />,
@@ -63,8 +63,8 @@ export default function DownloadAsCsvModal({
     const showFailedDownloadNotification = () => {
         notification.destroy();
         notification.error({
-            message: 'Download Failed',
-            description: 'The CSV file could not be downloaded',
+            message: t('share.csv.error.message'),
+            description: t('share.csv.error.description'),
             placement: 'bottomRight',
             duration: 3,
         });
@@ -124,7 +124,7 @@ export default function DownloadAsCsvModal({
         <Modal
             centered
             onCancel={() => setShowDownloadAsCsvModal(false)}
-            title="Download as..."
+            title={t('share.downloadAs')}
             visible={showDownloadAsCsvModal}
             footer={
                 <>

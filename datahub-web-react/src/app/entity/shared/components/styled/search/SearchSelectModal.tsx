@@ -69,7 +69,7 @@ export const SearchSelectModal = ({
                 bodyStyle={MODAL_BODY_STYLE}
                 title={titleText || t('search.selectWithName', {
                     name: t('entity.subtype.entity', { count: 2 })
-                }) || 'Select entities'}
+                })}
                 width={MODAL_WIDTH_PX}
                 visible
                 onCancel={onCancelSelect}

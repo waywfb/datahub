@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { EntityType } from '../../../../../../../types.generated';
 import EditTagTermsModal, { OperationType } from '../../../../../../shared/tags/AddTagsTermsModal';
 import ActionDropdown from './ActionDropdown';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     urns: Array<string>;
@@ -11,23 +12,24 @@ type Props = {
 
 // eslint-disable-next-line
 export default function TagsDropdown({ urns, disabled = false, refetch }: Props) {
+    const { t } = useTranslation();
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [operationType, setOperationType] = useState(OperationType.ADD);
 
     return (
         <>
             <ActionDropdown
-                name="Tags"
+                name={t('entity.type.TAG', { count: 2 })}
                 actions={[
                     {
-                        title: 'Add tags',
+                        title: t('crud.addWithName', { name: t('entity.type.TAG', { count: 2 }) }),
                         onClick: () => {
                             setOperationType(OperationType.ADD);
                             setIsEditModalVisible(true);
                         },
                     },
                     {
-                        title: 'Remove tags',
+                        title: t('crud.removeWithName', { name: t('entity.type.TAG', { count: 2 }) }),
                         onClick: () => {
                             setOperationType(OperationType.REMOVE);
                             setIsEditModalVisible(true);

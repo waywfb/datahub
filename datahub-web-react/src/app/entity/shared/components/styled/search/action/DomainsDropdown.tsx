@@ -28,7 +28,7 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: 'Removed Domain!', duration: 2 });
+                    message.success({ content: t('crud.success.removeWithName', { name:  t('entity.type.DOMAIN', { count: 1 }) }), duration: 2 });
                     refetch?.();
                 }
             })
@@ -39,7 +39,7 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
                         urns,
                         e,
                         {
-                            content: `Failed to remove assets from Domain: \n ${e.message || ''}`,
+                            content: `${t('crud.error.removeAssetsWithName', { name:  t('entity.type.DOMAIN', { count: 1 }) })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
                         t,
@@ -51,20 +51,20 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
     return (
         <>
             <ActionDropdown
-                name="Domain"
+                name={t('entity.type.DOMAIN', { count: 1 })}
                 actions={[
                     {
-                        title: 'Set Domain',
+                        title: t('crud.setWithName', { name: t('entity.type.DOMAIN', { count: 1 }) }),
                         onClick: () => {
                             setIsEditModalVisible(true);
                         },
                     },
                     {
-                        title: 'Unset Domain',
+                        title: t('crud.unsetWithName', { name: t('entity.type.DOMAIN', { count: 1 }) }),
                         onClick: () => {
                             Modal.confirm({
-                                title: `If you continue, Domain will be removed for the selected assets.`,
-                                content: `Are you sure you want to unset Domain for these assets?`,
+                                title: t('entity.unsetDomainTitle'),
+                                content: t('entity.unsetDomainContent'),
                                 onOk() {
                                     batchUnsetDomains();
                                 },

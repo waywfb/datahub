@@ -6,6 +6,7 @@ import MarkdownViewer from './MarkdownViewer';
 import UpdateDescriptionModal from './DescriptionModal';
 import analytics, { EventType, EntityActionType } from '../../../../analytics';
 import { EntityType } from '../../../../../types.generated';
+import { useTranslation } from 'react-i18next';
 
 const DescriptionText = styled(MarkdownViewer)`
     ${(props) => (props.isCompact ? 'max-width: 377px;' : '')};
@@ -32,9 +33,10 @@ export default function UpdatableDescription({
     entityType,
     urn,
 }: Props) {
+    const { t } = useTranslation();
     const [showAddDescModal, setShowAddDescModal] = useState(false);
     const onSubmit = async (description: string | null) => {
-        message.loading({ content: 'Updating...' });
+        message.loading({ content: t('common.loading') + '...' });
         try {
             await updateEntity({
                 variables: { urn, input: { editableProperties: { description: description || '' } } },
@@ -46,10 +48,10 @@ export default function UpdatableDescription({
                 entityType,
                 entityUrn: urn,
             });
-            message.success({ content: 'Updated!', duration: 2 });
+            message.success({ content: t('crud.success.update'), duration: 2 });
         } catch (e: unknown) {
             message.destroy();
-            if (e instanceof Error) message.error({ content: `Update Failed! \n ${e.message || ''}`, duration: 2 });
+            if (e instanceof Error) message.error({ content: `${t('crud.error.update')}: \n ${e.message || ''}`, duration: 2 });
         }
         setShowAddDescModal(false);
     };
@@ -66,7 +68,7 @@ export default function UpdatableDescription({
                     />
                     {showAddDescModal && (
                         <UpdateDescriptionModal
-                            title="Update description"
+                            title={t('crud.updateWithName', { name: t('common.description').toLowerCase() })}
                             onClose={() => setShowAddDescModal(false)}
                             onSubmit={onSubmit}
                             original={originalDescription || ''}
@@ -77,11 +79,11 @@ export default function UpdatableDescription({
             ) : (
                 <>
                     <AddNewDescription color="success" onClick={() => setShowAddDescModal(true)}>
-                        + Add Description
+                        + {t('crud.addWithName', { name: t('common.description') })}
                     </AddNewDescription>
                     {showAddDescModal && (
                         <UpdateDescriptionModal
-                            title="Add description"
+                            title={t('crud.addWithName', { name: t('common.description').toLowerCase() })}
                             onClose={() => setShowAddDescModal(false)}
                             onSubmit={onSubmit}
                             isAddDesc

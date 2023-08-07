@@ -44,7 +44,7 @@ export const ExpandedOwner = ({ entityUrn, owner, hidePopOver, refetch, readOnly
     if (owner.ownershipType && owner.ownershipType.info) {
         ownershipTypeName = owner.ownershipType.info.name;
     } else if (owner.type) {
-        ownershipTypeName = getNameFromType(owner.type);
+        ownershipTypeName = getNameFromType(t, owner.type);
     }
     const pictureLink =
         (owner.owner.__typename === 'CorpUser' && owner.owner.editableProperties?.pictureLink) || undefined;

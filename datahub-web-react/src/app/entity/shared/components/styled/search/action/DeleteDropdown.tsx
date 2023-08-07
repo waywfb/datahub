@@ -27,7 +27,7 @@ export default function DeleteDropdown({ urns, disabled = false, refetch }: Prop
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: 'Deleted assets!', duration: 2 });
+                    message.success({ content: t('crud.success.deleteWithName', { name: t('common.assets') }), duration: 2 });
                     setTimeout(() => refetch?.(), 3000);
                 }
             })
@@ -38,7 +38,7 @@ export default function DeleteDropdown({ urns, disabled = false, refetch }: Prop
                         urns,
                         e,
                         {
-                            content: `Failed to delete assets: \n ${e.message || ''}`,
+                            content: `${t('crud.error.deleteWithName', { name: t('common.assets') })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
                         t,
@@ -50,15 +50,14 @@ export default function DeleteDropdown({ urns, disabled = false, refetch }: Prop
     return (
         <>
             <ActionDropdown
-                name="Delete"
+                name={t('common.delete')}
                 actions={[
                     {
                         title: 'Mark as deleted',
                         onClick: () => {
                             Modal.confirm({
-                                title: `Confirm Delete`,
-                                content: `Are you sure you want to mark these assets as deleted? This will hide the assets
-                                from future DataHub searches. If the assets are re-ingested from an external data platform, they will be restored.`,
+                                title: t('crud.doYouWantTo.confirmDelete'),
+                                content: t('entity.deleteAssetMessageConfirmation'),
                                 onOk() {
                                     batchSoftDelete();
                                 },

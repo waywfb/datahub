@@ -20,6 +20,7 @@ import {
     DownloadSearchResults,
 } from '../../../../../search/utils/types';
 import { useEntityContext } from '../../../EntityContext';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled.div`
     display: flex;
@@ -119,6 +120,7 @@ export const EmbeddedListSearch = ({
     shouldRefetch,
     resetShouldRefetch,
 }: Props) => {
+    const { t } = useTranslation();
     const { shouldRefetchEmbeddedListSearch, setShouldRefetchEmbeddedListSearch } = useEntityContext();
     // Adjust query based on props
     const finalQuery: string = addFixedQuery(query as string, fixedQuery as string, emptySearchQuery as string);
@@ -243,7 +245,7 @@ export const EmbeddedListSearch = ({
 
     return (
         <Container>
-            {error && <Message type="error" content="Failed to load results! An unexpected error occurred." />}
+            {error && <Message type="error" content={t('search.loadResultError')+'...'} />}
             <EmbeddedListSearchHeader
                 onSearch={(q) => onChangeQuery(addFixedQuery(q, fixedQuery as string, emptySearchQuery as string))}
                 placeholderText={placeholderText}

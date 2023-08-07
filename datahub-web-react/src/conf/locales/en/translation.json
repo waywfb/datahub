@@ -1,5 +1,8 @@
 {
   "common": {
+    "original": "Original",
+    "properties": "Properties",
+    "actionNotSupportedMessage": "This action is not supported for the selected types.",
     "selected_interval": "(0-inf){{count}} Selected;",
     "manually": "Manually",
     "dependency_interval": "(0-1)Dependency;(2-inf)Dependencies",
@@ -140,6 +143,7 @@
     "deactivate": "DEACTIVATE",
     "activate": "ACTIVATE",
     "download": "Download",
+    "downloading": "Downloading",
     "filters": "Filters",
     "lineage": "Lineage",
     "ok": "Ok",
@@ -400,6 +404,7 @@
     }
   },
   "entity": {
+    "deleteAssetMessageConfirmation": "Are you sure you want to mark these assets as deleted? This will hide the assets from future DataHub searches. If the assets are re-ingested from an external data platform, they will be restored.",
     "viewDefinition": "View Definition",
     "seeViewDefinition": "See View Definition",
     "entityRemovedAlert": "This entity is not discoverable via search or lineage graph. Contact your DataHub admin for more information.",
@@ -421,6 +426,10 @@
     "noDocumentationAddedYet": "No documentation added yet.",
     "viewEntityWithName": "View {{name}} profile",
     "authorNameWithLink_component": "Added {{timestamp}} by <linkComponent>{{authorName}}</linkComponent>",
+    "unsetDomainTitle": "If you continue, Domain will be removed for the selected assets.",
+    "unsetDomainContent": "Are you sure you want to unset Domain for these assets?",
+    "unsetDataProductTitle": "If you continue, Data Product will be removed for the selected assets.",
+    "unsetDataProductContent": "Are you sure you want to unset Data Product for these assets?",
     "editor": {
       "exitEditor": "Exit Editor",
       "exitQueryEditor": "Exit Query Editor",
@@ -615,6 +624,8 @@
     "aDescriptionForYourToken": "A description for your token"
   },
   "search": {
+    "searchError": "Failed to complete search",
+    "loadResultError": "Failed to load results",
     "userOrGroupLabel": "Find a user or group",
     "chooseAnOwnerType": "Choose an owner type",
     "viewAllResultsFor": "View all results for",
@@ -704,7 +715,19 @@
   "share": {
     "shareThisViaMail": "Share this {{type}} via email",
     "checkoutThisOn": "Check out this {{type}} on DataHub: {{linkText}}",
-    "scheduleADemo": "Schedule a Demo"
+    "scheduleADemo": "Schedule a Demo",
+    "downloadAs": "Download as...",
+    "csv": {
+      "preparing": {
+        "message": "Preparing Download",
+        "description": "Creating CSV to download",
+        "descriptionWithCount_interval": "(0-1)Creating CSV with {{count}} entitiy to download;(2-inf)Creating CSV with {{count}} entities to download;"
+      },
+      "error": {
+        "message": "Download Failed",
+        "description": "The CSV file could not be downloaded"
+      }
+    }
   },
   "user": {
     "noUser": "No user",
@@ -723,6 +746,7 @@
   },
   "crud": {
     "setWithName": "Set {{name}}",
+    "unsetWithName": "Set {{name}}",
     "addToAssets": "Add to assets",
     "addToAssetsWithName": "Add {{name}} to assets",
     "addAssetsToWithName": "Add assets to {{name}}",
@@ -740,6 +764,7 @@
       "addAssetsToWithName": "Added assets to {{name}}!",
       "addWithName": "Added {{name}}!",
       "createWithName": "Created {{name}}!",
+      "update": "Updated!",
       "updateWithName": "{{name}} updated!",
       "editWithName": "{{name}} edited!",
       "moveWithName": "{{name}} moved!",
@@ -753,17 +778,20 @@
       "add": "Failed to add",
       "createWithName": "Failed to create {{name}}",
       "create": "Failed to create",
+      "update": "Failed to update",
       "updateWithName": "Failed to update {{name}}",
       "editWithName": "Failed to edit {{name}}",
       "move": "Failed to move",
       "remove": "Failed to remove",
       "removeWithName": "Failed to remove {{name}}",
+      "removeAssetsWithName": "Failed to remove assets from {{name}}",
       "delete": "Failed to delete",
       "deleteWithName": "Failed to delete {{name}}",
       "revokeWithName": "Failed to revoke {{name}}",
       "loadWithName": "Failed to load {{name}}"
     },
     "doYouWantTo": {
+      "confirmDelete": "Confirm Delete",
       "confirmRemovalWithName": "Confirm {{name}} Removal",
       "removeTitleWithName": "Do you want to remove {{name}} ?",
       "removeContentWithTheName": "Are you sure you want to remove the {{name}} ?",

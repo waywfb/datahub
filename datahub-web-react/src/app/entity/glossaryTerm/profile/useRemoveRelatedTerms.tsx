@@ -25,17 +25,17 @@ function useRemoveRelatedTerms(termUrn: string, relationshipType: TermRelationsh
         })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to remove: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.removeWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}: \n ${e.message || ''}`, duration: 3 });
             })
             .finally(() => {
                 message.loading({
-                    content: 'Removing...',
+                    content: t('crud.removing') + '...',
                     duration: 2,
                 });
                 setTimeout(() => {
                     refetch();
                     message.success({
-                        content: `Removed Glossary Term!`,
+                        content: t('crud.success.removeWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) }),
                         duration: 2,
                     });
                 }, 2000);
@@ -44,8 +44,8 @@ function useRemoveRelatedTerms(termUrn: string, relationshipType: TermRelationsh
 
     function onRemove() {
         Modal.confirm({
-            title: `Remove ${displayName}`,
-            content: `Are you sure you want to remove this ${entityRegistry.getEntityName(entityType)}?`,
+            title: t('crud.removeWithname', { name: displayName }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', { name: entityRegistry.getEntityNameTrans(t, entityType) }),
             onOk() {
                 handleRemoveRelatedTerms();
             },

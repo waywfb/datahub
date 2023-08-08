@@ -7,13 +7,14 @@ import { EntityType, TermRelationshipType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { PreviewType } from '../../Entity';
 import useRemoveRelatedTerms from './useRemoveRelatedTerms';
+import { useTranslation } from 'react-i18next';
 
 const ListItem = styled.div`
     margin: 0 20px;
 `;
 
 const Profile = styled.div`
-    display: felx;
+    display: flex;
     marging-bottom: 20px;
 `;
 
@@ -42,6 +43,7 @@ function RelatedTerm(props: Props) {
     const { urn, relationshipType, isEditable } = props;
 
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const { data, loading } = useGetGlossaryTermQuery({ variables: { urn } });
     let displayName = '';
     if (data) {
@@ -61,7 +63,7 @@ function RelatedTerm(props: Props) {
                             <Menu>
                                 <Menu.Item key="0">
                                     <MenuItem onClick={onRemove}>
-                                        <DeleteOutlined /> &nbsp; Remove Term
+                                        <DeleteOutlined /> &nbsp; {t('crud.removeWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 })})}
                                     </MenuItem>
                                 </Menu.Item>
                             </Menu>

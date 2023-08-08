@@ -71,14 +71,17 @@ export class GlossaryTermEntity implements Entity<GlossaryTerm> {
                 hideBrowseBar
                 tabs={[
                     {
+                        titleKey: 'common.documentation',
                         name: 'Documentation',
                         component: DocumentationTab,
                     },
                     {
+                        titleKey: 'common.relatedEntities',
                         name: 'Related Entities',
                         component: GlossaryRelatedEntity,
                     },
                     {
+                        titleKey: 'common.schema',
                         name: 'Schema',
                         component: SchemaTab,
                         properties: {
@@ -92,10 +95,12 @@ export class GlossaryTermEntity implements Entity<GlossaryTerm> {
                         },
                     },
                     {
+                        titleKey: 'common.relatedTerms',
                         name: 'Related Terms',
                         component: GlossayRelatedTerms,
                     },
                     {
+                        titleKey: 'common.properties',
                         name: 'Properties',
                         component: PropertiesTab,
                     },

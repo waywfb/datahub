@@ -1,5 +1,6 @@
 import React from 'react';
 import { Empty } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { StyledTable } from '../../../entity/shared/components/styled/StyledTable';
 import { ExecutionRequest } from '../../../../types.generated';
 import { ButtonsColumn, SourceColumn, StatusColumn, TimeColumn } from './IngestionExecutionTableColumns';
@@ -20,21 +21,22 @@ export default function IngestionExecutionTable({
     handleCancelExecution,
     handleRollbackExecution,
 }: Props) {
+    const { t } = useTranslation();
     const tableColumns = [
         {
-            title: 'Requested At',
+            title: t('ingest.requestedAt'),
             dataIndex: 'requestedAt',
             key: 'requestedAt',
             render: TimeColumn,
         },
         {
-            title: 'Started At',
+            title: t('ingest.startedAt'),
             dataIndex: 'executedAt',
             key: 'executedAt',
             render: TimeColumn,
         },
         {
-            title: 'Duration (s)',
+            title: `${t('ingest.duration')} (s)`,
             dataIndex: 'duration',
             key: 'duration',
             render: (durationMs: number) => {
@@ -43,7 +45,7 @@ export default function IngestionExecutionTable({
             },
         },
         {
-            title: 'Status',
+            title: t('common.status'),
             dataIndex: 'status',
             key: 'status',
             render: (status: any, record) => (
@@ -51,7 +53,7 @@ export default function IngestionExecutionTable({
             ),
         },
         {
-            title: 'Source',
+            title: t('common.source'),
             dataIndex: 'source',
             key: 'source',
             render: SourceColumn,
@@ -90,7 +92,7 @@ export default function IngestionExecutionTable({
             dataSource={tableData}
             rowKey="id"
             locale={{
-                emptyText: <Empty description="No Executions found!" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                emptyText: <Empty description={t('ingest.noExecutionFound')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
             }}
             pagination={false}
         />

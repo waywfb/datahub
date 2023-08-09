@@ -68,6 +68,7 @@ interface TypeColumnProps {
 }
 
 export function TypeColumn({ type, record }: TypeColumnProps) {
+    const { t } = useTranslation();
     const iconUrl = useGetSourceLogoUrl(type);
     const typeDisplayName = capitalizeFirstLetter(type);
 
@@ -81,10 +82,10 @@ export function TypeColumn({ type, record }: TypeColumnProps) {
                 <Typography.Text strong>{typeDisplayName}</Typography.Text>
             )}
             {record.cliIngestion && (
-                <Tooltip title="This source is ingested from the command-line interface (CLI)">
+                <Tooltip title={t('ingest.ingestionSourceIngestedFromCLI')}>
                     <CliBadge>
                         <CodeOutlined />
-                        CLI
+                        {t('ingest.cli')}
                     </CliBadge>
                 </Tooltip>
             )}
@@ -93,16 +94,19 @@ export function TypeColumn({ type, record }: TypeColumnProps) {
 }
 
 export function LastExecutionColumn(time: any) {
+    const { t } = useTranslation();
     const executionDate = time && new Date(time);
     const localTime = executionDate && `${executionDate.toLocaleDateString()} at ${executionDate.toLocaleTimeString()}`;
-    return <Typography.Text>{localTime || 'None'}</Typography.Text>;
+    return <Typography.Text>{localTime || t('common.none')}</Typography.Text>;
 }
 
 export function ScheduleColumn(schedule: any, record: any) {
-    const tooltip = schedule && `Runs ${cronstrue.toString(schedule).toLowerCase()} (${record.timezone})`;
+    const { t } = useTranslation();
+    const tooltip =
+        schedule && `${t('common.runs')} ${cronstrue.toString(schedule).toLowerCase()} (${record.timezone})`;
     return (
-        <Tooltip title={tooltip || 'Not scheduled'}>
-            <Typography.Text code>{schedule || 'None'}</Typography.Text>
+        <Tooltip title={tooltip || t('common.notScheduled')}>
+            <Typography.Text code>{schedule || t('common.none')}</Typography.Text>
         </Tooltip>
     );
 }
@@ -123,7 +127,7 @@ export function LastStatusColumn({ status, record, setFocusExecutionUrn }: LastS
             {Icon && <Icon style={{ color, fontSize: 14 }} />}
             <StatusButton type="link" onClick={() => setFocusExecutionUrn(record.lastExecUrn)}>
                 <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                    {t(text) || 'Pending...'}
+                    {t(text) || `${t('common.pending')}...`}
                 </Typography.Text>
             </StatusButton>
         </StatusContainer>
@@ -151,7 +155,7 @@ export function ActionsColumn({
     return (
         <ActionButtonContainer>
             {navigator.clipboard && (
-                <Tooltip title="Copy Ingestion Source URN">
+                <Tooltip title={t('ingest.copyIngestionSourceURNTitle')}>
                     <Button
                         style={{ marginRight: 16 }}
                         icon={<CopyOutlined />}
@@ -163,12 +167,12 @@ export function ActionsColumn({
             )}
             {!record.cliIngestion && (
                 <Button style={{ marginRight: 16 }} onClick={() => onEdit(record.urn)}>
-                    EDIT
+                    {t('common.edit').toUpperCase()}
                 </Button>
             )}
             {record.cliIngestion && (
                 <Button style={{ marginRight: 16 }} onClick={() => onView(record.urn)}>
-                    VIEW
+                    {t('common.view').toUpperCase()}
                 </Button>
             )}
             {record.lastExecStatus !== RUNNING && (
@@ -177,7 +181,7 @@ export function ActionsColumn({
                     style={{ marginRight: 16 }}
                     onClick={() => onExecute(record.urn)}
                 >
-                    RUN
+                    {t('common.run')}
                 </Button>
             )}
             {record.lastExecStatus === RUNNING && (

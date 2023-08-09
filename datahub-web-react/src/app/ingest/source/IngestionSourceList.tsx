@@ -155,7 +155,7 @@ export const IngestionSourceList = () => {
                     type: EventType.ExecuteIngestionSourceEvent,
                 });
                 message.success({
-                    content: `Successfully submitted ingestion execution request!`,
+                    content: t('ingest.successfullySubmittedIngestionExecutionRequest'),
                     duration: 3,
                 });
                 setTimeout(() => onRefresh(), 3000);
@@ -163,7 +163,7 @@ export const IngestionSourceList = () => {
             .catch((e) => {
                 message.destroy();
                 message.error({
-                    content: `Failed to submit ingestion execution request!: \n ${e.message || ''}`,
+                    content: `${t('ingest.failedToSubmitIngestionExecutionRequest')}: \n ${e.message || ''}`,
                     duration: 3,
                 });
             });
@@ -190,7 +190,7 @@ export const IngestionSourceList = () => {
                         interval: input.schedule?.interval,
                     });
                     message.success({
-                        content: `Successfully updated ingestion source!`,
+                        content: t('ingest.successfullyUpdatedIngestionSource'),
                         duration: 3,
                     });
                     onCreateOrUpdateIngestionSourceSuccess();
@@ -200,7 +200,7 @@ export const IngestionSourceList = () => {
                 .catch((e) => {
                     message.destroy();
                     message.error({
-                        content: `Failed to update ingestion source!: \n ${e.message || ''}`,
+                        content: `${t('ingest.failedToUpdateIngestionSource')}: \n ${e.message || ''}`,
                         duration: 3,
                     });
                 });
@@ -230,7 +230,7 @@ export const IngestionSourceList = () => {
                             interval: input.schedule?.interval,
                         });
                         message.success({
-                            content: `Successfully created ingestion source!`,
+                            content: t('ingest.successfullyCreatedIngestionSource'),
                             duration: 3,
                         });
                         if (shouldRun && result.data?.createIngestionSource) {
@@ -244,7 +244,7 @@ export const IngestionSourceList = () => {
                 .catch((e) => {
                     message.destroy();
                     message.error({
-                        content: `Failed to create ingestion source!: \n ${e.message || ''}`,
+                        content: `${t('ingest.failedToCreateIngestionSource')}: \n ${e.message || ''}`,
                         duration: 3,
                     });
                 });
@@ -265,7 +265,7 @@ export const IngestionSourceList = () => {
                 analytics.event({
                     type: EventType.DeleteIngestionSourceEvent,
                 });
-                message.success({ content: 'Removed ingestion source.', duration: 2 });
+                message.success({ content: t('ingest.removedIngestionSource'), duration: 2 });
                 const newRemovedUrns = [...removedUrns, urn];
                 setRemovedUrns(newRemovedUrns);
                 setTimeout(() => {
@@ -275,7 +275,10 @@ export const IngestionSourceList = () => {
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `Failed to remove ingestion source: \n ${e.message || ''}`, duration: 3 });
+                    message.error({
+                        content: `${t('ingest.failedToRemoveIngestionSource')}: \n ${e.message || ''}`,
+                        duration: 3,
+                    });
                 }
             });
     };
@@ -319,8 +322,8 @@ export const IngestionSourceList = () => {
 
     const onExecute = (urn: string) => {
         Modal.confirm({
-            title: `Confirm Source Execution`,
-            content: "Click 'Execute' to run this ingestion source.",
+            title: t('ingest.confirmSourceExecutionModalTitle'),
+            content: t('ingest.confirmSourceExecutionModalContent'),
             onOk() {
                 executeIngestionSource(urn);
             },
@@ -334,8 +337,8 @@ export const IngestionSourceList = () => {
 
     const onDelete = (urn: string) => {
         Modal.confirm({
-            title: `Confirm Ingestion Source Removal`,
-            content: `Are you sure you want to remove this ingestion source? Removing will terminate any scheduled ingestion runs.`,
+            title: t('ingest.confirmIngestionRemovalModalTitle'),
+            content: t('ingest.confirmIngestionRemovalModalContent'),
             onOk() {
                 deleteIngestionSource(urn);
             },
@@ -355,18 +358,16 @@ export const IngestionSourceList = () => {
 
     return (
         <>
-            {!data && loading && <Message type="loading" content="Loading ingestion sources..." />}
-            {error && (
-                <Message type="error" content="Failed to load ingestion sources! An unexpected error occurred." />
-            )}
+            {!data && loading && <Message type="loading" content={`${t('ingest.loadingIngestionSources')}...`} />}
+            {error && <Message type="error" content={t('ingest.failedToLoadIngestionSourcesAnErrorOccurred')} />}
             <SourceContainer>
                 <TabToolbar>
                     <div>
                         <Button id={INGESTION_CREATE_SOURCE_ID} type="text" onClick={() => setIsBuildingSource(true)}>
-                            <PlusOutlined /> Create new source
+                            <PlusOutlined /> {t('ingest.createNewSource')}
                         </Button>
                         <Button id={INGESTION_REFRESH_SOURCES_ID} type="text" onClick={onRefresh}>
-                            <RedoOutlined /> Refresh
+                            <RedoOutlined /> {t('common.refresh')}
                         </Button>
                     </div>
                     <FilterWrapper>
@@ -375,13 +376,13 @@ export const IngestionSourceList = () => {
                             onChange={(selection) => setSourceFilter(selection as IngestionSourceType)}
                         >
                             <Select.Option value={IngestionSourceType.ALL}>{t('common.all')}</Select.Option>
-                            <Select.Option value={IngestionSourceType.UI}>UI</Select.Option>
-                            <Select.Option value={IngestionSourceType.CLI}>CLI</Select.Option>
+                            <Select.Option value={IngestionSourceType.UI}>{t('ingest.ui')}</Select.Option>
+                            <Select.Option value={IngestionSourceType.CLI}>{t('ingest.cli')}</Select.Option>
                         </StyledSelect>
 
                         <SearchBar
                             initialQuery={query || ''}
-                            placeholderText="Search sources..."
+                            placeholderText={`${t('ingest.searchSources')}...`}
                             suggestions={[]}
                             style={{
                                 maxWidth: 220,

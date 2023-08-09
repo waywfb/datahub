@@ -1,6 +1,7 @@
 import { Button, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsForMultipleQuery } from '../../../graphql/search.generated';
 import { EmbeddedListSearchModal } from '../../entity/shared/components/styled/search/EmbeddedListSearchModal';
 import { ANTD_GRAY } from '../../entity/shared/constants';
@@ -57,6 +58,7 @@ const ENTITY_FACET_NAME = 'entity';
 const TYPE_NAMES_FACET_NAME = 'typeNames';
 
 export default function IngestedAssets({ id }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
 
     // First thing to do is to search for all assets with the id as the run id!
@@ -101,22 +103,22 @@ export default function IngestedAssets({ id }: Props) {
             {error && <Message type="error" content="" />}
             <HeaderContainer>
                 <TitleContainer>
-                    <Typography.Title level={5}>Ingested Assets</Typography.Title>
-                    {(loading && <Typography.Text type="secondary">Loading...</Typography.Text>) || (
+                    <Typography.Title level={5}>{t('ingest.ingestedAssets')}</Typography.Title>
+                    {(loading && <Typography.Text type="secondary">{`${t('common.loading')}...`}</Typography.Text>) || (
                         <>
                             {(total > 0 && (
                                 <Typography.Paragraph type="secondary">
-                                    The following asset types were ingested during this run.
+                                    {t('ingest.theFollowingAssetTypesWereIngestedDuringThisRun')}
                                 </Typography.Paragraph>
-                            )) || <Typography.Text>No assets were ingested.</Typography.Text>}
+                            )) || <Typography.Text>{t('ingest.noAssetsWereIngested')}</Typography.Text>}
                         </>
                     )}
                 </TitleContainer>
                 {!loading && (
                     <TotalContainer>
-                        <Typography.Text type="secondary">Total</Typography.Text>
+                        <Typography.Text type="secondary">{t('common.total')}</Typography.Text>
                         <TotalText style={{ fontSize: 16, color: ANTD_GRAY[8] }}>
-                            <b>{formatNumber(total)}</b> assets
+                            <b>{formatNumber(total)}</b> {t('common.assets').toLowerCase()}
                         </TotalText>
                     </TotalContainer>
                 )}
@@ -132,7 +134,7 @@ export default function IngestedAssets({ id }: Props) {
                 ))}
             </EntityCountsContainer>
             <ViewAllButton type="link" onClick={() => setShowAssetSearch(true)}>
-                View All
+                {t('common.viewAll')}
             </ViewAllButton>
             {showAssetSearch && (
                 <EmbeddedListSearchModal

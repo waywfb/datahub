@@ -10,6 +10,7 @@ import RecipeForm from './RecipeForm/RecipeForm';
 import { SourceBuilderState, SourceConfig } from './types';
 import { LOOKER, LOOK_ML } from './constants';
 import { LookerWarning } from './LookerWarning';
+import { getSourceConfigsDisplayName } from './utils';
 
 export const ControlsContainer = styled.div`
     display: flex;
@@ -63,7 +64,7 @@ interface Props {
 }
 
 function RecipeBuilder(props: Props) {
-    const { t } = useTranslation();
+    const { i18n, t } = useTranslation();
     const { state, isEditing, displayRecipe, sourceConfigs, setStagedRecipe, onClickNext, goToPrevious } = props;
     const { type } = state;
     const [isViewingForm, setIsViewingForm] = useState(true);
@@ -74,9 +75,9 @@ function RecipeBuilder(props: Props) {
             setIsViewingForm(isFormView);
         } catch (e) {
             const messageText = (e as any).parsedLine
-                ? `Fix line ${(e as any).parsedLine} in your recipe`
-                : 'Please fix your recipe';
-            message.warn(`Found invalid YAML. ${messageText} in order to switch views.`);
+                ? t('ingest.fixLineInYourRecipeWithParsedLine', { parsedLine: (e as any).parsedLine })
+                : t('ingest.pleaseFixYourRecipe');
+            message.warn(t('ingest.foundInvalidYAMLWithMessage', { msg: messageText }));
         }
     }
 
@@ -85,14 +86,14 @@ function RecipeBuilder(props: Props) {
             {(type === LOOKER || type === LOOK_ML) && <LookerWarning type={type} />}
             <HeaderContainer>
                 <Title style={{ marginBottom: 0 }} level={5}>
-                    {sourceConfigs?.displayName} Recipe
+                    {getSourceConfigsDisplayName(sourceConfigs, t, i18n)} {t('common.recipe')}
                 </Title>
                 <ButtonsWrapper>
                     <StyledButton type="text" isSelected={isViewingForm} onClick={() => switchViews(true)}>
-                        <FormOutlined /> Form
+                        <FormOutlined /> {t('common.form')}
                     </StyledButton>
                     <StyledButton type="text" isSelected={!isViewingForm} onClick={() => switchViews(false)}>
-                        <CodeOutlined /> YAML
+                        <CodeOutlined /> {t('common.yaml')}
                     </StyledButton>
                 </ButtonsWrapper>
             </HeaderContainer>

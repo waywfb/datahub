@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Button, message, Space, Typography } from 'antd';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { StepProps } from './types';
 import { getPlaceholderRecipe, getSourceConfigs, jsonToYaml } from '../utils';
 import { YamlEditor } from './YamlEditor';
@@ -10,6 +10,7 @@ import { IngestionSourceBuilderStep } from './steps';
 import RecipeBuilder from './RecipeBuilder';
 import { CONNECTORS_WITH_FORM } from './RecipeForm/constants';
 import { getRecipeJson } from './RecipeForm/TestConnection/TestConnectionButton';
+import { getSourceConfigsDisplayName } from './utils';
 
 const LOOKML_DOC_LINK = 'https://datahubproject.io/docs/generated/ingestion/sources/looker#module-lookml';
 
@@ -39,7 +40,7 @@ const ControlsContainer = styled.div`
  * The step for defining a recipe
  */
 export const DefineRecipeStep = ({ state, updateState, goTo, prev, ingestionSources }: StepProps) => {
-    const { t } = useTranslation();
+    const { i18n, t } = useTranslation();
     const existingRecipeJson = state.config?.recipe;
     const existingRecipeYaml = existingRecipeJson && jsonToYaml(existingRecipeJson);
     const { type } = state;
@@ -58,7 +59,7 @@ export const DefineRecipeStep = ({ state, updateState, goTo, prev, ingestionSour
 
     const isEditing: boolean = prev === undefined;
     const displayRecipe = stagedRecipeYml || placeholderRecipe;
-    const sourceDisplayName = sourceConfigs?.displayName;
+    const sourceDisplayName = getSourceConfigsDisplayName(sourceConfigs, t, i18n);
     const sourceDocumentationUrl = sourceConfigs?.docsUrl;
 
     // TODO: Delete LookML banner specific code
@@ -77,7 +78,7 @@ export const DefineRecipeStep = ({ state, updateState, goTo, prev, ingestionSour
 
         if (!JSON.parse(recipeJson).source?.type) {
             message.warning({
-                content: `Please add valid ingestion type`,
+                content: t('ingest.pleaseAddValidIngestionType'),
                 duration: 3,
             });
             return;
@@ -113,7 +114,9 @@ export const DefineRecipeStep = ({ state, updateState, goTo, prev, ingestionSour
     return (
         <>
             <Section>
-                <SelectTemplateHeader level={5}>Configure {sourceDisplayName} Recipe</SelectTemplateHeader>
+                <SelectTemplateHeader level={5}>
+                    {t('ingest.configureSourceRecipeWithName', { name: sourceDisplayName })}
+                </SelectTemplateHeader>
                 {showLookerBanner && (
                     <Alert
                         type="warning"
@@ -122,25 +125,37 @@ export const DefineRecipeStep = ({ state, updateState, goTo, prev, ingestionSour
                             <>
                                 <big>
                                     <i>
-                                        <b>You must acknowledge this message to proceed!</b>
+                                        <b>{t('ingest.youMustAcknowledgeThisMessageToProceed')}</b>
                                     </i>
                                 </big>
                                 <br />
                                 <br />
-                                To get complete Looker metadata integration (including Looker views and lineage to the
-                                underlying warehouse tables), you must <b>also</b> use the{' '}
-                                <a href={LOOKML_DOC_LINK} target="_blank" rel="noopener noreferrer">
-                                    DataHub lookml module
-                                </a>
-                                .
+                                <Trans
+                                    {...{
+                                        i18nKey: 'ingest.ToGetCompleteLookerMetadataIntegrationText_component',
+                                        components: {
+                                            bold: <b />,
+                                            aLink: (
+                                                // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                                <a href={LOOKML_DOC_LINK} target="_blank" rel="noopener noreferrer" />
+                                            ),
+                                        },
+                                    }}
+                                />
                                 <br />
                                 <br />
-                                LookML ingestion <b>cannot</b> currently be performed via UI-based ingestion. This is a
-                                known problem the DataHub team is working to solve!
+                                <Trans
+                                    {...{
+                                        i18nKey: 'ingest.lookMlIngestionCannotText_component',
+                                        components: {
+                                            bold: <b />,
+                                        },
+                                    }}
+                                />
                                 <br />
                                 <Space direction="horizontal" style={{ width: '100%', justifyContent: 'center' }}>
                                     <Button type="ghost" size="small" onClick={() => setShowLookerBanner(false)}>
-                                        I have set up LookML ingestion!
+                                        {t('ingest.IHaveSetUpLookMLIngestion')}
                                     </Button>
                                 </Space>
                             </>
@@ -150,10 +165,17 @@ export const DefineRecipeStep = ({ state, updateState, goTo, prev, ingestionSour
                 )}
                 <Typography.Text>
                     {showLookerBanner && <br />}
-                    For more information about how to configure a recipe, see the{' '}
-                    <a href={sourceDocumentationUrl} target="_blank" rel="noopener noreferrer">
-                        {sourceDisplayName} source docs.
-                    </a>
+                    <Trans
+                        {...{
+                            i18nKey: 'ingest.forMoreInformationAboutHowToConfigureARecipeText_component',
+                            components: {
+                                aLink: (
+                                    // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                    <a href={sourceDocumentationUrl} target="_blank" rel="noopener noreferrer" />
+                                ),
+                            },
+                        }}
+                    />
                 </Typography.Text>
             </Section>
             <BorderedSection>

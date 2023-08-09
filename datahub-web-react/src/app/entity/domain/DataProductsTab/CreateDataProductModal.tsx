@@ -43,7 +43,7 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
         })
             .then(({ data, errors }) => {
                 if (!errors) {
-                    message.success('Created Data Product!');
+                    message.success(t('crud.success.createWithName', { name: t('common.dataProduct') }));
                     if (data?.createDataProduct) {
                         const updateDataProduct = { ...data.createDataProduct, domain: { domain } };
                         onCreateDataProduct(updateDataProduct as DataProduct);
@@ -54,13 +54,13 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
             .catch(() => {
                 onClose();
                 message.destroy();
-                message.error({ content: 'Failed to create Data Product. An unexpected error occurred' });
+                message.error({ content:t('crud.error.createWithName', { name: t('common.dataProduct') }) });
             });
     }
 
     return (
         <Modal
-            title="Create new Data Product"
+            title={t('crud.createWithName', { name: t('common.dataProduct') })}
             onCancel={onClose}
             style={MODAL_BODY_STYLE}
             width={MODAL_WIDTH}

@@ -23,14 +23,14 @@ export default function MLModelGroupsTab() {
 
     const propertyTableColumns: ColumnsType<MlModelGroup> = [
         {
-            title: 'Group',
+            title: t('common.group'),
             dataIndex: 'name',
             render: (name, record) => {
                 return <Link href={entityRegistry.getEntityUrl(EntityType.MlmodelGroup, record.urn)}>{name}</Link>;
             },
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: 'description',
         },
     ];

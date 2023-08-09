@@ -19,6 +19,7 @@ import { capitalizeFirstLetterOnly } from '../../../shared/textUtil';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
 import { ANTD_GRAY } from '../../shared/constants';
+import { useTranslation } from 'react-i18next';
 
 const StatText = styled(Typography.Text)`
     color: ${ANTD_GRAY[8]};
@@ -65,6 +66,7 @@ export const Preview = ({
     parentContainers?: ParentContainersResult | null;
     externalUrl?: string | null;
 }): JSX.Element => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const typeName = capitalizeFirstLetterOnly(subTypes?.typeNames?.[0]) || 'Container';
     return (
@@ -92,7 +94,7 @@ export const Preview = ({
             subHeader={
                 (entityCount && [
                     <StatText>
-                        <b>{entityCount}</b> {entityCount === 1 ? 'entity' : 'entities'}
+                        <b>{entityCount}</b> {t('entity.subtype.entity', { count: entityCount })}
                     </StatText>,
                 ]) ||
                 undefined

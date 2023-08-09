@@ -34,7 +34,7 @@ export const DashboardStatsSummary = ({
     lastUpdatedMs,
     createdMs,
 }: Props) => {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const statsViews = [
         (!!chartCount && (
             <ExpandingStat
@@ -42,7 +42,7 @@ export const DashboardStatsSummary = ({
                 render={(isExpanded) => (
                     <StatText color={ANTD_GRAY[8]}>
                         <b>{isExpanded ? formatNumberWithoutAbbreviation(chartCount) : countFormatter(chartCount)}</b>{' '}
-                        charts
+                        {t('common.charts').toLowerCase()}
                     </StatText>
                 )}
             />
@@ -51,14 +51,14 @@ export const DashboardStatsSummary = ({
         (!!viewCount && (
             <StatText>
                 <EyeOutlined style={{ marginRight: 8, color: ANTD_GRAY[7] }} />
-                <b>{formatNumberWithoutAbbreviation(viewCount)}</b> views
+                <b>{formatNumberWithoutAbbreviation(viewCount)}</b> {t('common.views').toLowerCase()}
             </StatText>
         )) ||
             undefined,
         (!!uniqueUserCountLast30Days && (
             <StatText>
                 <TeamOutlined style={{ marginRight: 8, color: ANTD_GRAY[7] }} />
-                <b>{formatNumberWithoutAbbreviation(uniqueUserCountLast30Days)}</b> unique users
+                <b>{formatNumberWithoutAbbreviation(uniqueUserCountLast30Days)}</b> {t('common.uniqueUsers')}
             </StatText>
         )) ||
             undefined,
@@ -69,7 +69,7 @@ export const DashboardStatsSummary = ({
                         {createdMs && <div>Created on {toLocalDateTimeString(createdMs, i18n.language)}.</div>}
                         <div>
                             Changed on {toLocalDateTimeString(lastUpdatedMs, i18n.language)}.{' '}
-                            <Tooltip title="The time at which the dashboard was last changed in the source platform">
+                            <Tooltip title={t('dashboard.lastChangedTimeInSource')}>
                                 <HelpIcon />
                             </Tooltip>
                         </div>
@@ -78,7 +78,7 @@ export const DashboardStatsSummary = ({
             >
                 <StatText>
                     <ClockCircleOutlined style={{ marginRight: 8, color: ANTD_GRAY[7] }} />
-                    Changed {toRelativeTimeString(lastUpdatedMs, i18n.language)}
+                    {t('common.changed')} {toRelativeTimeString(lastUpdatedMs, i18n.language)}
                 </StatText>
             </Popover>
         )) ||

@@ -48,7 +48,7 @@ export default function GroupEditModal({ visible, onClose, onSave, editModalData
         })
             .then(() => {
                 message.success({
-                    content: `Changes saved.`,
+                    content: t('crud.success.changesSaved'),
                     duration: 3,
                 });
                 onSave(); // call the refetch function once save
@@ -61,7 +61,7 @@ export default function GroupEditModal({ visible, onClose, onSave, editModalData
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to Save changes!: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.changesSaved')}: \n ${e.message || ''}`, duration: 3 });
             });
         onClose();
     };
@@ -73,7 +73,7 @@ export default function GroupEditModal({ visible, onClose, onSave, editModalData
 
     return (
         <Modal
-            title="Edit Profile"
+            title={t('crud.editWithName', { name: t('common.profile') })}
             visible={visible}
             onCancel={onClose}
             footer={
@@ -102,7 +102,7 @@ export default function GroupEditModal({ visible, onClose, onSave, editModalData
                     rules={[
                         {
                             type: 'email',
-                            message: 'Please enter valid email',
+                            message: t('form.validEmailRequired'),
                         },
                         { whitespace: true },
                         { min: 2, max: 50 },
@@ -117,7 +117,7 @@ export default function GroupEditModal({ visible, onClose, onSave, editModalData
                 </Form.Item>
                 <Form.Item
                     name="slack"
-                    label={<Typography.Text strong>Slack Channel</Typography.Text>}
+                    label={<Typography.Text strong>{t('share.slackChannel')}</Typography.Text>}
                     rules={[{ whitespace: true }, { min: 2, max: 50 }]}
                     hasFeedback
                 >

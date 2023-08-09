@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const SummaryContainer = styled.div`
     margin-bottom: 16px;
@@ -22,28 +23,29 @@ type Props = {
 };
 
 export default function SchemaVersionSummary({ diffSummary }: Props) {
+    const { t } = useTranslation();
     return (
         <SummaryContainer>
             <ul>
                 {diffSummary.added ? (
                     <li>
-                        <Typography.Text>{`${diffSummary.added} column${
-                            diffSummary.added > 1 ? 's were' : ' was'
-                        } added`}</Typography.Text>
+                        <Typography.Text>
+                            {t('dataset.addedColumnWithCount', { count: diffSummary.added })}
+                        </Typography.Text>
                     </li>
                 ) : null}
                 {diffSummary.removed ? (
                     <li>
-                        <Typography.Text>{`${diffSummary.removed} column${
-                            diffSummary.removed > 1 ? 's were' : ' was'
-                        } removed`}</Typography.Text>
+                        <Typography.Text>
+                            {t('dataset.removedColumnWithCount', { count: diffSummary.removed })}
+                        </Typography.Text>
                     </li>
                 ) : null}
                 {diffSummary.updated ? (
                     <li>
-                        <Typography.Text>{`${diffSummary.updated} description${
-                            diffSummary.updated > 1 ? 's were' : ' was'
-                        } updated`}</Typography.Text>
+                        <Typography.Text>
+                            {t('dataset.updatedDescriptionWithCount', { count: diffSummary.updated })}
+                        </Typography.Text>
                     </li>
                 ) : null}
             </ul>

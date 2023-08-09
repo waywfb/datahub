@@ -108,7 +108,7 @@ const DescriptionContainer = styled.div`
 
 const TagContainer = styled.div`
     display: inline-flex;
-    margin-left: 0px;
+    margin-left: 0;
     margin-top: 3px;
     flex-wrap: wrap;
 `;
@@ -259,6 +259,7 @@ export default function DefaultPreviewCard({
     };
 
     const shouldShowRightColumn = (topUsers && topUsers.length > 0) || (owners && owners.length > 0);
+    // TODO ndespouy remplacer type par un entityRegistry.getEntityNameTrans (cf en amont et en aval)
 
     return (
         <PreviewContainer data-testid={dataTestID} onMouseDown={onPreventMouseDown}>

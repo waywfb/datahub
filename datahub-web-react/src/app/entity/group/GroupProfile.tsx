@@ -11,6 +11,7 @@ import { RoutedTabs } from '../../shared/RoutedTabs';
 import GroupInfoSidebar from './GroupInfoSideBar';
 import { GroupAssets } from './GroupAssets';
 import { ErrorSection } from '../../shared/error/ErrorSection';
+import { useTranslation } from 'react-i18next';
 
 const messageStyle = { marginTop: '10%' };
 
@@ -45,13 +46,14 @@ const Content = styled.div`
  * Responsible for reading & writing groups.
  */
 export default function GroupProfile() {
+    const { t } = useTranslation();
     const { urn: encodedUrn } = useUserParams();
     const urn = encodedUrn && decodeUrn(encodedUrn);
     const { loading, error, data, refetch } = useGetGroupQuery({ variables: { urn, membersCount: MEMBER_PAGE_SIZE } });
 
     const groupMemberRelationships = data?.corpGroup?.relationships as EntityRelationshipsResult;
     const isExternalGroup: boolean = data?.corpGroup?.origin?.type === OriginType.External;
-    const externalGroupType: string = data?.corpGroup?.origin?.externalType || 'outside DataHub';
+    const externalGroupType: string = data?.corpGroup?.origin?.externalType || t('common.outsideDataHub');
 
     const getTabs = () => {
         return [
@@ -113,7 +115,7 @@ export default function GroupProfile() {
     return (
         <>
             {error && <ErrorSection />}
-            {loading && <Message type="loading" content="Loading..." style={messageStyle} />}
+            {loading && <Message type="loading" content={t('common.loading') + '...'} style={messageStyle} />}
             {data && data?.corpGroup && (
                 <GroupProfileWrapper>
                     <Row>

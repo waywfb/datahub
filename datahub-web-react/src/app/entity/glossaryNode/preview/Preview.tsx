@@ -3,6 +3,7 @@ import { FolderOutlined } from '@ant-design/icons';
 import { EntityType, Owner, ParentNodesResult } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
+import { useTranslation } from 'react-i18next';
 
 export const Preview = ({
     urn,
@@ -18,6 +19,7 @@ export const Preview = ({
     parentNodes?: ParentNodesResult | null;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.GlossaryNode, urn)}
@@ -26,7 +28,7 @@ export const Preview = ({
             description={description || ''}
             owners={owners}
             logoComponent={<FolderOutlined style={{ fontSize: '20px' }} />}
-            type={entityRegistry.getEntityName(EntityType.GlossaryNode)}
+            type={entityRegistry.getEntityNameTrans(t, EntityType.GlossaryNode)}
             parentNodes={parentNodes}
         />
     );

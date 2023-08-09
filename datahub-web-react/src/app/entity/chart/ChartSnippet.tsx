@@ -5,6 +5,7 @@ import { InputFields, MatchedField, Maybe } from '../../../types.generated';
 import TagTermGroup from '../../shared/tags/TagTermGroup';
 import { FIELDS_TO_HIGHLIGHT } from '../dataset/search/highlights';
 import { getMatchPrioritizingPrimary } from '../shared/utils';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     matchedFields: MatchedField[];
@@ -16,6 +17,7 @@ const LABEL_INDEX_NAME = 'fieldLabels';
 const TYPE_PROPERTY_KEY_NAME = 'type';
 
 export const ChartSnippet = ({ matchedFields, inputFields, isMatchingDashboard = false }: Props) => {
+    const { t } = useTranslation();
     const matchedField = getMatchPrioritizingPrimary(matchedFields, 'fieldLabels');
 
     if (matchedField?.name === LABEL_INDEX_NAME) {
@@ -27,7 +29,7 @@ export const ChartSnippet = ({ matchedFields, inputFields, isMatchingDashboard =
         );
 
         if (matchedGlossaryTerm) {
-            let termType = 'term';
+            let termType = t('entity.type.GLOSSARY_TERM', { count: 1 });
             const typeProperty = matchedGlossaryTerm.term.properties?.customProperties?.find(
                 (property) => property.key === TYPE_PROPERTY_KEY_NAME,
             );
@@ -38,7 +40,7 @@ export const ChartSnippet = ({ matchedFields, inputFields, isMatchingDashboard =
             return (
                 <Typography.Text>
                     Matches {termType} <TagTermGroup uneditableGlossaryTerms={{ terms: [matchedGlossaryTerm] }} />{' '}
-                    {isMatchingDashboard && 'on a contained Chart'}
+                    {isMatchingDashboard && t('chart.onAContainedChart')}
                 </Typography.Text>
             );
         }
@@ -47,7 +49,7 @@ export const ChartSnippet = ({ matchedFields, inputFields, isMatchingDashboard =
     return matchedField ? (
         <Typography.Text>
             Matches {FIELDS_TO_HIGHLIGHT.get(matchedField.name)} <b>{matchedField.value}</b>{' '}
-            {isMatchingDashboard && 'on a contained Chart'}
+            {isMatchingDashboard && t('chart.onAContainedChart')}
         </Typography.Text>
     ) : null;
 };

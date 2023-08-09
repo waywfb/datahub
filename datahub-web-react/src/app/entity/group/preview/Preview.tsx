@@ -8,6 +8,7 @@ import { useEntityRegistry } from '../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../shared/constants';
 import { IconStyleType } from '../../Entity';
 import NoMarkdownViewer from '../../shared/components/styled/StripMarkdownText';
+import { useTranslation } from 'react-i18next';
 
 const PreviewContainer = styled.div`
     margin-bottom: 4px;
@@ -73,6 +74,7 @@ export const Preview = ({
     membersCount?: number;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const url = entityRegistry.getEntityUrl(EntityType.CorpGroup, urn);
 
     return (
@@ -84,12 +86,12 @@ export const Preview = ({
                             <PreviewImage>
                                 {entityRegistry.getIcon(EntityType.CorpGroup, 20, IconStyleType.HIGHLIGHT)}
                             </PreviewImage>
-                            <PlatformText>{entityRegistry.getEntityName(EntityType.CorpGroup)}</PlatformText>
+                            <PlatformText>{entityRegistry.getEntityNameTrans(t, EntityType.CorpGroup)}</PlatformText>
                         </PlatformInfo>
                         <Link to={url}>
                             <EntityTitle>{name || urn}</EntityTitle>
                             <MemberCountContainer>
-                                <Tag>{membersCount} members</Tag>
+                                <Tag>{t('common.memberWithCount_interval',  { count: membersCount })}</Tag>
                             </MemberCountContainer>
                         </Link>
                     </TitleContainer>

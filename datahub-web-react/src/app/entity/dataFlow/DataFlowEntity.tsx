@@ -68,14 +68,17 @@ export class DataFlowEntity implements Entity<DataFlow> {
             headerDropdownItems={new Set([EntityMenuItems.UPDATE_DEPRECATION])}
             tabs={[
                 {
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
+                    titleKey: 'common.properties',
                     name: 'Properties',
                     component: PropertiesTab,
                 },
                 {
+                    titleKey: 'common.tasks',
                     name: 'Tasks',
                     component: DataFlowJobsTab,
                 },

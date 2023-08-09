@@ -16,8 +16,8 @@ const ChartTitle = styled(Typography.Title)`
 `;
 
 const ThinDivider = styled(Divider)`
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 `;
 
 type Point = {

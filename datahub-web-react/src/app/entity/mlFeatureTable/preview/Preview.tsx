@@ -3,6 +3,7 @@ import { DataProduct, EntityType, Owner } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
+import { useTranslation } from 'react-i18next';
 
 export const Preview = ({
     urn,
@@ -24,13 +25,14 @@ export const Preview = ({
     platformInstanceId?: string;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.MlfeatureTable, urn)}
             name={name}
             urn={urn}
             description={description || ''}
-            type={entityRegistry.getEntityName(EntityType.MlfeatureTable)}
+            type={entityRegistry.getEntityNameTrans(t, EntityType.MlfeatureTable)}
             typeIcon={entityRegistry.getIcon(EntityType.MlfeatureTable, 14, IconStyleType.ACCENT)}
             owners={owners}
             logoUrl={logoUrl || undefined}

@@ -22,6 +22,7 @@ import {
 } from '../shared/SidebarStyledComponents';
 import GroupMembersSideBarSection from './GroupMembersSideBarSection';
 import { useUserContext } from '../../context/useUserContext';
+import { useTranslation } from 'react-i18next';
 
 const { Paragraph } = Typography;
 
@@ -45,12 +46,6 @@ type Props = {
 };
 
 const AVATAR_STYLE = { margin: '3px 5px 3px 0px' };
-
-const TITLES = {
-    about: 'About',
-    members: 'Members ',
-    editGroup: 'Edit Group',
-};
 
 const GroupNameHeader = styled(Row)`
     font-size: 20px;
@@ -100,6 +95,7 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
     const [updateCorpGroupPropertiesMutation] = useUpdateCorpGroupPropertiesMutation();
     const { url } = useRouteMatch();
     const history = useHistory();
+    const { t } = useTranslation();
 
     /* eslint-disable @typescript-eslint/no-unused-vars */
     const [editGroupModal, showEditGroupModal] = useState(false);
@@ -118,13 +114,13 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
         setGroupTitle(name);
         await updateName({ variables: { input: { name, urn } } })
             .then(() => {
-                message.success({ content: 'Name Updated', duration: 2 });
+                message.success({ content: t('crud.success.updateWithName', { name: t('common.name') }), duration: 2 });
                 refetch();
             })
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `Failed to update name: \n ${e.message || ''}`, duration: 3 });
+                    message.error({ content: `${t('crud.error.updateWithName', { name: t('common.name') })}: \n ${e.message || ''}`, duration: 3 });
                 }
             });
     };
@@ -147,14 +143,14 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
         })
             .then(() => {
                 message.success({
-                    content: `Changes saved.`,
+                    content: t('crud.success.changesSaved'),
                     duration: 3,
                 });
                 refetch();
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to Save changes!: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.changesSaved')}: \n ${e.message || ''}`, duration: 3 });
             });
     };
     return (
@@ -179,7 +175,7 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
                         <Col>
                             {isExternalGroup && (
                                 <Tooltip
-                                    title={`Membership for this group cannot be edited in DataHub as it originates from ${externalGroupType}.`}
+                                    title={t('group.acantEditBecauseExternalGroup', { externalGroupType })}
                                 >
                                     <LockOutlined />
                                 </Tooltip>
@@ -201,11 +197,11 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
                     </SocialDetails>
                     <Divider className="divider-aboutSection" />
                     <AboutSection>
-                        {TITLES.about}
+                        {t('common.about')}
                         <AboutSectionText>
                             <Paragraph
                                 editable={canEditGroup ? { onChange: onSaveAboutMe } : false}
-                                ellipsis={{ rows: 2, expandable: true, symbol: 'Read more' }}
+                                ellipsis={{ rows: 2, expandable: true, symbol: t('common.readMore') }}
                             >
                                 {aboutText || <EmptyValue />}
                             </Paragraph>
@@ -227,7 +223,7 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
                 {canEditGroup && (
                     <EditButton>
                         <Button icon={<EditOutlined />} onClick={() => showEditGroupModal(true)}>
-                            {TITLES.editGroup}
+                            {t('crud.editWithName', { name: t('common.group') })}
                         </Button>
                     </EditButton>
                 )}

@@ -6,6 +6,7 @@ import React, { useMemo } from 'react';
 import { DatasetProfile } from '../../../../../../types.generated';
 import { Highlight } from '../../../../../analyticsDashboard/components/Highlight';
 import StatsSection from '../StatsSection';
+import { useTranslation } from 'react-i18next';
 
 const ColumnStatsTable = styled(Table)`
     margin-top: 24px;
@@ -24,6 +25,7 @@ export type Props = {
 };
 
 export default function DataProfileView({ profile }: Props) {
+    const { t } = useTranslation();
     const columnStatsTableData = useMemo(
         () =>
             profile.fieldProfiles?.map((doc) => ({
@@ -46,7 +48,7 @@ export default function DataProfileView({ profile }: Props) {
      * Returns a placeholder value to show in the column data table when data is null.
      */
     const unknownValue = () => {
-        return <Typography.Text style={{ color: '#B8B8B8' }}>unknown</Typography.Text>;
+        return <Typography.Text style={{ color: '#B8B8B8' }}>{t('common.unknown').toLowerCase()}</Typography.Text>;
     };
 
     /**
@@ -69,52 +71,52 @@ export default function DataProfileView({ profile }: Props) {
         // Optional columns. Defines how to render a column given a value exists somewhere in the profile.
         const optionalColumns: ColumnsType<any> = [
             {
-                title: 'Min',
+                title: t('common.min'),
                 dataIndex: 'min',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: 'Max',
+                title: t('common.max'),
                 dataIndex: 'max',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: 'Mean',
+                title: t('reporting.mean'),
                 dataIndex: 'mean',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: 'Median',
+                title: t('reporting.median'),
                 dataIndex: 'median',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: 'Null Count',
+                title: t('reporting.nullCount'),
                 dataIndex: 'nullCount',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: 'Null %',
+                title: t('reporting.nullPercent'),
                 dataIndex: 'nullPercentage',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: 'Distinct Count',
+                title: t('reporting.distinctCount'),
                 dataIndex: 'distinctCount',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: 'Distinct %',
+                title: t('reporting.distinctPercent'),
                 dataIndex: 'distinctPercentage',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: 'Std. Dev',
+                title: t('reporting.stdDev'),
                 dataIndex: 'stdev',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: 'Sample Values',
+                title: t('common.sampleValues'),
                 dataIndex: 'sampleValues',
                 render: (sampleValues: Array<string>) => {
                     return (
@@ -131,7 +133,7 @@ export default function DataProfileView({ profile }: Props) {
         // Name column always required.
         const requiredColumns: ColumnsType<any> = [
             {
-                title: 'Name',
+                title: t('reporting.name'),
                 dataIndex: 'name',
             },
         ];
@@ -152,20 +154,20 @@ export default function DataProfileView({ profile }: Props) {
     const columnStatsColumns = buildColumnStatsColumns(columnStatsTableData);
 
     const rowCount = (isPresent(profile?.rowCount) ? profile?.rowCount : -1) as number;
-    const rowCountTitle = (rowCount >= 0 && 'Rows') || 'Row Count Unknown';
+    const rowCountTitle = (rowCount >= 0 && t('common.rows')) || t('reporting.rowCountUnknown');
 
     const columnCount = (isPresent(profile?.columnCount) ? profile?.columnCount : -1) as number;
-    const columnCountTitle = (columnCount >= 0 && 'Columns') || 'Column Count Unknown';
+    const columnCountTitle = (columnCount >= 0 && t('common.columns')) || t('reporting.columnCountUnknown');
 
     return (
         <>
-            <StatsSection title="Table Stats">
+            <StatsSection title={t('reporting.tableStats')}>
                 <Row align="top" justify="start">
                     <Highlight highlight={{ value: rowCount, title: rowCountTitle, body: '' }} />
                     <Highlight highlight={{ value: columnCount, title: columnCountTitle, body: '' }} />
                 </Row>
             </StatsSection>
-            <StatsSection title="Column Stats">
+            <StatsSection title={t('reporting.columnStats')}>
                 <ColumnStatsTable
                     bordered
                     pagination={false}

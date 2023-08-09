@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 
 import { EntityTab } from '../../../types';
 import { useBaseEntity, useEntityData, useRouteToTab } from '../../../EntityContext';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     tabs: EntityTab[];
@@ -25,6 +26,7 @@ const Tab = styled(Tabs.TabPane)`
 `;
 
 export const EntityTabs = <T,>({ tabs, selectedTab }: Props) => {
+    const { t } = useTranslation();
     const { entityData, loading } = useEntityData();
     const routeToTab = useRouteToTab();
     const baseEntity = useBaseEntity<T>();
@@ -45,9 +47,9 @@ export const EntityTabs = <T,>({ tabs, selectedTab }: Props) => {
         >
             {tabs.map((tab) => {
                 if (!tab.display?.enabled(entityData, baseEntity)) {
-                    return <Tab tab={tab.name} key={tab.name} disabled />;
+                    return <Tab tab={t(tab.titleKey)} key={tab.name} disabled />;
                 }
-                return <Tab tab={tab.name} key={tab.name} />;
+                return <Tab tab={t(tab.titleKey)} key={tab.name} />;
             })}
         </UnborderedTabs>
     );

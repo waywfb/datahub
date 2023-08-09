@@ -3,6 +3,7 @@ import { EntityType, Owner, GlobalTags, GlossaryTerms, Domain } from '../../../.
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
     urn: string;
@@ -28,6 +29,7 @@ export const Preview = ({
     externalUrl,
 }: Props): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     return (
         <DefaultPreviewCard
@@ -35,7 +37,7 @@ export const Preview = ({
             name={name || ''}
             urn={urn}
             description={description || ''}
-            type={entityRegistry.getEntityName(EntityType.DataProduct)}
+            type={entityRegistry.getEntityNameTrans(t, EntityType.DataProduct)}
             typeIcon={entityRegistry.getIcon(EntityType.DataProduct, 12, IconStyleType.ACCENT)}
             qualifier={origin}
             tags={globalTags || undefined}

@@ -30,7 +30,7 @@ interface Props {
 }
 
 function SchemaTimeStamps(props: Props) {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { lastUpdated, lastObserved } = props;
 
     if (!lastUpdated && !lastObserved) return null;
@@ -41,23 +41,25 @@ function SchemaTimeStamps(props: Props) {
                 <>
                     {lastObserved && (
                         <TimeStampWrapper>
-                            Last observed on {toLocalDateTimeString(lastObserved, i18n.language)}.
+                            {t('reporting.lastObservedOnDate', { date: toLocalDateTimeString(lastObserved, i18n.language) })}
                         </TimeStampWrapper>
                     )}
-                    {lastUpdated && <div>First reported on {toLocalDateTimeString(lastUpdated, i18n.language)}.</div>}
+                    {lastUpdated && <div>
+                        {t('reporting.firstReportedOn', { date: toLocalDateTimeString(lastUpdated, i18n.language) })}
+                    </div>}
                 </>
             }
         >
             <CurrentVersionTimestampText>
                 {lastObserved && (
                     <span>
-                        <StyledClockIcon /> Last observed {toRelativeTimeString(lastObserved, i18n.language)}
+                        <StyledClockIcon /> {t('reporting.lastObservedDate', { date: toRelativeTimeString(lastObserved, i18n.language) })}
                     </span>
                 )}
                 {!lastObserved && lastUpdated && (
                     <span>
                         <StyledClockIcon />
-                        Reported {toRelativeTimeString(lastUpdated, i18n.language)}
+                        {t('reporting.reportedWithDate', { date: toRelativeTimeString(lastUpdated, i18n.language) })}
                     </span>
                 )}
             </CurrentVersionTimestampText>

@@ -57,7 +57,7 @@ export const Preview = ({
     externalUrl?: string | null;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.DataJob, urn)}
@@ -82,7 +82,7 @@ export const Preview = ({
                 (lastRunTimeMs && [
                     <StatText>
                         <ClockCircleOutlined style={{ paddingRight: 8 }} />
-                        Last run {toRelativeTimeString(lastRunTimeMs, i18n.language)}
+                        {t('reporting.lastRunWithTime', { time: toRelativeTimeString(lastRunTimeMs, i18n.language) })}
                     </StatText>,
                 ]) ||
                 undefined

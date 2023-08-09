@@ -72,14 +72,17 @@ export class MLPrimaryKeyEntity implements Entity<MlPrimaryKey> {
             getOverrideProperties={this.getOverridePropertiesFromEntity}
             tabs={[
                 {
+                    titleKey: 'entity.featureTables',
                     name: 'Feature Tables',
                     component: FeatureTableTab,
                 },
                 {
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
+                    titleKey: 'common.lineage',
                     name: 'Lineage',
                     component: LineageTab,
                 },

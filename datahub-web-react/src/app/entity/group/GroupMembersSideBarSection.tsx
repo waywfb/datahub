@@ -13,8 +13,7 @@ import {
     GroupsSeeMoreText,
     TagsSection,
 } from '../shared/SidebarStyledComponents';
-
-const TITLE = 'Members';
+import { useTranslation } from 'react-i18next';
 
 const MemberTag = styled(Tag)`
     padding: 2px;
@@ -32,11 +31,12 @@ type Props = {
 
 export default function GroupMembersSideBarSection({ total, relationships, onSeeMore }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     return (
         <>
             <GroupSectionHeader>
-                <GroupSectionTitle>{TITLE}</GroupSectionTitle>
+                <GroupSectionTitle>{t('common.members')}</GroupSectionTitle>
                 <DisplayCount>{total}</DisplayCount>
             </GroupSectionHeader>
             <TagsSection>
@@ -66,7 +66,7 @@ export default function GroupMembersSideBarSection({ total, relationships, onSee
                     <div>
                         <GroupsSeeMoreText onClick={onSeeMore}>{`+${
                             relationships.length - 15
-                        } more`}</GroupsSeeMoreText>
+                        } ${t('common.more')}`}</GroupsSeeMoreText>
                     </div>
                 )}
             </TagsSection>

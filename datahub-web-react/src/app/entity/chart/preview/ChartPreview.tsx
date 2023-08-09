@@ -17,6 +17,7 @@ import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
 import { ChartStatsSummary as ChartStatsSummaryView } from '../shared/ChartStatsSummary';
+import { useTranslation } from 'react-i18next';
 
 export const ChartPreview = ({
     urn,
@@ -64,6 +65,7 @@ export const ChartPreview = ({
     snippet?: React.ReactNode | null;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     return (
         <DefaultPreviewCard
@@ -71,7 +73,7 @@ export const ChartPreview = ({
             name={name || ''}
             urn={urn}
             description={description || ''}
-            type="Chart"
+            type={entityRegistry.getEntityNameTrans(t, EntityType.Chart)}
             typeIcon={entityRegistry.getIcon(EntityType.Chart, 14, IconStyleType.ACCENT)}
             logoUrl={logoUrl || ''}
             platform={platform}

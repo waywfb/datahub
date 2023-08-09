@@ -4,7 +4,7 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useGetDatasetRunsQuery } from '../../../../graphql/dataset.generated';
 import {
     DataProcessInstanceRunResultType,
@@ -59,74 +59,6 @@ function getStatusForStyling(status: DataProcessRunStatus, resultType: DataProce
     return 'RUNNING';
 }
 
-const columns = [
-    {
-        title: 'Time',
-        dataIndex: 'time',
-        key: 'time',
-        render: (value) => (
-            <Tooltip title={new Date(Number(value)).toUTCString()}>{new Date(Number(value)).toLocaleString()}</Tooltip>
-        ),
-    },
-    {
-        title: 'Run ID',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: 'Task',
-        dataIndex: 'parentTemplate',
-        key: 'parentTemplate',
-        render: (parentTemplate) => <CompactEntityNameList entities={[parentTemplate]} />,
-    },
-    {
-        title: 'Status',
-        dataIndex: 'status',
-        key: 'status',
-        render: (status: any, row) => {
-            const statusForStyling = getStatusForStyling(status, row?.resultType);
-            const Icon = getExecutionRequestStatusIcon(statusForStyling);
-            const text = getExecutionRequestStatusDisplayText(statusForStyling);
-            const color = getExecutionRequestStatusDisplayColor(statusForStyling);
-            return (
-                <>
-                    <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
-                        {Icon && <Icon style={{ color }} />}
-                        <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                            {<Trans i18nKey={text} /> || 'N/A'}
-                        </Typography.Text>
-                    </div>
-                </>
-            );
-        },
-    },
-    {
-        title: 'Inputs',
-        dataIndex: 'inputs',
-        key: 'inputs',
-        render: (inputs) => <CompactEntityNameList entities={inputs} />,
-    },
-    {
-        title: 'Outputs',
-        dataIndex: 'outputs',
-        key: 'outputs',
-        render: (outputs) => <CompactEntityNameList entities={outputs} />,
-    },
-    {
-        title: '',
-        dataIndex: 'externalUrl',
-        key: 'externalUrl',
-        render: (externalUrl) =>
-            externalUrl && (
-                <Tooltip title="View task run details">
-                    <ExternalUrlLink href={externalUrl}>
-                        <DeliveredProcedureOutlined />
-                    </ExternalUrlLink>
-                </Tooltip>
-            ),
-    },
-];
-
 const PAGE_SIZE = 20;
 
 export const OperationsTab = () => {
@@ -139,6 +71,74 @@ export const OperationsTab = () => {
         variables: { urn, start: (page - 1) * PAGE_SIZE, count: PAGE_SIZE, direction },
     });
     const runs = data && data?.dataset?.runs?.runs;
+
+    const columns = [
+        {
+            title: t('common.time'),
+            dataIndex: 'time',
+            key: 'time',
+            render: (value) => (
+              <Tooltip title={new Date(Number(value)).toUTCString()}>{new Date(Number(value)).toLocaleString()}</Tooltip>
+            ),
+        },
+        {
+            title: t('operation.runId'),
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: t('common.task'),
+            dataIndex: 'parentTemplate',
+            key: 'parentTemplate',
+            render: (parentTemplate) => <CompactEntityNameList entities={[parentTemplate]} />,
+        },
+        {
+            title:t ('common.status'),
+            dataIndex: 'status',
+            key: 'status',
+            render: (status: any, row) => {
+                const statusForStyling = getStatusForStyling(status, row?.resultType);
+                const Icon = getExecutionRequestStatusIcon(statusForStyling);
+                const text = getExecutionRequestStatusDisplayText(statusForStyling);
+                const color = getExecutionRequestStatusDisplayColor(statusForStyling);
+                return (
+                  <>
+                      <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
+                          {Icon && <Icon style={{ color }} />}
+                          <Typography.Text strong style={{ color, marginLeft: 8 }}>
+                              {t(text || 'common.na')}
+                          </Typography.Text>
+                      </div>
+                  </>
+                );
+            },
+        },
+        {
+            title: t('common.inputs'),
+            dataIndex: 'inputs',
+            key: 'inputs',
+            render: (inputs) => <CompactEntityNameList entities={inputs} />,
+        },
+        {
+            title: t('common.outputs'),
+            dataIndex: 'outputs',
+            key: 'outputs',
+            render: (outputs) => <CompactEntityNameList entities={outputs} />,
+        },
+        {
+            title: '',
+            dataIndex: 'externalUrl',
+            key: 'externalUrl',
+            render: (externalUrl) =>
+              externalUrl && (
+                <Tooltip title={t('operation.viewTaskRunDetails')}>
+                    <ExternalUrlLink href={externalUrl}>
+                        <DeliveredProcedureOutlined />
+                    </ExternalUrlLink>
+                </Tooltip>
+              ),
+        },
+    ];
 
     const tableData = runs
         ?.filter((run) => run)
@@ -177,7 +177,7 @@ export const OperationsTab = () => {
             {loading && (
                 <LoadingContainer>
                     <LoadingSvg height={80} width={80} />
-                    <LoadingText>Fetching runs...</LoadingText>
+                    <LoadingText>{t('operation.fetchingRuns')}...</LoadingText>
                 </LoadingContainer>
             )}
             {!loading && (

@@ -41,6 +41,7 @@ import {
 import { FetchedEntity } from '../../lineage/types';
 
 export type EntityTab = {
+    titleKey: string;
     name: string;
     component: React.FunctionComponent<{ properties?: any }>;
     display?: {

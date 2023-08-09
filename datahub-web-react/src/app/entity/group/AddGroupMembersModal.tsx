@@ -23,7 +23,7 @@ const SelectInput = styled(Select)`
 `;
 
 const StyleTag = styled(Tag)`
-    padding: 0px 7px 0px 0px;
+    padding: 0 7px 0 0;
     margin-right: 3px;
     display: flex;
     justify-content: start;
@@ -117,11 +117,11 @@ export const AddGroupMembersModal = ({ urn, visible, onCloseModal, onSubmit }: P
                     userUrns: selectedMemberUrns,
                 },
             });
-            message.success({ content: 'Group members added!', duration: 3 });
+            message.success({ content: t('crud.success.addWithName', { name: t('common.groupMembers') }), duration: 3 });
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
-                message.error({ content: `Failed to group members: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.addWithName', { name: t('common.groupMembers') })}: \n ${e.message || ''}`, duration: 3 });
             }
         } finally {
             onSubmit();
@@ -135,7 +135,7 @@ export const AddGroupMembersModal = ({ urn, visible, onCloseModal, onSubmit }: P
 
     return (
         <Modal
-            title="Add group members"
+            title={t('crud.addWithName', { name: t('common.groupMembers') })}
             visible={visible}
             onCancel={onModalClose}
             footer={
@@ -157,7 +157,7 @@ export const AddGroupMembersModal = ({ urn, visible, onCloseModal, onSubmit }: P
                         defaultOpen
                         mode="multiple"
                         ref={inputEl}
-                        placeholder="Search for users..."
+                        placeholder={t('placeholder.searchForWithName', { name: t('common.user').toLowerCase() })}
                         showSearch
                         filterOption={false}
                         defaultActiveFirstOption={false}

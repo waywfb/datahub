@@ -7,6 +7,54 @@
     "notScheduled": "Not scheduled",
     "runs": "Runs",
     "run": "Run",
+    "dashboards": "Dashboards",
+    "container": "Container",
+    "changed": "Changed",
+    "uniqueUsers": "unique users",
+    "views": "Views",
+    "datasets": "Datasets",
+    "charts": "Charts",
+    "tasks": "Tasks",
+    "pipeline": "Pipeline",
+    "dataset": "Dataset",
+    "tabular": "Tabular",
+    "raw": "Raw",
+    "inputs": "Inputs",
+    "outputs": "Outputs",
+    "operations": "Operations",
+    "validation": "Validation",
+    "preview": "Preview",
+    "summary": "Summary",
+    "contents": "Contents",
+    "schema": "Schema",
+    "noSchema": "No Schema",
+    "relatedTerms": "Related Terms",
+    "relatedEntities": "Related Entities",
+    "user": "User",
+    "entities": "Entities",
+    "members": "Members",
+    "memberWithCount_interval": "(0-1){{count}} member;(2-inf){{count}} members;",
+    "outsideDataHub": "outside DataHub",
+    "byte": "Byte",
+    "time": "Time",
+    "set": "Set",
+    "map": "Map",
+    "useless": "Useless",
+    "nominal": "Nominal",
+    "ordinal": "Ordinal",
+    "binary": "Binary",
+    "count": "Count",
+    "interval": "Interval",
+    "video": "Video",
+    "audio": "Audio",
+    "sequence": "Sequence",
+    "continuous": "Continuous",
+    "primaryKey": "Primary Key",
+    "trainingMetrics": "Training Metrics",
+    "hyperParameters": "Hyper Parameters",
+    "sources": "sources",
+    "documentation": "Documentation",
+    "features": "features",
     "secret": "Secret",
     "success": "Success",
     "original": "Original",
@@ -40,6 +88,7 @@
     "noTitle": "No title",
     "usage": "Usage",
     "field": "Field",
+    "fields": "Fields",
     "date": "Date",
     "glossaryTerms": "Glossary Terms",
     "tags": "Tags",
@@ -99,6 +148,8 @@
     "done": "Done",
     "group": "Group",
     "groups": "Groups",
+    "groupMember": "Group Member",
+    "groupMembers": "Group Members",
     "role": "Role",
     "govern": "Govern",
     "noData": "No Data",
@@ -185,6 +236,39 @@
     "latest": "Latest",
     "historical": "Historical",
     "noAdditionalDetails": "No additional details"
+  },
+  "term": {
+    "noTermNorGroup": "No Terms or Term Groups"
+  },
+  "group": {
+    "removeFromGroup": "Remove from Group",
+    "acantEditBecauseExternalGroup": "Membership for this group cannot be edited in DataHub as it originates from {{externalGroupType}}",
+    "noGroupOwnersAdded": "No group owners added yet",
+    "removeUserConfirm": "Are you sure you want to remove this user from the group?",
+    "noMemberInGroup": "No members in this group yet."
+  },
+  "operation": {
+    "runId": "Run ID",
+    "viewTaskRunDetails": "View task run details",
+    "fetchingRuns": "Fetching runs"
+  },
+  "chart": {
+    "onAContainedChart": "on a contained Chart",
+    "lastChangedTimeInSource": "The time at which the chart was last changed in the source platform"
+  },
+  "dashboard": {
+    "lastChangedTimeInSource": "The time at which the dashboard was last changed in the source platform"
+  },
+  "dataset": {
+    "linkToTechnicalSchema_component": "Semantic versions for this view were computed using Technical Schema. You can find more info about how DataHub computes versions <linkComp>here</linkComp>",
+    "updatedOn": "Updated ",
+    "lastUpdatedDataOn": "Data was last updated in the source platform on",
+    "monthlyQueries": "monthly queries",
+    "queriesLastMonth": "queries last month",
+    "dataSetByteOfStorage": "This dataset consumes {{count}} bytes of storage.",
+    "addedColumnWithCount_interval": "(0-1){{count}} column was added;(2-inf){{count}} columns were added;",
+    "removedColumnWithCount_interval": "(0-1){{count}} column was removed;(2-inf){{count}} columns were removed;",
+    "updatedDescriptionWithCount_interval": "(0-1){{count}} description was updated;(2-inf){{count}} descriptions were updated;"
   },
   "deprecation": {
     "deprecated": "Deprecated",
@@ -416,6 +500,8 @@
     }
   },
   "entity": {
+    "noDataProducts": "No data products",
+    "featureTables": "Feature Tables",
     "deleteAssetMessageConfirmation": "Are you sure you want to mark these assets as deleted? This will hide the assets from future DataHub searches. If the assets are re-ingested from an external data platform, they will be restored.",
     "viewDefinition": "View Definition",
     "seeViewDefinition": "See View Definition",
@@ -602,6 +688,7 @@
     "manageIngestion": "Manage Ingestion"
   },
   "lineage": {
+    "viewGraph": "View Graph",
     "showColumns": "Show Columns",
     "collapseRelatedEntitiesIntoASingleLineageNode": "Collapses related entities into a single lineage node",
     "compressLineage": "Compress Lineage",
@@ -650,9 +737,32 @@
     "unknownTimeRange": "Unknown time range"
   },
   "reporting": {
+    "lastRunWithTime": "Last run {{time}}",
+    "viewColumnHistory": "View column history",
+    "closeColumnHistory": "Close column history",
+    "recentProfiles": "Recent Profiles",
+    "historicalTableStats": "Historical Table Stats",
+    "historicalColumnStats": "Historical Column Stats",
+    "viewingStatsForColumn": "Viewing stats for column",
+    "viewingProfilingHistoryForThePast": "Viewing profiling history for the past",
+    "profilingHistory": "Profiling History",
+    "latestStats": "Latest Stats",
+    "rowCountUnknown": "Row Count Unknown",
+    "columnCountUnknown": "Column Count Unknown",
+    "stdDev": "Std. Dev",
+    "sampleValues": "Sample Values",
+    "mean": "Mean",
+    "median": "Median",
+    "nullCount": "Null Count",
+    "nullPercent": "Null %",
+    "distinctCount": "Distinct Count",
+    "distinctPercent": "Distinct %",
     "relationshipAddedByUserOnDate_component": "Relationship added by <bold>{{userName}}</bold> on <bold>{{date}}</bold>",
     "relationshipAddedByUser_component": "Relationship added by <bold>{{userName}}</bold>",
     "lastObservedOnDate": "Last observed on {{date}}",
+    "lastObservedDate": "Last observed {{date}}",
+    "firstReportedOn": "First reported on {{date}}",
+    "reportedWithDate": "Reported {{date}}",
     "createdOnDateWithText": "Created {{text}}on {{date}}",
     "lastSynchronizedDescriptionBeforePlatform": "This represents the time that the entity was last synchronized with ",
     "lastSynchronizedDescriptionNoPlatform": "This represents the time that the entity was last synchronized with the source platform",
@@ -782,10 +892,13 @@
     "urlRequired": "A URL is required.",
     "validUrlRequired": "This field must be a valid url.",
     "labelRequired": "A URL is required.",
-    "ownershipTypeNameRequired": "Please input a name for the ownership type"
+    "ownershipTypeNameRequired": "Please input a name for the ownership type",
+    "validEmailRequired": "Please enter valid email"
   },
   "placeholder": {
+    "revenueDashboards": "Revenue Dashboards",
     "shortLabelForLink": "A short label for this link",
+    "filterWithName": "Filter {{name}}...",
     "searchWithName": "Search {{name}}...",
     "searchInWithName": "Search in {{name}}...",
     "searchForWithName": "Search for {{name}}...",
@@ -802,6 +915,8 @@
     "domainDescriptionPlaceHolder": "Apply to ALL domains by default. Select domains to apply to specific domains."
   },
   "share": {
+    "viewSource": "View Source",
+    "slackChannel": "Slack Channel",
     "shareThisViaMail": "Share this {{type}} via email",
     "checkoutThisOn": "Check out this {{type}} on DataHub: {{linkText}}",
     "scheduleADemo": "Schedule a Demo",
@@ -834,6 +949,7 @@
     "viewLink": "View link"
   },
   "crud": {
+    "makeWithName": "Make {{name}}",
     "setWithName": "Set {{name}}",
     "unsetWithName": "Set {{name}}",
     "addToAssets": "Add to assets",
@@ -846,10 +962,14 @@
     "removeWithName": "Remove {{name}}",
     "deleteWithName": "Delete {{name}}",
     "update": "Update",
+    "editWithName": "Edit {{name}}",
     "saving": "Saving",
+    "adding": "Adding",
     "updating": "Updating",
     "deleting": "Deleting",
+    "removing": "Removing",
     "success": {
+      "changesSaved": "Changes saved.",
       "addAssetsToWithName": "Added assets to {{name}}!",
       "addWithName": "Added {{name}}!",
       "createWithName": "Created {{name}}!",
@@ -865,6 +985,7 @@
       "softDelete": "Soft Deleted"
     },
     "error": {
+      "changesSaved": "Failed to Save changes",
       "addAssetsToWithName": "Failed to add assets to {{name}}",
       "addWithName": "Failed to add {{name}}",
       "add": "Failed to add",
@@ -921,5 +1042,11 @@
       "checkOutThisRessources": "Check out these resources:",
       "needSupport_component": "<bold>Need support?</bold> Check out these resources:"
     }
+  },
+  "relatedTermType": {
+    "contains": "Contains",
+    "inherits": "Inherits",
+    "containedBy": "Contained by",
+    "inheritedBy": "Inherited by"
   }
 }

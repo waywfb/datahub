@@ -2,13 +2,13 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { TermRelationshipType } from '../../../../types.generated';
 import { Message } from '../../../shared/Message';
 import { EmptyTab } from '../../shared/components/styled/EmptyTab';
 import { ANTD_GRAY } from '../../shared/constants';
 import AddRelatedTermsModal from './AddRelatedTermsModal';
 import RelatedTerm from './RelatedTerm';
-import { useTranslation } from 'react-i18next';
 
 export enum RelatedTermTypes {
     hasRelatedTerms = 'contains',
@@ -57,7 +57,7 @@ export default function GlossaryRelatedTermsResult({ glossaryRelatedTermType, gl
     return (
         <>
             {contentLoading ? (
-                <Message type="loading" content={t('common.loading') + '...'} style={messageStyle} />
+                <Message type="loading" content={`${t('common.loading')}...`} style={messageStyle} />
             ) : (
                 <ListContainer>
                     <TitleContainer>
@@ -66,8 +66,8 @@ export default function GlossaryRelatedTermsResult({ glossaryRelatedTermType, gl
                         </Typography.Title>
                         {canEditRelatedTerms && (
                             <Button type="text" onClick={() => setIsShowingAddModal(true)}>
-                                <PlusOutlined /> {t('crud.addWithName',
-                              { name: t('entity.type.GLOSSARY_TERM', { count: 2 }) })}
+                                <PlusOutlined />{' '}
+                                {t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 2 }) })}
                             </Button>
                         )}
                     </TitleContainer>

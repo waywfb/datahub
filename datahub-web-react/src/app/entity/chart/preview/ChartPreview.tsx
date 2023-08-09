@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     AccessLevel,
     Domain,
@@ -17,7 +18,6 @@ import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
 import { ChartStatsSummary as ChartStatsSummaryView } from '../shared/ChartStatsSummary';
-import { useTranslation } from 'react-i18next';
 
 export const ChartPreview = ({
     urn,
@@ -73,7 +73,7 @@ export const ChartPreview = ({
             name={name || ''}
             urn={urn}
             description={description || ''}
-            type={entityRegistry.getEntityNameTrans(t, EntityType.Chart)}
+            type={entityRegistry.getEntityNameTrans(EntityType.Chart, t)}
             typeIcon={entityRegistry.getIcon(EntityType.Chart, 14, IconStyleType.ACCENT)}
             logoUrl={logoUrl || ''}
             platform={platform}

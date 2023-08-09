@@ -54,7 +54,7 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
             .catch(() => {
                 onClose();
                 message.destroy();
-                message.error({ content:t('crud.error.createWithName', { name: t('common.dataProduct') }) });
+                message.error({ content: t('crud.error.createWithName', { name: t('common.dataProduct') }) });
             });
     }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { RoutedTabs } from '../shared/RoutedTabs';
 import { GroupList } from './group/GroupList';
 import { UserList } from './user/UserList';
@@ -44,11 +45,13 @@ export const ManageIdentities = () => {
     /**
      * Determines which view should be visible: users or groups list.
      */
+    const { t } = useTranslation();
 
     const getTabs = () => {
         return [
             {
                 name: TabType.Users,
+                title: t('common.users'),
                 path: TabType.Users.toLocaleLowerCase(),
                 content: <UserList />,
                 display: {
@@ -57,6 +60,7 @@ export const ManageIdentities = () => {
             },
             {
                 name: TabType.Groups,
+                title: t('common.groups'),
                 path: TabType.Groups.toLocaleLowerCase(),
                 content: <GroupList />,
                 display: {

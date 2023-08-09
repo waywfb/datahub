@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { EditOutlined, LockOutlined, MailOutlined, SlackOutlined } from '@ant-design/icons';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useUpdateCorpGroupPropertiesMutation } from '../../../graphql/group.generated';
 import { EntityRelationshipsResult, Ownership } from '../../../types.generated';
 import { useUpdateNameMutation } from '../../../graphql/mutations.generated';
@@ -22,7 +23,6 @@ import {
 } from '../shared/SidebarStyledComponents';
 import GroupMembersSideBarSection from './GroupMembersSideBarSection';
 import { useUserContext } from '../../context/useUserContext';
-import { useTranslation } from 'react-i18next';
 
 const { Paragraph } = Typography;
 
@@ -120,7 +120,10 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `${t('crud.error.updateWithName', { name: t('common.name') })}: \n ${e.message || ''}`, duration: 3 });
+                    message.error({
+                        content: `${t('crud.error.updateWithName', { name: t('common.name') })}: \n ${e.message || ''}`,
+                        duration: 3,
+                    });
                 }
             });
     };
@@ -174,9 +177,7 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
                         </Col>
                         <Col>
                             {isExternalGroup && (
-                                <Tooltip
-                                    title={t('group.acantEditBecauseExternalGroup', { externalGroupType })}
-                                >
+                                <Tooltip title={t('group.acantEditBecauseExternalGroup', { externalGroupType })}>
                                     <LockOutlined />
                                 </Tooltip>
                             )}

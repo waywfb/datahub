@@ -16,9 +16,9 @@ import { Tooltip, Typography } from 'antd';
 import React, { FC } from 'react';
 import { VscFileBinary } from 'react-icons/vsc';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { capitalizeFirstLetter } from '../../../../shared/textUtil';
 import { MlFeatureDataType } from '../../../../../types.generated';
-import { useTranslation } from 'react-i18next';
 
 const TypeIconContainer = styled.div`
     display: flex;
@@ -40,7 +40,10 @@ const IconSpan = styled.span`
     font-size: 18px;
 `;
 
-const DATA_TYPE_ICON_MAP: Record<MlFeatureDataType, { icon: FC<{ style: any }> | null; size: number; transKey: string }> = {
+const DATA_TYPE_ICON_MAP: Record<
+    MlFeatureDataType,
+    { icon: FC<{ style: any }> | null; size: number; transKey: string }
+> = {
     [MlFeatureDataType.Byte]: {
         icon: () => (
             <IconSpan role="img" aria-label="calendar" className="anticon anticon-calendar">
@@ -78,7 +81,7 @@ export default function MlFeatureDataTypeIcon({ dataType }: Props) {
 
     // eslint-disable-next-line react/prop-types
     const NativeDataTypeTooltip = ({ children }) => (
-        <Tooltip placement="top" title={capitalizeFirstLetter(text)}>
+        <Tooltip placement="top" title={capitalizeFirstLetter(t(transKey))}>
             {children}
         </Tooltip>
     );

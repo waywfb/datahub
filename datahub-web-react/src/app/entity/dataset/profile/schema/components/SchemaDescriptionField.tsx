@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FetchResult } from '@apollo/client';
 
+import { useTranslation } from 'react-i18next';
 import { UpdateDatasetMutation } from '../../../../../../graphql/dataset.generated';
 import UpdateDescriptionModal from '../../../../shared/components/legacy/DescriptionModal';
 import StripMarkdownText, { removeMarkdown } from '../../../../shared/components/styled/StripMarkdownText';
@@ -11,7 +12,6 @@ import SchemaEditableContext from '../../../../../shared/SchemaEditableContext';
 import { useEntityData } from '../../../../shared/EntityContext';
 import analytics, { EventType, EntityActionType } from '../../../../../analytics';
 import { Editor } from '../../../../shared/tabs/Documentation/components/editor/Editor';
-import { useTranslation } from 'react-i18next';
 
 const EditIcon = styled(EditOutlined)`
     cursor: pointer;
@@ -116,7 +116,7 @@ export default function DescriptionField({
     };
 
     const onUpdateModal = async (desc: string | null) => {
-        message.loading({ content: t('crud.updating') + '...' });
+        message.loading({ content: `${t('crud.updating')}...` });
         try {
             await onUpdate(desc || '');
             message.destroy();
@@ -124,7 +124,8 @@ export default function DescriptionField({
             sendAnalytics();
         } catch (e: unknown) {
             message.destroy();
-            if (e instanceof Error) message.error({ content: `${t('crud.error.update')}: \n ${e.message || ''}`, duration: 2 });
+            if (e instanceof Error)
+                message.error({ content: `${t('crud.error.update')}: \n ${e.message || ''}`, duration: 2 });
         }
         onCloseModal();
     };
@@ -183,7 +184,9 @@ export default function DescriptionField({
             {showAddModal && (
                 <div>
                     <UpdateDescriptionModal
-                        title={t(description ? 'crud.updateWithName' : 'crud.addWithName', { name: t('common.description').toLowerCase() })}
+                        title={t(description ? 'crud.updateWithName' : 'crud.addWithName', {
+                            name: t('common.description').toLowerCase(),
+                        })}
                         description={description}
                         original={original || ''}
                         onClose={onCloseModal}

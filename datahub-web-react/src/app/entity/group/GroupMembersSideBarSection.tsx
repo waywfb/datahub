@@ -2,6 +2,7 @@ import { Tag, Tooltip } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { CorpUser, EntityRelationship, EntityType } from '../../../types.generated';
 import { CustomAvatar } from '../../shared/avatar';
 import { useEntityRegistry } from '../../useEntityRegistry';
@@ -13,7 +14,6 @@ import {
     GroupsSeeMoreText,
     TagsSection,
 } from '../shared/SidebarStyledComponents';
-import { useTranslation } from 'react-i18next';
 
 const MemberTag = styled(Tag)`
     padding: 2px;
@@ -64,9 +64,9 @@ export default function GroupMembersSideBarSection({ total, relationships, onSee
                     })}
                 {relationships.length > 15 && (
                     <div>
-                        <GroupsSeeMoreText onClick={onSeeMore}>{`+${
-                            relationships.length - 15
-                        } ${t('common.more')}`}</GroupsSeeMoreText>
+                        <GroupsSeeMoreText onClick={onSeeMore}>{`+${relationships.length - 15} ${t(
+                            'common.more',
+                        )}`}</GroupsSeeMoreText>
                     </div>
                 )}
             </TagsSection>

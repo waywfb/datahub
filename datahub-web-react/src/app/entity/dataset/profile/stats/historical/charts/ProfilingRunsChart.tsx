@@ -1,9 +1,9 @@
 import { Button, Col, Modal, Table, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { DatasetProfile } from '../../../../../../../types.generated';
 import DataProfileView from '../../snapshot/SnapshotStatsView';
-import { useTranslation } from 'react-i18next';
 
 export const ChartTable = styled(Table)`
     margin: 12px;
@@ -66,10 +66,10 @@ export default function ProfilingRunsChart({ profiles }: Props) {
     const selectedProfile = (selectedProfileIndex >= 0 && profiles[selectedProfileIndex]) || undefined;
     const profileModalTitle =
         selectedProfile &&
-          t('reporting.showingProfileFromAtWithDateTime', {
-              date: new Date(selectedProfile?.timestampMillis).toLocaleDateString(),
-              time: new Date(selectedProfile?.timestampMillis).toLocaleTimeString(),
-          });
+        t('reporting.showingProfileFromAtWithDateTime', {
+            date: new Date(selectedProfile?.timestampMillis).toLocaleDateString(),
+            time: new Date(selectedProfile?.timestampMillis).toLocaleTimeString(),
+        });
 
     return (
         <>

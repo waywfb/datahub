@@ -3,12 +3,12 @@ import { Tag, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../shared/constants';
 import { IconStyleType } from '../../Entity';
 import NoMarkdownViewer from '../../shared/components/styled/StripMarkdownText';
-import { useTranslation } from 'react-i18next';
 
 const PreviewContainer = styled.div`
     margin-bottom: 4px;
@@ -86,12 +86,12 @@ export const Preview = ({
                             <PreviewImage>
                                 {entityRegistry.getIcon(EntityType.CorpGroup, 20, IconStyleType.HIGHLIGHT)}
                             </PreviewImage>
-                            <PlatformText>{entityRegistry.getEntityNameTrans(t, EntityType.CorpGroup)}</PlatformText>
+                            <PlatformText>{entityRegistry.getEntityNameTrans(EntityType.CorpGroup, t)}</PlatformText>
                         </PlatformInfo>
                         <Link to={url}>
                             <EntityTitle>{name || urn}</EntityTitle>
                             <MemberCountContainer>
-                                <Tag>{t('common.memberWithCount_interval',  { count: membersCount })}</Tag>
+                                <Tag>{t('common.memberWithCount_interval', { count: membersCount })}</Tag>
                             </MemberCountContainer>
                         </Link>
                     </TitleContainer>

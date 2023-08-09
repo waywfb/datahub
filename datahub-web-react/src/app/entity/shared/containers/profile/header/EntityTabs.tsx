@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { Tabs } from 'antd';
 import styled from 'styled-components/macro';
 
+import { useTranslation } from 'react-i18next';
 import { EntityTab } from '../../../types';
 import { useBaseEntity, useEntityData, useRouteToTab } from '../../../EntityContext';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     tabs: EntityTab[];

@@ -1,9 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { EntityType, Owner, GlobalTags, GlossaryTerms, Domain } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
-import { useTranslation } from 'react-i18next';
 
 interface Props {
     urn: string;
@@ -37,7 +37,7 @@ export const Preview = ({
             name={name || ''}
             urn={urn}
             description={description || ''}
-            type={entityRegistry.getEntityNameTrans(t, EntityType.DataProduct)}
+            type={entityRegistry.getEntityNameTrans(EntityType.DataProduct, t)}
             typeIcon={entityRegistry.getIcon(EntityType.DataProduct, 12, IconStyleType.ACCENT)}
             qualifier={origin}
             tags={globalTags || undefined}

@@ -100,16 +100,11 @@ export const SecretBuilderModal = ({ initialState, visible, onSubmit, onCancel }
                         ]}
                         hasFeedback
                     >
-                        <Input.TextArea
-                            placeholder={t('ingest.secretValueInputPlaceholder')}
-                            autoComplete="false"
-                        />
+                        <Input.TextArea placeholder={t('ingest.secretValueInputPlaceholder')} autoComplete="false" />
                     </Form.Item>
                 </Form.Item>
                 <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
-                    <Typography.Paragraph>
-                        {t('ingest.secretDescriptionDescription')}
-                    </Typography.Paragraph>
+                    <Typography.Paragraph>{t('ingest.secretDescriptionDescription')}</Typography.Paragraph>
                     <Form.Item
                         name={DESCRIPTION_FIELD_NAME}
                         rules={[{ whitespace: true }, { min: 1, max: 500 }]}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     AccessLevel,
     Domain,
@@ -18,7 +19,6 @@ import { useEntityRegistry } from '../../../useEntityRegistry';
 import { capitalizeFirstLetterOnly } from '../../../shared/textUtil';
 import { IconStyleType } from '../../Entity';
 import { DashboardStatsSummary as DashboardStatsSummaryView } from '../shared/DashboardStatsSummary';
-import { useTranslation } from 'react-i18next';
 
 export const DashboardPreview = ({
     urn,
@@ -78,7 +78,7 @@ export const DashboardPreview = ({
             name={name || ''}
             urn={urn}
             description={description || ''}
-            type={capitalizeFirstLetterOnly(subtype) || entityRegistry.getEntityNameTrans(t, EntityType.Dashboard)}
+            type={capitalizeFirstLetterOnly(subtype) || entityRegistry.getEntityNameTrans(EntityType.Dashboard, t)}
             typeIcon={entityRegistry.getIcon(EntityType.Dashboard, 14, IconStyleType.ACCENT)}
             logoUrl={logoUrl || ''}
             platformInstanceId={platformInstanceId}

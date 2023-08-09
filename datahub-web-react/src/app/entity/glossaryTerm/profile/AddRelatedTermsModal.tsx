@@ -50,7 +50,7 @@ function AddRelatedTermsModal(props: Props) {
                 message.error({ content: `${t('crud.error.move')}: \n ${e.message || ''}`, duration: 3 });
             })
             .finally(() => {
-                message.loading({ content: t('crud.adding') + '...', duration: 2 });
+                message.loading({ content: `${t('crud.adding')}...`, duration: 2 });
                 setTimeout(() => {
                     message.success({
                         content: t('crud.success.addWithName', { name: t('common.relatedTerms') }),

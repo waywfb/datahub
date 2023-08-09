@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { InputFields, MatchedField, Maybe } from '../../../types.generated';
 import TagTermGroup from '../../shared/tags/TagTermGroup';
 import { FIELDS_TO_HIGHLIGHT } from '../dataset/search/highlights';
 import { getMatchPrioritizingPrimary } from '../shared/utils';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     matchedFields: MatchedField[];

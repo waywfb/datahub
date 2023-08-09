@@ -74,17 +74,17 @@ export class MLFeatureEntity implements Entity<MlFeature> {
             headerDropdownItems={new Set([EntityMenuItems.UPDATE_DEPRECATION])}
             tabs={[
                 {
-                    titleKey:'common.featureTables',
+                    titleKey: 'common.featureTables',
                     name: 'Feature Tables',
                     component: FeatureTableTab,
                 },
                 {
-                    titleKey:'common.documentation',
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
-                    titleKey:'common.lineage',
+                    titleKey: 'common.lineage',
                     name: 'Lineage',
                     component: LineageTab,
                 },

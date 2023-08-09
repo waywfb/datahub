@@ -112,7 +112,10 @@ export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeM
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: t('crud.success.removeWithName', { name: t('common.groupMember') }), duration: 2 });
+                    message.success({
+                        content: t('crud.success.removeWithName', { name: t('common.groupMember') }),
+                        duration: 2,
+                    });
                     onChangeMembers?.();
                     // Hack to deal with eventual consistency
                     setTimeout(() => {
@@ -123,7 +126,12 @@ export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeM
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `${t('crud.success.removeWithName', { name: t('common.groupMember') })}: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('crud.success.removeWithName', { name: t('common.groupMember') })}: \n ${
+                        e.message || ''
+                    }`,
+                    duration: 3,
+                });
             });
     };
 

@@ -1,10 +1,10 @@
 import { Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import StripMarkdownText from '../../shared/components/styled/StripMarkdownText';
 import { SidebarHeader } from '../../shared/containers/profile/sidebar/SidebarHeader';
 import { useEntityData, useRouteToTab } from '../../shared/EntityContext';
-import { useTranslation } from 'react-i18next';
 
 const DescriptionTypography = styled(Typography.Paragraph)`
     max-width: 65ch;
@@ -20,7 +20,7 @@ export default function GlossarySidebarAboutSection() {
 
     return (
         <div>
-            <SidebarHeader title={t('common.about') + ' '} />
+            <SidebarHeader title={`${t('common.about')} `} />
             {description && (
                 <DescriptionTypography>
                     <StripMarkdownText

@@ -16,6 +16,7 @@ export interface EntityProfileProps {
     header: React.ReactNode;
     tabs?: Array<{
         name: string;
+        title: string;
         path: string;
         content: React.ReactNode;
     }>;

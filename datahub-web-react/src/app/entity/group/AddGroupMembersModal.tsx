@@ -117,11 +117,19 @@ export const AddGroupMembersModal = ({ urn, visible, onCloseModal, onSubmit }: P
                     userUrns: selectedMemberUrns,
                 },
             });
-            message.success({ content: t('crud.success.addWithName', { name: t('common.groupMembers') }), duration: 3 });
+            message.success({
+                content: t('crud.success.addWithName', { name: t('common.groupMembers') }),
+                duration: 3,
+            });
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
-                message.error({ content: `${t('crud.error.addWithName', { name: t('common.groupMembers') })}: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('crud.error.addWithName', { name: t('common.groupMembers') })}: \n ${
+                        e.message || ''
+                    }`,
+                    duration: 3,
+                });
             }
         } finally {
             onSubmit();

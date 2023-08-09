@@ -2,12 +2,12 @@ import { DeleteOutlined, MoreOutlined } from '@ant-design/icons';
 import { Divider, Dropdown, Menu } from 'antd';
 import React from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useGetGlossaryTermQuery } from '../../../../graphql/glossaryTerm.generated';
 import { EntityType, TermRelationshipType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { PreviewType } from '../../Entity';
 import useRemoveRelatedTerms from './useRemoveRelatedTerms';
-import { useTranslation } from 'react-i18next';
 
 const ListItem = styled.div`
     margin: 0 20px;
@@ -63,7 +63,10 @@ function RelatedTerm(props: Props) {
                             <Menu>
                                 <Menu.Item key="0">
                                     <MenuItem onClick={onRemove}>
-                                        <DeleteOutlined /> &nbsp; {t('crud.removeWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 })})}
+                                        <DeleteOutlined /> &nbsp;{' '}
+                                        {t('crud.removeWithName', {
+                                            name: t('entity.type.GLOSSARY_TERM', { count: 1 }),
+                                        })}
                                     </MenuItem>
                                 </Menu.Item>
                             </Menu>

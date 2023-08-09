@@ -78,7 +78,9 @@ export default function DataProductResult({ dataProduct, onUpdateDataProduct, se
 
     function onRemove() {
         Modal.confirm({
-            title: t('crud.deleteWithName', { name: entityRegistry.getDisplayName(EntityType.DataProduct, dataProduct) }),
+            title: t('crud.deleteWithName', {
+                name: entityRegistry.getDisplayName(EntityType.DataProduct, dataProduct),
+            }),
             content: t('crud.doYouWantTo.deleteContentWithThisName', { name: t('common.dataProduct') }),
             onOk() {
                 deleteDataProduct();

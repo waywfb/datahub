@@ -67,19 +67,19 @@ export default function DataProductResult({ dataProduct, onUpdateDataProduct, se
     function deleteDataProduct() {
         deleteDataProductMutation({ variables: { urn: dataProduct.urn } })
             .then(() => {
-                message.success('Deleted Data Product');
+                message.success(t('crud.success.deleteWithName', { name: t('common.dataProduct') }));
                 setDeletedDataProductUrns((currentUrns) => [...currentUrns, dataProduct.urn]);
             })
             .catch(() => {
                 message.destroy();
-                message.error({ content: 'Failed to delete Data Product. An unexpected error occurred' });
+                message.error({ content: t('crud.error.deleteWithName', { name: t('common.dataProduct') }) });
             });
     }
 
     function onRemove() {
         Modal.confirm({
-            title: `Delete ${entityRegistry.getDisplayName(EntityType.DataProduct, dataProduct)}`,
-            content: `Are you sure you want to delete this Data Product?`,
+            title: t('crud.deleteWithName', { name: entityRegistry.getDisplayName(EntityType.DataProduct, dataProduct) }),
+            content: t('crud.doYouWantTo.deleteContentWithThisName', { name: t('common.dataProduct') }),
             onOk() {
                 deleteDataProduct();
             },
@@ -96,7 +96,7 @@ export default function DataProductResult({ dataProduct, onUpdateDataProduct, se
             key: '0',
             label: (
                 <MenuItem onClick={onRemove}>
-                    <DeleteOutlined /> &nbsp;Delete
+                    <DeleteOutlined /> &nbsp;{t('common.delete')}
                 </MenuItem>
             ),
         },

@@ -11,7 +11,7 @@ import {
     TableOutlined,
 } from '@ant-design/icons';
 import styled from 'styled-components/macro';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import CustomPagination from './CustomPagination';
 import TabToolbar from '../../../../shared/components/styled/TabToolbar';
 import { SemanticVersionStruct } from '../../../../../../types.generated';
@@ -29,7 +29,6 @@ const SchemaHeaderContainer = styled.div`
 
 // TODO(Gabe): undo display: none when dbt/bigquery flickering has been resolved
 const ShowVersionButton = styled(Button)`
-    display: inline-block;
     margin-right: 10px;
     display: none;
 `;
@@ -62,12 +61,12 @@ const RawButtonTitle = styled(Typography.Text)`
 `;
 
 const KeyButton = styled(Button)<{ $highlighted: boolean }>`
-    border-radius: 8px 0px 0px 8px;
+    border-radius: 8px 0 0 8px;
     font-weight: ${(props) => (props.$highlighted ? '600' : '400')};
 `;
 
 const ValueButton = styled(Button)<{ $highlighted: boolean }>`
-    border-radius: 0px 8px 8px 0px;
+    border-radius: 0 8px 8px 0;
     font-weight: ${(props) => (props.$highlighted ? '600' : '400')};
 `;
 
@@ -94,7 +93,7 @@ const SchemaBlameSelector = styled(Select)`
         margin-top: 6px;
         min-width: 30px;
         margin-right: 10px;
-        border-radius: 0px 8px 8px 0px;
+        border-radius: 0 8px 8px 0;
     }
 `;
 
@@ -168,10 +167,9 @@ export default function SchemaHeader({
     setFilterText,
     numRows,
 }: Props) {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const history = useHistory();
     const location = useLocation();
-    const { i18n } = useTranslation();
     const onVersionChange = (version1, version2) => {
         if (version1 === null || version2 === null) {
             return;
@@ -183,7 +181,7 @@ export default function SchemaHeader({
         const semanticVersionTimestampString =
             (semanticVersion?.semanticVersionTimestamp &&
                 toRelativeTimeString(semanticVersion?.semanticVersionTimestamp, i18n.language)) ||
-            'unknown';
+          t('common.unknown');
         return `${semanticVersion.semanticVersion} - ${semanticVersionTimestampString}`;
     };
     const numVersions = versionList.length;
@@ -202,7 +200,7 @@ export default function SchemaHeader({
                 ),
         );
     };
-    const schemaAuditToggleText = showSchemaAuditView ? 'Close column history' : 'View column history';
+    const schemaAuditToggleText = showSchemaAuditView ? t('reporting.closeColumnHistory') : t('reporting.viewColumnHistory');
 
     const debouncedSetFilterText = debounce(
         (e: React.ChangeEvent<HTMLInputElement>) => setFilterText(e.target.value),
@@ -221,12 +219,12 @@ export default function SchemaHeader({
                             {showRaw ? (
                                 <RawButtonTitleContainer>
                                     <TableOutlined style={{ padding: 0, margin: 0 }} />
-                                    <RawButtonTitle>Tabular</RawButtonTitle>
+                                    <RawButtonTitle>{t('common.tabular')}</RawButtonTitle>
                                 </RawButtonTitleContainer>
                             ) : (
                                 <RawButtonTitleContainer>
                                     <FileTextOutlined style={{ padding: 0, margin: 0 }} />
-                                    <RawButtonTitle>Raw</RawButtonTitle>
+                                    <RawButtonTitle>{t('common.raw')}</RawButtonTitle>
                                 </RawButtonTitleContainer>
                             )}
                         </RawButton>
@@ -252,7 +250,7 @@ export default function SchemaHeader({
                     {!showRaw && (
                         <StyledInput
                             defaultValue={schemaFilter}
-                            placeholder="Search in schema..."
+                            placeholder={t('placeholder.searchInWithName', { name: t('common.schema').toLowerCase()})}
                             onChange={debouncedSetFilterText}
                             allowClear
                             prefix={<SearchOutlined />}
@@ -293,12 +291,11 @@ export default function SchemaHeader({
                                 placement="right"
                                 content={
                                     <div>
-                                        Semantic versions for this view were computed using Technical Schema. You can
-                                        find more info about how DataHub computes versions
-                                        <a target="_blank" rel="noreferrer noopener" href={docLink}>
-                                            {' '}
-                                            here.{' '}
-                                        </a>
+                                        <Trans {...{
+                                              i18nKey: 'dataset.linkToTechnicalSchema_component',
+                                              components: { typographyTextStrong: <a target="_blank" rel="noreferrer noopener" href={docLink}/> },
+                                          }}
+                                        />
                                     </div>
                                 }
                             >

@@ -43,7 +43,7 @@ export default function DataProductBuilderForm({ builderState, updateBuilderStat
                     autoFocus
                     value={builderState.name}
                     onChange={(e) => updateName(e.target.value)}
-                    placeholder="Revenue Dashboards"
+                    placeholder={t('placeholder.revenueDashboards')}
                 />
             </Form.Item>
             <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>

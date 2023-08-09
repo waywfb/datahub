@@ -33,7 +33,7 @@ export default function EditDataProductModal({ dataProduct, onUpdateDataProduct,
         })
             .then(({ data, errors }) => {
                 if (!errors) {
-                    message.success('Updates Data Product!');
+                    message.success(t('crud.success.updateWithName', { name: t('common.dataProduct') }));
                     if (data?.updateDataProduct) {
                         onUpdateDataProduct(data.updateDataProduct as DataProduct);
                     }
@@ -43,13 +43,13 @@ export default function EditDataProductModal({ dataProduct, onUpdateDataProduct,
             .catch(() => {
                 onClose();
                 message.destroy();
-                message.error({ content: 'Failed to update Data Product. An unexpected error occurred' });
+                message.error({ content: t('crud.error.updateWithName', { name: t('common.dataProduct') }) });
             });
     }
 
     return (
         <Modal
-            title={`Update ${dataProduct.properties?.name || 'Data Product'}`}
+            title={`Update ${dataProduct.properties?.name || t('common.dataProduct')}`}
             onCancel={onClose}
             style={MODAL_BODY_STYLE}
             width={MODAL_WIDTH}

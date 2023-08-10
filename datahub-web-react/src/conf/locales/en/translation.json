@@ -1,5 +1,12 @@
 {
   "common": {
+    "timezone": "Timezone",
+    "minute": "Minute,",
+    "hour": "Hour",
+    "month": "Month",
+    "day": "Day",
+    "dayOfWeek": "Day of week",
+    "recommended": "Recommended",
     "debugMode": "Debug Mode",
     "yaml": "YAML",
     "form": "Form",
@@ -601,6 +608,193 @@
     }
   },
   "ingest": {
+    "bigqueryBeta": {
+      "bigqueryBetaDatasetsDenyToolTip": "Use regex here.",
+      "bigqueryBetaDatasetsAllowToolTip": "Use regex here.",
+      "bigqueryBetaProjectDenyToolTip": "Use regex here to filter for project IDs.",
+      "bigqueryBetaProjectAllowToolTip": "Use regex here to filter for project IDs.",
+      "bigqueryBetaProjectIdToolTip": "The Project ID, which can be found in your service account's JSON Key (project_id)",
+      "section": {
+        "datasets": "Datasets",
+        "projects": "Projects"
+      }
+    },
+    "bigquery": {
+      "bigqueryClientIDToolTip": "The Client ID, which can be found in your service account's JSON Key (client_id).",
+      "bigqueryClientEmailToolTip": "The Client Email, which can be found in your service account's JSON Key (client_email).",
+      "bigqueryPrivateKeyToolTip": "The Private key, which can be found in your service account's JSON Key (private_key).",
+      "bigqueryPrivateKeyIDToolTip": "The Private Key id, which can be found in your service account's JSON Key (private_key_id)",
+      "bigqueryCredentialProjectIDToolTip": "The Project ID, which can be found in your service account's JSON Key (project_id)",
+      "bigqueryProjectIDToolTip": "Project ID where you have rights to run queries and create tables.",
+      "label": {
+        "clientEmail": "Client Email",
+        "privateKey": "Private Key",
+        "privateKeyID": "Private Key Id",
+        "credentialProjectID": "Credentials Project ID"
+      }
+    },
+    "hive": {
+      "hivePasswordToolTip": "The Hive password for the user.",
+      "hiveUsernameToolTip": "The Hive username used to extract metadata.",
+      "hiveDatabaseToolTip": "Ingest metadata for a specific Database. If left blank, metadata for all databases will be extracted.",
+      "hiveHostPortToolTip": "The host and port where Hive is running. For example, 'hive:9083'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
+    },
+    "looker": {
+      "lookerDenyDashboardToolTip": "Exclude specific Dashboards by providing the numeric id of a Dashboard, or a Regular Expression (REGEX). If not provided, all Dashboards will be included. Deny patterns always take precendence over Allow patterns.",
+      "lookerAllowDashboardToolTip": "Only include specific Dashboards by providing the numeric id of a Dashboard, or a Regular Expression (REGEX). If not provided, all Dashboards will be included.",
+      "lookerDenyChartToolTip": "Exclude specific Charts by providing the numeric id of a Chart, or a Regular Expression (REGEX). If not provided, all Charts will be included. Deny patterns always take precendence over Allow patterns.",
+      "lookerAllowChartToolTip": "Only include specific Charts by providing the numeric id of a Chart, or a Regular Expression (REGEX). If not provided, all Charts will be included.",
+      "lookerClientSecretToolTip": "Looker API Client Secret.",
+      "lookerClientIDToolTip": "Looker API Client ID.",
+      "lookerBaseUrlToolTip": "The URL where your Looker instance is hosted.",
+      "section": {
+        "charts": "Charts"
+      },
+      "label": {
+        "baseUrl": "Base URL"
+      }
+    },
+    "mariaDB": {
+      "mariaDBPasswordToolTip": "The MariaDB password for the user.",
+      "mariaDBUsernameToolTip": "The MariaDB username used to extract metadata.",
+      "mariaDBHostAndPortToolTip": "The host and port where MariaDB is running. For example, 'mariadb-server:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
+    },
+    "mssql": {
+      "mssqlPasswordToolTip": "The SQL Server password for the user.",
+      "mssqlUsernameToolTip": "The SQL Server username used to extract metadata.",
+      "mssqlHostAndPortToolTip": "The host and port where SQL Server is running. For example, 'mssql-server:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
+    },
+    "mysql": {
+      "mysqlPasswordToolTip": "The MySQL password for the user.",
+      "mysqlUsernameToolTip": "The MySQL username used to extract metadata.",
+      "mysqlHostAndPortToolTip": "The host and port where Postgres is running. For example, 'localhost:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
+    },
+    "postgres": {
+      "postgresPasswordToolTip": "The Postgres password for the user.",
+      "postgresUsernameToolTip": "The Postgres username used to extract metadata.",
+      "postgresHostAndPortToolTip": "The host and port where Postgres is running. For example, 'postgres:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
+    },
+    "powerBI": {
+      "powerBIDenyPatternToolTip": "Exclude specific Workspaces by providing the unique id of a Workspace, or a Regular Expression (REGEX). If not provided, all Workspaces will be included. Deny patterns always take precendence over Allow patterns.",
+      "powerBIAllowPatternToolTip": "Only include specific Workspaces by providing the unique id of a Workspace, or a Regular Expression (REGEX). If not provided, all Workspaces will be included.",
+      "powerBIExtractOwnershipToolTip": "Extract Owner Metadata defined inside PowerBI. Admin API access is required if this setting is enabled. Note that enabling this may overwrite owners that you add inside DataHub.",
+      "powerBIExtractEndorsementsAsTagsToolTip": "Extract PowerBI Endorsements as DataHub Tags.",
+      "powerBIIncludeLineageToolTip": "Extract lineage between PowerBI Datasets and the External Tables from which they are derived.",
+      "powerBIIncludeReportsToolTip": "Extract PowerBI Reports as Dashboard nodes in DataHub.",
+      "powerBIUseAdminAPIOnlyToolTip": "Only use the Admin APIs for extracting information from PowerBI. See the DataHub Ingestion Source Guide for more information.",
+      "powerBIIncludeWorkspaceToolTip": "Extract PowerBI Workspaces as Container nodes in DataHub.",
+      "powerBIAzureTenantIDToolTip": "The Azure tenant id for your PowerBI instance.",
+      "powerBIAzureClientSecretToolTip": "The Azure AD Client Secret",
+      "powerBIAzureClientIDToolTip": "The Azure AD Client ID",
+      "section": {
+        "workspaces": "Workspaces"
+      },
+      "label": {
+        "extractOwnership": "Extract Ownership",
+        "extractEndorsementsAsTags": "Extract Endorsements as Tags",
+        "includeReports": "Include Reports",
+        "useAdminAPIOnly": "Use Admin APIs Only",
+        "includeWorkspace": "Include Workspaces",
+        "tenantID": "Tenant ID"
+      }
+    },
+    "recipeForms": {
+      "presto": {
+        "prestoPasswordTooTip": "The Presto password for the user.",
+        "prestoUsernameToolTip": "The Presto username used to extract metadata.",
+        "prestoHostAndPortToolTip": "The host and port where Presto is running. For example, 'presto-server:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
+      },
+      "redshift": {
+        "redshiftPasswordToolTip": "The password of the username.",
+        "redshiftUsernameToolTip": "A Redshift username used to extract metadata.",
+        "redshiftHostAndPortToolTip": "The host and port where Redshift is running. For example, 'redshift:5439'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
+      },
+      "snowFlake": {
+        "snowFlakeRoleToolTip": "The Role to use when extracting metadata from Snowflake.",
+        "snowFlakePasswordToolTip": "Snowflake password.",
+        "snowFlakeUsernameToolTip": "Snowflake username.",
+        "snowFlakeWarehouseToolTip": "The name of the Snowflake Warehouse to extract metadata from.",
+        "snowFlakeAccountIDToolTip": "The Snowflake Account Identifier e.g. myorg-account123, account123-eu-central-1, account123.west-us-2.azure",
+        "label": {
+          "role": "Role",
+          "warehouse": "Warehouse"
+        }
+      },
+      "tableau": {
+        "tableauPasswordToolTip": "Tableau password. Only required if Token is not provided.",
+        "tableauUsernameToolTip": "Tableau username. Only required if Token is not provided.",
+        "tableauTokenValueToolTip": "The value of the Personal Access Token used to extract metadata. Required if authenticating using a Personal Access Token.",
+        "tokenNameToolTip": "The name of the Personal Access Token used to extract metadata. Required if authenticating using a Personal Access Token.",
+        "tableauSiteToolTip": "The Tableau Site. Required for Tableau Online. Leave this blank to extract from the default site on Tableau Server.",
+        "tableauProjectToolTip": "The list of Projects to extract metadata for.",
+        "tableauHostUrlToolTip": "The URL where the Tableau instance is hosted.",
+        "buttonLabel": {
+          "addProject": "Add project"
+        },
+        "label": {
+          "tokenValue": "Token Value",
+          "tokenName": "Token Name",
+          "tableauSite": "Tableau Site",
+          "projects": "Projects",
+          "hostURL": "Host URL"
+        }
+      },
+      "trino": {
+        "trinoPasswordToolTip": "The Trino password for the user.",
+        "trinoUsernameToolTip": "The Trino username used to extract metadata.",
+        "trinoHostAndPortToolTip": "The host and port where Trino is running. For example, 'trino-server:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
+      },
+      "unityCatalog": {
+        "unityTableDenyToolTip": "Exclude specific Tables by providing the fully-qualified name of a Table, or a Regular Expression (REGEX) to exclude specific Tables. If not provided, all Tables will be included. Deny patterns always take precedence over Allow patterns.",
+        "unityTableAllowToolTip": "Only include specific Tables by providing the fully-qualified name of a Table, or a Regular Expression (REGEX) to include specific Tables. If not provided, all Tables will be included.",
+        "unityCatalogDenyToolTip": "Exclude specific Catalogs by providing the name of a Catalog, or a Regular Expression (REGEX) to exclude specific Catalogs. If not provided, all Catalogs will be included. Deny patterns always take precedence over Allow patterns.",
+        "unityCatalogAllowToolTip": "Only include specific Catalogs by providing the name of a Catalog, or a Regular Expression (REGEX) to include specific Catalogs. If not provided, all Catalogs will be included.",
+        "unityMetaStoreIDDenyToolTip": "Exclude specific Metastores by providing the id of a Metastores, or a Regular Expression (REGEX). If not provided, all Metastores will be included. Deny patterns always take precedence over Allow patterns.",
+        "unityMetaStoreIDAllowButtonLabel": "Add pattern",
+        "unityMetaStoreIDAllowToolTip": "Only include specific Metastores by providing the id of a Metastore, or a Regular Expression (REGEX) to include specific Metastores. If not provided, all Metastores will be included.",
+        "includeColumnLineageToolTip_component": "Extract Column Lineage from Unity Catalog. Note that this requires that your Databricks accounts meets certain requirements. View them <aLink>here.</aLink> Enabling this feature may increase the duration of ingestion.",
+        "includeColumnLineageLabel": "Include Column Lineage",
+        "includeTableLineageToolTip_component": "Extract Table Lineage from Unity Catalog. Note that this requires that your Databricks accounts meets certain requirements. View them <aLink>here</aLink>",
+        "includeTableLineageLabel": "Include Table Lineage",
+        "workspaceURLTooltip": "The URL for the Databricks workspace from which to extract metadata.",
+        "workspaceURLLabel": "Workspace URL",
+        "tokenToolTip": "A personal access token associated with the Databricks account used to extract metadata.",
+        "section": {
+          "catalogs": "Catalogs",
+          "metastores": "Metastores"
+        }
+      },
+      "toolTip": {
+        "ingestMetadataForASpecificDatabase": "Ingest metadata for a specific Database."
+      },
+      "section": {
+        "dashboards": "Dashboards",
+        "tables": "Tables"
+      },
+      "label": {
+        "projectID": "Project ID",
+        "includeLineage": "Include Lineage",
+        "clientSecret": "Client Secret",
+        "clientID": "Client ID",
+        "accountID": "Account ID",
+        "password": "Password",
+        "username": "Username",
+        "database": "Database",
+        "hostAndPort": "Host and Port",
+        "denyPatterns": "Deny Patterns",
+        "allowPatterns": "Allow Patterns"
+      },
+      "buttonLabel": {
+        "addPatterns": "Add Patterns"
+      }
+    },
+    "chooseATimezoneForTheSchedule": "Choose a timezone for the schedule.",
+    "minuteHourDayMonthDayOfWeek": "$t('common.minute'), $t('common.hour'), $t('common.day'), $t('common.month'), $t('dayOfWeek')",
+    "invalidCronSchedule": "Invalid cron schedule. Cron must be of UNIX form",
+    "runIngestionWithoutASchedule": "Running ingestion without a schedule may result in out-of-date information.",
+    "runOnASchedule": "Run on a schedule",
+    "runAScheduleToolTip": "Enable to run ingestion on a schedule. Running ingestion on a schedule helps to keep the information inside of DataHub up to date.",
+    "configureAnIngestionSchedule": "Configure an Ingestion Schedule",
     "forMoreInformationAboutHowToConfigureARecipeText_component": "For more information about how to configure a recipe, see the <aLink>{{sourceName}} source docs.</aLink>",
     "lookMlIngestionCannotText_component": "LookML ingestion <bold>cannot</bold> currently be performed via UI-based ingestion. This is a known problem the DataHub team is working to solve!",
     "ToGetCompleteLookerMetadataIntegrationText_component": "To get complete Looker metadata integration (including Looker views and lineage to the underlying warehouse tables), you must <bold>also</bold> use the <aLink>DataHub lookml module</aLink>.",

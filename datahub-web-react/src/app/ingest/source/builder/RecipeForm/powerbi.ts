@@ -4,8 +4,8 @@ import { RecipeField, FieldType, setListValuesOnRecipe } from './common';
 
 export const POWERBI_CLIENT_ID: RecipeField = {
     name: 'client_id',
-    label: 'Client ID',
-    tooltip: 'The Azure AD Client ID',
+    label: 'ingest.recipeForms.label.clientID',
+    tooltip: 'ingest.powerBI.powerBIAzureClientIDToolTip',
     type: FieldType.TEXT,
     fieldPath: 'source.config.client_id',
     placeholder: 'client id',
@@ -15,8 +15,8 @@ export const POWERBI_CLIENT_ID: RecipeField = {
 
 export const POWERBI_CLIENT_SECRET: RecipeField = {
     name: 'client_secret',
-    label: 'Client Secret',
-    tooltip: 'The Azure AD Client Secret',
+    label: 'ingest.recipeForms.label.clientSecret',
+    tooltip: 'ingest.powerBI.powerBIAzureClientSecretToolTip',
     type: FieldType.SECRET,
     fieldPath: 'source.config.client_secret',
     placeholder: 'client secret',
@@ -26,8 +26,8 @@ export const POWERBI_CLIENT_SECRET: RecipeField = {
 
 export const POWERBI_TENANT_ID: RecipeField = {
     name: 'tenant_id',
-    label: 'Tenant ID',
-    tooltip: 'The Azure tenant id for your PowerBI instance.',
+    label: 'ingest.powerBI.label.tenantID',
+    tooltip: 'ingest.powerBI.powerBIAzureTenantIDToolTip',
     type: FieldType.TEXT,
     fieldPath: 'source.config.tenant_id',
     placeholder: 'a949d688-67c0-4bf1-a344-e939411c6c0a',
@@ -38,8 +38,8 @@ export const POWERBI_TENANT_ID: RecipeField = {
 const includeWorkspacesPath = 'source.config.extract_workspaces_to_containers';
 export const INCLUDE_WORKSPACES: RecipeField = {
     name: 'extract_workspaces_to_containers',
-    label: 'Include Workspaces',
-    tooltip: 'Extract PowerBI Workspaces as Container nodes in DataHub.',
+    label: 'ingest.powerBI.label.includeWorkspace',
+    tooltip: 'ingest.powerBI.powerBIIncludeWorkspaceToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: includeWorkspacesPath,
     getValueFromRecipeOverride: (recipe: any) => {
@@ -55,9 +55,8 @@ export const INCLUDE_WORKSPACES: RecipeField = {
 const adminsApisOnlyPath = 'source.config.admin_apis_only';
 export const ADMIN_APIS_ONLY: RecipeField = {
     name: 'admin_apis_only',
-    label: 'Use Admin APIs Only',
-    tooltip:
-        'Only use the Admin APIs for extracting information from PowerBI. See the DataHub Ingestion Source Guide for more information.',
+    label: 'ingest.powerBI.label.useAdminAPIOnly',
+    tooltip: 'ingest.powerBI.powerBIUseAdminAPIOnlyToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: adminsApisOnlyPath,
     getValueFromRecipeOverride: (recipe: any) => {
@@ -73,8 +72,8 @@ export const ADMIN_APIS_ONLY: RecipeField = {
 const includeReportsPath = 'source.config.extract_reports';
 export const INCLUDE_REPORTS: RecipeField = {
     name: 'extract_reports',
-    label: 'Include Reports',
-    tooltip: 'Extract PowerBI Reports as Dashboard nodes in DataHub.',
+    label: 'ingest.powerBI.label.includeReports',
+    tooltip: 'ingest.powerBI.powerBIIncludeReportsToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: includeReportsPath,
     getValueFromRecipeOverride: (recipe: any) => {
@@ -90,8 +89,8 @@ export const INCLUDE_REPORTS: RecipeField = {
 const includeLineagePath = 'source.config.extract_lineage';
 export const INCLUDE_POWERBI_LINEAGE: RecipeField = {
     name: 'include_powerbi_lineage',
-    label: 'Include Lineage',
-    tooltip: 'Extract lineage between PowerBI Datasets and the External Tables from which they are derived.',
+    label: 'ingest.recipeForms.label.includeLineage',
+    tooltip: 'ingest.powerBI.powerBIIncludeLineageToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: includeLineagePath,
     getValueFromRecipeOverride: (recipe: any) => {
@@ -107,8 +106,8 @@ export const INCLUDE_POWERBI_LINEAGE: RecipeField = {
 const extractEndorsementsAsTags = 'source.config.extract_endorsements_to_tags';
 export const EXTRACT_ENDORSEMENTS_AS_TAGS: RecipeField = {
     name: 'extract_endorsements_to_tags',
-    label: 'Extract Endorsements as Tags',
-    tooltip: 'Extract PowerBI Endorsements as DataHub Tags.',
+    label: 'ingest.powerBI.label.extractEndorsementsAsTags',
+    tooltip: 'ingest.powerBI.powerBIExtractEndorsementsAsTagsToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: extractEndorsementsAsTags,
     getValueFromRecipeOverride: (recipe: any) => {
@@ -124,9 +123,8 @@ export const EXTRACT_ENDORSEMENTS_AS_TAGS: RecipeField = {
 const extractOwnershipPath = 'source.config.extract_ownership';
 export const EXTRACT_OWNERSHIP: RecipeField = {
     name: 'extract_ownership',
-    label: 'Extract Ownership',
-    tooltip:
-        'Extract Owner Metadata defined inside PowerBI. Admin API access is required if this setting is enabled. Note that enabling this may overwrite owners that you add inside DataHub.',
+    label: 'ingest.powerBI.label.extractOwnership',
+    tooltip: 'ingest.powerBI.powerBIExtractOwnershipToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: extractOwnershipPath,
     getValueFromRecipeOverride: (recipe: any) => {
@@ -142,14 +140,13 @@ export const EXTRACT_OWNERSHIP: RecipeField = {
 const workspaceIdAllowFieldPath = 'source.config.workspace_id_pattern.allow';
 export const WORKSPACE_ID_ALLOW: RecipeField = {
     name: 'workspace_id_pattern.allow',
-    label: 'Allow Patterns',
-    tooltip:
-        'Only include specific Workspaces by providing the unique id of a Workspace, or a Regular Expression (REGEX). If not provided, all Workspaces will be included.',
+    label: 'ingest.recipeForms.label.allowPatterns',
+    tooltip: 'ingest.powerBI.powerBIAllowPatternToolTip',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: workspaceIdAllowFieldPath,
     rules: null,
-    section: 'Workspaces',
+    section: 'ingest.powerBI.section.workspaces',
     placeholder: '4bd10256-e999-45dd-8e56-571c77153a5f',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, workspaceIdAllowFieldPath),
@@ -158,14 +155,13 @@ export const WORKSPACE_ID_ALLOW: RecipeField = {
 const workspaceIdDenyFieldPath = 'source.config.workspace_id_pattern.deny';
 export const WORKSPACE_ID_DENY: RecipeField = {
     name: 'workspace_id_pattern.deny',
-    label: 'Deny Patterns',
-    tooltip:
-        'Exclude specific Workspaces by providing the unique id of a Workspace, or a Regular Expression (REGEX). If not provided, all Workspaces will be included. Deny patterns always take precendence over Allow patterns.',
+    label: 'ingest.recipeForms.label.denyPatterns',
+    tooltip: 'ingest.powerBI.powerBIDenyPatternToolTip',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: workspaceIdDenyFieldPath,
     rules: null,
-    section: 'Workspaces',
+    section: 'ingest.powerBI.section.workspaces',
     placeholder: '4bd10256-e999-45dd-8e56-571c77153a5f',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, workspaceIdDenyFieldPath),

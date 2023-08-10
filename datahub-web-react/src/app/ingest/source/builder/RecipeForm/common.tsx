@@ -96,12 +96,12 @@ export function setDateValueOnRecipe(recipe: any, value: Moment | undefined, fie
 const databaseAllowFieldPath = 'source.config.database_pattern.allow';
 export const DATABASE_ALLOW: RecipeField = {
     name: 'database_pattern.allow',
-    label: 'Allow Patterns',
+    label: 'ingest.recipeForms.label.allowPatterns',
     tooltip:
         'Only include specific Databases by providing the name of a Database, or a Regular Expression (REGEX). If not provided, all Databases will be included.',
     placeholder: 'database_name',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: databaseAllowFieldPath,
     rules: null,
     section: 'Databases',
@@ -112,12 +112,12 @@ export const DATABASE_ALLOW: RecipeField = {
 const databaseDenyFieldPath = 'source.config.database_pattern.deny';
 export const DATABASE_DENY: RecipeField = {
     name: 'database_pattern.deny',
-    label: 'Deny Patterns',
+    label: 'ingest.recipeForms.label.denyPatterns',
     tooltip:
         'Exclude specific Databases by providing the name of a Database, or a Regular Expression (REGEX). If not provided, all Databases will be included. Deny patterns always take precedence over Allow patterns.',
     placeholder: 'database_name',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: databaseDenyFieldPath,
     rules: null,
     section: 'Databases',
@@ -128,14 +128,14 @@ export const DATABASE_DENY: RecipeField = {
 const dashboardAllowFieldPath = 'source.config.dashboard_pattern.allow';
 export const DASHBOARD_ALLOW: RecipeField = {
     name: 'dashboard_pattern.allow',
-    label: 'Allow Patterns',
+    label: 'ingest.recipeForms.label.allowPatterns',
     tooltip:
         'Only include specific Dashboards by providing the name of a Dashboard, or a Regular Expression (REGEX). If not provided, all Dashboards will be included.',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: dashboardAllowFieldPath,
     rules: null,
-    section: 'Dashboards',
+    section: 'ingest.recipeForms.section.dashboards',
     placeholder: 'my_dashboard',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, dashboardAllowFieldPath),
@@ -144,14 +144,14 @@ export const DASHBOARD_ALLOW: RecipeField = {
 const dashboardDenyFieldPath = 'source.config.dashboard_pattern.deny';
 export const DASHBOARD_DENY: RecipeField = {
     name: 'dashboard_pattern.deny',
-    label: 'Deny Patterns',
+    label: 'ingest.recipeForms.label.denyPatterns',
     tooltip:
         'Exclude specific Dashboards by providing the name of a Dashboard, or a Regular Expression (REGEX). If not provided, all Dashboards will be included. Deny patterns always take precendence over Allow patterns.',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: dashboardDenyFieldPath,
     rules: null,
-    section: 'Dashboards',
+    section: 'ingest.recipeForms.section.dashboards',
     placeholder: 'my_dashboard',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, dashboardDenyFieldPath),
@@ -160,13 +160,13 @@ export const DASHBOARD_DENY: RecipeField = {
 const schemaAllowFieldPath = 'source.config.schema_pattern.allow';
 export const SCHEMA_ALLOW: RecipeField = {
     name: 'schema_pattern.allow',
-    label: 'Allow Patterns',
+    label: 'ingest.recipeForms.label.allowPatterns',
     // TODO: Change this to FULLY qualified names once the allow / deny consistency track is completed.
     tooltip:
         'Only include specific Schemas by providing the name of a Schema, or a Regular Expression (REGEX) to include specific Schemas. If not provided, all Schemas inside allowed Databases will be included.',
     placeholder: 'company_schema',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: schemaAllowFieldPath,
     rules: null,
     section: 'Schemas',
@@ -177,12 +177,12 @@ export const SCHEMA_ALLOW: RecipeField = {
 const schemaDenyFieldPath = 'source.config.schema_pattern.deny';
 export const SCHEMA_DENY: RecipeField = {
     name: 'schema_pattern.deny',
-    label: 'Deny Patterns',
+    label: 'ingest.recipeForms.label.denyPatterns',
     tooltip:
         'Exclude specific Schemas by providing the name of a Schema, or a Regular Expression (REGEX). If not provided, all Schemas inside allowed Databases will be included. Deny patterns always take precedence over Allow patterns.',
     placeholder: 'company_schema',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: schemaDenyFieldPath,
     rules: null,
     section: 'Schemas',
@@ -193,15 +193,15 @@ export const SCHEMA_DENY: RecipeField = {
 const tableAllowFieldPath = 'source.config.table_pattern.allow';
 export const TABLE_ALLOW: RecipeField = {
     name: 'table_pattern.allow',
-    label: 'Allow Patterns',
+    label: 'ingest.recipeForms.label.allowPatterns',
     tooltip:
         'Only include Tables with particular names by providing the fully qualified name of a Table, or a Regular Expression (REGEX). If not provided, all Tables inside allowed Databases and Schemas will be included in ingestion.',
     placeholder: 'database_name.company_schema.table_name',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: tableAllowFieldPath,
     rules: null,
-    section: 'Tables',
+    section: 'ingest.recipeForms.section.tables',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, tableAllowFieldPath),
 };
@@ -209,15 +209,15 @@ export const TABLE_ALLOW: RecipeField = {
 const tableDenyFieldPath = 'source.config.table_pattern.deny';
 export const TABLE_DENY: RecipeField = {
     name: 'table_pattern.deny',
-    label: 'Deny Patterns',
+    label: 'ingest.recipeForms.label.denyPatterns',
     tooltip:
         'Exclude Tables with particular names by providing the fully qualified name of a Table, or a Regular Expression (REGEX). If not provided, all Tables inside allowed Databases and Schemas will be included in ingestion. Deny patterns always take precedence over Allow patterns.',
     placeholder: 'database_name.company_schema.table_name',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: tableDenyFieldPath,
     rules: null,
-    section: 'Tables',
+    section: 'ingest.recipeForms.section.tables',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, tableDenyFieldPath),
 };
@@ -225,12 +225,12 @@ export const TABLE_DENY: RecipeField = {
 const viewAllowFieldPath = 'source.config.view_pattern.allow';
 export const VIEW_ALLOW: RecipeField = {
     name: 'view_pattern.allow',
-    label: 'Allow Patterns',
+    label: 'ingest.recipeForms.label.allowPatterns',
     tooltip:
         'Only include Views with particular names by providing the fully qualified name of a View, or a Regular Expression (REGEX). If not provided, all Views inside allowed Databases and Schemas will be included in ingestion.',
     placeholder: 'database_name.company_schema.view_name',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: viewAllowFieldPath,
     rules: null,
     section: 'Views',
@@ -241,12 +241,12 @@ export const VIEW_ALLOW: RecipeField = {
 const viewDenyFieldPath = 'source.config.view_pattern.deny';
 export const VIEW_DENY: RecipeField = {
     name: 'view_pattern.deny',
-    label: 'Deny Patterns',
+    label: 'ingest.recipeForms.label.denyPatterns',
     tooltip:
         'Exclude Views with particular names by providing the fully qualified name of a View, or a Regular Expression (REGEX). If not provided, all Views inside allowed Databases and Schemas will be included in ingestion. Deny patterns always take precedence over Allow patterns.',
     placeholder: 'database_name.company_schema.view_name',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: viewDenyFieldPath,
     rules: null,
     section: 'Views',
@@ -259,7 +259,7 @@ const includeLineageFieldPathA = 'source.config.include_table_lineage';
 const includeLineageFieldPathB = 'source.config.include_view_lineage';
 export const INCLUDE_LINEAGE: RecipeField = {
     name: 'include_lineage',
-    label: 'Include Lineage',
+    label: 'ingest.recipeForms.label.includeLineage',
     tooltip: 'Include Table and View lineage in your ingestion.',
     type: FieldType.BOOLEAN,
     fieldPath: includeLineageFieldPathA,

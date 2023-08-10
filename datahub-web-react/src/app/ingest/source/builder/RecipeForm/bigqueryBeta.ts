@@ -2,8 +2,8 @@ import { FieldType, RecipeField, setListValuesOnRecipe } from './common';
 
 export const BIGQUERY_BETA_PROJECT_ID: RecipeField = {
     name: 'credential.project_id',
-    label: 'Project ID',
-    tooltip: "The Project ID, which can be found in your service account's JSON Key (project_id)",
+    label: 'ingest.recipeForms.label.projectID',
+    tooltip: 'ingest.bigqueryBeta.bigqueryBetaProjectIdToolTip',
     placeholder: 'my-project-123',
     type: FieldType.TEXT,
     fieldPath: 'source.config.credential.project_id',
@@ -14,14 +14,14 @@ export const BIGQUERY_BETA_PROJECT_ID: RecipeField = {
 const projectIdAllowFieldPath = 'source.config.project_id_pattern.allow';
 export const PROJECT_ALLOW: RecipeField = {
     name: 'project_id_pattern.allow',
-    label: 'Allow Patterns',
-    tooltip: 'Use regex here to filter for project IDs.',
+    label: 'ingest.recipeForms.label.allowPatterns',
+    tooltip: 'ingest.bigqueryBeta.bigqueryBetaProjectAllowToolTip',
     placeholder: '^my_db$',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: projectIdAllowFieldPath,
     rules: null,
-    section: 'Projects',
+    section: 'ingest.bigqueryBeta.section.projects',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, projectIdAllowFieldPath),
 };
@@ -29,14 +29,14 @@ export const PROJECT_ALLOW: RecipeField = {
 const projectIdDenyFieldPath = 'source.config.project_id_pattern.deny';
 export const PROJECT_DENY: RecipeField = {
     name: 'project_id_pattern.deny',
-    label: 'Deny Patterns',
-    tooltip: 'Use regex here to filter for project IDs.',
+    label: 'ingest.recipeForms.label.denyPatterns',
+    tooltip: 'ingest.bigqueryBeta.bigqueryBetaProjectDenyToolTip',
     placeholder: '^my_db$',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: projectIdDenyFieldPath,
     rules: null,
-    section: 'Projects',
+    section: 'ingest.bigqueryBeta.section.projects',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, projectIdDenyFieldPath),
 };
@@ -44,14 +44,14 @@ export const PROJECT_DENY: RecipeField = {
 const datasetAllowFieldPath = 'source.config.dataset_pattern.allow';
 export const DATASET_ALLOW: RecipeField = {
     name: 'dataset_pattern.allow',
-    label: 'Allow Patterns',
-    tooltip: 'Use regex here.',
+    label: 'ingest.recipeForms.label.allowPatterns',
+    tooltip: 'ingest.bigqueryBeta.bigqueryBetaDatasetsAllowToolTip',
     placeholder: '^my_db$',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: datasetAllowFieldPath,
     rules: null,
-    section: 'Datasets',
+    section: 'ingest.bigqueryBeta.section.datasets',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, datasetAllowFieldPath),
 };
@@ -59,14 +59,14 @@ export const DATASET_ALLOW: RecipeField = {
 const datasetDenyFieldPath = 'source.config.dataset_pattern.deny';
 export const DATASET_DENY: RecipeField = {
     name: 'dataset_pattern.deny',
-    label: 'Deny Patterns',
-    tooltip: 'Use regex here.',
+    label: 'ingest.recipeForms.label.denyPatterns',
+    tooltip: 'ingest.bigqueryBeta.bigqueryBetaDatasetsDenyToolTip',
     placeholder: '^my_db$',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: datasetDenyFieldPath,
     rules: null,
-    section: 'Datasets',
+    section: 'ingest.bigqueryBeta.section.datasets',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, datasetDenyFieldPath),
 };

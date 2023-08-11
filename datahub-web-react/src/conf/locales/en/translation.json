@@ -1,5 +1,6 @@
 {
   "common": {
+    "pinned": "Pinned",
     "dashboards": "Dashboards",
     "container": "Container",
     "changed": "Changed",
@@ -782,6 +783,14 @@
     "aNameForYourToken": "A name for your token",
     "anOptionalDescriptionForYourNewToken": "An optional description for your new token.",
     "aDescriptionForYourToken": "A description for your token"
+  },
+  "home": {
+    "exploreYourData": "Explore your data",
+    "noMetadata": "No Metadata Found 😢",
+    "welcomeBack": "Welcome back",
+    "trySearchingFor": "Try searching for",
+    "scheduleDemo": "Schedule a Demo of Managed Datahub",
+    "scheduleDemoDescription_component": "DataHub is already the industries #1 Open Source Data Catalog. <styledLink>Schedule a demo</styledLink> of Acryl DataHub to see the advanced features that take it to the next level!"
   },
   "search": {
     "searchError": "Failed to complete search",

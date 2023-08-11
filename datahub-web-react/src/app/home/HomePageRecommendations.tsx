@@ -21,6 +21,7 @@ import {
     HOME_PAGE_PLATFORMS_ID,
 } from '../onboarding/config/HomePageOnboardingConfig';
 import { useUpdateEducationStepIdsAllowlist } from '../onboarding/useUpdateEducationStepIdsAllowlist';
+import { useTranslation } from 'react-i18next';
 
 const PLATFORMS_MODULE_ID = 'Platforms';
 const MOST_POPULAR_MODULE_ID = 'HighUsageEntities';
@@ -38,9 +39,9 @@ const RecommendationContainer = styled.div`
 `;
 
 const RecommendationTitle = styled(Typography.Title)`
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
 `;
 
 const ThinDivider = styled(Divider)`
@@ -100,6 +101,7 @@ const simpleViewEntityTypes = [
 export const HomePageRecommendations = ({ user }: Props) => {
     // Entity Types
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const browseEntityList = entityRegistry.getBrowseEntityTypes();
     const userUrn = user?.urn;
 
@@ -174,7 +176,7 @@ export const HomePageRecommendations = ({ user }: Props) => {
                             </DomainsRecomendationContainer>
                         </>
                     )}
-                    <RecommendationTitle level={4}>Explore your data</RecommendationTitle>
+                    <RecommendationTitle level={4}>{t('home.exploreYourData')}</RecommendationTitle>
                     <ThinDivider />
                     {hasIngestedMetadata ? (
                         <BrowseCardContainer>
@@ -195,7 +197,7 @@ export const HomePageRecommendations = ({ user }: Props) => {
                         </BrowseCardContainer>
                     ) : (
                         <NoMetadataContainer>
-                            <NoMetadataEmpty description="No Metadata Found 😢" />
+                            <NoMetadataEmpty description={t('home.noMetadata')} />
                         </NoMetadataContainer>
                     )}
                 </RecommendationContainer>

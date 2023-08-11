@@ -92,7 +92,7 @@ export const RunsTab = () => {
                       <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
                           {Icon && <Icon style={{ color }} />}
                           <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                            {<Trans i18nKey={text} /> || 'N/A'}
+                            {<Trans i18nKey={text} /> || t('common.na')}
                           </Typography.Text>
                       </div>
                   </>

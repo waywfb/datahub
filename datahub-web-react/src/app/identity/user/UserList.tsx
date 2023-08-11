@@ -24,6 +24,7 @@ import {
 import { useUpdateEducationStepIdsAllowlist } from '../../onboarding/useUpdateEducationStepIdsAllowlist';
 import { DEFAULT_USER_LIST_PAGE_SIZE, removeUserFromListUsersCache } from './cacheUtils';
 import { useUserContext } from '../../context/useUserContext';
+import { useTranslation } from 'react-i18next';
 
 const UserContainer = styled.div``;
 
@@ -41,6 +42,7 @@ const UserPaginationContainer = styled.div`
 
 export const UserList = () => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const location = useLocation();
     const params = QueryString.parse(location.search, { arrayFormat: 'comma' });
     const paramsQuery = (params?.query as string) || undefined;
@@ -108,8 +110,8 @@ export const UserList = () => {
     return (
         <>
             <OnboardingTour stepIds={[USERS_INTRO_ID, USERS_SSO_ID, USERS_INVITE_LINK_ID, USERS_ASSIGN_ROLE_ID]} />
-            {!usersData && loading && <Message type="loading" content="Loading users..." />}
-            {error && <Message type="error" content="Failed to load users! An unexpected error occurred." />}
+            {!usersData && loading && <Message type="loading" content={t('common.loading') + '...'} />}
+            {error && <Message type="error" content={t('crud.error.loadWithName', { name: t('common.users').toLowerCase() })} />}
             <UserContainer>
                 <TabToolbar>
                     <div>
@@ -119,12 +121,12 @@ export const UserList = () => {
                             type="text"
                             onClick={() => setIsViewingInviteToken(true)}
                         >
-                            <UsergroupAddOutlined /> Invite Users
+                            <UsergroupAddOutlined /> {t('user.inviteUser')}
                         </Button>
                     </div>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText="Search users..."
+                        placeholderText={t('placeholder.searchForWithName', { name: t('common.users').toLowerCase() })}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,
@@ -143,7 +145,7 @@ export const UserList = () => {
                 <UserStyledList
                     bordered
                     locale={{
-                        emptyText: <Empty description="No Users!" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                        emptyText: <Empty description={t('user.noUser')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
                     }}
                     dataSource={users}
                     renderItem={(item: any) => (

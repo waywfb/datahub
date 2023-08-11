@@ -175,7 +175,7 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
                         <Col>
                             {isExternalGroup && (
                                 <Tooltip
-                                    title={t('group.acantEditBecauseExternalGroup', { externalGroupType })}
+                                    title={t('group.cantEditBecauseExternalGroup', { externalGroupType })}
                                 >
                                     <LockOutlined />
                                 </Tooltip>

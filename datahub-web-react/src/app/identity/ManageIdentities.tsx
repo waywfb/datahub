@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { RoutedTabs } from '../shared/RoutedTabs';
 import { GroupList } from './group/GroupList';
 import { UserList } from './user/UserList';
+import { useTranslation } from 'react-i18next';
 
 const PageContainer = styled.div`
     padding-top: 20px;
@@ -42,6 +43,7 @@ enum TabType {
 const ENABLED_TAB_TYPES = [TabType.Users, TabType.Groups];
 
 export const ManageIdentities = () => {
+    const { t } = useTranslation();
     /**
      * Determines which view should be visible: users or groups list.
      */
@@ -50,6 +52,7 @@ export const ManageIdentities = () => {
     const getTabs = () => {
         return [
             {
+                title: t('common.users'),
                 name: TabType.Users,
                 title: t('common.users'),
                 path: TabType.Users.toLocaleLowerCase(),
@@ -59,6 +62,7 @@ export const ManageIdentities = () => {
                 },
             },
             {
+                title: t('common.groups'),
                 name: TabType.Groups,
                 title: t('common.groups'),
                 path: TabType.Groups.toLocaleLowerCase(),
@@ -76,9 +80,9 @@ export const ManageIdentities = () => {
     return (
         <PageContainer>
             <PageHeaderContainer>
-                <PageTitle level={3}>Manage Users & Groups</PageTitle>
+                <PageTitle level={3}>{t('settings.manageWithName', { name: t('settings.usersAndGroups') })}</PageTitle>
                 <Typography.Paragraph type="secondary">
-                    View your DataHub users & groups. Take administrative actions.
+                    {t('settings.manageIdentitiesDescription')}
                 </Typography.Paragraph>
             </PageHeaderContainer>
             <Content>

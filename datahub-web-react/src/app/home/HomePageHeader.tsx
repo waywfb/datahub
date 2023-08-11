@@ -65,7 +65,7 @@ const NavGroup = styled.div`
 `;
 
 const SuggestionsContainer = styled.div`
-    margin: 0px 30px;
+    margin: 0 30px;
     max-width: 650px;
     width: 50vw;
     display: flex;
@@ -91,7 +91,7 @@ const SuggestionTagContainer = styled.div`
 `;
 
 const SuggestionButton = styled(Button)`
-    padding: 0px;
+    padding: 0;
     margin-bottom: 16px;
 `;
 
@@ -116,8 +116,8 @@ const SearchBarContainer = styled.div`
 
 const ExploreAllButton = styled(Button)`
     && {
-        padding: 0px;
-        margin: 0px;
+        padding: 0;
+        margin: 0;
         height: 16px;
     }
 `;
@@ -126,7 +126,7 @@ const StyledRightOutlined = styled(RightOutlined)`
     &&& {
         font-size: 7px;
         margin-left: 4px;
-        padding: 0px;
+        padding: 0;
     }
 `;
 
@@ -144,7 +144,7 @@ function sortRandom() {
 export const HomePageHeader = () => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
-    const { t, i18n } = useTranslation(['theme']);
+    const { t, i18n } = useTranslation(['translation', 'theme']);
     const [getAutoCompleteResultsForMultiple, { data: suggestionsData }] = useGetAutoCompleteMultipleResultsLazyQuery();
     const userContext = useUserContext();
     const themeConfig = useTheme();
@@ -237,7 +237,7 @@ export const HomePageHeader = () => {
                 <WelcomeText>
                     {!!user && (
                         <>
-                            Welcome back, <b>{entityRegistry.getDisplayName(EntityType.CorpUser, user)}</b>.
+                            {t('home.welcomeBack')}, <b>{entityRegistry.getDisplayName(EntityType.CorpUser, user)}</b>.
                         </>
                     )}
                 </WelcomeText>
@@ -278,9 +278,9 @@ export const HomePageHeader = () => {
                     {searchResultsToShow && searchResultsToShow.length > 0 && (
                         <SuggestionsContainer>
                             <SuggestionsHeader>
-                                <SuggestedQueriesText strong>Try searching for</SuggestedQueriesText>
+                                <SuggestedQueriesText strong>{t('home.trySearchingFor')}</SuggestedQueriesText>
                                 <ExploreAllButton type="link" onClick={onClickExploreAll}>
-                                    Explore all <StyledRightOutlined />
+                                    {t('search.exploreAll')} <StyledRightOutlined />
                                 </ExploreAllButton>
                             </SuggestionsHeader>
                             <SuggestionTagContainer>

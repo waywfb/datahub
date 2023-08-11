@@ -23,6 +23,7 @@ import {
 } from '../shared/SidebarStyledComponents';
 import GroupMembersSideBarSection from './GroupMembersSideBarSection';
 import { useUserContext } from '../../context/useUserContext';
+import { useTranslation } from 'react-i18next';
 
 const { Paragraph } = Typography;
 
@@ -177,7 +178,7 @@ export default function GroupInfoSidebar({ sideBarData, refetch }: Props) {
                         </Col>
                         <Col>
                             {isExternalGroup && (
-                                <Tooltip title={t('group.acantEditBecauseExternalGroup', { externalGroupType })}>
+                                <Tooltip title={t('group.cantEditBecauseExternalGroup', { externalGroupType })}>
                                     <LockOutlined />
                                 </Tooltip>
                             )}

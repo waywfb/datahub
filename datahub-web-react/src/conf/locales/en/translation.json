@@ -18,6 +18,8 @@
     "notScheduled": "Not scheduled",
     "runs": "Runs",
     "run": "Run",
+    "businessGlossary": "Business Glossary",
+    "pinned": "Pinned",
     "dashboards": "Dashboards",
     "container": "Container",
     "changed": "Changed",
@@ -249,12 +251,19 @@
     "noAdditionalDetails": "No additional details",
     "connection": "Connection"
   },
+  "glossary": {
+    "emptyGlossary": "Empty Glossary",
+    "emptyGlossaryDescription": "Create Terms and Term Groups to organize data assets using a shared vocabulary."
+  },
   "term": {
     "noTermNorGroup": "No Terms or Term Groups"
   },
   "group": {
+    "groupId": "Group Id",
+    "groupIdDescription": "By default, a random UUID will be generated to uniquely identify this group. If you'd like to provide a custom id instead to more easily keep track of this group, you may provide it here. Be careful, you cannot easily change the group id after creation.",
+    "noGroups": "No Groups",
     "removeFromGroup": "Remove from Group",
-    "acantEditBecauseExternalGroup": "Membership for this group cannot be edited in DataHub as it originates from {{externalGroupType}}",
+    "cantEditBecauseExternalGroup": "Membership for this group cannot be edited in DataHub as it originates from {{externalGroupType}}",
     "noGroupOwnersAdded": "No group owners added yet",
     "removeUserConfirm": "Are you sure you want to remove this user from the group?",
     "noMemberInGroup": "No members in this group yet."
@@ -443,6 +452,25 @@
       "usersIntro_component": "<paraph>Welcome to DataHub <bold>Users</bold>!</paraph><paraph>There are a few different ways to onboard new <bold>Users</bold> onto DataHub.</paraph>"
     }
   },
+  "authentification": {
+    "resetUserPassword": "Reset User Password",
+    "resetCredentialSuccess": "Generated new link to reset credentials",
+    "resetCredentialError": "Failed to create new link to reset credentials",
+    "shareResetLink": "Share reset link",
+    "shareResetLinkDescription_component": "Share this reset link to reset the credentials for {{username}}. <bold>This link will expire in 24 hours.</bold>",
+    "newLinkMustBeGenerated": "A new link must be generated",
+    "newLinkMustBeGeneratedDescription": "You cannot view any old reset links. Please generate a new one below.",
+    "generateNewLink": "Generate a new link",
+    "generateNewLinkDescription_component": " Generate a new reset link! Note, any old links will <bold>cease to be active</bold>.",
+    "generatedNewInviteLink": "Generated new invite link",
+    "generateNewInviteLinkError": "Failed to create Invite Token for role {{roleName}}",
+    "shareInviteLink": "Share Invite Link",
+    "copyInviteLink": "Copy invite link.",
+    "copiedInviteLinkToClipboard": "Copied invite link to clipboard",
+    "generateNewLinkTitle": "Generate a new link. Any old links will no longer be valid.",
+    "copyInviteLinkDescription": "Copy an invite link to send to your users. When they join, users will be automatically assigned to the selected role.",
+    "userHasLoggedIn": "The user has logged in."
+  },
   "token": {
     "accessToken": "Access Tokens",
     "personal": "Personal",
@@ -482,7 +510,7 @@
     "assignedRoleToUsers": "Assigned Role to users!",
     "noAssignedUsers": "No assigned users",
     "assignRoleToUsers": "Assign the {{role}} role to users",
-    "noRoles": "No Roles!",
+    "noRoles": "No Roles",
     "nameForNewPolicy": "A name for your new policy.",
     "typeOfPolicyToCreate": "The type of policy you would like to create.",
     "typeOfPolicyDescription_component": "The <bold>Platform</bold> policy type allows you to assign top-level DataHub Platform privileges to users.These include managing users and groups, creating policies, viewing analytics dashboards and more.<br /><br />The <bold>Metadata</bold> policy type allows you to assign metadata privileges to users. These include the ability to manipulate metadata like ownership, tags, documentation associated with Datasets, Charts, Dashboards, & more.",
@@ -1175,12 +1203,14 @@
     "settingsTitle": "Manage your DataHub settings"
   },
   "settings": {
+    "manageWithName": "Manage {{name}}",
     "noOwnershipTypesFound": "No Ownership Types found!",
     "manageYourSettings": "Manage your DataHub settings.",
     "usersAndGroups": "Users & Groups",
     "myViews": "My Views",
     "ownershipType": "Ownership Type",
     "ownershipTypes": "Ownership Types",
+    "manageIdentitiesDescription": "View your DataHub users & groups. Take administrative actions.",
     "manageOwnershipTypeDescription": "Create, edit, and remove custom Ownership Types.",
     "manageYourAppearanceSettings": "Manage your appearance settings.",
     "showSimplifiedHomepage": "Show simplified homepage",
@@ -1190,6 +1220,14 @@
     "aNameForYourToken": "A name for your token",
     "anOptionalDescriptionForYourNewToken": "An optional description for your new token.",
     "aDescriptionForYourToken": "A description for your token"
+  },
+  "home": {
+    "exploreYourData": "Explore your data",
+    "noMetadata": "No Metadata Found 😢",
+    "welcomeBack": "Welcome back",
+    "trySearchingFor": "Try searching for",
+    "scheduleDemo": "Schedule a Demo of Managed Datahub",
+    "scheduleDemoDescription_component": "DataHub is already the industries #1 Open Source Data Catalog. <styledLink>Schedule a demo</styledLink> of Acryl DataHub to see the advanced features that take it to the next level!"
   },
   "search": {
     "searchError": "Failed to complete search",
@@ -1258,6 +1296,8 @@
     }
   },
   "form": {
+    "enterCorrectGroupName": "Please enter correct Group name",
+    "enterAGroupName": "Enter a Group name",
     "altText": "Alt Text",
     "enterANameWithName": "Enter a {{name}} name.",
     "enterAValidEntityId": "Please enter a valid entity id",
@@ -1269,6 +1309,8 @@
     "validEmailRequired": "Please enter valid email"
   },
   "placeholder": {
+    "groupName": "A name for your group",
+    "groupDescription": "A description for your group",
     "revenueDashboards": "Revenue Dashboards",
     "shortLabelForLink": "A short label for this link",
     "filterWithName": "Filter {{name}}...",
@@ -1308,6 +1350,13 @@
   },
   "user": {
     "noUser": "No user",
+    "inviteUser": "Invite Users",
+    "assignRoleTitle": "Would you like to assign the role {{roleName}} to user {{username}}",
+    "removeRoleTitle": "Would you like to remove {{username}}'s existing role?",
+    "assignRoleSuccess": "Assigned role {{roleName}} to user {{username}}!",
+    "removeRoleSuccess": "Removed role from user {{username}}!",
+    "assignRoleError": "Failed to assign role {{roleName}} to user {{username}}",
+    "removeRoleError": "Failed to remove role from {{username}}",
     "error": {
       "fetchFromCache": "Could not fetch logged in user from cache.",
       "notFound": "Could not find logged in user."

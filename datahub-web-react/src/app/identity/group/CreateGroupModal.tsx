@@ -37,7 +37,7 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
                         type: EventType.CreateGroupEvent,
                     });
                     message.success({
-                        content: `Created group!`,
+                        content: t('crud.success.createWithName', { name: t('common.group')}),
                         duration: 3,
                     });
                     // TODO: Get a full corp group back from create endpoint.
@@ -53,7 +53,7 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to create group!: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.createWithName', { name: t('common.group')})}: \n ${e.message || ''}`, duration: 3 });
             })
             .finally(() => {
                 setStagedName('');
@@ -69,7 +69,7 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
 
     return (
         <Modal
-            title="Create new group"
+            title={t('crud.createWithName', { name: t('common.group')})}
             visible
             onCancel={onClose}
             footer={
@@ -98,7 +98,7 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
                         rules={[
                             {
                                 required: true,
-                                message: 'Enter a Group name.',
+                                message: t('form.enterAGroupName'),
                             },
                             { whitespace: true },
                             { min: 1, max: 50 },
@@ -106,7 +106,7 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
                         hasFeedback
                     >
                         <Input
-                            placeholder="A name for your group"
+                            placeholder={t('placeholder.groupName')}
                             value={stagedName}
                             onChange={(event) => setStagedName(event.target.value)}
                         />
@@ -116,20 +116,17 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
                     <Typography.Paragraph>An optional description for your new group.</Typography.Paragraph>
                     <Form.Item name="description" rules={[{ whitespace: true }, { min: 1, max: 500 }]} hasFeedback>
                         <Input
-                            placeholder="A description for your group"
+                            placeholder={t('placeholder.groupDescription')}
                             value={stagedDescription}
                             onChange={(event) => setStagedDescription(event.target.value)}
                         />
                     </Form.Item>
                 </Form.Item>
                 <Collapse ghost>
-                    <Collapse.Panel header={<Typography.Text type="secondary">Advanced</Typography.Text>} key="1">
-                        <Form.Item label={<Typography.Text strong>Group Id</Typography.Text>}>
+                    <Collapse.Panel header={<Typography.Text type="secondary">{t('common.advanced')}</Typography.Text>} key="1">
+                        <Form.Item label={<Typography.Text strong>{t('group.groupId')}</Typography.Text>}>
                             <Typography.Paragraph>
-                                By default, a random UUID will be generated to uniquely identify this group. If
-                                you&apos;d like to provide a custom id instead to more easily keep track of this group,
-                                you may provide it here. Be careful, you cannot easily change the group id after
-                                creation.
+                                {t('group.groupIdDescription')}
                             </Typography.Paragraph>
                             <Form.Item
                                 name="groupId"
@@ -139,7 +136,7 @@ export default function CreateGroupModal({ onClose, onCreate }: Props) {
                                             if (value && validateCustomUrnId(value)) {
                                                 return Promise.resolve();
                                             }
-                                            return Promise.reject(new Error('Please enter correct Group name'));
+                                            return Promise.reject(new Error(t('form.enterCorrectGroupName')));
                                         },
                                     }),
                                 ]}

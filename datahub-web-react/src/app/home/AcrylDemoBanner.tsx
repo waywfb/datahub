@@ -2,6 +2,7 @@ import Link from 'antd/lib/typography/Link';
 import React from 'react';
 import styled from 'styled-components';
 import AcrylLogo from '../../images/acryl-light-mark.svg';
+import { Trans, useTranslation } from 'react-i18next';
 
 const BannerWrapper = styled.div`
     padding: 12px;
@@ -34,22 +35,20 @@ const StyledLink = styled(Link)`
 `;
 
 export default function AcrylDemoBanner() {
+    const { t } = useTranslation();
     return (
         <BannerWrapper>
             <Logo src={AcrylLogo} />
             <TextWrapper>
-                <Title>Schedule a Demo of Managed Datahub</Title>
-                <span>
-                    DataHub is already the industries #1 Open Source Data Catalog.{' '}
-                    <StyledLink
-                        href="https://www.acryldata.io/datahub-sign-up"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Schedule a demo
-                    </StyledLink>{' '}
-                    of Acryl DataHub to see the advanced features that take it to the next level!
-                </span>
+                <Title>{t('home.scheduleDemo')}</Title>
+                    <Trans {...{
+                        i18nKey: 'home.scheduleDemoDescription_component',
+                        components: { styledLink: <StyledLink
+                              href="https://www.acryldata.io/datahub-sign-up"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            /> },
+                    }}/>
             </TextWrapper>
         </BannerWrapper>
     );

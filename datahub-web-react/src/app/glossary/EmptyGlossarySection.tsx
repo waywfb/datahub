@@ -6,6 +6,7 @@ import { EntityType } from '../../types.generated';
 import { useEntityData } from '../entity/shared/EntityContext';
 import CreateGlossaryEntityModal from '../entity/shared/EntityDropdown/CreateGlossaryEntityModal';
 import { useUserContext } from '../context/useUserContext';
+import { useTranslation } from 'react-i18next';
 
 const StyledEmpty = styled(Empty)`
     padding: 80px 40px;
@@ -28,6 +29,7 @@ interface Props {
 }
 
 function EmptyGlossarySection(props: Props) {
+    const { t } = useTranslation();
     const { title, description, refetchForTerms, refetchForNodes } = props;
 
     const [isCreateTermModalVisible, setIsCreateTermModalVisible] = useState(false);
@@ -49,10 +51,10 @@ function EmptyGlossarySection(props: Props) {
                 }
             >
                 <StyledButton disabled={!canCreateGlossaryEntity} onClick={() => setIsCreateTermModalVisible(true)}>
-                    <PlusOutlined /> Add Term
+                    <PlusOutlined /> {t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}
                 </StyledButton>
                 <StyledButton disabled={!canCreateGlossaryEntity} onClick={() => setIsCreateNodeModalVisible(true)}>
-                    <PlusOutlined /> Add Term Group
+                    <PlusOutlined /> {t('crud.addWithName', { name: t('entity.type.GLOSSARY_NODE', { count: 1 }) })}
                 </StyledButton>
             </StyledEmpty>
             {isCreateTermModalVisible && (

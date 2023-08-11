@@ -8,6 +8,7 @@ import { ANTD_GRAY } from '../entity/shared/constants';
 import { SearchBar } from '../search/SearchBar';
 import ClickOutside from '../shared/ClickOutside';
 import { useEntityRegistry } from '../useEntityRegistry';
+import { useTranslation } from 'react-i18next';
 
 const GlossarySearchWrapper = styled.div`
     position: relative;
@@ -17,12 +18,11 @@ const ResultsWrapper = styled.div`
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-    max-height: 380px;
+    //max-height: 380px;
+    max-height: 210px;
     overflow: auto;
     padding: 8px;
     position: absolute;
-    max-height: 210px;
-    overflow: auto;
     width: calc(100% - 24px);
     left: 12px;
     top: 45px;
@@ -45,6 +45,7 @@ const IconWrapper = styled.span`
 `;
 
 function GlossarySearch() {
+    const { t } = useTranslation();
     const [query, setQuery] = useState('');
     const [isSearchBarFocused, setIsSearchBarFocused] = useState(false);
     const entityRegistry = useEntityRegistry();
@@ -68,7 +69,7 @@ function GlossarySearch() {
             <ClickOutside onClickOutside={() => setIsSearchBarFocused(false)}>
                 <SearchBar
                     initialQuery={query || ''}
-                    placeholderText="Search Glossary"
+                    placeholderText={t('placehold.searchWithName', { name: t('common.common.glossary') })}
                     suggestions={[]}
                     hideRecommendations
                     style={{

@@ -1,5 +1,6 @@
 {
   "common": {
+    "businessGlossary": "Business Glossary",
     "pinned": "Pinned",
     "dashboards": "Dashboards",
     "container": "Container",
@@ -230,6 +231,10 @@
     "latest": "Latest",
     "historical": "Historical",
     "noAdditionalDetails": "No additional details"
+  },
+  "glossary": {
+    "emptyGlossary": "Empty Glossary",
+    "emptyGlossaryDescription": "Create Terms and Term Groups to organize data assets using a shared vocabulary."
   },
   "term": {
     "noTermNorGroup": "No Terms or Term Groups"

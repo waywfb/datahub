@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { get } from 'lodash';
+import { Trans } from 'react-i18next';
 import { RecipeField, FieldType, setFieldValueOnRecipe } from './common';
 
 const TipSection = styled.div`
@@ -11,16 +12,31 @@ export const DBT_CLOUD = 'dbt-cloud';
 
 export const DBT_CLOUD_TOKEN: RecipeField = {
     name: 'token',
-    label: 'API Token',
+    label: 'ingest.dbtCloud.label.apiToken',
     tooltip: (
         <span>
             <TipSection>
-                A service account API token for extracting metadata from dbt Cloud APIs. This token must have the
-                privileges required to read metadata (e.g. <b>Metadata Only</b> permissions).
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudApiTokenToolTipOne',
+                        components: {
+                            bold: <strong />,
+                        },
+                    }}
+                />
             </TipSection>
             <TipSection>
-                For more information about dbt service account tokens, check out the docs
-                <a href="missions-for-service-account-tokens">here</a>
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudApiTokenToolTipTwo',
+                        components: {
+                            aLink: (
+                                // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                <a href="missions-for-service-account-tokens" />
+                            ),
+                        },
+                    }}
+                />
             </TipSection>
         </span>
     ),
@@ -36,9 +52,19 @@ export const DBT_CLOUD_ACCOUNT_ID: RecipeField = {
     label: 'ingest.recipeForms.label.accountID',
     tooltip: (
         <span>
-            <TipSection>The ID of the dbt Cloud account to extract metadata for.</TipSection>
             <TipSection>
-                This can be found in the URL of your dbt instance: https://cloud.getdbt.com/#/accounts/ACCOUNT_ID/.
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudAccountIDToolTipOne',
+                    }}
+                />
+            </TipSection>
+            <TipSection>
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudAccountIDToolTipTwo',
+                    }}
+                />
             </TipSection>
         </span>
     ),
@@ -54,10 +80,19 @@ export const DBT_CLOUD_PROJECT_ID: RecipeField = {
     label: 'ingest.recipeForms.label.projectID',
     tooltip: (
         <span>
-            <TipSection>The ID of the dbt Cloud project to extract metadata for.</TipSection>
             <TipSection>
-                This can be found in the URL of your dbt instance:
-                https://cloud.getdbt.com/#/accounts/123/projects/PROJECT_ID.
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudProjectIDToolTipOne',
+                    }}
+                />
+            </TipSection>
+            <TipSection>
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudProjectIDToolTipTwo',
+                    }}
+                />
             </TipSection>
         </span>
     ),
@@ -70,17 +105,29 @@ export const DBT_CLOUD_PROJECT_ID: RecipeField = {
 
 export const DBT_CLOUD_JOB_ID: RecipeField = {
     name: 'job_id',
-    label: 'Job ID',
+    label: 'ingest.dbtCloud.label.jobID',
     tooltip: (
         <span>
             <TipSection>
-                The ID of the dbt Cloud job to extract metadata for. Choose the job that serves as the primary mechanism
-                for updating your production data.
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudJobIDToolTipOne',
+                    }}
+                />
             </TipSection>
-            <TipSection>The Job ID can be found in the URL on the Jobs tab of dbt Cloud.</TipSection>
             <TipSection>
-                Ensure that your job enables documentation generation on each run by enabling &apos;Generate Docs&apos;
-                on dbt Cloud.
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudJobIDToolTipTwo',
+                    }}
+                />
+            </TipSection>
+            <TipSection>
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudJobIDToolTipThree',
+                    }}
+                />
             </TipSection>
         </span>
     ),
@@ -94,8 +141,8 @@ export const DBT_CLOUD_JOB_ID: RecipeField = {
 const includeModelsPath = 'source.config.entities_enabled.models';
 export const INCLUDE_MODELS: RecipeField = {
     name: 'entities_enabled.models',
-    label: 'Include Models',
-    tooltip: 'Whether to include extraction of Models or not.',
+    label: 'ingest.dbtCloud.label.includeModels',
+    tooltip: 'ingest.dbtCloud.dbtCloudIncludeModelsToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: includeModelsPath,
     required: false,
@@ -116,8 +163,8 @@ export const INCLUDE_MODELS: RecipeField = {
 const includeSourcesPath = 'source.config.entities_enabled.sources';
 export const INCLUDE_SOURCES: RecipeField = {
     name: 'entities_enabled.sources',
-    label: 'Include Sources',
-    tooltip: 'Whether to include extraction of Sources or not.',
+    label: 'ingest.dbtCloud.label.includeSources',
+    tooltip: 'ingest.dbtCloud.dbtCloudIncludeSourcesToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: includeSourcesPath,
     required: false,
@@ -138,8 +185,8 @@ export const INCLUDE_SOURCES: RecipeField = {
 const includeSeedsPath = 'source.config.entities_enabled.seeds';
 export const INCLUDE_SEEDS: RecipeField = {
     name: 'entities_enabled.seeds',
-    label: 'Include Seeds',
-    tooltip: 'Whether to include extraction of Seeds or not.',
+    label: 'ingest.dbtCloud.label.includeSeeds',
+    tooltip: 'ingest.dbtCloud.dbtCloudIncludeSeedsToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: includeSeedsPath,
     required: false,
@@ -160,8 +207,8 @@ export const INCLUDE_SEEDS: RecipeField = {
 const includeTestDefinitionsPath = 'source.config.entities_enabled.test_definitions';
 export const INCLUDE_TEST_DEFINITIONS: RecipeField = {
     name: 'entities_enabled.test_definitions',
-    label: 'Include Test Definitions',
-    tooltip: 'Whether to include extraction of Test Definitions or not.',
+    label: 'ingest.dbtCloud.label.includeTestDefinitions',
+    tooltip: 'ingest.dbtCloud.dbtCloudIncludeTestDefinitionsToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: includeTestDefinitionsPath,
     required: false,
@@ -186,8 +233,8 @@ export const INCLUDE_TEST_DEFINITIONS: RecipeField = {
 const includeTestResultsPath = 'source.config.entities_enabled.test_results';
 export const INCLUDE_TEST_RESULTS: RecipeField = {
     name: 'entities_enabled.test_results',
-    label: 'Include Test Results',
-    tooltip: 'Whether to include extraction of Test Results or not.',
+    label: 'ingest.dbtCloud.label.includeTestResults',
+    tooltip: 'ingest.dbtCloud.dbtCloudIncludeTestResultsToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: includeTestResultsPath,
     required: false,
@@ -209,35 +256,32 @@ const nodeAllowFieldPath = 'source.config.node_name_pattern.allow';
 export const NODE_ALLOW: RecipeField = {
     name: 'node_name_pattern.allow',
     label: 'ingest.recipeForms.label.allowPatterns',
-    tooltip:
-        'Only include specific dbt Nodes (resources) by providing their name, or a Regular Expression (REGEX). If not provided, all Nodes will be included.',
+    tooltip: 'ingest.dbtCloud.dbtCloudNodeAllowToolTip',
     placeholder: 'model_name',
     type: FieldType.LIST,
     buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: nodeAllowFieldPath,
     rules: null,
-    section: 'Nodes',
+    section: 'ingest.dbtCloud.section.nodes',
 };
 
 const nodeDenyFieldPath = 'source.config.node_name_pattern.deny';
 export const NODE_DENY: RecipeField = {
     name: 'node_name_pattern.deny',
     label: 'ingest.recipeForms.label.denyPatterns',
-    tooltip:
-        'Exclude specific dbt Nodes (Resources) by providing their name, or a Regular Expression (REGEX). If not provided, all Nodes will be included. Deny patterns always take precedence over Allow patterns.',
+    tooltip: 'ingest.dbtCloud.dbtCloudNodeDenyToolTip',
     placeholder: 'node_name',
     type: FieldType.LIST,
     buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: nodeDenyFieldPath,
     rules: null,
-    section: 'Nodes',
+    section: 'ingest.dbtCloud.section.nodes',
 };
 
 export const METADATA_ENDPOINT: RecipeField = {
     name: 'metadata_endpoint',
-    label: 'Custom Metadata Endpoint URL',
-    tooltip:
-        'A custom URL used for extracting Metadata. By default, this metadata is extracted from https://metadata.cloud.getdbt.com/graphql. In most cases, users should NOT need to provide this value.',
+    label: 'ingest.dbtCloud.label.customMetadataEndpointUrl',
+    tooltip: 'ingest.dbtCloud.dbtCloudCustomMetadataEndpointUrlToolTip',
     placeholder: 'https://metadata.cloud.getdbt.com/graphql',
     type: FieldType.TEXT,
     fieldPath: 'source.config.metadata_endpoint',
@@ -247,9 +291,8 @@ export const METADATA_ENDPOINT: RecipeField = {
 const extractOwnersPath = 'source.config.enable_owner_extraction';
 export const EXTRACT_OWNERS: RecipeField = {
     name: 'extract_owners',
-    label: 'Extract Owners',
-    tooltip:
-        'Try to extract owners from dbt meta properties. Be careful: This can override Owners added by users of DataHub.',
+    label: 'ingest.recipeForms.label.extractOwners',
+    tooltip: 'ingest.dbtCloud.dbtCloudExtractOwnersToolTip',
     type: FieldType.BOOLEAN,
     fieldPath: 'source.config.enable_owner_extraction',
     rules: null,
@@ -264,8 +307,8 @@ export const EXTRACT_OWNERS: RecipeField = {
 
 export const TARGET_PLATFORM: RecipeField = {
     name: 'target_platform',
-    label: 'Data Platform (Connection Type)',
-    tooltip: 'The type of Data Platform that dbt is connected to.',
+    label: 'ingest.dbtCloud.label.dataPlatformConnectionType',
+    tooltip: 'ingest.dbtCloud.dbtCloudDataPlatformConnectionTypeToolTip',
     placeholder: 'Select a Data Platform Type...',
     type: FieldType.SELECT,
     options: [
@@ -283,19 +326,29 @@ export const TARGET_PLATFORM: RecipeField = {
 
 export const TARGET_PLATFORM_INSTANCE: RecipeField = {
     name: 'target_platform_instance',
-    label: 'Data Platform Instance',
+    label: 'ingest.dbtCloud.label.dataPlatformInstance',
     tooltip: (
         <span>
             <TipSection>
-                The DataHub Platform Instance identifier that should be used for the assets extracted from dbt.
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudDataPlatformInstanceToolTipOne',
+                    }}
+                />
             </TipSection>
             <TipSection>
-                This is used to correctly connect the metadata extracted from the Data Platform with that extracted from
-                dbt Cloud.
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudDataPlatformInstanceToolTipTwo',
+                    }}
+                />
             </TipSection>
             <TipSection>
-                Leave this blank if you have not configured a Data Platform Instance when ingesting from the associated
-                Data Platform.
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.dbtCloud.dbtCloudDataPlatformInstanceToolTipThree',
+                    }}
+                />
             </TipSection>
         </span>
     ),

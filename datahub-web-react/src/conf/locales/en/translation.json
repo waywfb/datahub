@@ -246,7 +246,8 @@
     "rowCount": "Row Count",
     "latest": "Latest",
     "historical": "Historical",
-    "noAdditionalDetails": "No additional details"
+    "noAdditionalDetails": "No additional details",
+    "connection": "Connection"
   },
   "term": {
     "noTermNorGroup": "No Terms or Term Groups"
@@ -608,7 +609,145 @@
     }
   },
   "ingest": {
+    "dbtCloud": {
+      "dbtCloudFilterSectionTooltip": "Include or exclude specific dbt Node (resources) from ingestion.",
+      "dbtCloudDataPlatformInstanceToolTipThree": "Leave this blank if you have not configured a Data Platform Instance when ingesting from the associated Data Platform.",
+      "dbtCloudDataPlatformInstanceToolTipTwo": "This is used to correctly connect the metadata extracted from the Data Platform with that extracted from dbt Cloud.",
+      "dbtCloudDataPlatformInstanceToolTipOne": "The DataHub Platform Instance identifier that should be used for the assets extracted from dbt.",
+      "dbtCloudDataPlatformConnectionTypeToolTip": "The type of Data Platform that dbt is connected to.",
+      "dbtCloudExtractOwnersToolTip": "Try to extract owners from dbt meta properties. Be careful: This can override Owners added by users of DataHub.",
+      "dbtCloudCustomMetadataEndpointUrlToolTip": "A custom URL used for extracting Metadata. By default, this metadata is extracted from https://metadata.cloud.getdbt.com/graphql. In most cases, users should NOT need to provide this value.",
+      "dbtCloudNodeDenyToolTip": "Exclude specific dbt Nodes (Resources) by providing their name, or a Regular Expression (REGEX). If not provided, all Nodes will be included. Deny patterns always take precedence over Allow patterns.",
+      "dbtCloudNodeAllowToolTip": "Only include specific dbt Nodes (resources) by providing their name, or a Regular Expression (REGEX). If not provided, all Nodes will be included.",
+      "dbtCloudIncludeTestResultsToolTip": "Whether to include extraction of Test Results or not.",
+      "dbtCloudIncludeTestDefinitionsToolTip": "Whether to include extraction of Test Definitions or not.",
+      "dbtCloudIncludeSeedsToolTip": "Whether to include extraction of Seeds or not.",
+      "dbtCloudIncludeSourcesToolTip": "Whether to include extraction of Sources or not.",
+      "dbtCloudIncludeModelsToolTip": "Whether to include extraction of Models or not.",
+      "dbtCloudJobIDToolTipThree": "Ensure that your job enables documentation generation on each run by enabling 'Generate Docs' on dbt Cloud.",
+      "dbtCloudJobIDToolTipTwo": "The Job ID can be found in the URL on the Jobs tab of dbt Cloud.",
+      "dbtCloudJobIDToolTipOne": "The ID of the dbt Cloud job to extract metadata for. Choose the job that serves as the primary mechanism for updating your production data.",
+      "dbtCloudProjectIDToolTipTwo": "This can be found in the URL of your dbt instance: https://cloud.getdbt.com/#/accounts/123/projects/PROJECT_ID.",
+      "dbtCloudProjectIDToolTipOne": "The ID of the dbt Cloud project to extract metadata for.",
+      "dbtCloudAccountIDToolTipTwo": "This can be found in the URL of your dbt instance: https://cloud.getdbt.com/#/accounts/ACCOUNT_ID/.",
+      "dbtCloudAccountIDToolTipOne": "The ID of the dbt Cloud account to extract metadata for.",
+      "dbtCloudApiTokenToolTipTwo": "For more information about dbt service account tokens, check out the docs <aLink>here</aLink>",
+      "dbtCloudApiTokenToolTipOne": "A service account API token for extracting metadata from dbt Cloud APIs. This token must have the privileges required to read metadata (e.g. <bold>Metadata Only</bold> permissions).",
+      "section": {
+        "nodes": "Nodes"
+      },
+      "label": {
+        "dataPlatformInstance": "Data Platform Instance",
+        "dataPlatformConnectionType": "Data Platform (Connection Type)",
+        "customMetadataEndpointUrl": "Custom Metadata Endpoint URL",
+        "includeTestResults": "Include Test Results",
+        "includeTestDefinitions": "Include Test Definitions",
+        "includeSeeds": "Include Seeds",
+        "includeSources": "Include Sources",
+        "includeModels": "Include Models",
+        "jobID": "Job ID",
+        "apiToken": "API Token"
+      }
+    },
+    "common": {
+      "commonStartTimeToolTip": "Earliest date used when processing audit logs for lineage, usage, and more. Default: Last full day in UTC or last time DataHub ingested usage (if stateful ingestion is enabled). Tip: Set this to an older date (e.g. 1 month ago) to bootstrap your first ingestion run, and then reduce for subsequent runs. Changing this may increase the duration of the extraction process.",
+      "commonSkipPersonalFoldersToolTip": "Whether to skip ingestion of dashboards in personal folders. Setting this to True will only ingest dashboards in the Shared folder space.",
+      "commonExtractOwnersToolTip": "When enabled, extracts ownership from Looker directly. When disabled, ownership is left empty for dashboards and charts.",
+      "commonExtractUsageHistoryToolTip": "Experimental (Subject to breaking change) -- Whether to ingest usage statistics for dashboards. Setting this to True will query looker system activity explores to fetch historical dashboard usage.",
+      "commonGithubRepoToolTip": "Name of your github repo. e.g. repo for <aLink>https://github.com/datahub-project/datahub</aLink> is datahub-project/datahub.",
+      "commonIncludeViewsToolTip": "Extract Views from source.",
+      "commonIncludeTablesToolTip": "Extract Tables from source.",
+      "commonIngestOwnerToolTip": "Ingest Owner from source. Be careful: This cah override Owners added by users of DataHub.",
+      "commonIngestTagsToolTip": "Ingest Tags from the source. Be careful: This can override Tags entered by users of DataHub.",
+      "commonTableLineageModeToolTip": "Which table lineage collector mode to use. Check out <aLink>the documentation</aLink> explaining the difference between the three available modes.",
+      "commonIncludeUpstreamLineageInReportToolTip": "Useful for debugging lineage information. Set to True to see the raw lineage created internally.",
+      "commonEnableStatefulIngestionToolTip": "Remove stale assets from DataHub once they have been deleted in the ingestion source.",
+      "commonEnableColumnProfilingToolTip": "Generate Data Profiles for the Columns in extracted Tables. Enabling this may increase the duration of the extraction process.",
+      "commonEnableTableProfilingToolTip": "Generate Data Profiles for extracted Tables. Enabling this may increase the duration of the extraction process.",
+      "commonIncludeTableLineageToolTip": "Extract Tabel-Level lineage metadata. Enabling this may increase the duration of the extraction process.",
+      "commonIncludeLineageToolTip": "Include Table and View lineage in your ingestion.",
+      "commonViewDenyToolTip": "Exclude Views with particular names by providing the fully qualified name of a View, or a Regular Expression (REGEX). If not provided, all Views inside allowed Databases and Schemas will be included in ingestion. Deny patterns always take precedence over Allow patterns.",
+      "commonViewAllowToolTip": "Only include Views with particular names by providing the fully qualified name of a View, or a Regular Expression (REGEX). If not provided, all Views inside allowed Databases and Schemas will be included in ingestion.",
+      "commonTableDenyToolTip": "Exclude Tables with particular names by providing the fully qualified name of a Table, or a Regular Expression (REGEX). If not provided, all Tables inside allowed Databases and Schemas will be included in ingestion. Deny patterns always take precedence over Allow patterns.",
+      "commonTableAllowToolTip": "Only include Tables with particular names by providing the fully qualified name of a Table, or a Regular Expression (REGEX). If not provided, all Tables inside allowed Databases and Schemas will be included in ingestion.",
+      "commonSchemaDenyToolTip": "Exclude specific Schemas by providing the name of a Schema, or a Regular Expression (REGEX). If not provided, all Schemas inside allowed Databases will be included. Deny patterns always take precedence over Allow patterns.",
+      "commonSchemaAllowToolTip": "Only include specific Schemas by providing the name of a Schema, or a Regular Expression (REGEX) to include specific Schemas. If not provided, all Schemas inside allowed Databases will be included.",
+      "commonDashboardDenyToolTip": "Exclude specific Dashboards by providing the name of a Dashboard, or a Regular Expression (REGEX). If not provided, all Dashboards will be included. Deny patterns always take precendence over Allow patterns.",
+      "commonDashboardAllowToolTip": "Only include specific Dashboards by providing the name of a Dashboard, or a Regular Expression (REGEX). If not provided, all Dashboards will be included.",
+      "commonDatabasesDenyToolTip": "Exclude specific Databases by providing the name of a Database, or a Regular Expression (REGEX). If not provided, all Databases will be included. Deny patterns always take precedence over Allow patterns.",
+      "commonDatabasesAllowToolTip": "Only include specific Databases by providing the name of a Database, or a Regular Expression (REGEX). If not provided, all Databases will be included.",
+      "section": {
+        "views": "Views",
+        "schemas": "Schemas",
+        "databases": "Databases"
+      },
+      "label": {
+        "startTime": "Start Time",
+        "skipPersonalFolders": "Skip Personal Folders",
+        "extractUsageHistory": "Extract Usage History",
+        "includeViews": "Include Views",
+        "includeTables": "Include Tables",
+        "ingestOwner": "Ingest Owner",
+        "ingestTags": "Ingest Tags",
+        "tableLineageMode": "Table Lineage Mode",
+        "includeUpstreamLineageInReport": "Include Upstream Lineage In Report.",
+        "enableStatefulIngestion": "Enable Stateful Ingestion",
+        "enableColumnProfiling": "Enable Column Profiling",
+        "enableTableProfiling": "Enable Table Profiling"
+      }
+    },
+    "lookml": {
+      "lookmlAdvancedSectionTooltip": "In order to ingest LookML data properly, you must either fill out Looker API client information (Base URL, Client ID, Client Secret) or an offline specification of the connection to platform mapping and the project name (Connection To Platform Map, Project Name).",
+      "lookmlConnectionToPlatformMap": "A mapping of Looker connection names to DataHub Data Platform and Database names. This is used to create an accurate picture of the Lineage between LookML models and upstream Data Sources.",
+      "lookmlDefaultDatabaseToolTip": "The Database associated with assets from the Looker connection.",
+      "lookmlPlatformToolTip": "The Data Platform ID in DataHub (e.g. snowflake, bigquery, redshift, mysql, postgres)",
+      "lookmlNameToolTip": "Looker connection name. See <aLink>documentation</aLink> for more details.",
+      "lookmlExtractExternalLineage": "Extract lineage between Looker and the external upstream Data Sources (e.g. Data Warehouses or Databases).",
+      "lookmlProjectName": "The project name within which the LookML files live. See <aLink>this document</aLink> for more details. Required if Looker Base URL is not present.",
+      "lookmlLookerClientSecretToolTip": "A Looker API Client Secret. Required if Looker Base URL is present.",
+      "lookmlLookerClientID": "The Looker API Client ID. Required if Looker Base URL is present.",
+      "lookmlLookerBaseUrlToolTip": "Optional URL to your Looker instance. This is used to generate external URLs for models in your project.",
+      "lookmlGithubDeployKeyToolTipTwo": "Learn how to generate an SSH for your GitHub repository <aLink>here</aLink>.",
+      "lookmlGithubDeployKeyToolTipOne": "An SSH private key that has been provisioned for read access on the GitHub repository where the LookML is defined.",
+      "lookmlGithubRepoToolTip": "The name of the GitHub repository where your LookML is defined.",
+      "buttonLabel": {
+        "addMapping": "Add mapping"
+      },
+      "label": {
+        "connectionToPlatformMap": "Connection To Platform Map",
+        "defaultDatabase": "Default Database",
+        "extractExternalLineage": "Extract External Lineage",
+        "lookmlProjectName": "LookML Project Name",
+        "lookerClientSecret": "Looker Client Secret",
+        "lookerClientID": "Looker Client ID",
+        "lookerBaseUrl": "Looker Base URL",
+        "githubDeployKey": "GitHub Deploy Key"
+      }
+    },
+    "kafka": {
+      "kafkaFilterSectionTooltip": "Filter out data assets based on allow/deny regex patterns we match against. Deny patterns take precedence over allow patterns.",
+      "kafkaTopicDenyToolTip": "Provide an optional Regular Expression (REGEX) to exclude specific Kafka Topic names from ingestion.",
+      "kafkaTopicAllowToolTip": "Provide an optional Regular Expression (REGEX) to include specific Kafka Topic names in ingestion.",
+      "saslMechanismToolTip": "The SASL mechanism used for authentication. This field is required if the selected Security Protocol is SASL based.",
+      "securityProtocolToolTip": "The Security Protocol used for authentication.",
+      "schemaRegistryCredentialsToolTip": "API credentials for the Schema Registry. In Confluent Control Center, you can find these under Schema Registry > API Credentials.",
+      "schemaRegistryURLToolTip": "The URL where the schema Schema Registry is hosted. If provided, DataHub will attempt to extract Avro and Protobuf topic schemas from the registry.",
+      "kafkaBootstrapToolTip": "The ‘host[:port]’ string (or list of ‘host[:port]’ strings) that we should contact to bootstrap initial cluster metadata.",
+      "kafkaPasswordToolTip": "The SASL Password. Required if the Security Protocol is SASL based. In the Confluent Control Center, you can find this in Cluster > Data Integration > API Keys.",
+      "kafkaUsernameToolTip": "The SASL username. Required if the Security Protocol is SASL based. In the Confluent Control Center, you can find this in Cluster > Data Integration > API Keys.",
+      "section": {
+        "filterByTopic": "Filter by Topic"
+      },
+      "label": {
+        "saslMechanism": "SASL Mechanism",
+        "securityProtocol": "Security Protocol",
+        "schemaRegistryCredentials": "Schema Registry Credentials",
+        "schemaRegistryURL": "Schema Registry URL",
+        "bootstrapServers": "Bootstrap Servers"
+      }
+    },
     "bigqueryBeta": {
+      "bigqueryFilterSectionTooltip": "Include or exclude specific Projects, Datasets, Tables and Views from ingestion.",
       "bigqueryBetaDatasetsDenyToolTip": "Use regex here.",
       "bigqueryBetaDatasetsAllowToolTip": "Use regex here.",
       "bigqueryBetaProjectDenyToolTip": "Use regex here to filter for project IDs.",
@@ -620,6 +759,7 @@
       }
     },
     "bigquery": {
+      "bigqueryFilterSectionTooltip": "Include or exclude specific Projects, Datasets, Tables and Views from ingestion.",
       "bigqueryClientIDToolTip": "The Client ID, which can be found in your service account's JSON Key (client_id).",
       "bigqueryClientEmailToolTip": "The Client Email, which can be found in your service account's JSON Key (client_email).",
       "bigqueryPrivateKeyToolTip": "The Private key, which can be found in your service account's JSON Key (private_key).",
@@ -634,12 +774,14 @@
       }
     },
     "hive": {
+      "hiveFilterSectionTooltip": "Include or exclude specific Schemas, Tables and Views from ingestion.",
       "hivePasswordToolTip": "The Hive password for the user.",
       "hiveUsernameToolTip": "The Hive username used to extract metadata.",
       "hiveDatabaseToolTip": "Ingest metadata for a specific Database. If left blank, metadata for all databases will be extracted.",
       "hiveHostPortToolTip": "The host and port where Hive is running. For example, 'hive:9083'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
     },
     "looker": {
+      "lookerFilterSectionTooltip": "Include or exclude specific Dashboard, Charts from Looker ingestion.",
       "lookerDenyDashboardToolTip": "Exclude specific Dashboards by providing the numeric id of a Dashboard, or a Regular Expression (REGEX). If not provided, all Dashboards will be included. Deny patterns always take precendence over Allow patterns.",
       "lookerAllowDashboardToolTip": "Only include specific Dashboards by providing the numeric id of a Dashboard, or a Regular Expression (REGEX). If not provided, all Dashboards will be included.",
       "lookerDenyChartToolTip": "Exclude specific Charts by providing the numeric id of a Chart, or a Regular Expression (REGEX). If not provided, all Charts will be included. Deny patterns always take precendence over Allow patterns.",
@@ -655,26 +797,31 @@
       }
     },
     "mariaDB": {
+      "mariaDBFilterSectionTooltip": "Include or exclude specific Schemas, Tables and Views from ingestion.",
       "mariaDBPasswordToolTip": "The MariaDB password for the user.",
       "mariaDBUsernameToolTip": "The MariaDB username used to extract metadata.",
       "mariaDBHostAndPortToolTip": "The host and port where MariaDB is running. For example, 'mariadb-server:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
     },
     "mssql": {
+      "mssqlFilterSectionTooltip": "Include or exclude specific Schemas, Tables and Views from ingestion.",
       "mssqlPasswordToolTip": "The SQL Server password for the user.",
       "mssqlUsernameToolTip": "The SQL Server username used to extract metadata.",
       "mssqlHostAndPortToolTip": "The host and port where SQL Server is running. For example, 'mssql-server:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
     },
     "mysql": {
+      "mysqlFilterSectionTooltip": "Include or exclude specific Databases, Schemas, Tables and Views from ingestion.",
       "mysqlPasswordToolTip": "The MySQL password for the user.",
       "mysqlUsernameToolTip": "The MySQL username used to extract metadata.",
       "mysqlHostAndPortToolTip": "The host and port where Postgres is running. For example, 'localhost:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
     },
     "postgres": {
+      "postgresFilterSectionTooltip": "Include or exclude specific Schemas, Tables and Views from ingestion.",
       "postgresPasswordToolTip": "The Postgres password for the user.",
       "postgresUsernameToolTip": "The Postgres username used to extract metadata.",
       "postgresHostAndPortToolTip": "The host and port where Postgres is running. For example, 'postgres:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
     },
     "powerBI": {
+      "powerBIFilterSectionTooltip": "Include or exclude specific PowerBI Workspaces from ingestion.",
       "powerBIDenyPatternToolTip": "Exclude specific Workspaces by providing the unique id of a Workspace, or a Regular Expression (REGEX). If not provided, all Workspaces will be included. Deny patterns always take precendence over Allow patterns.",
       "powerBIAllowPatternToolTip": "Only include specific Workspaces by providing the unique id of a Workspace, or a Regular Expression (REGEX). If not provided, all Workspaces will be included.",
       "powerBIExtractOwnershipToolTip": "Extract Owner Metadata defined inside PowerBI. Admin API access is required if this setting is enabled. Note that enabling this may overwrite owners that you add inside DataHub.",
@@ -700,16 +847,19 @@
     },
     "recipeForms": {
       "presto": {
+        "prestoFilterSectionTooltip": "Include or exclude specific Schemas, Tables and Views from ingestion.",
         "prestoPasswordTooTip": "The Presto password for the user.",
         "prestoUsernameToolTip": "The Presto username used to extract metadata.",
         "prestoHostAndPortToolTip": "The host and port where Presto is running. For example, 'presto-server:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
       },
       "redshift": {
+        "redshiftFilterSectionTooltip": "Include or exclude specific Schemas, Tables and Views from ingestion.",
         "redshiftPasswordToolTip": "The password of the username.",
         "redshiftUsernameToolTip": "A Redshift username used to extract metadata.",
         "redshiftHostAndPortToolTip": "The host and port where Redshift is running. For example, 'redshift:5439'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
       },
       "snowFlake": {
+        "snowFlakeFilterSectionTooltip": "Include or exclude specific Databases, Schemas, Tables and Views from ingestion.",
         "snowFlakeRoleToolTip": "The Role to use when extracting metadata from Snowflake.",
         "snowFlakePasswordToolTip": "Snowflake password.",
         "snowFlakeUsernameToolTip": "Snowflake username.",
@@ -740,11 +890,13 @@
         }
       },
       "trino": {
+        "trinoFilterSectionTooltip": "Include or exclude specific Schemas, Tables and Views from ingestion.",
         "trinoPasswordToolTip": "The Trino password for the user.",
         "trinoUsernameToolTip": "The Trino username used to extract metadata.",
         "trinoHostAndPortToolTip": "The host and port where Trino is running. For example, 'trino-server:5432'. Note: this host must be accessible on the network where DataHub is running (or allowed via an IP Allow List, AWS PrivateLink, etc)."
       },
       "unityCatalog": {
+        "unityFilterSectionTooltip": "Include or exclude specific Metastores, Catalogs, Schemas, and Tables from ingestion.",
         "unityTableDenyToolTip": "Exclude specific Tables by providing the fully-qualified name of a Table, or a Regular Expression (REGEX) to exclude specific Tables. If not provided, all Tables will be included. Deny patterns always take precedence over Allow patterns.",
         "unityTableAllowToolTip": "Only include specific Tables by providing the fully-qualified name of a Table, or a Regular Expression (REGEX) to include specific Tables. If not provided, all Tables will be included.",
         "unityCatalogDenyToolTip": "Exclude specific Catalogs by providing the name of a Catalog, or a Regular Expression (REGEX) to exclude specific Catalogs. If not provided, all Catalogs will be included. Deny patterns always take precedence over Allow patterns.",
@@ -772,6 +924,8 @@
         "tables": "Tables"
       },
       "label": {
+        "extractOwners": "Extract Owners",
+        "githubRepo": "GitHub Repo",
         "projectID": "Project ID",
         "includeLineage": "Include Lineage",
         "clientSecret": "Client Secret",
@@ -788,6 +942,7 @@
         "addPatterns": "Add Patterns"
       }
     },
+    "foundInvalidYamlPleaseCheck": "Found invalid YAML. Please check your recipe configuration.",
     "chooseATimezoneForTheSchedule": "Choose a timezone for the schedule.",
     "minuteHourDayMonthDayOfWeek": "$t('common.minute'), $t('common.hour'), $t('common.day'), $t('common.month'), $t('dayOfWeek')",
     "invalidCronSchedule": "Invalid cron schedule. Cron must be of UNIX form",

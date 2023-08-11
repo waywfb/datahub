@@ -5,6 +5,7 @@ import YAML from 'yamljs';
 import { ApiOutlined, FilterOutlined, QuestionCircleOutlined, SettingOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { jsonToYaml } from '../../utils';
 import { CONNECTORS_WITH_TEST_CONNECTION, RecipeSections, RECIPE_FIELDS } from './constants';
 import FormField from './FormField';
@@ -50,13 +51,13 @@ const HeaderTooltipWrapper = styled(QuestionCircleOutlined)`
     cursor: help;
 `;
 
-function getInitialValues(displayRecipe: string, allFields: any[]) {
+function getInitialValues(displayRecipe: string, allFields: any[], t: TFunction) {
     const initialValues = {};
     let recipeObj;
     try {
         recipeObj = YAML.parse(displayRecipe);
     } catch (e) {
-        message.warn('Found invalid YAML. Please check your recipe configuration.');
+        message.warn(t('ingest.foundInvalidYamlPleaseCheck'));
         return {};
     }
     if (recipeObj) {
@@ -144,13 +145,17 @@ function RecipeForm(props: Props) {
     return (
         <Form
             layout="vertical"
-            initialValues={getInitialValues(displayRecipe, allFields)}
+            initialValues={getInitialValues(displayRecipe, allFields, t)}
             onFinish={onClickNext}
             form={form}
             onValuesChange={updateFormValues}
         >
             <StyledCollapse defaultActiveKey="0">
-                <Collapse.Panel forceRender header={<SectionHeader icon={<ApiOutlined />} text="Connection" />} key="0">
+                <Collapse.Panel
+                    forceRender
+                    header={<SectionHeader icon={<ApiOutlined />} text={t('common.connection')} />}
+                    key="0"
+                >
                     {fields.map((field, i) => (
                         <FormField
                             field={field}
@@ -178,8 +183,8 @@ function RecipeForm(props: Props) {
                         header={
                             <SectionHeader
                                 icon={<FilterOutlined />}
-                                text="Filter"
-                                sectionTooltip={filterSectionTooltip}
+                                text={t('common.filter')}
+                                sectionTooltip={filterSectionTooltip ? t(filterSectionTooltip) : filterSectionTooltip}
                             />
                         }
                         key="1"
@@ -187,7 +192,9 @@ function RecipeForm(props: Props) {
                         {filterFields.map((field, i) => (
                             <>
                                 {shouldRenderFilterSectionHeader(field, i, filterFields) && (
-                                    <Typography.Title level={4}>{field.section}</Typography.Title>
+                                    <Typography.Title level={4}>
+                                        {typeof field.section === 'string' ? t(field.section) : field.section}
+                                    </Typography.Title>
                                 )}
                                 <MarginWrapper>
                                     <FormField
@@ -209,8 +216,8 @@ function RecipeForm(props: Props) {
                     header={
                         <SectionHeader
                             icon={<SettingOutlined />}
-                            text="Advanced"
-                            sectionTooltip={advancedSectionTooltip}
+                            text={t('common.advanced')}
+                            sectionTooltip={advancedSectionTooltip ? t(advancedSectionTooltip) : advancedSectionTooltip}
                         />
                     }
                     key="2"

@@ -3,6 +3,7 @@ import { Button, Form, Input, Tooltip } from 'antd';
 import { red } from '@ant-design/colors';
 import styled from 'styled-components/macro';
 import { DeleteOutlined, PlusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../../entity/shared/constants';
 import { RecipeField } from './common';
 import { StyledFormItem } from './SecretField/SecretField';
@@ -55,13 +56,14 @@ interface Props {
 }
 
 export default function DictField({ field, removeMargin }: Props) {
+    const { t } = useTranslation();
     return (
         <Form.List name={field.name} rules={field.rules || undefined}>
             {(fields, { add, remove }, { errors }) => (
                 <ListWrapper removeMargin={!!removeMargin}>
                     <Label>
-                        {field.label}
-                        <Tooltip overlay={field.tooltip}>
+                        {t(field.label)}
+                        <Tooltip overlay={typeof field.tooltip === 'string' ? t(field.tooltip) : field.tooltip}>
                             <StyledQuestion />
                         </Tooltip>
                     </Label>
@@ -74,8 +76,12 @@ export default function DictField({ field, removeMargin }: Props) {
                                         required={field.required}
                                         name={[name, field.keyField.name]}
                                         initialValue=""
-                                        label={field.keyField.label}
-                                        tooltip={field.keyField.tooltip}
+                                        label={t(field.keyField.label)}
+                                        tooltip={
+                                            typeof field.keyField.tooltip === 'string'
+                                                ? t(field.keyField.tooltip)
+                                                : field.keyField.tooltip
+                                        }
                                         rules={field.keyField.rules || undefined}
                                     >
                                         <Input placeholder={field.keyField.placeholder} />
@@ -86,8 +92,8 @@ export default function DictField({ field, removeMargin }: Props) {
                                         {...restField}
                                         name={[name, f.name]}
                                         initialValue=""
-                                        label={f.label}
-                                        tooltip={f.tooltip}
+                                        label={t(f.label)}
+                                        tooltip={typeof f.tooltip === 'string' ? t(f.tooltip) : f.tooltip}
                                         rules={f.rules || undefined}
                                     >
                                         <Input placeholder={f.placeholder} />
@@ -100,7 +106,7 @@ export default function DictField({ field, removeMargin }: Props) {
                         </SectionWrapper>
                     ))}
                     <StyledButton type="dashed" onClick={() => add()} icon={<PlusOutlined />}>
-                        {field.buttonLabel}
+                        {field.buttonLabel ? t(field.buttonLabel) : field.buttonLabel}
                     </StyledButton>
                     <ErrorWrapper>{errors}</ErrorWrapper>
                 </ListWrapper>

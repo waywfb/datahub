@@ -181,7 +181,7 @@ export default function SchemaHeader({
         const semanticVersionTimestampString =
             (semanticVersion?.semanticVersionTimestamp &&
                 toRelativeTimeString(semanticVersion?.semanticVersionTimestamp, i18n.language)) ||
-          t('common.unknown');
+            t('common.unknown');
         return `${semanticVersion.semanticVersion} - ${semanticVersionTimestampString}`;
     };
     const numVersions = versionList.length;
@@ -200,7 +200,9 @@ export default function SchemaHeader({
                 ),
         );
     };
-    const schemaAuditToggleText = showSchemaAuditView ? t('reporting.closeColumnHistory') : t('reporting.viewColumnHistory');
+    const schemaAuditToggleText = showSchemaAuditView
+        ? t('reporting.closeColumnHistory')
+        : t('reporting.viewColumnHistory');
 
     const debouncedSetFilterText = debounce(
         (e: React.ChangeEvent<HTMLInputElement>) => setFilterText(e.target.value),
@@ -250,7 +252,7 @@ export default function SchemaHeader({
                     {!showRaw && (
                         <StyledInput
                             defaultValue={schemaFilter}
-                            placeholder={t('placeholder.searchInWithName', { name: t('common.schema').toLowerCase()})}
+                            placeholder={t('placeholder.searchInWithName', { name: t('common.schema').toLowerCase() })}
                             onChange={debouncedSetFilterText}
                             allowClear
                             prefix={<SearchOutlined />}
@@ -291,10 +293,16 @@ export default function SchemaHeader({
                                 placement="right"
                                 content={
                                     <div>
-                                        <Trans {...{
-                                              i18nKey: 'dataset.linkToTechnicalSchema_component',
-                                              components: { typographyTextStrong: <a target="_blank" rel="noreferrer noopener" href={docLink}/> },
-                                          }}
+                                        <Trans
+                                            {...{
+                                                i18nKey: 'dataset.linkToTechnicalSchema_component',
+                                                components: {
+                                                    typographyTextStrong: (
+                                                        // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                                        <a target="_blank" rel="noreferrer noopener" href={docLink} />
+                                                    ),
+                                                },
+                                            }}
                                         />
                                     </div>
                                 }

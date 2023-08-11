@@ -41,19 +41,26 @@ function SchemaTimeStamps(props: Props) {
                 <>
                     {lastObserved && (
                         <TimeStampWrapper>
-                            {t('reporting.lastObservedOnDate', { date: toLocalDateTimeString(lastObserved, i18n.language) })}
+                            {t('reporting.lastObservedOnDate', {
+                                date: toLocalDateTimeString(lastObserved, i18n.language),
+                            })}
                         </TimeStampWrapper>
                     )}
-                    {lastUpdated && <div>
-                        {t('reporting.firstReportedOn', { date: toLocalDateTimeString(lastUpdated, i18n.language) })}
-                    </div>}
+                    {lastUpdated && (
+                        <div>
+                            {t('reporting.firstReportedOn', {
+                                date: toLocalDateTimeString(lastUpdated, i18n.language),
+                            })}
+                        </div>
+                    )}
                 </>
             }
         >
             <CurrentVersionTimestampText>
                 {lastObserved && (
                     <span>
-                        <StyledClockIcon /> {t('reporting.lastObservedDate', { date: toRelativeTimeString(lastObserved, i18n.language) })}
+                        <StyledClockIcon />{' '}
+                        {t('reporting.lastObservedDate', { date: toRelativeTimeString(lastObserved, i18n.language) })}
                     </span>
                 )}
                 {!lastObserved && lastUpdated && (

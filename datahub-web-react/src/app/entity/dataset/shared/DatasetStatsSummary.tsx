@@ -53,7 +53,8 @@ export const DatasetStatsSummary = ({
                 render={(isExpanded) => (
                     <StatText color={displayedColor}>
                         <TableOutlined style={{ marginRight: 8, color: displayedColor }} />
-                        <b>{isExpanded ? formatNumberWithoutAbbreviation(rowCount) : countFormatter(rowCount)}</b> {t('common.rows').toLowerCase()}
+                        <b>{isExpanded ? formatNumberWithoutAbbreviation(rowCount) : countFormatter(rowCount)}</b>{' '}
+                        {t('common.rows').toLowerCase()}
                         {!!columnCount && (
                             <>
                                 ,{' '}
@@ -92,14 +93,14 @@ export const DatasetStatsSummary = ({
             <Popover
                 content={
                     <PopoverContent>
-                        {t('dataset.lastUpdatedDataOn') + ' '}
+                        {`${t('dataset.lastUpdatedDataOn')} `}
                         <strong>{toLocalDateTimeString(lastUpdatedMs, i18n.language)}</strong>
                     </PopoverContent>
                 }
             >
                 <StatText color={displayedColor}>
                     <ClockCircleOutlined style={{ marginRight: 8, color: ANTD_GRAY[7] }} />
-                    {t('dataset.updatedOn') + ' ' + toRelativeTimeString(lastUpdatedMs, i18n.language)}
+                    {`${t('dataset.updatedOn')} ${toRelativeTimeString(lastUpdatedMs, i18n.language)}`}
                 </StatText>
             </Popover>
         ),

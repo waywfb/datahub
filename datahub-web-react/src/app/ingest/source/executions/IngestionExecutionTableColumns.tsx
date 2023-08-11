@@ -26,9 +26,10 @@ const StatusButton = styled(Button)`
 `;
 
 export function TimeColumn(time: string) {
+    const { t } = useTranslation();
     const date = time && new Date(time);
     const localTime = date && `${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
-    return <Typography.Text>{localTime || 'None'}</Typography.Text>;
+    return <Typography.Text>{localTime || t('common.none')}</Typography.Text>;
 }
 
 interface StatusColumnProps {
@@ -47,7 +48,7 @@ export function StatusColumn({ status, record, setFocusExecutionUrn }: StatusCol
             {Icon && <Icon style={{ color, fontSize: 14 }} />}
             <StatusButton type="link" onClick={() => setFocusExecutionUrn(record.urn)}>
                 <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                    {t(text) || 'Pending...'}
+                    {t(text) || `${t('common.pending')}...`}
                 </Typography.Text>
             </StatusButton>
         </StatusContainer>
@@ -55,11 +56,12 @@ export function StatusColumn({ status, record, setFocusExecutionUrn }: StatusCol
 }
 
 export function SourceColumn(source: string) {
+    const { t } = useTranslation();
     return (
-        (source === MANUAL_INGESTION_SOURCE && 'Manual Execution') ||
-        (source === SCHEDULED_INGESTION_SOURCE && 'Scheduled Execution') ||
-        (source === CLI_INGESTION_SOURCE && 'CLI Execution') ||
-        'N/A'
+        (source === MANUAL_INGESTION_SOURCE && t('ingest.manualExecution')) ||
+        (source === SCHEDULED_INGESTION_SOURCE && t('ingest.scheduledExecution')) ||
+        (source === CLI_INGESTION_SOURCE && t('ingest.cliExecution')) ||
+        t('common.na')
     );
 }
 
@@ -80,7 +82,7 @@ export function ButtonsColumn({
     return (
         <div style={{ display: 'flex', justifyContent: 'right' }}>
             {record.urn && navigator.clipboard && (
-                <Tooltip title="Copy Execution Request URN">
+                <Tooltip title={t('ingest.copyExecutionRequestURN')}>
                     <Button
                         style={{ marginRight: 16 }}
                         icon={<CopyOutlined />}

@@ -79,7 +79,7 @@ export const SelectTemplateStep = ({ state, updateState, goTo, cancel, ingestion
         <>
             <Section>
                 <StyledSearchBar
-                    placeholder="Search ingestion sources..."
+                    placeholder={`${t('ingest.searchIngestionSources')}...`}
                     value={searchFilter}
                     onChange={(e) => setSearchFilter(e.target.value)}
                     allowClear

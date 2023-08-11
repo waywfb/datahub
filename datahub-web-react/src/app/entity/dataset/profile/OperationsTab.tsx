@@ -78,7 +78,9 @@ export const OperationsTab = () => {
             dataIndex: 'time',
             key: 'time',
             render: (value) => (
-              <Tooltip title={new Date(Number(value)).toUTCString()}>{new Date(Number(value)).toLocaleString()}</Tooltip>
+                <Tooltip title={new Date(Number(value)).toUTCString()}>
+                    {new Date(Number(value)).toLocaleString()}
+                </Tooltip>
             ),
         },
         {
@@ -93,7 +95,7 @@ export const OperationsTab = () => {
             render: (parentTemplate) => <CompactEntityNameList entities={[parentTemplate]} />,
         },
         {
-            title:t ('common.status'),
+            title: t('common.status'),
             dataIndex: 'status',
             key: 'status',
             render: (status: any, row) => {
@@ -102,14 +104,14 @@ export const OperationsTab = () => {
                 const text = getExecutionRequestStatusDisplayText(statusForStyling);
                 const color = getExecutionRequestStatusDisplayColor(statusForStyling);
                 return (
-                  <>
-                      <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
-                          {Icon && <Icon style={{ color }} />}
-                          <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                              {t(text || 'common.na')}
-                          </Typography.Text>
-                      </div>
-                  </>
+                    <>
+                        <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
+                            {Icon && <Icon style={{ color }} />}
+                            <Typography.Text strong style={{ color, marginLeft: 8 }}>
+                                {t(text || 'common.na')}
+                            </Typography.Text>
+                        </div>
+                    </>
                 );
             },
         },
@@ -130,13 +132,13 @@ export const OperationsTab = () => {
             dataIndex: 'externalUrl',
             key: 'externalUrl',
             render: (externalUrl) =>
-              externalUrl && (
-                <Tooltip title={t('operation.viewTaskRunDetails')}>
-                    <ExternalUrlLink href={externalUrl}>
-                        <DeliveredProcedureOutlined />
-                    </ExternalUrlLink>
-                </Tooltip>
-              ),
+                externalUrl && (
+                    <Tooltip title={t('operation.viewTaskRunDetails')}>
+                        <ExternalUrlLink href={externalUrl}>
+                            <DeliveredProcedureOutlined />
+                        </ExternalUrlLink>
+                    </Tooltip>
+                ),
         },
     ];
 

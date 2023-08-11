@@ -1,12 +1,13 @@
 import React from 'react';
+import { Trans } from 'react-i18next';
 import { RecipeField, FieldType, setListValuesOnRecipe } from './common';
 
 export const UNITY_CATALOG = 'unity-catalog';
 
 export const TOKEN: RecipeField = {
     name: 'token',
-    label: 'Token',
-    tooltip: 'A personal access token associated with the Databricks account used to extract metadata.',
+    label: 'common.token',
+    tooltip: 'ingest.recipeForms.unityCatalog.tokenToolTip',
     type: FieldType.SECRET,
     fieldPath: 'source.config.token',
     placeholder: 'dapi1a2b3c45d67890e1f234567a8bc9012d',
@@ -16,8 +17,8 @@ export const TOKEN: RecipeField = {
 
 export const WORKSPACE_URL: RecipeField = {
     name: 'workspace_url',
-    label: 'Workspace URL',
-    tooltip: 'The URL for the Databricks workspace from which to extract metadata.',
+    label: 'ingest.recipeForms.unityCatalog.workspaceURLLabel',
+    tooltip: 'ingest.recipeForms.unityCatalog.workspaceURLTooltip',
     type: FieldType.TEXT,
     fieldPath: 'source.config.workspace_url',
     placeholder: 'https://abcsales.cloud.databricks.com',
@@ -27,12 +28,20 @@ export const WORKSPACE_URL: RecipeField = {
 
 export const INCLUDE_TABLE_LINEAGE: RecipeField = {
     name: 'include_table_lineage',
-    label: 'Include Table Lineage',
+    label: 'ingest.recipeForms.unityCatalog.includeTableLineageLabel',
     tooltip: (
         <div>
-            Extract Table Lineage from Unity Catalog. Note that this requires that your Databricks accounts meets
-            certain requirements. View them{' '}
-            <a href="https://docs.databricks.com/data-governance/unity-catalog/data-lineage.html#requirements">here</a>
+            <Trans
+                {...{
+                    i18nKey: 'ingest.recipeForms.unityCatalog.includeTableLineageToolTip_component',
+                    components: {
+                        aLink: (
+                            // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                            <a href="https://docs.databricks.com/data-governance/unity-catalog/data-lineage.html#requirements" />
+                        ),
+                    },
+                }}
+            />
         </div>
     ),
     type: FieldType.BOOLEAN,
@@ -42,13 +51,20 @@ export const INCLUDE_TABLE_LINEAGE: RecipeField = {
 
 export const INCLUDE_COLUMN_LINEAGE: RecipeField = {
     name: 'include_column_lineage',
-    label: 'Include Column Lineage',
+    label: 'ingest.recipeForms.unityCatalog.includeColumnLineageLabel',
     tooltip: (
         <div>
-            Extract Column Lineage from Unity Catalog. Note that this requires that your Databricks accounts meets
-            certain requirements. View them{' '}
-            <a href="https://docs.databricks.com/data-governance/unity-catalog/data-lineage.html#requirements">here.</a>
-            Enabling this feature may increase the duration of ingestion.
+            <Trans
+                {...{
+                    i18nKey: 'ingest.recipeForms.unityCatalog.includeColumnLineageToolTip_component',
+                    components: {
+                        aLink: (
+                            // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                            <a href="https://docs.databricks.com/data-governance/unity-catalog/data-lineage.html#requirements" />
+                        ),
+                    },
+                }}
+            />
         </div>
     ),
     type: FieldType.BOOLEAN,
@@ -59,15 +75,14 @@ export const INCLUDE_COLUMN_LINEAGE: RecipeField = {
 const metastoreIdAllowFieldPath = 'source.config.metastore_id_pattern.allow';
 export const UNITY_METASTORE_ID_ALLOW: RecipeField = {
     name: 'metastore_id_pattern.allow',
-    label: 'Allow Patterns',
-    tooltip:
-        'Only include specific Metastores by providing the id of a Metastore, or a Regular Expression (REGEX) to include specific Metastores. If not provided, all Metastores will be included.',
+    label: 'ingest.recipeForms.label.allowPatterns',
+    tooltip: 'ingest.recipeForms.unityCatalog.unityMetaStoreIDAllowToolTip',
     placeholder: '11111-2222-33333-44-555555',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: metastoreIdAllowFieldPath,
     rules: null,
-    section: 'Metastores',
+    section: 'ingest.recipeForms.unityCatalog.section.metastores',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, metastoreIdAllowFieldPath),
 };
@@ -75,15 +90,14 @@ export const UNITY_METASTORE_ID_ALLOW: RecipeField = {
 const metastoreIdDenyFieldPath = 'source.config.metastore_id_pattern.deny';
 export const UNITY_METASTORE_ID_DENY: RecipeField = {
     name: 'metastore_id_pattern.deny',
-    label: 'Deny Patterns',
-    tooltip:
-        'Exclude specific Metastores by providing the id of a Metastores, or a Regular Expression (REGEX). If not provided, all Metastores will be included. Deny patterns always take precedence over Allow patterns.',
+    label: 'ingest.recipeForms.label.denyPatterns',
+    tooltip: 'ingest.recipeForms.unityCatalog.unityMetaStoreIDDenyToolTip',
     placeholder: '11111-2222-33333-44-555555',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: metastoreIdDenyFieldPath,
     rules: null,
-    section: 'Metastores',
+    section: 'ingest.recipeForms.unityCatalog.section.metastores',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, metastoreIdDenyFieldPath),
 };
@@ -91,15 +105,14 @@ export const UNITY_METASTORE_ID_DENY: RecipeField = {
 const catalogAllowFieldPath = 'source.config.catalog_pattern.allow';
 export const UNITY_CATALOG_ALLOW: RecipeField = {
     name: 'catalog_pattern.allow',
-    label: 'Allow Patterns',
-    tooltip:
-        'Only include specific Catalogs by providing the name of a Catalog, or a Regular Expression (REGEX) to include specific Catalogs. If not provided, all Catalogs will be included.',
+    label: 'ingest.recipeForms.label.allowPatterns',
+    tooltip: 'ingest.recipeForms.unityCatalog.unityCatalogAllowToolTip',
     placeholder: 'metastore.my_catalog',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: catalogAllowFieldPath,
     rules: null,
-    section: 'Catalogs',
+    section: 'ingest.recipeForms.unityCatalog.section.catalogs',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, catalogAllowFieldPath),
 };
@@ -107,15 +120,14 @@ export const UNITY_CATALOG_ALLOW: RecipeField = {
 const catalogDenyFieldPath = 'source.config.catalog_pattern.deny';
 export const UNITY_CATALOG_DENY: RecipeField = {
     name: 'catalog_pattern.deny',
-    label: 'Deny Patterns',
-    tooltip:
-        'Exclude specific Catalogs by providing the name of a Catalog, or a Regular Expression (REGEX) to exclude specific Catalogs. If not provided, all Catalogs will be included. Deny patterns always take precedence over Allow patterns.',
+    label: 'ingest.recipeForms.label.denyPatterns',
+    tooltip: 'ingest.recipeForms.unityCatalog.unityCatalogDenyToolTip',
     placeholder: 'metastore.my_catalog',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: catalogDenyFieldPath,
     rules: null,
-    section: 'Catalogs',
+    section: 'ingest.recipeForms.unityCatalog.section.catalogs',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, catalogDenyFieldPath),
 };
@@ -123,15 +135,14 @@ export const UNITY_CATALOG_DENY: RecipeField = {
 const tableAllowFieldPath = 'source.config.table_pattern.allow';
 export const UNITY_TABLE_ALLOW: RecipeField = {
     name: 'table_pattern.allow',
-    label: 'Allow Patterns',
-    tooltip:
-        'Only include specific Tables by providing the fully-qualified name of a Table, or a Regular Expression (REGEX) to include specific Tables. If not provided, all Tables will be included.',
+    label: 'ingest.recipeForms.label.allowPatterns',
+    tooltip: 'ingest.recipeForms.unityCatalog.unityTableAllowToolTip',
     placeholder: 'catalog.schema.table',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: tableAllowFieldPath,
     rules: null,
-    section: 'Tables',
+    section: 'ingest.recipeForms.section.tables',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, tableAllowFieldPath),
 };
@@ -139,15 +150,14 @@ export const UNITY_TABLE_ALLOW: RecipeField = {
 const tableDenyFieldPath = 'source.config.table_pattern.deny';
 export const UNITY_TABLE_DENY: RecipeField = {
     name: 'table_pattern.deny',
-    label: 'Deny Patterns',
-    tooltip:
-        'Exclude specific Tables by providing the fully-qualified name of a Table, or a Regular Expression (REGEX) to exclude specific Tables. If not provided, all Tables will be included. Deny patterns always take precedence over Allow patterns.',
+    label: 'ingest.recipeForms.label.denyPatterns',
+    tooltip: 'ingest.recipeForms.unityCatalog.unityTableDenyToolTip',
     placeholder: 'catalog.schema.table',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: tableDenyFieldPath,
     rules: null,
-    section: 'Tables',
+    section: 'ingest.recipeForms.section.tables',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, tableDenyFieldPath),
 };

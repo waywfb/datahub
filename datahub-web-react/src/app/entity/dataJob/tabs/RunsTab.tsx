@@ -3,7 +3,7 @@ import { Pagination, Table, Tooltip, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useGetDataJobRunsQuery } from '../../../../graphql/dataJob.generated';
 import { DataProcessInstanceRunResultType, DataProcessRunStatus } from '../../../../types.generated';
 import {
@@ -16,7 +16,6 @@ import { ANTD_GRAY } from '../../shared/constants';
 import { useEntityData } from '../../shared/EntityContext';
 import { ReactComponent as LoadingSvg } from '../../../../images/datahub-logo-color-loading_pendulum.svg';
 import { scrollToTop } from '../../../shared/searchUtils';
-import { useTranslation } from 'react-i18next';
 
 const ExternalUrlLink = styled.a`
     font-size: 16px;
@@ -63,14 +62,15 @@ export const RunsTab = () => {
     });
     const runs = data && data?.dataJob?.runs?.runs;
 
-
     const columns = [
         {
             title: t('common.time'),
             dataIndex: 'time',
             key: 'time',
             render: (value) => (
-              <Tooltip title={new Date(Number(value)).toUTCString()}>{new Date(Number(value)).toLocaleString()}</Tooltip>
+                <Tooltip title={new Date(Number(value)).toUTCString()}>
+                    {new Date(Number(value)).toLocaleString()}
+                </Tooltip>
             ),
         },
         {
@@ -88,14 +88,14 @@ export const RunsTab = () => {
                 const text = getExecutionRequestStatusDisplayText(statusForStyling);
                 const color = getExecutionRequestStatusDisplayColor(statusForStyling);
                 return (
-                  <>
-                      <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
-                          {Icon && <Icon style={{ color }} />}
-                          <Typography.Text strong style={{ color, marginLeft: 8 }}>
+                    <>
+                        <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
+                            {Icon && <Icon style={{ color }} />}
+                            <Typography.Text strong style={{ color, marginLeft: 8 }}>
                             {<Trans i18nKey={text} /> || t('common.na')}
-                          </Typography.Text>
-                      </div>
-                  </>
+                            </Typography.Text>
+                        </div>
+                    </>
                 );
             },
         },
@@ -116,13 +116,13 @@ export const RunsTab = () => {
             dataIndex: 'externalUrl',
             key: 'externalUrl',
             render: (externalUrl) =>
-              externalUrl && (
-                <Tooltip title="View task run details">
-                    <ExternalUrlLink href={externalUrl}>
-                        <DeliveredProcedureOutlined />
-                    </ExternalUrlLink>
-                </Tooltip>
-              ),
+                externalUrl && (
+                    <Tooltip title="View task run details">
+                        <ExternalUrlLink href={externalUrl}>
+                            <DeliveredProcedureOutlined />
+                        </ExternalUrlLink>
+                    </Tooltip>
+                ),
         },
     ];
 

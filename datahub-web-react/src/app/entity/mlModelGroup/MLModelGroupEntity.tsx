@@ -69,12 +69,12 @@ export class MLModelGroupEntity implements Entity<MlModelGroup> {
             headerDropdownItems={new Set([EntityMenuItems.UPDATE_DEPRECATION])}
             tabs={[
                 {
-                    titleKey:'common.models',
+                    titleKey: 'common.models',
                     name: 'Models',
                     component: ModelGroupModels,
                 },
                 {
-                    titleKey:'common.documentation',
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },

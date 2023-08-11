@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Affix, Row, Select, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useGetDataProfilesLazyQuery } from '../../../../../../graphql/dataset.generated';
 import { DatasetProfile, DateInterval } from '../../../../../../types.generated';
 import { Message } from '../../../../../shared/Message';
@@ -10,7 +11,6 @@ import { getFixedLookbackWindow, TimeWindowSize } from '../../../../../shared/ti
 import ProfilingRunsChart from './charts/ProfilingRunsChart';
 import StatsSection from '../StatsSection';
 import StatChart from './charts/StatChart';
-import { useTranslation } from 'react-i18next';
 
 const HeaderRow = styled(Row)`
     padding-top: 24px;
@@ -222,7 +222,9 @@ export default function HistoricalStatsView({ urn, toggleView }: Props) {
 
     return (
         <>
-            {profilesLoading && <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />}
+            {profilesLoading && (
+                <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />
+            )}
             <Affix offsetTop={127}>
                 <HeaderRow justify="space-between" align="middle">
                     <div>
@@ -231,7 +233,9 @@ export default function HistoricalStatsView({ urn, toggleView }: Props) {
                             <SubHeaderText>{t('reporting.viewingProfilingHistoryForThePast')}</SubHeaderText>
                             <EmbeddedSelect value={selectedLookbackWindow} onChange={onChangeSelectedLookbackWindow}>
                                 {LOOKBACK_WINDOWS.map((lookbackWindow) => (
-                                    <Select.Option value={lookbackWindow.value}>{t(lookbackWindow.translateKey)}</Select.Option>
+                                    <Select.Option value={lookbackWindow.value}>
+                                        {t(lookbackWindow.translateKey)}
+                                    </Select.Option>
                                 ))}
                             </EmbeddedSelect>
                         </span>

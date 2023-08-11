@@ -1,9 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEntityData } from '../shared/EntityContext';
 import { EntityType } from '../../../types.generated';
 import { EmbeddedListSearchSection } from '../shared/components/styled/search/EmbeddedListSearchSection';
 import { UnionType } from '../../search/utils/constants';
-import { useTranslation } from 'react-i18next';
 
 export const DomainEntitiesTab = () => {
     const { t } = useTranslation();

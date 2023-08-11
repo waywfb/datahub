@@ -5,6 +5,7 @@ import { AlignType } from 'rc-table/lib/interface';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
 import MlFeatureDataTypeIcon from './MlFeatureDataTypeIcon';
 import { MlFeatureDataType, MlPrimaryKey, MlFeature } from '../../../../../types.generated';
 import { useRefetch } from '../../../shared/EntityContext';
@@ -12,7 +13,6 @@ import TagTermGroup from '../../../../shared/tags/TagTermGroup';
 import SchemaDescriptionField from '../../../dataset/profile/schema/components/SchemaDescriptionField';
 import { useUpdateDescriptionMutation } from '../../../../../graphql/mutations.generated';
 import { useEntityRegistry } from '../../../../useEntityRegistry';
-import { useTranslation } from 'react-i18next';
 
 const FeaturesContainer = styled.div`
     margin-bottom: 100px;

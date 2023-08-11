@@ -1,9 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { DataProduct, EntityType, Owner } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
-import { useTranslation } from 'react-i18next';
 
 export const Preview = ({
     urn,
@@ -32,7 +32,7 @@ export const Preview = ({
             name={name}
             urn={urn}
             description={description || ''}
-            type={entityRegistry.getEntityNameTrans(t, EntityType.MlfeatureTable)}
+            type={entityRegistry.getEntityNameTrans(EntityType.MlfeatureTable, t)}
             typeIcon={entityRegistry.getIcon(EntityType.MlfeatureTable, 14, IconStyleType.ACCENT)}
             owners={owners}
             logoUrl={logoUrl || undefined}

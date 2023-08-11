@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Space, Table, Typography } from 'antd';
 
+import { useTranslation } from 'react-i18next';
 import { MlHyperParam, MlMetric } from '../../../../types.generated';
 import { useBaseEntity } from '../../shared/EntityContext';
 import { GetMlModelQuery } from '../../../../graphql/mlModel.generated';
-import { useTranslation } from 'react-i18next';
 
 const TabContent = styled.div`
     padding: 16px;

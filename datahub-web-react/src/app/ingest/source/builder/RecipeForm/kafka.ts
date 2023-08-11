@@ -6,7 +6,7 @@ import { RecipeField, FieldType, setListValuesOnRecipe } from './common';
 const saslUsernameFieldPath = ['source', 'config', 'connection', 'consumer_config', 'sasl.username'];
 export const KAFKA_SASL_USERNAME: RecipeField = {
     name: 'connection.consumer_config.sasl.username',
-    label: 'Username',
+    label: 'ingest.recipeForms.label.username',
     placeholder: 'datahub-client',
     tooltip:
         'The SASL username. Required if the Security Protocol is SASL based. In the Confluent Control Center, you can find this in Cluster > Data Integration > API Keys.',
@@ -18,7 +18,7 @@ export const KAFKA_SASL_USERNAME: RecipeField = {
 const saslPasswordFieldPath = ['source', 'config', 'connection', 'consumer_config', 'sasl.password'];
 export const KAFKA_SASL_PASSWORD: RecipeField = {
     name: 'connection.consumer_config.sasl.password',
-    label: 'Password',
+    label: 'ingest.recipeForms.label.password',
     placeholder: 'datahub-client-password',
     tooltip:
         'The SASL Password. Required if the Security Protocol is SASL based. In the Confluent Control Center, you can find this in Cluster > Data Integration > API Keys.',
@@ -106,10 +106,10 @@ export const KAFKA_SASL_MECHANISM: RecipeField = {
 const topicAllowFieldPath = 'source.config.topic_patterns.allow';
 export const TOPIC_ALLOW: RecipeField = {
     name: 'topic_patterns.allow',
-    label: 'Allow Patterns',
+    label: 'ingest.recipeForms.label.allowPatterns',
     tooltip: 'Provide an optional Regular Expression (REGEX) to include specific Kafka Topic names in ingestion.',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: topicAllowFieldPath,
     rules: null,
     section: 'Filter by Topic',
@@ -120,10 +120,10 @@ export const TOPIC_ALLOW: RecipeField = {
 const topicDenyFieldPath = 'source.config.topic_patterns.deny';
 export const TOPIC_DENY: RecipeField = {
     name: 'topic_patterns.deny',
-    label: 'Deny Patterns',
+    label: 'ingest.recipeForms.label.denyPatterns',
     tooltip: 'Provide an optional Regular Expression (REGEX) to exclude specific Kafka Topic names from ingestion.',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: topicDenyFieldPath,
     rules: null,
     section: 'Filter by Topic',

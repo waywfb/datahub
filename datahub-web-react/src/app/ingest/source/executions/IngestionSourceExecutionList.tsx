@@ -76,13 +76,13 @@ export const IngestionSourceExecutionList = ({ urn, isExpanded, lastRefresh, onR
             .catch((e) => {
                 message.destroy();
                 message.error({
-                    content: `Failed to cancel execution!: \n ${e.message || ''}`,
+                    content: `${t('ingest.failedToCancelExecution')}: \n ${e.message || ''}`,
                     duration: 3,
                 });
             })
             .finally(() => {
                 message.success({
-                    content: `Successfully submitted cancellation request!`,
+                    content: t('ingest.successfullySubmittedCancellationRequest'),
                     duration: 3,
                 });
                 // Refresh once a job was cancelled.
@@ -92,9 +92,8 @@ export const IngestionSourceExecutionList = ({ urn, isExpanded, lastRefresh, onR
 
     const handleCancelExecution = (executionUrn: string) => {
         Modal.confirm({
-            title: `Confirm Cancel`,
-            content:
-                'Cancelling an running execution will NOT remove any data that has already been ingested. You can use the DataHub CLI to rollback this ingestion run.',
+            title: t('ingest.confirmCancelModalTitle'),
+            content: t('ingest.confirmCancelModalContent'),
             onOk() {
                 onCancelExecutionRequest(executionUrn);
             },
@@ -108,28 +107,27 @@ export const IngestionSourceExecutionList = ({ urn, isExpanded, lastRefresh, onR
 
     function handleRollbackExecution(runId: string) {
         Modal.confirm({
-            title: `Confirm Rollback`,
+            title: t('ingest.confirmRollbackModalTitle'),
             content: (
                 <div>
-                    Rolling back this ingestion run will remove any new data ingested during the run. This may exclude
-                    data that was previously extracted, but did not change during this run.
+                    {t('ingest.confirmRollbackModalContent')}
                     <br />
-                    <br /> Are you sure you want to continue?
+                    <br /> {t('ingest.areYouSureYouWantToContinue')}
                 </div>
             ),
             onOk() {
-                message.loading('Requesting rollback...');
+                message.loading(`${t('ingest.requestingRollback')}...`);
                 rollbackIngestion({ variables: { input: { runId } } })
                     .then(() => {
                         setTimeout(() => {
                             message.destroy();
                             refetch();
                             onRefresh();
-                            message.success('Successfully requested ingestion rollback');
+                            message.success(t('ingest.successfullyRequestedIngestionRollback'));
                         }, 2000);
                     })
                     .catch(() => {
-                        message.error('Error requesting ingestion rollback');
+                        message.error(t('ingest.errorRequestingIngestionRollback'));
                     });
             },
             onCancel() {},
@@ -144,10 +142,8 @@ export const IngestionSourceExecutionList = ({ urn, isExpanded, lastRefresh, onR
 
     return (
         <ListContainer>
-            {!data && loading && <Message type="loading" content="Loading executions..." />}
-            {error && (
-                <Message type="error" content="Failed to load ingestion executions! An unexpected error occurred." />
-            )}
+            {!data && loading && <Message type="loading" content={`${t('ingest.loadingExecutions')}...`} />}
+            {error && <Message type="error" content={t('ingest.failedToLoadIngestionExecutionAnErrorOccurred')} />}
             <IngestionExecutionTable
                 executionRequests={executionRequests}
                 setFocusExecutionUrn={setFocusExecutionUrn}

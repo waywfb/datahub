@@ -33,7 +33,7 @@ export const DBT_CLOUD_TOKEN: RecipeField = {
 
 export const DBT_CLOUD_ACCOUNT_ID: RecipeField = {
     name: 'account_id',
-    label: 'Account ID',
+    label: 'ingest.recipeForms.label.accountID',
     tooltip: (
         <span>
             <TipSection>The ID of the dbt Cloud account to extract metadata for.</TipSection>
@@ -51,7 +51,7 @@ export const DBT_CLOUD_ACCOUNT_ID: RecipeField = {
 
 export const DBT_CLOUD_PROJECT_ID: RecipeField = {
     name: 'project_id',
-    label: 'Project ID',
+    label: 'ingest.recipeForms.label.projectID',
     tooltip: (
         <span>
             <TipSection>The ID of the dbt Cloud project to extract metadata for.</TipSection>
@@ -208,12 +208,12 @@ export const INCLUDE_TEST_RESULTS: RecipeField = {
 const nodeAllowFieldPath = 'source.config.node_name_pattern.allow';
 export const NODE_ALLOW: RecipeField = {
     name: 'node_name_pattern.allow',
-    label: 'Allow Patterns',
+    label: 'ingest.recipeForms.label.allowPatterns',
     tooltip:
         'Only include specific dbt Nodes (resources) by providing their name, or a Regular Expression (REGEX). If not provided, all Nodes will be included.',
     placeholder: 'model_name',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: nodeAllowFieldPath,
     rules: null,
     section: 'Nodes',
@@ -222,12 +222,12 @@ export const NODE_ALLOW: RecipeField = {
 const nodeDenyFieldPath = 'source.config.node_name_pattern.deny';
 export const NODE_DENY: RecipeField = {
     name: 'node_name_pattern.deny',
-    label: 'Deny Patterns',
+    label: 'ingest.recipeForms.label.denyPatterns',
     tooltip:
         'Exclude specific dbt Nodes (Resources) by providing their name, or a Regular Expression (REGEX). If not provided, all Nodes will be included. Deny patterns always take precedence over Allow patterns.',
     placeholder: 'node_name',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: nodeDenyFieldPath,
     rules: null,
     section: 'Nodes',

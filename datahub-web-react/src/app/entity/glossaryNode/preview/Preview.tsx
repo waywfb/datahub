@@ -1,9 +1,9 @@
 import React from 'react';
 import { FolderOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { EntityType, Owner, ParentNodesResult } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
-import { useTranslation } from 'react-i18next';
 
 export const Preview = ({
     urn,
@@ -28,7 +28,7 @@ export const Preview = ({
             description={description || ''}
             owners={owners}
             logoComponent={<FolderOutlined style={{ fontSize: '20px' }} />}
-            type={entityRegistry.getEntityNameTrans(t, EntityType.GlossaryNode)}
+            type={entityRegistry.getEntityNameTrans(EntityType.GlossaryNode, t)}
             parentNodes={parentNodes}
         />
     );

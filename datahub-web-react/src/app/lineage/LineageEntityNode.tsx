@@ -373,7 +373,7 @@ export default function LineageEntityNode({
                         {direction === Direction.Upstream
                             ? t('common.downstream').toLowerCase()
                             : t('common.upstream').toLowerCase()}{' '}
-                        {t('common.dependency_interval', { count: unexploredHiddenChildren }).toLowerCase()}
+                        {t('common.dependency', { count: unexploredHiddenChildren }).toLowerCase()}
                     </UnselectableText>
                 ) : null}
                 {showColumns && (node.data.schemaMetadata || node.data.inputFields) && (

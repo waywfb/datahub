@@ -402,7 +402,8 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
                                     >
                                         <span data-testid={`stats-${aggregation?.value}`}>
                                             {aggregation?.count}{' '}
-                                            {entityRegistry.getCollectionNameTrans(aggregation?.value as EntityType, t)} &gt;
+                                            {entityRegistry.getCollectionNameTrans(aggregation?.value as EntityType, t)}{' '}
+                                            &gt;
                                         </span>
                                     </StatsButton>
                                 </div>

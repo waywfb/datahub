@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import * as QueryString from 'query-string';
 import { UsergroupAddOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import UserListItem from './UserListItem';
 import { Message } from '../../shared/Message';
 import { useListUsersQuery } from '../../../graphql/user.generated';
@@ -24,7 +25,6 @@ import {
 import { useUpdateEducationStepIdsAllowlist } from '../../onboarding/useUpdateEducationStepIdsAllowlist';
 import { DEFAULT_USER_LIST_PAGE_SIZE, removeUserFromListUsersCache } from './cacheUtils';
 import { useUserContext } from '../../context/useUserContext';
-import { useTranslation } from 'react-i18next';
 
 const UserContainer = styled.div``;
 
@@ -110,8 +110,13 @@ export const UserList = () => {
     return (
         <>
             <OnboardingTour stepIds={[USERS_INTRO_ID, USERS_SSO_ID, USERS_INVITE_LINK_ID, USERS_ASSIGN_ROLE_ID]} />
-            {!usersData && loading && <Message type="loading" content={t('common.loading') + '...'} />}
-            {error && <Message type="error" content={t('crud.error.loadWithName', { name: t('common.users').toLowerCase() })} />}
+            {!usersData && loading && <Message type="loading" content={`${t('common.loading')}...`} />}
+            {error && (
+                <Message
+                    type="error"
+                    content={t('crud.error.loadWithName', { name: t('common.users').toLowerCase() })}
+                />
+            )}
             <UserContainer>
                 <TabToolbar>
                     <div>

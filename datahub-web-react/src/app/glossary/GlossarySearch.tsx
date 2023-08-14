@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsForMultipleQuery } from '../../graphql/search.generated';
 import { EntityType } from '../../types.generated';
 import { IconStyleType } from '../entity/Entity';
@@ -8,7 +9,6 @@ import { ANTD_GRAY } from '../entity/shared/constants';
 import { SearchBar } from '../search/SearchBar';
 import ClickOutside from '../shared/ClickOutside';
 import { useEntityRegistry } from '../useEntityRegistry';
-import { useTranslation } from 'react-i18next';
 
 const GlossarySearchWrapper = styled.div`
     position: relative;

@@ -1,8 +1,8 @@
 import Link from 'antd/lib/typography/Link';
 import React from 'react';
 import styled from 'styled-components';
-import AcrylLogo from '../../images/acryl-light-mark.svg';
 import { Trans, useTranslation } from 'react-i18next';
+import AcrylLogo from '../../images/acryl-light-mark.svg';
 
 const BannerWrapper = styled.div`
     padding: 12px;
@@ -41,14 +41,20 @@ export default function AcrylDemoBanner() {
             <Logo src={AcrylLogo} />
             <TextWrapper>
                 <Title>{t('home.scheduleDemo')}</Title>
-                    <Trans {...{
+                <Trans
+                    {...{
                         i18nKey: 'home.scheduleDemoDescription_component',
-                        components: { styledLink: <StyledLink
-                              href="https://www.acryldata.io/datahub-sign-up"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            /> },
-                    }}/>
+                        components: {
+                            styledLink: (
+                                <StyledLink
+                                    href="https://www.acryldata.io/datahub-sign-up"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                />
+                            ),
+                        },
+                    }}
+                />
             </TextWrapper>
         </BannerWrapper>
     );

@@ -91,7 +91,7 @@ export const AnalyticsPage = () => {
     const isLoading = highlightLoading || chartLoading || domainLoading || metadataAnalyticsLoading;
     return (
         <>
-            {isLoading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
+            {isLoading && <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />}
             <HighlightGroup>
                 {highlightError && (
                     <Alert type="error" message={highlightError?.message || t('analytics.highlightsFailedToLoad')} />
@@ -102,7 +102,10 @@ export const AnalyticsPage = () => {
             </HighlightGroup>
             <>
                 {chartError && (
-                    <Alert type="error" message={metadataAnalyticsError?.message || t('analytics.chartsFailedToLoad')} />
+                    <Alert
+                        type="error"
+                        message={metadataAnalyticsError?.message || t('analytics.chartsFailedToLoad')}
+                    />
                 )}
                 {chartData?.getAnalyticsCharts
                     ?.filter((chartGroup) => chartGroup.groupId === 'GlobalMetadataAnalytics')
@@ -112,7 +115,10 @@ export const AnalyticsPage = () => {
             </>
             <>
                 {domainError && (
-                    <Alert type="error" message={metadataAnalyticsError?.message || t('analytics.domainsFailedToLoad')} />
+                    <Alert
+                        type="error"
+                        message={metadataAnalyticsError?.message || t('analytics.domainsFailedToLoad')}
+                    />
                 )}
                 {!chartLoading && (
                     <>
@@ -152,7 +158,10 @@ export const AnalyticsPage = () => {
             </>
             <>
                 {metadataAnalyticsError && (
-                    <Alert type="error" message={metadataAnalyticsError?.message || t('analytics.chartsFailedToLoad')} />
+                    <Alert
+                        type="error"
+                        message={metadataAnalyticsError?.message || t('analytics.chartsFailedToLoad')}
+                    />
                 )}
                 {domain === '' && query === ''
                     ? !chartLoading && (
@@ -165,7 +174,9 @@ export const AnalyticsPage = () => {
                       ))}
             </>
             <>
-                {chartError && <Alert type="error" message={chartError?.message || t('analytics.chartsFailedToLoad')} />}
+                {chartError && (
+                    <Alert type="error" message={chartError?.message || t('analytics.chartsFailedToLoad')} />
+                )}
                 {!chartLoading &&
                     chartData?.getAnalyticsCharts
                         ?.filter((chartGroup) => chartGroup.groupId === 'DataHubUsageAnalytics')

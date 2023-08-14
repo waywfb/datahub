@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { Breadcrumb, Row } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../../../../types.generated';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
 import { PageRoutes } from '../../../../../../conf/Global';
 import { ANTD_GRAY } from '../../../constants';
 import { LineageSelector } from './LineageSelector';
-import { useTranslation } from 'react-i18next';
 
 export const BrowseRow = styled(Row)`
     padding: 10px 20px;

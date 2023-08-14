@@ -1,4 +1,4 @@
-    import { DeliveredProcedureOutlined } from '@ant-design/icons';
+import { DeliveredProcedureOutlined } from '@ant-design/icons';
 import { Pagination, Table, Tooltip, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -92,7 +92,7 @@ export const RunsTab = () => {
                         <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
                             {Icon && <Icon style={{ color }} />}
                             <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                            {<Trans i18nKey={text} /> || t('common.na')}
+                                {<Trans i18nKey={text} /> || t('common.na')}
                             </Typography.Text>
                         </div>
                     </>

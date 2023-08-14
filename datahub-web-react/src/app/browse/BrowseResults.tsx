@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Col, Divider, List, Pagination, Row, Empty } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
+import { useTranslation } from 'react-i18next';
 import { BrowseResultGroup, EntityType, Entity } from '../../types.generated';
 import BrowseResultCard from './BrowseResultCard';
 import { useEntityRegistry } from '../useEntityRegistry';
 import analytics, { EventType } from '../analytics';
-import { useTranslation } from 'react-i18next';
 
 const EntityList = styled(List)`
     && {

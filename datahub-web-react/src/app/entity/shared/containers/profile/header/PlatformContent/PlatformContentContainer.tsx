@@ -1,4 +1,6 @@
 import React from 'react';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../../../../../useEntityRegistry';
 import { IconStyleType } from '../../../../../Entity';
 import { useEntityData } from '../../../../EntityContext';
@@ -9,14 +11,12 @@ import { GenericEntityProperties } from '../../../../types';
 import EntityRegistry from '../../../../../EntityRegistry';
 import { EntityType } from '../../../../../../../types.generated';
 import useContentTruncation from '../../../../../../shared/useContentTruncation';
-import { TFunction } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 export function getDisplayedEntityType(
     entityData: GenericEntityProperties | null,
     entityRegistry: EntityRegistry,
     entityType: EntityType,
-    t: TFunction
+    t: TFunction,
 ) {
     return (
         entityData?.entityTypeOverride ||

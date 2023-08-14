@@ -6,7 +6,11 @@ export const UnauthorizedPage = () => {
     const { t } = useTranslation();
     return (
         <>
-            <Result status="403" title={t('common.unauthorized')} subTitle={t('crud.error.notAuthorizedToAccessPage')} />
+            <Result
+                status="403"
+                title={t('common.unauthorized')}
+                subTitle={t('crud.error.notAuthorizedToAccessPage')}
+            />
         </>
     );
 };

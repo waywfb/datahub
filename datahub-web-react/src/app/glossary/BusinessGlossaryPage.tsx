@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Typography } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useGetRootGlossaryNodesQuery, useGetRootGlossaryTermsQuery } from '../../graphql/glossary.generated';
 import TabToolbar from '../entity/shared/components/styled/TabToolbar';
 import GlossaryEntitiesList from './GlossaryEntitiesList';
@@ -20,7 +21,6 @@ import {
 import { OnboardingTour } from '../onboarding/OnboardingTour';
 import { useGlossaryEntityData } from '../entity/shared/GlossaryEntityContext';
 import { useUserContext } from '../context/useUserContext';
-import { useTranslation } from 'react-i18next';
 
 export const HeaderWrapper = styled(TabToolbar)`
     padding: 15px 45px 10px 24px;
@@ -95,10 +95,10 @@ function BusinessGlossaryPage() {
             />
             <GlossaryWrapper>
                 {(termsLoading || nodesLoading) && (
-                    <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />
+                    <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />
                 )}
                 {(termsError || nodesError) && (
-                    <Message type="error" content= {t('crud.error.loadWithName', { name: t('common.glossary') })} />
+                    <Message type="error" content={t('crud.error.loadWithName', { name: t('common.glossary') })} />
                 )}
                 <MainContentWrapper>
                     <HeaderWrapper>
@@ -110,7 +110,8 @@ function BusinessGlossaryPage() {
                                 type="text"
                                 onClick={() => setIsCreateTermModalVisible(true)}
                             >
-                                <PlusOutlined /> {t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}
+                                <PlusOutlined />{' '}
+                                {t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}
                             </Button>
                             <Button
                                 id={BUSINESS_GLOSSARY_CREATE_TERM_GROUP_ID}
@@ -118,7 +119,8 @@ function BusinessGlossaryPage() {
                                 type="text"
                                 onClick={() => setIsCreateNodeModalVisible(true)}
                             >
-                                <PlusOutlined /> {t('crud.addWithName', { name: t('entity.type.GLOSSARY_NODE', { count: 1 }) })}
+                                <PlusOutlined />{' '}
+                                {t('crud.addWithName', { name: t('entity.type.GLOSSARY_NODE', { count: 1 }) })}
                             </Button>
                         </div>
                     </HeaderWrapper>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, useHistory, useLocation, useParams } from 'react-router';
 import * as QueryString from 'query-string';
 import { Affix } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { BrowseCfg } from '../../conf';
 import { BrowseResults } from './BrowseResults';
 import { useGetBrowseResultsQuery } from '../../graphql/browse.generated';
@@ -11,7 +12,6 @@ import { useEntityRegistry } from '../useEntityRegistry';
 import { Message } from '../shared/Message';
 import { scrollToTop } from '../shared/searchUtils';
 import { ErrorSection } from '../shared/error/ErrorSection';
-import { useTranslation } from 'react-i18next';
 
 type BrowseResultsPageParams = {
     type: string;
@@ -62,12 +62,14 @@ export const BrowseResultsPage = () => {
                 <LegacyBrowsePath type={entityType} path={path} isBrowsable />
             </Affix>
             {error && <ErrorSection />}
-            {loading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
+            {loading && <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />}
             {data && data.browse && !loading && (
                 <BrowseResults
                     type={entityType}
                     rootPath={rootPath}
-                    title={path.length > 0 ? path[path.length - 1] : entityRegistry.getCollectionNameTrans(entityType, t)}
+                    title={
+                        path.length > 0 ? path[path.length - 1] : entityRegistry.getCollectionNameTrans(entityType, t)
+                    }
                     page={page}
                     pageSize={BrowseCfg.RESULTS_PER_PAGE}
                     groups={data.browse.groups}

@@ -2,10 +2,10 @@ import { RedoOutlined } from '@ant-design/icons';
 import { Button, message, Modal, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Trans, useTranslation } from 'react-i18next';
 import { PageRoutes } from '../../../conf/Global';
 import { useCreateNativeUserResetTokenMutation } from '../../../graphql/user.generated';
 import analytics, { EventType } from '../../analytics';
-import { Trans, useTranslation } from 'react-i18next';
 
 const ModalSection = styled.div`
     display: flex;
@@ -96,11 +96,13 @@ export default function ViewResetTokenModal({ visible, userUrn, username, onClos
                 <ModalSection>
                     <ModalSectionHeader strong>{t('authentification.shareResetLink')}</ModalSectionHeader>
                     <ModalSectionParagraph>
-                        <Trans {...{
-                              i18nKey: 'search.seeAllResultsWithName_component',
-                              values: {username},
-                              components: { bold: <b /> },
-                          }}/>
+                        <Trans
+                            {...{
+                                i18nKey: 'search.seeAllResultsWithName_component',
+                                values: { username },
+                                components: { bold: <b /> },
+                            }}
+                        />
                     </ModalSectionParagraph>
                     <Typography.Paragraph copyable={{ text: inviteLink }}>
                         <pre>{inviteLink}</pre>
@@ -117,10 +119,12 @@ export default function ViewResetTokenModal({ visible, userUrn, username, onClos
             <ModalSection>
                 <ModalSectionHeader strong>{t('authentification.generateNewLink')}</ModalSectionHeader>
                 <ModalSectionParagraph>
-                    <Trans {...{
-                        i18nKey: 'authentification.generateNewLinkDescription_component',
-                        components: { bold: <b /> },
-                    }}/>
+                    <Trans
+                        {...{
+                            i18nKey: 'authentification.generateNewLinkDescription_component',
+                            components: { bold: <b /> },
+                        }}
+                    />
                 </ModalSectionParagraph>
                 <CreateResetTokenButton onClick={createNativeUserResetToken} size="small" type="text">
                     <RedoOutlined style={{}} />

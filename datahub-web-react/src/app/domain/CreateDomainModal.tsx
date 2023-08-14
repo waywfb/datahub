@@ -53,7 +53,9 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                         type: EventType.CreateDomainEvent,
                     });
                     message.success({
-                        content: t('crud.success.createWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) }),
+                        content: t('crud.success.createWithName', {
+                            name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+                        }),
                         duration: 3,
                     });
                     onCreate(
@@ -67,7 +69,12 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `${t('crud.error.createWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) })}: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('crud.error.createWithName', {
+                        name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+                    })}: \n ${e.message || ''}`,
+                    duration: 3,
+                });
             });
         onClose();
     };
@@ -113,7 +120,9 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                         rules={[
                             {
                                 required: true,
-                                message: t('form.enterANameWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) }),
+                                message: t('form.enterANameWithName', {
+                                    name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+                                }),
                             },
                             { whitespace: true },
                             { min: 1, max: 150 },
@@ -141,9 +150,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                     </SuggestedNamesGroup>
                 </Form.Item>
                 <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
-                    <Typography.Paragraph>
-                        {t('domain.domainDescriptionDescription')}
-                    </Typography.Paragraph>
+                    <Typography.Paragraph>{t('domain.domainDescriptionDescription')}</Typography.Paragraph>
                     <Form.Item
                         name={DESCRIPTION_FIELD_NAME}
                         rules={[{ whitespace: true }, { min: 1, max: 500 }]}
@@ -153,12 +160,18 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                     </Form.Item>
                 </Form.Item>
                 <Collapse ghost>
-                    <Collapse.Panel header={<Typography.Text type="secondary">{t('common.advanced')}</Typography.Text>} key="1">
-                        <Form.Item label={<Typography.Text strong>{entityRegistry.getEntityNameTrans(EntityType.Domain, t)} {t(
-                          'common.id')}</Typography.Text>}>
-                            <Typography.Paragraph>
-                                {t('domain.domainIdDescription')}
-                            </Typography.Paragraph>
+                    <Collapse.Panel
+                        header={<Typography.Text type="secondary">{t('common.advanced')}</Typography.Text>}
+                        key="1"
+                    >
+                        <Form.Item
+                            label={
+                                <Typography.Text strong>
+                                    {entityRegistry.getEntityNameTrans(EntityType.Domain, t)} {t('common.id')}
+                                </Typography.Text>
+                            }
+                        >
+                            <Typography.Paragraph>{t('domain.domainIdDescription')}</Typography.Paragraph>
                             <Form.Item
                                 name={ID_FIELD_NAME}
                                 rules={[

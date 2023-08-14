@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import { Breadcrumb } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { BreadcrumbItem, BrowseRow } from './ProfileNavBrowsePath';
 import { useEntityData } from '../../../EntityContext';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
@@ -16,7 +17,6 @@ import {
 import useHasMultipleEnvironmentsQuery from './useHasMultipleEnvironmentsQuery';
 import { createBrowseV2SearchFilter } from '../../../../../search/filters/utils';
 import { LineageSelector } from './LineageSelector';
-import { useTranslation } from 'react-i18next';
 
 const StyledBreadcrumb = styled(Breadcrumb)`
     font-size: 16px;

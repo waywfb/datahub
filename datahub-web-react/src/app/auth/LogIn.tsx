@@ -101,7 +101,7 @@ export const LogIn: React.VFC<LogInProps> = () => {
                 })
                 .finally(() => setLoading(false));
         },
-        [refreshContext],
+        [t, refreshContext],
     );
 
     if (isLoggedIn) {
@@ -119,7 +119,7 @@ export const LogIn: React.VFC<LogInProps> = () => {
                     <Image wrapperClassName={styles.logo_image} src={themeConfig.assets?.logoUrl} preview={false} />
                 </div>
                 <div className={styles.login_form_box}>
-                    {loading && <Message type="loading" content={t('authentification.loggingIn') + '...'} />}
+                    {loading && <Message type="loading" content={`${t('authentification.loggingIn')}...`} />}
                     <Form onFinish={handleLogin} layout="vertical">
                         <Form.Item
                             name="username"

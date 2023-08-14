@@ -2,6 +2,7 @@ import * as React from 'react';
 import { BookOutlined } from '@ant-design/icons';
 import { Tag, Tooltip } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     Domain,
     Container,
@@ -23,7 +24,6 @@ import CustomAvatar from '../shared/avatar/CustomAvatar';
 import { IconStyleType } from '../entity/Entity';
 import { formatNumber } from '../shared/formatNumber';
 import useGetBrowseV2LabelOverride from './filters/useGetBrowseV2LabelOverride';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     field: string;
@@ -54,7 +54,7 @@ export const SearchFilterLabel = ({ field, value, entity, count, hideCount }: Pr
         const entityType = value.toUpperCase() as EntityType;
         return (
             <span>
-                {entityType ? entityRegistry.getCollectionNametrans(entityType, t) : value}
+                {entityType ? entityRegistry.getCollectionNameTrans(entityType, t) : value}
                 {countText}
             </span>
         );

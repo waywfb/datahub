@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Divider, Empty, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import {
     CorpUser,
     EntityType,
@@ -21,7 +22,6 @@ import {
     HOME_PAGE_PLATFORMS_ID,
 } from '../onboarding/config/HomePageOnboardingConfig';
 import { useUpdateEducationStepIdsAllowlist } from '../onboarding/useUpdateEducationStepIdsAllowlist';
-import { useTranslation } from 'react-i18next';
 
 const PLATFORMS_MODULE_ID = 'Platforms';
 const MOST_POPULAR_MODULE_ID = 'HighUsageEntities';

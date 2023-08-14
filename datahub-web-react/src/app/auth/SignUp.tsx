@@ -131,7 +131,7 @@ export const SignUp: React.VFC<SignUpProps> = () => {
                 })
                 .finally(() => setLoading(false));
         },
-        [refreshContext, inviteToken],
+        [t, refreshContext, inviteToken],
     );
 
     useEffect(() => {
@@ -148,7 +148,7 @@ export const SignUp: React.VFC<SignUpProps> = () => {
                     <Image wrapperClassName={styles.logo_image} src={themeConfig.assets?.logoUrl} preview={false} />
                 </div>
                 <div className={styles.login_form_box}>
-                    {loading && <Message type="loading" content={t('authentification.signingUp') + '...'} />}
+                    {loading && <Message type="loading" content={`${t('authentification.signingUp')}...`} />}
                     <Form onFinish={handleSignUp} layout="vertical">
                         <StyledFormItem
                             rules={[{ required: true, message: t('form.fillInYourEmail') }]}
@@ -172,9 +172,7 @@ export const SignUp: React.VFC<SignUpProps> = () => {
                                 ({ getFieldValue }) => ({
                                     validator() {
                                         if (getFieldValue('password').length < 8) {
-                                            return Promise.reject(
-                                                new Error(t('form.passwordIsFewerThan8Characters')),
-                                            );
+                                            return Promise.reject(new Error(t('form.passwordIsFewerThan8Characters')));
                                         }
                                         return Promise.resolve();
                                     },

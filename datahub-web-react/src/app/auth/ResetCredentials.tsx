@@ -88,7 +88,7 @@ export const ResetCredentials: React.VFC<ResetCredentialsProps> = () => {
                 })
                 .finally(() => setLoading(false));
         },
-        [refreshContext, resetToken],
+        [t, refreshContext, resetToken],
     );
 
     if (isLoggedIn && !loading) {
@@ -102,7 +102,7 @@ export const ResetCredentials: React.VFC<ResetCredentialsProps> = () => {
                     <Image wrapperClassName={styles.logo_image} src={themeConfig.assets?.logoUrl} preview={false} />
                 </div>
                 <div className={styles.login_form_box}>
-                    {loading && <Message type="loading" content={t('authentification.resettingCredentials') + '...'} />}
+                    {loading && <Message type="loading" content={`${t('authentification.resettingCredentials')}...`} />}
                     <Form onFinish={handleResetCredentials} layout="vertical">
                         <StyledFormItem
                             rules={[{ required: true, message: t('form.fillInYourEmail') }]}
@@ -118,9 +118,7 @@ export const ResetCredentials: React.VFC<ResetCredentialsProps> = () => {
                                 ({ getFieldValue }) => ({
                                     validator() {
                                         if (getFieldValue('password').length < 8) {
-                                            return Promise.reject(
-                                                new Error(t('form.passwordIsFewerThan8Characters')),
-                                            );
+                                            return Promise.reject(new Error(t('form.passwordIsFewerThan8Characters')));
                                         }
                                         return Promise.resolve();
                                     },

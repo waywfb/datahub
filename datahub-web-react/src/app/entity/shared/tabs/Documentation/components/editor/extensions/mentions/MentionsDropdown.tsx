@@ -3,12 +3,12 @@ import { Typography } from 'antd';
 import styled from 'styled-components';
 import { useDebounce } from 'react-use';
 import { useCommands } from '@remirror/react';
+import { useTranslation } from 'react-i18next';
 import { AutoCompleteResultForEntity, Entity, EntityType } from '../../../../../../../../../types.generated';
 import { useEntityRegistry } from '../../../../../../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../../../../../constants';
 import { useDataHubMentions } from './useDataHubMentions';
 import AutoCompleteItem from '../../../../../../../../search/autoComplete/AutoCompleteItem';
-import { useTranslation } from 'react-i18next';
 
 const HeaderItem = styled(Typography.Text)`
     display: block;

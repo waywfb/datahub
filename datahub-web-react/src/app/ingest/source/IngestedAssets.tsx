@@ -93,7 +93,8 @@ export default function IngestedAssets({ id }: Props) {
     const subTypeFacets =
         (hasSubTypeFacet && facets?.filter((facet) => facet.field === TYPE_NAMES_FACET_NAME)[0]) || undefined;
     const countsByEntityType =
-        (entityTypeFacets && extractEntityTypeCountsFromFacets(entityRegistry, entityTypeFacets, subTypeFacets, t)) || [];
+        (entityTypeFacets && extractEntityTypeCountsFromFacets(entityRegistry, entityTypeFacets, subTypeFacets, t)) ||
+        [];
 
     // The total number of assets ingested
     const total = data?.searchAcrossEntities?.total || 0;

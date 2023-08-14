@@ -1,10 +1,10 @@
 import React from 'react';
 import { List, Typography, Divider } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { PreviewType } from '../../entity/Entity';
 import { EntityType, SearchResult } from '../../../types.generated';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     searchResult: {
@@ -33,7 +33,7 @@ export default ({ searchResult, entityPath }: Props) => {
     return (
         <ListContainer>
             <TitleContainer>
-                <Typography.Title level={3}>{entityRegistry.getCollectionNametrans(entityType, t)}</Typography.Title>
+                <Typography.Title level={3}>{entityRegistry.getCollectionNameTrans(entityType, t)}</Typography.Title>
                 <Divider />
             </TitleContainer>
             <List

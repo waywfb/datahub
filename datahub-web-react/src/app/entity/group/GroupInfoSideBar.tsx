@@ -23,7 +23,6 @@ import {
 } from '../shared/SidebarStyledComponents';
 import GroupMembersSideBarSection from './GroupMembersSideBarSection';
 import { useUserContext } from '../../context/useUserContext';
-import { useTranslation } from 'react-i18next';
 
 const { Paragraph } = Typography;
 

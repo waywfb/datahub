@@ -3,13 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { List, Tag, Tooltip, Typography } from 'antd';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { CorpGroup, EntityType, OriginType } from '../../../types.generated';
 import CustomAvatar from '../../shared/avatar/CustomAvatar';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import EntityDropdown from '../../entity/shared/EntityDropdown';
 import { EntityMenuItems } from '../../entity/shared/EntityDropdown/EntityDropdown';
 import { ELASTIC_MAX_COUNT, getElasticCappedTotalValueText } from '../../entity/shared/constants';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     group: CorpGroup;
@@ -57,17 +57,18 @@ export default function GroupListItem({ group, onDelete }: Props) {
                                 <Typography.Text type="secondary">{group.properties?.description}</Typography.Text>
                             </div>
                         </div>
-                        <Tag>{(group as any).memberCount?.total < ELASTIC_MAX_COUNT
-                            ? t('common.memberWithCount', { count: (group as any).memberCount?.total || 0 })
-                            : (getElasticCappedTotalValueText((group as any).memberCount?.total || 0) + ' ' + t('common.members'))
-                        }</Tag>
+                        <Tag>
+                            {(group as any).memberCount?.total < ELASTIC_MAX_COUNT
+                                ? t('common.memberWithCount', { count: (group as any).memberCount?.total || 0 })
+                                : `${getElasticCappedTotalValueText((group as any).memberCount?.total || 0)} ${t(
+                                      'common.members',
+                                  )}`}
+                        </Tag>
                     </GroupHeaderContainer>
                 </Link>
                 <GroupItemButtonGroup>
                     {isExternalGroup && (
-                        <Tooltip
-                            title={t('group.cantEditBecauseExternalGroup', { externalGroupType })}
-                        >
+                        <Tooltip title={t('group.cantEditBecauseExternalGroup', { externalGroupType })}>
                             <LockOutlined />
                         </Tooltip>
                     )}

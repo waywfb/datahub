@@ -26,20 +26,33 @@ export default function DomainItemMenu({ name, urn, onDelete }: Props) {
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success(t('crud.success.deleteWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) }));
+                    message.success(
+                        t('crud.success.deleteWithName', {
+                            name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+                        }),
+                    );
                     onDelete?.();
                 }
             })
             .catch(() => {
                 message.destroy();
-                message.error({ content: `${t('crud.error.deleteWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) })}: An unknown error occurred.`, duration: 3 });
+                message.error({
+                    content: `${t('crud.error.deleteWithName', {
+                        name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+                    })}: An unknown error occurred.`,
+                    duration: 3,
+                });
             });
     };
 
     const onConfirmDelete = () => {
         Modal.confirm({
-            title: t('crud.deleteWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) + ` '${name}'` }),
-            content: t('crud.doYouWantTo.removeContentWithThisName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) }),
+            title: t('crud.deleteWithName', {
+                name: `${entityRegistry.getEntityNameTrans(EntityType.Domain, t)} '${name}'`,
+            }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', {
+                name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+            }),
             onOk() {
                 deleteDomain();
             },

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import * as QueryString from 'query-string';
 import { PlusOutlined } from '@ant-design/icons';
 import { AlignType } from 'rc-table/lib/interface';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../types.generated';
 import { useListDomainsQuery } from '../../graphql/domain.generated';
 import CreateDomainModal from './CreateDomainModal';
@@ -20,7 +21,6 @@ import { getElasticCappedTotalValueText } from '../entity/shared/constants';
 import { StyledTable } from '../entity/shared/components/styled/StyledTable';
 import { IconStyleType } from '../entity/Entity';
 import { DomainOwnersColumn, DomainListMenuColumn, DomainNameColumn } from './DomainListColumns';
-import { useTranslation } from 'react-i18next';
 
 const DomainsContainer = styled.div``;
 
@@ -127,8 +127,15 @@ export const DomainsList = () => {
 
     return (
         <>
-            {!data && loading && <Message type="loading" content={t('common.loading') + '...'} />}
-            {error && <Message type="error" content={t('crud.error.loadWithName', { name: entityRegistry.getCollectionNameTrans(EntityType.Domain, t) })} />}
+            {!data && loading && <Message type="loading" content={`${t('common.loading')}...`} />}
+            {error && (
+                <Message
+                    type="error"
+                    content={t('crud.error.loadWithName', {
+                        name: entityRegistry.getCollectionNameTrans(EntityType.Domain, t),
+                    })}
+                />
+            )}
             <OnboardingTour stepIds={[DOMAINS_INTRO_ID, DOMAINS_CREATE_DOMAIN_ID]} />
             <DomainsContainer>
                 <TabToolbar>
@@ -137,7 +144,9 @@ export const DomainsList = () => {
                     </Button>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText={t('placehoder.searchWithName', { name: entityRegistry.getCollectionNameTrans(EntityType.Domain, t) })}
+                        placeholderText={t('placehoder.searchWithName', {
+                            name: entityRegistry.getCollectionNameTrans(EntityType.Domain, t),
+                        })}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,
@@ -158,7 +167,9 @@ export const DomainsList = () => {
                     dataSource={tableData}
                     rowKey="urn"
                     pagination={false}
-                    locale={{ emptyText: <Empty description={t('domain.noDomain')} image={Empty.PRESENTED_IMAGE_SIMPLE} /> }}
+                    locale={{
+                        emptyText: <Empty description={t('domain.noDomain')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                    }}
                 />
                 <DomainsPaginationContainer>
                     <PaginationInfo>

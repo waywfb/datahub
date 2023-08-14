@@ -2,11 +2,11 @@ import React from 'react';
 import { Tag, Tooltip, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { TFunction } from 'i18next';
 import { Maybe, Ownership } from '../../types.generated';
 import { useEntityRegistry } from '../useEntityRegistry';
 import AvatarsGroup from '../shared/avatar/AvatarsGroup';
 import DomainItemMenu from './DomainItemMenu';
-import { TFunction } from 'i18next';
 
 interface DomainEntry {
     name: string;
@@ -42,7 +42,10 @@ export function DomainNameColumn(logoIcon: JSX.Element, t: TFunction) {
                     <Typography.Text>{record.name}</Typography.Text>
                 </DomainNameContainer>
                 <Tooltip title={t('domain.nbrOfEntityInDomain', { value: record.entities })}>
-                    <Tag>{record.entities} {t([0,1].indexOf(Number(record.entities))>=0 ? 'common.entities' : 'common.entity')}</Tag>
+                    <Tag>
+                        {record.entities}{' '}
+                        {t([0, 1].indexOf(Number(record.entities)) >= 0 ? 'common.entities' : 'common.entity')}
+                    </Tag>
                 </Tooltip>
             </Link>
         </span>

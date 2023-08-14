@@ -1,6 +1,7 @@
 import React from 'react';
 import { Divider, List, Checkbox } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { Entity, EntityPath } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
@@ -8,7 +9,6 @@ import { IconStyleType } from '../../../entity/Entity';
 import { EntityAndType } from '../../../entity/shared/types';
 import { getPlatformName } from '../../../entity/shared/utils';
 import { capitalizeFirstLetterOnly } from '../../../shared/textUtil';
-import { useTranslation } from 'react-i18next';
 
 const StyledCheckbox = styled(Checkbox)`
     margin-right: 12px;

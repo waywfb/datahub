@@ -1,11 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { EntityType, MlModel } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { capitalizeFirstLetterOnly } from '../../../shared/textUtil';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
 import { getDataProduct } from '../../shared/utils';
-import { useTranslation } from 'react-i18next';
 
 export const Preview = ({ model }: { model: MlModel }): JSX.Element => {
     const entityRegistry = useEntityRegistry();

@@ -91,7 +91,7 @@ export const Preview = ({
                         <Link to={url}>
                             <EntityTitle>{name || urn}</EntityTitle>
                             <MemberCountContainer>
-                                <Tag>{t('common.memberWithCount',  { count: membersCount })}</Tag>
+                                <Tag>{t('common.memberWithCount', { count: membersCount })}</Tag>
                             </MemberCountContainer>
                         </Link>
                     </TitleContainer>

@@ -6,6 +6,7 @@ import { Maybe, Ownership } from '../../types.generated';
 import { useEntityRegistry } from '../useEntityRegistry';
 import AvatarsGroup from '../shared/avatar/AvatarsGroup';
 import DomainItemMenu from './DomainItemMenu';
+import { TFunction } from 'i18next';
 
 interface DomainEntry {
     name: string;
@@ -32,7 +33,7 @@ export function DomainListMenuColumn(handleDelete: (urn: string) => void) {
     );
 }
 
-export function DomainNameColumn(logoIcon: JSX.Element) {
+export function DomainNameColumn(logoIcon: JSX.Element, t: TFunction) {
     return (record: DomainEntry) => (
         <span data-testid={record.urn}>
             <Link to={record.url}>
@@ -40,8 +41,8 @@ export function DomainNameColumn(logoIcon: JSX.Element) {
                 <DomainNameContainer>
                     <Typography.Text>{record.name}</Typography.Text>
                 </DomainNameContainer>
-                <Tooltip title={`There are ${record.entities} entities in this domain.`}>
-                    <Tag>{record.entities} entities</Tag>
+                <Tooltip title={t('domain.nbrOfEntityInDomain', { value: record.entities })}>
+                    <Tag>{record.entities} {t([0,1].indexOf(Number(record.entities))>=0 ? 'common.entities' : 'common.entity')}</Tag>
                 </Tooltip>
             </Link>
         </span>

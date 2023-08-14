@@ -29,7 +29,7 @@ export const ManageDomainsPage = () => {
             <PageHeaderContainer>
                 <PageTitle level={3}>{t('common.domains')}</PageTitle>
                 <Typography.Paragraph type="secondary">
-                    View your DataHub Domains. Take administrative actions.
+                    {t('domain.domainManagementDescription')}
                 </Typography.Paragraph>
             </PageHeaderContainer>
             <ListContainer>

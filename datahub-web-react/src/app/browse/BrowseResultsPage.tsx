@@ -11,12 +11,14 @@ import { useEntityRegistry } from '../useEntityRegistry';
 import { Message } from '../shared/Message';
 import { scrollToTop } from '../shared/searchUtils';
 import { ErrorSection } from '../shared/error/ErrorSection';
+import { useTranslation } from 'react-i18next';
 
 type BrowseResultsPageParams = {
     type: string;
 };
 
 export const BrowseResultsPage = () => {
+    const { t } = useTranslation();
     const location = useLocation();
     const history = useHistory();
     const { type } = useParams<BrowseResultsPageParams>();
@@ -60,7 +62,7 @@ export const BrowseResultsPage = () => {
                 <LegacyBrowsePath type={entityType} path={path} isBrowsable />
             </Affix>
             {error && <ErrorSection />}
-            {loading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+            {loading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
             {data && data.browse && !loading && (
                 <BrowseResults
                     type={entityType}

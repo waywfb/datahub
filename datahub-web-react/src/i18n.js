@@ -24,14 +24,7 @@ i18n
         debug: true,
         defaultNs: 'translation',
         fallbackNs: 'translation',
-        ns: [
-            'translation',
-            'empty-message',
-            'form',
-            'lookback-windows',
-            'react-cron',
-            'theme'
-        ],
+        ns: ['translation', 'empty-message', 'form', 'lookback-windows', 'react-cron', 'theme'],
         backend: {
             loadPath: '/conf/locales/{{lng}}/{{ns}}.json',
             allowMultiLoading: true,

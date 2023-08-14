@@ -1,5 +1,5 @@
-import { OwnershipType, OwnershipTypeEntity } from '../../../../../../../types.generated';
 import { TFunction } from 'i18next';
+import { OwnershipType, OwnershipTypeEntity } from '../../../../../../../types.generated';
 
 /**
  * A mapping from OwnershipType to it's display name & description. In the future,
@@ -38,7 +38,9 @@ export const getNameFromType = (t: TFunction, type: OwnershipType) => {
 };
 
 export const getDescriptionFromType = (t: TFunction, type: OwnershipType) => {
-    return ownershipTypeToDetails.get(type)?.description ? t(ownershipTypeToDetails.get(type)?.description) : t('common.noDescription');
+    return ownershipTypeToDetails.get(type)?.description
+        ? t(ownershipTypeToDetails.get(type)?.description)
+        : t('common.noDescription');
 };
 
 export function getOwnershipTypeName(t: TFunction, ownershipType?: OwnershipTypeEntity | null) {

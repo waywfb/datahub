@@ -6,13 +6,13 @@ import {
     LoadingOutlined,
     WarningOutlined,
 } from '@ant-design/icons';
+import { TFunction } from 'i18next';
 import { ANTD_GRAY, REDESIGN_COLORS } from '../../entity/shared/constants';
 import { EntityType, FacetMetadata } from '../../../types.generated';
 import { capitalizeFirstLetterOnly, pluralize } from '../../shared/textUtil';
 import EntityRegistry from '../../entity/EntityRegistry';
 import { SourceConfig } from './builder/types';
 import { ListIngestionSourcesDocument, ListIngestionSourcesQuery } from '../../../graphql/ingestion.generated';
-import { TFunction } from 'i18next';
 
 export const getSourceConfigs = (ingestionSources: SourceConfig[], sourceType: string) => {
     const sourceConfigs = ingestionSources.find((source) => source.name === sourceType);
@@ -137,10 +137,10 @@ type EntityTypeCount = {
  * @param t the i18n function.
  */
 export const extractEntityTypeCountsFromFacets = (
+    t: TFunction,
     entityRegistry: EntityRegistry,
     entityTypeFacets: FacetMetadata,
     subTypeFacets?: FacetMetadata | null,
-    t: TFunction
 ): EntityTypeCount[] => {
     const finalCounts: EntityTypeCount[] = [];
 

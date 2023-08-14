@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Zoom } from '@vx/zoom';
 import { MockedProvider } from '@apollo/client/testing';
+import { useTranslation } from 'react-i18next';
 import {
     dataset3WithLineage,
     dataset4WithLineage,
@@ -34,6 +35,7 @@ const initialTransform = {
 const testEntityRegistry = getTestEntityRegistry();
 
 describe('LineageTree', () => {
+    const { t } = useTranslation();
     it('renders a tree with many layers', () => {
         const fetchedEntities = [
             { entity: dataset4WithLineage, direction: Direction.Upstream, fullyFetched: true },
@@ -54,6 +56,7 @@ describe('LineageTree', () => {
         );
 
         const downstreamData = constructTree(
+            t,
             { entity: dataset3WithLineage, type: EntityType.Dataset },
             mockFetchedEntities,
             Direction.Downstream,
@@ -61,6 +64,7 @@ describe('LineageTree', () => {
             {},
         );
         const upstreamData = constructTree(
+            t,
             { entity: dataset3WithLineage, type: EntityType.Dataset },
             mockFetchedEntities,
             Direction.Upstream,

@@ -34,18 +34,22 @@ describe('EntityProfile', () => {
                         getOverrideProperties={() => ({})}
                         tabs={[
                             {
+                                titleKey: 'common.schema',
                                 name: 'Schema',
                                 component: SchemaTab,
                             },
                             {
+                                titleKey: 'common.documentation',
                                 name: 'Documentation',
                                 component: DocumentationTab,
                             },
                             {
+                                titleKey: 'common.properties',
                                 name: 'Properties',
                                 component: PropertiesTab,
                             },
                             {
+                                titleKey: 'common.lineage',
                                 name: 'Lineage',
                                 component: LineageTab,
                                 display: {
@@ -56,6 +60,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.queries',
                                 name: 'Queries',
                                 component: QueriesTab,
                                 display: {
@@ -65,6 +70,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.stats',
                                 name: 'Stats',
                                 component: StatsTab,
                                 display: {
@@ -119,18 +125,22 @@ describe('EntityProfile', () => {
                         getOverrideProperties={() => ({})}
                         tabs={[
                             {
+                                titleKey: 'common.schema',
                                 name: 'Schema',
                                 component: SchemaTab,
                             },
                             {
+                                titleKey: 'common.documentation',
                                 name: 'Documentation',
                                 component: DocumentationTab,
                             },
                             {
+                                titleKey: 'common.properties',
                                 name: 'Properties',
                                 component: PropertiesTab,
                             },
                             {
+                                titleKey: 'common.lineage',
                                 name: 'Lineage',
                                 component: LineageTab,
                                 display: {
@@ -141,6 +151,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.queries',
                                 name: 'Queries',
                                 component: QueriesTab,
                                 display: {
@@ -150,6 +161,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.stats',
                                 name: 'Stats',
                                 component: StatsTab,
                                 display: {
@@ -203,18 +215,22 @@ describe('EntityProfile', () => {
                         getOverrideProperties={() => ({})}
                         tabs={[
                             {
+                                titleKey: 'common.schema',
                                 name: 'Schema',
                                 component: SchemaTab,
                             },
                             {
+                                titleKey: 'common.documentation',
                                 name: 'Documentation',
                                 component: DocumentationTab,
                             },
                             {
+                                titleKey: 'common.properties',
                                 name: 'Properties',
                                 component: PropertiesTab,
                             },
                             {
+                                titleKey: 'common.lineage',
                                 name: 'Lineage',
                                 component: LineageTab,
                                 display: {
@@ -225,6 +241,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.queries',
                                 name: 'Queries',
                                 component: QueriesTab,
                                 display: {
@@ -234,6 +251,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.stats',
                                 name: 'Stats',
                                 component: StatsTab,
                                 display: {
@@ -300,18 +318,22 @@ describe('EntityProfile', () => {
                         getOverrideProperties={() => ({})}
                         tabs={[
                             {
+                                titleKey: 'common.schema',
                                 name: 'Schema',
                                 component: SchemaTab,
                             },
                             {
+                                titleKey: 'common.documentation',
                                 name: 'Documentation',
                                 component: DocumentationTab,
                             },
                             {
+                                titleKey: 'common.properties',
                                 name: 'Properties',
                                 component: PropertiesTab,
                             },
                             {
+                                titleKey: 'common.lineage',
                                 name: 'Lineage',
                                 component: LineageTab,
                                 display: {
@@ -322,6 +344,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.queries',
                                 name: 'Queries',
                                 component: QueriesTab,
                                 display: {
@@ -331,6 +354,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.stats',
                                 name: 'Stats',
                                 component: StatsTab,
                                 display: {
@@ -384,18 +408,22 @@ describe('EntityProfile', () => {
                         getOverrideProperties={() => ({})}
                         tabs={[
                             {
+                                titleKey: 'common.schema',
                                 name: 'Schema',
                                 component: SchemaTab,
                             },
                             {
+                                titleKey: 'common.documentation',
                                 name: 'Documentation',
                                 component: DocumentationTab,
                             },
                             {
+                                titleKey: 'common.properties',
                                 name: 'Properties',
                                 component: PropertiesTab,
                             },
                             {
+                                titleKey: 'common.lineage',
                                 name: 'Lineage',
                                 component: LineageTab,
                                 display: {
@@ -406,6 +434,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.queries',
                                 name: 'Queries',
                                 component: QueriesTab,
                                 display: {
@@ -415,6 +444,7 @@ describe('EntityProfile', () => {
                                 },
                             },
                             {
+                                titleKey: 'common.stats',
                                 name: 'Stats',
                                 component: StatsTab,
                                 display: {

@@ -71,7 +71,6 @@ export default function PolicyPrivilegeForm({
         if (!entity) {
             return null;
         }
-        // TODO: jm replace getDisplayName ?
         return entityRegistry.getDisplayName(entity.type, entity);
     };
 

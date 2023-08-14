@@ -1,3 +1,4 @@
+import { TFunction } from 'i18next';
 import { Entity } from '../../../types.generated';
 import EntityRegistry from '../../entity/EntityRegistry';
 import { Direction, EntityAndType, FetchedEntities, FetchedEntity, NodeData, UpdatedLineages } from '../types';
@@ -52,6 +53,7 @@ function updateFetchedEntity(fetchedEntity: FetchedEntity, updatedLineages: Upda
 }
 
 export default function constructTree(
+    t: TFunction,
     entityAndType: EntityAndType | null | undefined,
     fetchedEntities: FetchedEntities,
     direction: Direction,

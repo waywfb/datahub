@@ -2,6 +2,7 @@ import React from 'react';
 import { Tree, hierarchy } from '@vx/hierarchy';
 import { render } from '@testing-library/react';
 
+import { useTranslation } from 'react-i18next';
 import {
     dataset3WithLineage,
     dataset4WithLineage,
@@ -21,6 +22,7 @@ import { EntityType } from '../../../types.generated';
 const testEntityRegistry = getTestEntityRegistry();
 
 describe('adjustVXTreeLayout', () => {
+    const { t } = useTranslation();
     it('adjusts nodes with layers of lineage to make sure identical nodes are given the same coordinates', () => {
         const fetchedEntities = [
             { entity: dataset4WithLineage, direction: Direction.Upstream, fullyFetched: true },
@@ -42,6 +44,7 @@ describe('adjustVXTreeLayout', () => {
 
         const downstreamData = hierarchy(
             constructTree(
+                t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -93,6 +96,7 @@ describe('adjustVXTreeLayout', () => {
 
         const upstreamData = hierarchy(
             constructTree(
+                t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -149,6 +153,7 @@ describe('adjustVXTreeLayout', () => {
 
         const upstreamData = hierarchy(
             constructTree(
+                t,
                 { entity: dataset7WithSelfReferentialLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -194,6 +199,7 @@ describe('adjustVXTreeLayout', () => {
 
         const upstreamData = hierarchy(
             constructTree(
+                t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -239,6 +245,7 @@ describe('adjustVXTreeLayout', () => {
 
         const upstreamData = hierarchy(
             constructTree(
+                t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,

@@ -73,7 +73,7 @@ export const DefineRecipeStep = ({ state, updateState, goTo, prev, ingestionSour
     }, [stagedRecipeYml, showLookerBanner]);
 
     const onClickNext = () => {
-        const recipeJson = getRecipeJson(stagedRecipeYml);
+        const recipeJson = getRecipeJson(t, stagedRecipeYml);
         if (!recipeJson) return;
 
         if (!JSON.parse(recipeJson).source?.type) {

@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { AutoComplete, Divider, Form } from 'antd';
 import { useApolloClient } from '@apollo/client';
 import styled from 'styled-components/macro';
+import { Trans, useTranslation } from 'react-i18next';
 import { Secret } from '../../../../../../types.generated';
 import CreateSecretButton from './CreateSecretButton';
 import { RecipeField } from '../common';
@@ -67,16 +68,21 @@ function SecretFieldTooltip({ tooltipLabel }: { tooltipLabel?: string | ReactNod
                 </>
             )}
             <p>
-                This field requires you to use a DataHub Secret. For more information on Secrets in DataHub, please
-                review{' '}
-                <a
-                    href="https://datahubproject.io/docs/ui-ingestion/#creating-a-secret"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    the docs
-                </a>
-                .
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.secretFieldToolTip_component',
+                        components: {
+                            aLink: (
+                                // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                <a
+                                    href="https://datahubproject.io/docs/ui-ingestion/#creating-a-secret"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                />
+                            ),
+                        },
+                    }}
+                />
             </p>
         </div>
     );
@@ -87,6 +93,7 @@ const encodeSecret = (secretName: string) => {
 };
 
 function SecretField({ field, secrets, removeMargin, updateFormValue, refetchSecrets }: SecretFieldProps) {
+    const { t } = useTranslation();
     const options = secrets.map((secret) => ({ value: encodeSecret(secret.name), label: secret.name }));
     const apolloClient = useApolloClient();
 
@@ -103,7 +110,7 @@ function SecretField({ field, secrets, removeMargin, updateFormValue, refetchSec
             <AutoComplete
                 placeholder={field.placeholder}
                 filterOption={(input, option) => !!option?.value.toLowerCase().includes(input.toLowerCase())}
-                notFoundContent={<>No secrets found</>}
+                notFoundContent={<>{t('ingest.noSecretsFound')}</>}
                 options={options}
                 dropdownRender={(menu) => {
                     return (

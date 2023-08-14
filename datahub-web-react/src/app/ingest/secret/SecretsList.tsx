@@ -223,7 +223,10 @@ export const SecretsList = () => {
                     rowKey="urn"
                     locale={{
                         emptyText: (
-                            <Empty description={t('ingest.noSecretsFound')} image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                            <Empty
+                                description={`${t('ingest.noSecretsFound')}!`}
+                                image={Empty.PRESENTED_IMAGE_SIMPLE}
+                            />
                         ),
                     }}
                     pagination={false}

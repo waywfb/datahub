@@ -109,15 +109,15 @@ function TestConnectionModal({
             title={
                 <ModalHeader style={{ margin: 0 }}>
                     <SourceIcon alt="source logo" src={logoUrl} />
-                    {sourceConfig?.displayName} Connection Test
+                    {t('ingest.connectionTestWithSourceName', { sourceName: sourceConfig?.displayName })}
                 </ModalHeader>
             }
             width={750}
         >
             {isLoading && (
                 <ResultsWrapper>
-                    <LoadingHeader level={4}>Testing your connection...</LoadingHeader>
-                    <LoadingSubheader>This could take a few minutes.</LoadingSubheader>
+                    <LoadingHeader level={4}>{t('ingest.testingYourConnection')}</LoadingHeader>
+                    <LoadingSubheader>{t('ingest.thisCouldTakeAFewMinutes')}</LoadingSubheader>
                     <LoadingWrapper>
                         <LoadingSvg height={100} width={100} />
                     </LoadingWrapper>
@@ -128,18 +128,22 @@ function TestConnectionModal({
                     <ResultsHeader success={!testConnectionFailed}>
                         {testConnectionFailed ? (
                             <>
-                                <StyledClose /> Connection Failed
+                                <StyledClose /> {t('ingest.connectionFailed')}
                             </>
                         ) : (
                             <>
-                                <StyledCheck /> Connection Succeeded
+                                <StyledCheck /> {t('ingest.connectionSucceeded')}
                             </>
                         )}
                     </ResultsHeader>
                     <ResultsSubHeader>
                         {testConnectionFailed
-                            ? `A connection was not able to be established with ${sourceConfig?.displayName}.`
-                            : `A connection was successfully established with ${sourceConfig?.displayName}.`}
+                            ? t('ingest.aConnectionWasNotAbleToBeEstablishedWithSourceName', {
+                                  sourceName: sourceConfig?.displayName,
+                              })
+                            : t('ingest.aConnectionWasSuccessfullyEstablishedWithSourceName', {
+                                  sourceName: sourceConfig?.displayName,
+                              })}
                     </ResultsSubHeader>
                     <Divider />
                     {testConnectionResult?.internal_failure ? (
@@ -151,9 +155,9 @@ function TestConnectionModal({
                         />
                     ) : (
                         <CapabilitiesHeader>
-                            <CapabilitiesTitle>Capabilities</CapabilitiesTitle>
+                            <CapabilitiesTitle>{t('common.capabilities')}</CapabilitiesTitle>
                             <ResultsSubHeader>
-                                The following connector capabilities are supported with your credentials
+                                {t('ingest.theFollowingConnectorCapabilitiesAreSupportedWithYourCredentials')}
                             </ResultsSubHeader>
                         </CapabilitiesHeader>
                     )}

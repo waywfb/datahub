@@ -103,7 +103,7 @@ export const toLocalTimeString = (timeMs: number, locale: string) => {
 
 export const toLocalDateTimeString = (timeMs: number, locale: string) => {
     const date = new Date(timeMs);
-    return date.toLocaleString([locale], {
+    return date.toLocaleString(locale, {
         year: 'numeric',
         month: 'numeric',
         day: 'numeric',
@@ -115,7 +115,7 @@ export const toLocalDateTimeString = (timeMs: number, locale: string) => {
 
 export const toUTCDateTimeString = (timeMs: number, locale: string) => {
     const date = new Date(timeMs);
-    return date.toLocaleString([locale], {
+    return date.toLocaleString(locale, {
         year: 'numeric',
         month: 'numeric',
         day: 'numeric',

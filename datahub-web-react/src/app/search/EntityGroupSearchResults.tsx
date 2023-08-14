@@ -56,7 +56,7 @@ export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) 
             <ResultList<React.FC<ListProps<SearchResult>>>
                 header={
                     <span style={styles.header}>
-                        <Typography.Title level={2}>{entityRegistry.getCollectionName(type)}</Typography.Title>
+                        <Typography.Title level={2}>{entityRegistry.getCollectionNameTrans(type, t)}</Typography.Title>
                         <Card bodyStyle={styles.resultHeaderCardBody} style={styles.resultHeaderCard as any}>
                             {entityRegistry.getIcon(type, 36, IconStyleType.ACCENT)}
                         </Card>

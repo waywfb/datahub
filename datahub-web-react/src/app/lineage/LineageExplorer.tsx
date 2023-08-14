@@ -211,7 +211,7 @@ export default function LineageExplorer({ urn, type }: Props) {
                                 {t('common.close')}
                             </Button>
                             <Button href={entityRegistry.getEntityUrl(selectedEntity.type, selectedEntity.urn)}>
-                                <InfoCircleOutlined /> {entityRegistry.getEntityName(selectedEntity.type)} Details
+                                <InfoCircleOutlined /> {entityRegistry.getEntityNameTrans(selectedEntity.type, t)} Details
                             </Button>
                         </FooterButtonGroup>
                     )

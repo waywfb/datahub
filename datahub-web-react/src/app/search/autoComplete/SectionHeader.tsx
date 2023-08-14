@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { EntityType } from '../../../types.generated';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { useEntityRegistry } from '../../useEntityRegistry';
+import { useTranslation } from 'react-i18next';
 
 export const EntityTypeLabel = styled.div<{ showBorder?: boolean }>`
     font-size: 14px;
@@ -28,11 +29,12 @@ interface Props {
 
 export default function SectionHeader({ entityType }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const isDatasetType = entityType === EntityType.Dataset;
 
     return (
         <EntityTypeLabel showBorder>
-            {entityRegistry.getCollectionName(entityType)}
+            {entityRegistry.getCollectionNameTrans(entityType, t)}
             {isDatasetType && <SubtypesDescription>tables, topics, views, and more</SubtypesDescription>}
         </EntityTypeLabel>
     );

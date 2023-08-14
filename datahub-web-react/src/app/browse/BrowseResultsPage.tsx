@@ -67,7 +67,7 @@ export const BrowseResultsPage = () => {
                 <BrowseResults
                     type={entityType}
                     rootPath={rootPath}
-                    title={path.length > 0 ? path[path.length - 1] : entityRegistry.getCollectionName(entityType)}
+                    title={path.length > 0 ? path[path.length - 1] : entityRegistry.getCollectionNameTrans(entityType, t)}
                     page={page}
                     pageSize={BrowseCfg.RESULTS_PER_PAGE}
                     groups={data.browse.groups}

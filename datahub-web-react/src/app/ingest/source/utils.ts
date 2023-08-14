@@ -12,6 +12,7 @@ import { capitalizeFirstLetterOnly, pluralize } from '../../shared/textUtil';
 import EntityRegistry from '../../entity/EntityRegistry';
 import { SourceConfig } from './builder/types';
 import { ListIngestionSourcesDocument, ListIngestionSourcesQuery } from '../../../graphql/ingestion.generated';
+import { TFunction } from 'i18next';
 
 export const getSourceConfigs = (ingestionSources: SourceConfig[], sourceType: string) => {
     const sourceConfigs = ingestionSources.find((source) => source.name === sourceType);
@@ -130,13 +131,16 @@ type EntityTypeCount = {
 /**
  * Extract entity type counts to display in the ingestion summary.
  *
+ * @param entityRegistry the entity registry.
  * @param entityTypeFacets the filter facets for entity type.
  * @param subTypeFacets the filter facets for sub types.
+ * @param t the i18n function.
  */
 export const extractEntityTypeCountsFromFacets = (
     entityRegistry: EntityRegistry,
     entityTypeFacets: FacetMetadata,
     subTypeFacets?: FacetMetadata | null,
+    t: TFunction
 ): EntityTypeCount[] => {
     const finalCounts: EntityTypeCount[] = [];
 
@@ -155,7 +159,7 @@ export const extractEntityTypeCountsFromFacets = (
             .forEach((agg) =>
                 finalCounts.push({
                     count: agg.count,
-                    displayName: entityRegistry.getCollectionName(agg.value as EntityType),
+                    displayName: entityRegistry.getCollectionNameTrans(agg.value as EntityType, t),
                 }),
             );
     } else {
@@ -165,7 +169,7 @@ export const extractEntityTypeCountsFromFacets = (
             .forEach((agg) =>
                 finalCounts.push({
                     count: agg.count,
-                    displayName: entityRegistry.getCollectionName(agg.value as EntityType),
+                    displayName: entityRegistry.getCollectionNameTrans(agg.value as EntityType, t),
                 }),
             );
     }

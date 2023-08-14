@@ -46,7 +46,7 @@ const EntityCount = styled.div`
 `;
 
 const ViewAllButton = styled(Button)`
-    padding: 0px;
+    padding: 0;
     margin-top: 4px;
 `;
 
@@ -93,7 +93,7 @@ export default function IngestedAssets({ id }: Props) {
     const subTypeFacets =
         (hasSubTypeFacet && facets?.filter((facet) => facet.field === TYPE_NAMES_FACET_NAME)[0]) || undefined;
     const countsByEntityType =
-        (entityTypeFacets && extractEntityTypeCountsFromFacets(entityRegistry, entityTypeFacets, subTypeFacets)) || [];
+        (entityTypeFacets && extractEntityTypeCountsFromFacets(entityRegistry, entityTypeFacets, subTypeFacets, t)) || [];
 
     // The total number of assets ingested
     const total = data?.searchAcrossEntities?.total || 0;

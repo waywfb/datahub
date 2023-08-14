@@ -71,7 +71,7 @@ export default function OwnerContent({ name, owner, hidePopOver, pictureLink, fo
     const { t } = useTranslation();
     const ownerEntity = owner.owner;
     const ownerEntityType = owner.owner.type;
-    const ownerEntityTypeDisplayName = entityRegistry.getEntityName(ownerEntityType);
+    const ownerEntityTypeDisplayName = entityRegistry.getEntityNameTrans(ownerEntityType, t);
     const ownerDisplayName = entityRegistry.getDisplayName(ownerEntityType, ownerEntity);
     let ownershipTypeName;
     let ownershipTypeDescription;

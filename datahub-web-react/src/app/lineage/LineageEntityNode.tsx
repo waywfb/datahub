@@ -339,7 +339,7 @@ export default function LineageEntityNode({
                         </tspan>
                         <tspan dx=".25em" dy="-2px">
                             {capitalizeFirstLetterOnly(node.data.subtype) ||
-                                (node.data.type && entityRegistry.getEntityName(node.data.type))}
+                                (node.data.type && entityRegistry.getEntityNameTrans(node.data.type, t))}
                         </tspan>
                     </UnselectableText>
                     {expandTitles ? (

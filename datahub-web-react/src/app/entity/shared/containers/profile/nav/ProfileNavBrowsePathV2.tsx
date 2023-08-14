@@ -16,6 +16,7 @@ import {
 import useHasMultipleEnvironmentsQuery from './useHasMultipleEnvironmentsQuery';
 import { createBrowseV2SearchFilter } from '../../../../../search/filters/utils';
 import { LineageSelector } from './LineageSelector';
+import { useTranslation } from 'react-i18next';
 
 const StyledBreadcrumb = styled(Breadcrumb)`
     font-size: 16px;
@@ -29,6 +30,7 @@ interface Props {
 export default function ProfileNavBrowsePathV2({ urn, type }: Props) {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const { entityData } = useEntityData();
     const isBrowsable = entityRegistry.getBrowseEntityTypes().includes(type);
     const hasEnvironment = !!entityData?.origin;
@@ -64,7 +66,7 @@ export default function ProfileNavBrowsePathV2({ urn, type }: Props) {
                     disabled={!isBrowsable}
                     onClick={() => handlePathClick([{ field: ENTITY_SUB_TYPE_FILTER_NAME, values: [type] }])}
                 >
-                    {entityRegistry.getCollectionName(type)}
+                    {entityRegistry.getCollectionNameTrans(type, t)}
                 </BreadcrumbItem>
                 {hasMultipleEnvironments && hasEnvironment && (
                     <BreadcrumbItem

@@ -23,6 +23,7 @@ import CustomAvatar from '../shared/avatar/CustomAvatar';
 import { IconStyleType } from '../entity/Entity';
 import { formatNumber } from '../shared/formatNumber';
 import useGetBrowseV2LabelOverride from './filters/useGetBrowseV2LabelOverride';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     field: string;
@@ -45,6 +46,7 @@ const MAX_COUNT_VAL = 10000;
 // SearchFilterLabel renders custom labels for entity, tag, term & data platform filters. All other filters use the default behavior.
 export const SearchFilterLabel = ({ field, value, entity, count, hideCount }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const filterLabelOverride = useGetBrowseV2LabelOverride(field, value, entityRegistry);
     const countText = hideCount ? '' : ` (${count === MAX_COUNT_VAL ? '10k+' : formatNumber(count)})`;
 
@@ -52,7 +54,7 @@ export const SearchFilterLabel = ({ field, value, entity, count, hideCount }: Pr
         const entityType = value.toUpperCase() as EntityType;
         return (
             <span>
-                {entityType ? entityRegistry.getCollectionName(entityType) : value}
+                {entityType ? entityRegistry.getCollectionNametrans(entityType, t) : value}
                 {countText}
             </span>
         );

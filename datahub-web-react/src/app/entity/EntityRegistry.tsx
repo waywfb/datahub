@@ -25,7 +25,6 @@ export default class EntityRegistry {
 
     pathNameToEntityType: Map<string, EntityType> = new Map<string, EntityType>();
 
-    // TODO ndespouy getCollectionName
     register(entity: Entity<any>) {
         this.entities.push(entity);
         this.entityTypeToEntity.set(entity.type, entity);

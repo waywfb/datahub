@@ -568,6 +568,15 @@
       "policies": "Policies"
     }
   },
+  "shared": {
+    "addOwners": "Add Owners",
+    "noEntities": "No entities",
+    "appliedTo": "Applied to",
+    "failedToUpdateDescription": "Failed to update description",
+    "descriptionUpdated": "Description Updated",
+    "failedToSaveTagColor": "Failed to save tag color",
+    "colorSaved": "Color Saved"
+  },
   "entity": {
     "noDataProducts": "No data products",
     "featureTables": "Feature Tables",

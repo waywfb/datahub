@@ -239,17 +239,20 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
                     },
                 });
                 message.destroy();
-                message.success({ content: 'Color Saved!', duration: 2 });
+                message.success({ content: `${t('shared.colorSaved')}!`, duration: 2 });
                 setDisplayColorPicker(false);
             } catch (e: unknown) {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `Failed to save tag color: \n ${e.message || ''}`, duration: 2 });
+                    message.error({
+                        content: `${t('shared.failedToSaveTagColor')}: \n ${e.message || ''}`,
+                        duration: 2,
+                    });
                 }
             }
             refetch?.();
         }
-    }, [urn, colorValue, displayColorPicker, setTagColorMutation, setDisplayColorPicker, refetch]);
+    }, [t, urn, colorValue, displayColorPicker, setTagColorMutation, setDisplayColorPicker, refetch]);
 
     const colorPickerRef = useRef(null);
 
@@ -300,11 +303,11 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
 
     // Save the description
     const handleSaveDescription = async (desc: string) => {
-        message.loading({ content: 'Saving...' });
+        message.loading({ content: `${t('crud.saving')}...` });
         try {
             await updateDescriptionValue(desc);
             message.destroy();
-            message.success({ content: 'Description Updated', duration: 2 });
+            message.success({ content: t('shared.descriptionUpdated'), duration: 2 });
             analytics.event({
                 type: EventType.EntityActionEvent,
                 actionType: EntityActionType.UpdateDescription,
@@ -314,7 +317,10 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
-                message.error({ content: `Failed to update description: \n ${e.message || ''}`, duration: 2 });
+                message.error({
+                    content: `${t('shared.failedToUpdateDescription')}: \n ${e.message || ''}`,
+                    duration: 2,
+                });
             }
         }
         refetch?.();
@@ -365,15 +371,15 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
             {/* Tag Charts, Datasets and Owners */}
             <DetailsLayout>
                 <StatsBox>
-                    <StatsLabel>Applied to</StatsLabel>
+                    <StatsLabel>{t('shared.appliedTo')}</StatsLabel>
                     {facetLoading && (
                         <div>
-                            <EmptyStatsText>Loading...</EmptyStatsText>
+                            <EmptyStatsText>{t('common.loading')}...</EmptyStatsText>
                         </div>
                     )}
                     {!facetLoading && aggregations && aggregations?.length === 0 && (
                         <div>
-                            <EmptyStatsText>No entities</EmptyStatsText>
+                            <EmptyStatsText>{t('shared.noEntities')}</EmptyStatsText>
                         </div>
                     )}
                     {!facetLoading &&
@@ -425,9 +431,9 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
                         <Button type={ownersEmpty ? 'default' : 'text'} onClick={() => setShowAddModal(true)}>
                             <PlusOutlined />
                             {ownersEmpty ? (
-                                <OwnerButtonEmptyTitle>Add Owners</OwnerButtonEmptyTitle>
+                                <OwnerButtonEmptyTitle>{t('shared.addOwners')}</OwnerButtonEmptyTitle>
                             ) : (
-                                <OwnerButtonTitle>Add Owners</OwnerButtonTitle>
+                                <OwnerButtonTitle>{t('shared.addOwners')}</OwnerButtonTitle>
                             )}
                         </Button>
                     </div>

@@ -6,6 +6,7 @@ import { BrowseResultGroup, EntityType, Entity } from '../../types.generated';
 import BrowseResultCard from './BrowseResultCard';
 import { useEntityRegistry } from '../useEntityRegistry';
 import analytics, { EventType } from '../analytics';
+import { useTranslation } from 'react-i18next';
 
 const EntityList = styled(List)`
     && {
@@ -44,6 +45,7 @@ export const BrowseResults = ({
     onChangePage,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     const onGroupClick = (group: BrowseResultGroup) => {
         analytics.event({
@@ -77,7 +79,7 @@ export const BrowseResults = ({
                                 name={group.name}
                                 count={group.count}
                                 url={`${rootPath}/${group.name}`}
-                                type={entityRegistry.getCollectionName(type)}
+                                type={entityRegistry.getCollectionNameTrans(type, t)}
                             />
                         </Col>
                     ))}

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { PreviewType } from '../../entity/Entity';
 import { EntityType, SearchResult } from '../../../types.generated';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     searchResult: {
@@ -23,6 +24,7 @@ const TitleContainer = styled.div`
 
 export default ({ searchResult, entityPath }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const entityType = entityRegistry.getTypeFromPathName(entityPath || '');
     if (!entityType) return null;
 
@@ -31,7 +33,7 @@ export default ({ searchResult, entityPath }: Props) => {
     return (
         <ListContainer>
             <TitleContainer>
-                <Typography.Title level={3}>{entityRegistry.getCollectionName(entityType)}</Typography.Title>
+                <Typography.Title level={3}>{entityRegistry.getCollectionNametrans(entityType, t)}</Typography.Title>
                 <Divider />
             </TitleContainer>
             <List

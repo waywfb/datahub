@@ -7,6 +7,7 @@ import { useEntityRegistry } from '../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../shared/constants';
 import { IconStyleType } from '../../Entity';
 import { CustomAvatar } from '../../../shared/avatar';
+import { useTranslation } from 'react-i18next';
 
 const PreviewContainer = styled.div`
     display: flex;
@@ -66,6 +67,7 @@ export const Preview = ({
     title?: string | undefined;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const url = entityRegistry.getEntityUrl(EntityType.CorpUser, urn);
 
     return (
@@ -77,7 +79,7 @@ export const Preview = ({
                             <PreviewImage>
                                 {entityRegistry.getIcon(EntityType.CorpUser, 20, IconStyleType.HIGHLIGHT)}
                             </PreviewImage>
-                            <PlatformText>{entityRegistry.getEntityName(EntityType.CorpUser)}</PlatformText>
+                            <PlatformText>{entityRegistry.getEntityNameTrans(EntityType.CorpUser, t)}</PlatformText>
                         </PlatformInfo>
                         <Link to={url}>
                             <EntityTitle>{name || urn}</EntityTitle>

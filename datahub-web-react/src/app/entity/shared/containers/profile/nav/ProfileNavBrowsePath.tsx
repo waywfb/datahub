@@ -7,6 +7,7 @@ import { useEntityRegistry } from '../../../../../useEntityRegistry';
 import { PageRoutes } from '../../../../../../conf/Global';
 import { ANTD_GRAY } from '../../../constants';
 import { LineageSelector } from './LineageSelector';
+import { useTranslation } from 'react-i18next';
 
 export const BrowseRow = styled(Row)`
     padding: 10px 20px;
@@ -35,6 +36,7 @@ type Props = {
  */
 export const ProfileNavBrowsePath = ({ urn, type, path, breadcrumbLinksEnabled }: Props): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     const createPartialPath = (parts: Array<string>) => {
         return parts.join('/');
@@ -67,10 +69,10 @@ export const ProfileNavBrowsePath = ({ urn, type, path, breadcrumbLinksEnabled }
                 <BreadcrumbItem disabled={!breadcrumbLinksEnabled}>
                     {breadcrumbLinksEnabled ? (
                         <Link to={breadcrumbLinksEnabled ? baseBrowsePath : undefined}>
-                            {entityRegistry.getCollectionName(type)}
+                            {entityRegistry.getCollectionNameTrans(type, t)}
                         </Link>
                     ) : (
-                        entityRegistry.getCollectionName(type)
+                        entityRegistry.getCollectionNameTrans(type, t)
                     )}
                 </BreadcrumbItem>
                 {pathCrumbs}

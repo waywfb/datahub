@@ -14,6 +14,7 @@ import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
 import { ANTD_GRAY } from '../../shared/constants';
+import { useTranslation } from 'react-i18next';
 
 const StatText = styled(Typography.Text)`
     color: ${ANTD_GRAY[8]};
@@ -53,6 +54,7 @@ export const Preview = ({
     jobCount?: number | null;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.DataFlow, urn)}
@@ -75,7 +77,7 @@ export const Preview = ({
             subHeader={
                 (jobCount && [
                     <StatText>
-                        <b>{jobCount}</b> {entityRegistry.getCollectionName(EntityType.DataJob)}
+                        <b>{jobCount}</b> {entityRegistry.getCollectionNameTrans(EntityType.DataJob, t)}
                     </StatText>,
                 ]) ||
                 undefined

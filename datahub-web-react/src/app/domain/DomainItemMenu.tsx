@@ -26,20 +26,20 @@ export default function DomainItemMenu({ name, urn, onDelete }: Props) {
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success('Deleted Domain!');
+                    message.success(t('crud.success.deleteWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) }));
                     onDelete?.();
                 }
             })
             .catch(() => {
                 message.destroy();
-                message.error({ content: `Failed to delete Domain!: An unknown error occurred.`, duration: 3 });
+                message.error({ content: `${t('crud.error.deleteWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) })}: An unknown error occurred.`, duration: 3 });
             });
     };
 
     const onConfirmDelete = () => {
         Modal.confirm({
-            title: `Delete Domain '${name}'`,
-            content: `Are you sure you want to remove this ${entityRegistry.getEntityName(EntityType.Domain)}?`,
+            title: t('crud.deleteWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) + ` '${name}'` }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) }),
             onOk() {
                 deleteDomain();
             },
@@ -57,7 +57,7 @@ export default function DomainItemMenu({ name, urn, onDelete }: Props) {
             overlay={
                 <Menu>
                     <Menu.Item onClick={onConfirmDelete} key="delete">
-                        <DeleteOutlined /> &nbsp;Delete
+                        <DeleteOutlined /> &nbsp;{t('common.delete')}
                     </Menu.Item>
                 </Menu>
             }

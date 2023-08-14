@@ -60,7 +60,7 @@ const TitleText = styled(Typography.Text)`
         font-size: 20px;
         line-height: 28px;
         display: inline-block;
-        margin: 0px 7px;
+        margin: 0 7px;
     }
 `;
 
@@ -120,8 +120,8 @@ const StatsLabel = styled(Typography.Text)`
 `;
 
 const StatsButton = styled(Button)`
-    padding: 0px 0px;
-    margin-top: 0px;
+    padding: 0 0;
+    margin-top: 0;
     font-weight: 700;
     font-size: 12px;
     line-height: 20px;
@@ -402,7 +402,7 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
                                     >
                                         <span data-testid={`stats-${aggregation?.value}`}>
                                             {aggregation?.count}{' '}
-                                            {entityRegistry.getCollectionName(aggregation?.value as EntityType)} &gt;
+                                            {entityRegistry.getCollectionNameTrans(aggregation?.value as EntityType, t)} &gt;
                                         </span>
                                     </StatsButton>
                                 </div>

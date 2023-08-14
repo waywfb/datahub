@@ -1,5 +1,7 @@
 {
   "common": {
+    "search": "Search",
+    "unauthorized": "Unauthorized",
     "timezone": "Timezone",
     "minute": "Minute,",
     "hour": "Hour",
@@ -45,6 +47,7 @@
     "relatedTerms": "Related Terms",
     "relatedEntities": "Related Entities",
     "user": "User",
+    "entity": "Entity",
     "entities": "Entities",
     "members": "Members",
     "memberWithCount_interval": "(0-1){{count}} member;(2-inf){{count}} members;",
@@ -252,6 +255,13 @@
     "noAdditionalDetails": "No additional details",
     "connection": "Connection"
   },
+  "domain": {
+    "domainIdDescription": "By default, a random UUID will be generated to uniquely identify this domain. If you'd like to provide a custom id instead to more easily keep track of this domain, you may provide it here. Be careful, you cannot easily change the domain id after creation.",
+    "domainDescriptionDescription": "An optional description for your new domain. You can change this later.",
+    "domainManagementDescription": "View your DataHub Domains. Take administrative actions.",
+    "noDomain": "No Domains",
+    "nbrOfEntityInDomain": "There are {{value}} entities in this domain."
+  },
   "glossary": {
     "emptyGlossary": "Empty Glossary",
     "emptyGlossaryDescription": "Create Terms and Term Groups to organize data assets using a shared vocabulary."
@@ -453,7 +463,25 @@
       "usersIntro_component": "<paraph>Welcome to DataHub <bold>Users</bold>!</paraph><paraph>There are a few different ways to onboard new <bold>Users</bold> onto DataHub.</paraph>"
     }
   },
+  "analytics": {
+    "highlightsFailedToLoad": "Highlights failed to load",
+    "chartsFailedToLoad": "Charts failed to load",
+    "domainsFailedToLoad": "Domains failed to load",
+    "selectADomain": "Select a domain",
+    "specifyDomainOrQueryToGetGranularResults": "Please specify domain or query to get granular results"
+  },
   "authentification": {
+    "loggingIn": "Logging in",
+    "resetCredentials": "Reset credentials",
+    "confirmPassword": "Confirm Password",
+    "resettingCredentials": "Resetting credentials",
+    "signIn": "Sign In",
+    "signInWithSso": "Sign in with SSO",
+    "signUp": "Sign Up",
+    "signingUp": "Signing up",
+    "acceptedInvite": "Accepted invite!",
+    "failedToAcceptInvite": "Failed to accept invite",
+    "failedToLogIn": "Failed to log in.",
     "resetUserPassword": "Reset User Password",
     "resetCredentialSuccess": "Generated new link to reset credentials",
     "resetCredentialError": "Failed to create new link to reset credentials",
@@ -1315,6 +1343,16 @@
     }
   },
   "form": {
+    "pleaseConfirmYourPassword": "Please confirm your password",
+    "fillInYourEmail": "Please fill in your email",
+    "fillInYourName": "Please fill in your name",
+    "fillInYourPassword": "Please fill in your password",
+    "passwordIsFewerThan8Characters": "Your password is fewer than 8 characters",
+    "confirmYourPassword": "Please confirm your password",
+    "passwordsDoNotMatch": "Your passwords do not match",
+    "fillInYourTitle": "Please fill in your title",
+    "enterValidDomainId": "Please enter a valid Domain id",
+    "giveYourNewDomainAName": "Give your new Domain a name",
     "enterCorrectGroupName": "Please enter correct Group name",
     "enterAGroupName": "Enter a Group name",
     "altText": "Alt Text",
@@ -1328,6 +1366,8 @@
     "validEmailRequired": "Please enter valid email"
   },
   "placeholder": {
+    "domainDescription": "A description for your domain",
+    "domainName": "A name for your Domain",
     "groupName": "A name for your group",
     "groupDescription": "A description for your group",
     "revenueDashboards": "Revenue Dashboards",
@@ -1426,6 +1466,7 @@
       "softDelete": "Soft Deleted"
     },
     "error": {
+      "notAuthorizedToAccessPage": "Sorry, you are not authorized to access this page.",
       "changesSaved": "Failed to Save changes",
       "addAssetsToWithName": "Failed to add assets to {{name}}",
       "addWithName": "Failed to add {{name}}",

@@ -132,7 +132,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
         expect(icon).toMatchObject(
             mockEntityRegistry.getIcon(EntityType.Dataset, 12, IconStyleType.ACCENT, ANTD_GRAY[9]),
         );
-        expect(label).toBe(mockEntityRegistry.getCollectionName(EntityType.Dataset));
+        expect(label).toBe(mockEntityRegistry.getCollectionNameTrans(EntityType.Dataset, mockTranslation));
     });
 
     it('should get the correct icon and label for platform filters', () => {

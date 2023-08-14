@@ -91,10 +91,10 @@ export const AnalyticsPage = () => {
     const isLoading = highlightLoading || chartLoading || domainLoading || metadataAnalyticsLoading;
     return (
         <>
-            {isLoading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+            {isLoading && <Message type="loading" content={t('common.loading') + '...'} style={{ marginTop: '10%' }} />}
             <HighlightGroup>
                 {highlightError && (
-                    <Alert type="error" message={highlightError?.message || 'Highlights failed to load'} />
+                    <Alert type="error" message={highlightError?.message || t('analytics.highlightsFailedToLoad')} />
                 )}
                 {highlightData?.getHighlights?.map((highlight) => (
                     <Highlight highlight={highlight} shortenValue />
@@ -102,7 +102,7 @@ export const AnalyticsPage = () => {
             </HighlightGroup>
             <>
                 {chartError && (
-                    <Alert type="error" message={metadataAnalyticsError?.message || 'Charts failed to load'} />
+                    <Alert type="error" message={metadataAnalyticsError?.message || t('analytics.chartsFailedToLoad')} />
                 )}
                 {chartData?.getAnalyticsCharts
                     ?.filter((chartGroup) => chartGroup.groupId === 'GlobalMetadataAnalytics')
@@ -112,7 +112,7 @@ export const AnalyticsPage = () => {
             </>
             <>
                 {domainError && (
-                    <Alert type="error" message={metadataAnalyticsError?.message || 'Domains failed to load'} />
+                    <Alert type="error" message={metadataAnalyticsError?.message || t('analytics.domainsFailedToLoad')} />
                 )}
                 {!chartLoading && (
                     <>
@@ -120,7 +120,7 @@ export const AnalyticsPage = () => {
                         <MetadataAnalyticsInput>
                             <DomainSelect
                                 showSearch
-                                placeholder="Select a domain"
+                                placeholder={t('analytics.selectADomain')}
                                 onChange={onDomainChange}
                                 filterOption={(input, option) =>
                                     option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -134,7 +134,7 @@ export const AnalyticsPage = () => {
                                 ))}
                             </DomainSelect>
                             <StyledSearchBar
-                                placeholder="Search"
+                                placeholder={t('common.search')}
                                 onPressEnter={(e) => {
                                     e.stopPropagation();
                                     setQuery(filterSearchQuery(stagedQuery || ''));
@@ -152,12 +152,12 @@ export const AnalyticsPage = () => {
             </>
             <>
                 {metadataAnalyticsError && (
-                    <Alert type="error" message={metadataAnalyticsError?.message || 'Charts failed to load'} />
+                    <Alert type="error" message={metadataAnalyticsError?.message || t('analytics.chartsFailedToLoad')} />
                 )}
                 {domain === '' && query === ''
                     ? !chartLoading && (
                           <MetadataAnalyticsPlaceholder>
-                              Please specify domain or query to get granular results
+                              {t('analytics.specifyDomainOrQueryToGetGranularResults')}
                           </MetadataAnalyticsPlaceholder>
                       )
                     : metadataAnalyticsData?.getMetadataAnalyticsCharts?.map((chartGroup) => (
@@ -165,7 +165,7 @@ export const AnalyticsPage = () => {
                       ))}
             </>
             <>
-                {chartError && <Alert type="error" message={chartError?.message || 'Charts failed to load'} />}
+                {chartError && <Alert type="error" message={chartError?.message || t('analytics.chartsFailedToLoad')} />}
                 {!chartLoading &&
                     chartData?.getAnalyticsCharts
                         ?.filter((chartGroup) => chartGroup.groupId === 'DataHubUsageAnalytics')

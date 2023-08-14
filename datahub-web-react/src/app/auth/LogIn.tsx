@@ -97,7 +97,7 @@ export const LogIn: React.VFC<LogInProps> = () => {
                     return Promise.resolve();
                 })
                 .catch((_) => {
-                    message.error(`Failed to log in! An unexpected error occurred.`);
+                    message.error(t('authentification.failedToLogIn'));
                 })
                 .finally(() => setLoading(false));
         },
@@ -119,7 +119,7 @@ export const LogIn: React.VFC<LogInProps> = () => {
                     <Image wrapperClassName={styles.logo_image} src={themeConfig.assets?.logoUrl} preview={false} />
                 </div>
                 <div className={styles.login_form_box}>
-                    {loading && <Message type="loading" content="Logging in..." />}
+                    {loading && <Message type="loading" content={t('authentification.loggingIn') + '...'} />}
                     <Form onFinish={handleLogin} layout="vertical">
                         <Form.Item
                             name="username"
@@ -147,7 +147,7 @@ export const LogIn: React.VFC<LogInProps> = () => {
                                         className={styles.login_button}
                                         disabled={!formIsComplete}
                                     >
-                                        Sign In
+                                        {t('authentification.signIn')}
                                     </Button>
                                 );
                             }}
@@ -156,7 +156,7 @@ export const LogIn: React.VFC<LogInProps> = () => {
                     <SsoDivider />
                     <SsoButton type="primary" href="/sso" block htmlType="submit" className={styles.sso_button}>
                         <LoginLogo />
-                        <SsoTextSpan>Sign in with SSO</SsoTextSpan>
+                        <SsoTextSpan>{t('authentification.signInWithSso')}</SsoTextSpan>
                         <span />
                     </SsoButton>
                 </div>

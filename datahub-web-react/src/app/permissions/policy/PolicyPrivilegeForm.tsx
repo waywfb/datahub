@@ -391,6 +391,7 @@ export default function PolicyPrivilegeForm({
             <Form.Item label={<Typography.Text strong>{t('common.privileges')}</Typography.Text>}>
                 <Typography.Paragraph>{t('permissions.privilegesLabel')}</Typography.Paragraph>
                 <Select
+                    data-testid="privileges"
                     value={privilegesSelectValue}
                     mode="multiple"
                     onSelect={(value: string) => onSelectPrivilege(value)}

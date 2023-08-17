@@ -13,6 +13,7 @@ import { DomainEntitiesTab } from './DomainEntitiesTab';
 import { EntityMenuItems } from '../shared/EntityDropdown/EntityDropdown';
 import { EntityActionItem } from '../shared/entity/EntityActions';
 import DataProductsTab from './DataProductsTab/DataProductsTab';
+import { EntityProfileTab } from '../shared/constants';
 // import { EntityActionItem } from '../shared/entity/EntityActions';
 
 /**
@@ -72,16 +73,19 @@ export class DomainEntity implements Entity<Domain> {
             isNameEditable
             tabs={[
                 {
+                    id: EntityProfileTab.DOMAIN_ENTITIES_TAB,
                     titleKey: 'common.entities',
                     name: 'Entities',
                     component: DomainEntitiesTab,
                 },
                 {
+                    id: EntityProfileTab.DOCUMENTATION_TAB,
                     titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
+                    id: EntityProfileTab.DATA_PRODUCTS_TAB,
                     titleKey: 'common.common.dataProducts',
                     name: 'Data Products',
                     component: DataProductsTab,

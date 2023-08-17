@@ -49,6 +49,7 @@ export default function GlossaryRelatedEntity() {
             emptySearchQuery="*"
             placeholderText={t('placeholder.filterWithName', { name: t('common.entities') })}
             skipCache
+            applyView
         />
     );
 }

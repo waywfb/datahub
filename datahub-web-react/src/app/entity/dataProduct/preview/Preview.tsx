@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { EntityType, Owner, GlobalTags, GlossaryTerms, Domain } from '../../../../types.generated';
+import { EntityType, Owner, GlobalTags, GlossaryTerms, Domain, EntityPath } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
@@ -15,6 +15,8 @@ interface Props {
     glossaryTerms?: GlossaryTerms | null;
     entityCount?: number;
     externalUrl?: string | null;
+    degree?: number;
+    paths?: EntityPath[];
 }
 
 export const Preview = ({
@@ -27,6 +29,8 @@ export const Preview = ({
     glossaryTerms,
     entityCount,
     externalUrl,
+    degree,
+    paths,
 }: Props): JSX.Element => {
     const entityRegistry = useEntityRegistry();
     const { t } = useTranslation();
@@ -47,6 +51,8 @@ export const Preview = ({
             entityCount={entityCount}
             externalUrl={externalUrl}
             displayAssetCount
+            degree={degree}
+            paths={paths}
         />
     );
 };

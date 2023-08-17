@@ -21,6 +21,7 @@ export const ContainerEntitiesTab = () => {
             }}
             emptySearchQuery="*"
             placeholderText={t('placeholder.filterWithName', { name: t('common.container') })}
+            applyView
         />
     );
 };

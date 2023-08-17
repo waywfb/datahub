@@ -59,6 +59,7 @@ export default function DataProductsTab() {
     const domainUrn = entityData?.urn || '';
 
     const { data, loading } = useGetSearchResultsForMultipleQuery({
+        skip: !domainUrn,
         variables: {
             input: {
                 types: [EntityType.DataProduct],
@@ -66,6 +67,7 @@ export default function DataProductsTab() {
                 start,
                 count: DEFAULT_PAGE_SIZE,
                 orFilters: [{ and: [{ field: DOMAINS_FILTER_NAME, values: [domainUrn] }] }],
+                searchFlags: { skipCache: true },
             },
         },
     });

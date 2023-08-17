@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { DatasetProfile } from '../../../../../../../../types.generated';
 import ColumnStats from '../../snapshot/ColumnStats';
 import TableStats from '../../snapshot/TableStats';
+import { formatBytes, formatNumberWithoutAbbreviation } from '../../../../../../../shared/formatNumber';
 
 export const ChartTable = styled(Table)`
     margin-top: 16px;
@@ -12,6 +13,12 @@ export const ChartTable = styled(Table)`
 
 export type Props = {
     profiles: Array<DatasetProfile>;
+};
+
+const bytesFormatter = (bytes: number) => {
+    const formattedBytes = formatBytes(bytes);
+    const fullBytes = formatNumberWithoutAbbreviation(bytes);
+    return `${formattedBytes.number} ${formattedBytes.unit} (${fullBytes} bytes)`;
 };
 
 export default function ProfilingRunsChart({ profiles }: Props) {
@@ -35,6 +42,7 @@ export default function ProfilingRunsChart({ profiles }: Props) {
             timestamp: `${profileDate.toLocaleDateString()} at ${profileDate.toLocaleTimeString()}`,
             rowCount: profile.rowCount?.toString() || t('common.unknown'),
             columnCount: profile.columnCount?.toString() || t('common.unknown'),
+            sizeInBytes: profile.sizeInBytes ? bytesFormatter(profile.sizeInBytes) : t('common.unknown'),
         };
     });
 
@@ -60,6 +68,11 @@ export default function ProfilingRunsChart({ profiles }: Props) {
             title: t('reporting.columnCount'),
             key: 'Column Count',
             dataIndex: 'columnCount',
+        },
+        {
+            title: 'Size',
+            key: 'Size',
+            dataIndex: 'sizeInBytes',
         },
     ];
 

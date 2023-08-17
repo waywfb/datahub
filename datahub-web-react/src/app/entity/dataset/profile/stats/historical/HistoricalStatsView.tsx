@@ -105,7 +105,7 @@ const LOOKBACK_WINDOWS = [
     { translateKey: 'duration.year', value: '1 year', windowSize: { interval: DateInterval.Year, count: 1 } },
 ];
 
-const DEFAULT_LOOKBACK_WINDOW = '1 week';
+const DEFAULT_LOOKBACK_WINDOW = '3 months';
 
 const getLookbackWindowSize = (value: string) => {
     for (let i = 0; i < LOOKBACK_WINDOWS.length; i++) {

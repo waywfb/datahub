@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { Button, Typography } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { NoMarginButton } from './styledComponents';
+import { ANTD_GRAY_V2 } from '../../shared/constants';
 import { useTranslation } from 'react-i18next';
 
 const ButtonContainer = styled.div`
@@ -9,18 +9,25 @@ const ButtonContainer = styled.div`
     justify-content: space-between;
 `;
 
-const NoMarginButton = styled(Button)`
-    && {
-        margin: 0px;
+const AllEntitiesButton = styled(NoMarginButton)`
+    &&& {
+        font-weight: normal;
+        border-bottom: 1px solid ${ANTD_GRAY_V2[5]};
+        width: 100%;
+        text-align: left;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-left: 8px;
+        margin-right: 8px;
+        padding-left: 0px;
     }
 `;
 
 type Props = {
-    onClickCreateView: () => void;
     onClickClear: () => void;
 };
 
-export const ViewSelectHeader = ({ onClickCreateView, onClickClear }: Props) => {
+export const ViewSelectHeader = ({ onClickClear }: Props) => {
     const { t } = useTranslation();
     const clearButtonRef = useRef(null);
 
@@ -31,18 +38,15 @@ export const ViewSelectHeader = ({ onClickCreateView, onClickClear }: Props) => 
 
     return (
         <ButtonContainer>
-            <NoMarginButton data-testid="view-select-create" type="text" onClick={onClickCreateView}>
-                <PlusOutlined />
-                <Typography.Text strong> Create View</Typography.Text>
-            </NoMarginButton>
-            <NoMarginButton
+            <AllEntitiesButton
                 data-testid="view-select-clear"
-                type="link"
+                type="text"
                 ref={clearButtonRef}
                 onClick={onHandleClickClear}
             >
-                {t('common.clear')}
-            </NoMarginButton>
+                {/** TODO ndespouy : afficher 'All Entities' **/
+                t('common.clear')}
+            </AllEntitiesButton>
         </ButtonContainer>
     );
 };

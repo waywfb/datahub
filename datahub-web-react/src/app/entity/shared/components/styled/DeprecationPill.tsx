@@ -11,22 +11,25 @@ import { ANTD_GRAY } from '../../constants';
 import { useBatchUpdateDeprecationMutation } from '../../../../../graphql/mutations.generated';
 
 const DeprecatedContainer = styled.div`
-    width: 104px;
     height: 18px;
-    border: 1px solid #ef5b5b;
+    border: 1px solid #cd0d24;
     border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ef5b5b;
+    color: #cd0d24;
     margin-left: 0;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 4px;
+    padding-left: 4px;
 `;
 
 const DeprecatedText = styled.div`
-    color: #ef5b5b;
-    margin-left: 5px;
+    padding-right: 2px;
+    padding-left: 2px;
+    font-size: 10px;
 `;
 
 const DeprecatedTitle = styled(Typography.Text)`
@@ -54,10 +57,6 @@ const ThinDivider = styled(Divider)`
     margin-bottom: 8px;
 `;
 
-const StyledInfoCircleOutlined = styled(InfoCircleOutlined)`
-    color: #ef5b5b;
-`;
-
 const UndeprecatedIcon = styled(InfoCircleOutlined)`
     font-size: 14px;
     padding-right: 6px;
@@ -75,12 +74,11 @@ const IconGroup = styled.div`
 type Props = {
     urn: string;
     deprecation: Deprecation;
-    preview?: boolean | null;
     refetch?: () => void;
     showUndeprecate: boolean | null;
 };
 
-export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndeprecate }: Props) => {
+export const DeprecationPill = ({ deprecation, urn, refetch, showUndeprecate }: Props) => {
     const { t } = useTranslation();
     const [batchUpdateDeprecationMutation] = useBatchUpdateDeprecationMutation();
     /**
@@ -170,12 +168,9 @@ export const DeprecationPill = ({ deprecation, preview, urn, refetch, showUndepr
                 )
             }
         >
-            {(preview && <StyledInfoCircleOutlined />) || (
-                <DeprecatedContainer>
-                    <StyledInfoCircleOutlined />
-                    <DeprecatedText>{t('deprecation.deprecated')}</DeprecatedText>
-                </DeprecatedContainer>
-            )}
+            <DeprecatedContainer>
+                <DeprecatedText>{t('deprecation.deprecated').toUpperCase()}</DeprecatedText>
+            </DeprecatedContainer>
         </Popover>
     );
 };

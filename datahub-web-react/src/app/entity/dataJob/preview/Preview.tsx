@@ -8,6 +8,7 @@ import {
     DataProduct,
     Deprecation,
     Domain,
+    EntityPath,
     EntityType,
     GlobalTags,
     Owner,
@@ -39,6 +40,8 @@ export const Preview = ({
     insights,
     lastRunTimeMs,
     externalUrl,
+    degree,
+    paths,
 }: {
     urn: string;
     name: string;
@@ -55,6 +58,8 @@ export const Preview = ({
     insights?: Array<SearchInsight> | null;
     lastRunTimeMs?: number | null;
     externalUrl?: string | null;
+    degree?: number;
+    paths?: EntityPath[];
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
     const { t, i18n } = useTranslation();
@@ -87,6 +92,8 @@ export const Preview = ({
                 ]) ||
                 undefined
             }
+            degree={degree}
+            paths={paths}
         />
     );
 };

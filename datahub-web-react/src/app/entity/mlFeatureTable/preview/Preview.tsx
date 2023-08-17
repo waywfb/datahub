@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { DataProduct, EntityType, Owner } from '../../../../types.generated';
+import { DataProduct, EntityPath, EntityType, Owner } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
@@ -14,6 +14,8 @@ export const Preview = ({
     platformName,
     dataProduct,
     platformInstanceId,
+    degree,
+    paths,
 }: {
     urn: string;
     name: string;
@@ -23,6 +25,8 @@ export const Preview = ({
     platformName?: string | null;
     dataProduct?: DataProduct | null;
     platformInstanceId?: string;
+    degree?: number;
+    paths?: EntityPath[];
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
     const { t } = useTranslation();
@@ -40,6 +44,8 @@ export const Preview = ({
             platformInstanceId={platformInstanceId}
             dataProduct={dataProduct}
             logoComponent={entityRegistry.getIcon(EntityType.MlfeatureTable, 20, IconStyleType.HIGHLIGHT)}
+            degree={degree}
+            paths={paths}
         />
     );
 };

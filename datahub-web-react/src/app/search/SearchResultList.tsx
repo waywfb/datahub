@@ -6,13 +6,14 @@ import { RocketOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { navigateToSearchUrl } from './utils/navigateToSearchUrl';
 import { ANTD_GRAY } from '../entity/shared/constants';
-import { CombinedSearchResult, SEPARATE_SIBLINGS_URL_PARAM } from '../entity/shared/siblingUtils';
+import { SEPARATE_SIBLINGS_URL_PARAM } from '../entity/shared/siblingUtils';
 import { CompactEntityNameList } from '../recommendations/renderer/component/CompactEntityNameList';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { SearchResult } from '../../types.generated';
 import analytics, { EventType } from '../analytics';
 import { EntityAndType } from '../entity/shared/types';
 import { useIsSearchV2 } from './useSearchAndBrowseVersion';
+import { CombinedSearchResult } from './utils/combineSiblingsInSearchResults';
 
 const ResultList = styled(List)`
     &&& {
@@ -49,6 +50,7 @@ const ResultWrapper = styled.div<{ showUpdatedStyles: boolean }>`
         margin: 0 auto 8px auto;
         padding: 8px 16px;
         max-width: 1200px;
+        border-bottom: 1px solid ${ANTD_GRAY[5]};
     `}
 `;
 
@@ -132,7 +134,7 @@ export const SearchResultList = ({
                     ),
                 }}
                 renderItem={(item, index) => (
-                    <ResultWrapper showUpdatedStyles={showSearchFiltersV2}>
+                    <ResultWrapper showUpdatedStyles={showSearchFiltersV2} className={`entityUrn-${item.entity.urn}`}>
                         <ListItem
                             isSelectMode={isSelectMode}
                             onClick={() => onClickResult(item, index)}
@@ -152,7 +154,9 @@ export const SearchResultList = ({
                             )}
                             {entityRegistry.renderSearchResult(item.entity.type, item)}
                         </ListItem>
-                        {item.matchedEntities && item.matchedEntities.length > 0 && (
+                        {/* an entity is always going to be inserted in the sibling group, so if the sibling group is just one do not 
+                        render. */}
+                        {item.matchedEntities && item.matchedEntities.length > 1 && (
                             <SiblingResultContainer className="test-search-result-sibling-section">
                                 <CompactEntityNameList
                                     linkUrlParams={{ [SEPARATE_SIBLINGS_URL_PARAM]: true }}

@@ -27,6 +27,7 @@ export const DomainEntitiesTab = () => {
             emptySearchQuery="*"
             placeholderText={t('placeholder.filterWithName', { name: t('common.domain') })}
             skipCache
+            applyView
         />
     );
 };

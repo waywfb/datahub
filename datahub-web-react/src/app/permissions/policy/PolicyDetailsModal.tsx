@@ -105,6 +105,22 @@ export default function PolicyDetailsModal({ policy, visible, onClose, privilege
         );
     };
 
+    const resourceOwnersField = (actors) => {
+        if (!actors?.resourceOwners) {
+            return <PoliciesTag>No</PoliciesTag>;
+        }
+        if ((actors?.resolvedOwnershipTypes?.length ?? 0) > 0) {
+            return (
+                <div>
+                    {actors?.resolvedOwnershipTypes?.map((type) => (
+                        <PoliciesTag>{type.info.name}</PoliciesTag>
+                    ))}
+                </div>
+            );
+        }
+        return <PoliciesTag>Yes - All owners</PoliciesTag>;
+    };
+
     return (
         <Modal title={policy?.name} visible={visible} onCancel={onClose} closable width={800} footer={actionButtons}>
             <PolicyContainer>
@@ -184,7 +200,7 @@ export default function PolicyDetailsModal({ policy, visible, onClose, privilege
                         {t('permissions.appliesToWithName', { name: t('common.owners') })}
                     </Typography.Title>
                     <ThinDivider />
-                    <PoliciesTag>{policy?.actors?.resourceOwners ? 'True' : 'False'}</PoliciesTag>
+                    {resourceOwnersField(policy?.actors)}
                 </div>
                 <div>
                     <Typography.Title level={5}>

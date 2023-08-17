@@ -94,16 +94,16 @@ export class MLFeatureEntity implements Entity<MlFeature> {
                     component: SidebarAboutSection,
                 },
                 {
+                    component: SidebarOwnerSection,
+                    properties: {
+                        defaultOwnerType: OwnershipType.TechnicalOwner,
+                    },
+                },
+                {
                     component: SidebarTagsSection,
                     properties: {
                         hasTags: true,
                         hasTerms: true,
-                    },
-                },
-                {
-                    component: SidebarOwnerSection,
-                    properties: {
-                        defaultOwnerType: OwnershipType.TechnicalOwner,
                     },
                 },
                 {
@@ -148,6 +148,8 @@ export class MLFeatureEntity implements Entity<MlFeature> {
                 dataProduct={getDataProduct(genericProperties?.dataProduct)}
                 platform={platform}
                 platformInstanceId={data.dataPlatformInstance?.instanceId}
+                degree={(result as any).degree}
+                paths={(result as any).paths}
             />
         );
     };

@@ -48,15 +48,20 @@ export default function PolicyTypeForm({
                 <Typography.Paragraph>{t('nameForNewPolicy')}</Typography.Paragraph>
                 <Input
                     placeholder={t('placeholder.yourPolicyNamePlaceholder')}
+                    data-testid="policy-name"
                     value={policyName}
                     onChange={(event) => updatePolicyName(event.target.value)}
                 />
             </Form.Item>
             <Form.Item name="policyType" label={<Typography.Text strong>{t('common.type')}</Typography.Text>}>
                 <Typography.Paragraph>{t('permissions.typeOfPolicyToCreate')}</Typography.Paragraph>
-                <Select defaultValue={policyType} onSelect={(value) => setPolicyType(value as PolicyType)}>
-                    <Select.Option value={PolicyType.Platform}>{t('common.platform')}</Select.Option>
-                    <Select.Option value={PolicyType.Metadata}>{t('common.metadata')}</Select.Option>
+                <Select
+                    data-testid="policy-type"
+                    defaultValue={policyType}
+                    onSelect={(value) => setPolicyType(value as PolicyType)}
+                >
+                    <Select.Option data-testid="platform" value={PolicyType.Platform}>{t('common.platform')}</Select.Option>
+                    <Select.Option data-testid="metadata" value={PolicyType.Metadata}>{t('common.metadata')}</Select.Option>
                 </Select>
                 <TypeDescriptionParagraph type="secondary">
                     <Trans
@@ -75,6 +80,7 @@ export default function PolicyTypeForm({
                 <Typography.Paragraph>{t('permissions.newPolicyDescription')}</Typography.Paragraph>
                 <Input
                     placeholder={t('placeholder.newPolicyDescriptionPlaceHolder')}
+                    data-testid="policy-description"
                     value={policyDescription}
                     onChange={(event) => setPolicyDescription(event.target.value)}
                 />

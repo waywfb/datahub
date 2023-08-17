@@ -14,6 +14,7 @@ import {
     Deprecation,
     GlossaryTerms,
     DataProduct,
+    EntityPath,
 } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { capitalizeFirstLetterOnly } from '../../../shared/textUtil';
@@ -45,6 +46,8 @@ export const Preview = ({
     parentContainers,
     externalUrl,
     deprecation,
+    degree,
+    paths,
 }: {
     urn: string;
     name: string;
@@ -65,6 +68,8 @@ export const Preview = ({
     deprecation?: Deprecation | null;
     parentContainers?: ParentContainersResult | null;
     externalUrl?: string | null;
+    degree?: number;
+    paths?: EntityPath[];
 }): JSX.Element => {
     const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
@@ -99,6 +104,8 @@ export const Preview = ({
                 ]) ||
                 undefined
             }
+            degree={degree}
+            paths={paths}
         />
     );
 };

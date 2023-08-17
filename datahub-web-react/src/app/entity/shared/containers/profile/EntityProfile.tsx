@@ -9,6 +9,7 @@ import { Message } from '../../../../shared/Message';
 import {
     getEntityPath,
     getOnboardingStepIdsForEntityType,
+    sortEntityProfileTabs,
     useRoutedTab,
     useUpdateGlossaryEntityDataOnChange,
 } from './utils';
@@ -44,6 +45,7 @@ import {
     LINEAGE_GRAPH_INTRO_ID,
     LINEAGE_GRAPH_TIME_FILTER_ID,
 } from '../../../../onboarding/config/LineageGraphOnboardingConfig';
+import { useAppConfig } from '../../../../useAppConfig';
 
 type Props<T, U> = {
     urn: string;
@@ -170,8 +172,10 @@ export const EntityProfile = <T, U>({
     const entityRegistry = useEntityRegistry();
     const { t } = useTranslation();
     const history = useHistory();
+    const appConfig = useAppConfig();
     const isCompact = React.useContext(CompactContext);
     const tabsWithDefaults = tabs.map((tab) => ({ ...tab, display: { ...defaultTabDisplayConfig, ...tab.display } }));
+    const sortedTabs = sortEntityProfileTabs(appConfig.config, entityType, tabsWithDefaults);
     const sideBarSectionsWithDefaults = sidebarSections.map((sidebarSection) => ({
         ...sidebarSection,
         display: { ...defaultSidebarSection, ...sidebarSection.display },
@@ -236,9 +240,8 @@ export const EntityProfile = <T, U>({
                 enabled: () => true,
             },
         })) || [];
-
     // TODO ndespouy verifier le name/title des tabs ajouté
-    const visibleTabs = [...tabsWithDefaults, ...autoRenderTabs].filter((tab) =>
+    const visibleTabs = [...sortedTabs, ...autoRenderTabs].filter((tab) =>
         tab.display?.visible(entityData, dataPossiblyCombinedWithSiblings),
     );
 

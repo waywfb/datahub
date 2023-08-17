@@ -13,6 +13,8 @@ import { mocks } from '../../../../../Mocks';
 import { SchemaTab } from '../../../shared/tabs/Dataset/Schema/SchemaTab';
 import EntityContext from '../../../shared/EntityContext';
 import { EntityType, SchemaMetadata } from '../../../../../types.generated';
+import i18n from '../../../../../i18n.test';
+import { I18nextProvider } from 'react-i18next';
 
 jest.mock('virtualizedtableforantd4', () => {
     /* eslint-disable-next-line */
@@ -27,26 +29,29 @@ describe('Schema', () => {
     it('renders', () => {
         const { getByText } = render(
             <MockedProvider mocks={mocks} addTypename={false}>
-                <TestPageContainer>
-                    <EntityContext.Provider
-                        value={{
-                            urn: 'urn:li:dataset:123',
-                            entityType: EntityType.Dataset,
-                            entityData: {
-                                description: 'This is a description',
-                                schemaMetadata: sampleSchema as SchemaMetadata,
-                            },
-                            baseEntity: {},
-                            updateEntity: jest.fn(),
-                            routeToTab: jest.fn(),
-                            refetch: jest.fn(),
-                        }}
-                    >
-                        <SchemaTab />
-                    </EntityContext.Provider>
-                </TestPageContainer>
+                <I18nextProvider i18n={i18n}>
+                    <TestPageContainer>
+                        <EntityContext.Provider
+                            value={{
+                                urn: 'urn:li:dataset:123',
+                                entityType: EntityType.Dataset,
+                                entityData: {
+                                    description: 'This is a description',
+                                    schemaMetadata: sampleSchema as SchemaMetadata,
+                                },
+                                baseEntity: {},
+                                updateEntity: jest.fn(),
+                                routeToTab: jest.fn(),
+                                refetch: jest.fn(),
+                            }}
+                        >
+                            <SchemaTab />
+                        </EntityContext.Provider>
+                    </TestPageContainer>
+                </I18nextProvider>
             </MockedProvider>,
         );
+        // expect(getByText('All')).toBeInTheDocument();
         expect(getByText('name')).toBeInTheDocument();
         expect(getByText('the name of the order')).toBeInTheDocument();
         expect(getByText('shipping_address')).toBeInTheDocument();

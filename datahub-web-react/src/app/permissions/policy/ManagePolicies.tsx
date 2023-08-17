@@ -96,7 +96,7 @@ const toFilterInput = (filter: PolicyMatchFilter): PolicyMatchFilterInput => {
         }),
     };
 };
-// TODO: jm translate name, etc ... ?
+
 const toPolicyInput = (policy: Omit<Policy, 'urn'>): PolicyUpdateInput => {
     let policyInput: PolicyUpdateInput = {
         type: policy.type,
@@ -285,8 +285,11 @@ export const ManagePolicies = () => {
                 input: toPolicyInput(newPolicy),
             },
         });
-        // TODO: jm add translation ?
-        message.success(`Successfully ${newState === PolicyState.Active ? 'activated' : 'deactivated'} policy.`);
+        message.success(
+            newState === PolicyState.Active
+                ? t('permissions.successfullyActivatedPolicy')
+                : t('permissions.successfullyDeactivatedPolicy'),
+        );
         setTimeout(() => {
             policiesRefetch();
         }, 3000);
@@ -431,7 +434,6 @@ export const ManagePolicies = () => {
         },
     ];
 
-    // TODO: jm translate name, etc ... ?
     const tableData = policies?.map((policy) => ({
         allGroups: policy?.actors?.allGroups,
         allUsers: policy?.actors?.allUsers,

@@ -529,6 +529,8 @@
     "failedToUpdatePolicies": "Failed to update policies. An unexpected error occurred.",
     "failedToLoadPolicies": "Failed to load policies! An unexpected error occurred.",
     "loadingPolicies": "Loading policies...",
+    "successfullyDeactivatedPolicy": "Successfully deactivated policy.",
+    "successfullyActivatedPolicy": "Successfully activated policy.",
     "successfullySavedPolicy": "Successfully saved policy.",
     "successfullyRemovedPolicy": "Successfully removed policy.",
     "areYouSureRemovePolicy": "Are you sure you want to remove policy?",

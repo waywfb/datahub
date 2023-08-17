@@ -209,7 +209,6 @@ export const ManageRoles = () => {
         },
     ];
 
-    // TODO: jm translate roles ?
     const tableData = roles?.map((role) => ({
         role,
         urn: role?.urn,

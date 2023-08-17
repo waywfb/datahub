@@ -69,7 +69,6 @@ export default function PolicyBuilderModal({ policy, setPolicy, visible, onClose
         setPolicy({ ...policy, type, privileges: [] });
     };
 
-    // TODO: jm translate PolicyTypeForm components ?
     // Step 1: Choose Policy Type
     const typeStep = () => {
         return {
@@ -88,7 +87,6 @@ export default function PolicyBuilderModal({ policy, setPolicy, visible, onClose
         };
     };
 
-    // TODO: jm translate PolicyPrivilegeForm components ?
     // Step 2: Select privileges step.
     const privilegeStep = () => ({
         title: t('permissions.policyBuilderSteps.configurePrivileges'),
@@ -107,7 +105,6 @@ export default function PolicyBuilderModal({ policy, setPolicy, visible, onClose
         complete: policy.privileges && policy.privileges.length > 0, // Whether the "next" button should appear.
     });
 
-    // TODO: jm translate PolicyActorForm components ?
     // Step 3: Assign Actors Step
     const actorStep = () => {
         return {
@@ -161,7 +158,6 @@ export default function PolicyBuilderModal({ policy, setPolicy, visible, onClose
         });
     };
 
-    // TODO: jm translate item.title & item.content ?
     return (
         <ClickOutside onClickOutside={modalClosePopup} wrapperClassName="PolicyBuilderModal">
             <Modal

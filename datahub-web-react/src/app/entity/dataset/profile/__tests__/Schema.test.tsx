@@ -51,7 +51,6 @@ describe('Schema', () => {
                 </I18nextProvider>
             </MockedProvider>,
         );
-        // expect(getByText('All')).toBeInTheDocument();
         expect(getByText('name')).toBeInTheDocument();
         expect(getByText('the name of the order')).toBeInTheDocument();
         expect(getByText('shipping_address')).toBeInTheDocument();

@@ -30,14 +30,14 @@ function changeFavicon(src) {
 }
 
 const AppConfigProvider = ({ children }: { children: React.ReactNode }) => {
-    const { t, i18n } = useTranslation();
+    const { t, i18n } = useTranslation(['translation', 'form']);
 
     // Change form alert language
     const [validateMessages, setValidateMessages] = useState(
-        t('form.validateMessages', { returnObjects: true }) as any,
+        t('validateMessages', { ns: 'form', returnObjects: true }) as any
     );
     i18n.on('languageChanged', (lng) => {
-        setValidateMessages(t('form.validateMessages', { returnObjects: true }));
+        setValidateMessages(t('validateMessages', { ns: 'form', returnObjects: true }));
         moment.locale(lng);
     });
 

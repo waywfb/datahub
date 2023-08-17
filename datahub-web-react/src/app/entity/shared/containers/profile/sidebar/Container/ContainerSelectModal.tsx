@@ -141,7 +141,12 @@ export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride
 
     return (
         <Modal
-            title={titleOverride || t('search.selectWithName', { name: t('entity.subtype.CONTAINER', { count: 1 }) })}
+            title={
+                titleOverride ||
+                t('search.selectWithName', {
+                    name: t('entity.subtype.CONTAINER_interval', { postProcess: 'interval', count: 1 }),
+                })
+            }
             visible
             onCancel={onModalClose}
             footer={
@@ -164,7 +169,7 @@ export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride
                         mode="multiple"
                         defaultActiveFirstOption={false}
                         placeholder={t('placeholder.searchForWithName', {
-                            name: t('entity.subtype.CONTAINER', { count: 2 }),
+                            name: t('entity.subtype.CONTAINER_interval', { postProcess: 'interval', count: 2 }),
                         })}
                         onSelect={(containerUrn: any) => onSelectContainer(containerUrn)}
                         onDeselect={onDeselectContainer}

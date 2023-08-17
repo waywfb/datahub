@@ -26,7 +26,10 @@ export default function FailingAssertions({ upstreamSummary }: Props) {
 
     return (
         <FailingSectionWrapper>
-            {t('entity.nbrDataSourceWithFailedAssertion', { count: datasetsWithFailingAssertions.length })}
+            {t('entity.nbrDataSourceWithFailedAssertion_interval', {
+                postProcess: 'interval',
+                count: datasetsWithFailingAssertions.length,
+            })}
             <FailingDataWrapper>
                 {datasetsWithFailingAssertions.map((dataset) => {
                     const totalNumAssertions = dataset.assertions?.assertions.length;

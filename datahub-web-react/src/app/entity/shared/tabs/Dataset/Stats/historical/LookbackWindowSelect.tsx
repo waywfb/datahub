@@ -20,7 +20,10 @@ export default function LookbackWindowSelect({ lookbackWindow, setLookbackWindow
         <PrefixedSelect
             prefixText="Profiling history for past "
             values={Object.values(LOOKBACK_WINDOWS).map((window) => ({
-                label: t(lookbackWindow.translateKey, { count: lookbackWindow.windowSize.count }),
+                label: t(lookbackWindow.translateKey, {
+                    postProcess: 'interval',
+                    count: lookbackWindow.windowSize.count,
+                }),
                 value: window.value,
             }))}
             value={lookbackWindow.value}

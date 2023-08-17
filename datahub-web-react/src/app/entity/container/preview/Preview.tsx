@@ -99,7 +99,8 @@ export const Preview = ({
             subHeader={
                 (entityCount && [
                     <StatText>
-                        <b>{entityCount}</b> {t('entity.subtype.entity', { count: entityCount })}
+                        <b>{entityCount}</b>{' '}
+                        {t('entity.subtype.entity_interval', { postProcess: 'interval', count: entityCount })}
                     </StatText>,
                 ]) ||
                 undefined

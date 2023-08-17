@@ -45,7 +45,8 @@ export const SearchSelectModal = ({
         if (selectedEntities.length > 0) {
             Modal.confirm({
                 title: t('search.modal.exitSelectionTitle'),
-                content: t('search.modal.exitSelectionContent', {
+                content: t('search.modal.exitSelectionContent_interval', {
+                    postProcess: 'interval',
                     count: selectedEntities.length,
                 }),
                 onOk() {
@@ -70,7 +71,7 @@ export const SearchSelectModal = ({
                 title={
                     titleText ||
                     t('search.selectWithName', {
-                        name: t('entity.subtype.entity', { count: 2 }),
+                        name: t('entity.subtype.entity_interval', { postProcess: 'interval', count: 2 }),
                     })
                 }
                 width={MODAL_WIDTH_PX}

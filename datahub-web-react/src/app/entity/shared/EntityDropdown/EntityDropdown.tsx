@@ -188,7 +188,12 @@ function EntityDropdown(props: Props) {
                             >
                                 <MenuItem>
                                     <PlusOutlined /> &nbsp;
-                                    {t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}
+                                    {t('crud.addWithName', {
+                                        name: t('entity.type.GLOSSARY_TERM_interval', {
+                                            postProcess: 'interval',
+                                            count: 1,
+                                        }),
+                                    })}
                                 </MenuItem>
                             </StyledMenuItem>
                         )}
@@ -200,7 +205,12 @@ function EntityDropdown(props: Props) {
                             >
                                 <MenuItem>
                                     <FolderAddOutlined /> &nbsp;
-                                    {t('crud.addWithName', { name: t('entity.type.GLOSSARY_NODE', { count: 1 }) })}
+                                    {t('crud.addWithName', {
+                                        name: t('entity.type.GLOSSARY_NODE_interval', {
+                                            postProcess: 'interval',
+                                            count: 1,
+                                        }),
+                                    })}
                                 </MenuItem>
                             </StyledMenuItem>
                         )}

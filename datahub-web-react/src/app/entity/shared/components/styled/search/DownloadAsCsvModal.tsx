@@ -46,7 +46,10 @@ export default function DownloadAsCsvModal({
         notification.info({
             message: t('share.csv.preparing.message'),
             description: totalResults
-                ? t('share.csv.preparing.descriptionWithCount', { count: totalResults })
+                ? t('share.csv.preparing.descriptionWithCount_interval', {
+                      postProcess: 'interval',
+                      count: totalResults,
+                  })
                 : t('share.csv.preparing.description'),
             placement: 'bottomRight',
             duration: null,

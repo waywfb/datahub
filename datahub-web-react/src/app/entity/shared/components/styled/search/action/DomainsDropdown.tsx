@@ -29,7 +29,9 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
             .then(({ errors }) => {
                 if (!errors) {
                     message.success({
-                        content: t('crud.success.removeWithName', { name: t('entity.type.DOMAIN', { count: 1 }) }),
+                        content: t('crud.success.removeWithName', {
+                            name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
+                        }),
                         duration: 2,
                     });
                     refetch?.();
@@ -43,7 +45,7 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
                         e,
                         {
                             content: `${t('crud.error.removeAssetsWithName', {
-                                name: t('entity.type.DOMAIN', { count: 1 }),
+                                name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
                             })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
@@ -56,16 +58,20 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
     return (
         <>
             <ActionDropdown
-                name={t('entity.type.DOMAIN', { count: 1 })}
+                name={t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 })}
                 actions={[
                     {
-                        title: t('crud.setWithName', { name: t('entity.type.DOMAIN', { count: 1 }) }),
+                        title: t('crud.setWithName', {
+                            name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
+                        }),
                         onClick: () => {
                             setIsEditModalVisible(true);
                         },
                     },
                     {
-                        title: t('crud.unsetWithName', { name: t('entity.type.DOMAIN', { count: 1 }) }),
+                        title: t('crud.unsetWithName', {
+                            name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
+                        }),
                         onClick: () => {
                             Modal.confirm({
                                 title: t('entity.unsetDomainTitle'),

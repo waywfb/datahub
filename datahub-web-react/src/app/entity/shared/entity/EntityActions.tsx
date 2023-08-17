@@ -63,7 +63,7 @@ function EntityActions(props: Props) {
                     setTimeout(() => {
                         message.success({
                             content: t('crud.success.addWithName', {
-                                name: t('entity.type.GLOSSARY_TERM', { count: 1 }),
+                                name: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 1 }),
                             }),
                             duration: 2,
                         });
@@ -80,7 +80,7 @@ function EntityActions(props: Props) {
                         e,
                         {
                             content: `${t('crud.error.addWithName', {
-                                name: t('entity.type.GLOSSARY_TERM', { count: 1 }),
+                                name: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 1 }),
                             })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
@@ -109,7 +109,7 @@ function EntityActions(props: Props) {
                     setTimeout(() => {
                         message.success({
                             content: t('crud.success.addAssetsToWithName', {
-                                name: t('entity.type.DOMAIN', { count: 1 }),
+                                name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
                             }),
                             duration: 3,
                         });
@@ -126,7 +126,7 @@ function EntityActions(props: Props) {
                         e,
                         {
                             content: `${t('crud.error.addAssetsToWithName', {
-                                name: t('entity.type.DOMAIN', { count: 1 }),
+                                name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
                             })}: \n ${e.message || ''}`,
                             duration: 3,
                         },
@@ -197,7 +197,9 @@ function EntityActions(props: Props) {
             </div>
             {isBatchAddGlossaryTermModalVisible && (
                 <SearchSelectModal
-                    titleText={t('crud.addToAssetsWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}
+                    titleText={t('crud.addToAssetsWithName', {
+                        name: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 1 }),
+                    })}
                     continueText={t('common.add')}
                     onContinue={batchAddGlossaryTerms}
                     onCancel={() => setIsBatchAddGlossaryTermModalVisible(false)}
@@ -208,7 +210,9 @@ function EntityActions(props: Props) {
             )}
             {isBatchSetDomainModalVisible && (
                 <SearchSelectModal
-                    titleText={t('crud.addAssetsToWithName', { name: t('entity.type.DOMAIN', { count: 1 }) })}
+                    titleText={t('crud.addAssetsToWithName', {
+                        name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
+                    })}
                     continueText={t('common.add')}
                     onContinue={batchSetDomain}
                     onCancel={() => setIsBatchSetDomainModalVisible(false)}

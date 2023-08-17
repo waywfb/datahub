@@ -74,7 +74,10 @@ export const EntitySearchInput = ({
             style={style}
             filterOption={false}
             placeholder={
-                placeholder || t('placeholder.searchForWithName', { name: t('entity.subtype.entity', { count: 2 }) })
+                placeholder ||
+                t('placeholder.searchForWithName', {
+                    name: t('entity.subtype.entity_interval', { postProcess: 'interval', count: 2 }),
+                })
             }
             onSelect={onSelect}
             onDeselect={onDeselect}

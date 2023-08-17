@@ -67,7 +67,12 @@ export default function GlossaryRelatedTermsResult({ glossaryRelatedTermType, gl
                         {canEditRelatedTerms && (
                             <Button type="text" onClick={() => setIsShowingAddModal(true)}>
                                 <PlusOutlined />{' '}
-                                {t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 2 }) })}
+                                {t('crud.addWithName', {
+                                    name: t('entity.type.GLOSSARY_TERM_interval', {
+                                        postProcess: 'interval',
+                                        count: 2,
+                                    }),
+                                })}
                             </Button>
                         )}
                     </TitleContainer>

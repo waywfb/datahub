@@ -1,8 +1,8 @@
 import React from 'react';
 import { Divider, List } from 'antd';
 import styled from 'styled-components';
-import { Entity } from '../../../../types.generated';
 import { useTranslation } from 'react-i18next';
+import { Entity } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { IconStyleType } from '../../../entity/Entity';

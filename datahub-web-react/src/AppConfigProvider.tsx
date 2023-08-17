@@ -34,7 +34,7 @@ const AppConfigProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Change form alert language
     const [validateMessages, setValidateMessages] = useState(
-        t('validateMessages', { ns: 'form', returnObjects: true }) as any
+        t('validateMessages', { ns: 'form', returnObjects: true }) as any,
     );
     i18n.on('languageChanged', (lng) => {
         setValidateMessages(t('validateMessages', { ns: 'form', returnObjects: true }));

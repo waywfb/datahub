@@ -60,8 +60,12 @@ export default function PolicyTypeForm({
                     defaultValue={policyType}
                     onSelect={(value) => setPolicyType(value as PolicyType)}
                 >
-                    <Select.Option data-testid="platform" value={PolicyType.Platform}>{t('common.platform')}</Select.Option>
-                    <Select.Option data-testid="metadata" value={PolicyType.Metadata}>{t('common.metadata')}</Select.Option>
+                    <Select.Option data-testid="platform" value={PolicyType.Platform}>
+                        {t('common.platform')}
+                    </Select.Option>
+                    <Select.Option data-testid="metadata" value={PolicyType.Metadata}>
+                        {t('common.metadata')}
+                    </Select.Option>
                 </Select>
                 <TypeDescriptionParagraph type="secondary">
                     <Trans

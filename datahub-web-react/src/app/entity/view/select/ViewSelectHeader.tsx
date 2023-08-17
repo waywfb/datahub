@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { NoMarginButton } from './styledComponents';
 import { ANTD_GRAY_V2 } from '../../shared/constants';
-import { useTranslation } from 'react-i18next';
 
 const ButtonContainer = styled.div`
     display: flex;
@@ -44,8 +44,7 @@ export const ViewSelectHeader = ({ onClickClear }: Props) => {
                 ref={clearButtonRef}
                 onClick={onHandleClickClear}
             >
-                {/** TODO ndespouy : afficher 'All Entities' **/
-                t('common.clear')}
+                {/** TODO ndespouy : afficher 'All Entities' * */ t('common.clear')}
             </AllEntitiesButton>
         </ButtonContainer>
     );

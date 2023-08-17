@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ApolloError } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import {
     EntityType,
     FacetFilterInput,
     FacetMetadata,
     SearchAcrossEntitiesInput,
 } from '../../../../../../types.generated';
-import { useTranslation } from 'react-i18next';
 import { UnionType } from '../../../../../search/utils/constants';
 import { SearchCfg } from '../../../../../../conf';
 import { EmbeddedListSearchResults } from './EmbeddedListSearchResults';

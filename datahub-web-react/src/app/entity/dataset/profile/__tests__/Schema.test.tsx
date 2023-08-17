@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
+import { I18nextProvider } from 'react-i18next';
 import TestPageContainer from '../../../../../utils/test-utils/TestPageContainer';
 import {
     sampleSchema,
@@ -14,7 +15,6 @@ import { SchemaTab } from '../../../shared/tabs/Dataset/Schema/SchemaTab';
 import EntityContext from '../../../shared/EntityContext';
 import { EntityType, SchemaMetadata } from '../../../../../types.generated';
 import i18n from '../../../../../i18n.test';
-import { I18nextProvider } from 'react-i18next';
 
 jest.mock('virtualizedtableforantd4', () => {
     /* eslint-disable-next-line */

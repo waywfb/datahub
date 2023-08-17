@@ -316,7 +316,7 @@ export function getFilterOptions(
 }
 
 export function filterOptionsWithSearch(searchQuery: string, name: string, nestedOptions: FilterOptionType[] = []) {
-    if (searchQuery) {
+    if (searchQuery && name) {
         return (
             name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()) ||
             !!nestedOptions.find((option) => option.value.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()))

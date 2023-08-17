@@ -10750,6 +10750,11 @@ i18next-http-backend@^2.2.1:
   dependencies:
     cross-fetch "3.1.6"
 
+i18next-intervalplural-postprocessor@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/i18next-intervalplural-postprocessor/-/i18next-intervalplural-postprocessor-3.0.0.tgz#35580abdaff5e838c44c22740a7178063b7bdd0b"
+  integrity sha512-ZJWg2Gcb0kQqVI7kygLj9wVwQHK3mzRAg94uLsdoHqss0M9n0HSPr1pThd2AttkBsJFWR26G18hnKCqcTB8shQ==
+
 i18next@^23.2.11:
   version "23.2.11"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.2.11.tgz#0c6f3a637fa87d3243e64b78ad285b7f77d41353"

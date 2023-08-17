@@ -90,7 +90,7 @@ export default class EntityRegistry {
 
     getEntityNameTrans(type: EntityType, t: TFunction, count = 1): string {
         const entity = validatedGet(type, this.entityTypeToEntity);
-        return t(entity.type, { count });
+        return t(`entity.type.${entity.type}_interval`, { postProcess: 'interval', count });
     }
 
     getTypeFromCollectionName(name: string): EntityType {

@@ -9,7 +9,7 @@ type Props = {
 const TermName = styled.span`
     margin-left: 5px;
 `;
-// TODO jm translate termLabel name
+
 export default function TermLabel({ name }: Props) {
     return (
         <div>

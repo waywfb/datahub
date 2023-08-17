@@ -60,7 +60,6 @@ const StepTitle = styled(Typography.Title)`
     margin-botton: 5px;
 `;
 
-// TODO: jm translate step.title, step.content, etc ... ?
 export function getStepsToRender(
     educationSteps: StepStateResult[] | null,
     stepIds: string[],

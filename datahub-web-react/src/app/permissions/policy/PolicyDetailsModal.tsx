@@ -87,7 +87,6 @@ export default function PolicyDetailsModal({ policy, visible, onClose, privilege
         if (!entity) {
             return null;
         }
-        // TODO: jm translate this ?
         return entityRegistry.getDisplayName(entity.type, entity);
     };
 
@@ -106,7 +105,6 @@ export default function PolicyDetailsModal({ policy, visible, onClose, privilege
         );
     };
 
-    // TODO: jm translate this ? (policy.*, getEntityTag(value))
     return (
         <Modal title={policy?.name} visible={visible} onCancel={onClose} closable width={800} footer={actionButtons}>
             <PolicyContainer>

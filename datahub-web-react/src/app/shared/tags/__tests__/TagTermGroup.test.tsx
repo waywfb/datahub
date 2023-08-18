@@ -118,7 +118,7 @@ describe('TagTermGroup', () => {
         expect(queryByText('Search for tag...')).toBeInTheDocument();
     });
 
-    // TODO fix or remove (does)
+    // TODO dtnls fix or remove (does)
     // LOGS :
     // expect(received).toBeInTheDocument()
     // received value must be an HTMLElement or an SVGElement.
@@ -138,10 +138,11 @@ describe('TagTermGroup', () => {
     //             </TestPageContainer>
     //         </MockedProvider>,
     //     );
-    //     // TODO replace with translation or remove this comments
+    //     // TODO dtnls replace with translation or remove this comments
     //     // expect(queryByText('Add Terms')).toBeInTheDocument();
     //     expect(queryByText('tagTerm.addTerms')).toBeInTheDocument();
     //     expect(queryByText('Search for glossary term...')).not.toBeInTheDocument();
+    //     // TODO dtnls replace with translation or remove this comments
     //     // const AddTagButton = getByText('Add Terms');
     //     const AddTagButton = getByText('tagTerm.addTerms');
     //     fireEvent.click(AddTagButton);

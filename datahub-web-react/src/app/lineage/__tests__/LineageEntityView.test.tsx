@@ -17,7 +17,7 @@ describe('LineageEntityView', () => {
         expect(getByTestId('platform-logo')).toBeInTheDocument();
         expect(getByText(dataset1.platform.name)).toBeInTheDocument();
         expect(getByTestId('divider')).toBeInTheDocument();
-        // TODO replace or remove
+        // TODO dtnls replace or remove
         // expect(getByText('Dataset')).toBeInTheDocument();
         expect(getByText('entity.type.DATASET_interval')).toBeInTheDocument();
         expect(getByText(dataset1.properties.name)).toBeInTheDocument();

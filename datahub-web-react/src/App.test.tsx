@@ -2,6 +2,7 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 import App from './App';
+import './i18n-test';
 
 // eslint-disable-next-line jest/expect-expect
 test('renders the app', async () => {

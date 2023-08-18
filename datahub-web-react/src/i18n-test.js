@@ -15,6 +15,7 @@ i18n.use(intervalPlural)
         resources,
         lng: 'en', // Langue par défaut pour les tests
         fallbackLng: 'en',
+        ns: ['translation', 'empty-message', 'form', 'react-cron', 'theme'],
         debug: true,
         defaultNs: 'translation',
         interpolation: {

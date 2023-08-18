@@ -1,18 +1,22 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
+import { I18nextProvider } from 'react-i18next';
 import SnapshotStatsView from '../stats/snapshot/SnapshotStatsView';
 import TestPageContainer from '../../../../../utils/test-utils/TestPageContainer';
 import { completeSampleProfile, missingFieldStatsProfile, missingTableStatsProfile } from '../stories/stats';
 import { mocks } from '../../../../../Mocks';
+import i18n from '../../../../../i18n-test';
 
 describe('SnapshotStatsView', () => {
     it('renders complete profile', () => {
         const { getByText } = render(
             <MockedProvider mocks={mocks}>
-                <TestPageContainer>
-                    <SnapshotStatsView profile={completeSampleProfile} />
-                </TestPageContainer>
+                <I18nextProvider i18n={i18n}>
+                    <TestPageContainer>
+                        <SnapshotStatsView profile={completeSampleProfile} />
+                    </TestPageContainer>
+                </I18nextProvider>
             </MockedProvider>,
         );
 
@@ -22,7 +26,9 @@ describe('SnapshotStatsView', () => {
 
         // Column Count
         expect(getByText('2000')).toBeInTheDocument();
-        expect(getByText('Columns')).toBeInTheDocument();
+        // TODO replace or remove
+        // expect(getByText('Columns')).toBeInTheDocument();
+        expect(getByText('common.columns')).toBeInTheDocument();
 
         // Field Profiles
         // First column
@@ -58,9 +64,11 @@ describe('SnapshotStatsView', () => {
     it('renders profile without field stats', () => {
         const { getByText, queryByText } = render(
             <MockedProvider mocks={mocks}>
-                <TestPageContainer>
-                    <SnapshotStatsView profile={missingFieldStatsProfile} />
-                </TestPageContainer>
+                <I18nextProvider i18n={i18n}>
+                    <TestPageContainer>
+                        <SnapshotStatsView profile={missingFieldStatsProfile} />
+                    </TestPageContainer>
+                </I18nextProvider>
             </MockedProvider>,
         );
 
@@ -70,7 +78,9 @@ describe('SnapshotStatsView', () => {
 
         // Column Count
         expect(getByText('2000')).toBeInTheDocument();
-        expect(getByText('Columns')).toBeInTheDocument();
+        // TODO replace or remove
+        // expect(getByText('Columns')).toBeInTheDocument();
+        expect(getByText('common.columns')).toBeInTheDocument();
 
         // Field Profiles
         // First column

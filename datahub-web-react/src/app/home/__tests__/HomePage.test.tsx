@@ -4,6 +4,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import { HomePage } from '../HomePage';
 import { mocks } from '../../../Mocks';
 import TestPageContainer from '../../../utils/test-utils/TestPageContainer';
+import '../../../i18n-test';
 
 describe('HomePage', () => {
     it('renders', async () => {

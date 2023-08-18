@@ -3,7 +3,7 @@ import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { toRelativeTimeString } from '../../../../../shared/time/timeUtils';
 import SchemaTimeStamps from '../../schema/components/SchemaTimeStamps';
-import i18n from '../../../../../../i18n.test';
+import i18n from '../../../../../../i18n-test';
 
 describe('SchemaTimeStamps', () => {
     it('should render last observed text if lastObserved is not null', () => {

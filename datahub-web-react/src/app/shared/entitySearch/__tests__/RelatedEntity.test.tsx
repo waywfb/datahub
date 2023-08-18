@@ -6,6 +6,7 @@ import { EntityType, PlatformNativeType, SearchResult } from '../../../../types.
 import TestPageContainer from '../../../../utils/test-utils/TestPageContainer';
 import RelatedEntity from '../RelatedEntity';
 import { mocks } from '../../../../Mocks';
+import '../../../../i18n-test';
 
 const searchResult: {
     [key in EntityType]?: Array<SearchResult>;

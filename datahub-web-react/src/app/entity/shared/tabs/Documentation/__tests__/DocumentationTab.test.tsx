@@ -7,6 +7,7 @@ import { EntityType } from '../../../../../../types.generated';
 import TestPageContainer from '../../../../../../utils/test-utils/TestPageContainer';
 import EntityContext from '../../../EntityContext';
 import { DocumentationTab } from '../DocumentationTab';
+import '../../../../../../i18n-test';
 
 describe('SchemaDescriptionField', () => {
     it('renders original description', async () => {

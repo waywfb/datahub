@@ -64,7 +64,7 @@ interface Props {
 }
 
 function RecipeBuilder(props: Props) {
-    const { i18n, t } = useTranslation();
+    const { t } = useTranslation();
     const { state, isEditing, displayRecipe, sourceConfigs, setStagedRecipe, onClickNext, goToPrevious } = props;
     const { type } = state;
     const [isViewingForm, setIsViewingForm] = useState(true);
@@ -86,7 +86,7 @@ function RecipeBuilder(props: Props) {
             {(type === LOOKER || type === LOOK_ML) && <LookerWarning type={type} />}
             <HeaderContainer>
                 <Title style={{ marginBottom: 0 }} level={5}>
-                    {getSourceConfigsDisplayName(sourceConfigs, t, i18n)} {t('common.recipe')}
+                    {getSourceConfigsDisplayName(sourceConfigs, t)} {t('common.recipe')}
                 </Title>
                 <ButtonsWrapper>
                     <StyledButton type="text" isSelected={isViewingForm} onClick={() => switchViews(true)}>

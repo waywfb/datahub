@@ -14,6 +14,7 @@ import {
     getNumActiveFilters,
 } from '../EntityTypeFilter/entityTypeFilterUtils';
 import FilterOption from '../FilterOption';
+import '../../../../i18n-test';
 
 const mockData = {
     aggregateAcrossEntities: {

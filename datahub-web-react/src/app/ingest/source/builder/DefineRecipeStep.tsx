@@ -40,7 +40,7 @@ const ControlsContainer = styled.div`
  * The step for defining a recipe
  */
 export const DefineRecipeStep = ({ state, updateState, goTo, prev, ingestionSources }: StepProps) => {
-    const { i18n, t } = useTranslation();
+    const { t } = useTranslation();
     const existingRecipeJson = state.config?.recipe;
     const existingRecipeYaml = existingRecipeJson && jsonToYaml(existingRecipeJson);
     const { type } = state;
@@ -61,7 +61,7 @@ export const DefineRecipeStep = ({ state, updateState, goTo, prev, ingestionSour
 
     const isEditing: boolean = prev === undefined;
     const displayRecipe = stagedRecipeYml || placeholderRecipe;
-    const sourceDisplayName = getSourceConfigsDisplayName(sourceConfigs, t, i18n);
+    const sourceDisplayName = getSourceConfigsDisplayName(sourceConfigs, t);
     const sourceDocumentationUrl = sourceConfigs?.docsUrl;
 
     // TODO: Delete LookML banner specific code

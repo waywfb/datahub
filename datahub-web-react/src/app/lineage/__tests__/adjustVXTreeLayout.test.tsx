@@ -2,6 +2,7 @@ import React from 'react';
 import { Tree, hierarchy } from '@vx/hierarchy';
 import { render } from '@testing-library/react';
 
+import i18next from 'i18next';
 import {
     dataset3WithLineage,
     dataset4WithLineage,
@@ -17,6 +18,7 @@ import adjustVXTreeLayout from '../utils/adjustVXTreeLayout';
 import { NodeData, Direction, FetchedEntities } from '../types';
 import { getTestEntityRegistry } from '../../../utils/test-utils/TestPageContainer';
 import { EntityType } from '../../../types.generated';
+import '../../../i18n-test';
 
 const testEntityRegistry = getTestEntityRegistry();
 
@@ -42,6 +44,7 @@ describe('adjustVXTreeLayout', () => {
 
         const downstreamData = hierarchy(
             constructTree(
+                i18next.t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -93,6 +96,7 @@ describe('adjustVXTreeLayout', () => {
 
         const upstreamData = hierarchy(
             constructTree(
+                i18next.t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -149,6 +153,7 @@ describe('adjustVXTreeLayout', () => {
 
         const upstreamData = hierarchy(
             constructTree(
+                i18next.t,
                 { entity: dataset7WithSelfReferentialLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -194,6 +199,7 @@ describe('adjustVXTreeLayout', () => {
 
         const upstreamData = hierarchy(
             constructTree(
+                i18next.t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -239,6 +245,7 @@ describe('adjustVXTreeLayout', () => {
 
         const upstreamData = hierarchy(
             constructTree(
+                i18next.t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,

@@ -22,7 +22,7 @@ import {
     isAnyOptionSelected,
 } from '../utils';
 import { ENTITY_SUB_TYPE_FILTER_NAME } from '../../utils/constants';
-import '../../../../i18n.test';
+import '../../../../i18n-test';
 
 describe('filter utils - getNewFilters', () => {
     it('should get the correct list of filters when adding filters where the filter field did not already exist', () => {

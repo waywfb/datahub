@@ -20,7 +20,7 @@ const UsageBarContainer = styled.div`
     height: 100%;
 `;
 
-export default function useUsageStatsRenderer(usageStats?: UsageQueryResult | null, t: TFunction) {
+export default function useUsageStatsRenderer(t: TFunction, usageStats?: UsageQueryResult | null) {
     const maxFieldUsageCount = useMemo(
         () => Math.max(...(usageStats?.aggregations?.fields?.map((field) => field?.count || 0) || [])),
         [usageStats],

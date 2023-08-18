@@ -6,6 +6,7 @@ import { Route } from 'react-router';
 import TagProfile from '../TagProfile';
 import TestPageContainer from '../../../../utils/test-utils/TestPageContainer';
 import { mocks } from '../../../../Mocks';
+import '../../../../i18n-test';
 
 describe('TagProfile', () => {
     it('renders tag details', async () => {

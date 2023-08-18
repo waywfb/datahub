@@ -78,7 +78,7 @@ export default function SchemaTable({
         useState<null | { fieldPath: string; constraint?: ForeignKeyConstraint | null }>(null);
 
     const descriptionRender = useDescriptionRenderer(editableSchemaMetadata);
-    const usageStatsRenderer = useUsageStatsRenderer(usageStats, t);
+    const usageStatsRenderer = useUsageStatsRenderer(t, usageStats);
     const tagRenderer = useTagsAndTermsRenderer(
         editableSchemaMetadata,
         tagHoveredIndex,

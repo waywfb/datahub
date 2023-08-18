@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Zoom } from '@vx/zoom';
 import { MockedProvider } from '@apollo/client/testing';
-import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 import {
     dataset3WithLineage,
     dataset4WithLineage,
@@ -16,6 +16,7 @@ import LineageTree from '../LineageTree';
 import extendAsyncEntities from '../utils/extendAsyncEntities';
 import TestPageContainer, { getTestEntityRegistry } from '../../../utils/test-utils/TestPageContainer';
 import { EntityType } from '../../../types.generated';
+import '../../../i18n-test';
 
 const margin = { top: 10, left: 280, right: 280, bottom: 10 };
 const [windowWidth, windowHeight] = [1000, 500];
@@ -35,7 +36,6 @@ const initialTransform = {
 const testEntityRegistry = getTestEntityRegistry();
 
 describe('LineageTree', () => {
-    const { t } = useTranslation();
     it('renders a tree with many layers', () => {
         const fetchedEntities = [
             { entity: dataset4WithLineage, direction: Direction.Upstream, fullyFetched: true },
@@ -56,7 +56,7 @@ describe('LineageTree', () => {
         );
 
         const downstreamData = constructTree(
-            t,
+            i18next.t,
             { entity: dataset3WithLineage, type: EntityType.Dataset },
             mockFetchedEntities,
             Direction.Downstream,
@@ -64,7 +64,7 @@ describe('LineageTree', () => {
             {},
         );
         const upstreamData = constructTree(
-            t,
+            i18next.t,
             { entity: dataset3WithLineage, type: EntityType.Dataset },
             mockFetchedEntities,
             Direction.Upstream,

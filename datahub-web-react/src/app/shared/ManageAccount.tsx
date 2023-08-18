@@ -96,13 +96,15 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
                     {t('navigation.yourProfile')}
                 </a>
             </MenuItem>
-            {LANGUAGE_LIST.length > 1 && <>
-                <Menu.Divider/>
-                <MenuItem onClick={() => setIsChangeLanguage(true)}>
-                    <TranslationOutlinedStyled style={{fontSize: menuIconSize}}/>
-                    <MenuLabel>{t('common.language')}</MenuLabel>
-                </MenuItem>
-            </>}
+            {LANGUAGE_LIST.length > 1 && (
+                <>
+                    <Menu.Divider />
+                    <MenuItem onClick={() => setIsChangeLanguage(true)}>
+                        <TranslationOutlinedStyled style={{ fontSize: menuIconSize }} />
+                        <MenuLabel>{t('common.language')}</MenuLabel>
+                    </MenuItem>
+                </>
+            )}
             <Menu.Divider />
             {(t('menuItems', { ns: ['theme'], returnObjects: true }) as any[]).map((value) => (
                 <MenuItem key={value.label}>
@@ -131,17 +133,17 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
         </Menu>
     );
 
-    return <>
-        <Dropdown overlay={menu} trigger={['click']}>
-            <DropdownWrapper data-testid="manage-account-menu">
-                <CustomAvatar photoUrl={_pictureLink} style={{ marginRight: 4 }} name={name} />
-                <DownArrow />
-            </DropdownWrapper>
-        </Dropdown>
-        <ChangeLanguageModal
-            visible={isChangeLanguage}
-            onClose={() => setIsChangeLanguage(false)}/>
-    </>;
+    return (
+        <>
+            <Dropdown overlay={menu} trigger={['click']}>
+                <DropdownWrapper data-testid="manage-account-menu">
+                    <CustomAvatar photoUrl={_pictureLink} style={{ marginRight: 4 }} name={name} />
+                    <DownArrow />
+                </DropdownWrapper>
+            </Dropdown>
+            <ChangeLanguageModal visible={isChangeLanguage} onClose={() => setIsChangeLanguage(false)} />
+        </>
+    );
 };
 
 ManageAccount.defaultProps = defaultProps;

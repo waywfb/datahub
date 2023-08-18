@@ -39,3 +39,11 @@ export const CLIENT_AUTH_COOKIE = 'actor';
  * Name of the unique browser id cookie generated on client side
  */
 export const BROWSER_ID_COOKIE = 'bid';
+
+/**
+ * Language supported for i18n
+ */
+export const LANGUAGE_LIST: { label: string; value: string; }[] = [
+    // {label: "Français", value: "fr"},
+    {label: "English", value: "en"}
+];

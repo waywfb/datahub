@@ -381,6 +381,7 @@
       "entitiesTitle": "Entities Tab"
     },
     "homePage": {
+      "changeLanguageTitle": "Change Langage",
       "welcomeParaph": {
         "intro_component": "<bold>DataHub</bold> helps you discover and organize the important data within your organization. You can:",
         "listFeatures": {

@@ -18,7 +18,8 @@ import {
     ParentNodesResult,
     EntityPath,
     DataProduct,
-    Health, EntityType,
+    Health,
+    EntityType,
 } from '../../types.generated';
 import TagTermGroup from '../shared/tags/TagTermGroup';
 import { ANTD_GRAY } from '../entity/shared/constants';
@@ -267,7 +268,7 @@ export default function DefaultPreviewCard({
 
     const shouldShowRightColumn = (topUsers && topUsers.length > 0) || (owners && owners.length > 0);
     const uniqueOwners = getUniqueOwners(owners);
-    const entityTypeName = (!type || typeof type === "string") ? type : entityRegistry.getEntityNameTrans(type, t);
+    const entityTypeName = !type || typeof type === 'string' ? type : entityRegistry.getEntityNameTrans(type, t);
 
     return (
         <PreviewContainer data-testid={dataTestID} onMouseDown={onPreventMouseDown}>

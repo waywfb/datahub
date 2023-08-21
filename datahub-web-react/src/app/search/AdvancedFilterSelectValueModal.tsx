@@ -24,9 +24,7 @@ import {
     REMOVED_FILTER_NAME,
     TAGS_FILTER_NAME,
     TYPE_NAMES_FILTER_NAME,
-    DATA_PRODUCTS_FILTER_NAME,
 } from './utils/constants';
-import SetDataProductModal from '../entity/shared/containers/profile/sidebar/DataProduct/SetDataProductModal';
 import { useEntityRegistry } from '../useEntityRegistry';
 
 type Props = {
@@ -80,23 +78,6 @@ export const AdvancedFilterSelectValueModal = ({
                 onCloseModal={onCloseModal}
                 onOkOverride={(domainUrn) => {
                     onSelect([domainUrn]);
-                    onCloseModal();
-                }}
-            />
-        );
-    }
-
-    if (filterField === DATA_PRODUCTS_FILTER_NAME) {
-        return (
-            <SetDataProductModal
-                titleOverride={t('search.selectWithName', { name: t('common.dataProduct') })}
-                urns={[]}
-                currentDataProduct={
-                    facet?.aggregations.find((agg) => initialValues?.includes(agg?.entity?.urn || ''))?.entity || null
-                }
-                onModalClose={onCloseModal}
-                onOkOverride={(dataProductUrn) => {
-                    onSelect([dataProductUrn]);
                     onCloseModal();
                 }}
             />

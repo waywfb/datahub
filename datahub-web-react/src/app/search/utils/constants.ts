@@ -10,7 +10,6 @@ export const TAGS_FILTER_NAME = 'tags';
 export const GLOSSARY_TERMS_FILTER_NAME = 'glossaryTerms';
 export const CONTAINER_FILTER_NAME = 'container';
 export const DOMAINS_FILTER_NAME = 'domains';
-export const DATA_PRODUCTS_FILTER_NAME = 'dataProducts';
 export const OWNERS_FILTER_NAME = 'owners';
 export const TYPE_NAMES_FILTER_NAME = 'typeNames';
 export const PLATFORM_FILTER_NAME = 'platform';
@@ -57,7 +56,6 @@ export const ORDERED_FIELDS = [
     TAGS_FILTER_NAME,
     GLOSSARY_TERMS_FILTER_NAME,
     DOMAINS_FILTER_NAME,
-    DATA_PRODUCTS_FILTER_NAME,
     FIELD_TAGS_FILTER_NAME,
     FIELD_GLOSSARY_TERMS_FILTER_NAME,
     FIELD_PATHS_FILTER_NAME,

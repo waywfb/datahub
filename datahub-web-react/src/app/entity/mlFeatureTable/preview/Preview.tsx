@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { DataProduct, EntityPath, EntityType, Owner } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
@@ -29,14 +28,14 @@ export const Preview = ({
     paths?: EntityPath[];
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
+
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.MlfeatureTable, urn)}
             name={name}
             urn={urn}
             description={description || ''}
-            type={entityRegistry.getEntityNameTrans(EntityType.MlfeatureTable, t)}
+            type={EntityType.MlfeatureTable}
             typeIcon={entityRegistry.getIcon(EntityType.MlfeatureTable, 14, IconStyleType.ACCENT)}
             owners={owners}
             logoUrl={logoUrl || undefined}

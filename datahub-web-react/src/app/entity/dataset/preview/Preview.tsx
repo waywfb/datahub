@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
     EntityType,
     FabricType,
@@ -85,14 +84,13 @@ export const Preview = ({
     paths?: EntityPath[];
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.Dataset, urn)}
             name={name || ''}
             urn={urn}
             description={description || ''}
-            type={capitalizeFirstLetterOnly(subtype) || t('common.dataset')}
+            type={capitalizeFirstLetterOnly(subtype) || EntityType.Dataset}
             logoUrl={platformLogo || ''}
             typeIcon={entityRegistry.getIcon(EntityType.Dataset, 12, IconStyleType.ACCENT)}
             platform={platformName}

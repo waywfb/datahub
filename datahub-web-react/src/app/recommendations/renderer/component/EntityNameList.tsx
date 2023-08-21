@@ -1,7 +1,6 @@
 import React from 'react';
 import { Divider, List } from 'antd';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
 import { Entity } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
@@ -62,7 +61,6 @@ type Props = {
 
 export const EntityNameList = ({ entities, onClick }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
 
     return (
         <StyledList
@@ -71,7 +69,7 @@ export const EntityNameList = ({ entities, onClick }: Props) => {
                 const genericProps = entityRegistry.getGenericEntityProperties(entity.type, entity);
                 const platformLogoUrl = genericProps?.platform?.properties?.logoUrl;
                 const platformName = getPlatformName(genericProps);
-                const entityTypeName = entityRegistry.getEntityNameTrans(entity.type, t);
+                const entityTypeName = entity.type;
                 const displayName = entityRegistry.getDisplayName(entity.type, entity);
                 const url = entityRegistry.getEntityUrl(entity.type, entity.urn);
                 const fallbackIcon = entityRegistry.getIcon(entity.type, 18, IconStyleType.ACCENT);

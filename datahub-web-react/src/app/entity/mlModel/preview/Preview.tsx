@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { EntityPath, EntityType, MlModel } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { capitalizeFirstLetterOnly } from '../../../shared/textUtil';
@@ -17,7 +16,6 @@ export const Preview = ({
     paths?: EntityPath[];
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
     const genericProperties = entityRegistry.getGenericEntityProperties(EntityType.Mlmodel, model);
 
     return (
@@ -27,7 +25,7 @@ export const Preview = ({
             urn={model.urn}
             description={model.description || ''}
             platformInstanceId={model.dataPlatformInstance?.instanceId}
-            type={entityRegistry.getEntityNameTrans(EntityType.Mlmodel, t)}
+            type={EntityType.Mlmodel}
             typeIcon={entityRegistry.getIcon(EntityType.Mlmodel, 14, IconStyleType.ACCENT)}
             platform={model?.platform?.properties?.displayName || capitalizeFirstLetterOnly(model?.platform?.name)}
             qualifier={model.origin}

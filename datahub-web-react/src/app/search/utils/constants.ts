@@ -148,10 +148,6 @@ export const FIELD_TO_LABEL: { [key: string]: { name: string; transKey: string; 
         name: 'Degree',
         transKey: 'common.degree',
     },
-    [DATA_PRODUCTS_FILTER_NAME]: {
-        name: 'Data Product',
-        transKey: 'filter.dataProduct',
-    },
     [BROWSE_PATH_V2_FILTER_NAME]: {
         name: 'Browse',
         transKey: 'common.browse',

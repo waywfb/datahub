@@ -73,16 +73,6 @@ export default class EntityRegistry {
         return entity.icon(fontSize, styleType, color);
     }
 
-    // getCollectionName(type: EntityType): string {
-    //     const entity = validatedGet(type, this.entityTypeToEntity);
-    //     return entity.getCollectionName();
-    // }
-
-    // getEntityName(type: EntityType): string | undefined {
-    //     const entity = validatedGet(type, this.entityTypeToEntity);
-    //     return entity.getEntityName?.();
-    // }
-
     getCollectionNameTrans(type: EntityType, t: TFunction): string {
         const entity = validatedGet(type, this.entityTypeToEntity);
         return this.getEntityNameTrans(entity.type, t, 2);

@@ -267,7 +267,7 @@ export default function DefaultPreviewCard({
 
     const shouldShowRightColumn = (topUsers && topUsers.length > 0) || (owners && owners.length > 0);
     const uniqueOwners = getUniqueOwners(owners);
-    const entityType = typeof type === EntityType ? entityRegistry.getEntityNameTrans(type, t) : type;
+    const entityTypeName = (!type || typeof type === "string") ? type : entityRegistry.getEntityNameTrans(type, t);
 
     return (
         <PreviewContainer data-testid={dataTestID} onMouseDown={onPreventMouseDown}>
@@ -281,7 +281,7 @@ export default function DefaultPreviewCard({
                         entityLogoComponent={logoComponent}
                         instanceId={platformInstanceId}
                         typeIcon={typeIcon}
-                        entityType={entityType}
+                        entityType={entityTypeName}
                         parentContainers={parentContainers?.containers}
                         parentNodes={parentNodes?.nodes}
                         parentContainersRef={contentRef}
@@ -308,7 +308,7 @@ export default function DefaultPreviewCard({
                                 externalUrl={externalUrl}
                                 platformName={platform}
                                 entityUrn={urn}
-                                entityType={entityType}
+                                entityType={entityTypeName}
                             />
                         )}
                     </EntityTitleContainer>

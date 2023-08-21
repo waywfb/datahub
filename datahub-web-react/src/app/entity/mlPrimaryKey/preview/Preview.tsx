@@ -39,7 +39,7 @@ export const Preview = ({
                 platform?.properties?.displayName || capitalizeFirstLetterOnly(platform?.name) || featureNamespace
             }
             logoUrl={platform?.properties?.logoUrl || ''}
-            type="ML Primary Key"
+            type={EntityType.MlprimaryKey}
             typeIcon={entityRegistry.getIcon(EntityType.MlprimaryKey, 14, IconStyleType.ACCENT)}
             owners={owners}
             dataProduct={dataProduct}

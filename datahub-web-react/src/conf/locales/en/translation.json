@@ -381,6 +381,7 @@
       "entitiesTitle": "Entities Tab"
     },
     "homePage": {
+      "changeLanguageTitle": "Change Langage",
       "welcomeParaph": {
         "intro_component": "<bold>DataHub</bold> helps you discover and organize the important data within your organization. You can:",
         "listFeatures": {
@@ -1284,8 +1285,8 @@
     "noMetadata": "No Metadata Found 😢",
     "welcomeBack": "Welcome back",
     "trySearchingFor": "Try searching for",
-    "scheduleDemo": "Schedule a Demo of Managed Datahub",
-    "scheduleDemoDescription_component": "DataHub is already the industries #1 Open Source Data Catalog. <styledLink>Schedule a demo</styledLink> of Acryl DataHub to see the advanced features that take it to the next level!"
+    "scheduleDemo": "Schedule a Demo of Managed DataHub",
+    "scheduleDemoDescription_component": "DataHub is already the industry's #1 Open Source Data Catalog. <styledLinkDemo>Schedule a demo</styledLinkDemo>  of Acryl DataHub to see the advanced features that take it to the next level or purchase Acryl Cloud on <styledLinkAws>AWS Marketplace</styledLinkAws>!"
   },
   "search": {
     "searchError": "Failed to complete search",

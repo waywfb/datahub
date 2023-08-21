@@ -19,7 +19,7 @@ const AllEntitiesButton = styled(NoMarginButton)`
         border-bottom-right-radius: 0;
         margin-left: 8px;
         margin-right: 8px;
-        padding-left: 0px;
+        padding-left: 0;
     }
 `;
 
@@ -44,7 +44,7 @@ export const ViewSelectHeader = ({ onClickClear }: Props) => {
                 ref={clearButtonRef}
                 onClick={onHandleClickClear}
             >
-                {/** TODO ndespouy : afficher 'All Entities' * */ t('common.clear')}
+                {t('common.all') + ' ' + t('common.entities')}
             </AllEntitiesButton>
         </ButtonContainer>
     );

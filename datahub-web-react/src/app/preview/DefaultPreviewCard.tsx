@@ -18,7 +18,7 @@ import {
     ParentNodesResult,
     EntityPath,
     DataProduct,
-    Health,
+    Health, EntityType,
 } from '../../types.generated';
 import TagTermGroup from '../shared/tags/TagTermGroup';
 import { ANTD_GRAY } from '../entity/shared/constants';
@@ -36,6 +36,7 @@ import EntityPaths from './EntityPaths/EntityPaths';
 import { DataProductLink } from '../shared/tags/DataProductLink';
 import { EntityHealth } from '../entity/shared/containers/profile/header/EntityHealth';
 import { getUniqueOwners } from './utils';
+import { useEntityRegistry } from '../useEntityRegistry';
 
 const PreviewContainer = styled.div`
     display: flex;
@@ -162,7 +163,7 @@ interface Props {
     logoComponent?: JSX.Element;
     url: string;
     description?: string;
-    type?: string;
+    type?: EntityType | string;
     typeIcon?: JSX.Element;
     platform?: string;
     platformInstanceId?: string;
@@ -239,6 +240,7 @@ export default function DefaultPreviewCard({
     // sometimes these lists will be rendered inside an entity container (for example, in the case of impact analysis)
     // in those cases, we may want to enrich the preview w/ context about the container entity
     const { entityData } = useEntityData();
+    const entityRegistry = useEntityRegistry();
     const { t } = useTranslation();
     const suffixList: string[] = t('lineage.ordinalSuffix', { returnObjects: true });
     const insightViews: Array<ReactNode> = [
@@ -265,7 +267,7 @@ export default function DefaultPreviewCard({
 
     const shouldShowRightColumn = (topUsers && topUsers.length > 0) || (owners && owners.length > 0);
     const uniqueOwners = getUniqueOwners(owners);
-    // TODO ndespouy remplacer type par un entityRegistry.getEntityNameTrans (cf en amont et en aval)
+    const entityType = typeof type === EntityType ? entityRegistry.getEntityNameTrans(type, t) : type;
 
     return (
         <PreviewContainer data-testid={dataTestID} onMouseDown={onPreventMouseDown}>
@@ -279,7 +281,7 @@ export default function DefaultPreviewCard({
                         entityLogoComponent={logoComponent}
                         instanceId={platformInstanceId}
                         typeIcon={typeIcon}
-                        entityType={type}
+                        entityType={entityType}
                         parentContainers={parentContainers?.containers}
                         parentNodes={parentNodes?.nodes}
                         parentContainersRef={contentRef}
@@ -306,7 +308,7 @@ export default function DefaultPreviewCard({
                                 externalUrl={externalUrl}
                                 platformName={platform}
                                 entityUrn={urn}
-                                entityType={type}
+                                entityType={entityType}
                             />
                         )}
                     </EntityTitleContainer>

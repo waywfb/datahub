@@ -73,7 +73,7 @@ export const Preview = ({
 }): JSX.Element => {
     const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
-    const typeName = capitalizeFirstLetterOnly(subTypes?.typeNames?.[0]) || 'Container';
+    const typeName = capitalizeFirstLetterOnly(subTypes?.typeNames?.[0]) || EntityType.Container;
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.Container, urn)}

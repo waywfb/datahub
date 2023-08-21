@@ -60,7 +60,7 @@ export class TagEntity implements Entity<Tag> {
             urn={data.urn}
             url={`/${this.getPathName()}/${urlEncodeUrn(data.urn)}`}
             logoComponent={<PreviewTagIcon />}
-            type="Tag"
+            type={EntityType.Tag}
             typeIcon={this.icon(14, IconStyleType.ACCENT)}
         />
     );

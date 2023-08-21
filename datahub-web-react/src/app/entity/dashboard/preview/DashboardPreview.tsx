@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
     AccessLevel,
     Domain,
@@ -75,7 +74,6 @@ export const DashboardPreview = ({
     paths?: EntityPath[];
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
 
     return (
         <DefaultPreviewCard
@@ -83,7 +81,7 @@ export const DashboardPreview = ({
             name={name || ''}
             urn={urn}
             description={description || ''}
-            type={capitalizeFirstLetterOnly(subtype) || entityRegistry.getEntityNameTrans(EntityType.Dashboard, t)}
+            type={capitalizeFirstLetterOnly(subtype) || EntityType.Dashboard}
             typeIcon={entityRegistry.getIcon(EntityType.Dashboard, 14, IconStyleType.ACCENT)}
             logoUrl={logoUrl || ''}
             platformInstanceId={platformInstanceId}

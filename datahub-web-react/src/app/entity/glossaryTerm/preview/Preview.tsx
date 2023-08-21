@@ -34,7 +34,7 @@ export const Preview = ({
             description={description || ''}
             owners={owners}
             logoComponent={<BookOutlined style={{ fontSize: '20px' }} />}
-            type="Glossary Term"
+            type={EntityType.GlossaryTerm}
             typeIcon={entityRegistry.getIcon(EntityType.GlossaryTerm, 14, IconStyleType.ACCENT)}
             deprecation={deprecation}
             parentNodes={parentNodes}

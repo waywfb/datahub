@@ -5,12 +5,27 @@ import { AccessTokenDuration, AccessTokenType } from '../../types.generated';
 export const ACCESS_TOKEN_TYPES = [{ key: 'token.personal', type: AccessTokenType.Personal }];
 
 /** The duration for which an Access Token is valid. */
-type AccessTokenDurationType = { keyParam: { key: string; params: { count?: number } }; duration: AccessTokenDuration };
+type AccessTokenDurationType = {
+    keyParam: { key: string; params: { postProcess?: string; count?: number } };
+    duration: AccessTokenDuration;
+};
 export const ACCESS_TOKEN_DURATIONS: AccessTokenDurationType[] = [
-    { keyParam: { key: 'duration.hour', params: { count: 1 } }, duration: AccessTokenDuration.OneHour },
-    { keyParam: { key: 'duration.day', params: { count: 1 } }, duration: AccessTokenDuration.OneDay },
-    { keyParam: { key: 'duration.month', params: { count: 1 } }, duration: AccessTokenDuration.OneMonth },
-    { keyParam: { key: 'duration.month', params: { count: 3 } }, duration: AccessTokenDuration.ThreeMonths },
+    {
+        keyParam: { key: 'duration.hour_interval', params: { postProcess: 'interval', count: 1 } },
+        duration: AccessTokenDuration.OneHour,
+    },
+    {
+        keyParam: { key: 'duration.day_interval', params: { postProcess: 'interval', count: 1 } },
+        duration: AccessTokenDuration.OneDay,
+    },
+    {
+        keyParam: { key: 'duration.month_interval', params: { postProcess: 'interval', count: 1 } },
+        duration: AccessTokenDuration.OneMonth,
+    },
+    {
+        keyParam: { key: 'duration.month_interval', params: { postProcess: 'interval', count: 3 } },
+        duration: AccessTokenDuration.ThreeMonths,
+    },
     { keyParam: { key: 'never', params: {} }, duration: AccessTokenDuration.NoExpiry },
 ];
 

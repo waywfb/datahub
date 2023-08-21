@@ -55,7 +55,10 @@ export default function ColumnPathsText({ paths, resultEntityUrn, openModal }: P
                 <Tooltip
                     title={
                         <span>
-                            {t('lineage.clickToSeeColumnPathFrom', { count: paths.length || 0 })}
+                            {t('lineage.clickToSeeColumnPathFrom_interval', {
+                                postProcess: 'interval',
+                                count: paths.length || 0,
+                            })}
                             <ColumnsRelationshipText displayedColumns={displayedColumns} />
                         </span>
                     }

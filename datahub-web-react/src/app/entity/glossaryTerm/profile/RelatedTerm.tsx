@@ -65,7 +65,10 @@ function RelatedTerm(props: Props) {
                                     <MenuItem onClick={onRemove}>
                                         <DeleteOutlined /> &nbsp;{' '}
                                         {t('crud.removeWithName', {
-                                            name: t('entity.type.GLOSSARY_TERM', { count: 1 }),
+                                            name: t('entity.type.GLOSSARY_TERM_interval', {
+                                                postProcess: 'interval',
+                                                count: 1,
+                                            }),
                                         })}
                                     </MenuItem>
                                 </Menu.Item>

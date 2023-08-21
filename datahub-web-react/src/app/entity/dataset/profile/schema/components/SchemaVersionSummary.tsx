@@ -30,21 +30,30 @@ export default function SchemaVersionSummary({ diffSummary }: Props) {
                 {diffSummary.added ? (
                     <li>
                         <Typography.Text>
-                            {t('dataset.addedColumnWithCount', { count: diffSummary.added })}
+                            {t('dataset.addedColumnWithCount_interval', {
+                                postProcess: 'interval',
+                                count: diffSummary.added,
+                            })}
                         </Typography.Text>
                     </li>
                 ) : null}
                 {diffSummary.removed ? (
                     <li>
                         <Typography.Text>
-                            {t('dataset.removedColumnWithCount', { count: diffSummary.removed })}
+                            {t('dataset.removedColumnWithCount_interval', {
+                                postProcess: 'interval',
+                                count: diffSummary.removed,
+                            })}
                         </Typography.Text>
                     </li>
                 ) : null}
                 {diffSummary.updated ? (
                     <li>
                         <Typography.Text>
-                            {t('dataset.updatedDescriptionWithCount', { count: diffSummary.updated })}
+                            {t('dataset.updatedDescriptionWithCount_interval', {
+                                postProcess: 'interval',
+                                count: diffSummary.updated,
+                            })}
                         </Typography.Text>
                     </li>
                 ) : null}

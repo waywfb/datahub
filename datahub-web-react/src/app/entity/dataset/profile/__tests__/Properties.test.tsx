@@ -5,6 +5,7 @@ import { Properties } from '../../../shared/components/legacy/Properties';
 import { sampleProperties } from '../stories/properties';
 import TestPageContainer from '../../../../../utils/test-utils/TestPageContainer';
 import { mocks } from '../../../../../Mocks';
+import '../../../../../i18n-test';
 
 describe('Properties', () => {
     it('renders', () => {

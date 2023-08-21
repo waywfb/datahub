@@ -176,7 +176,9 @@ function AddRelatedTermsModal(props: Props) {
                     autoFocus
                     mode="multiple"
                     filterOption={false}
-                    placeholder={t('search.searchForWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 2 }) })}
+                    placeholder={t('search.searchForWithName', {
+                        name: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 2 }),
+                    })}
                     showSearch
                     defaultActiveFirstOption={false}
                     onSelect={(asset: any) => onSelectValue(asset)}

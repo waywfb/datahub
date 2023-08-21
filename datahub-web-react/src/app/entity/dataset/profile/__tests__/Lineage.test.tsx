@@ -6,6 +6,7 @@ import Lineage from '../Lineage';
 import { sampleDownstreamRelationship, sampleRelationship } from '../stories/lineageEntities';
 import TestPageContainer from '../../../../../utils/test-utils/TestPageContainer';
 import { mocks } from '../../../../../Mocks';
+import '../../../../../i18n-test';
 
 describe('Lineage', () => {
     it('renders', () => {

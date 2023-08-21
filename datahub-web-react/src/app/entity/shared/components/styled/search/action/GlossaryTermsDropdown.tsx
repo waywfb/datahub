@@ -19,17 +19,21 @@ export default function GlossaryTermsDropdown({ urns, disabled = false, refetch 
     return (
         <>
             <ActionDropdown
-                name={t('entity.type.GLOSSARY_TERM', { count: 2 })}
+                name={t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 2 })}
                 actions={[
                     {
-                        title: t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 2 }) }),
+                        title: t('crud.addWithName', {
+                            name: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 2 }),
+                        }),
                         onClick: () => {
                             setOperationType(OperationType.ADD);
                             setIsEditModalVisible(true);
                         },
                     },
                     {
-                        title: t('crud.removeWithName', { name: t('entity.type.TAG', { count: 2 }) }),
+                        title: t('crud.removeWithName', {
+                            name: t('entity.type.TAG_interval', { postProcess: 'interval', count: 2 }),
+                        }),
                         onClick: () => {
                             setOperationType(OperationType.REMOVE);
                             setIsEditModalVisible(true);

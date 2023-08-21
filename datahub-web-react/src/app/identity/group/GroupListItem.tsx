@@ -59,7 +59,10 @@ export default function GroupListItem({ group, onDelete }: Props) {
                         </div>
                         <Tag>
                             {(group as any).memberCount?.total < ELASTIC_MAX_COUNT
-                                ? t('common.memberWithCount', { count: (group as any).memberCount?.total || 0 })
+                                ? t('common.memberWithCount_interval', {
+                                      postProcess: 'interval',
+                                      count: (group as any).memberCount?.total || 0,
+                                  })
                                 : `${getElasticCappedTotalValueText((group as any).memberCount?.total || 0)} ${t(
                                       'common.members',
                                   )}`}

@@ -8,6 +8,7 @@ import { SearchPage } from '../SearchPage';
 import TestPageContainer from '../../../utils/test-utils/TestPageContainer';
 import { mocksWithSearchFlagsOff } from '../../../Mocks';
 import { PageRoutes } from '../../../conf/Global';
+import '../../../i18n-test';
 
 describe('SearchPage', () => {
     it('renders loading', async () => {

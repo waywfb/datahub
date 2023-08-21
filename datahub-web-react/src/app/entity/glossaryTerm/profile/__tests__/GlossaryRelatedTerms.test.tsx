@@ -4,6 +4,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import TestPageContainer from '../../../../../utils/test-utils/TestPageContainer';
 import GlossaryRelatedTerms from '../GlossaryRelatedTerms';
 import { mocks } from '../../../../../Mocks';
+import '../../../../../i18n-test';
 
 describe('Glossary Related Terms', () => {
     it('renders and print hasRelatedTerms detail by default', async () => {

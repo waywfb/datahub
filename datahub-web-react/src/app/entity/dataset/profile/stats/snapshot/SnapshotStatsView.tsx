@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { ColumnsType, ColumnType } from 'antd/lib/table';
 import React, { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { DatasetProfile } from '../../../../../../types.generated';
 import { Highlight } from '../../../../../analyticsDashboard/components/Highlight';
 import StatsSection from '../StatsSection';
@@ -71,52 +71,52 @@ export default function DataProfileView({ profile }: Props) {
         // Optional columns. Defines how to render a column given a value exists somewhere in the profile.
         const optionalColumns: ColumnsType<any> = [
             {
-                title: t('common.min'),
+                title: <Trans i18nKey="common.min" />,
                 dataIndex: 'min',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: t('common.max'),
+                title: <Trans i18nKey="common.max" />,
                 dataIndex: 'max',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: t('reporting.mean'),
+                title: <Trans i18nKey="reporting.mean" />,
                 dataIndex: 'mean',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: t('reporting.median'),
+                title: <Trans i18nKey="reporting.median" />,
                 dataIndex: 'median',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: t('reporting.nullCount'),
+                title: <Trans i18nKey="reporting.nullCount" />,
                 dataIndex: 'nullCount',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: t('reporting.nullPercent'),
+                title: <Trans i18nKey="reporting.nullPercent" />,
                 dataIndex: 'nullPercentage',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: t('reporting.distinctCount'),
+                title: <Trans i18nKey="reporting.distinctCount" />,
                 dataIndex: 'distinctCount',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: t('reporting.distinctPercent'),
+                title: <Trans i18nKey="reporting.distinctPercent" />,
                 dataIndex: 'distinctPercentage',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: t('reporting.stdDev'),
+                title: <Trans i18nKey="reporting.stdDev" />,
                 dataIndex: 'stdev',
                 render: (value) => value || unknownValue(),
             },
             {
-                title: t('common.sampleValues'),
+                title: <Trans i18nKey="common.sampleValues" />,
                 dataIndex: 'sampleValues',
                 render: (sampleValues: Array<string>) => {
                     return (
@@ -133,7 +133,7 @@ export default function DataProfileView({ profile }: Props) {
         // Name column always required.
         const requiredColumns: ColumnsType<any> = [
             {
-                title: t('reporting.name'),
+                title: <Trans i18nKey="reporting.name" />,
                 dataIndex: 'name',
             },
         ];

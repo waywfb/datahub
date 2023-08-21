@@ -34,7 +34,7 @@ export const SidebarTagsSection = ({ properties, readOnly }: Props) => {
     return (
         <div>
             <span id={ENTITY_PROFILE_TAGS_ID}>
-                <SidebarHeader title={t('entity.type.TAG', { count: 2 })} />
+                <SidebarHeader title={t('entity.type.TAG_interval', { postProcess: 'interval', count: 2 })} />
                 <TagTermGroup
                     editableTags={entityData?.globalTags}
                     canAddTag={canAddTag}
@@ -49,7 +49,7 @@ export const SidebarTagsSection = ({ properties, readOnly }: Props) => {
             </span>
             <StyledDivider />
             <span id={ENTITY_PROFILE_GLOSSARY_TERMS_ID}>
-                <SidebarHeader title={t('entity.type.GLOSSARY_TERM', { count: 2 })} />
+                <SidebarHeader title={t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 2 })} />
                 <TagTermGroup
                     editableGlossaryTerms={entityData?.glossaryTerms}
                     canAddTerm={canAddTerm}

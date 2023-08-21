@@ -80,7 +80,7 @@ export default function EmbeddedListSearchHeader({
                             placeholderText={
                                 placeholderText ||
                                 t('placeholder.searchWithName', {
-                                    name: t('entity.subtype.entity', { count: 2 }),
+                                    name: t('entity.subtype.entity_interval', { postProcess: 'interval', count: 2 }),
                                 })
                             }
                             suggestions={[]}

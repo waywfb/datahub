@@ -29,7 +29,7 @@ export const ChartSnippet = ({ matchedFields, inputFields, isMatchingDashboard =
         );
 
         if (matchedGlossaryTerm) {
-            let termType = t('entity.type.GLOSSARY_TERM', { count: 1 });
+            let termType = t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 1 });
             const typeProperty = matchedGlossaryTerm.term.properties?.customProperties?.find(
                 (property) => property.key === TYPE_PROPERTY_KEY_NAME,
             );

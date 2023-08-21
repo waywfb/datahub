@@ -4,6 +4,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import SchemaDescriptionField from '../schema/components/SchemaDescriptionField';
 import TestPageContainer from '../../../../../utils/test-utils/TestPageContainer';
 import { mocks } from '../../../../../Mocks';
+import '../../../../../i18n-test';
 
 describe('SchemaDescriptionField', () => {
     it('renders editable description', async () => {
@@ -42,7 +43,9 @@ describe('SchemaDescriptionField', () => {
         );
         expect(queryByText('Update description')).not.toBeInTheDocument();
         fireEvent.click(getByRole('img'));
-        await waitFor(() => expect(getByText('Update description')).toBeInTheDocument());
+        // TODO replace with better testing of the translation or remove this comment
+        // await waitFor(() => expect(getByText('Update description')).toBeInTheDocument());
+        await waitFor(() => expect(getByText('crud.updateWithName')).toBeInTheDocument());
         expect(getByText('Cancel')).toBeInTheDocument();
         expect(getByText('Update')).toBeInTheDocument();
         expect(getByText('Original:')).toBeInTheDocument();

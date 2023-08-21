@@ -79,6 +79,7 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
     const [isChangeLanguage, setIsChangeLanguage] = useState(false);
 
     const version = config?.appVersion;
+    // const menuItems: any[] = t('menuItems', { ns: ['theme'], returnObjects: true });
     const menu = (
         <Menu style={{ width: '120px' }}>
             {version && (
@@ -106,7 +107,7 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
                 </>
             )}
             <Menu.Divider />
-            {(t('menuItems', { ns: ['theme'], returnObjects: true }) as any[]).map((value) => (
+            {Array(...(t('menuItems', { ns: ['theme'], returnObjects: true }) as any[])).map((value) => (
                 <MenuItem key={value.label}>
                     <a
                         href={value.path || ''}

@@ -211,7 +211,10 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
                         <PrefixedSelect
                             prefixText={`${t('common.show')} `}
                             values={Object.values(LOOKBACK_WINDOWS).map((window) => ({
-                                label: t(lookbackWindow.translateKey, { count: lookbackWindow.windowSize.count }),
+                                label: t(lookbackWindow.translateKey, {
+                                    postProcess: 'interval',
+                                    count: lookbackWindow.windowSize.count,
+                                }),
                                 value: window.value,
                             }))}
                             value={lookbackWindow.value}

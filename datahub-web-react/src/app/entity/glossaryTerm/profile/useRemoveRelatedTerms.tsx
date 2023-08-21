@@ -27,7 +27,7 @@ function useRemoveRelatedTerms(termUrn: string, relationshipType: TermRelationsh
                 message.destroy();
                 message.error({
                     content: `${t('crud.error.removeWithName', {
-                        name: t('entity.type.GLOSSARY_TERM', { count: 1 }),
+                        name: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 1 }),
                     })}: \n ${e.message || ''}`,
                     duration: 3,
                 });
@@ -41,7 +41,7 @@ function useRemoveRelatedTerms(termUrn: string, relationshipType: TermRelationsh
                     refetch();
                     message.success({
                         content: t('crud.success.removeWithName', {
-                            name: t('entity.type.GLOSSARY_TERM', { count: 1 }),
+                            name: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 1 }),
                         }),
                         duration: 2,
                     });

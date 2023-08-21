@@ -206,10 +206,11 @@ export const SearchResults = ({
                                 <Typography.Text>
                                     <Trans
                                         {...{
-                                            i18nKey: 'search.showingNumberOfTotalResults_component',
+                                            i18nKey: 'search.showingNumberOfTotalResults_component_interval',
                                             values: {
                                                 number: lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0,
                                                 index: lastResultIndex,
+                                                postProcess: 'interval',
                                                 count: totalResults,
                                             },
                                             components: { bold: <b /> },

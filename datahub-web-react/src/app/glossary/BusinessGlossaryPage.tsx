@@ -111,7 +111,12 @@ function BusinessGlossaryPage() {
                                 onClick={() => setIsCreateTermModalVisible(true)}
                             >
                                 <PlusOutlined />{' '}
-                                {t('crud.addWithName', { name: t('entity.type.GLOSSARY_TERM', { count: 1 }) })}
+                                {t('crud.addWithName', {
+                                    name: t('entity.type.GLOSSARY_TERM_interval', {
+                                        postProcess: 'interval',
+                                        count: 1,
+                                    }),
+                                })}
                             </Button>
                             <Button
                                 id={BUSINESS_GLOSSARY_CREATE_TERM_GROUP_ID}
@@ -120,7 +125,12 @@ function BusinessGlossaryPage() {
                                 onClick={() => setIsCreateNodeModalVisible(true)}
                             >
                                 <PlusOutlined />{' '}
-                                {t('crud.addWithName', { name: t('entity.type.GLOSSARY_NODE', { count: 1 }) })}
+                                {t('crud.addWithName', {
+                                    name: t('entity.type.GLOSSARY_NODE_interval', {
+                                        postProcess: 'interval',
+                                        count: 1,
+                                    }),
+                                })}
                             </Button>
                         </div>
                     </HeaderWrapper>

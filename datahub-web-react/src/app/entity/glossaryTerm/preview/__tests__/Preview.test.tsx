@@ -4,6 +4,7 @@ import React from 'react';
 import { mocks } from '../../../../../Mocks';
 import TestPageContainer from '../../../../../utils/test-utils/TestPageContainer';
 import { Preview } from '../Preview';
+import '../../../../../i18n-test';
 
 describe('Preview', () => {
     it('renders', () => {

@@ -78,7 +78,7 @@ export default function SchemaTable({
         useState<null | { fieldPath: string; constraint?: ForeignKeyConstraint | null }>(null);
 
     const descriptionRender = useDescriptionRenderer(editableSchemaMetadata);
-    const usageStatsRenderer = useUsageStatsRenderer(usageStats, t);
+    const usageStatsRenderer = useUsageStatsRenderer(t, usageStats);
     const tagRenderer = useTagsAndTermsRenderer(
         editableSchemaMetadata,
         tagHoveredIndex,
@@ -137,7 +137,7 @@ export default function SchemaTable({
 
     const tagColumn = {
         width: '13%',
-        title: t('entity.type.TAG', { count: 2 }),
+        title: t('entity.type.TAG_interval', { postProcess: 'interval', count: 2 }),
         dataIndex: 'globalTags',
         key: 'tag',
         render: tagRenderer,
@@ -146,7 +146,7 @@ export default function SchemaTable({
 
     const termColumn = {
         width: '13%',
-        title: t('entity.type.GLOSSARY_TERM', { count: 2 }),
+        title: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 2 }),
         dataIndex: 'globalTags',
         key: 'tag',
         render: termRenderer,

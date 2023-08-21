@@ -7,6 +7,7 @@ import TestPageContainer from '../../../../../../utils/test-utils/TestPageContai
 import { getDataForEntityType } from '../../../containers/profile/utils';
 import EntityContext from '../../../EntityContext';
 import { DataJobFlowTab } from '../DataJobFlowTab';
+import '../../../../../../i18n-test';
 
 describe('DataJobFlowTab', () => {
     it('renders fields', async () => {

@@ -98,11 +98,19 @@ const computeAllFieldPaths = (profiles: Array<DatasetProfile>): Set<string> => {
  * Change this to add or modify the lookback windows that are selectable via the UI.
  */
 const LOOKBACK_WINDOWS = [
-    { translateKey: 'duration.day', value: '1 day', windowSize: { interval: DateInterval.Day, count: 1 } },
-    { translateKey: 'duration.week', value: '1 week', windowSize: { interval: DateInterval.Week, count: 1 } },
-    { translateKey: 'duration.month', value: '1 month', windowSize: { interval: DateInterval.Month, count: 1 } },
-    { translateKey: 'duration.month', value: '3 months', windowSize: { interval: DateInterval.Month, count: 3 } },
-    { translateKey: 'duration.year', value: '1 year', windowSize: { interval: DateInterval.Year, count: 1 } },
+    { translateKey: 'duration.day_interval', value: '1 day', windowSize: { interval: DateInterval.Day, count: 1 } },
+    { translateKey: 'duration.week_interval', value: '1 week', windowSize: { interval: DateInterval.Week, count: 1 } },
+    {
+        translateKey: 'duration.month_interval',
+        value: '1 month',
+        windowSize: { interval: DateInterval.Month, count: 1 },
+    },
+    {
+        translateKey: 'duration.month_interval',
+        value: '3 months',
+        windowSize: { interval: DateInterval.Month, count: 3 },
+    },
+    { translateKey: 'duration.year_interval', value: '1 year', windowSize: { interval: DateInterval.Year, count: 1 } },
 ];
 
 const DEFAULT_LOOKBACK_WINDOW = '3 months';
@@ -234,7 +242,10 @@ export default function HistoricalStatsView({ urn, toggleView }: Props) {
                             <EmbeddedSelect value={selectedLookbackWindow} onChange={onChangeSelectedLookbackWindow}>
                                 {LOOKBACK_WINDOWS.map((lookbackWindow) => (
                                     <Select.Option value={lookbackWindow.value}>
-                                        {t(lookbackWindow.translateKey)}
+                                        {t(lookbackWindow.translateKey, {
+                                            postProcess: 'interval',
+                                            count: lookbackWindow.windowSize.count,
+                                        })}
                                     </Select.Option>
                                 ))}
                             </EmbeddedSelect>

@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import defaultThemeConfig from '../../../../../conf/theme/theme_light.config.json';
 import { DefineRecipeStep } from '../DefineRecipeStep';
 import { SourceConfig } from '../types';
+import '../../../../../i18n-test';
 
 describe('DefineRecipeStep', () => {
     it('should render the RecipeBuilder if the type is in CONNECTORS_WITH_FORM', () => {

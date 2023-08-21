@@ -4,6 +4,7 @@ import React from 'react';
 import { mocks } from '../../../../../Mocks';
 import TestPageContainer from '../../../../../utils/test-utils/TestPageContainer';
 import GlossaryTermHeader from '../GlossaryTermHeader';
+import '../../../../../i18n-test';
 
 const glossaryTermHeaderData = {
     definition: 'this is sample definition',

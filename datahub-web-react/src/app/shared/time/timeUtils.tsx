@@ -200,7 +200,7 @@ export function getTimeRangeDescription(
     if (startDate && endDate) {
         if (endDate && endDate.isSame(moment(), 'day')) {
             const startDateRelativeTime = moment().diff(startDate, 'days');
-            return t('duration.lastDay', { count: startDateRelativeTime });
+            return t('duration.lastDay_interval', { postProcess: 'interval', count: startDateRelativeTime });
         }
 
         if (endDate.isSame(startDate, 'day')) {

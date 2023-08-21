@@ -4,6 +4,7 @@ import { Typography, Image, Row, Button, Tag } from 'antd';
 import styled, { useTheme } from 'styled-components/macro';
 import { RightOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 import { ManageAccount } from '../shared/ManageAccount';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { navigateToSearchUrl } from '../search/utils/navigateToSearchUrl';
@@ -144,7 +145,7 @@ function sortRandom() {
 export const HomePageHeader = () => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
-    const { t, i18n } = useTranslation(['translation', 'theme']);
+    const { t } = useTranslation(['translation', 'theme']);
     const [getAutoCompleteResultsForMultiple, { data: suggestionsData }] = useGetAutoCompleteMultipleResultsLazyQuery();
     const userContext = useUserContext();
     const themeConfig = useTheme();
@@ -263,7 +264,7 @@ export const HomePageHeader = () => {
                     preview={false}
                     style={styles.logoImage}
                 />
-                {i18n.exists('subtitle', { ns: ['theme'] }) && (
+                {i18next.exists('subtitle', { ns: ['theme'] }) && (
                     <Typography.Text style={styles.subtitle}>{t('subtitle', { ns: ['theme'] })}</Typography.Text>
                 )}
                 <SearchBarContainer id={HOME_PAGE_SEARCH_BAR_ID}>

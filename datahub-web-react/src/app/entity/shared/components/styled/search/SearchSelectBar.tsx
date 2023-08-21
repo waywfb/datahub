@@ -60,7 +60,8 @@ export const SearchSelectBar = ({
         if (selectedEntityCount > 0) {
             Modal.confirm({
                 title: t('search.modal.exitSelectionTitle'),
-                content: t('search.modal.exitSelectionContent', {
+                content: t('search.modal.exitSelectionContent_interval', {
+                    postProcess: 'interval',
                     count: selectedEntityCount,
                 }),
                 onOk() {
@@ -85,7 +86,7 @@ export const SearchSelectBar = ({
                     onChange={(e) => onChangeSelectAll(e.target.checked as boolean)}
                 />
                 <Typography.Text strong type="secondary">
-                    {t('common.selected', { count: selectedEntityCount })}
+                    {t('common.selected_interval', { postProcess: 'interval', count: selectedEntityCount })}
                 </Typography.Text>
             </CheckboxContainer>
             <ActionsContainer>

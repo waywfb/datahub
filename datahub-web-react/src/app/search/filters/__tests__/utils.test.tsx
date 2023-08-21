@@ -1,6 +1,6 @@
 import { FolderFilled } from '@ant-design/icons';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 import { dataPlatform, dataPlatformInstance, dataset1, glossaryTerm1, user1 } from '../../../../Mocks';
 import { EntityType } from '../../../../types.generated';
 import { getTestEntityRegistry } from '../../../../utils/test-utils/TestPageContainer';
@@ -22,6 +22,7 @@ import {
     isAnyOptionSelected,
 } from '../utils';
 import { ENTITY_SUB_TYPE_FILTER_NAME } from '../../utils/constants';
+import '../../../../i18n-test';
 
 describe('filter utils - getNewFilters', () => {
     it('should get the correct list of filters when adding filters where the filter field did not already exist', () => {
@@ -118,21 +119,20 @@ describe('filter utils - isAnyOptionSelected', () => {
 
 describe('filter utils - getFilterIconAndLabel', () => {
     const mockEntityRegistry = getTestEntityRegistry();
-    const { t: mockTranslation } = useTranslation();
 
     it('should get the correct icon and label for entity filters', () => {
         const { icon, label } = getFilterIconAndLabel(
             'entity',
             EntityType.Dataset,
             mockEntityRegistry,
-            mockTranslation,
+            i18next.t,
             dataset1,
         );
 
         expect(icon).toMatchObject(
             mockEntityRegistry.getIcon(EntityType.Dataset, 12, IconStyleType.ACCENT, ANTD_GRAY[9]),
         );
-        expect(label).toBe(mockEntityRegistry.getCollectionNameTrans(EntityType.Dataset, mockTranslation));
+        expect(label).toBe('Datasets');
     });
 
     it('should get the correct icon and label for platform filters', () => {
@@ -140,7 +140,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
             'platform',
             dataPlatform.urn,
             mockEntityRegistry,
-            mockTranslation,
+            i18next.t,
             dataPlatform,
         );
 
@@ -153,7 +153,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
             'domains',
             glossaryTerm1.urn,
             mockEntityRegistry,
-            mockTranslation,
+            i18next.t,
             glossaryTerm1,
         );
 
@@ -168,7 +168,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
             'domains',
             glossaryTerm1.urn,
             mockEntityRegistry,
-            mockTranslation,
+            i18next.t,
             dataPlatformInstance,
         );
 
@@ -177,7 +177,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
     });
 
     it('should get the correct icon and label for filters with no associated entity', () => {
-        const { icon, label } = getFilterIconAndLabel('origin', 'PROD', mockEntityRegistry, mockTranslation, null);
+        const { icon, label } = getFilterIconAndLabel('origin', 'PROD', mockEntityRegistry, i18next.t, null);
 
         expect(icon).toBe(null);
         expect(label).toBe('PROD');
@@ -188,7 +188,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
             'browsePathV2',
             '␟long-tail-companions␟view',
             mockEntityRegistry,
-            mockTranslation,
+            i18next.t,
             null,
         );
 
@@ -201,7 +201,7 @@ describe('filter utils - getFilterIconAndLabel', () => {
             'browsePathV2',
             '␟long-tail-companions␟view',
             mockEntityRegistry,
-            mockTranslation,
+            i18next.t,
             null,
             12,
             'TESTING',

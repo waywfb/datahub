@@ -1,3 +1,4 @@
+import i18next from 'i18next';
 import {
     dataJob1,
     dataset3,
@@ -15,6 +16,7 @@ import { getTestEntityRegistry } from '../../../utils/test-utils/TestPageContain
 import { Direction, FetchedEntities, UpdatedLineages } from '../types';
 import constructTree from '../utils/constructTree';
 import extendAsyncEntities from '../utils/extendAsyncEntities';
+import '../../../i18n-test';
 
 const testEntityRegistry = getTestEntityRegistry();
 const kafkaPlatform: DataPlatform = dataset3.platform;
@@ -26,6 +28,7 @@ describe('constructTree', () => {
         const mockFetchedEntities = {};
         expect(
             constructTree(
+                i18next.t,
                 { entity: dataset3, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -66,6 +69,7 @@ describe('constructTree', () => {
 
         expect(
             constructTree(
+                i18next.t,
                 { entity: dataset6WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Downstream,
@@ -118,6 +122,7 @@ describe('constructTree', () => {
 
         expect(
             constructTree(
+                i18next.t,
                 { entity: dataset6WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -171,6 +176,7 @@ describe('constructTree', () => {
 
         expect(
             constructTree(
+                i18next.t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -265,6 +271,7 @@ describe('constructTree', () => {
         );
 
         const tree = constructTree(
+            i18next.t,
             { entity: dataset3WithLineage, type: EntityType.Dataset },
             mockFetchedEntities,
             Direction.Upstream,
@@ -296,6 +303,7 @@ describe('constructTree', () => {
         );
         expect(
             constructTree(
+                i18next.t,
                 { entity: dataset3WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -383,6 +391,7 @@ describe('constructTree', () => {
         );
         expect(
             constructTree(
+                i18next.t,
                 { entity: updatedDataset6WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,
@@ -447,6 +456,7 @@ describe('constructTree', () => {
 
         expect(
             constructTree(
+                i18next.t,
                 { entity: dataset6WithLineage, type: EntityType.Dataset },
                 mockFetchedEntities,
                 Direction.Upstream,

@@ -43,7 +43,7 @@ describe('SchemaDescriptionField', () => {
         );
         expect(queryByText('Update description')).not.toBeInTheDocument();
         fireEvent.click(getByRole('img'));
-        // TODO replace with better testing of the translation or remove this comment
+        // TODO dtnls replace with better testing of the translation or remove this comment
         // await waitFor(() => expect(getByText('Update description')).toBeInTheDocument());
         await waitFor(() => expect(getByText('crud.updateWithName')).toBeInTheDocument());
         expect(getByText('Cancel')).toBeInTheDocument();

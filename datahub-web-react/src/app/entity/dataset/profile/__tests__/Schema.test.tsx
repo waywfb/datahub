@@ -256,7 +256,7 @@ describe('Schema', () => {
         );
         expect(getByText('Key')).toBeInTheDocument();
         expect(getByText('Value')).toBeInTheDocument();
-        // TODO This one is not present inside antd Table, to decide if to remove that expect or fix it
+        // TODO dtnls This one is not present inside antd Table, to decide if to remove that expect or fix it
         // expect(getByText('Usage')).toBeInTheDocument();
         expect(getByText('count')).toBeInTheDocument();
         expect(getByText('cost')).toBeInTheDocument();

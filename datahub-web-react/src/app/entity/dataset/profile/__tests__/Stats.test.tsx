@@ -26,7 +26,7 @@ describe('SnapshotStatsView', () => {
 
         // Column Count
         expect(getByText('2000')).toBeInTheDocument();
-        // TODO replace or remove
+        // TODO dtnls replace or remove
         // expect(getByText('Columns')).toBeInTheDocument();
         expect(getByText('common.columns')).toBeInTheDocument();
 
@@ -78,7 +78,7 @@ describe('SnapshotStatsView', () => {
 
         // Column Count
         expect(getByText('2000')).toBeInTheDocument();
-        // TODO replace or remove
+        // TODO dtnls replace or remove
         // expect(getByText('Columns')).toBeInTheDocument();
         expect(getByText('common.columns')).toBeInTheDocument();
 

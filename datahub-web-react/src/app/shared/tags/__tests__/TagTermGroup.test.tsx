@@ -118,7 +118,7 @@ describe('TagTermGroup', () => {
         expect(queryByText('Search for tag...')).toBeInTheDocument();
     });
 
-    // TODO ndespouy fix or remove (does)
+    // TODO dtnls fix or remove (does)
     // LOGS :
     // expect(received).toBeInTheDocument()
     // received value must be an HTMLElement or an SVGElement.

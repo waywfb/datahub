@@ -92,7 +92,7 @@
     "partOf": "Part Of",
     "viewDetails": "View details",
     "notFound": "Not Found",
-    "notFoundWithName": "Not {{name}} Found",
+    "notFoundWithName": "{{name}} Not Found",
     "id": "Id",
     "parent": "Parent",
     "optional": "Optional",
@@ -293,7 +293,7 @@
   },
   "dataset": {
     "linkToTechnicalSchema_component": "Semantic versions for this view were computed using Technical Schema. You can find more info about how DataHub computes versions <linkComp>here</linkComp>",
-    "updatedOn": "Updated ",
+    "updatedOn": "Updated on ",
     "lastUpdatedDataOn": "Data was last updated in the source platform on",
     "monthlyQueries": "monthly queries",
     "queriesLastMonth": "queries last month",
@@ -360,7 +360,7 @@
     "columnValuesAre_component": "Column <typographyTextStrong>{{columnText}}</typographyTextStrong> values are",
     "datasetIs": "Dataset is",
     "deleteAssertionModal": {
-      "content": "`Are you sure you want to remove this assertion from the dataset?`"
+      "content": "Are you sure you want to remove this assertion from the Dataset?"
     }
   },
   "onBoarding": {
@@ -374,7 +374,7 @@
       "lineage_component": "<paraph>You can view an entity's <bold>Lineage</bold> on this tab.</paraph><paraph>Data <bold>Lineage</bold> allows you to visualize and understand both the upstream dependencies and downstream consumers of this entity.</paraph><paraph>If this tab is disabled, <bold>Lineage</bold> have not been ingested for this entity.</paraph>",
       "lineageTitle": "Lineage Tab",
       "documentation_component": "<paraph>You can view and edit an entity's <bold>Documentation</bold> on this tab.</paraph><paraph><bold>Documentation</bold> should provide descriptive information about this data asset. It can also contain links to external resources.</paraph>",
-      "documentationTitle": "Documentation Tab",
+      "documentationTitle": "Documentation",
       "properties_component": "<paraph>You can view an entity's key-value <bold>Properties</bold> on this tab. These are sourced from the original Data Platform.</paraph><paraph>If this tab is disabled, <bold>Properties</bold> have not been ingested for this entity.</paraph>",
       "propertiesTitle": "Properties Tab",
       "entities_component": "You can view the <bold>Entities</bold> that belong to a <bold>Container</bold> on this tab.",
@@ -408,7 +408,7 @@
     "businessGlossary": {
       "businessGlossaryCreateTermGroup_component": "<paraph>Click here to create a new <bold>Term Group</bold>.</paraph><paraph><bold>Term Groups</bold> act as folders, containing Terms and nested Term Groups.</paraph><paraph>For example, there could be a <bold>PII Term Group</bold> containing Terms for different types of PII, such as <bold>Email</bold> or <bold>Phone Number</bold>.</paraph><paraph>Learn more about the <bold>Business Glossary</bold> <aLink>here.</aLink></paraph>",
       "businessGlossaryCreateTermGroupTitle": "Glossary Term Groups",
-      "businessGlossaryCreateTerm_component": "<paraph>Click here to create a new <bold>Term</bold> .</paraph><paraph><bold>Terms</bold> are words or phrases with a specific business definition assigned to them.</paraph>",
+      "businessGlossaryCreateTerm_component": "<paraph>Click here to create a new <bold>Term</bold>.</paraph><paraph><bold>Terms</bold> are words or phrases with a specific business definition assigned to them.</paraph>",
       "businessGlossaryCreateTermTitle": "Glossary Terms",
       "businessGlossaryIntro_component": "<paraph>Welcome to the <bold>Business Glossary</bold>!</paraph><paraph>The Glossary is a collection of structured, standarized labels you can use to categorize data assets. You can view and create both <bold>Terms</bold> and <bold>Term Groups</bold> here.</paraph>",
       "businessGlossaryIntroTitle": "Business Glossary 📖"

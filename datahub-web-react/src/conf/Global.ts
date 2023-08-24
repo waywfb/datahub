@@ -44,6 +44,6 @@ export const BROWSER_ID_COOKIE = 'bid';
  * Language supported for i18n
  */
 export const LANGUAGE_LIST: { label: string; value: string }[] = [
-    // {label: 'Français', value: 'fr'},
+    { label: 'Français', value: 'fr' },
     { label: 'English', value: 'en' },
 ];

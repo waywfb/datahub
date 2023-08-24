@@ -9,6 +9,34 @@ import intervalPlural from 'i18next-intervalplural-postprocessor';
 // have a look at the Quick start guide
 // for passing in lng and translations on init
 
+import * as enTranslation from './conf/locales/en/translation.json';
+import * as enEmptyMessage from './conf/locales/en/empty-message.json';
+import * as enForm from './conf/locales/en/form.json';
+import * as enReactCron from './conf/locales/en/react-cron.json';
+import * as enTheme from './conf/locales/en/theme.json';
+import * as frTranslation from './conf/locales/fr/translation.json';
+import * as frEmptyMessage from './conf/locales/fr/empty-message.json';
+import * as frForm from './conf/locales/fr/form.json';
+import * as frReactCron from './conf/locales/fr/react-cron.json';
+import * as frTheme from './conf/locales/fr/theme.json';
+
+const resources = {
+    en: {
+        translation: enTranslation.default,
+        'empty-Message': enEmptyMessage.default,
+        form: enForm.default,
+        'react-cron': enReactCron.default,
+        theme: enTheme.default,
+    },
+    fr: {
+        translation: frTranslation.default,
+        'empty-Message': frEmptyMessage.default,
+        form: frForm.default,
+        'react-cron': frReactCron.default,
+        theme: frTheme.default,
+    },
+};
+
 i18n
     // add interval module
     .use(intervalPlural)
@@ -25,14 +53,13 @@ i18n
     // for all options read: https://www.i18next.com/overview/configuration-options
     .init({
         fallbackLng: 'en',
-        debug: false,
-        defaultNs: 'translation',
-        fallbackNs: 'translation',
-        ns: ['translation', 'empty-message', 'form', 'react-cron', 'theme'],
-        backend: {
-            loadPath: '/conf/locales/{{lng}}/{{ns}}.json',
-            allowMultiLoading: true,
-        },
+        debug: true,
+        // ns: ['translation', 'empty-message', 'form', 'react-cron', 'theme'],
+        // backend: {
+        //     loadPath: '/conf/locales/{{lng}}/{{ns}}.json',
+        //     allowMultiLoading: true,
+        // },
+        resources,
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         },

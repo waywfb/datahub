@@ -1353,7 +1353,8 @@
       "saveTheseFiltersAsANewView": "Save these filters as a new View.",
       "viewsAllowYouToEasilySaveOrShareSearchFilters": "Views allow you to easily save or share search filters.",
       "exitViewEditor": "Exit View Editor",
-      "exitViewEditorConfirm": "Are you sure you want to exit View editor? All changes will be lost"
+      "exitViewEditorConfirm": "Are you sure you want to exit View editor? All changes will be lost",
+      "manageViewDescription": "Create, edit, and remove your Views. Views allow you to save and share sets of filters for reuse when browsing DataHub."
     }
   },
   "form": {

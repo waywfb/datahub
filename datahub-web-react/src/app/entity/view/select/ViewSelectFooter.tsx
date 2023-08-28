@@ -63,7 +63,7 @@ export const ViewSelectFooter = ({ hasViews, onClickCreateView, onClickManageVie
                 <Typography.Text>{t('crud.createWithName', { name: t('common.view') })}</Typography.Text>
             </CreateViewButton>
             <ManageViewsButton type="text" ref={manageViewsButtonRef} onClick={onHandleClickManageViews}>
-                Manage Views
+                {t('settings.manageWithName', { name: t('common.views') })}
             </ManageViewsButton>
         </ButtonContainer>
     );

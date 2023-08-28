@@ -1353,7 +1353,8 @@
       "saveTheseFiltersAsANewView": "Enregistrer ces filtres en tant que nouvelle Vue.",
       "viewsAllowYouToEasilySaveOrShareSearchFilters": "Les Vues vous permettent d'enregistrer ou de partager facilement les filtres de recherche.",
       "exitViewEditor": "Quitter l'Editeur de Vue",
-      "exitViewEditorConfirm": "Etes-vous sûr(e) de vouloir quitter l'Editeur de Vue ? Toutes vos modifications seront perdues."
+      "exitViewEditorConfirm": "Etes-vous sûr(e) de vouloir quitter l'Editeur de Vue ? Toutes vos modifications seront perdues.",
+      "manageViewDescription": "Créez, modifiez et supprimez vos Vues. Les Vues vous permettent d'enregistrer et de partager des ensembles de filtres pour les réutiliser lors de la navigation sur DataHub."
     }
   },
   "form": {

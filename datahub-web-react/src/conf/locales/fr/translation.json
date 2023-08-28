@@ -544,7 +544,7 @@
     "noRoles": "Aucun Rôles",
     "nameForNewPolicy": "Un nom pour votre nouveau droit.",
     "typeOfPolicyToCreate": "Le type de droit que vous voulez créer.",
-    "typeOfPolicyDescription_component": "La <bold>Plateforme</bold> policy type allows you to assign top-level DataHub Platform privileges to users.These include managing users and groups, creating policies, viewing analytics dashboards and more.<br /><br />The <bold>Metadata</bold> policy type allows you to assign metadata privileges to users. These include the ability to manipulate metadata like ownership, tags, documentation associated with Datasets, Charts, Dashboards, & more.",
+    "typeOfPolicyDescription_component": "Le Droit <bold>Plateforme</bold> vous permet d'attribuer des privilèges de niveau supérieur à la plateforme DataHub aux utilisateurs. Cela inclut la gestion des utilisateurs et des groupes, la création de politiques, la consultation des tableaux de bord d'analyse, et bien plus encore.<br /><br />Le type de politique <bold>MetaData</bold> vous permet d'attribuer des privilèges de metadatas aux utilisateurs. Cela inclut la possibilité de manipuler des métadonnées telles que la propriété, les balises, la documentation associée aux jeux de données, aux graphiques, aux tableaux de bord, et bien plus encore.",
     "newPolicyDescription": "Une description (facultative) pour votre nouveau Droit.",
     "resourceTypeDescription": "Choisissez le type de ressources auquel appliquer ce Droit. Si vous sélectionnez <bold>Aucun</bold>, le droit s'appliquera à <bold>tout</bold> type de ressource.",
     "resourceDescription": "Cherchez des ressources spécifiques auxquelles appliquer ce Droit. Si vous sélectionnez <bold>Aucun</bold>, le droit s'appliquera à <bold>toute</bold> les ressources du type sélectionné.",
@@ -1348,9 +1348,12 @@
       "endWith": "termine par"
     },
     "view": {
+      "previewView": "Aperçu de la Vue",
       "saveAsView": "Enregistrer en tant que Vue",
       "saveTheseFiltersAsANewView": "Enregistrer ces filtres en tant que nouvelle Vue.",
-      "viewsAllowYouToEasilySaveOrShareSearchFilters": "Les Vues vous permettent d'enregistrer ou de partager facilement les filtres de recherche."
+      "viewsAllowYouToEasilySaveOrShareSearchFilters": "Les Vues vous permettent d'enregistrer ou de partager facilement les filtres de recherche.",
+      "exitViewEditor": "Quitter l'Editeur de Vue",
+      "exitViewEditorConfirm": "Etes-vous sûr(e) de vouloir quitter l'Editeur de Vue ? Toutes vos modifications seront perdues."
     }
   },
   "form": {
@@ -1377,6 +1380,7 @@
     "validEmailRequired": "Please enter valid email"
   },
   "placeholder": {
+    "allEntities": "Toutes les Entities",
     "domainDescription": "Une description pour votre domaine",
     "domainName": "Un nom pour votre domaine",
     "groupName": "Un nom pour votre groupe",

@@ -44,7 +44,7 @@ export const ViewSelectHeader = ({ onClickClear }: Props) => {
                 ref={clearButtonRef}
                 onClick={onHandleClickClear}
             >
-                {t('common.all')} {t('common.entities')}
+                {t('placeholder.allEntities')}
             </AllEntitiesButton>
         </ButtonContainer>
     );

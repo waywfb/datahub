@@ -1348,9 +1348,12 @@
       "endWith": "end with"
     },
     "view": {
+      "previewView": "Preview View",
       "saveAsView": "Save as View",
       "saveTheseFiltersAsANewView": "Save these filters as a new View.",
-      "viewsAllowYouToEasilySaveOrShareSearchFilters": "Views allow you to easily save or share search filters."
+      "viewsAllowYouToEasilySaveOrShareSearchFilters": "Views allow you to easily save or share search filters.",
+      "exitViewEditor": "Exit View Editor",
+      "exitViewEditorConfirm": "Are you sure you want to exit View editor? All changes will be lost"
     }
   },
   "form": {
@@ -1377,6 +1380,7 @@
     "validEmailRequired": "Please enter valid email"
   },
   "placeholder": {
+    "allEntities": "All Entities",
     "domainDescription": "A description for your domain",
     "domainName": "A name for your Domain",
     "groupName": "A name for your group",

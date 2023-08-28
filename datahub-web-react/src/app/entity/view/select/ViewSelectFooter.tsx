@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Button, Typography } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY, ANTD_GRAY_V2 } from '../../shared/constants';
 import { NoMarginButton } from './styledComponents';
 
@@ -19,7 +20,7 @@ const CreateViewButton = styled(NoMarginButton)<{ bordered: boolean }>`
         border-top-right-radius: 0;
         margin-left: 8px;
         margin-right: 8px;
-        padding-left: 0px;
+        padding-left: 0;
 
         ${(props) => props.bordered && `border-top: 1px solid ${ANTD_GRAY_V2[5]};`}
     }
@@ -42,6 +43,7 @@ type Props = {
 };
 
 export const ViewSelectFooter = ({ hasViews, onClickCreateView, onClickManageViews }: Props) => {
+    const { t } = useTranslation();
     const manageViewsButtonRef = useRef(null);
 
     const onHandleClickManageViews = () => {
@@ -58,7 +60,7 @@ export const ViewSelectFooter = ({ hasViews, onClickCreateView, onClickManageVie
                 onClick={onClickCreateView}
             >
                 <PlusOutlined />
-                <Typography.Text>Create new view</Typography.Text>
+                <Typography.Text>{t('crud.createWithName', { name: t('common.view') })}</Typography.Text>
             </CreateViewButton>
             <ManageViewsButton type="text" ref={manageViewsButtonRef} onClick={onHandleClickManageViews}>
                 Manage Views

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { Select } from 'antd';
 import styled from 'styled-components';
 import { VscTriangleDown } from 'react-icons/vsc';
+import { useTranslation } from 'react-i18next';
 import { useListMyViewsQuery, useListGlobalViewsQuery } from '../../../../graphql/view.generated';
 import { useUserContext } from '../../../context/useUserContext';
 import { DataHubView, DataHubViewType } from '../../../../types.generated';
@@ -13,7 +14,6 @@ import { ViewBuilderMode } from '../builder/types';
 import { ViewSelectDropdown } from './ViewSelectDropdown';
 import { renderViewOptionGroup } from './renderViewOptionGroup';
 import { ANTD_GRAY_V2 } from '../../shared/constants';
-import { useTranslation } from 'react-i18next';
 
 type ViewBuilderDisplayState = {
     mode: ViewBuilderMode;
@@ -195,7 +195,7 @@ export const ViewSelect = () => {
                 style={{ minWidth: '120px', maxWidth: '200px' }}
                 onChange={() => (selectRef?.current as any)?.blur()}
                 value={(foundSelectedUrn && selectedUrn) || undefined}
-                placeholder={t('placeholder.allWithName' ,{ name: t('common.entities') })}
+                placeholder={t('placeholder.allEntities')}
                 onSelect={onSelectView}
                 onClear={onClear}
                 ref={selectRef}

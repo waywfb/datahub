@@ -13,6 +13,7 @@ import { ViewBuilderMode } from '../builder/types';
 import { ViewSelectDropdown } from './ViewSelectDropdown';
 import { renderViewOptionGroup } from './renderViewOptionGroup';
 import { ANTD_GRAY_V2 } from '../../shared/constants';
+import { useTranslation } from 'react-i18next';
 
 type ViewBuilderDisplayState = {
     mode: ViewBuilderMode;
@@ -72,6 +73,7 @@ const ViewSelectContainer = styled.div`
 export const ViewSelect = () => {
     const history = useHistory();
     const userContext = useUserContext();
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [viewBuilderDisplayState, setViewBuilderDisplayState] = useState<ViewBuilderDisplayState>(
         DEFAULT_VIEW_BUILDER_DISPLAY_STATE,
@@ -193,7 +195,7 @@ export const ViewSelect = () => {
                 style={{ minWidth: '120px', maxWidth: '200px' }}
                 onChange={() => (selectRef?.current as any)?.blur()}
                 value={(foundSelectedUrn && selectedUrn) || undefined}
-                placeholder="All Entities"
+                placeholder={t('placeholder.allWithName' ,{ name: t('common.entities') })}
                 onSelect={onSelectView}
                 onClear={onClear}
                 ref={selectRef}

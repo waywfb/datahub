@@ -1354,10 +1354,15 @@
       "viewsAllowYouToEasilySaveOrShareSearchFilters": "Views allow you to easily save or share search filters.",
       "exitViewEditor": "Exit View Editor",
       "exitViewEditorConfirm": "Are you sure you want to exit View editor? All changes will be lost",
-      "manageViewDescription": "Create, edit, and remove your Views. Views allow you to save and share sets of filters for reuse when browsing DataHub."
+      "manageViewDescription": "Create, edit, and remove your Views. Views allow you to save and share sets of filters for reuse when browsing DataHub.",
+      "nameDescription": "Give your new View a name.",
+      "descriptionDescription": "Write a description for your View.",
+      "typeDescription": "Select the type of your new View.",
+      "filterDescription": "Select the filters that are applied when this View is selected. Assets that match these filters will be shown when the View is applied."
     }
   },
   "form": {
+    "viewNameRequired": "Please enter a name for your View.",
     "pleaseConfirmYourPassword": "Please confirm your password",
     "fillInYourEmail": "Please fill in your email",
     "fillInYourName": "Please fill in your name",
@@ -1381,6 +1386,8 @@
     "validEmailRequired": "Please enter valid email"
   },
   "placeholder": {
+    "dataAnalyst": "Data Analyst",
+    "viewUsefulForDataAnalysts": "This View is useful for Data Analysts",
     "allEntities": "All Entities",
     "domainDescription": "A description for your domain",
     "domainName": "A name for your Domain",

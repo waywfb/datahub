@@ -58,13 +58,13 @@ export const ViewBuilderForm = ({ urn, mode, state, updateState }: Props) => {
         <span data-testid="view-builder-form">
             <Form form={form} initialValues={state} layout="vertical">
                 <StyledFormItem label={<Typography.Text strong>{t('common.name')}</Typography.Text>}>
-                    <Typography.Paragraph>Give your new View a name. </Typography.Paragraph>
+                    <Typography.Paragraph>{t('filter.view.nameDescription')}</Typography.Paragraph>
                     <Form.Item
                         name="name"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please enter a name for your View.',
+                                message: t('form.viewNameRequired'),
                             },
                             { whitespace: true },
                             { min: 1, max: 50 },
@@ -73,25 +73,25 @@ export const ViewBuilderForm = ({ urn, mode, state, updateState }: Props) => {
                     >
                         <Input
                             data-testid="view-name-input"
-                            placeholder="Data Analyst"
+                            placeholder={t('placeholder.dataAnalyst')}
                             onChange={(event) => setName(event.target.value)}
                             disabled={mode === ViewBuilderMode.PREVIEW}
                         />
                     </Form.Item>
                 </StyledFormItem>
                 <StyledFormItem label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
-                    <Typography.Paragraph>Write a description for your View.</Typography.Paragraph>
+                    <Typography.Paragraph>{t('filter.view.descriptionDescription')}</Typography.Paragraph>
                     <Form.Item name="description" rules={[{ whitespace: true }, { min: 1, max: 500 }]} hasFeedback>
                         <Input.TextArea
                             data-testid="view-description-input"
-                            placeholder="This View is useful for Data Analysts"
+                            placeholder={t('placeholder.viewUsefulForDataAnalysts')}
                             onChange={(event) => setDescription(event.target.value)}
                             disabled={mode === ViewBuilderMode.PREVIEW}
                         />
                     </Form.Item>
                 </StyledFormItem>
                 <StyledFormItem label={<Typography.Text strong>{t('common.type')}</Typography.Text>}>
-                    <Typography.Paragraph>Select the type of your new View.</Typography.Paragraph>
+                    <Typography.Paragraph>{t('filter.view.typeDescription')}</Typography.Paragraph>
                     <Form.Item name="viewType">
                         <Select
                             onSelect={(value) => setViewType(value as DataHubViewType)}
@@ -110,10 +110,7 @@ export const ViewBuilderForm = ({ urn, mode, state, updateState }: Props) => {
                     label={<Typography.Text strong>{t('common.filters')}</Typography.Text>}
                     style={{ marginBottom: 8 }}
                 >
-                    <Typography.Paragraph>
-                        Select the filters that are applied when this View is selected. Assets that match these filters
-                        will be shown when the View is applied.
-                    </Typography.Paragraph>
+                    <Typography.Paragraph>{t('filter.view.filterDescription')}</Typography.Paragraph>
                 </StyledFormItem>
             </Form>
             <ViewDefinitionBuilder mode={mode} state={state} updateState={updateState} />

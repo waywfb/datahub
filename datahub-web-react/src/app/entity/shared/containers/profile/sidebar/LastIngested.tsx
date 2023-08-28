@@ -163,7 +163,7 @@ function LastIngested({ lastIngested }: Props) {
                     <HelpHeader>
                         {platformName ? (
                             <>
-                                {t('reporting.lastSynchronizedDescriptionNoPlatform')}
+                                {t('reporting.lastSynchronizedDescriptionWithPlatform')}
                                 <strong>
                                     {platformLogoUrl && (
                                         <>

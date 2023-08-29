@@ -9,6 +9,7 @@ import { useSearchQuery } from '../context/SearchContext';
 import { MatchesGroupedByFieldName } from './constants';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { getDescriptionSlice, isDescriptionField, isHighlightableEntityField } from './utils';
+import { useTranslation } from 'react-i18next';
 
 const MatchesContainer = styled.div`
     display: flex;
@@ -21,7 +22,6 @@ const MatchText = styled(Typography.Text)`
     background: ${(props) => props.theme.styles['highlight-color']};
     border-radius: 4px;
     padding: 2px 4px 2px 4px;
-    padding-right: 4px;
 `;
 
 const MATCH_GROUP_LIMIT = 3;
@@ -65,13 +65,14 @@ const MatchedFieldsList = ({
     matchSuffix?: string;
     customFieldRenderer?: CustomFieldRenderer;
 }) => {
+    const { t } = useTranslation();
     const label = useMatchedFieldLabel(groupedMatch.fieldName);
     const count = groupedMatch.matchedFields.length;
     const moreCount = Math.max(count - limit, 0);
     const andMore = (
         <>
             {' '}
-            & <b>more</b>
+            & <b>{t('common.more')}</b>
         </>
     );
     return (

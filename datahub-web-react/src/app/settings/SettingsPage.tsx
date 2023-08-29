@@ -47,8 +47,8 @@ const PageTitle = styled(Typography.Title)`
 `;
 
 const ThinDivider = styled(Divider)`
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 `;
 
 const ItemTitle = styled.span`
@@ -151,7 +151,7 @@ export const SettingsPage = () => {
                         )}
                         {showHomePagePosts && (
                             <Menu.Item key="posts">
-                                <PushpinOutlined /> <ItemTitle>Home Page Posts</ItemTitle>
+                                <PushpinOutlined /> <ItemTitle>{t('settings.homePagePosts')}</ItemTitle>
                             </Menu.Item>
                         )}
                     </Menu.ItemGroup>

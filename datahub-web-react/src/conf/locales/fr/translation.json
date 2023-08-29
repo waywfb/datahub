@@ -1,5 +1,8 @@
 {
   "common": {
+    "post": "Post",
+    "posts": "Posts",
+    "noPost": "Aucun Posts",
     "search": "Chercher",
     "unauthorized": "Non autorisé",
     "timezone": "Timezone",
@@ -1261,6 +1264,8 @@
     "settingsTitle": "Gérer vos paramètres DataHub"
   },
   "settings": {
+    "homePagePosts": "Posts de l'Accueil",
+    "homePagePostsDescription": "Gérez les posts épinglés que tout les Utilisateurs peuvent voir sur la page d'accueil.",
     "manageWithName": "Gérer {{name}}",
     "noOwnershipTypesFound": "Aucun type de propriété trouvé !",
     "manageYourSettings": "Gérer vos paramètres DataHub.",
@@ -1296,9 +1301,16 @@
     "seeAllResultsWithName_component": "Voir tous les résultats <bold>{{name}}</bold>",
     "moreYouMayBeInterestedIn": "Ca pourrait vous intéresser",
     "showingNumberOfTotalResults_component_interval": "(0-1)[Affichage de <bold>{{number}} - {{index}}</bold> sur {{count}} résultat];(2-inf)[Affichage de <bold>{{number}} - {{index}}</bold> sur {{count}} résultats];",
+    "showingIndexOfTotalPost_component": "<bold>{{startCount}} - {{endCount}}</bold> of <bold>{{totalCount}}</bold>",
     "noResultsFoundFor": "Aucun résultat trouvé pour {{name}}",
     "exploreAll": "Explorer tout",
     "selectWithName": "Sélectionner {{name}}",
+    "try_component": "Essayez de <suggest>{{refineSearchText}}</suggest>",
+    "orSearchingFor_component": " ou cherchez <suggest>{{suggestText}}</suggest>",
+    "didYouMean_component": "Vouliez-vous chercher <suggest>{{suggestText}}</suggest>",
+    "tryOptionFilterAndViewUrn": "effacer tout les filtres et la Vue sélectionnée.",
+    "tryOptionFilter": "effacer tout les filtres.",
+    "tryOptionViewUrn": "supprimer la Vue sélectionnée.",
     "modal": {
       "exitSelectionTitle": "Quitter la sélection",
       "exitSelectionContent_interval": "(0-1)[Êtes-vous sûr de vouloir quitter ? {{count}} sélection sera effacée.];(2-inf)[Êtes-vous sûr de vouloir quitter ? {{count}} sélections seront effacées.];"
@@ -1388,7 +1400,6 @@
   "placeholder": {
     "dataAnalyst": "Data Analyste",
     "viewUsefulForDataAnalysts": "Cette Vue est utile pour les Data Analyste",
-    "allEntities": "Toutes les Entities",
     "domainDescription": "Une description pour votre domaine",
     "domainName": "Un nom pour votre domaine",
     "groupName": "Un nom pour votre groupe",
@@ -1477,7 +1488,7 @@
       "addAssetsToWithName": "Assets ajoutées à {{name}} !",
       "addWithName": "{{name}} ajouté(e) !",
       "createWithName": "{{name}} créé(e) !",
-      "SuccessfullyCreateWithName": "{{name}} créé(e) !",
+      "successfullyCreateWithName": "{{name}} créé(e) !",
       "update": "Mis à jour !",
       "updateWithName": "{{name}} modifié(e) !",
       "updatedWithNameReverse": "{{name}} modifié(e) !",

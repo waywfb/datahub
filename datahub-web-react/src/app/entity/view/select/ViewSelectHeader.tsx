@@ -27,7 +27,6 @@ type Props = {
     onClickClear: () => void;
 };
 
-// TODO ndespouy viewall a la place du all entites
 export const ViewSelectHeader = ({ onClickClear }: Props) => {
     const { t } = useTranslation();
     const clearButtonRef = useRef(null);
@@ -45,7 +44,7 @@ export const ViewSelectHeader = ({ onClickClear }: Props) => {
                 ref={clearButtonRef}
                 onClick={onHandleClickClear}
             >
-                {t('placeholder.allEntities')}
+                {t('common.viewAll')}
             </AllEntitiesButton>
         </ButtonContainer>
     );

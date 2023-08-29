@@ -12,6 +12,7 @@ import {
 import { useEnterKeyListener } from '../../shared/useEnterKeyListener';
 import { MediaType, PostContentType, PostType } from '../../../types.generated';
 import { useCreatePostMutation } from '../../../graphql/mutations.generated';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     onClose: () => void;
@@ -25,6 +26,7 @@ type Props = {
 };
 
 export default function CreatePostModal({ onClose, onCreate }: Props) {
+    const { t } = useTranslation();
     const [createPostMutation] = useCreatePostMutation();
     const [createButtonEnabled, setCreateButtonEnabled] = useState(false);
     const [form] = Form.useForm();
@@ -54,7 +56,7 @@ export default function CreatePostModal({ onClose, onCreate }: Props) {
             .then(({ errors }) => {
                 if (!errors) {
                     message.success({
-                        content: `Created Post!`,
+                        content: t('crud.success.createWithName', { name: t('common.post') }),
                         duration: 3,
                     });
                     onCreate(
@@ -69,7 +71,7 @@ export default function CreatePostModal({ onClose, onCreate }: Props) {
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: 'Failed to create Post! An unknown error occured.', duration: 3 });
+                message.error({ content: t('crud.error.createWithName', { name: t('common.post') }), duration: 3 });
                 console.error('Failed to create Post:', e.message);
             });
         onClose();
@@ -82,13 +84,13 @@ export default function CreatePostModal({ onClose, onCreate }: Props) {
 
     return (
         <Modal
-            title="Create new Post"
+            title={t('crud.createWithName', { name: t('common.post') })}
             open
             onCancel={onClose}
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button
                         id={CREATE_POST_BUTTON_ID}
@@ -96,7 +98,7 @@ export default function CreatePostModal({ onClose, onCreate }: Props) {
                         onClick={onCreatePost}
                         disabled={!createButtonEnabled}
                     >
-                        Create
+                        {t('common.create')}
                     </Button>
                 </>
             }

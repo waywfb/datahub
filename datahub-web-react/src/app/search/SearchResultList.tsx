@@ -1,10 +1,6 @@
 import React from 'react';
 import { Checkbox, Divider, List, ListProps } from 'antd';
 import styled from 'styled-components';
-import { useHistory } from 'react-router';
-import { RocketOutlined } from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
-import { navigateToSearchUrl } from './utils/navigateToSearchUrl';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import { SEPARATE_SIBLINGS_URL_PARAM } from '../entity/shared/siblingUtils';
 import { CompactEntityNameList } from '../recommendations/renderer/component/CompactEntityNameList';
@@ -22,7 +18,7 @@ const ResultList = styled(List)`
         border-color: ${(props) => props.theme.styles['border-color-base']};
         margin-top: 8px;
         padding: 16px 32px;
-        border-radius: 0px;
+        border-radius: 0;
     }
 `;
 
@@ -55,7 +51,7 @@ const SiblingResultContainer = styled.div`
 const ListItem = styled.div<{ isSelectMode: boolean }>`
     display: flex;
     align-items: center;
-    padding: 0px;
+    padding: 0;
 `;
 
 type Props = {
@@ -78,7 +74,6 @@ export const SearchResultList = ({
     suggestions,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
-    const { t } = useTranslation();
     const selectedEntityUrns = selectedEntities.map((entity) => entity.urn);
     const showSearchFiltersV2 = useIsSearchV2();
 
@@ -104,7 +99,6 @@ export const SearchResultList = ({
         }
     };
 
-    // TODO ndespouy voir si {t('search.noResultsFoundFor', { name: query })} est utile dans le EmptySearchResult
     return (
         <>
             <ResultList<React.FC<ListProps<CombinedSearchResult>>>

@@ -197,14 +197,13 @@ export const ViewSelect = ({ dropdownStyle = {} }: Props) => {
     const handleDropdownVisibleChange = (isNowOpen: boolean) => {
         setIsOpen(isNowOpen);
     };
-// TODO ndespouy viewAll à la place du AllEntities
     return (
         <ViewSelectContainer>
             <SelectStyled
                 data-testid="view-select"
                 onChange={() => (selectRef?.current as any)?.blur()}
                 value={(foundSelectedUrn && selectedUrn) || undefined}
-                placeholder={t('placeholder.allEntities')}
+                placeholder={t('common.viewAll')}
                 onSelect={onSelectView}
                 onClear={onClear}
                 ref={selectRef}

@@ -106,7 +106,7 @@ export const SecretsList = () => {
         })
             .then((res) => {
                 message.success({
-                    content: t('crud.success.SuccessfullyCreateWithName', { name: t('common.secret') }),
+                    content: t('crud.success.successfullyCreateWithName', { name: t('common.secret') }),
                     duration: 3,
                 });
                 resetBuilderState();

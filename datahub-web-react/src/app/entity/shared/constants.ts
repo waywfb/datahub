@@ -28,57 +28,6 @@ export const ANTD_GRAY_V2 = {
     10: '#1B1E22',
 };
 
-export const EMPTY_MESSAGES = {
-    documentation: {
-        title: 'No documentation yet',
-        description: 'Share your knowledge by adding documentation and links to helpful resources.',
-    },
-    tags: {
-        title: 'No tags added yet',
-        description: 'Tag entities to help make them more discoverable and call out their most important attributes.',
-    },
-    terms: {
-        title: 'No terms added yet',
-        description: 'Apply glossary terms to entities to classify their data.',
-    },
-    owners: {
-        title: 'No owners added yet',
-        description: 'Adding owners helps you keep track of who is responsible for this data.',
-    },
-    properties: {
-        title: 'No properties',
-        description: 'Properties will appear here if they exist in your data source.',
-    },
-    queries: {
-        title: 'No queries yet',
-        description: 'Create, view, and share commonly used queries for this dataset.',
-    },
-    domain: {
-        title: 'No domain set',
-        description: 'Group related entities based on your organizational structure using by adding them to a Domain.',
-    },
-    dataProduct: {
-        title: 'No data product set',
-        description: 'Group related entities based on shared characteristics by adding them to a Data Product.',
-    },
-    contains: {
-        title: 'Contains no Terms',
-        description: 'Terms can contain other terms to represent a "Has A" style relationship.',
-    },
-    inherits: {
-        title: 'Does not inherit from any terms',
-        description: 'Terms can inherit from other terms to represent an "Is A" style relationship.',
-    },
-    'contained by': {
-        title: 'Is not contained by any terms',
-        description: 'Terms can be contained by other terms to represent a "Has A" style relationship.',
-    },
-    'inherited by': {
-        title: 'Is not inherited by any terms',
-        description: 'Terms can be inherited by other terms to represent an "Is A" style relationship.',
-    },
-};
-
 export const ELASTIC_MAX_COUNT = 10000;
 
 export const getElasticCappedTotalValueText = (count: number) => {

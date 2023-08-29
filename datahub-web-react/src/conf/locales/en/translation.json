@@ -1,5 +1,8 @@
 {
   "common": {
+    "post": "Post",
+    "posts": "Posts",
+    "noPost": "No Posts",
     "search": "Search",
     "unauthorized": "Unauthorized",
     "timezone": "Timezone",
@@ -254,6 +257,19 @@
     "historical": "Historical",
     "noAdditionalDetails": "No additional details",
     "connection": "Connection"
+  },
+  "post": {
+    "postType": "Post Type",
+    "titleDescription": "The title for your new post.",
+    "titlePlaceholder": "Your post title",
+    "descriptionDescription": "The main content for your new post.",
+    "descriptionPlaceholder": "Your post description",
+    "linkUrl": "Link URL",
+    "linkUrlDescription": "Where users will be directed when they click this post.",
+    "linkUrlPlaceholder": "Your post link URL",
+    "imageUrl": "Image URL",
+    "imageUrlDescription": "A URL to an image you want to display on your link post.",
+    "imageUrlPlaceholder": "Your post image URL"
   },
   "domain": {
     "domainIdDescription": "By default, a random UUID will be generated to uniquely identify this domain. If you'd like to provide a custom id instead to more easily keep track of this domain, you may provide it here. Be careful, you cannot easily change the domain id after creation.",
@@ -1261,6 +1277,8 @@
     "settingsTitle": "Manage your DataHub settings"
   },
   "settings": {
+    "homePagePosts": "Home Page Posts",
+    "homePagePostsDescription": "View and manage pinned posts that appear to all users on the landing page.",
     "manageWithName": "Manage {{name}}",
     "noOwnershipTypesFound": "No Ownership Types found!",
     "manageYourSettings": "Manage your DataHub settings.",
@@ -1296,9 +1314,16 @@
     "seeAllResultsWithName_component": "See all <bold>{{name}}</bold> results",
     "moreYouMayBeInterestedIn": "More you may be interested in",
     "showingNumberOfTotalResults_component_interval": "(0-1)[Showing <bold>{{number}} - {{index}}</bold> of {{count}} result];(2-inf)[Showing <bold>{{number}} - {{index}}</bold> of {{count}} results];",
-    "noResultsFoundFor": "No results found for {{name}}",
+    "showingIndexOfTotalPost_component": "<bold>{{startCount}} - {{endCount}}</bold> of <bold>{{totalCount}}</bold>",
+    "noResultsFoundFor": "No results found for '{{name}}'",
     "exploreAll": "Explore all",
     "selectWithName": "Select {{name}}",
+    "try_component": "Try <suggest>{{refineSearchText}}</suggest>",
+    "orSearchingFor_component": " or searching for <suggest>{{suggestText}}</suggest>",
+    "didYouMean_component": "Did you mean <suggest>{{suggestText}}</suggest>",
+    "tryOptionFilterAndViewUrn": "clearing all filters and selected view",
+    "tryOptionFilter": "clearing all filters",
+    "tryOptionViewUrn": "clearing the selected view",
     "modal": {
       "exitSelectionTitle": "Exit Selection",
       "exitSelectionContent_interval": "(0-1)[Are you sure you want to exit? {{count}} selection will be cleared.];(2-inf)[Are you sure you want to exit? {{count}} selections will be cleared.];"
@@ -1388,7 +1413,6 @@
   "placeholder": {
     "dataAnalyst": "Data Analyst",
     "viewUsefulForDataAnalysts": "This View is useful for Data Analysts",
-    "allEntities": "All Entities",
     "domainDescription": "A description for your domain",
     "domainName": "A name for your Domain",
     "groupName": "A name for your group",
@@ -1477,7 +1501,7 @@
       "addAssetsToWithName": "Added assets to {{name}}!",
       "addWithName": "Added {{name}}!",
       "createWithName": "Created {{name}}!",
-      "SuccessfullyCreateWithName": "Successfully created {{name}}!",
+      "successfullyCreateWithName": "Successfully created {{name}}!",
       "update": "Updated!",
       "updateWithName": "{{name}} updated!",
       "updatedWithNameReverse": "Updated {{name}}!",

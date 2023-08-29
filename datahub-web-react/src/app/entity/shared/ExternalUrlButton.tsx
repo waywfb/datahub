@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../types.generated';
 import analytics, { EventType, EntityActionType } from '../../analytics';

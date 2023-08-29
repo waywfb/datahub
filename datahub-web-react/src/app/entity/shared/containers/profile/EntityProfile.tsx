@@ -240,7 +240,6 @@ export const EntityProfile = <T, U>({
                 enabled: () => true,
             },
         })) || [];
-    // TODO ndespouy verifier le name/title des tabs ajouté
     const visibleTabs = [...sortedTabs, ...autoRenderTabs].filter((tab) =>
         tab.display?.visible(entityData, dataPossiblyCombinedWithSiblings),
     );

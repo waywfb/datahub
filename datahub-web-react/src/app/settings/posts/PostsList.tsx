@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import * as QueryString from 'query-string';
 import { PlusOutlined } from '@ant-design/icons';
 import { AlignType } from 'rc-table/lib/interface';
+import { Trans, useTranslation } from 'react-i18next';
 import CreatePostModal from './CreatePostModal';
 import { PostColumn, PostEntry, PostListMenuColumn } from './PostsListColumns';
 import { useEntityRegistry } from '../../useEntityRegistry';
@@ -16,7 +17,6 @@ import TabToolbar from '../../entity/shared/components/styled/TabToolbar';
 import { SearchBar } from '../../search/SearchBar';
 import { StyledTable } from '../../entity/shared/components/styled/StyledTable';
 import { POST_TYPE_TO_DISPLAY_TEXT } from './constants';
-import { Trans, useTranslation } from 'react-i18next';
 
 const PostsContainer = styled.div``;
 
@@ -124,7 +124,7 @@ export const PostList = () => {
 
     return (
         <>
-            {!data && loading && <Message type="loading" content={t('common.loading') + '...'} />}
+            {!data && loading && <Message type="loading" content={`${t('common.loading')}...`} />}
             {error && <Message type="error" content={t('crud.error.loadWithName', { name: t('common.posts') })} />}
             <PostsContainer>
                 <TabToolbar>
@@ -154,21 +154,23 @@ export const PostList = () => {
                     dataSource={tableData}
                     rowKey="urn"
                     pagination={false}
-                    locale={{ emptyText: <Empty description={t('common.noPost')} image={Empty.PRESENTED_IMAGE_SIMPLE} /> }}
+                    locale={{
+                        emptyText: <Empty description={t('common.noPost')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                    }}
                 />
                 {totalPosts > pageSize && (
                     <PostsPaginationContainer>
                         <PaginationInfo>
                             <Trans
-                              {...{
-                                  i18nKey: 'search.showingIndexOfTotalPost',
-                                  values: {
-                                      startCount: lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0,
-                                      endCount: lastResultIndex,
-                                      totalCount: totalPosts
-                                  },
-                                  components: { bold: <b /> },
-                              }}
+                                {...{
+                                    i18nKey: 'search.showingIndexOfTotalPost',
+                                    values: {
+                                        startCount: lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0,
+                                        endCount: lastResultIndex,
+                                        totalCount: totalPosts,
+                                    },
+                                    components: { bold: <b /> },
+                                }}
                             />
                         </PaginationInfo>
                         <Pagination

@@ -1,7 +1,7 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
 
-import { Entity, EntityType, EntityRelationshipsResult, DataProduct } from '../../../types.generated';
 import { TFunction } from 'i18next';
+import { Entity, EntityType, EntityRelationshipsResult, DataProduct } from '../../../types.generated';
 import { capitalizeFirstLetterOnly } from '../../shared/textUtil';
 import { GenericEntityProperties } from './types';
 

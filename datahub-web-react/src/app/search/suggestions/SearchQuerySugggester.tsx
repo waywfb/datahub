@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import React from 'react';
 import { useHistory } from 'react-router';
+import { Trans } from 'react-i18next';
 import { SearchSuggestion } from '../../../types.generated';
 import { navigateToSearchUrl } from '../utils/navigateToSearchUrl';
 import { ANTD_GRAY_V2 } from '../../entity/shared/constants';
-import { Trans } from 'react-i18next';
 
 const TextWrapper = styled.div`
     font-size: 14px;

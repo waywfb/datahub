@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Tooltip, Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useMatchedFieldLabel, useMatchedFieldsForList } from '../context/SearchResultContext';
 import { MatchedField } from '../../../types.generated';
 import { ANTD_GRAY_V2 } from '../../entity/shared/constants';
@@ -9,7 +10,6 @@ import { useSearchQuery } from '../context/SearchContext';
 import { MatchesGroupedByFieldName } from './constants';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { getDescriptionSlice, isDescriptionField, isHighlightableEntityField } from './utils';
-import { useTranslation } from 'react-i18next';
 
 const MatchesContainer = styled.div`
     display: flex;

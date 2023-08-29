@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import CreatePostForm from './CreatePostForm';
 import {
     CREATE_POST_BUTTON_ID,
@@ -12,7 +13,6 @@ import {
 import { useEnterKeyListener } from '../../shared/useEnterKeyListener';
 import { MediaType, PostContentType, PostType } from '../../../types.generated';
 import { useCreatePostMutation } from '../../../graphql/mutations.generated';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     onClose: () => void;

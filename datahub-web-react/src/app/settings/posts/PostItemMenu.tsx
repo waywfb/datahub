@@ -1,9 +1,9 @@
 import React from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { MenuIcon } from '../../entity/shared/EntityDropdown/EntityDropdown';
 import { useDeletePostMutation } from '../../../graphql/post.generated';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     urn: string;

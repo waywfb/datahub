@@ -27,6 +27,7 @@ type Props = {
     onClickClear: () => void;
 };
 
+// TODO ndespouy viewall a la place du all entites
 export const ViewSelectHeader = ({ onClickClear }: Props) => {
     const { t } = useTranslation();
     const clearButtonRef = useRef(null);

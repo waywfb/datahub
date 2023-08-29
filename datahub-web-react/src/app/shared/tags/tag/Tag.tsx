@@ -9,6 +9,7 @@ import { StyledTag } from '../../../entity/shared/components/styled/StyledTag';
 import { HoverEntityTooltip } from '../../../recommendations/renderer/component/HoverEntityTooltip';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { TagProfileDrawer } from '../TagProfileDrawer';
+import { useHasMatchedFieldByUrn } from '../../../search/context/SearchResultContext';
 
 const TagLink = styled.span`
     display: inline-block;
@@ -43,6 +44,7 @@ export default function Tag({
     const entityRegistry = useEntityRegistry();
     const { t } = useTranslation();
     const [removeTagMutation] = useRemoveTagMutation();
+    const highlightTag = useHasMatchedFieldByUrn(tag.tag.urn, 'tags');
 
     const [tagProfileDrawerVisible, setTagProfileDrawerVisible] = useState(false);
     const [addTagUrn, setAddTagUrn] = useState('');
@@ -127,6 +129,7 @@ export default function Tag({
                             removeTag(tag);
                         }}
                         fontSize={fontSize}
+                        highlightTag={highlightTag}
                     >
                         <Highlight
                             style={{ marginLeft: 0, fontSize }}

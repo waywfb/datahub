@@ -16,6 +16,7 @@ type Props = {
 const LABEL_INDEX_NAME = 'fieldLabels';
 const TYPE_PROPERTY_KEY_NAME = 'type';
 
+// TODO ndespouy supprimer
 export const ChartSnippet = ({ matchedFields, inputFields, isMatchingDashboard = false }: Props) => {
     const { t } = useTranslation();
     const matchedField = getMatchPrioritizingPrimary(matchedFields, 'fieldLabels');

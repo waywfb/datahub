@@ -36,6 +36,7 @@ import ExternalUrlButton from '../entity/shared/ExternalUrlButton';
 import EntityPaths from './EntityPaths/EntityPaths';
 import { DataProductLink } from '../shared/tags/DataProductLink';
 import { EntityHealth } from '../entity/shared/containers/profile/header/EntityHealth';
+import SearchTextHighlighter from '../search/matches/SearchTextHighlighter';
 import { getUniqueOwners } from './utils';
 import { useEntityRegistry } from '../useEntityRegistry';
 
@@ -176,6 +177,7 @@ interface Props {
     deprecation?: Deprecation | null;
     topUsers?: Array<CorpUser> | null;
     externalUrl?: string | null;
+    entityTitleSuffix?: React.ReactNode;
     subHeader?: React.ReactNode;
     snippet?: React.ReactNode;
     insights?: Array<SearchInsight> | null;
@@ -228,6 +230,7 @@ export default function DefaultPreviewCard({
     titleSizePx,
     dataTestID,
     externalUrl,
+    entityTitleSuffix,
     onClick,
     degree,
     parentContainers,
@@ -296,7 +299,7 @@ export default function DefaultPreviewCard({
                                 </CardEntityTitle>
                             ) : (
                                 <EntityTitle onClick={onClick} $titleSizePx={titleSizePx}>
-                                    {name || ' '}
+                                    <SearchTextHighlighter field="name" text={name || ''} enableFullHighlight />
                                 </EntityTitle>
                             )}
                         </Link>
@@ -312,6 +315,7 @@ export default function DefaultPreviewCard({
                                 entityType={entityTypeName}
                             />
                         )}
+                        {entityTitleSuffix}
                     </EntityTitleContainer>
                     {degree !== undefined && degree !== null && (
                         <Tooltip
@@ -345,6 +349,7 @@ export default function DefaultPreviewCard({
                                     </Typography.Link>
                                 ) : undefined
                             }
+                            customRender={(text) => <SearchTextHighlighter field="description" text={text} />}
                         >
                             {description}
                         </NoMarkdownViewer>

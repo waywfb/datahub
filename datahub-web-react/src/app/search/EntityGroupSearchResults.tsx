@@ -35,6 +35,7 @@ interface Props {
     searchResults: Array<SearchResult>;
 }
 
+// TODO ndespouy supprimer
 export const EntityGroupSearchResults = ({ type, query, searchResults }: Props) => {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();

@@ -1,6 +1,8 @@
+import React from 'react';
 import { TFunction } from 'i18next';
 import { Entity as EntityInterface, EntityType, SearchResult } from '../../types.generated';
 import { FetchedEntity } from '../lineage/types';
+import { SearchResultProvider } from '../search/context/SearchResultContext';
 import { Entity, EntityCapabilityType, IconStyleType, PreviewType } from './Entity';
 import { GLOSSARY_ENTITY_TYPES } from './shared/constants';
 import { GenericEntityProperties } from './shared/types';
@@ -120,7 +122,9 @@ export default class EntityRegistry {
 
     renderSearchResult(type: EntityType, searchResult: SearchResult): JSX.Element {
         const entity = validatedGet(type, this.entityTypeToEntity);
-        return entity.renderSearch(searchResult);
+        return (
+            <SearchResultProvider searchResult={searchResult}>{entity.renderSearch(searchResult)}</SearchResultProvider>
+        );
     }
 
     renderBrowse<T>(type: EntityType, data: T): JSX.Element {

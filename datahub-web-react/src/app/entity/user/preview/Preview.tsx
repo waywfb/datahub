@@ -8,6 +8,7 @@ import { useEntityRegistry } from '../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../shared/constants';
 import { IconStyleType } from '../../Entity';
 import { CustomAvatar } from '../../../shared/avatar';
+import SearchTextHighlighter from '../../../search/matches/SearchTextHighlighter';
 
 const PreviewContainer = styled.div`
     display: flex;
@@ -82,11 +83,17 @@ export const Preview = ({
                             <PlatformText>{entityRegistry.getEntityNameTrans(EntityType.CorpUser, t)}</PlatformText>
                         </PlatformInfo>
                         <Link to={url}>
-                            <EntityTitle>{name || urn}</EntityTitle>
+                            <EntityTitle>
+                                {name ? <SearchTextHighlighter field="name" text={name} enableFullHighlight /> : urn}
+                            </EntityTitle>
                         </Link>
                     </TitleContainer>
                 </Link>
-                {title && <TitleContainer>{title}</TitleContainer>}
+                {title && (
+                    <TitleContainer>
+                        <SearchTextHighlighter field="title" text={title} />
+                    </TitleContainer>
+                )}
             </div>
             <Link to={url}>
                 <AvatarContainer>

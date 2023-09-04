@@ -68,7 +68,6 @@ task yarnInstall(type: YarnTask) {
   }
 }
 
-// TODO dtnls add back when fixed
 task yarnGenerate(type: YarnTask, dependsOn: [yarnInstall,
     generateGraphQLSchema, generateJsonSchema,
     ':metadata-ingestion:modelDocGen', ':metadata-ingestion:docGen',

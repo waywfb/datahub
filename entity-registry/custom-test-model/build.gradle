@@ -53,7 +53,8 @@ task modelArtifact(type: Zip) {
     destinationDirectory = layout.buildDirectory.dir("dist")
 }
 
-modelArtifact.dependsOn build
+// TODO dtnls  add back when fixed
+// modelArtifact.dependsOn build
 // task modelDeploy(type: Copy) {
 //     def registryDir = layout.projectDirectory.dir("registry")
 //     def cfg = new Yaml().load(new File("$registryDir/entity-registry.yaml").newInputStream())

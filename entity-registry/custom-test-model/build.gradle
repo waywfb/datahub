@@ -54,18 +54,18 @@ task modelArtifact(type: Zip) {
 }
 
 modelArtifact.dependsOn build
-task modelDeploy(type: Copy) {
-    def registryDir = layout.projectDirectory.dir("registry")
-    def cfg = new Yaml().load(new File("$registryDir/entity-registry.yaml").newInputStream())
-    def outputBaseName = cfg.id ? cfg.id : project.name
-    def zipFile = file("build/dist/${project.name}-${version}.zip")
-    logger.info("Zip file is $zipFile")
-    def outputDir = "$deployBaseDir/${outputBaseName}/$version"
-    from zipTree(zipFile)
-    into outputDir
-}
+// task modelDeploy(type: Copy) {
+//     def registryDir = layout.projectDirectory.dir("registry")
+//     def cfg = new Yaml().load(new File("$registryDir/entity-registry.yaml").newInputStream())
+//     def outputBaseName = cfg.id ? cfg.id : project.name
+//     def zipFile = file("build/dist/${project.name}-${version}.zip")
+//     logger.info("Zip file is $zipFile")
+//     def outputDir = "$deployBaseDir/${outputBaseName}/$version"
+//     from zipTree(zipFile)
+//     into outputDir
+// }
 
-modelDeploy.dependsOn modelArtifact
+// modelDeploy.dependsOn modelArtifact
 
 configurations {
     builtModels {

@@ -27,4 +27,4 @@ dependencies {
   testCompile externalDependency.mockitoInline
 
 }
-compileTestJava.dependsOn tasks.getByPath(':entity-registry:custom-test-model:modelDeploy')
+// compileTestJava.dependsOn tasks.getByPath(':entity-registry:custom-test-model:modelDeploy')

@@ -105,14 +105,14 @@ tasks.withType(Test) {
     enableAssertions = false
 }
 
-// project.compileJava {
-//   doLast {
-//     ant.taskdef(name: 'ebean', classname: 'io.ebean.enhance.ant.AntEnhanceTask',
-//         classpath: project.configurations.enhance.asPath)
-//     ant.ebean(classSource: "${project.buildDir}/classes/java/main", packages: 'com.linkedin.metadata.entity.ebean',
-//         transformArgs: 'debug=1')
-//   }
-// }
+project.compileJava {
+  doLast {
+    ant.taskdef(name: 'ebean', classname: 'io.ebean.enhance.ant.AntEnhanceTask',
+        classpath: project.configurations.enhance.asPath)
+    ant.ebean(classSource: "${project.buildDir}/classes/java/main", packages: 'com.linkedin.metadata.entity.ebean',
+        transformArgs: 'debug=1')
+  }
+}
 
 tasks.register('generateOpenApiPojos', GenerateSwaggerCode) {
   it.setInputFile(
@@ -134,7 +134,7 @@ tasks.register('generateOpenApiPojos', GenerateSwaggerCode) {
   dependsOn ':metadata-models:generateJsonSchema'
 }
 
-// compileJava.dependsOn generateOpenApiPojos
+compileJava.dependsOn generateOpenApiPojos
 sourceSets.main.java.srcDir "${generateOpenApiPojos.outputDir}/src/main/java"
 sourceSets.main.resources.srcDir "${generateOpenApiPojos.outputDir}/src/main/resources"
 

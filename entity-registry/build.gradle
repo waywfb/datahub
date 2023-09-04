@@ -27,5 +27,4 @@ dependencies {
   testCompile externalDependency.mockitoInline
 
 }
-// TODO dtnls  add back when fixed
-// compileTestJava.dependsOn tasks.getByPath(':entity-registry:custom-test-model:modelDeploy')
+compileTestJava.dependsOn tasks.getByPath(':entity-registry:custom-test-model:modelDeploy')

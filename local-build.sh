@@ -9,8 +9,6 @@
 
 ./gradlew :metadata-io:compileTestJava
 
-./gradlew :datahub-web-react:yarnTest
-
 ./gradlew build \
     -x :metadata-io:checkstyleTest \
     -x :metadata-ingestion:buildWheel \

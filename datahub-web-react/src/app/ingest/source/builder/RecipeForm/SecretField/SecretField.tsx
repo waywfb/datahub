@@ -102,7 +102,7 @@ function SecretField({ field, secrets, removeMargin, updateFormValue, refetchSec
         <StyledFormItem
             required={field.required}
             name={field.name}
-            label={field.label}
+            label={t(field.label)}
             rules={field.rules || undefined}
             tooltip={<SecretFieldTooltip tooltipLabel={field?.tooltip} />}
             removeMargin={!!removeMargin}

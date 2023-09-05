@@ -70,7 +70,7 @@ export default function DomainItemMenu({ name, urn, onDelete }: Props) {
             overlay={
                 <Menu>
                     <Menu.Item onClick={onConfirmDelete} key="delete">
-                        <DeleteOutlined /> &nbsp;{t('common.delete')}
+                        <DeleteOutlined /> &nbsp;{t('crud.delete')}
                     </Menu.Item>
                 </Menu>
             }

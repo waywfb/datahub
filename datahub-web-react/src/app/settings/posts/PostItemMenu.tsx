@@ -54,7 +54,7 @@ export default function PostItemMenu({ title, urn, onDelete }: Props) {
             overlay={
                 <Menu>
                     <Menu.Item onClick={onConfirmDelete} key="delete">
-                        <DeleteOutlined /> &nbsp;{t('common.delete')}
+                        <DeleteOutlined /> &nbsp;{t('crud.delete')}
                     </Menu.Item>
                 </Menu>
             }

@@ -98,7 +98,7 @@ export default function DataProductResult({ dataProduct, onUpdateDataProduct, se
             key: '0',
             label: (
                 <MenuItem onClick={onRemove}>
-                    <DeleteOutlined /> &nbsp;{t('common.delete')}
+                    <DeleteOutlined /> &nbsp;{t('crud.delete')}
                 </MenuItem>
             ),
         },

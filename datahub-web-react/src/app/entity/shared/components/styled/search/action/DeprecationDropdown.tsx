@@ -52,7 +52,7 @@ export default function DeprecationDropdown({ urns, disabled = false, refetch }:
     return (
         <>
             <ActionDropdown
-                name="Deprecation"
+                name={t('common.deprecation')}
                 actions={[
                     {
                         title: t('deprecation.markAsDeprecated'),

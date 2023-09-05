@@ -25,12 +25,12 @@ const SourceContainer = styled.div`
 `;
 
 const TokensContainer = styled.div`
-    padding-top: 0px;
+    padding-top: 0;
 `;
 
 const TokensHeaderContainer = styled.div`
     && {
-        padding-left: 0px;
+        padding-left: 0;
     }
 `;
 
@@ -258,9 +258,9 @@ export const AccessTokens = () => {
                     }
                 />
             )}
-            <Typography.Title level={5}>{t('personalAccessToken')}</Typography.Title>
+            <Typography.Title level={5}>{t('token.personalAccessToken')}</Typography.Title>
             <PersonTokenDescriptionText type="secondary">
-                {t('personalAccessTokenDescription')}
+                {t('token.personalAccessTokenDescription')}
             </PersonTokenDescriptionText>
             <TabToolbar>
                 <div>
@@ -279,7 +279,7 @@ export const AccessTokens = () => {
                 dataSource={tableData}
                 rowKey="urn"
                 locale={{
-                    emptyText: <Empty description={t('noAccessToken')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                    emptyText: <Empty description={t('token.noAccessToken')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
                 }}
                 pagination={false}
             />

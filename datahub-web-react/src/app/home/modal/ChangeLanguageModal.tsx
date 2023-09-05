@@ -30,7 +30,7 @@ export default function ChangeLanguageModal({ visible, onClose }: Props) {
 
     return (
         <Modal
-            title={t('homePage.changeLanguageTitle')}
+            title={t('home.changeLanguageTitle')}
             visible={visible}
             onCancel={onClose}
             okText={t('common.save')}

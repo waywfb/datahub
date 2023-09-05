@@ -140,11 +140,11 @@ export const DomainsList = () => {
             <DomainsContainer>
                 <TabToolbar>
                     <Button id={DOMAINS_CREATE_DOMAIN_ID} type="text" onClick={() => setIsCreatingDomain(true)}>
-                        <PlusOutlined /> New Domain
+                        <PlusOutlined /> {t('domain.newDomain')}
                     </Button>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText={t('placehoder.searchWithName', {
+                        placeholderText={t('placeholder.searchWithName', {
                             name: entityRegistry.getCollectionNameTrans(EntityType.Domain, t),
                         })}
                         suggestions={[]}

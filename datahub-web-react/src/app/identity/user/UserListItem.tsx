@@ -127,7 +127,7 @@ export default function UserListItem({ user, canManageUserCredentials, selectRol
                                 <UnlockOutlined /> &nbsp; {t('authentification.resetUserPassword')}
                             </Menu.Item>
                             <Menu.Item onClick={onDeleteEntity}>
-                                <DeleteOutlined /> &nbsp;{t('common.delete')}
+                                <DeleteOutlined /> &nbsp;{t('crud.delete')}
                             </Menu.Item>
                         </Menu>
                     }

@@ -13,6 +13,7 @@ const StyledDivider = styled(Divider)`
     margin: 0;
 `;
 
+// TODO ndespouy tester le <EyeInvisibleOutlined />
 export const StyledFormItem = styled(Form.Item)<{
     alignLeft?: boolean;
     removeMargin?: boolean;
@@ -39,7 +40,7 @@ export const StyledFormItem = styled(Form.Item)<{
         `
         .ant-form-item-label {
             &:after {
-                content: 'Secret Field';
+                content: <EyeInvisibleOutlined />;
                 color: ${ANTD_GRAY[7]};
                 font-style: italic;
                 font-weight: 100;

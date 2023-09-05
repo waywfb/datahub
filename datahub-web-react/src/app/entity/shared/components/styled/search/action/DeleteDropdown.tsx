@@ -55,10 +55,10 @@ export default function DeleteDropdown({ urns, disabled = false, refetch }: Prop
     return (
         <>
             <ActionDropdown
-                name={t('common.delete')}
+                name={t('crud.delete')}
                 actions={[
                     {
-                        title: 'Mark as deleted',
+                        title: t('crud.markAsDeleted'),
                         onClick: () => {
                             Modal.confirm({
                                 title: t('crud.doYouWantTo.confirmDelete'),

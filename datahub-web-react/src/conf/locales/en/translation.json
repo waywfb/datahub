@@ -1,5 +1,11 @@
 {
   "common": {
+    "private": "Private",
+    "public": "Public",
+    "relevance": "Relevance",
+    "aToZ": "A to Z",
+    "zToA":"Z to A",
+    "lastModifiedInPlatform": "Last Modified in Platform",
     "post": "Post",
     "posts": "Posts",
     "noPost": "No Posts",
@@ -272,6 +278,7 @@
     "imageUrlPlaceholder": "Your post image URL"
   },
   "domain": {
+    "newDomain": "New Domain",
     "domainIdDescription": "By default, a random UUID will be generated to uniquely identify this domain. If you'd like to provide a custom id instead to more easily keep track of this domain, you may provide it here. Be careful, you cannot easily change the domain id after creation.",
     "domainDescriptionDescription": "An optional description for your new domain. You can change this later.",
     "domainManagementDescription": "View your DataHub Domains. Take administrative actions.",
@@ -319,6 +326,7 @@
     "updatedDescriptionWithCount_interval": "(0-1)[{{count}} description was updated];(2-inf)[{{count}} descriptions were updated];"
   },
   "deprecation": {
+    "deprecationNote": "Deprecation note",
     "deprecated": "Deprecated",
     "scheduledToBeDecommissionedOnWithDateTimezone": "Scheduled to be decommissioned on {{date}} ({{timezone}})",
     "decommissionDate": "Decommission Date",
@@ -380,6 +388,7 @@
     }
   },
   "onBoarding": {
+    "letsGo": "Let's go!",
     "entityProfile": {
       "domains_component": "<paraph>You can view and set this asset's <bold>Domain</bold> here.</paraph><paraph><bold>Domains</bold> are collections of related data assets associated with a specific part of your organization, such as the <bold>Marketing</bold> department.</paraph><paraph>Learn more about <bold>Domains</bold> <aLink>here.</aLink></paraph>",
       "glossaryTerm_component": "<paraph>You can view and add <bold>Glossary Terms</bold> to this asset here.</paraph><paraph><bold>Glossary Terms</bold> are structured, standarized labels for organizing your mission-critical data. For example, if you're marking assets containing PII fields, you might add the Term <bold>Email</bold>.</paraph><paraph>Learn more about <bold>Glossary Terms</bold> <aLink>here.</aLink></paraph>",
@@ -397,7 +406,6 @@
       "entitiesTitle": "Entities Tab"
     },
     "homePage": {
-      "changeLanguageTitle": "Change Langage",
       "welcomeParaph": {
         "intro_component": "<bold>DataHub</bold> helps you discover and organize the important data within your organization. You can:",
         "listFeatures": {
@@ -492,6 +500,7 @@
     "confirmPassword": "Confirm Password",
     "resettingCredentials": "Resetting credentials",
     "signIn": "Sign In",
+    "signOut": "Sign Out",
     "signInWithSso": "Sign in with SSO",
     "signUp": "Sign Up",
     "signingUp": "Signing up",
@@ -1298,6 +1307,7 @@
     "aDescriptionForYourToken": "A description for your token"
   },
   "home": {
+    "changeLanguageTitle": "Change Langage",
     "exploreYourData": "Explore your data",
     "noMetadata": "No Metadata Found 😢",
     "welcomeBack": "Welcome back",
@@ -1373,6 +1383,8 @@
       "endWith": "end with"
     },
     "view": {
+      "onlyVisibleToYou": "only visible to you.",
+      "visibleToEveryone": "visible to everyone.",
       "previewView": "Preview View",
       "saveAsView": "Save as View",
       "saveTheseFiltersAsANewView": "Save these filters as a new View.",
@@ -1477,6 +1489,7 @@
     "viewLink": "View link"
   },
   "crud": {
+    "markAsDeleted": "Mark as deleted",
     "makeWithName": "Make {{name}}",
     "setWithName": "Set {{name}}",
     "unsetWithName": "Set {{name}}",

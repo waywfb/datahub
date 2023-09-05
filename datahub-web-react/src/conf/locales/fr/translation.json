@@ -1,5 +1,11 @@
 {
   "common": {
+    "private": "Privée",
+    "public": "Publique",
+    "relevance": "Pertinence",
+    "aToZ": "A à Z",
+    "zToA":"Z à A",
+    "lastModifiedInPlatform": "Dernière Modification sur la Plateforme",
     "post": "Post",
     "posts": "Posts",
     "noPost": "Aucun Posts",
@@ -183,7 +189,7 @@
     "developer": "Développer",
     "access": "Accès",
     "manage": "Manager",
-    "filter": "Filtrer",
+    "filter": "Filtre",
     "basic": "Basique",
     "advanced": "Avancé",
     "preferences": "Préférences",
@@ -258,7 +264,21 @@
     "noAdditionalDetails": "Aucun détails supplémentaires",
     "connection": "Connexion"
   },
+  "post": {
+    "postType": "Type dePost",
+    "titleDescription": "Le titre de votre Post.",
+    "titlePlaceholder": "Titre de Post",
+    "descriptionDescription": "Le contenu principal de votre Post.",
+    "descriptionPlaceholder": "Description du Post",
+    "linkUrl": "Lien URL",
+    "linkUrlDescription": "Lien où les utilisateurs sont dirigés lorsqu'ils cliquent sur cette publication.",
+    "linkUrlPlaceholder": "Lien URl pour le Post",
+    "imageUrl": "URL d'Image",
+    "imageUrlDescription": "Un lien URL vers l'image que vous souhaitez afficher sur ce Post.",
+    "imageUrlPlaceholder": "Votre lien URl d'image"
+  },
   "domain": {
+    "newDomain": "Nouveau Domaine",
     "domainIdDescription": "Par défaut, un UUID aléatoire sera généré pour identifier ce domaine de façon unique. Si vous souhaitez fournir un UUID spécifique pour suivre plus facilement ce domaine, vous pouvez le renseigner ici. Attention, vous ne pourrez pas le modifier une fois le domaine créé.",
     "domainDescriptionDescription": "Une description facultative pour votre nouveau domaine. Vous pourrez le modifier plus tard.",
     "domainManagementDescription": "Voir vos Domaines DataHub. Faire des actions administratives dessus.",
@@ -306,7 +326,8 @@
     "updatedDescriptionWithCount_interval": "(0-1)[{{count}} description mise à jour];(2-inf)[{{count}} description misent à jour];"
   },
   "deprecation": {
-    "deprecated": "Deprecated",
+    "deprecationNote": "Note d'obsolescence",
+    "deprecated": "Obsolète",
     "scheduledToBeDecommissionedOnWithDateTimezone": "Mise hors service prévue le {{date}} ({{timezone}})\n",
     "decommissionDate": "Date de Mise hors service",
     "markAsDeprecated": "Marquer comme obsolète",
@@ -367,6 +388,7 @@
     }
   },
   "onBoarding": {
+    "letsGo": "En avant !",
     "entityProfile": {
       "domains_component": "<paraph>Vous pouvez voir le <bold>Domaine</bold> de cet asset ici.</paraph><paraph>Les <bold>Domaines</bold> sont des collections de données associées à une partie spécifique de votre organisation, par exemple le département du <bold>Marketing</bold>.</paraph><paraph>Apprenez en plus sur les <bold>Domaines</bold> <aLink>ici.</aLink></paraph>",
       "glossaryTerm_component": "<paraph>Vous pouvez voir et ajouter des <bold>Termes du Glossaire</bold> à cet asset ici.</paraph><paraph>Les <bold>Termes du Glossaire</bold> sont des labels structurés, standardisés pour organiser vos données critiques. Par exemple, si vous marquez des assets contenant des champs PII, vous pouvez ajouter le terme <bold>Email</bold>.</paraph><paraph>Apprenez en plus sur les <bold>Termes du Glossaire</bold> <aLink>ici.</aLink></paraph>",
@@ -384,7 +406,6 @@
       "entitiesTitle": "Entités"
     },
     "homePage": {
-      "changeLanguageTitle": "Changer de langue",
       "welcomeParaph": {
         "intro_component": "<bold>DataHub</bold> vous aide à découvrir et organiser les données importantes au sein de votre organisation. Vous pouvez :",
         "listFeatures": {
@@ -479,6 +500,7 @@
     "confirmPassword": "Confirmer le Mot de Passe",
     "resettingCredentials": "Réinitialisation des identifiants",
     "signIn": "Se Connecter",
+    "signOut": "Se Déconnecter",
     "signInWithSso": "Se Connecter par SSO",
     "signUp": "S'inscrire",
     "signingUp": "Inscription en cours",
@@ -518,7 +540,7 @@
     "personalAccessToken": "Tokens d'Accès Personnel",
     "personalAccessTokenDescription": "Les Tokens d'Accès Personnel de faire des requêtes programmatiques sur les APIs de DataHub. Ils héritent de vos privilèges et ont une durée de vie limitée. Ne partagez pas vos Tokens d'Accès Personnel.",
     "generateNewToken": "Générer un Nouveau Token",
-    "noAccessToken": "Aucun Token D'accès !",
+    "noAccessToken": "Aucun Token d'Accès !",
     "newPersonalAccessToken": "Nouveau Token d'Accès Personnel",
     "makeSureYouCopyYourAccessToken": "Prenez soin de copier votre toekn d'accès personnel maintenant. Vous ne le reverrez plus.",
     "learnMoreLink": "Pour en apprendre plus sur les APIs DataHub, regarder la",
@@ -1285,6 +1307,7 @@
     "aDescriptionForYourToken": "Une description pour votre token"
   },
   "home": {
+    "changeLanguageTitle": "Changer de langue",
     "exploreYourData": "Explorer vos données",
     "noMetadata": "Aucune métadonnée trouvée 😢",
     "welcomeBack": "Bienvenue",
@@ -1360,6 +1383,8 @@
       "endWith": "termine par"
     },
     "view": {
+      "onlyVisibleToYou": "visible uniquement par vous.",
+      "visibleToEveryone": "visible par tout le monde.",
       "previewView": "Aperçu de la Vue",
       "saveAsView": "Enregistrer en tant que Vue",
       "saveTheseFiltersAsANewView": "Enregistrer ces filtres en tant que nouvelle Vue.",
@@ -1464,6 +1489,7 @@
     "viewLink": "Voir le lien"
   },
   "crud": {
+    "markAsDeleted": "Marquer comme supprimé",
     "makeWithName": "Faire un(e) {{name}}",
     "setWithName": "Ajouter {{name}}",
     "unsetWithName": "Ajouter {{name}}",

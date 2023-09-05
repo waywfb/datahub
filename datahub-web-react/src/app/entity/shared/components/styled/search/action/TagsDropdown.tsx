@@ -19,11 +19,11 @@ export default function TagsDropdown({ urns, disabled = false, refetch }: Props)
     return (
         <>
             <ActionDropdown
-                name={t('entity.type.TAG_interval_interval', { postProcess: 'interval', count: 2 })}
+                name={t('entity.type.TAG_interval', { postProcess: 'interval', count: 2 })}
                 actions={[
                     {
                         title: t('crud.addWithName', {
-                            name: t('entity.type.TAG_interval_interval', { postProcess: 'interval', count: 2 }),
+                            name: t('entity.type.TAG_interval', { postProcess: 'interval', count: 2 }),
                         }),
                         onClick: () => {
                             setOperationType(OperationType.ADD);
@@ -32,7 +32,7 @@ export default function TagsDropdown({ urns, disabled = false, refetch }: Props)
                     },
                     {
                         title: t('crud.removeWithName', {
-                            name: t('entity.type.TAG_interval_interval', { postProcess: 'interval', count: 2 }),
+                            name: t('entity.type.TAG_interval', { postProcess: 'interval', count: 2 }),
                         }),
                         onClick: () => {
                             setOperationType(OperationType.REMOVE);

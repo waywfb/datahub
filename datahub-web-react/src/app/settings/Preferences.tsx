@@ -23,12 +23,12 @@ const SourceContainer = styled.div`
 `;
 
 const TokensContainer = styled.div`
-    padding-top: 0px;
+    padding-top: 0;
 `;
 
 const TokensHeaderContainer = styled.div`
     && {
-        padding-left: 0px;
+        padding-left: 0;
     }
 `;
 
@@ -77,7 +77,7 @@ export const Preferences = () => {
                         <span>
                             <SettingText>{t('settings.showSimplifiedHomepage')}</SettingText>
                             <div>
-                                <DescriptionText>{t('showSimplifiedHomepageDescription')}</DescriptionText>
+                                <DescriptionText>{t('settings.showSimplifiedHomepageDescription')}</DescriptionText>
                             </div>
                         </span>
                         <Switch

@@ -242,7 +242,7 @@ function EntityDropdown(props: Props) {
                                     }
                                 >
                                     <MenuItem>
-                                        <DeleteOutlined /> &nbsp;{t('common.delete')}
+                                        <DeleteOutlined /> &nbsp;{t('crud.delete')}
                                     </MenuItem>
                                 </Tooltip>
                             </StyledMenuItem>

@@ -26,7 +26,7 @@ function EntityCount(props: Props) {
     return (
         <EntityCountText className="entityCount">
             {`${entityCount.toLocaleString()} ${t(
-                displayAssetsText ? 'entity.subtype.asset_interval_interval' : 'entity.subtype.entity',
+                displayAssetsText ? 'entity.subtype.asset_interval' : 'entity.subtype.entity',
                 { postProcess: 'interval', count: entityCount },
             )}`}
         </EntityCountText>

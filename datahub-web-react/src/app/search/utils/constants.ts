@@ -75,37 +75,37 @@ export const FIELD_TO_LABEL: { [key: string]: { name: string; transKey: string; 
     },
     tags: {
         name: 'Tag',
-        transKey: 'TAG',
+        transKey: 'common.tag',
         count: 1,
     },
     domains: {
         name: 'Domain',
-        transKey: 'DOMAIN',
+        transKey: 'common.domain',
         count: 1,
     },
     platform: {
         name: 'Platform',
-        transKey: 'DATA_PLATFORM',
+        transKey: 'common.platform',
         count: 1,
     },
     fieldTags: {
         name: 'Column Tag',
-        transKey: 'common.column $t(TAG)',
+        transKey: '$t(common.column) $t(TAG)',
         count: 1,
     },
     glossaryTerms: {
         name: 'Glossary Term',
-        transKey: 'GLOSSARY_TERM',
+        transKey: 'common.glossaryTerms',
         count: 1,
     },
     fieldGlossaryTerms: {
         name: 'Column Glossary Term',
-        transKey: 'common.column $t(GLOSSARY_TERM)',
+        transKey: '$t(common.column) $t(common.glossaryTerms)',
         count: 1,
     },
     fieldPaths: {
         name: 'Column Name',
-        transKey: 'common.column $t(common.name)',
+        transKey: '$t(common.column) $t(common.name)',
     },
     description: {
         name: 'Description',
@@ -113,7 +113,7 @@ export const FIELD_TO_LABEL: { [key: string]: { name: string; transKey: string; 
     },
     fieldDescriptions: {
         name: 'Column Description',
-        transKey: 'common.column $t(common.description)',
+        transKey: '$t(common.column) $t(common.description)',
     },
     removed: {
         name: 'Soft Deleted',
@@ -133,7 +133,7 @@ export const FIELD_TO_LABEL: { [key: string]: { name: string; transKey: string; 
     },
     container: {
         name: 'Container',
-        transKey: 'CONTAINER',
+        transKey: 'common.container',
         count: 1,
     },
     typeNames: {

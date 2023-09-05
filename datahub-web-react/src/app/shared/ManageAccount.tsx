@@ -82,7 +82,7 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
     // const menuItems: any[] = t('menuItems', { ns: ['theme'], returnObjects: true });
     const menu = (
         <Menu style={{ width: '120px' }}>
-            {version && (
+            {version && version !== 'null' && (
                 <MenuItem key="version" disabled style={{ color: '#8C8C8C' }}>
                     {version}
                 </MenuItem>
@@ -128,7 +128,7 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
             <Menu.Divider />
             <MenuItem danger key="logout" tabIndex={0}>
                 <a href="/logOut" onClick={handleLogout} data-testid="log-out-menu-item">
-                    Sign Out
+                    {t('authentification.signOut')}
                 </a>
             </MenuItem>
         </Menu>

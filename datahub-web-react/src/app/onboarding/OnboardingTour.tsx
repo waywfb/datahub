@@ -66,7 +66,7 @@ export const OnboardingTour = ({ stepIds }: Props) => {
             rounded={10}
             scrollDuration={500}
             accentColor={accentColor}
-            lastStepNextButton={<Button>Let&apos;s go!</Button>}
+            lastStepNextButton={<Button>{t('onBoarding.letsGo')}</Button>}
         />
     );
 };

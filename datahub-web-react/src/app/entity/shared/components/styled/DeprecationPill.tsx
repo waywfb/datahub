@@ -130,7 +130,7 @@ export const DeprecationPill = ({ deprecation, urn, refetch, showUndeprecate }: 
             content={
                 hasDetails ? (
                     <>
-                        {deprecation?.note !== '' && <DeprecatedTitle>Deprecation note</DeprecatedTitle>}
+                        {deprecation?.note !== '' && <DeprecatedTitle>{t('deprecation.deprecationNote')}</DeprecatedTitle>}
                         {isDividerNeeded && <ThinDivider />}
                         {deprecation?.note !== '' && <DeprecatedSubTitle>{deprecation.note}</DeprecatedSubTitle>}
                         {deprecation?.decommissionTime !== null && (

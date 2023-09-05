@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { ReactComponent as SortIcon } from '../../../images/sort.svg';
 import { DEFAULT_SORT_OPTION, SORT_OPTIONS } from '../context/constants';
 import { useSearchContext } from '../context/SearchContext';
+import { useTranslation } from 'react-i18next';
 
 const SelectWrapper = styled.span`
     display: inline-flex;
@@ -29,9 +30,10 @@ const StyledIcon = styled(Icon)`
 `;
 
 export default function SearchSortSelect() {
+    const { t } = useTranslation();
     const { selectedSortOption, setSelectedSortOption } = useSearchContext();
 
-    const options = Object.entries(SORT_OPTIONS).map(([value, option]) => ({ value, label: option.label }));
+    const options = Object.entries(SORT_OPTIONS).map(([value, option]) => ({ value, label: t(option.label) }));
 
     return (
         <SelectWrapper>

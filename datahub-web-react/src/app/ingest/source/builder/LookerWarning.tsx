@@ -22,7 +22,7 @@ export const LookerWarning = ({ type }: Props) => {
     } else if (type === LOOK_ML) {
         link = (
             <a href={LOOKER_DOC_LINK} target="_blank" rel="noopener noreferrer">
-                {t('DataHub Looker Ingestion Source')}
+                {t('ingest.datahubLookerIngestionSource')}
             </a>
         );
     }
@@ -37,10 +37,7 @@ export const LookerWarning = ({ type }: Props) => {
                     <Trans
                         {...{
                             i18nKey: 'ingest.toCompleteTheLookerIntegrationTextWithLink_component',
-                            values: {
-                                link,
-                            },
-                            components: { bold: <b /> },
+                            components: { link, bold: <b /> },
                         }}
                     />
                 </>

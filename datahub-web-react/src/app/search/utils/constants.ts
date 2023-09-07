@@ -90,7 +90,7 @@ export const FIELD_TO_LABEL: { [key: string]: { name: string; transKey: string; 
     },
     fieldTags: {
         name: 'Column Tag',
-        transKey: '$t(common.column) $t(TAG)',
+        transKey: '$t(common.column) $t(common.tag)',
         count: 1,
     },
     glossaryTerms: {

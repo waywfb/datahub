@@ -702,6 +702,12 @@
     }
   },
   "ingest": {
+    "step": {
+      "chooseType":  "Choose Type",
+      "configureRecipe": "Configure Recipe",
+      "scheduleIngestion":  "Schedule Ingestion",
+      "finishUp": "Finish up"
+    },
     "dbtCloud": {
       "dbtCloudFilterSectionTooltip": "Include or exclude specific dbt Node (resources) from ingestion.",
       "dbtCloudDataPlatformInstanceToolTipThree": "Leave this blank if you have not configured a Data Platform Instance when ingesting from the associated Data Platform.",
@@ -1073,7 +1079,7 @@
     "provideTheExecutorIDToRouteRequestToText": "Provide the executor id to route execution requests to. The built-in DataHub executor id is 'default'. Do not change this unless you have configured a custom executor.",
     "executorId": "Executor Id",
     "giveThisIngestionSourceAName": "Give this ingestion source a name.",
-    "toCompleteTheLookerIntegrationTextWithLink_component": "To complete the Looker integration (including Looker views and lineage to the underlying warehouse tables), you must <bold>also</bold> use the {{link}}.",
+    "toCompleteTheLookerIntegrationTextWithLink_component": "To complete the Looker integration (including Looker views and lineage to the underlying warehouse tables), you must <bold>also</bold> use the <link></link>.",
     "datahubLookerIngestionSource": "DataHub Looker Ingestion Source",
     "datahubLookMLIngestionSource": "DataHub LookML Ingestion Source",
     "pleaseAddValidIngestionType": "Please add valid ingestion type",

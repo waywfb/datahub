@@ -702,6 +702,12 @@
     }
   },
   "ingest": {
+    "step": {
+      "chooseType":  "Choisir Type",
+      "configureRecipe": "Configurer Recette",
+      "scheduleIngestion":  "Planifier Ingestion",
+      "finishUp": "Terminer"
+    },
     "dbtCloud": {
       "dbtCloudFilterSectionTooltip": "Incluez ou excluez un Node dbt spécifique (ressources) de l’ingestion.",
       "dbtCloudDataPlatformInstanceToolTipThree": "Laissez ce champ vide si vous n'avez pas configuré d'instance de plateforme de données lors de l'ingestion à partir de la plateforme de données associée.",
@@ -1073,7 +1079,7 @@
     "provideTheExecutorIDToRouteRequestToText": "Fournissez l'identifiant de l'exécuteur pour acheminer les demandes d'exécution. L'identifiant de l'exécuteur intégré de DataHub est 'default'. Ne le modifiez pas à moins d'avoir configuré un exécuteur personnalisé.",
     "executorId": "Identifiant de l'exécuteur",
     "giveThisIngestionSourceAName": "Donnez un nom à cette source d'ingestion.",
-    "toCompleteTheLookerIntegrationTextWithLink_component": "Pour compléter l'intégration de Looker (y compris les vues Looker et la lignée vers les tables du système de stockage sous-jacent), vous devez <bold>également</bold> utiliser {{link}}.",
+    "toCompleteTheLookerIntegrationTextWithLink_component": "Pour compléter l'intégration de Looker (y compris les vues Looker et la lignée vers les tables du système de stockage sous-jacent), vous devez <bold>également</bold> utiliser <link></link>.",
     "datahubLookerIngestionSource": "Source d'ingestion DataHub pour Looker",
     "datahubLookMLIngestionSource": "Source d'ingestion DataHub pour LookML",
     "pleaseAddValidIngestionType": "Veuillez ajouter un type d'ingestion valide",

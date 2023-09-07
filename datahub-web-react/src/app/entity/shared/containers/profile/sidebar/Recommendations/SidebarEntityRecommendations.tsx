@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useListRecommendationsQuery } from '../../../../../../../graphql/recommendations.generated';
 import {
     EntityType,
@@ -9,7 +10,6 @@ import {
 import { RecommendationModule } from '../../../../../../recommendations/RecommendationModule';
 import { RecommendationDisplayType } from '../../../../../../recommendations/types';
 import { SidebarHeader } from '../SidebarHeader';
-import { useTranslation } from 'react-i18next';
 
 const RecommendationsContainer = styled.div``;
 
@@ -49,7 +49,7 @@ export const SidebarEntityRecommendations = ({
             {recommendationModules &&
                 recommendationModules.map((module) => (
                     <RecommendationContainer>
-                        <SidebarHeader title={t('home.module.' + module.moduleId)} />
+                        <SidebarHeader title={t(`home.module.${module.moduleId}`)} />
                         <RecommendationModule
                             key={module.moduleId}
                             module={module as RecommendationModuleType}

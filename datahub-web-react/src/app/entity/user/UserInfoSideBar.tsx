@@ -9,7 +9,6 @@ import CustomAvatar from '../../shared/avatar/CustomAvatar';
 import {
     SideBar,
     SideBarSubSection,
-    EmptyValue,
     SocialDetails,
     EditButton,
     AboutSection,
@@ -22,6 +21,7 @@ import {
 import EntityGroups from '../shared/EntityGroups';
 import { mapRoleIcon } from '../../identity/user/UserUtils';
 import { useUserContext } from '../../context/useUserContext';
+import { EmptyValue } from '../../shared/EmptyValue';
 
 const { Paragraph } = Typography;
 

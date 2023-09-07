@@ -43,15 +43,6 @@ const Content = styled.div`
     }
 `;
 
-export const EmptyValue = styled.div`
-    &:after {
-        content: 'None';
-        color: #b7b7b7;
-        font-style: italic;
-        font-weight: 100;
-    }
-`;
-
 /**
  * Responsible for reading & writing users.
  */

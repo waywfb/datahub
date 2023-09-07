@@ -24,6 +24,7 @@ import { EntityMenuItems } from '../entity/shared/EntityDropdown/EntityDropdown'
 import { ErrorSection } from './error/ErrorSection';
 import { generateOrFilters } from '../search/utils/generateOrFilters';
 import { ENTITY_FILTER_NAME, UnionType } from '../search/utils/constants';
+import { EmptyValue } from './EmptyValue';
 
 function useWrappedSearchResults(params: GetSearchResultsParams) {
     const { data, loading, error } = useGetSearchResultsForMultipleQuery(params);
@@ -88,15 +89,6 @@ const DescriptionLabel = styled(Typography.Text)`
         font-size: 14px;
         line-height: 28px;
         color: rgb(38, 38, 38);
-    }
-`;
-
-export const EmptyValue = styled.div`
-    &:after {
-        content: 'None';
-        color: #b7b7b7;
-        font-style: italic;
-        font-weight: 100;
     }
 `;
 

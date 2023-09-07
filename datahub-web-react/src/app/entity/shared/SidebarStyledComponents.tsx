@@ -19,13 +19,13 @@ export const SideBar = styled.div`
     }
 
     .divider-infoSection {
-        margin: 18px 0px 18px 0;
+        margin: 18px 0 18px 0;
     }
     .divider-aboutSection {
-        margin: 23px 0px 11px 0;
+        margin: 23px 0 11px 0;
     }
     .divider-groupsSection {
-        margin: 23px 0px 11px 0;
+        margin: 23px 0 11px 0;
     }
 `;
 
@@ -44,16 +44,7 @@ export const SideBarSubSection = styled.div`
     &::-webkit-scrollbar-thumb {
         background: #d6d6d6;
         -webkit-border-radius: 1ex;
-        -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
-    }
-`;
-
-export const EmptyValue = styled.div`
-    &:after {
-        content: 'None';
-        color: #b7b7b7;
-        font-style: italic;
-        font-weight: 100;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
     }
 `;
 
@@ -136,7 +127,7 @@ export const GroupsSection = styled.div`
 
 export const TagsSection = styled.div`
     height: calc(75vh - 460px);
-    padding: 0px 5px 5px 0;
+    padding: 0 5px 5px 0;
 `;
 
 export const NoDataFound = styled.span`

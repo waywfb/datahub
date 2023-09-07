@@ -14,7 +14,6 @@ import GroupOwnerSideBarSection from './GroupOwnerSideBarSection';
 import {
     SideBar,
     SideBarSubSection,
-    EmptyValue,
     SocialDetails,
     EditButton,
     AboutSection,
@@ -23,6 +22,7 @@ import {
 } from '../shared/SidebarStyledComponents';
 import GroupMembersSideBarSection from './GroupMembersSideBarSection';
 import { useUserContext } from '../../context/useUserContext';
+import { EmptyValue } from '../../shared/EmptyValue';
 
 const { Paragraph } = Typography;
 

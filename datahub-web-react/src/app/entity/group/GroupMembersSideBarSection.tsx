@@ -8,12 +8,12 @@ import { CustomAvatar } from '../../shared/avatar';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import {
     DisplayCount,
-    EmptyValue,
     GroupSectionHeader,
     GroupSectionTitle,
     GroupsSeeMoreText,
     TagsSection,
 } from '../shared/SidebarStyledComponents';
+import { EmptyValue } from '../../shared/EmptyValue';
 
 const MemberTag = styled(Tag)`
     padding: 2px;

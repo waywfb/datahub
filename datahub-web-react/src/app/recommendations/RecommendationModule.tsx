@@ -33,7 +33,7 @@ export const RecommendationModule = ({ module, scenarioType, displayType, showTi
     }
     return (
         <>
-            {showTitle && <Typography.Title level={4}>{module.title}</Typography.Title>}
+            {showTitle && <Typography.Title level={4}>{t('home.module.' + module.moduleId)}</Typography.Title>}
             <RecommendationRenderer
                 renderId={renderId}
                 moduleId={module.moduleId}

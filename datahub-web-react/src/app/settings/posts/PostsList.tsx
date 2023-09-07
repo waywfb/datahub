@@ -129,7 +129,7 @@ export const PostList = () => {
             <PostsContainer>
                 <TabToolbar>
                     <Button id="posts-create-post" type="text" onClick={() => setIsCreatingPost(true)}>
-                        <PlusOutlined /> {t('common.new') + ' ' + t('common.post')}
+                        <PlusOutlined /> {`${t('common.new')} ${t('common.post')}`}
                     </Button>
                     <SearchBar
                         initialQuery={query || ''}

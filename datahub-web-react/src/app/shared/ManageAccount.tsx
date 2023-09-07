@@ -101,7 +101,7 @@ export const ManageAccount = ({ urn: _urn, pictureLink: _pictureLink, name }: Pr
                 <>
                     <Menu.Divider />
                     <MenuItem onClick={() => setIsChangeLanguage(true)}>
-                        <MenuLabel>{t('common.language') + ' '}</MenuLabel>
+                        <MenuLabel>{`${t('common.language')} `}</MenuLabel>
                         <TranslationOutlinedStyled style={{ fontSize: menuIconSize }} />
                     </MenuItem>
                 </>

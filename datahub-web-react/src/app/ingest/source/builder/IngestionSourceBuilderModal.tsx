@@ -3,13 +3,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { isEqual } from 'lodash';
 import { ExpandAltOutlined, ShrinkOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { SourceBuilderState, StepProps } from './types';
 import { CreateScheduleStep } from './CreateScheduleStep';
 import { DefineRecipeStep } from './DefineRecipeStep';
 import { NameSourceStep } from './NameSourceStep';
 import { SelectTemplateStep } from './SelectTemplateStep';
 import sourcesJson from './sources.json';
-import { useTranslation } from 'react-i18next';
 
 const ExpandButton = styled(Button)`
     && {
@@ -78,7 +78,7 @@ export const IngestionSourceBuilderModal = ({ initialState, visible, onSubmit, o
     const [ingestionBuilderState, setIngestionBuilderState] = useState<SourceBuilderState>({});
 
     // Since we can't apply modification on sourcesJSON, we replace other here with his translation.
-    let ingestionSourcesText = JSON.stringify(sourcesJson).replace('Other', t('common.other'));
+    const ingestionSourcesText = JSON.stringify(sourcesJson).replace('Other', t('common.other'));
     const ingestionSources = JSON.parse(ingestionSourcesText); // TODO: replace with call to server once we have access to dynamic list of sources
 
     // Reset the ingestion builder modal state when the modal is re-opened.
@@ -144,7 +144,7 @@ export const IngestionSourceBuilderModal = ({ initialState, visible, onSubmit, o
             <StepsContainer>
                 <Steps current={currentStepIndex}>
                     {Object.keys(IngestionSourceBuilderStep).map((item) => (
-                        <Steps.Step key={item} title={t('ingest.step.' + IngestionSourceBuilderStepTitles[item])} />
+                        <Steps.Step key={item} title={t(`ingest.step.${IngestionSourceBuilderStepTitles[item]}`)} />
                     ))}
                 </Steps>
             </StepsContainer>

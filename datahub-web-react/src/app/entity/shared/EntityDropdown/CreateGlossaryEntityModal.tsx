@@ -194,9 +194,7 @@ function CreateGlossaryEntityModal(props: Props) {
                                 </Typography.Text>
                             }
                         >
-                            <Typography.Paragraph>
-                                {t('entity.glossaryEntityUuidDescription')}
-                            </Typography.Paragraph>
+                            <Typography.Paragraph>{t('entity.glossaryEntityUuidDescription')}</Typography.Paragraph>
                             <Form.Item
                                 name="id"
                                 rules={[

@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Typography } from 'antd';
 import { GlobalOutlined, LockOutlined } from '@ant-design/icons';
-import { DataHubViewType } from '../../../types.generated';
 import { useTranslation } from 'react-i18next';
+import { DataHubViewType } from '../../../types.generated';
 
 const StyledLockOutlined = styled(LockOutlined)<{ color }>`
     color: ${(props) => props.color};

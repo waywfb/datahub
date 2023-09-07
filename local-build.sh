@@ -14,4 +14,6 @@
     -x :metadata-ingestion:buildWheel \
     -x :metadata-io:test \
     -x :metadata-ingestion:testQuick \
-    -x :datahub-web-react:yarnTest
+    -x :datahub-web-react:yarnTest \
+    -x yarnLint \
+    -x :metadata-ingestion:lint

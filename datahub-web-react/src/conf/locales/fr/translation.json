@@ -681,6 +681,16 @@
   "home": {
     "changeLanguageTitle": "Changer de langue",
     "exploreYourData": "Explorer vos données",
+    "module": {
+      "Domains": "Domaines",
+      "HighUsageEntities": "Populaires",
+      "Platforms": "Plateformes",
+      "RecentlyEditedEntities": "Modifiées Récemment",
+      "RecentlyViewedEntities": "Ouvertes Récemment",
+      "RecentSearches": "Recherches Récentes",
+      "TopTags": "Top Tags",
+      "TopTerms": "Top Termes du Glossaire"
+    },
     "noMetadata": "Aucune métadonnée trouvée 😢",
     "scheduleDemo": "Planifier une démonstration d'un DataHub managé",
     "scheduleDemoDescription_component": "DataHub est déjà le catalogue de données Open Source n°1 de l'industrie. <styledLinkDemo>Planifiez une démonstration</styledLinkDemo> de Acryl DataHub pour découvrir les fonctionnalités avancées qui le propulsent au niveau supérieur, ou achetez Acryl Cloud sur <styledLinkAws>AWS Marketplace</styledLinkAws> !",

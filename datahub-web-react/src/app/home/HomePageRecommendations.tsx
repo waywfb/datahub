@@ -166,7 +166,7 @@ export const HomePageRecommendations = ({ user }: Props) => {
                     {domainRecommendationModule && (
                         <>
                             <DomainsRecomendationContainer id={HOME_PAGE_DOMAINS_ID}>
-                                <RecommendationTitle level={4}>{domainRecommendationModule.title}</RecommendationTitle>
+                                <RecommendationTitle level={4}>{t('home.module.' + domainRecommendationModule.moduleId)}</RecommendationTitle>
                                 <ThinDivider />
                                 <RecommendationModule
                                     module={domainRecommendationModule as RecommendationModuleType}
@@ -207,7 +207,7 @@ export const HomePageRecommendations = ({ user }: Props) => {
                     .filter((module) => module.renderType !== RecommendationRenderType.DomainSearchList)
                     .map((module) => (
                         <RecommendationContainer id={getStepId(module.moduleId)} key={module.moduleId}>
-                            <RecommendationTitle level={4}>{module.title}</RecommendationTitle>
+                            <RecommendationTitle level={4}>{t('home.module.' + module.moduleId)}</RecommendationTitle>
                             <ThinDivider />
                             <RecommendationModule
                                 module={module as RecommendationModuleType}

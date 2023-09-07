@@ -79,7 +79,10 @@ export default function CreatePostForm({ setCreateButtonEnabled, form }: Props) 
                             rules={[{ type: 'url', warningOnly: true }]}
                             hasFeedback
                         >
-                            <Input data-testid="create-post-media-location" placeholder={t('post.imageUrlPlaceholder')} />
+                            <Input
+                                data-testid="create-post-media-location"
+                                placeholder={t('post.imageUrlPlaceholder')}
+                            />
                         </SubFormItem>
                     </SubFormItem>
                 </>

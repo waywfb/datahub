@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pagination, Typography } from 'antd';
 import styled from 'styled-components/macro';
+import { Trans, useTranslation } from 'react-i18next';
 import { Message } from '../shared/Message';
 import { Entity, FacetFilterInput, FacetMetadata, MatchedField, SearchSuggestion } from '../../types.generated';
 import { SearchCfg } from '../../conf';
@@ -163,6 +164,7 @@ export const SearchResults = ({
     onChangeSelectAll,
     refetch,
 }: Props) => {
+    const { t } = useTranslation();
     const showSearchFiltersV2 = useIsSearchV2();
     const showBrowseV2 = useIsBrowseV2();
     const { isSidebarOpen, toggleSidebar } = useToggleSidebar();
@@ -178,7 +180,7 @@ export const SearchResults = ({
 
     return (
         <>
-            {loading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+            {loading && <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />}
             <SearchResultsWrapper v2Styles={showSearchFiltersV2}>
                 <SearchBody>
                     {!showSearchFiltersV2 && (
@@ -205,11 +207,18 @@ export const SearchResults = ({
                             <LeftControlsContainer>
                                 {showBrowseV2 && <ToggleSidebarButton isOpen={isSidebarOpen} onClick={toggleSidebar} />}
                                 <Typography.Text>
-                                    Showing{' '}
-                                    <b>
-                                        {lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0} - {lastResultIndex}
-                                    </b>{' '}
-                                    of <b>{totalResults}</b> results
+                                    <Trans
+                                        {...{
+                                            i18nKey: 'search.showingNumberOfTotalResults_component_interval',
+                                            values: {
+                                                number: lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0,
+                                                index: lastResultIndex,
+                                                postProcess: 'interval',
+                                                count: totalResults,
+                                            },
+                                            components: { bold: <b /> },
+                                        }}
+                                    />
                                 </Typography.Text>
                             </LeftControlsContainer>
                             <SearchMenuContainer>

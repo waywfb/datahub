@@ -4,6 +4,7 @@ import { Alert, Button, Divider, Empty, message, Modal, Pagination, Typography }
 import { DeleteOutlined, InfoCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { red } from '@ant-design/colors';
 
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput } from '../../types.generated';
 import { useListAccessTokensQuery, useRevokeAccessTokenMutation } from '../../graphql/auth.generated';
 import { Message } from '../shared/Message';
@@ -24,12 +25,12 @@ const SourceContainer = styled.div`
 `;
 
 const TokensContainer = styled.div`
-    padding-top: 0px;
+    padding-top: 0;
 `;
 
 const TokensHeaderContainer = styled.div`
     && {
-        padding-left: 0px;
+        padding-left: 0;
     }
 `;
 
@@ -74,6 +75,7 @@ const NeverExpireText = styled.span`
 const DEFAULT_PAGE_SIZE = 10;
 
 export const AccessTokens = () => {
+    const { t } = useTranslation();
     const [isCreatingToken, setIsCreatingToken] = useState(false);
     const [removedTokens, setRemovedTokens] = useState<string[]>([]);
 
@@ -125,8 +127,8 @@ export const AccessTokens = () => {
     // Revoke token Handler
     const onRemoveToken = (token: any) => {
         Modal.confirm({
-            title: 'Are you sure you want to revoke this token?',
-            content: `Anyone using this token will no longer be able to access the DataHub API. You cannot undo this action.`,
+            title: t('token.validateTokenRevoke'),
+            content: t('token.validateTokenRevokeDescription'),
             onOk() {
                 // Hack to deal with eventual consistency.
                 const newTokenIds = [...removedTokens, token.id];
@@ -140,7 +142,12 @@ export const AccessTokens = () => {
                     })
                     .catch((e) => {
                         message.destroy();
-                        message.error({ content: `Failed to revoke Token!: \n ${e.message || ''}`, duration: 3 });
+                        message.error({
+                            content: `${t('crud.error.revokeWithName', { name: t('common.token') })}!: \n ${
+                                e.message || ''
+                            }`,
+                            duration: 3,
+                        });
                     })
                     .finally(() => {
                         setTimeout(() => {
@@ -149,7 +156,8 @@ export const AccessTokens = () => {
                     });
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -169,19 +177,19 @@ export const AccessTokens = () => {
 
     const tableColumns = [
         {
-            title: 'Name',
+            title: t('common.name'),
             dataIndex: 'name',
             key: 'name',
             render: (name: string) => <b>{name}</b>,
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: 'description',
             key: 'description',
             render: (description: string) => description || '',
         },
         {
-            title: 'Expires At',
+            title: t('token.expireAt'),
             dataIndex: 'expiresAt',
             key: 'expiresAt',
             render: (expiresAt: string) => {
@@ -189,7 +197,13 @@ export const AccessTokens = () => {
                 const localeTimezone = getLocaleTimezone();
                 const formattedExpireAt = new Date(expiresAt);
                 return (
-                    <span>{`${formattedExpireAt.toLocaleDateString()} at ${formattedExpireAt.toLocaleTimeString()} (${localeTimezone})`}</span>
+                    <span>
+                        {t('duration.dateAtTimeWithTimeZone', {
+                            date: formattedExpireAt.toLocaleDateString(),
+                            time: formattedExpireAt.toLocaleTimeString(),
+                            timeZone: localeTimezone,
+                        })}
+                    </span>
                 );
             },
         },
@@ -200,7 +214,7 @@ export const AccessTokens = () => {
             render: (_, record: any) => (
                 <ActionButtonContainer>
                     <Button onClick={() => onRemoveToken(record)} icon={<DeleteOutlined />} danger>
-                        Revoke
+                        {t('common.revoke')}
                     </Button>
                 </ActionButtonContainer>
             ),
@@ -215,15 +229,20 @@ export const AccessTokens = () => {
     return (
         <SourceContainer>
             {tokensLoading && !tokensData && (
-                <Message type="loading" content="Loading tokens..." style={{ marginTop: '10%' }} />
+                <Message
+                    type="loading"
+                    content={`${t('common.loading')} ${t('common.tokens').toLowerCase()}...`}
+                    style={{ marginTop: '10%' }}
+                />
             )}
-            {tokensError && message.error('Failed to load tokens :(')}
-            {revokeTokenError && message.error('Failed to update the Token :(')}
+            {tokensError &&
+                message.error(`${t('crud.error.loadWithName', { name: t('common.tokens').toLowerCase() })} :(`)}
+            {revokeTokenError && message.error(`${t('crud.error.updateWithName', { name: t('common.token') })} :(`)}
             <TokensContainer>
                 <TokensHeaderContainer>
-                    <TokensTitle level={2}>Manage Access Tokens</TokensTitle>
+                    <TokensTitle level={2}>{t('token.manageAccessToken')}</TokensTitle>
                     <Typography.Paragraph type="secondary">
-                        Manage Access Tokens for use with DataHub APIs.
+                        {t('token.manageAccessTokenForUseWithAPI')}
                     </Typography.Paragraph>
                 </TokensHeaderContainer>
             </TokensContainer>
@@ -234,16 +253,14 @@ export const AccessTokens = () => {
                     message={
                         <span>
                             <StyledInfoCircleOutlined />
-                            Token based authentication is currently disabled. Contact your DataHub administrator to
-                            enable this feature.
+                            {t('token.basedAuthIsDisabled')}
                         </span>
                     }
                 />
             )}
-            <Typography.Title level={5}>Personal Access Tokens</Typography.Title>
+            <Typography.Title level={5}>{t('token.personalAccessToken')}</Typography.Title>
             <PersonTokenDescriptionText type="secondary">
-                Personal Access Tokens allow you to make programmatic requests to DataHub&apos;s APIs. They inherit your
-                privileges and have a finite lifespan. Do not share Personal Access Tokens.
+                {t('token.personalAccessTokenDescription')}
             </PersonTokenDescriptionText>
             <TabToolbar>
                 <div>
@@ -253,7 +270,7 @@ export const AccessTokens = () => {
                         data-testid="add-token-button"
                         disabled={!canGeneratePersonalAccessTokens}
                     >
-                        <PlusOutlined /> Generate new token
+                        <PlusOutlined /> {t('token.generateNewToken')}
                     </Button>
                 </div>
             </TabToolbar>
@@ -262,7 +279,7 @@ export const AccessTokens = () => {
                 dataSource={tableData}
                 rowKey="urn"
                 locale={{
-                    emptyText: <Empty description="No Access Tokens!" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                    emptyText: <Empty description={t('token.noAccessToken')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
                 }}
                 pagination={false}
             />

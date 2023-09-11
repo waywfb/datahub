@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { message, Button, List, Typography } from 'antd';
 import { LinkOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Trans, useTranslation } from 'react-i18next';
 import { EntityType, InstitutionalMemoryMetadata } from '../../../../../../types.generated';
 import { useEntityData } from '../../../EntityContext';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
@@ -35,6 +36,7 @@ type LinkListProps = {
 export const LinkList = ({ refetch }: LinkListProps) => {
     const { urn: entityUrn, entityData } = useEntityData();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const [removeLinkMutation] = useRemoveLinkMutation();
     const links = entityData?.institutionalMemory?.elements || [];
 
@@ -43,11 +45,14 @@ export const LinkList = ({ refetch }: LinkListProps) => {
             await removeLinkMutation({
                 variables: { input: { linkUrl: metadata.url, resourceUrn: metadata.associatedUrn || entityUrn } },
             });
-            message.success({ content: 'Link Removed', duration: 2 });
+            message.success({ content: t('crud.success.removeWithName', { name: t('common.link') }), duration: 2 });
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
-                message.error({ content: `Error removing link: \n ${e.message || ''}`, duration: 2 });
+                message.error({
+                    content: `${t('crud.error.removeWithName', { name: t('common.link') })}: \n ${e.message || ''}`,
+                    duration: 2,
+                });
             }
         }
         refetch?.();
@@ -79,14 +84,25 @@ export const LinkList = ({ refetch }: LinkListProps) => {
                                     </Typography.Title>
                                 }
                                 description={
-                                    <>
-                                        Added {formatDateString(link.created.time)} by{' '}
-                                        <Link
-                                            to={`${entityRegistry.getEntityUrl(EntityType.CorpUser, link.author.urn)}`}
-                                        >
-                                            {link.author.username}
-                                        </Link>
-                                    </>
+                                    <Trans
+                                        {...{
+                                            i18nKey: 'entity.authorNameWithLink_component',
+                                            values: {
+                                                timestamp: formatDateString(link.created.time),
+                                                authorName: link.author.username,
+                                            },
+                                            components: {
+                                                linkComponent: (
+                                                    <Link
+                                                        to={`${entityRegistry.getEntityUrl(
+                                                            EntityType.CorpUser,
+                                                            link.author.urn,
+                                                        )}`}
+                                                    />
+                                                ),
+                                            },
+                                        }}
+                                    />
                                 }
                             />
                         </LinkListItem>

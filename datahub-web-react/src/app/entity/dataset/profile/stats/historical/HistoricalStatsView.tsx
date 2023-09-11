@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Affix, Row, Select, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useGetDataProfilesLazyQuery } from '../../../../../../graphql/dataset.generated';
 import { DatasetProfile, DateInterval } from '../../../../../../types.generated';
 import { Message } from '../../../../../shared/Message';
@@ -97,23 +98,31 @@ const computeAllFieldPaths = (profiles: Array<DatasetProfile>): Set<string> => {
  * Change this to add or modify the lookback windows that are selectable via the UI.
  */
 const LOOKBACK_WINDOWS = [
-    { text: '1 day', windowSize: { interval: DateInterval.Day, count: 1 } },
-    { text: '1 week', windowSize: { interval: DateInterval.Week, count: 1 } },
-    { text: '1 month', windowSize: { interval: DateInterval.Month, count: 1 } },
-    { text: '3 months', windowSize: { interval: DateInterval.Month, count: 3 } },
-    { text: '1 year', windowSize: { interval: DateInterval.Year, count: 1 } },
+    { translateKey: 'duration.day_interval', value: '1 day', windowSize: { interval: DateInterval.Day, count: 1 } },
+    { translateKey: 'duration.week_interval', value: '1 week', windowSize: { interval: DateInterval.Week, count: 1 } },
+    {
+        translateKey: 'duration.month_interval',
+        value: '1 month',
+        windowSize: { interval: DateInterval.Month, count: 1 },
+    },
+    {
+        translateKey: 'duration.month_interval',
+        value: '3 months',
+        windowSize: { interval: DateInterval.Month, count: 3 },
+    },
+    { translateKey: 'duration.year_interval', value: '1 year', windowSize: { interval: DateInterval.Year, count: 1 } },
 ];
 
 const DEFAULT_LOOKBACK_WINDOW = '3 months';
 
-const getLookbackWindowSize = (text: string) => {
+const getLookbackWindowSize = (value: string) => {
     for (let i = 0; i < LOOKBACK_WINDOWS.length; i++) {
         const window = LOOKBACK_WINDOWS[i];
-        if (window.text === text) {
+        if (window.value === value) {
             return window.windowSize;
         }
     }
-    throw new Error(`Unrecognized lookback window size ${text} provided`);
+    throw new Error(`Unrecognized lookback window size ${value} provided`);
 };
 
 export type Props = {
@@ -122,6 +131,7 @@ export type Props = {
 };
 
 export default function HistoricalStatsView({ urn, toggleView }: Props) {
+    const { t } = useTranslation();
     const [getDataProfiles, { data: profilesData, loading: profilesLoading }] = useGetDataProfilesLazyQuery({
         fetchPolicy: 'cache-first',
     });
@@ -179,7 +189,7 @@ export default function HistoricalStatsView({ urn, toggleView }: Props) {
 
     const columnSelectView = (
         <span>
-            <SubHeaderText>Viewing stats for column</SubHeaderText>
+            <SubHeaderText>{t('reporting.viewingStatsForColumn')}</SubHeaderText>
             <EmbeddedSelect style={{ width: 200 }} value={selectedFieldPath} onChange={onChangeSelectedFieldPath}>
                 {allFieldPaths.map((fieldPath) => (
                     <Select.Option value={fieldPath}>{fieldPath}</Select.Option>
@@ -220,16 +230,23 @@ export default function HistoricalStatsView({ urn, toggleView }: Props) {
 
     return (
         <>
-            {profilesLoading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+            {profilesLoading && (
+                <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />
+            )}
             <Affix offsetTop={127}>
                 <HeaderRow justify="space-between" align="middle">
                     <div>
-                        <Typography.Title level={2}>Profiling History</Typography.Title>
+                        <Typography.Title level={2}>{t('reporting.profilingHistory')}</Typography.Title>
                         <span>
-                            <SubHeaderText>Viewing profiling history for the past</SubHeaderText>
+                            <SubHeaderText>{t('reporting.viewingProfilingHistoryForThePast')}</SubHeaderText>
                             <EmbeddedSelect value={selectedLookbackWindow} onChange={onChangeSelectedLookbackWindow}>
                                 {LOOKBACK_WINDOWS.map((lookbackWindow) => (
-                                    <Select.Option value={lookbackWindow.text}>{lookbackWindow.text}</Select.Option>
+                                    <Select.Option value={lookbackWindow.value}>
+                                        {t(lookbackWindow.translateKey, {
+                                            postProcess: 'interval',
+                                            count: lookbackWindow.windowSize.count,
+                                        })}
+                                    </Select.Option>
                                 ))}
                             </EmbeddedSelect>
                         </span>
@@ -237,49 +254,49 @@ export default function HistoricalStatsView({ urn, toggleView }: Props) {
                     {toggleView}
                 </HeaderRow>
             </Affix>
-            <StatsSection title="Profiling Runs">
+            <StatsSection title={t('reporting.profilingRuns')}>
                 <Row>
                     <ProfilingRunsChart profiles={profiles} />
                 </Row>
             </StatsSection>
-            <StatsSection title="Historical Table Stats">
+            <StatsSection title={t('reporting.historicalTableStats')}>
                 <Row>
                     <StatChart
-                        title="Row Count Over Time"
+                        title={t('reporting.rowCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={rowCountChartValues}
                     />
                     <StatChart
-                        title="Column Count Over Time"
+                        title={t('reporting.columnCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={columnCountChartValues}
                     />
                 </Row>
             </StatsSection>
-            <StatsSection title="Historical Column Stats" rightFloatView={columnSelectView}>
+            <StatsSection title={t('reporting.historicalColumnStats')} rightFloatView={columnSelectView}>
                 <Row>
                     <StatChart
-                        title="Null Count Over Time"
+                        title={t('reporting.nullCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={nullCountChartValues}
                     />
                     <StatChart
-                        title="Null Percentage Over Time"
+                        title={t('reporting.nullPercentageOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={nullPercentageChartValues}
                     />
                     <StatChart
-                        title="Distinct Count Over Time"
+                        title={t('reporting.distinctCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={distinctCountChartValues}
                     />
                     <StatChart
-                        title="Distinct Percentage Over Time"
+                        title={t('reporting.distinctPercentageOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={distinctPercentageChartValues}

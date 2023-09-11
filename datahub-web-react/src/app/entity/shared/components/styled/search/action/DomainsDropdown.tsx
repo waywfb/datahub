@@ -1,5 +1,6 @@
 import { message, Modal } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useBatchSetDomainMutation } from '../../../../../../../graphql/mutations.generated';
 import { SetDomainModal } from '../../../../containers/profile/sidebar/Domain/SetDomainModal';
 import ActionDropdown from './ActionDropdown';
@@ -13,6 +14,7 @@ type Props = {
 
 // eslint-disable-next-line
 export default function DomainsDropdown({ urns, disabled = false, refetch }: Props) {
+    const { t } = useTranslation();
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [batchSetDomainMutation] = useBatchSetDomainMutation();
 
@@ -26,17 +28,29 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: 'Removed Domain!', duration: 2 });
+                    message.success({
+                        content: t('crud.success.removeWithName', {
+                            name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
+                        }),
+                        duration: 2,
+                    });
                     refetch?.();
                 }
             })
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to remove assets from Domain: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `${t('crud.error.removeAssetsWithName', {
+                                name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
+                            })}: \n ${e.message || ''}`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };
@@ -44,25 +58,30 @@ export default function DomainsDropdown({ urns, disabled = false, refetch }: Pro
     return (
         <>
             <ActionDropdown
-                name="Domain"
+                name={t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 })}
                 actions={[
                     {
-                        title: 'Set Domain',
+                        title: t('crud.setWithName', {
+                            name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
+                        }),
                         onClick: () => {
                             setIsEditModalVisible(true);
                         },
                     },
                     {
-                        title: 'Unset Domain',
+                        title: t('crud.unsetWithName', {
+                            name: t('entity.type.DOMAIN_interval', { postProcess: 'interval', count: 1 }),
+                        }),
                         onClick: () => {
                             Modal.confirm({
-                                title: `If you continue, Domain will be removed for the selected assets.`,
-                                content: `Are you sure you want to unset Domain for these assets?`,
+                                title: t('entity.unsetDomainTitle'),
+                                content: t('entity.unsetDomainContent'),
                                 onOk() {
                                     batchUnsetDomains();
                                 },
                                 onCancel() {},
-                                okText: 'Yes',
+                                okText: t('common.yes'),
+                                cancelText: t('common.cancel'),
                                 maskClosable: true,
                                 closable: true,
                             });

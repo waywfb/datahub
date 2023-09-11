@@ -28,13 +28,14 @@ export const Preview = ({
     paths?: EntityPath[];
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.MlfeatureTable, urn)}
             name={name}
             urn={urn}
             description={description || ''}
-            type={entityRegistry.getEntityName(EntityType.MlfeatureTable)}
+            type={EntityType.MlfeatureTable}
             typeIcon={entityRegistry.getIcon(EntityType.MlfeatureTable, 14, IconStyleType.ACCENT)}
             owners={owners}
             logoUrl={logoUrl || undefined}

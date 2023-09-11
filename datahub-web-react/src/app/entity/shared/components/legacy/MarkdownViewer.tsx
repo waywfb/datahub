@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import MDEditor from '@uiw/react-md-editor';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const EditIcon = styled(EditOutlined)`
     cursor: pointer;
@@ -14,7 +15,7 @@ const EditIcon = styled(EditOutlined)`
 `;
 
 const MarkdownContainer = styled.div<{ editable?: string }>`
-    max-width: 100%;
+    //max-width: 100%;
     max-width: 900px;
     position: relative;
 
@@ -83,6 +84,7 @@ export type Props = {
 };
 
 export default function MarkdownViewer({ source, limit = 150, editable, onEditClicked, ignoreLimit }: Props) {
+    const { t } = useTranslation();
     const [height, setHeight] = useState(0);
     const [showAll, setShowAll] = useState(false);
     const ref = useRef(null);
@@ -109,7 +111,7 @@ export default function MarkdownViewer({ source, limit = 150, editable, onEditCl
             </MarkdownViewContainer>
             {height >= limit && !ignoreLimit && (
                 <CustomButton type="link" onClick={() => setShowAll(!showAll)}>
-                    {showAll ? 'show less' : 'show more'}
+                    {showAll ? t('common.showLess') : t('common.showMore')}
                 </CustomButton>
             )}
             {editable && <EditIcon twoToneColor="#52c41a" onClick={onEditClicked} />}

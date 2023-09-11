@@ -4,6 +4,7 @@ import { CaretDownOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
 import { blue } from '@ant-design/colors';
 import { useHistory, useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { ImpactAnalysisIcon } from '../Dataset/Schema/components/MenuColumn';
 import updateQueryParams from '../../../../shared/updateQueryParams';
 import { downgradeV2FieldPath } from '../../../dataset/profile/schema/utils/utils';
@@ -48,6 +49,7 @@ export default function ColumnsLineageSelect({
     setSelectedColumn,
     setIsColumnLevelLineage,
 }: Props) {
+    const { t } = useTranslation();
     const { entityData } = useEntityData();
     const location = useLocation();
     const history = useHistory();
@@ -58,7 +60,9 @@ export default function ColumnsLineageSelect({
         setSelectedColumn(column);
     }
 
-    const columnButtonTooltip = isColumnLevelLineage ? 'Hide column level lineage' : 'Show column level lineage';
+    const columnButtonTooltip = isColumnLevelLineage
+        ? t('lineage.hideColumnLevelLineage')
+        : t('lineage.showColumnLevelLineage');
 
     return (
         <>
@@ -68,7 +72,7 @@ export default function ColumnsLineageSelect({
                     onChange={selectColumn}
                     showSearch
                     allowClear
-                    placeholder="Select column"
+                    placeholder={t('placeholder.selectAColumn')}
                 >
                     {entityWithSchema?.schemaMetadata?.fields.map((field) => {
                         const fieldPath = downgradeV2FieldPath(field.fieldPath);
@@ -98,7 +102,7 @@ export default function ColumnsLineageSelect({
                 >
                     <ImpactAnalysisIcon />
                     <TextWrapper>
-                        <b>Column Lineage</b>
+                        <b>{t('lineage.columnLineage')}</b>
                         <CaretDownOutlined style={{ fontSize: '10px', marginLeft: 4 }} />
                     </TextWrapper>
                 </StyledButton>

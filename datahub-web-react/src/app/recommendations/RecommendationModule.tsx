@@ -1,6 +1,7 @@
 import { Typography } from 'antd';
 import React, { useEffect, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import { RecommendationModule as RecommendationModuleType, ScenarioType } from '../../types.generated';
 import analytics, { EventType } from '../analytics';
 import { renderTypeToRenderer } from './renderers';
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export const RecommendationModule = ({ module, scenarioType, displayType, showTitle }: Props) => {
+    const { t } = useTranslation();
     const finalDisplayType = displayType || RecommendationDisplayType.DEFAULT;
     const renderId = useMemo(() => uuidv4(), []);
     useEffect(() => {
@@ -26,12 +28,12 @@ export const RecommendationModule = ({ module, scenarioType, displayType, showTi
     }, [module, scenarioType]);
     const RecommendationRenderer = renderTypeToRenderer.get(module.renderType);
     if (!RecommendationRenderer) {
-        console.error(`Failed to find renderer corresponding to renderType ${module.renderType}`);
+        console.error(t('error.failedToFindRendererCorrespondingToRenderType', { name: module.renderType }));
         return null;
     }
     return (
         <>
-            {showTitle && <Typography.Title level={4}>{module.title}</Typography.Title>}
+            {showTitle && <Typography.Title level={4}>{t(`home.module.${module.moduleId}`)}</Typography.Title>}
             <RecommendationRenderer
                 renderId={renderId}
                 moduleId={module.moduleId}

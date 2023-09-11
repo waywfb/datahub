@@ -1,5 +1,6 @@
 import { Button, Modal, message } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import DataProductBuilderForm from './DataProductBuilderForm';
 import { DataProductBuilderState } from './types';
 import { useCreateDataProductMutation } from '../../../../graphql/dataProduct.generated';
@@ -24,6 +25,7 @@ type Props = {
 };
 
 export default function CreateDataProductModal({ domain, onCreateDataProduct, onClose }: Props) {
+    const { t } = useTranslation();
     const [builderState, updateBuilderState] = useState<DataProductBuilderState>(DEFAULT_STATE);
     const [createDataProductMutation] = useCreateDataProductMutation();
 
@@ -41,7 +43,7 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
         })
             .then(({ data, errors }) => {
                 if (!errors) {
-                    message.success('Created Data Product!');
+                    message.success(t('crud.success.createWithName', { name: t('common.dataProduct') }));
                     if (data?.createDataProduct) {
                         const updateDataProduct = { ...data.createDataProduct, domain: { domain } };
                         onCreateDataProduct(updateDataProduct as DataProduct);
@@ -52,13 +54,13 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
             .catch(() => {
                 onClose();
                 message.destroy();
-                message.error({ content: 'Failed to create Data Product. An unexpected error occurred' });
+                message.error({ content: t('crud.error.createWithName', { name: t('common.dataProduct') }) });
             });
     }
 
     return (
         <Modal
-            title="Create new Data Product"
+            title={t('crud.createWithName', { name: t('common.dataProduct') })}
             onCancel={onClose}
             style={MODAL_BODY_STYLE}
             width={MODAL_WIDTH}
@@ -66,10 +68,10 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button onClick={createDataProduct} disabled={!builderState.name}>
-                        Create
+                        {t('common.create')}
                     </Button>
                 </>
             }

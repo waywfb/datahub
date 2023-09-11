@@ -1,15 +1,45 @@
 import i18n from 'i18next';
-import {initReactI18next} from 'react-i18next';
-import * as en from './conf/locales/en/dukeI18n.json';
-import * as fr from './conf/locales/fr/dukeI18n.json';
+import { initReactI18next } from 'react-i18next';
 
 // import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+// eslint import/no-unresolved
+import intervalPlural from 'i18next-intervalplural-postprocessor';
 // don't want to use this?
 // have a look at the Quick start guide
 // for passing in lng and translations on init
 
+import * as enTranslation from './conf/locales/en/translation.json';
+import * as enEmptyMessage from './conf/locales/en/empty-message.json';
+import * as enForm from './conf/locales/en/form.json';
+import * as enReactCron from './conf/locales/en/react-cron.json';
+import * as enTheme from './conf/locales/en/theme.json';
+import * as frTranslation from './conf/locales/fr/translation.json';
+import * as frEmptyMessage from './conf/locales/fr/empty-message.json';
+import * as frForm from './conf/locales/fr/form.json';
+import * as frReactCron from './conf/locales/fr/react-cron.json';
+import * as frTheme from './conf/locales/fr/theme.json';
+
+const resources = {
+    en: {
+        translation: enTranslation.default,
+        'empty-Message': enEmptyMessage.default,
+        form: enForm.default,
+        'react-cron': enReactCron.default,
+        theme: enTheme.default,
+    },
+    fr: {
+        translation: frTranslation.default,
+        'empty-Message': frEmptyMessage.default,
+        form: frForm.default,
+        'react-cron': frReactCron.default,
+        theme: frTheme.default,
+    },
+};
+
 i18n
+    // add interval module
+    .use(intervalPlural)
     // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
     // learn more: https://github.com/i18next/i18next-http-backend
     // want your translations to be loaded from a professional CDN? => https://github.com/locize/react-tutorial#step-2---use-the-locize-cdn
@@ -24,17 +54,12 @@ i18n
     .init({
         fallbackLng: 'en',
         debug: true,
-        defaultNs: 'dukeI18n',
-        fallbackNs: 'dukeI18n',
-        ns: ['dukeI18n'],
-        backend: {
-            loadPath: '/conf/locales/{{lng}}/{{ns}}.json',
-            allowMultiLoading: true,
-        },
-        // resources: {
-        //     en: {translation: en.default},
-        //     fr: {translation: fr.default}
+        // ns: ['translation', 'empty-message', 'form', 'react-cron', 'theme'],
+        // backend: {
+        //     loadPath: '/conf/locales/{{lng}}/{{ns}}.json',
+        //     allowMultiLoading: true,
         // },
+        resources,
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         },
@@ -42,6 +67,5 @@ i18n
             useSuspense: false,
         },
     });
-
 
 export default i18n;

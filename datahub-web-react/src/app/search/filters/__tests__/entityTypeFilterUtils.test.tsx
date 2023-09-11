@@ -1,4 +1,5 @@
 import React from 'react';
+import i18next from 'i18next';
 import { getTestEntityRegistry } from '../../../../utils/test-utils/TestPageContainer';
 import {
     LEGACY_ENTITY_FILTER_NAME,
@@ -13,6 +14,7 @@ import {
     getNumActiveFilters,
 } from '../EntityTypeFilter/entityTypeFilterUtils';
 import FilterOption from '../FilterOption';
+import '../../../../i18n-test';
 
 const mockData = {
     aggregateAcrossEntities: {
@@ -50,6 +52,7 @@ describe('getDisplayedFilterOptions', () => {
         const filterOptions = getDisplayedFilterOptions(
             [],
             testEntityRegistry,
+            i18next.t,
             mockSetSelectedFilterOptions,
             '',
             mockData,
@@ -120,6 +123,7 @@ describe('getDisplayedFilterOptions', () => {
         const filterOptions = getDisplayedFilterOptions(
             [],
             testEntityRegistry,
+            i18next.t,
             mockSetSelectedFilterOptions,
             'vie',
             mockData,
@@ -148,6 +152,7 @@ describe('getDisplayedFilterOptions', () => {
         const filterOptions = getDisplayedFilterOptions(
             [],
             testEntityRegistry,
+            i18next.t,
             mockSetSelectedFilterOptions,
             'datase',
             mockData,

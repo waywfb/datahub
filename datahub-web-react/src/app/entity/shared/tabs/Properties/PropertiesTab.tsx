@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../constants';
 import { StyledTable } from '../../components/styled/StyledTable';
 import { useEntityData } from '../../EntityContext';
@@ -22,18 +23,19 @@ const ValueText = styled(Typography.Text)`
 
 export const PropertiesTab = () => {
     const { entityData } = useEntityData();
+    const { t } = useTranslation();
 
     const propertyTableColumns = [
         {
             width: 210,
-            title: 'Name',
+            title: t('common.name'),
             dataIndex: 'key',
             sorter: (a, b) => a?.key.localeCompare(b?.key || '') || 0,
             defaultSortOrder: 'ascend',
             render: (name: string) => <NameText>{name}</NameText>,
         },
         {
-            title: 'Value',
+            title: t('common.value'),
             dataIndex: 'value',
             render: (value: string) => <ValueText>{value}</ValueText>,
         },

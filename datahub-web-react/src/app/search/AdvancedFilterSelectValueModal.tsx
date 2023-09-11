@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FacetMetadata, EntityType } from '../../types.generated';
 import { ContainerSelectModal } from '../entity/shared/containers/profile/sidebar/Container/ContainerSelectModal';
 import { SetDomainModal } from '../entity/shared/containers/profile/sidebar/Domain/SetDomainModal';
@@ -24,6 +25,7 @@ import {
     TAGS_FILTER_NAME,
     TYPE_NAMES_FILTER_NAME,
 } from './utils/constants';
+import { useEntityRegistry } from '../useEntityRegistry';
 
 type Props = {
     facet?: FacetMetadata | null;
@@ -40,10 +42,12 @@ export const AdvancedFilterSelectValueModal = ({
     initialValues,
     facet,
 }: Props) => {
+    const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     if (filterField === OWNERS_FILTER_NAME) {
         return (
             <EditOwnersModal
-                title="Select Owners"
+                title={t('search.selectWithName', { name: t('common.owners') })}
                 urns={[]}
                 defaultValues={initialValues?.map((urn) => ({
                     urn,
@@ -61,7 +65,9 @@ export const AdvancedFilterSelectValueModal = ({
     if (filterField === DOMAINS_FILTER_NAME) {
         return (
             <SetDomainModal
-                titleOverride="Select Domain"
+                titleOverride={t('search.selectWithName', {
+                    name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+                })}
                 urns={[]}
                 defaultValue={
                     initialValues?.map((urn) => ({
@@ -81,7 +87,9 @@ export const AdvancedFilterSelectValueModal = ({
     if (filterField === CONTAINER_FILTER_NAME) {
         return (
             <ContainerSelectModal
-                titleOverride="Select Container"
+                titleOverride={t('search.selectWithName', {
+                    name: entityRegistry.getEntityNameTrans(EntityType.Container, t),
+                })}
                 defaultValues={initialValues?.map((urn) => ({
                     urn,
                     entity: facet?.aggregations.find((aggregation) => aggregation.value === urn)?.entity,
@@ -102,7 +110,9 @@ export const AdvancedFilterSelectValueModal = ({
                     urn,
                     entity: facet?.aggregations.find((aggregation) => aggregation.value === urn)?.entity,
                 }))}
-                titleOverride="Select Platform"
+                titleOverride={t('search.selectWithName', {
+                    name: entityRegistry.getEntityNameTrans(EntityType.DataPlatform, t),
+                })}
                 onCloseModal={onCloseModal}
                 onOk={(platformUrns) => {
                     onSelect(platformUrns);
@@ -115,7 +125,7 @@ export const AdvancedFilterSelectValueModal = ({
     if (filterField === FIELD_PATHS_FILTER_NAME) {
         return (
             <EditTextModal
-                title="Filter by Column"
+                title={t('filter.filterByWithName', { name: t('common.column') })}
                 defaultValue={initialValues?.[0]}
                 onCloseModal={onCloseModal}
                 onOk={(newValue) => {
@@ -129,7 +139,7 @@ export const AdvancedFilterSelectValueModal = ({
     if (filterField === DESCRIPTION_FILTER_NAME || filterField === FIELD_DESCRIPTIONS_FILTER_NAME) {
         return (
             <EditTextModal
-                title="Filter by Description"
+                title={t('filter.filterByWithName', { name: t('common.description') })}
                 defaultValue={initialValues?.[0]}
                 onCloseModal={onCloseModal}
                 onOk={(newValue) => {
@@ -143,7 +153,7 @@ export const AdvancedFilterSelectValueModal = ({
     if (filterField === ORIGIN_FILTER_NAME) {
         return (
             <EditTextModal
-                title="Filter by Environment"
+                title={t('filter.filterByWithName', { name: t('common.environment') })}
                 defaultValue={initialValues?.[0]}
                 onCloseModal={onCloseModal}
                 onOk={(newValue) => {
@@ -157,7 +167,7 @@ export const AdvancedFilterSelectValueModal = ({
     if (filterField === TYPE_NAMES_FILTER_NAME) {
         return (
             <EditTextModal
-                title="Filter by Sub Type"
+                title={t('filter.filterByWithName', { name: t('common.subtype') })}
                 defaultValue={initialValues?.[0]}
                 onCloseModal={onCloseModal}
                 onOk={(newValue) => {
@@ -171,7 +181,7 @@ export const AdvancedFilterSelectValueModal = ({
     if (filterField === ENTITY_FILTER_NAME) {
         return (
             <ChooseEntityTypeModal
-                title="Filter by Entity Type"
+                title={t('filter.filterByWithName', { name: t('common.entityType') })}
                 defaultValues={initialValues}
                 onCloseModal={onCloseModal}
                 onOk={(newValues) => {

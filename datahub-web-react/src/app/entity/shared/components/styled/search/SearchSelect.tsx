@@ -3,6 +3,7 @@ import { Button, message, Typography } from 'antd';
 import styled from 'styled-components';
 import { FilterOutlined } from '@ant-design/icons';
 
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
 import { EntityType, FacetFilterInput, FilterOperator } from '../../../../../../types.generated';
 import { ENTITY_FILTER_NAME, UnionType } from '../../../../../search/utils/constants';
@@ -55,6 +56,7 @@ type Props = {
  * when the selection is complete.
  */
 export const SearchSelect = ({ fixedEntityTypes, placeholderText, selectedEntities, setSelectedEntities }: Props) => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
 
     // Component state
@@ -143,15 +145,20 @@ export const SearchSelect = ({ fixedEntityTypes, placeholderText, selectedEntiti
 
     return (
         <Container>
-            {error && message.error(`Failed to complete search: ${error && error.message}`)}
+            {error && message.error(`${t('search.searchError')}: ${error && error.message}`)}
             <SearchBarContainer>
                 <Button type="text" onClick={onToggleFilters}>
                     <FilterOutlined />
-                    <Typography.Text>Filters</Typography.Text>
+                    <Typography.Text>{t('common.filters')}</Typography.Text>
                 </Button>
                 <SearchBar
                     initialQuery=""
-                    placeholderText={placeholderText || 'Search entities...'}
+                    placeholderText={
+                        placeholderText ||
+                        t('placeholder.searchWithName', {
+                            name: t('entity.subtype.entity_interval', { postProcess: 'interval', count: 2 }),
+                        })
+                    }
                     suggestions={[]}
                     style={SEARCH_BAR_STYLE}
                     inputStyle={SEARCH_INPUT_STYLE}

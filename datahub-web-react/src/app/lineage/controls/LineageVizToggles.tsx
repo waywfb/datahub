@@ -4,6 +4,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { useHistory, useLocation } from 'react-router';
 import styled from 'styled-components/macro';
 
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { navigateToLineageUrl } from '../utils/navigateToLineageUrl';
 import { useIsSeparateSiblingsMode } from '../../entity/shared/siblingUtils';
@@ -34,6 +35,7 @@ type Props = {
 };
 
 export function LineageVizToggles({ showExpandedTitles, setShowExpandedTitles }: Props) {
+    const { t } = useTranslation();
     const history = useHistory();
     const location = useLocation();
     const isHideSiblingMode = useIsSeparateSiblingsMode();
@@ -48,7 +50,7 @@ export function LineageVizToggles({ showExpandedTitles, setShowExpandedTitles }:
                     onChange={(checked) => setShowExpandedTitles(checked)}
                 />{' '}
                 <ControlLabel>
-                    <b>Show Full Titles</b>
+                    <b>{t('lineage.showFullTitle')}</b>
                 </ControlLabel>
             </ControlDiv>
             <ControlDiv>
@@ -65,8 +67,8 @@ export function LineageVizToggles({ showExpandedTitles, setShowExpandedTitles }:
                     }}
                 />{' '}
                 <ControlLabel>
-                    <b>Compress Lineage</b>
-                    <Tooltip title="Collapses related entities into a single lineage node" placement="topRight">
+                    <b>{t('lineage.compressLineage')}</b>
+                    <Tooltip title={t('lineage.collapseRelatedEntitiesIntoASingleLineageNode')} placement="topRight">
                         <HelpIcon />
                     </Tooltip>
                 </ControlLabel>
@@ -86,7 +88,7 @@ export function LineageVizToggles({ showExpandedTitles, setShowExpandedTitles }:
                     }}
                 />{' '}
                 <ControlLabel>
-                    <b>Show Columns</b>
+                    <b>{t('showColumns')}</b>
                 </ControlLabel>
             </ControlDiv>
         </>

@@ -2,6 +2,7 @@ import { RedoOutlined } from '@ant-design/icons';
 import { Button, message, Modal, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Trans, useTranslation } from 'react-i18next';
 import { PageRoutes } from '../../../conf/Global';
 import { useCreateNativeUserResetTokenMutation } from '../../../graphql/user.generated';
 import analytics, { EventType } from '../../analytics';
@@ -14,16 +15,16 @@ const ModalSection = styled.div`
 
 const ModalSectionHeader = styled(Typography.Text)`
     &&&& {
-        padding: 0px;
-        margin: 0px;
+        padding: 0;
+        margin: 0;
         margin-bottom: 4px;
     }
 `;
 
 const ModalSectionParagraph = styled(Typography.Paragraph)`
     &&&& {
-        padding: 0px;
-        margin: 0px;
+        padding: 0;
+        margin: 0;
     }
 `;
 
@@ -41,6 +42,7 @@ type Props = {
 };
 
 export default function ViewResetTokenModal({ visible, userUrn, username, onClose }: Props) {
+    const { t } = useTranslation();
     const baseUrl = window.location.origin;
     const [hasGeneratedResetToken, setHasGeneratedResetToken] = useState(false);
 
@@ -62,13 +64,13 @@ export default function ViewResetTokenModal({ visible, userUrn, username, onClos
                         userUrn,
                     });
                     setHasGeneratedResetToken(true);
-                    message.success('Generated new link to reset credentials');
+                    message.success(t('authentification.resetCredentialSuccess'));
                 }
             })
             .catch((e) => {
                 message.destroy();
                 message.error({
-                    content: `Failed to create new link to reset credentials : \n ${e.message || ''}`,
+                    content: `${t('authentification.resetCredentialError')}: \n ${e.message || ''}`,
                     duration: 3,
                 });
             });
@@ -84,7 +86,7 @@ export default function ViewResetTokenModal({ visible, userUrn, username, onClos
             footer={null}
             title={
                 <Typography.Text>
-                    <b>Reset User Password</b>
+                    <b>{t('authentification.resetUserPassword')}</b>
                 </Typography.Text>
             }
             visible={visible}
@@ -92,10 +94,15 @@ export default function ViewResetTokenModal({ visible, userUrn, username, onClos
         >
             {hasGeneratedResetToken ? (
                 <ModalSection>
-                    <ModalSectionHeader strong>Share reset link</ModalSectionHeader>
+                    <ModalSectionHeader strong>{t('authentification.shareResetLink')}</ModalSectionHeader>
                     <ModalSectionParagraph>
-                        Share this reset link to reset the credentials for {username}.
-                        <b>This link will expire in 24 hours.</b>
+                        <Trans
+                            {...{
+                                i18nKey: 'search.seeAllResultsWithName_component',
+                                values: { username },
+                                components: { bold: <b /> },
+                            }}
+                        />
                     </ModalSectionParagraph>
                     <Typography.Paragraph copyable={{ text: inviteLink }}>
                         <pre>{inviteLink}</pre>
@@ -103,16 +110,21 @@ export default function ViewResetTokenModal({ visible, userUrn, username, onClos
                 </ModalSection>
             ) : (
                 <ModalSection>
-                    <ModalSectionHeader strong>A new link must be generated</ModalSectionHeader>
+                    <ModalSectionHeader strong>{t('authentification.newLinkMustBeGenerated')}</ModalSectionHeader>
                     <ModalSectionParagraph>
-                        You cannot view any old reset links. Please generate a new one below.
+                        {t('authentification.newLinkMustBeGeneratedDescription_component')}
                     </ModalSectionParagraph>
                 </ModalSection>
             )}
             <ModalSection>
-                <ModalSectionHeader strong>Generate a new link</ModalSectionHeader>
+                <ModalSectionHeader strong>{t('authentification.generateNewLink')}</ModalSectionHeader>
                 <ModalSectionParagraph>
-                    Generate a new reset link! Note, any old links will <b>cease to be active</b>.
+                    <Trans
+                        {...{
+                            i18nKey: 'authentification.generateNewLinkDescription_component',
+                            components: { bold: <b /> },
+                        }}
+                    />
                 </ModalSectionParagraph>
                 <CreateResetTokenButton onClick={createNativeUserResetToken} size="small" type="text">
                     <RedoOutlined style={{}} />

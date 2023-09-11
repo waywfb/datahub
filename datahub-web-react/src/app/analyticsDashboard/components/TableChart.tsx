@@ -23,7 +23,7 @@ const StyledTable = styled(Table)`
 
 const TableLink = styled(Button)`
     &&& {
-        padding: 0px;
+        padding: 0;
         font-weight: 400;
         margin-top: -6px;
         margin-bottom: -6px;

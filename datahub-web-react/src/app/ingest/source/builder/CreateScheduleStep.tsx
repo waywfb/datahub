@@ -5,6 +5,7 @@ import 'react-js-cron/dist/styles.css';
 import styled from 'styled-components';
 import cronstrue from 'cronstrue';
 import { CheckCircleOutlined, WarningOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { SourceBuilderState, StepProps } from './types';
 import { TimezoneSelect } from './TimezoneSelect';
 import { ANTD_GRAY, REDESIGN_COLORS } from '../../../entity/shared/constants';
@@ -65,6 +66,7 @@ const ItemDescriptionText = styled(Typography.Paragraph)``;
 const DAILY_MIDNIGHT_CRON_INTERVAL = '0 0 * * *';
 
 export const CreateScheduleStep = ({ state, updateState, goTo, prev }: StepProps) => {
+    const { t } = useTranslation();
     const { schedule } = state;
     const interval = schedule?.interval?.replaceAll(', ', ' ') || DAILY_MIDNIGHT_CRON_INTERVAL;
     const timezone = schedule?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -77,7 +79,7 @@ export const CreateScheduleStep = ({ state, updateState, goTo, prev }: StepProps
         if (scheduleCronInterval) {
             try {
                 return {
-                    text: `Runs ${lowerFirstLetter(cronstrue.toString(scheduleCronInterval))}.`,
+                    text: `${t('common.runs')} ${lowerFirstLetter(cronstrue.toString(scheduleCronInterval))}.`,
                     error: false,
                 };
             } catch (e) {
@@ -91,7 +93,7 @@ export const CreateScheduleStep = ({ state, updateState, goTo, prev }: StepProps
             text: undefined,
             error: false,
         };
-    }, [scheduleCronInterval]);
+    }, [scheduleCronInterval, t]);
 
     const onClickNext = () => {
         if (scheduleEnabled) {
@@ -117,14 +119,15 @@ export const CreateScheduleStep = ({ state, updateState, goTo, prev }: StepProps
     return (
         <>
             <Section>
-                <SelectTemplateHeader level={5}>Configure an Ingestion Schedule</SelectTemplateHeader>
+                <SelectTemplateHeader level={5}>{t('ingest.configureAnIngestionSchedule')}</SelectTemplateHeader>
             </Section>
             <Form layout="vertical">
                 <Form.Item
-                    tooltip="Enable to run ingestion on a schedule. Running ingestion on a schedule helps to keep the information inside of DataHub up to date."
+                    tooltip={t('ingest.runAScheduleToolTip')}
                     label={
                         <Typography.Text strong>
-                            Run on a schedule <Typography.Text type="secondary">(Recommended)</Typography.Text>
+                            {t('ingest.runOnASchedule')}{' '}
+                            <Typography.Text type="secondary">({t('common.recommended')})</Typography.Text>
                         </Typography.Text>
                     }
                 >
@@ -132,11 +135,11 @@ export const CreateScheduleStep = ({ state, updateState, goTo, prev }: StepProps
                     {!scheduleEnabled && (
                         <WarningContainer>
                             <StyledWarningOutlined />
-                            Running ingestion without a schedule may result in out-of-date information.
+                            {t('ingest.runIngestionWithoutASchedule')}
                         </WarningContainer>
                     )}
                 </Form.Item>
-                <StyledFormItem required label={<Typography.Text strong>Schedule</Typography.Text>}>
+                <StyledFormItem required label={<Typography.Text strong>{t('common.schedule')}</Typography.Text>}>
                     <Cron
                         value={scheduleCronInterval}
                         setValue={setScheduleCronInterval}
@@ -145,10 +148,10 @@ export const CreateScheduleStep = ({ state, updateState, goTo, prev }: StepProps
                         leadingZero
                     />
                     <CronText>
-                        {cronAsText.error && <>Invalid cron schedule. Cron must be of UNIX form:</>}
+                        {cronAsText.error && <>{t('ingest.invalidCronSchedule')}:</>}
                         {!cronAsText.text && (
                             <Typography.Paragraph keyboard style={{ marginTop: 4 }}>
-                                minute, hour, day, month, day of week
+                                {t('ingest.minuteHourDayMonthDayOfWeek').toLowerCase()}
                             </Typography.Paragraph>
                         )}
                         {cronAsText.text && (
@@ -159,16 +162,16 @@ export const CreateScheduleStep = ({ state, updateState, goTo, prev }: StepProps
                         )}
                     </CronText>
                 </StyledFormItem>
-                <Form.Item required label={<Typography.Text strong>Timezone</Typography.Text>}>
-                    <ItemDescriptionText>Choose a timezone for the schedule.</ItemDescriptionText>
+                <Form.Item required label={<Typography.Text strong>{t('common.timezone')}</Typography.Text>}>
+                    <ItemDescriptionText>{t('ingest.chooseATimezoneForTheSchedule')}</ItemDescriptionText>
                     <TimezoneSelect value={scheduleTimezone} onChange={setScheduleTimezone} />
                 </Form.Item>
             </Form>
             <ControlsContainer>
-                <Button onClick={prev}>Previous</Button>
+                <Button onClick={prev}>{t('common.previous')}</Button>
                 <div>
                     <Button disabled={!interval || interval.length === 0 || cronAsText.error} onClick={onClickNext}>
-                        Next
+                        {t('common.next')}
                     </Button>
                 </div>
             </ControlsContainer>

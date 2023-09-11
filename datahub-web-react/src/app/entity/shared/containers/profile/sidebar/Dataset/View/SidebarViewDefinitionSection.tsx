@@ -1,6 +1,7 @@
 import { Button, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { GetDatasetQuery } from '../../../../../../../../graphql/dataset.generated';
 import { InfoItem } from '../../../../../components/styled/InfoItem';
 import { ANTD_GRAY } from '../../../../../constants';
@@ -29,26 +30,27 @@ const InfoRow = styled.div`
 const INFO_ITEM_WIDTH_PX = '150px';
 
 export const SidebarViewDefinitionSection = () => {
+    const { t } = useTranslation();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
 
     const materialized = baseEntity?.dataset?.viewProperties?.materialized;
-    const language = baseEntity?.dataset?.viewProperties?.language || 'UNKNOWN';
+    const language = baseEntity?.dataset?.viewProperties?.language || t('common.unknown').toUpperCase();
 
     const routeToTab = useRouteToTab();
 
     return (
         <div>
             <HeaderContainer>
-                <SidebarHeader title="View Definition" />
+                <SidebarHeader title={t('entity.viewDefinition')} />
                 <StatsButton onClick={() => routeToTab({ tabName: 'View Definition' })} type="link">
-                    See View Definition &gt;
+                    {t('entity.seeViewDefinition')} &gt;
                 </StatsButton>
             </HeaderContainer>
             <InfoRow>
-                <InfoItem title="Materialized" width={INFO_ITEM_WIDTH_PX}>
-                    <HeaderInfoBody>{materialized ? 'True' : 'False'}</HeaderInfoBody>
+                <InfoItem title={t('common.materialized')} width={INFO_ITEM_WIDTH_PX}>
+                    <HeaderInfoBody>{materialized ? t('common.true') : t('common.false')}</HeaderInfoBody>
                 </InfoItem>
-                <InfoItem title="Language" width={INFO_ITEM_WIDTH_PX}>
+                <InfoItem title={t('common.language')} width={INFO_ITEM_WIDTH_PX}>
                     <HeaderInfoBody>{language.toUpperCase()}</HeaderInfoBody>
                 </InfoItem>
             </InfoRow>

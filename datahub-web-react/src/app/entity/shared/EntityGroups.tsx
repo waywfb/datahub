@@ -1,9 +1,11 @@
 import { Tag } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { EntityType, EntityRelationship } from '../../../types.generated';
-import { EmptyValue, TagsSection, Tags, GroupsSeeMoreText } from './SidebarStyledComponents';
+import { TagsSection, Tags, GroupsSeeMoreText } from './SidebarStyledComponents';
 import { useEntityRegistry } from '../../useEntityRegistry';
+import { EmptyValue } from '../../shared/EmptyValue';
 
 type Props = {
     readMore: boolean;
@@ -16,6 +18,7 @@ type Props = {
  */
 export default function EntityGroups({ readMore, setReadMore, groupMemberRelationships }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     return (
         <TagsSection>
@@ -47,7 +50,7 @@ export default function EntityGroups({ readMore, setReadMore, groupMemberRelatio
                 })}
             {!readMore && groupMemberRelationships?.length > 2 && (
                 <GroupsSeeMoreText onClick={() => setReadMore(!readMore)}>
-                    {`+${groupMemberRelationships?.length - 2} more`}
+                    {`+${groupMemberRelationships?.length - 2} ${t('common.more')}`}
                 </GroupsSeeMoreText>
             )}
         </TagsSection>

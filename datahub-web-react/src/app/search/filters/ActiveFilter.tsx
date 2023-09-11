@@ -2,6 +2,7 @@ import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata } from '../../../types.generated';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { useEntityRegistry } from '../../useEntityRegistry';
@@ -52,12 +53,14 @@ function ActiveFilter({
     onChangeFilters,
 }: ActiveFilterProps) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const filterEntity = getFilterEntity(filterFacet.field, filterValue, availableFilters);
     const filterLabelOverride = useGetBrowseV2LabelOverride(filterFacet.field, filterValue, entityRegistry);
     const { icon, label } = getFilterIconAndLabel(
         filterFacet.field,
         filterValue,
         entityRegistry,
+        t,
         filterEntity,
         12,
         filterLabelOverride,

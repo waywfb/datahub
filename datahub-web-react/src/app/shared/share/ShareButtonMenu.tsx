@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Menu } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../types.generated';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import CopyLinkMenuItem from './items/CopyLinkMenuItem';
@@ -27,8 +28,9 @@ const StyledMenu = styled(Menu)`
 
 export default function ShareButtonMenu({ urn, entityType, subType, name }: ShareButtonMenuProps) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const displayName = name || urn;
-    const displayType = subType || entityRegistry.getEntityName(entityType) || entityType;
+    const displayType = subType || entityRegistry.getEntityNameTrans(entityType, t) || entityType;
 
     return (
         <StyledMenu selectable={false}>

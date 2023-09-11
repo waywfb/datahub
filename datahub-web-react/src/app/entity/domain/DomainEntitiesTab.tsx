@@ -1,10 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEntityData } from '../shared/EntityContext';
 import { EntityType } from '../../../types.generated';
 import { EmbeddedListSearchSection } from '../shared/components/styled/search/EmbeddedListSearchSection';
 import { UnionType } from '../../search/utils/constants';
 
 export const DomainEntitiesTab = () => {
+    const { t } = useTranslation();
     const { urn, entityType } = useEntityData();
 
     let fixedFilter;
@@ -23,7 +25,7 @@ export const DomainEntitiesTab = () => {
                 filters: [fixedFilter],
             }}
             emptySearchQuery="*"
-            placeholderText="Filter domain entities..."
+            placeholderText={t('placeholder.filterWithName', { name: t('common.domain') })}
             skipCache
             applyView
         />

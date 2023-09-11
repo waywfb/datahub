@@ -1,3 +1,4 @@
+import { TFunction } from 'i18next';
 import { AggregateAcrossEntitiesQuery } from '../../../../graphql/search.generated';
 import { AggregationMetadata, FacetFilterInput, FacetMetadata } from '../../../../types.generated';
 import EntityRegistry from '../../../entity/EntityRegistry';
@@ -68,8 +69,13 @@ function getAggregationsForFilterOptions(data?: AggregateAcrossEntitiesQuery) {
     return aggregations;
 }
 
-function filterNestedOptions(nestedOption: FilterOptionType, entityRegistry: EntityRegistry, searchQuery: string) {
-    const { label } = getFilterIconAndLabel(ENTITY_SUB_TYPE_FILTER_NAME, nestedOption.value, entityRegistry, null);
+function filterNestedOptions(
+    nestedOption: FilterOptionType,
+    entityRegistry: EntityRegistry,
+    t: TFunction,
+    searchQuery: string,
+) {
+    const { label } = getFilterIconAndLabel(ENTITY_SUB_TYPE_FILTER_NAME, nestedOption.value, entityRegistry, t, null);
     return filterOptionsWithSearch(searchQuery, (label as string) || '');
 }
 
@@ -77,6 +83,7 @@ function filterNestedOptions(nestedOption: FilterOptionType, entityRegistry: Ent
 export function getDisplayedFilterOptions(
     selectedFilterOptions: FilterOptionType[],
     entityRegistry: EntityRegistry,
+    t: TFunction,
     setSelectedFilterOptions: (values: FilterOptionType[]) => void,
     searchQuery: string,
     data?: AggregateAcrossEntitiesQuery,
@@ -92,10 +99,11 @@ export function getDisplayedFilterOptions(
                     (option) => option.value.includes(FILTER_DELIMITER) && option.value.includes(filterOption.value),
                 )
                 .map((option) => ({ field: ENTITY_SUB_TYPE_FILTER_NAME, ...option }))
-                .filter((o) => filterNestedOptions(o, entityRegistry, searchQuery));
+                .filter((o) => filterNestedOptions(o, entityRegistry, t, searchQuery));
             return mapFilterOption({
                 filterOption,
                 entityRegistry,
+                t,
                 selectedFilterOptions,
                 setSelectedFilterOptions,
                 nestedOptions,

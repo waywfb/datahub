@@ -1,6 +1,7 @@
 import { Button, Col, Modal, Table, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { DatasetProfile } from '../../../../../../../types.generated';
 import DataProfileView from '../../snapshot/SnapshotStatsView';
 
@@ -14,6 +15,7 @@ export type Props = {
 };
 
 export default function ProfilingRunsChart({ profiles }: Props) {
+    const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false);
     const [selectedProfileIndex, setSelectedProfileIndex] = useState(-1);
 
@@ -31,14 +33,14 @@ export default function ProfilingRunsChart({ profiles }: Props) {
         const profileDate = new Date(profile.timestampMillis);
         return {
             timestamp: `${profileDate.toLocaleDateString()} at ${profileDate.toLocaleTimeString()}`,
-            rowCount: profile.rowCount?.toString() || 'unknown',
-            columnCount: profile.columnCount?.toString() || 'unknown',
+            rowCount: profile.rowCount?.toString() || t('common.unknown').toLowerCase(),
+            columnCount: profile.columnCount?.toString() || t('common.unknown').toLowerCase(),
         };
     });
 
     const tableColumns = [
         {
-            title: 'Recent Profiles',
+            title: t('reporting.recentProfiles'),
             key: 'Recent Profiles',
             dataIndex: 'timestamp',
             render: (title, record, index) => {
@@ -50,12 +52,12 @@ export default function ProfilingRunsChart({ profiles }: Props) {
             },
         },
         {
-            title: 'Row Count',
+            title: t('reporting.rowCount'),
             key: 'Row Count',
             dataIndex: 'rowCount',
         },
         {
-            title: 'Column Count',
+            title: t('reporting.columnCount'),
             key: 'Column Count',
             dataIndex: 'columnCount',
         },
@@ -64,9 +66,10 @@ export default function ProfilingRunsChart({ profiles }: Props) {
     const selectedProfile = (selectedProfileIndex >= 0 && profiles[selectedProfileIndex]) || undefined;
     const profileModalTitle =
         selectedProfile &&
-        `Showing profile from ${new Date(selectedProfile?.timestampMillis).toLocaleDateString()} at ${new Date(
-            selectedProfile?.timestampMillis,
-        ).toLocaleTimeString()}`;
+        t('reporting.showingProfileFromAtWithDateTime', {
+            date: new Date(selectedProfile?.timestampMillis).toLocaleDateString(),
+            time: new Date(selectedProfile?.timestampMillis).toLocaleTimeString(),
+        });
 
     return (
         <>

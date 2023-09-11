@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import { debounce } from 'lodash';
+import { useTranslation } from 'react-i18next';
 import { useListQueriesQuery } from '../../../../../../graphql/query.generated';
 import { GetDatasetQuery, useGetRecentQueriesQuery } from '../../../../../../graphql/dataset.generated';
 import { useBaseEntity } from '../../../EntityContext';
@@ -26,6 +27,7 @@ const Content = styled.div`
 `;
 
 export default function QueriesTab() {
+    const { t } = useTranslation();
     const appConfig = useAppConfig();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
     const canEditQueries = baseEntity?.dataset?.privileges?.canEditQueries || false;
@@ -105,8 +107,8 @@ export default function QueriesTab() {
                 )}
                 {highlightedQueries.length > 0 && (
                     <QueriesListSection
-                        title="Highlighted Queries"
-                        tooltip="Shared queries relevant to this dataset"
+                        title={t('entity.sharedQueriesRelevantToThisDataset')}
+                        tooltip={t('entity.sharedQueriesRelevantToThisDataset')}
                         queries={highlightedQueries}
                         showEdit
                         showDelete
@@ -116,8 +118,8 @@ export default function QueriesTab() {
                 )}
                 {recentQueries.length > 0 && (
                     <QueriesListSection
-                        title="Recent Queries"
-                        tooltip="Queries that have been recently run against this dataset"
+                        title={t('entity.queriesThatHaveBeenRecentlyRunAgainstThisDataset')}
+                        tooltip={t('entity.queriesThatHaveBeenRecentlyRunAgainstThisDataset')}
                         queries={recentQueries}
                         showDetails={false}
                         showDelete={false}

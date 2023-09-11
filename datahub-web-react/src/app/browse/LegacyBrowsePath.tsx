@@ -6,6 +6,7 @@ import { IconBaseProps } from 'react-icons/lib';
 import { VscRepoForked, VscPreview } from 'react-icons/vsc';
 import { blue, grey } from '@ant-design/colors';
 
+import { useTranslation } from 'react-i18next';
 import { PageRoutes } from '../../conf/Global';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { EntityType } from '../../types.generated';
@@ -60,6 +61,7 @@ const BrowseRow = styled(Row)`
  */
 export const LegacyBrowsePath = ({ type, path, lineageSupported, isProfilePage, isBrowsable }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const history = useHistory();
     const location = useLocation();
     const isLineageMode = useIsLineageMode();
@@ -88,7 +90,9 @@ export const LegacyBrowsePath = ({ type, path, lineageSupported, isProfilePage, 
         <BrowseRow>
             <Breadcrumb style={{ fontSize: '16px' }}>
                 <Breadcrumb.Item>
-                    <Link to={isBrowsable ? baseBrowsePath : '#'}>{entityRegistry.getCollectionName(type)}</Link>
+                    <Link to={isBrowsable ? baseBrowsePath : '#'}>
+                        {entityRegistry.getCollectionNameTrans(type, t)}
+                    </Link>
                 </Breadcrumb.Item>
                 {pathCrumbs}
             </Breadcrumb>

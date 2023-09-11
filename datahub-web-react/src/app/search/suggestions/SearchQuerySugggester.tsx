@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import { useHistory } from 'react-router';
+import { Trans } from 'react-i18next';
 import { SearchSuggestion } from '../../../types.generated';
 import { navigateToSearchUrl } from '../utils/navigateToSearchUrl';
 import { ANTD_GRAY_V2 } from '../../entity/shared/constants';
@@ -33,7 +34,15 @@ export default function SearchQuerySuggester({ suggestions }: Props) {
 
     return (
         <TextWrapper>
-            Did you mean <SuggestedText onClick={searchForSuggestion}>{suggestText}</SuggestedText>
+            <Trans
+                {...{
+                    i18nKey: 'search.didYouMean_component',
+                    values: {
+                        suggestText,
+                    },
+                    components: { suggest: <SuggestedText onClick={searchForSuggestion} /> },
+                }}
+            />
         </TextWrapper>
     );
 }

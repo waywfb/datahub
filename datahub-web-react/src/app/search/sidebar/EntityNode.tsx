@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { IconStyleType } from '../../entity/Entity';
@@ -30,6 +31,7 @@ const EntityNode = () => {
     const { count } = entityAggregation;
     const countText = count === MAX_COUNT_VAL ? '10k+' : formatNumber(count);
     const registry = useEntityRegistry();
+    const { t } = useTranslation();
     const { trackToggleNodeEvent } = useSidebarAnalytics();
 
     const { isOpen, isClosing, toggle } = useToggle({
@@ -61,12 +63,12 @@ const EntityNode = () => {
                     showBorder
                     onClick={onClickHeader}
                     style={{ paddingTop: '16px' }}
-                    data-testid={`browse-entity-${registry.getCollectionName(entityType)}`}
+                    data-testid={`browse-entity-${registry.getCollectionNameTrans(entityType, t)}`}
                 >
                     <ExpandableNode.HeaderLeft>
                         {registry.getIcon(entityType, 16, IconStyleType.HIGHLIGHT, color)}
                         <ExpandableNode.Title color={color} size={16} padLeft>
-                            {registry.getCollectionName(entityType)}
+                            {registry.getCollectionNameTrans(entityType, t)}
                         </ExpandableNode.Title>
                         <Count color={color}>{countText}</Count>
                     </ExpandableNode.HeaderLeft>

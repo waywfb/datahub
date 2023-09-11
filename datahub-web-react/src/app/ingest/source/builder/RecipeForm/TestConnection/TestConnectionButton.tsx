@@ -2,6 +2,8 @@ import { CheckCircleOutlined } from '@ant-design/icons';
 import { Button, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { green } from '@ant-design/colors';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import {
     useCreateTestConnectionRequestMutation,
     useGetIngestionExecutionRequestLazyQuery,
@@ -11,16 +13,16 @@ import { TestConnectionResult } from './types';
 import TestConnectionModal from './TestConnectionModal';
 import { SourceConfig } from '../../types';
 
-export function getRecipeJson(recipeYaml: string) {
+export function getRecipeJson(t: TFunction, recipeYaml: string) {
     // Convert the recipe into it's json representation, and catch + report exceptions while we do it.
     let recipeJson;
     try {
         recipeJson = yamlToJson(recipeYaml);
     } catch (e) {
         const messageText = (e as any).parsedLine
-            ? `Please fix line ${(e as any).parsedLine} in your recipe.`
-            : 'Please check your recipe configuration.';
-        message.warn(`Found invalid YAML. ${messageText}`);
+            ? t('ingest.pleaseFixRecipeLineWithParsedLine', { parsedLine: (e as any).parsedLine })
+            : t('ingest.pleaseCheckYourRecipeConfiguration');
+        message.warn(t('ingest.foundInvalidYamlWithMessage', { message: messageText }));
         return null;
     }
     return recipeJson;
@@ -33,6 +35,7 @@ interface Props {
 }
 
 function TestConnectionButton(props: Props) {
+    const { t } = useTranslation();
     const { recipe, sourceConfigs, version } = props;
     const [isLoading, setIsLoading] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -61,9 +64,7 @@ function TestConnectionButton(props: Props) {
             const result = resultData.executionRequest?.result;
             if (result && result.status !== RUNNING) {
                 if (result.status === FAILURE) {
-                    message.error(
-                        'Something went wrong with your connection test. Please check your recipe and try again.',
-                    );
+                    message.error(t('ingest.somethingWentWrongWithYourConnectionTest'));
                     setIsModalVisible(false);
                 }
                 if (result.structuredReport) {
@@ -74,7 +75,7 @@ function TestConnectionButton(props: Props) {
                 setIsLoading(false);
             }
         }
-    }, [resultData, pollingInterval, loading]);
+    }, [t, resultData, pollingInterval, loading]);
 
     useEffect(() => {
         if (!isModalVisible && pollingInterval) {
@@ -83,7 +84,7 @@ function TestConnectionButton(props: Props) {
     }, [isModalVisible, pollingInterval]);
 
     function testConnection() {
-        const recipeJson = getRecipeJson(recipe);
+        const recipeJson = getRecipeJson(t, recipe);
         if (recipeJson) {
             createTestConnectionRequest({ variables: { input: { recipe: recipeJson, version } } })
                 .then((res) =>
@@ -92,9 +93,7 @@ function TestConnectionButton(props: Props) {
                     }),
                 )
                 .catch(() => {
-                    message.error(
-                        'There was an unexpected error when trying to test your connection. Please try again.',
-                    );
+                    message.error(t('ingest.thereWasAnUnexpectedErrorWhenTryingToTestYourConnection'));
                 });
 
             setIsLoading(true);
@@ -110,7 +109,7 @@ function TestConnectionButton(props: Props) {
         <>
             <Button onClick={testConnection}>
                 <CheckCircleOutlined style={{ color: green[5] }} />
-                Test Connection
+                {t('ingest.testConnection')}
             </Button>
             {isModalVisible && (
                 <TestConnectionModal

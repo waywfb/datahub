@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 // import { ExpandedOwner } from '../../../../../components/styled/ExpandedOwner/ExpandedOwner';
-import { EMPTY_MESSAGES } from '../../../../../constants';
+import { useTranslation } from 'react-i18next';
 import { Owner, OwnershipType, OwnershipTypeEntity } from '../../../../../../../../types.generated';
 import { useEntityData, useMutationUrn, useRefetch } from '../../../../../EntityContext';
 import { SidebarHeader } from '../../SidebarHeader';
@@ -19,6 +19,7 @@ interface Props {
 export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
     const { entityType, entityData } = useEntityData();
     const mutationUrn = useMutationUrn();
+    const { t } = useTranslation(['translation', 'empty-message']);
 
     const refetch = useRefetch();
     const [showAddModal, setShowAddModal] = useState(false);
@@ -27,7 +28,7 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
     const ownersByTypeMap: Map<string, Owner[]> = new Map();
     entityData?.ownership?.owners?.forEach((owner) => {
         const ownershipType = owner?.ownershipType;
-        const ownershipTypeName = getOwnershipTypeName(ownershipType);
+        const ownershipTypeName = getOwnershipTypeName(t, ownershipType);
         // If ownership type is not in the map, add it
         if (ownershipType && !ownershipTypesMap.has(ownershipTypeName)) {
             ownershipTypesMap.set(ownershipTypeName, ownershipType);
@@ -57,7 +58,7 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
 
     return (
         <div id={ENTITY_PROFILE_OWNERS_ID}>
-            <SidebarHeader title="Owners" />
+            <SidebarHeader title={t('common.owners')} />
             <div>
                 {ownershipTypeNames.map((ownershipTypeName) => {
                     const ownershipType = ownershipTypesMap.get(ownershipTypeName) as OwnershipTypeEntity;
@@ -66,12 +67,12 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
                 })}
                 {ownersEmpty && (
                     <Typography.Paragraph type="secondary">
-                        {EMPTY_MESSAGES.owners.title}. {EMPTY_MESSAGES.owners.description}
+                        {t('owners.title', { ns: 'empty-message' })}. {t('owners.description', { ns: 'empty-message' })}
                     </Typography.Paragraph>
                 )}
                 {!readOnly && (
                     <Button type={ownersEmpty ? 'default' : 'text'} onClick={() => setShowAddModal(true)}>
-                        <PlusOutlined /> Add Owners
+                        <PlusOutlined /> {t('crud.addWithName', { name: t('common.owners') })}
                     </Button>
                 )}
             </div>

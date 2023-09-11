@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../types.generated';
 import { BrowsableEntityPage } from '../browse/BrowsableEntityPage';
 import LineageExplorer from '../lineage/LineageExplorer';
@@ -29,6 +30,7 @@ export const EntityPage = ({ entityType }: Props) => {
     const { urn: encodedUrn } = useParams<RouteParams>();
     const urn = decodeUrn(encodedUrn);
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const entity = entityRegistry.getEntity(entityType);
     const isBrowsable = entity.isBrowseEnabled();
     const isLineageSupported = entity.isLineageEnabled();
@@ -71,7 +73,7 @@ export const EntityPage = ({ entityType }: Props) => {
 
     return (
         <>
-            {loading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+            {loading && <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />}
             {error && <ErrorSection />}
             {data && !canViewEntityPage && <UnauthorizedPage />}
             {canViewEntityPage &&

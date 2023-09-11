@@ -1,6 +1,7 @@
 import { Col, Row } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import useUserParams from '../../shared/entitySearch/routingUtils/useUserParams';
 import { useGetUserQuery } from '../../../graphql/user.generated';
 import { EntityRelationship, EntityType } from '../../../types.generated';
@@ -42,19 +43,11 @@ const Content = styled.div`
     }
 `;
 
-export const EmptyValue = styled.div`
-    &:after {
-        content: 'None';
-        color: #b7b7b7;
-        font-style: italic;
-        font-weight: 100;
-    }
-`;
-
 /**
  * Responsible for reading & writing users.
  */
 export default function UserProfile() {
+    const { t } = useTranslation();
     const { urn: encodedUrn } = useUserParams();
     const urn = decodeUrn(encodedUrn);
     const entityRegistry = useEntityRegistry();
@@ -73,6 +66,7 @@ export default function UserProfile() {
         return [
             {
                 name: TabType.Assets,
+                title: t('common.assets'),
                 path: TabType.Assets.toLocaleLowerCase(),
                 content: <UserAssets urn={urn} />,
                 display: {
@@ -81,6 +75,7 @@ export default function UserProfile() {
             },
             {
                 name: TabType.Groups,
+                title: t('common.groups'),
                 path: TabType.Groups.toLocaleLowerCase(),
                 content: <UserGroups urn={urn} initialRelationships={userGroups} pageSize={GROUP_PAGE_SIZE} />,
                 display: {

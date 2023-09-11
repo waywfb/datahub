@@ -3,12 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { List, Tag, Tooltip, Typography } from 'antd';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { CorpGroup, EntityType, OriginType } from '../../../types.generated';
 import CustomAvatar from '../../shared/avatar/CustomAvatar';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import EntityDropdown from '../../entity/shared/EntityDropdown';
 import { EntityMenuItems } from '../../entity/shared/EntityDropdown/EntityDropdown';
-import { getElasticCappedTotalValueText } from '../../entity/shared/constants';
+import { ELASTIC_MAX_COUNT, getElasticCappedTotalValueText } from '../../entity/shared/constants';
 
 type Props = {
     group: CorpGroup;
@@ -37,6 +38,7 @@ const GroupItemButtonGroup = styled.div`
 
 export default function GroupListItem({ group, onDelete }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const displayName = entityRegistry.getDisplayName(EntityType.CorpGroup, group);
     const isExternalGroup: boolean = group.origin?.type === OriginType.External;
     const externalGroupType: string = group.origin?.externalType || 'outside DataHub';
@@ -55,14 +57,21 @@ export default function GroupListItem({ group, onDelete }: Props) {
                                 <Typography.Text type="secondary">{group.properties?.description}</Typography.Text>
                             </div>
                         </div>
-                        <Tag>{getElasticCappedTotalValueText((group as any).memberCount?.total || 0)} members</Tag>
+                        <Tag>
+                            {(group as any).memberCount?.total < ELASTIC_MAX_COUNT
+                                ? t('common.memberWithCount_interval', {
+                                      postProcess: 'interval',
+                                      count: (group as any).memberCount?.total || 0,
+                                  })
+                                : `${getElasticCappedTotalValueText((group as any).memberCount?.total || 0)} ${t(
+                                      'common.members',
+                                  )}`}
+                        </Tag>
                     </GroupHeaderContainer>
                 </Link>
                 <GroupItemButtonGroup>
                     {isExternalGroup && (
-                        <Tooltip
-                            title={`Membership for this group cannot be edited as it is synced from ${externalGroupType}.`}
-                        >
+                        <Tooltip title={t('group.cantEditBecauseExternalGroup', { externalGroupType })}>
                             <LockOutlined />
                         </Tooltip>
                     )}

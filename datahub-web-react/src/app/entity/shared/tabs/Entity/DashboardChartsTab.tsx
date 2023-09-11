@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useBaseEntity } from '../../EntityContext';
 import { EntityType } from '../../../../../types.generated';
 import { EntityList } from './components/EntityList';
@@ -9,11 +10,11 @@ export const DashboardChartsTab = () => {
     const dashboard = entity && entity.dashboard;
     const charts = dashboard?.charts?.relationships.map((relationship) => relationship.entity);
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const totalCharts = dashboard?.charts?.total || 0;
-    const title = `Contains ${totalCharts} ${
-        totalCharts === 1
-            ? entityRegistry.getEntityName(EntityType.Chart)
-            : entityRegistry.getCollectionName(EntityType.Chart)
-    }`;
+    const title = t('common.containsWithNameNNumber', {
+        count: totalCharts,
+        name: entityRegistry.getEntityNameTrans(EntityType.Chart, t, totalCharts),
+    });
     return <EntityList title={title} type={EntityType.Chart} entities={charts || []} />;
 };

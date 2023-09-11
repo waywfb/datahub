@@ -3,6 +3,7 @@ import { CheckCircleFilled, LoadingOutlined } from '@ant-design/icons';
 import Icon from '@ant-design/icons/lib/components/Icon';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useSearchAcrossLineageQuery } from '../../../../../graphql/search.generated';
 import { Entity, EntityType, FilterOperator, LineageDirection } from '../../../../../types.generated';
 import { ANTD_GRAY } from '../../constants';
@@ -40,6 +41,7 @@ const StyledCheck = styled(CheckCircleFilled)`
 `;
 
 export default function UpstreamHealth() {
+    const { t } = useTranslation();
     const { entityData } = useEntityData();
     const { data, loading } = useSearchAcrossLineageQuery({
         variables: {
@@ -78,7 +80,7 @@ export default function UpstreamHealth() {
         return (
             <div>
                 <StyledCheck />
-                <TextWrapper>All data inputs are healthy</TextWrapper>
+                <TextWrapper>{t('entity.allDataInputsAreHealthy')}</TextWrapper>
             </div>
         );
     }
@@ -86,7 +88,7 @@ export default function UpstreamHealth() {
     return (
         <div>
             <StyledIcon component={SubtractIcon} />
-            <UnknownText>Unknown data input health</UnknownText>
+            <UnknownText>{t('entity.unknownDataInputHealth')}</UnknownText>
         </div>
     );
 }

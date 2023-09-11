@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import { useTranslation } from 'react-i18next';
 import { CLIENT_AUTH_COOKIE } from '../conf/Global';
 import { useGetMeQuery } from '../graphql/me.generated';
 
@@ -7,9 +8,10 @@ import { useGetMeQuery } from '../graphql/me.generated';
  */
 export function useGetAuthenticatedUser(skip?: boolean) {
     const userUrn = Cookies.get(CLIENT_AUTH_COOKIE);
+    const { t } = useTranslation();
     const { data, error } = useGetMeQuery({ skip: skip || !userUrn, fetchPolicy: 'cache-and-network' });
     if (error) {
-        console.error(`Could not fetch logged in user from cache. + ${error.message}`);
+        console.error(`${t('user.error.fetchFromCache')} + ${error.message}`);
     }
     return data?.me;
 }
@@ -19,8 +21,9 @@ export function useGetAuthenticatedUser(skip?: boolean) {
  */
 export function useGetAuthenticatedUserUrn() {
     const userUrn = Cookies.get(CLIENT_AUTH_COOKIE);
+    const { t } = useTranslation();
     if (!userUrn) {
-        throw new Error('Could not find logged in user.');
+        throw new Error(t('user.error.notFound'));
     }
     return userUrn;
 }

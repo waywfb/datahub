@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../types.generated';
 import analytics, { EventType, EntityActionType } from '../../analytics';
 import UrlButton from './UrlButton';
@@ -14,6 +15,8 @@ interface Props {
 }
 
 export default function ExternalUrlButton({ externalUrl, platformName, entityType, entityUrn }: Props) {
+    const { t } = useTranslation();
+
     function sendAnalytics() {
         analytics.event({
             type: EventType.EntityActionEvent,
@@ -30,7 +33,7 @@ export default function ExternalUrlButton({ externalUrl, platformName, entityTyp
 
     return (
         <UrlButton href={externalUrl} onClick={sendAnalytics}>
-            {displayedName ? `View in ${displayedName}` : 'View link'}
+            {displayedName ? t('navigation.viewInWithName', { name: displayedName }) : t('navigation.viewLink')}
         </UrlButton>
     );
 }

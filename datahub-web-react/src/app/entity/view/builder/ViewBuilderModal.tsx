@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, Modal, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { DEFAULT_BUILDER_STATE, ViewBuilderState } from '../types';
 import { ViewBuilderForm } from './ViewBuilderForm';
 import ClickOutside from '../../../shared/ClickOutside';
@@ -33,14 +35,15 @@ type Props = {
     onCancel?: () => void;
 };
 
-const getTitleText = (mode, urn) => {
+const getTitleText = (mode, urn, t: TFunction) => {
     if (mode === ViewBuilderMode.PREVIEW) {
-        return 'Preview View';
+        return t('filter.view.previewView');
     }
-    return urn !== undefined ? 'Edit View' : 'Create new View';
+    return t(urn !== undefined ? 'crud.editWithName' : 'crud.createWithName', { name: t('common.view') });
 };
 
 export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }: Props) => {
+    const { t } = useTranslation();
     const [viewBuilderState, setViewBuilderState] = useState<ViewBuilderState>(initialState || DEFAULT_BUILDER_STATE);
 
     useEffect(() => {
@@ -49,20 +52,21 @@ export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }
 
     const confirmClose = () => {
         Modal.confirm({
-            title: 'Exit View Editor',
-            content: `Are you sure you want to exit View editor? All changes will be lost`,
+            title: t('filter.view.exitViewEditor'),
+            content: t('filter.view.exitViewEditorConfirm'),
             onOk() {
                 onCancel?.();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
     };
 
     const canSave = viewBuilderState.name && viewBuilderState.viewType && viewBuilderState?.definition?.filter;
-    const titleText = getTitleText(mode, urn);
+    const titleText = getTitleText(mode, urn, t);
 
     return (
         <ClickOutside onClickOutside={confirmClose} wrapperClassName="test-builder-modal">
@@ -84,7 +88,7 @@ export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }
                 <ViewBuilderForm urn={urn} mode={mode} state={viewBuilderState} updateState={setViewBuilderState} />
                 <SaveButtonContainer>
                     <CancelButton data-testid="view-builder-cancel" onClick={onCancel}>
-                        Cancel
+                        {t('common.cancel')}
                     </CancelButton>
                     {mode === ViewBuilderMode.EDITOR && (
                         <Button
@@ -93,7 +97,7 @@ export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }
                             disabled={!canSave}
                             onClick={() => onSubmit(viewBuilderState)}
                         >
-                            Save
+                            {t('common.save')}
                         </Button>
                     )}
                 </SaveButtonContainer>

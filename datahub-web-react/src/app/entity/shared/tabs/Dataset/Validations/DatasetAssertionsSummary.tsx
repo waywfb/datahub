@@ -2,6 +2,8 @@ import { CheckCircleFilled, CloseCircleFilled, StopOutlined } from '@ant-design/
 import { Tooltip, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../constants';
 
 const SummaryHeader = styled.div`
@@ -23,8 +25,8 @@ const SummaryMessage = styled.div`
 
 const SummaryTitle = styled(Typography.Title)`
     && {
-        padding-bottom: 0px;
-        margin-bottom: 0px;
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
 `;
 
@@ -52,27 +54,31 @@ const getSummaryIcon = (summary: AssertionsSummary) => {
     return <CloseCircleFilled style={{ color: FAILURE_COLOR_HEX, fontSize: 28 }} />;
 };
 
-const getSummaryMessage = (summary: AssertionsSummary) => {
+const getSummaryMessage = (summary: AssertionsSummary, t: TFunction) => {
     if (summary.totalRuns === 0) {
-        return 'No assertions have run';
+        return t('assertion.noAssertionsHaveRun');
     }
     if (summary.succeededRuns === summary.totalRuns) {
-        return 'All assertions have passed';
+        return t('assertion.allPassing');
     }
     if (summary.failedRuns === summary.totalRuns) {
-        return 'All assertions have failed';
+        return t('assertion.allFailing');
     }
-    return 'Some assertions have failed';
+    return t('assertion.someFailing');
 };
 
 export const DatasetAssertionsSummary = ({ summary }: Props) => {
+    const { t } = useTranslation();
     const summaryIcon = getSummaryIcon(summary);
-    const summaryMessage = getSummaryMessage(summary);
-    const subtitleMessage = `${summary.succeededRuns} successful assertions, ${summary.failedRuns} failed assertions`;
+    const summaryMessage = getSummaryMessage(summary, t);
+    const subtitleMessage = t('assertion.assertionResume', {
+        successCount: summary.succeededRuns,
+        failedCount: summary.failedRuns,
+    });
     return (
         <SummaryHeader>
             <SummaryContainer>
-                <Tooltip title="This status is based on the most recent run of each assertion.">
+                <Tooltip title={t('assertion.assertionStatusTooltip')}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         {summaryIcon}
                         <SummaryMessage>

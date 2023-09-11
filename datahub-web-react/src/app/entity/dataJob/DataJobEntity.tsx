@@ -79,22 +79,27 @@ export class DataJobEntity implements Entity<DataJob> {
             headerDropdownItems={new Set([EntityMenuItems.UPDATE_DEPRECATION])}
             tabs={[
                 {
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
+                    titleKey: 'common.properties',
                     name: 'Properties',
                     component: PropertiesTab,
                 },
                 {
+                    titleKey: 'common.pipeline',
                     name: 'Pipeline',
                     component: DataJobFlowTab,
                 },
                 {
+                    titleKey: 'common.lineage',
                     name: 'Lineage',
                     component: LineageTab,
                 },
                 {
+                    titleKey: 'common.runs',
                     name: 'Runs',
                     component: RunsTab,
                     display: {

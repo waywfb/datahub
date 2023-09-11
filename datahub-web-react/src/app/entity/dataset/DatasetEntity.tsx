@@ -94,10 +94,12 @@ export class DatasetEntity implements Entity<Dataset> {
             }}
             tabs={[
                 {
+                    titleKey: 'common.schema',
                     name: 'Schema',
                     component: SchemaTab,
                 },
                 {
+                    titleKey: 'entity.viewDefinition',
                     name: 'View Definition',
                     component: ViewDefinitionTab,
                     display: {
@@ -110,10 +112,12 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
+                    titleKey: 'common.preview',
                     name: 'Preview',
                     component: EmbedTab,
                     display: {
@@ -122,14 +126,17 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
+                    titleKey: 'common.lineage',
                     name: 'Lineage',
                     component: LineageTab,
                 },
                 {
+                    titleKey: 'common.properties',
                     name: 'Properties',
                     component: PropertiesTab,
                 },
                 {
+                    titleKey: 'common.queries',
                     name: 'Queries',
                     component: QueriesTab,
                     display: {
@@ -138,6 +145,7 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
+                    titleKey: 'common.stats',
                     name: 'Stats',
                     component: StatsTab,
                     display: {
@@ -149,6 +157,7 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
+                    titleKey: 'common.validation',
                     name: 'Validation',
                     component: ValidationsTab,
                     display: {
@@ -161,6 +170,7 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
+                    titleKey: 'common.operations',
                     name: 'Operations',
                     component: OperationsTab,
                     display: {

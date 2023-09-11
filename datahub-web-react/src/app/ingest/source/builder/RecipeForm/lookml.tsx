@@ -1,13 +1,14 @@
 import React from 'react';
 import { get } from 'lodash';
+import { Trans } from 'react-i18next';
 import { FieldType, RecipeField, setFieldValueOnRecipe } from './common';
 
 export const LOOKML = 'lookml';
 
 export const LOOKML_GITHUB_INFO_REPO: RecipeField = {
     name: 'github_info.repo',
-    label: 'GitHub Repo',
-    tooltip: 'The name of the GitHub repository where your LookML is defined.',
+    label: 'ingest.recipeForms.label.githubRepo',
+    tooltip: 'ingest.lookml.lookmlGithubRepoToolTip',
     type: FieldType.TEXT,
     fieldPath: 'source.config.github_info.repo',
     placeholder: 'datahub-project/datahub',
@@ -18,21 +19,30 @@ export const LOOKML_GITHUB_INFO_REPO: RecipeField = {
 const deployKeyFieldPath = 'source.config.github_info.deploy_key';
 export const DEPLOY_KEY: RecipeField = {
     name: 'github_info.deploy_key',
-    label: 'GitHub Deploy Key',
+    label: 'ingest.lookml.label.githubDeployKey',
     tooltip: (
         <>
-            An SSH private key that has been provisioned for read access on the GitHub repository where the LookML is
-            defined.
+            <Trans
+                {...{
+                    i18nKey: 'ingest.lookml.lookmlGithubDeployKeyToolTipOne',
+                }}
+            />
             <div style={{ marginTop: 8 }}>
-                Learn how to generate an SSH for your GitHub repository{' '}
-                <a
-                    href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    here
-                </a>
-                .
+                <Trans
+                    {...{
+                        i18nKey: 'ingest.lookml.lookmlGithubDeployKeyToolTipTwo',
+                        components: {
+                            aLink: (
+                                // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                                <a
+                                    href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                />
+                            ),
+                        },
+                    }}
+                />
             </div>
         </>
     ),
@@ -67,8 +77,8 @@ function validateApiSection(getFieldValue, fieldName) {
 
 export const LOOKML_BASE_URL: RecipeField = {
     name: 'base_url',
-    label: 'Looker Base URL',
-    tooltip: 'Optional URL to your Looker instance. This is used to generate external URLs for models in your project.',
+    label: 'ingest.lookml.label.lookerBaseUrl',
+    tooltip: 'ingest.lookml.lookmlLookerBaseUrlToolTip',
     type: FieldType.TEXT,
     fieldPath: 'source.config.api.base_url',
     placeholder: 'https://looker.company.com',
@@ -77,8 +87,8 @@ export const LOOKML_BASE_URL: RecipeField = {
 
 export const LOOKML_CLIENT_ID: RecipeField = {
     name: 'client_id',
-    label: 'Looker Client ID',
-    tooltip: 'The Looker API Client ID. Required if Looker Base URL is present.',
+    label: 'ingest.lookml.label.lookerClientID',
+    tooltip: 'ingest.lookml.lookmlLookerClientID',
     type: FieldType.SECRET,
     placeholder: 'client_id',
     fieldPath: 'source.config.api.client_id',
@@ -87,8 +97,8 @@ export const LOOKML_CLIENT_ID: RecipeField = {
 
 export const LOOKML_CLIENT_SECRET: RecipeField = {
     name: 'client_secret',
-    label: 'Looker Client Secret',
-    tooltip: 'A Looker API Client Secret. Required if Looker Base URL is present.',
+    label: 'ingest.lookml.label.lookerClientSecret',
+    tooltip: 'ingest.lookml.lookmlLookerClientSecretToolTip',
     type: FieldType.SECRET,
     fieldPath: 'source.config.api.client_secret',
     placeholder: 'client_secret',
@@ -97,18 +107,24 @@ export const LOOKML_CLIENT_SECRET: RecipeField = {
 
 export const PROJECT_NAME: RecipeField = {
     name: 'project_name',
-    label: 'LookML Project Name',
+    label: 'ingest.lookml.label.lookmlProjectName',
     tooltip: (
         <>
-            The project name within which the LookML files live. See
-            <a
-                href="https://docs.looker.com/data-modeling/getting-started/how-project-works"
-                target="_blank"
-                rel="noreferrer"
-            >
-                this document
-            </a>
-            for more details. Required if Looker Base URL is not present.
+            <Trans
+                {...{
+                    i18nKey: 'ingest.lookml.lookmlProjectName',
+                    components: {
+                        aLink: (
+                            // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                            <a
+                                href="https://docs.looker.com/data-modeling/getting-started/how-project-works"
+                                target="_blank"
+                                rel="noreferrer"
+                            />
+                        ),
+                    },
+                }}
+            />
         </>
     ),
     type: FieldType.TEXT,
@@ -133,9 +149,8 @@ export const PROJECT_NAME: RecipeField = {
 
 export const PARSE_TABLE_NAMES_FROM_SQL: RecipeField = {
     name: 'parse_table_names_from_sql',
-    label: 'Extract External Lineage',
-    tooltip:
-        'Extract lineage between Looker and the external upstream Data Sources (e.g. Data Warehouses or Databases).',
+    label: 'ingest.lookml.label.extractExternalLineage',
+    tooltip: 'ingest.lookml.lookmlExtractExternalLineage',
     type: FieldType.BOOLEAN,
     fieldPath: 'source.config.parse_table_names_from_sql',
     rules: null,
@@ -143,18 +158,24 @@ export const PARSE_TABLE_NAMES_FROM_SQL: RecipeField = {
 
 export const CONNECTION_TO_PLATFORM_MAP_NAME: RecipeField = {
     name: 'name',
-    label: 'Name',
+    label: 'common.name',
     tooltip: (
         <div>
-            Looker connection name. See{' '}
-            <a
-                href="https://cloud.google.com/looker/docs/reference/param-model-connection"
-                target="_blank"
-                rel="noreferrer"
-            >
-                documentation
-            </a>{' '}
-            for more details.
+            <Trans
+                {...{
+                    i18nKey: 'ingest.lookml.lookmlNameToolTip',
+                    components: {
+                        aLink: (
+                            // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+                            <a
+                                href="https://cloud.google.com/looker/docs/reference/param-model-connection"
+                                target="_blank"
+                                rel="noreferrer"
+                            />
+                        ),
+                    },
+                }}
+            />
         </div>
     ),
 
@@ -166,8 +187,8 @@ export const CONNECTION_TO_PLATFORM_MAP_NAME: RecipeField = {
 
 export const PLATFORM: RecipeField = {
     name: 'platform',
-    label: 'Platform',
-    tooltip: 'The Data Platform ID in DataHub (e.g. snowflake, bigquery, redshift, mysql, postgres)',
+    label: 'common.platform',
+    tooltip: 'ingest.lookml.lookmlPlatformToolTip',
     type: FieldType.TEXT,
     fieldPath: 'platform',
     placeholder: 'snowflake',
@@ -176,8 +197,8 @@ export const PLATFORM: RecipeField = {
 
 export const DEFAULT_DB: RecipeField = {
     name: 'default_db',
-    label: 'Default Database',
-    tooltip: 'The Database associated with assets from the Looker connection.',
+    label: 'ingest.lookml.label.defaultDatabase',
+    tooltip: 'ingest.lookml.lookmlDefaultDatabaseToolTip',
     type: FieldType.TEXT,
     fieldPath: 'default_db',
     placeholder: 'default_db',
@@ -188,11 +209,10 @@ const dictFields = [PLATFORM, DEFAULT_DB];
 const connectionToPlatformMapFieldPath = 'source.config.connection_to_platform_map';
 export const CONNECTION_TO_PLATFORM_MAP: RecipeField = {
     name: 'connection_to_platform_map',
-    label: 'Connection To Platform Map',
-    tooltip:
-        'A mapping of Looker connection names to DataHub Data Platform and Database names. This is used to create an accurate picture of the Lineage between LookML models and upstream Data Sources.',
+    label: 'ingest.lookml.label.connectionToPlatformMap',
+    tooltip: 'ingest.lookml.lookmlConnectionToPlatformMap',
     type: FieldType.DICT,
-    buttonLabel: 'Add mapping',
+    buttonLabel: 'ingest.lookml.buttonLabel.addMapping',
     fieldPath: connectionToPlatformMapFieldPath,
     keyField: CONNECTION_TO_PLATFORM_MAP_NAME,
     fields: dictFields,

@@ -3,6 +3,7 @@ import { Divider, Tooltip, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import {
     GlobalTags,
     Owner,
@@ -18,6 +19,7 @@ import {
     EntityPath,
     DataProduct,
     Health,
+    EntityType,
 } from '../../types.generated';
 import TagTermGroup from '../shared/tags/TagTermGroup';
 import { ANTD_GRAY } from '../entity/shared/constants';
@@ -36,6 +38,7 @@ import { DataProductLink } from '../shared/tags/DataProductLink';
 import { EntityHealth } from '../entity/shared/containers/profile/header/EntityHealth';
 import SearchTextHighlighter from '../search/matches/SearchTextHighlighter';
 import { getUniqueOwners } from './utils';
+import { useEntityRegistry } from '../useEntityRegistry';
 
 const PreviewContainer = styled.div`
     display: flex;
@@ -74,7 +77,7 @@ const EntityTitle = styled(Typography.Text)<{ $titleSizePx?: number }>`
     }
 
     &&& {
-        margin-right 8px;
+        margin-right: 8px;
         font-size: ${(props) => props.$titleSizePx || 16}px;
         font-weight: 600;
         vertical-align: middle;
@@ -111,7 +114,7 @@ const DescriptionContainer = styled.div`
 
 const TagContainer = styled.div`
     display: inline-flex;
-    margin-left: 0px;
+    margin-left: 0;
     margin-top: 3px;
     flex-wrap: wrap;
 `;
@@ -162,7 +165,7 @@ interface Props {
     logoComponent?: JSX.Element;
     url: string;
     description?: string;
-    type?: string;
+    type?: EntityType | string;
     typeIcon?: JSX.Element;
     platform?: string;
     platformInstanceId?: string;
@@ -241,6 +244,9 @@ export default function DefaultPreviewCard({
     // sometimes these lists will be rendered inside an entity container (for example, in the case of impact analysis)
     // in those cases, we may want to enrich the preview w/ context about the container entity
     const { entityData } = useEntityData();
+    const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
+    const suffixList: string[] = t('lineage.ordinalSuffix', { returnObjects: true });
     const insightViews: Array<ReactNode> = [
         ...(insights?.map((insight) => (
             <>
@@ -265,6 +271,7 @@ export default function DefaultPreviewCard({
 
     const shouldShowRightColumn = (topUsers && topUsers.length > 0) || (owners && owners.length > 0);
     const uniqueOwners = getUniqueOwners(owners);
+    const entityTypeName = !type || typeof type === 'string' ? type : entityRegistry.getEntityNameTrans(type, t);
 
     return (
         <PreviewContainer data-testid={dataTestID} onMouseDown={onPreventMouseDown}>
@@ -278,7 +285,7 @@ export default function DefaultPreviewCard({
                         entityLogoComponent={logoComponent}
                         instanceId={platformInstanceId}
                         typeIcon={typeIcon}
-                        entityType={type}
+                        entityType={entityTypeName}
                         parentContainers={parentContainers?.containers}
                         parentNodes={parentNodes?.nodes}
                         parentContainersRef={contentRef}
@@ -305,18 +312,20 @@ export default function DefaultPreviewCard({
                                 externalUrl={externalUrl}
                                 platformName={platform}
                                 entityUrn={urn}
-                                entityType={type}
+                                entityType={entityTypeName}
                             />
                         )}
                         {entityTitleSuffix}
                     </EntityTitleContainer>
                     {degree !== undefined && degree !== null && (
                         <Tooltip
-                            title={`This entity is a ${getNumberWithOrdinal(degree)} degree connection to ${
-                                entityData?.name || 'the source entity'
-                            }`}
+                            title={t('lineage.entityDistanceFrom', {
+                                duration: getNumberWithOrdinal(degree, suffixList),
+                                name: entityData?.name || '',
+                                context: entityData?.name ? 'withName' : 'withoutName',
+                            })}
                         >
-                            <PlatformText>{getNumberWithOrdinal(degree)}</PlatformText>
+                            <PlatformText>{getNumberWithOrdinal(degree, suffixList)}</PlatformText>
                         </Tooltip>
                     )}
                     {!!degree && entityCount && <PlatformDivider />}
@@ -336,7 +345,7 @@ export default function DefaultPreviewCard({
                                             setDescriptionExpanded(!descriptionExpanded);
                                         }}
                                     >
-                                        {descriptionExpanded ? 'Show Less' : 'Show More'}
+                                        {descriptionExpanded ? t('common.showLess') : t('common.showMore')}
                                     </Typography.Link>
                                 ) : undefined
                             }
@@ -374,7 +383,9 @@ export default function DefaultPreviewCard({
                     {topUsers && topUsers?.length > 0 && (
                         <>
                             <UserListContainer>
-                                <UserListTitle strong>Top Users</UserListTitle>
+                                <UserListTitle strong>
+                                    {t('common.topWithName', { name: t('common.users') })}
+                                </UserListTitle>
                                 <div>
                                     <ExpandedActorGroup actors={topUsers} max={2} />
                                 </div>
@@ -386,7 +397,7 @@ export default function DefaultPreviewCard({
                     )}
                     {uniqueOwners && uniqueOwners?.length > 0 && (
                         <UserListContainer>
-                            <UserListTitle strong>Owners</UserListTitle>
+                            <UserListTitle strong>{t('common.owners')}</UserListTitle>
                             <div>
                                 <ExpandedActorGroup actors={uniqueOwners.map((owner) => owner.owner)} max={2} />
                             </div>

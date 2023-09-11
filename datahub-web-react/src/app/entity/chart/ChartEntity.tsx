@@ -86,10 +86,12 @@ export class ChartEntity implements Entity<Chart> {
             }}
             tabs={[
                 {
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
+                    titleKey: 'common.fields',
                     name: 'Fields',
                     component: InputFieldsTab,
                     display: {
@@ -98,6 +100,7 @@ export class ChartEntity implements Entity<Chart> {
                     },
                 },
                 {
+                    titleKey: 'common.preview',
                     name: 'Preview',
                     component: EmbedTab,
                     display: {
@@ -108,6 +111,7 @@ export class ChartEntity implements Entity<Chart> {
                     },
                 },
                 {
+                    titleKey: 'common.lineage',
                     name: 'Lineage',
                     component: LineageTab,
                     properties: {
@@ -115,6 +119,7 @@ export class ChartEntity implements Entity<Chart> {
                     },
                 },
                 {
+                    titleKey: 'common.dashboards',
                     name: 'Dashboards',
                     component: ChartDashboardsTab,
                     display: {
@@ -123,6 +128,7 @@ export class ChartEntity implements Entity<Chart> {
                     },
                 },
                 {
+                    titleKey: 'common.properties',
                     name: 'Properties',
                     component: PropertiesTab,
                 },

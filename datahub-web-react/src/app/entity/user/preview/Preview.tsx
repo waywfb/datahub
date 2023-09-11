@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../shared/constants';
@@ -67,6 +68,7 @@ export const Preview = ({
     title?: string | undefined;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const url = entityRegistry.getEntityUrl(EntityType.CorpUser, urn);
 
     return (
@@ -78,7 +80,7 @@ export const Preview = ({
                             <PreviewImage>
                                 {entityRegistry.getIcon(EntityType.CorpUser, 20, IconStyleType.HIGHLIGHT)}
                             </PreviewImage>
-                            <PlatformText>{entityRegistry.getEntityName(EntityType.CorpUser)}</PlatformText>
+                            <PlatformText>{entityRegistry.getEntityNameTrans(EntityType.CorpUser, t)}</PlatformText>
                         </PlatformInfo>
                         <Link to={url}>
                             <EntityTitle>

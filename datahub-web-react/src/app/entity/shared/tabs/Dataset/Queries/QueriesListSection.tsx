@@ -16,12 +16,12 @@ const QueriesTitleSection = styled.div`
 
 const QueriesTitle = styled(Typography.Title)`
     && {
-        margin: 0px;
+        margin: 0;
     }
 `;
 
 const StyledPagination = styled(Pagination)`
-    padding: 0px 24px 24px 24px;
+    padding: 0 24px 24px 24px;
     width: 100%;
     display: flex;
     align-items: center;

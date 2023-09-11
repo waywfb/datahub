@@ -68,26 +68,90 @@ export const ORDERED_FIELDS = [
     DEGREE_FILTER_NAME,
 ];
 
-export const FIELD_TO_LABEL = {
-    owners: 'Owner',
-    tags: 'Tag',
-    domains: 'Domain',
-    platform: 'Platform',
-    fieldTags: 'Column Tag',
-    glossaryTerms: 'Glossary Term',
-    fieldGlossaryTerms: 'Column Glossary Term',
-    fieldPaths: 'Column Name',
-    description: 'Description',
-    fieldDescriptions: 'Column Description',
-    removed: 'Soft Deleted',
-    entity: 'Entity Type',
-    entityType: 'Entity Type',
-    _entityType: 'Entity Type',
-    container: 'Container',
-    typeNames: 'Sub Type',
-    origin: 'Environment',
-    degree: 'Degree',
-    [BROWSE_PATH_V2_FILTER_NAME]: 'Browse',
+export const FIELD_TO_LABEL: { [key: string]: { name: string; transKey: string; count?: number } } = {
+    owners: {
+        name: 'Owner',
+        transKey: 'common.owner',
+    },
+    tags: {
+        name: 'Tag',
+        transKey: 'common.tag',
+        count: 1,
+    },
+    domains: {
+        name: 'Domain',
+        transKey: 'common.domain',
+        count: 1,
+    },
+    platform: {
+        name: 'Platform',
+        transKey: 'common.platform',
+        count: 1,
+    },
+    fieldTags: {
+        name: 'Column Tag',
+        transKey: '$t(common.column) $t(common.tag)',
+        count: 1,
+    },
+    glossaryTerms: {
+        name: 'Glossary Term',
+        transKey: 'common.glossaryTerms',
+        count: 1,
+    },
+    fieldGlossaryTerms: {
+        name: 'Column Glossary Term',
+        transKey: '$t(common.column) $t(common.glossaryTerms)',
+        count: 1,
+    },
+    fieldPaths: {
+        name: 'Column Name',
+        transKey: '$t(common.column) $t(common.name)',
+    },
+    description: {
+        name: 'Description',
+        transKey: 'common.description',
+    },
+    fieldDescriptions: {
+        name: 'Column Description',
+        transKey: '$t(common.column) $t(common.description)',
+    },
+    removed: {
+        name: 'Soft Deleted',
+        transKey: 'crud.success.softDelete',
+    },
+    entity: {
+        name: 'Entity Type',
+        transKey: 'common.entityType',
+    },
+    entityType: {
+        name: 'Entity Type',
+        transKey: 'common.entityType',
+    },
+    _entityType: {
+        name: 'Entity Type',
+        transKey: 'common.entityType',
+    },
+    container: {
+        name: 'Container',
+        transKey: 'common.container',
+        count: 1,
+    },
+    typeNames: {
+        name: 'Sub Type',
+        transKey: 'common.subtype',
+    },
+    origin: {
+        name: 'Environment',
+        transKey: 'common.environment',
+    },
+    degree: {
+        name: 'Degree',
+        transKey: 'common.degree',
+    },
+    [BROWSE_PATH_V2_FILTER_NAME]: {
+        name: 'Browse',
+        transKey: 'common.browse',
+    },
 };
 
 export const FIELDS_THAT_USE_CONTAINS_OPERATOR = [

@@ -1,6 +1,7 @@
 import { Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { DomainsList } from './DomainsList';
 
 const PageContainer = styled.div`
@@ -22,13 +23,12 @@ const PageTitle = styled(Typography.Title)`
 const ListContainer = styled.div``;
 
 export const ManageDomainsPage = () => {
+    const { t } = useTranslation();
     return (
         <PageContainer>
             <PageHeaderContainer>
-                <PageTitle level={3}>Domains</PageTitle>
-                <Typography.Paragraph type="secondary">
-                    View your DataHub Domains. Take administrative actions.
-                </Typography.Paragraph>
+                <PageTitle level={3}>{t('common.domains')}</PageTitle>
+                <Typography.Paragraph type="secondary">{t('domain.domainManagementDescription')}</Typography.Paragraph>
             </PageHeaderContainer>
             <ListContainer>
                 <DomainsList />

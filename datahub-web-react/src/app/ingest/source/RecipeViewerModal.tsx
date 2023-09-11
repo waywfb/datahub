@@ -2,6 +2,7 @@ import Editor from '@monaco-editor/react';
 import { Button, Modal } from 'antd';
 import React from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { jsonToYaml } from './utils';
 
 const YamlWrapper = styled.div`
@@ -14,6 +15,7 @@ interface Props {
 }
 
 function RecipeViewerModal({ recipe, onCancel }: Props) {
+    const { t } = useTranslation();
     const formattedRecipe = recipe ? jsonToYaml(recipe) : '';
 
     return (
@@ -21,8 +23,8 @@ function RecipeViewerModal({ recipe, onCancel }: Props) {
             visible
             onCancel={onCancel}
             width={800}
-            title="View Ingestion Recipe"
-            footer={<Button onClick={onCancel}>Done</Button>}
+            title={t('ingest.recipeViewModalTitle')}
+            footer={<Button onClick={onCancel}>{t('common.done')}</Button>}
         >
             <YamlWrapper>
                 <Editor

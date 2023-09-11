@@ -18,6 +18,7 @@ export const Preview = ({
     parentNodes?: ParentNodesResult | null;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.GlossaryNode, urn)}
@@ -26,7 +27,7 @@ export const Preview = ({
             description={description || ''}
             owners={owners}
             logoComponent={<FolderOutlined style={{ fontSize: '20px' }} />}
-            type={entityRegistry.getEntityName(EntityType.GlossaryNode)}
+            type={EntityType.GlossaryNode}
             parentNodes={parentNodes}
         />
     );

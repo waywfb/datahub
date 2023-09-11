@@ -2,6 +2,7 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 import { Popover, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { toLocalDateTimeString, toRelativeTimeString } from '../../../../../shared/time/timeUtils';
 import { ANTD_GRAY } from '../../../../shared/constants';
 
@@ -29,6 +30,7 @@ interface Props {
 }
 
 function SchemaTimeStamps(props: Props) {
+    const { t, i18n } = useTranslation();
     const { lastUpdated, lastObserved } = props;
 
     if (!lastUpdated && !lastObserved) return null;
@@ -38,22 +40,33 @@ function SchemaTimeStamps(props: Props) {
             content={
                 <>
                     {lastObserved && (
-                        <TimeStampWrapper>Last observed on {toLocalDateTimeString(lastObserved)}.</TimeStampWrapper>
+                        <TimeStampWrapper>
+                            {t('reporting.lastObservedOnDate', {
+                                date: toLocalDateTimeString(lastObserved, i18n.language),
+                            })}
+                        </TimeStampWrapper>
                     )}
-                    {lastUpdated && <div>First reported on {toLocalDateTimeString(lastUpdated)}.</div>}
+                    {lastUpdated && (
+                        <div>
+                            {t('reporting.firstReportedOn', {
+                                date: toLocalDateTimeString(lastUpdated, i18n.language),
+                            })}
+                        </div>
+                    )}
                 </>
             }
         >
             <CurrentVersionTimestampText>
                 {lastObserved && (
                     <span>
-                        <StyledClockIcon /> Last observed {toRelativeTimeString(lastObserved)}
+                        <StyledClockIcon />{' '}
+                        {t('reporting.lastObservedDate', { date: toRelativeTimeString(lastObserved, i18n.language) })}
                     </span>
                 )}
                 {!lastObserved && lastUpdated && (
                     <span>
                         <StyledClockIcon />
-                        Reported {toRelativeTimeString(lastUpdated)}
+                        {t('reporting.reportedWithDate', { date: toRelativeTimeString(lastUpdated, i18n.language) })}
                     </span>
                 )}
             </CurrentVersionTimestampText>

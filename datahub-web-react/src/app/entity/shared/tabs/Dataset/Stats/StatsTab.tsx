@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { GetDatasetQuery, useGetLastMonthUsageAggregationsQuery } from '../../../../../../graphql/dataset.generated';
 import { DatasetProfile, Operation, UsageQueryResult } from '../../../../../../types.generated';
 import { useBaseEntity } from '../../../EntityContext';
@@ -11,6 +12,7 @@ import StatsHeader from './StatsHeader';
 import { ViewType } from './viewType';
 
 export default function StatsTab() {
+    const { t, i18n } = useTranslation();
     const baseEntity = useBaseEntity<GetDatasetQuery>();
 
     const [viewType, setViewType] = useState(ViewType.LATEST);
@@ -36,8 +38,9 @@ export default function StatsTab() {
     // Used for rendering operation info.
     const operations = (hasOperations && (baseEntity?.dataset?.operations as Array<Operation>)) || undefined;
     const latestOperation = operations && operations[0];
-    const lastUpdatedTime = latestOperation && toLocalDateTimeString(latestOperation?.lastUpdatedTimestamp);
-    const lastReportedTime = latestOperation && toLocalDateTimeString(latestOperation?.timestampMillis);
+    const lastUpdatedTime =
+        latestOperation && toLocalDateTimeString(latestOperation?.lastUpdatedTimestamp, i18n.language);
+    const lastReportedTime = latestOperation && toLocalDateTimeString(latestOperation?.timestampMillis, i18n.language);
     // Okay so if we are disabled, we don't have both or the other. Let's render
 
     // const emptyView = <Empty description="TODO: Stats!" image={Empty.PRESENTED_IMAGE_SIMPLE} />;
@@ -47,9 +50,10 @@ export default function StatsTab() {
 
     const reportedAt =
         latestProfile &&
-        `Reported on ${toLocalDateString(latestProfile?.timestampMillis)} at ${toLocalTimeString(
-            latestProfile?.timestampMillis,
-        )}`;
+        t('reporting.reportedOnAtWithDateTime', {
+            date: toLocalDateString(latestProfile?.timestampMillis, i18n.language),
+            time: toLocalTimeString(latestProfile?.timestampMillis, i18n.language),
+        });
 
     const totalSqlQueries = usageStats?.aggregations?.totalSqlQueries;
     const queryCountLast30Days = baseEntity.dataset?.statsSummary?.queryCountLast30Days;
@@ -61,6 +65,7 @@ export default function StatsTab() {
             reportedAt={reportedAt || ''}
             lookbackWindow={lookbackWindow}
             setLookbackWindow={setLookbackWindow}
+            t={t}
         />
     );
 

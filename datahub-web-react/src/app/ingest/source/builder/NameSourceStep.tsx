@@ -1,6 +1,7 @@
 import { Button, Checkbox, Collapse, Form, Input, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { SourceBuilderState, StepProps } from './types';
 
 const ControlsContainer = styled.div`
@@ -14,6 +15,7 @@ const SaveButton = styled(Button)`
 `;
 
 export const NameSourceStep = ({ state, updateState, prev, submit }: StepProps) => {
+    const { t } = useTranslation();
     const setName = (stagedName: string) => {
         const newState: SourceBuilderState = {
             ...state,
@@ -68,12 +70,12 @@ export const NameSourceStep = ({ state, updateState, prev, submit }: StepProps) 
                     required
                     label={
                         <Typography.Text strong style={{ marginBottom: 0 }}>
-                            Name
+                            {t('common.name')}
                         </Typography.Text>
                     }
                     style={{ marginBottom: 8 }}
                 >
-                    <Typography.Paragraph>Give this ingestion source a name.</Typography.Paragraph>
+                    <Typography.Paragraph>{t('ingest.giveThisIngestionSourceAName')}</Typography.Paragraph>
                     <Input
                         data-testid="source-name-input"
                         className="source-name-input"
@@ -83,11 +85,13 @@ export const NameSourceStep = ({ state, updateState, prev, submit }: StepProps) 
                     />
                 </Form.Item>
                 <Collapse ghost>
-                    <Collapse.Panel header={<Typography.Text type="secondary">Advanced</Typography.Text>} key="1">
-                        <Form.Item label={<Typography.Text strong>Executor Id</Typography.Text>}>
+                    <Collapse.Panel
+                        header={<Typography.Text type="secondary">{t('common.advanced')}</Typography.Text>}
+                        key="1"
+                    >
+                        <Form.Item label={<Typography.Text strong>{t('ingest.executorId')}</Typography.Text>}>
                             <Typography.Paragraph>
-                                Provide the executor id to route execution requests to. The built-in DataHub executor id
-                                is &apos;default&apos;. Do not change this unless you have configured a custom executor.
+                                {t('ingest.provideTheExecutorIDToRouteRequestToText')}
                             </Typography.Paragraph>
                             <Input
                                 placeholder="default"
@@ -95,9 +99,9 @@ export const NameSourceStep = ({ state, updateState, prev, submit }: StepProps) 
                                 onChange={(event) => setExecutorId(event.target.value)}
                             />
                         </Form.Item>
-                        <Form.Item label={<Typography.Text strong>CLI Version</Typography.Text>}>
+                        <Form.Item label={<Typography.Text strong>{t('ingest.cliVersion')}</Typography.Text>}>
                             <Typography.Paragraph>
-                                Advanced: Provide a custom CLI version to use for ingestion.
+                                {t('ingest.advancedProvideCustomCLIVersionToUseForIngestion')}
                             </Typography.Paragraph>
                             <Input
                                 data-testid="cli-version-input"
@@ -107,10 +111,8 @@ export const NameSourceStep = ({ state, updateState, prev, submit }: StepProps) 
                                 onChange={(event) => setVersion(event.target.value)}
                             />
                         </Form.Item>
-                        <Form.Item label={<Typography.Text strong>Debug Mode</Typography.Text>}>
-                            <Typography.Paragraph>
-                                Advanced: Turn on debug mode in order to get more verbose logs.
-                            </Typography.Paragraph>
+                        <Form.Item label={<Typography.Text strong>{t('common.debugMode')}</Typography.Text>}>
+                            <Typography.Paragraph>{t('ingest.advancedTurnOnDebugMode')}</Typography.Paragraph>
                             <Checkbox
                                 checked={state.config?.debugMode || false}
                                 onChange={(event) => setDebugMode(event.target.checked)}
@@ -120,20 +122,20 @@ export const NameSourceStep = ({ state, updateState, prev, submit }: StepProps) 
                 </Collapse>
             </Form>
             <ControlsContainer>
-                <Button onClick={prev}>Previous</Button>
+                <Button onClick={prev}>{t('common.previous')}</Button>
                 <div>
                     <SaveButton
                         disabled={!(state.name !== undefined && state.name.length > 0)}
                         onClick={() => onClickCreate(false)}
                     >
-                        Save
+                        {t('common.save')}
                     </SaveButton>
                     <Button
                         disabled={!(state.name !== undefined && state.name.length > 0)}
                         onClick={() => onClickCreate(true)}
                         type="primary"
                     >
-                        Save & Run
+                        {t('common.save')} & {t('common.run')}
                     </Button>
                 </div>
             </ControlsContainer>

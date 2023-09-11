@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     GetAutoCompleteMultipleResultsQuery,
     useAggregateAcrossEntitiesLazyQuery,
@@ -28,6 +29,7 @@ interface Props {
 
 export default function useSearchFilterDropdown({ filter, activeFilters, onChangeFilters }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const initialFilters = activeFilters.find((f) => f.field === filter.field)?.values;
     const initialFilterOptions = filter.aggregations
         .filter((agg) => initialFilters?.includes(agg.value))
@@ -108,7 +110,7 @@ export default function useSearchFilterDropdown({ filter, activeFilters, onChang
     const finalAggregations = filterEmptyAggregations(combinedAggregations, activeFilters);
     const filterOptions = getFilterOptions(filter.field, finalAggregations, selectedFilterOptions, autoCompleteResults)
         .map((filterOption) =>
-            mapFilterOption({ filterOption, entityRegistry, selectedFilterOptions, setSelectedFilterOptions }),
+            mapFilterOption({ filterOption, entityRegistry, t, selectedFilterOptions, setSelectedFilterOptions }),
         )
         .filter((option) => filterOptionsWithSearch(searchQuery, option.displayName as string));
 

@@ -3,6 +3,7 @@ import moment from 'moment';
 import styled from 'styled-components/macro';
 import { DatePicker, Tooltip } from 'antd';
 import { CalendarOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import ClickOutside from '../shared/ClickOutside';
 import { getTimeRangeDescription } from '../shared/time/timeUtils';
 import { ANTD_GRAY } from '../entity/shared/constants';
@@ -35,18 +36,19 @@ type Props = {
 };
 
 export default function LineageTimeSelector({ onChange, initialDates }: Props) {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
-    const [headerText, setHeaderText] = useState('No time range selected');
+    const [headerText, setHeaderText] = useState(t('lineage.noTimeRangeSelected'));
     const [startDate, setStartDate] = useState<moment.Moment | null>(initialDates[0]);
     const [endDate, setEndDate] = useState<moment.Moment | null>(initialDates[1]);
 
     useEffect(() => {
-        const timeRangeDescription = getTimeRangeDescription(startDate, endDate);
+        const timeRangeDescription = getTimeRangeDescription(startDate, endDate, t);
         setHeaderText(timeRangeDescription);
-    }, [startDate, endDate]);
+    }, [startDate, endDate, t]);
 
     return (
-        <Tooltip title="Filter lineage edges by observed date" placement="topLeft">
+        <Tooltip title={t('lineage.filterLineageByObservedDate')} placement="topLeft">
             <RangePickerWrapper>
                 <ClickOutside onClickOutside={() => setIsOpen(false)}>
                     <Header onClick={() => setIsOpen(!isOpen)}>

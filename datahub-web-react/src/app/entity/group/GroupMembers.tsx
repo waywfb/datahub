@@ -3,6 +3,7 @@ import { MoreOutlined, UserAddOutlined, UserDeleteOutlined } from '@ant-design/i
 import { Col, Dropdown, message, Modal, Pagination, Row, Empty, Button, Typography, MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetAllGroupMembersQuery, useRemoveGroupMembersMutation } from '../../../graphql/group.generated';
 import { CorpUser, EntityType } from '../../../types.generated';
 import { CustomAvatar } from '../../shared/avatar';
@@ -85,6 +86,7 @@ type Props = {
 };
 
 export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeMembers }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
 
     const [page, setPage] = useState(1);
@@ -110,7 +112,10 @@ export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeM
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: 'Removed Group Member!', duration: 2 });
+                    message.success({
+                        content: t('crud.success.removeWithName', { name: t('common.groupMember') }),
+                        duration: 2,
+                    });
                     onChangeMembers?.();
                     // Hack to deal with eventual consistency
                     setTimeout(() => {
@@ -121,7 +126,12 @@ export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeM
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to remove group member: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('crud.success.removeWithName', { name: t('common.groupMember') })}: \n ${
+                        e.message || ''
+                    }`,
+                    duration: 3,
+                });
             });
     };
 
@@ -139,13 +149,14 @@ export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeM
 
     const onRemoveMember = (memberUrn: string) => {
         Modal.confirm({
-            title: `Confirm Group Member Removal`,
-            content: `Are you sure you want to remove this user from the group?`,
+            title: t('crud.doYouWantTo.confirmRemovalWithName', { name: t('common.groupMember') }),
+            content: t('group.removeUserConfirm'),
             onOk() {
                 removeGroupMember(memberUrn);
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -162,7 +173,7 @@ export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeM
                 disabled: true,
                 label: (
                     <span>
-                        <UserAddOutlined /> Make owner
+                        <UserAddOutlined /> {t('crud.makeWithName', { name: t('common.groupMember') })}
                     </span>
                 ),
             },
@@ -172,7 +183,7 @@ export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeM
                 onClick: () => onRemoveMember(urnID),
                 label: (
                     <span>
-                        <UserDeleteOutlined /> Remove from Group
+                        <UserDeleteOutlined /> {t('group.removeFromGroup')}
                     </span>
                 ),
             },
@@ -184,11 +195,11 @@ export default function GroupMembers({ urn, pageSize, isExternalGroup, onChangeM
             <Row style={ADD_MEMBER_STYLE}>
                 <AddMember type="text" disabled={isExternalGroup} onClick={onClickEditMembers}>
                     <UserAddOutlined />
-                    <AddMemberText>Add Member</AddMemberText>
+                    <AddMemberText>{t('crud.addWithName', { name: t('common.member') })}</AddMemberText>
                 </AddMember>
             </Row>
             <GroupMemberWrapper>
-                {groupMembers.length === 0 && <NoGroupMembers description="No members in this group yet." />}
+                {groupMembers.length === 0 && <NoGroupMembers description={t('group.noMemberInGroup')} />}
                 {groupMembers &&
                     groupMembers.map((item) => {
                         const entityUrn = entityRegistry.getEntityUrl(EntityType.CorpUser, item.urn);

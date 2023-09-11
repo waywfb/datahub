@@ -3,6 +3,7 @@ import { Divider, Image, Tag } from 'antd';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Maybe } from 'graphql/jsutils/Maybe';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../entity/shared/constants';
 
 const EntityTag = styled(Tag)`
@@ -64,18 +65,23 @@ export const EntityPreviewTag = ({
     onClick,
     columnName,
 }: Props) => {
+    const { t } = useTranslation();
     return (
         <Link to={url} onClick={onClick}>
             <EntityTag>
                 <TitleContainer>
                     <IconContainer>
                         {(!!platformLogoUrl && !platformLogoUrls && (
-                            <PlatformLogo preview={false} src={platformLogoUrl} alt="none" />
+                            <PlatformLogo preview={false} src={platformLogoUrl} alt={t('common.none')} />
                         )) ||
                             (!!platformLogoUrls &&
                                 platformLogoUrls.slice(0, 2).map((platformLogoUrlsEntry) => (
                                     <>
-                                        <PlatformLogo preview={false} src={platformLogoUrlsEntry || ''} alt="none" />
+                                        <PlatformLogo
+                                            preview={false}
+                                            src={platformLogoUrlsEntry || ''}
+                                            alt={t('common.none')}
+                                        />
                                     </>
                                 ))) ||
                             logoComponent}

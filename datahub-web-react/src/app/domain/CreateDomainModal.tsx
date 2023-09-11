@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { message, Button, Input, Modal, Typography, Form, Collapse, Tag } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { EntityType } from '../../types.generated';
 import { useCreateDomainMutation } from '../../graphql/domain.generated';
 import { useEnterKeyListener } from '../shared/useEnterKeyListener';
 import { validateCustomUrnId } from '../shared/textUtil';
 import analytics, { EventType } from '../analytics';
+import { useEntityRegistry } from '../useEntityRegistry';
 
 const SuggestedNamesGroup = styled.div`
     margin-top: 12px;
@@ -28,6 +31,8 @@ const NAME_FIELD_NAME = 'name';
 const DESCRIPTION_FIELD_NAME = 'description';
 
 export default function CreateDomainModal({ onClose, onCreate }: Props) {
+    const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const [createDomainMutation] = useCreateDomainMutation();
     const [createButtonEnabled, setCreateButtonEnabled] = useState(false);
     const [form] = Form.useForm();
@@ -48,7 +53,9 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                         type: EventType.CreateDomainEvent,
                     });
                     message.success({
-                        content: `Created domain!`,
+                        content: t('crud.success.createWithName', {
+                            name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+                        }),
                         duration: 3,
                     });
                     onCreate(
@@ -62,7 +69,12 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to create Domain!: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('crud.error.createWithName', {
+                        name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+                    })}: \n ${e.message || ''}`,
+                    duration: 3,
+                });
             });
         onClose();
     };
@@ -74,13 +86,13 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
 
     return (
         <Modal
-            title="Create new Domain"
+            title={t('crud.createWithName', { name: entityRegistry.getEntityNameTrans(EntityType.Domain, t) })}
             visible
             onCancel={onClose}
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button
                         id="createDomainButton"
@@ -88,7 +100,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                         onClick={onCreateDomain}
                         disabled={!createButtonEnabled}
                     >
-                        Create
+                        {t('common.create')}
                     </Button>
                 </>
             }
@@ -101,21 +113,23 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                     setCreateButtonEnabled(!form.getFieldsError().some((field) => field.errors.length > 0));
                 }}
             >
-                <Form.Item label={<Typography.Text strong>Name</Typography.Text>}>
-                    <Typography.Paragraph>Give your new Domain a name. </Typography.Paragraph>
+                <Form.Item label={<Typography.Text strong>{t('common.name')}</Typography.Text>}>
+                    <Typography.Paragraph>{t('form.giveYourNewDomainAName')}</Typography.Paragraph>
                     <Form.Item
                         name={NAME_FIELD_NAME}
                         rules={[
                             {
                                 required: true,
-                                message: 'Enter a Domain name.',
+                                message: t('form.enterANameWithName', {
+                                    name: entityRegistry.getEntityNameTrans(EntityType.Domain, t),
+                                }),
                             },
                             { whitespace: true },
                             { min: 1, max: 150 },
                         ]}
                         hasFeedback
                     >
-                        <Input data-testid="create-domain-name" placeholder="A name for your domain" />
+                        <Input data-testid="create-domain-name" placeholder={t('placeholder.domainName')} />
                     </Form.Item>
                     <SuggestedNamesGroup>
                         {SUGGESTED_DOMAIN_NAMES.map((name) => {
@@ -135,27 +149,29 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                         })}
                     </SuggestedNamesGroup>
                 </Form.Item>
-                <Form.Item label={<Typography.Text strong>Description</Typography.Text>}>
-                    <Typography.Paragraph>
-                        An optional description for your new domain. You can change this later.
-                    </Typography.Paragraph>
+                <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
+                    <Typography.Paragraph>{t('domain.domainDescriptionDescription')}</Typography.Paragraph>
                     <Form.Item
                         name={DESCRIPTION_FIELD_NAME}
                         rules={[{ whitespace: true }, { min: 1, max: 500 }]}
                         hasFeedback
                     >
-                        <Input.TextArea placeholder="A description for your domain" />
+                        <Input.TextArea placeholder={t('placeholder.domainDescription')} />
                     </Form.Item>
                 </Form.Item>
                 <Collapse ghost>
-                    <Collapse.Panel header={<Typography.Text type="secondary">Advanced</Typography.Text>} key="1">
-                        <Form.Item label={<Typography.Text strong>Domain Id</Typography.Text>}>
-                            <Typography.Paragraph>
-                                By default, a random UUID will be generated to uniquely identify this domain. If
-                                you&apos;d like to provide a custom id instead to more easily keep track of this domain,
-                                you may provide it here. Be careful, you cannot easily change the domain id after
-                                creation.
-                            </Typography.Paragraph>
+                    <Collapse.Panel
+                        header={<Typography.Text type="secondary">{t('common.advanced')}</Typography.Text>}
+                        key="1"
+                    >
+                        <Form.Item
+                            label={
+                                <Typography.Text strong>
+                                    {entityRegistry.getEntityNameTrans(EntityType.Domain, t)} {t('common.id')}
+                                </Typography.Text>
+                            }
+                        >
+                            <Typography.Paragraph>{t('domain.domainIdDescription')}</Typography.Paragraph>
                             <Form.Item
                                 name={ID_FIELD_NAME}
                                 rules={[
@@ -164,7 +180,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                                             if (value && validateCustomUrnId(value)) {
                                                 return Promise.resolve();
                                             }
-                                            return Promise.reject(new Error('Please enter a valid Domain id'));
+                                            return Promise.reject(new Error(t('form.enterValidDomainId')));
                                         },
                                     }),
                                 ]}

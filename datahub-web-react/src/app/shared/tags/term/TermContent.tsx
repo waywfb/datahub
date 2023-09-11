@@ -3,6 +3,7 @@ import { message, Modal, Tag } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import Highlight from 'react-highlighter';
+import { useTranslation } from 'react-i18next';
 import { useRemoveTermMutation } from '../../../../graphql/mutations.generated';
 import { EntityType, GlossaryTermAssociation, SubResourceType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
@@ -46,6 +47,7 @@ export default function TermContent({
     refetch,
 }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const [removeTermMutation] = useRemoveTermMutation();
     const highlightTerm = useHasMatchedFieldByUrn(term.term.urn, 'glossaryTerms');
 
@@ -53,8 +55,12 @@ export default function TermContent({
         onOpenModal?.();
         const termName = termToRemove && entityRegistry.getDisplayName(termToRemove.term.type, termToRemove.term);
         Modal.confirm({
-            title: `Do you want to remove ${termName} term?`,
-            content: `Are you sure you want to remove the ${termName} term?`,
+            title: t('crud.doYouWantTo.removeTitleWithName', {
+                name: `${termName} ${entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t).toLowerCase()}`,
+            }),
+            content: t('crud.doYouWantTo.removeContentWithTheName', {
+                name: `${termName} ${entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t).toLowerCase()}`,
+            }),
             onOk() {
                 if (termToRemove.associatedUrn || entityUrn) {
                     removeTermMutation({
@@ -69,18 +75,29 @@ export default function TermContent({
                     })
                         .then(({ errors }) => {
                             if (!errors) {
-                                message.success({ content: 'Removed Term!', duration: 2 });
+                                message.success({
+                                    content: t('crud.success.removeWithName', {
+                                        name: entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t),
+                                    }),
+                                    duration: 2,
+                                });
                             }
                         })
                         .then(refetch)
                         .catch((e) => {
                             message.destroy();
-                            message.error({ content: `Failed to remove term: \n ${e.message || ''}`, duration: 3 });
+                            message.error({
+                                content: `${t('crud.error.removeWithName', {
+                                    name: entityRegistry.getEntityNameTrans(EntityType.GlossaryTerm, t),
+                                })}: \n ${e.message || ''}`,
+                                duration: 3,
+                            });
                         });
                 }
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

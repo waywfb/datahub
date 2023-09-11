@@ -3,6 +3,7 @@ import { Checkbox, DatePicker, Form, Input, Select, Tooltip } from 'antd';
 import styled from 'styled-components/macro';
 import Button from 'antd/lib/button';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { RecipeField, FieldType } from './common';
 import { Secret } from '../../../../../types.generated';
 import SecretField, { StyledFormItem } from './SecretField/SecretField';
@@ -25,13 +26,14 @@ interface CommonFieldProps {
 }
 
 function ListField({ field, removeMargin }: CommonFieldProps) {
+    const { t } = useTranslation();
     return (
         <Form.List name={field.name} rules={field.rules || undefined}>
             {(fields, { add, remove }, { errors }) => (
                 <ListWrapper removeMargin={!!removeMargin}>
                     <Label>
-                        {field.label}
-                        <Tooltip overlay={field.tooltip}>
+                        {t(field.label)}
+                        <Tooltip overlay={typeof field.tooltip === 'string' ? t(field.tooltip) : field.tooltip}>
                             <StyledQuestion />
                         </Tooltip>
                     </Label>
@@ -44,7 +46,7 @@ function ListField({ field, removeMargin }: CommonFieldProps) {
                         </Form.Item>
                     ))}
                     <StyledButton type="dashed" onClick={() => add()} style={{ width: '80%' }} icon={<PlusOutlined />}>
-                        {field.buttonLabel}
+                        {field.buttonLabel ? t(field.buttonLabel) : field.buttonLabel}
                     </StyledButton>
                     <ErrorWrapper>{errors}</ErrorWrapper>
                 </ListWrapper>
@@ -54,12 +56,13 @@ function ListField({ field, removeMargin }: CommonFieldProps) {
 }
 
 function SelectField({ field, removeMargin }: CommonFieldProps) {
+    const { t } = useTranslation();
     return (
         <StyledFormItem
             required={field.required}
             name={field.name}
-            label={field.label}
-            tooltip={field.tooltip}
+            label={t(field.label)}
+            tooltip={typeof field.tooltip === 'string' ? t(field.tooltip) : field.tooltip}
             removeMargin={!!removeMargin}
             rules={field.rules || undefined}
         >
@@ -75,12 +78,13 @@ function SelectField({ field, removeMargin }: CommonFieldProps) {
 }
 
 function DateField({ field, removeMargin }: CommonFieldProps) {
+    const { t } = useTranslation();
     return (
         <StyledFormItem
             required={field.required}
             name={field.name}
-            label={field.label}
-            tooltip={field.tooltip}
+            label={t(field.label)}
+            tooltip={typeof field.tooltip === 'string' ? t(field.tooltip) : field.tooltip}
             removeMargin={!!removeMargin}
             rules={field.rules || undefined}
         >
@@ -98,6 +102,7 @@ interface Props {
 }
 
 function FormField(props: Props) {
+    const { t } = useTranslation();
     const { field, secrets, refetchSecrets, removeMargin, updateFormValue } = props;
 
     if (field.type === FieldType.LIST) return <ListField field={field} removeMargin={removeMargin} />;
@@ -131,9 +136,9 @@ function FormField(props: Props) {
         <StyledFormItem
             required={field.required}
             style={isBoolean ? { flexDirection: 'row', alignItems: 'center' } : {}}
-            label={field.label}
+            label={t(field.label)}
             name={field.name}
-            tooltip={field.tooltip}
+            tooltip={typeof field.tooltip === 'string' ? t(field.tooltip) : field.tooltip}
             rules={field.rules || undefined}
             valuePropName={valuePropName}
             getValueFromEvent={getValueFromEvent}

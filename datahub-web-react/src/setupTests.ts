@@ -4,6 +4,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 import sinon from 'sinon';
+import replaceAllInserter from 'string.prototype.replaceall';
 
 // Mock window.matchMedia interface.
 // See https://jestjs.io/docs/en/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
@@ -24,3 +25,6 @@ window.location = { ...location, replace: () => {} };
 sinon.stub(window.location, 'replace');
 jest.mock('js-cookie', () => ({ get: () => 'urn:li:corpuser:2' }));
 jest.mock('./app/entity/shared/tabs/Documentation/components/editor/Editor');
+
+// In case string.prototype.replaceAll not in node version (<15)
+replaceAllInserter.shim();

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Divider, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import {
     FacetFilterInput,
     RecommendationModule as RecommendationModuleType,
@@ -35,6 +36,7 @@ type Props = {
 };
 
 export const SearchResultsRecommendations = ({ userUrn, query, filters }: Props) => {
+    const { t } = useTranslation();
     const scenario = ScenarioType.SearchResults;
     const { data } = useListRecommendationsQuery({
         variables: {
@@ -56,11 +58,13 @@ export const SearchResultsRecommendations = ({ userUrn, query, filters }: Props)
         <>
             {recommendationModules && !!recommendationModules.length && (
                 <RecommendationsContainer data-testid="recommendation-container-id">
-                    <RecommendationTitle level={3}>More you may be interested in</RecommendationTitle>
+                    <RecommendationTitle level={3}>{t('search.moreYouMayBeInterestedIn')}</RecommendationTitle>
                     {recommendationModules &&
                         recommendationModules.map((module) => (
                             <RecommendationContainer>
-                                <RecommendationTitle level={5}>{module.title}</RecommendationTitle>
+                                <RecommendationTitle level={5}>
+                                    {t(`home.module.${module.moduleId}`)}
+                                </RecommendationTitle>
                                 <ThinDivider />
                                 <RecommendationModule
                                     module={module as RecommendationModuleType}

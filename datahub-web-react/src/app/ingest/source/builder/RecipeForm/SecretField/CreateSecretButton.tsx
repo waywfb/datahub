@@ -3,6 +3,7 @@ import { Button, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { blue } from '@ant-design/colors';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { SecretBuilderModal } from '../../../../secret/SecretBuilderModal';
 import { useCreateSecretMutation } from '../../../../../../graphql/ingestion.generated';
 import { SecretBuilderState } from '../../../../secret/types';
@@ -30,6 +31,7 @@ interface Props {
 }
 
 function CreateSecretButton({ initialState, onSubmit, refetchSecrets }: Props) {
+    const { t } = useTranslation();
     const [isCreateModalVisible, setIsCreateModalVisible] = useState(false);
     const [createSecretMutation] = useCreateSecretMutation();
 
@@ -47,19 +49,19 @@ function CreateSecretButton({ initialState, onSubmit, refetchSecrets }: Props) {
                 onSubmit?.(state);
                 setIsCreateModalVisible(false);
                 resetBuilderState();
-                message.success({ content: `Created secret!` });
+                message.success({ content: t('ingest.createdSecret') });
                 setTimeout(() => refetchSecrets(), 3000);
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to create secret: \n ${e.message || ''}` });
+                message.error({ content: `${t('ingest.failedToCreateSecret')}: \n ${e.message || ''}` });
             });
     };
 
     return (
         <>
             <CreateButton onClick={() => setIsCreateModalVisible(true)} type="text">
-                <PlusOutlined /> Create Secret
+                <PlusOutlined /> {t('ingest.createSecret')}
             </CreateButton>
             {isCreateModalVisible && (
                 <SecretBuilderModal

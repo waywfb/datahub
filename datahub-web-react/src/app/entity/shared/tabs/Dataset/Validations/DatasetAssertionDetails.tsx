@@ -2,6 +2,7 @@ import { Tooltip, Typography } from 'antd';
 import { SelectValue } from 'antd/lib/select';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetAssertionRunsLazyQuery } from '../../../../../../graphql/assertion.generated';
 import { AssertionResultType, AssertionRunStatus } from '../../../../../../types.generated';
 import { formatNumber } from '../../../../../shared/formatNumber';
@@ -71,6 +72,7 @@ type Props = {
 };
 
 export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) => {
+    const { t, i18n } = useTranslation();
     const [getAssertionRuns, { data }] = useGetAssertionRunsLazyQuery({ fetchPolicy: 'cache-first' });
 
     /**
@@ -87,7 +89,7 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
      * Invoked when user selects new lookback window (e.g. 1 year)
      */
     const onChangeLookbackWindow = (value: SelectValue) => {
-        const newLookbackWindow = Object.values(LOOKBACK_WINDOWS).filter((window) => window.text === value?.valueOf());
+        const newLookbackWindow = Object.values(LOOKBACK_WINDOWS).filter((window) => window.value === value?.valueOf());
         setLookbackWindow(newLookbackWindow[0]);
     };
     const selectedWindow = getFixedLookbackWindow(lookbackWindow.windowSize);
@@ -116,11 +118,11 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
     /**
      * Start and end date bounds for Chart
      */
-    const startDate = new Date(selectedWindowTimeRange.startMs).toLocaleDateString('en-us', {
+    const startDate = new Date(selectedWindowTimeRange.startMs).toLocaleDateString(i18n.language, {
         month: 'short',
         day: 'numeric',
     });
-    const endDate = new Date(selectedWindowTimeRange.endMs).toLocaleDateString('en-us', {
+    const endDate = new Date(selectedWindowTimeRange.endMs).toLocaleDateString(i18n.language, {
         month: 'short',
         day: 'numeric',
     });
@@ -177,7 +179,7 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
     return (
         <ContentContainer>
             <div>
-                <Typography.Title level={5}>Evaluations</Typography.Title>
+                <Typography.Title level={5}>{t('assertion.evaluations')}</Typography.Title>
                 <Tooltip placement="topLeft" title={lastEvaluatedTimeGMT}>
                     <LastEvaluatedAtLabel>{lastEvaluatedTimeLocal}</LastEvaluatedAtLabel>
                 </Tooltip>
@@ -194,7 +196,7 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
                                     >
                                         {formatNumber(succeededCount)}
                                     </Typography.Text>{' '}
-                                    passed
+                                    {t('assertion.passed').toLowerCase()}
                                 </SucceededEvaluationsCount>
                                 <FailedEvaluationsCount>
                                     <Typography.Text
@@ -202,14 +204,20 @@ export const DatasetAssertionDetails = ({ urn, lastEvaluatedAtMillis }: Props) =
                                     >
                                         {formatNumber(failedCount)}
                                     </Typography.Text>{' '}
-                                    failed
+                                    {t('assertion.failed').toLowerCase()}
                                 </FailedEvaluationsCount>
                             </div>
                         </EvaluationsSummary>
                         <PrefixedSelect
-                            prefixText="Show "
-                            values={Object.values(LOOKBACK_WINDOWS).map((window) => window.text)}
-                            value={lookbackWindow.text}
+                            prefixText={`${t('common.show')} `}
+                            values={Object.values(LOOKBACK_WINDOWS).map((window) => ({
+                                label: t(lookbackWindow.translateKey, {
+                                    postProcess: 'interval',
+                                    count: lookbackWindow.windowSize.count,
+                                }),
+                                value: window.value,
+                            }))}
+                            value={lookbackWindow.value}
                             setValue={onChangeLookbackWindow}
                         />
                     </EvaluationsHeader>

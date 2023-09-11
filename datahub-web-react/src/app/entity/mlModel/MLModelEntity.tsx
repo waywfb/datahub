@@ -74,22 +74,27 @@ export class MLModelEntity implements Entity<MlModel> {
             headerDropdownItems={new Set([EntityMenuItems.UPDATE_DEPRECATION])}
             tabs={[
                 {
+                    titleKey: 'common.summary',
                     name: 'Summary',
                     component: MLModelSummary,
                 },
                 {
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
+                    titleKey: 'common.group',
                     name: 'Group',
                     component: MLModelGroupsTab,
                 },
                 {
+                    titleKey: 'common.features',
                     name: 'Features',
                     component: MlModelFeaturesTab,
                 },
                 {
+                    titleKey: 'common.properties',
                     name: 'Properties',
                     component: PropertiesTab,
                 },

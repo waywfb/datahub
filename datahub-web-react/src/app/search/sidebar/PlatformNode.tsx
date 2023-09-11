@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../shared/formatNumber';
 import ExpandableNode from './ExpandableNode';
 import { useEntityRegistry } from '../../useEntityRegistry';
@@ -45,11 +46,13 @@ const PlatformNode = () => {
     const registry = useEntityRegistry();
     const { trackToggleNodeEvent, trackSelectNodeEvent } = useSidebarAnalytics();
     const onSelectBrowsePath = useOnSelectBrowsePath();
+    const { t } = useTranslation();
 
     const { icon, label } = getFilterIconAndLabel(
         PLATFORM_FILTER_NAME,
         platformAggregation.value,
         registry,
+        t,
         platformAggregation.entity ?? null,
         16,
     );

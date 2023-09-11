@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Pagination, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useListOwnershipTypesQuery } from '../../../graphql/ownership.generated';
 import { Message } from '../../shared/Message';
 import { OwnershipBuilderModal } from './OwnershipBuilderModal';
@@ -39,6 +40,7 @@ export const OwnershipList = () => {
      * Context
      */
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     /**
      * State
@@ -82,19 +84,21 @@ export const OwnershipList = () => {
 
     return (
         <>
-            {!data && loading && <Message type="loading" content="Loading Ownership Types..." />}
+            {!data && loading && (
+                <Message type="loading" content={`${t('common.loading')} ${t('common.ownershipTypes')}...`} />
+            )}
             {error &&
                 message.error({
-                    content: `Failed to load Ownership Types! An unexpected error occurred.`,
+                    content: t('crud.error.loadWithName', { name: t('settings.ownershipTypes') }),
                     duration: 3,
                 })}
             <TabToolbar>
                 <Button type="text" onClick={onClickCreateOwnershipType}>
-                    <PlusOutlined /> Create new Ownership Type
+                    <PlusOutlined /> {t('crud.error.createWithName', { name: t('settings.ownershipType') })}
                 </Button>
                 <SearchBar
                     initialQuery=""
-                    placeholderText="Search by Name..."
+                    placeholderText={t('placeholder.searchByWithName', { name: t('common.name') })}
                     suggestions={[]}
                     style={searchBarStyle}
                     inputStyle={searchBarInputStyle}

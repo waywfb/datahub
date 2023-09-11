@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Select } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsLazyQuery } from '../../../../graphql/search.generated';
 import { EntityType, GlossaryNode } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
@@ -29,6 +30,7 @@ function NodeParentSelect(props: Props) {
     const [isFocusedOnInput, setIsFocusedOnInput] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const { entityData, urn: entityDataUrn, entityType } = useEntityData();
 
     const [nodeSearch, { data: nodeData }] = useGetSearchResultsLazyQuery();
@@ -95,7 +97,7 @@ function NodeParentSelect(props: Props) {
                 onSearch={handleSearch}
                 onClear={clearSelectedParent}
                 onFocus={() => setIsFocusedOnInput(true)}
-                dropdownStyle={isShowingGlossaryBrowser || !searchQuery ? { display: 'none' } : {}}
+                dropdownStyle={isShowingGlossaryBrowser || !searchQuery ? { display: t('common.none') } : {}}
             >
                 {nodeSearchResults?.map((result) => (
                     <Select.Option key={result?.entity?.urn} value={result.entity.urn}>

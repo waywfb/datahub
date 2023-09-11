@@ -3,6 +3,7 @@ import { Alert, Divider } from 'antd';
 import { MutationHookOptions, MutationTuple, QueryHookOptions, QueryResult } from '@apollo/client/react/types/types';
 import styled from 'styled-components/macro';
 import { useHistory } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { EntityType, Exact } from '../../../../../types.generated';
 import { Message } from '../../../../shared/Message';
 import {
@@ -110,7 +111,7 @@ const HeaderAndTabsFlex = styled.div`
     &::-webkit-scrollbar-thumb {
         background: #cccccc;
         -webkit-border-radius: 1ex;
-        -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
     }
 `;
 const Sidebar = styled.div<{ $width: number }>`
@@ -169,6 +170,7 @@ export const EntityProfile = <T, U>({
     const isLineageMode = useIsLineageMode();
     const isHideSiblingMode = useIsSeparateSiblingsMode();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const history = useHistory();
     const appConfig = useAppConfig();
     const isCompact = React.useContext(CompactContext);
@@ -238,7 +240,6 @@ export const EntityProfile = <T, U>({
                 enabled: () => true,
             },
         })) || [];
-
     const visibleTabs = [...sortedTabs, ...autoRenderTabs].filter((tab) =>
         tab.display?.visible(entityData, dataPossiblyCombinedWithSiblings),
     );
@@ -272,7 +273,9 @@ export const EntityProfile = <T, U>({
                 }}
             >
                 <>
-                    {loading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+                    {loading && (
+                        <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />
+                    )}
                     {(error && <ErrorSection />) ||
                         (!loading && (
                             <CompactProfile>
@@ -315,13 +318,10 @@ export const EntityProfile = <T, U>({
                 <OnboardingTour stepIds={stepIds} />
                 <EntityHead />
                 {showBrowseBar && <EntityProfileNavBar urn={urn} entityType={entityType} />}
-                {entityData?.status?.removed === true && (
-                    <Alert
-                        message="This entity is not discoverable via search or lineage graph. Contact your DataHub admin for more information."
-                        banner
-                    />
+                {entityData?.status?.removed === true && <Alert message={t('entity.entityRemovedAlert')} banner />}
+                {loading && (
+                    <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />
                 )}
-                {loading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
                 {(error && <ErrorSection />) || (
                     <ContentContainer>
                         {isLineageMode ? (

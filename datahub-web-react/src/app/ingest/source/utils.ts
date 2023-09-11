@@ -6,6 +6,7 @@ import {
     LoadingOutlined,
     WarningOutlined,
 } from '@ant-design/icons';
+import { TFunction } from 'i18next';
 import { ANTD_GRAY, REDESIGN_COLORS } from '../../entity/shared/constants';
 import { EntityType, FacetMetadata } from '../../../types.generated';
 import { capitalizeFirstLetterOnly, pluralize } from '../../shared/textUtil';
@@ -68,14 +69,14 @@ export const getExecutionRequestStatusIcon = (status: string) => {
 
 export const getExecutionRequestStatusDisplayText = (status: string) => {
     return (
-        (status === RUNNING && 'Running') ||
-        (status === SUCCESS && 'Succeeded') ||
-        (status === FAILURE && 'Failed') ||
-        (status === CANCELLED && 'Cancelled') ||
-        (status === UP_FOR_RETRY && 'Up for Retry') ||
-        (status === ROLLED_BACK && 'Rolled Back') ||
-        (status === ROLLING_BACK && 'Rolling Back') ||
-        (status === ROLLBACK_FAILED && 'Rollback Failed') ||
+        (status === RUNNING && 'ingest.ExecutionStatusDisplayText.running') ||
+        (status === SUCCESS && 'ingest.ExecutionStatusDisplayText.succeeded') ||
+        (status === FAILURE && 'ingest.ExecutionStatusDisplayText.failed') ||
+        (status === CANCELLED && 'ingest.ExecutionStatusDisplayText.cancelled') ||
+        (status === UP_FOR_RETRY && 'ingest.ExecutionStatusDisplayText.upForRetry') ||
+        (status === ROLLED_BACK && 'ingest.ExecutionStatusDisplayText.rolledBack') ||
+        (status === ROLLING_BACK && 'ingest.ExecutionStatusDisplayText.rollingBack') ||
+        (status === ROLLBACK_FAILED && 'ingest.ExecutionStatusDisplayText.rollbackFailed') ||
         status
     );
 };
@@ -83,21 +84,21 @@ export const getExecutionRequestStatusDisplayText = (status: string) => {
 export const getExecutionRequestSummaryText = (status: string) => {
     switch (status) {
         case RUNNING:
-            return 'Ingestion is running';
+            return 'ingest.ExecutionSummaryText.ingestionIsRunning';
         case SUCCESS:
-            return 'Ingestion successfully completed';
+            return 'ingest.ExecutionSummaryText.ingestionSuccessfullyCompleted';
         case FAILURE:
-            return 'Ingestion completed with errors';
+            return 'ingest.ExecutionSummaryText.ingestionCompletedWithErrors';
         case CANCELLED:
-            return 'Ingestion was cancelled';
+            return 'ingest.ExecutionSummaryText.ingestionWasCancelled';
         case ROLLED_BACK:
-            return 'Ingestion was rolled back';
+            return 'ingest.ExecutionSummaryText.ingestionWasRolledBack';
         case ROLLING_BACK:
-            return 'Ingestion is in the process of rolling back';
+            return 'ingest.ExecutionSummaryText.ingestionIsInProcessOfRollingBack';
         case ROLLBACK_FAILED:
-            return 'Ingestion rollback failed';
+            return 'ingest.ExecutionSummaryText.ingestionRollbackFailed';
         default:
-            return 'Ingestion status not recognized';
+            return 'ingest.ExecutionSummaryText.ingestionStatusNotRecognized';
     }
 };
 
@@ -130,10 +131,13 @@ type EntityTypeCount = {
 /**
  * Extract entity type counts to display in the ingestion summary.
  *
+ * @param entityRegistry the entity registry.
  * @param entityTypeFacets the filter facets for entity type.
  * @param subTypeFacets the filter facets for sub types.
+ * @param t the i18n function.
  */
 export const extractEntityTypeCountsFromFacets = (
+    t: TFunction,
     entityRegistry: EntityRegistry,
     entityTypeFacets: FacetMetadata,
     subTypeFacets?: FacetMetadata | null,
@@ -155,7 +159,7 @@ export const extractEntityTypeCountsFromFacets = (
             .forEach((agg) =>
                 finalCounts.push({
                     count: agg.count,
-                    displayName: entityRegistry.getCollectionName(agg.value as EntityType),
+                    displayName: entityRegistry.getCollectionNameTrans(agg.value as EntityType, t),
                 }),
             );
     } else {
@@ -165,7 +169,7 @@ export const extractEntityTypeCountsFromFacets = (
             .forEach((agg) =>
                 finalCounts.push({
                     count: agg.count,
-                    displayName: entityRegistry.getCollectionName(agg.value as EntityType),
+                    displayName: entityRegistry.getCollectionNameTrans(agg.value as EntityType, t),
                 }),
             );
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetGroupQuery } from '../../../graphql/group.generated';
 import useUserParams from '../../shared/entitySearch/routingUtils/useUserParams';
 import { OriginType, EntityRelationshipsResult, Ownership } from '../../../types.generated';
@@ -45,18 +46,20 @@ const Content = styled.div`
  * Responsible for reading & writing groups.
  */
 export default function GroupProfile() {
+    const { t } = useTranslation();
     const { urn: encodedUrn } = useUserParams();
     const urn = encodedUrn && decodeUrn(encodedUrn);
     const { loading, error, data, refetch } = useGetGroupQuery({ variables: { urn, membersCount: MEMBER_PAGE_SIZE } });
 
     const groupMemberRelationships = data?.corpGroup?.relationships as EntityRelationshipsResult;
     const isExternalGroup: boolean = data?.corpGroup?.origin?.type === OriginType.External;
-    const externalGroupType: string = data?.corpGroup?.origin?.externalType || 'outside DataHub';
+    const externalGroupType: string = data?.corpGroup?.origin?.externalType || t('common.outsideDataHub');
 
     const getTabs = () => {
         return [
             {
                 name: TabType.Assets,
+                title: t('common.assets'),
                 path: TabType.Assets.toLocaleLowerCase(),
                 content: <GroupAssets urn={urn} />,
                 display: {
@@ -65,6 +68,7 @@ export default function GroupProfile() {
             },
             {
                 name: TabType.Members,
+                title: t('common.members'),
                 path: TabType.Members.toLocaleLowerCase(),
                 content: (
                     <GroupMembers
@@ -113,7 +117,7 @@ export default function GroupProfile() {
     return (
         <>
             {error && <ErrorSection />}
-            {loading && <Message type="loading" content="Loading..." style={messageStyle} />}
+            {loading && <Message type="loading" content={`${t('common.loading')}...`} style={messageStyle} />}
             {data && data?.corpGroup && (
                 <GroupProfileWrapper>
                     <Row>

@@ -2,6 +2,7 @@ import { DownloadOutlined } from '@ant-design/icons';
 import { Button, message, Modal, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetIngestionExecutionRequestQuery } from '../../../../graphql/ingestion.generated';
 import { ANTD_GRAY } from '../../../entity/shared/constants';
 import { downloadFile } from '../../../search/utils/csvUtils';
@@ -90,9 +91,10 @@ type Props = {
 };
 
 export const ExecutionDetailsModal = ({ urn, visible, onClose }: Props) => {
+    const { t } = useTranslation();
     const [showExpandedLogs, setShowExpandedLogs] = useState(false);
     const { data, loading, error, refetch } = useGetIngestionExecutionRequestQuery({ variables: { urn } });
-    const output = data?.executionRequest?.result?.report || 'No output found.';
+    const output = data?.executionRequest?.result?.report || t('ingest.noOutputFound');
 
     const downloadLogs = () => {
         downloadFile(output, `exec-${urn}.log`);
@@ -114,33 +116,33 @@ export const ExecutionDetailsModal = ({ urn, visible, onClose }: Props) => {
     const resultText = result && (
         <Typography.Text style={{ color: resultColor, fontSize: 14 }}>
             {ResultIcon && <ResultIcon style={{ marginRight: 4 }} />}
-            {getExecutionRequestStatusDisplayText(result)}
+            {t(getExecutionRequestStatusDisplayText(result))}
         </Typography.Text>
     );
     const resultSummaryText =
-        (result && <Typography.Text type="secondary">{getExecutionRequestSummaryText(result)}</Typography.Text>) ||
+        (result && <Typography.Text type="secondary">{t(getExecutionRequestSummaryText(result))}</Typography.Text>) ||
         undefined;
     const isOutputExpandable = output.length > 100;
 
     return (
         <Modal
             width={800}
-            footer={<Button onClick={onClose}>Close</Button>}
+            footer={<Button onClick={onClose}>{t('common.close')}</Button>}
             style={modalStyle}
             bodyStyle={modalBodyStyle}
             title={
                 <HeaderSection>
-                    <StyledTitle level={4}>Ingestion Run Details</StyledTitle>
+                    <StyledTitle level={4}>{t('ingest.ingestionRunDetails')}</StyledTitle>
                 </HeaderSection>
             }
             visible={visible}
             onCancel={onClose}
         >
-            {!data && loading && <Message type="loading" content="Loading execution details..." />}
-            {error && message.error('Failed to load execution details :(')}
+            {!data && loading && <Message type="loading" content={`${t('ingest.loadingExecutionDetails')}...`} />}
+            {error && message.error(`${t('ingest.failedToLoadExecutionDetails')} :(`)}
             <Section>
                 <StatusSection>
-                    <Typography.Title level={5}>Status</Typography.Title>
+                    <Typography.Title level={5}>{t('common.status')}</Typography.Title>
                     <ResultText>{resultText}</ResultText>
                     <SubHeaderParagraph>{resultSummaryText}</SubHeaderParagraph>
                 </StatusSection>
@@ -150,21 +152,21 @@ export const ExecutionDetailsModal = ({ urn, visible, onClose }: Props) => {
                     </IngestedAssetsSection>
                 )}
                 <LogsSection>
-                    <SectionHeader level={5}>Logs</SectionHeader>
+                    <SectionHeader level={5}>{t('common.logs')}</SectionHeader>
                     <SectionSubHeader>
                         <SubHeaderParagraph type="secondary">
-                            View logs that were collected during the ingestion run.
+                            {t('ingest.viewLogsThatWereCollectedDuringTheIngestionRun')}
                         </SubHeaderParagraph>
                         <Button type="text" onClick={downloadLogs}>
                             <DownloadOutlined />
-                            Download
+                            {t('common.download')}
                         </Button>
                     </SectionSubHeader>
                     <Typography.Paragraph ellipsis>
                         <pre>{`${logs}${!showExpandedLogs && isOutputExpandable ? '...' : ''}`}</pre>
                         {isOutputExpandable && (
                             <ShowMoreButton type="link" onClick={() => setShowExpandedLogs(!showExpandedLogs)}>
-                                {showExpandedLogs ? 'Hide' : 'Show More'}
+                                {showExpandedLogs ? t('common.hide') : t('common.showMore')}
                             </ShowMoreButton>
                         )}
                     </Typography.Paragraph>

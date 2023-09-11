@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useListRecommendationsQuery } from '../../../../../../../graphql/recommendations.generated';
 import {
     EntityType,
@@ -25,6 +26,7 @@ export const SidebarEntityRecommendations = ({
     entityUrn: string;
     entityType: EntityType;
 }) => {
+    const { t } = useTranslation();
     const scenario = ScenarioType.EntityProfile;
     const { data } = useListRecommendationsQuery({
         variables: {
@@ -47,7 +49,7 @@ export const SidebarEntityRecommendations = ({
             {recommendationModules &&
                 recommendationModules.map((module) => (
                     <RecommendationContainer>
-                        <SidebarHeader title={module.title} />
+                        <SidebarHeader title={t(`home.module.${module.moduleId}`)} />
                         <RecommendationModule
                             key={module.moduleId}
                             module={module as RecommendationModuleType}

@@ -2,19 +2,18 @@ import { Tag, Tooltip } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { CorpUser, EntityRelationship, EntityType } from '../../../types.generated';
 import { CustomAvatar } from '../../shared/avatar';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import {
     DisplayCount,
-    EmptyValue,
     GroupSectionHeader,
     GroupSectionTitle,
     GroupsSeeMoreText,
     TagsSection,
 } from '../shared/SidebarStyledComponents';
-
-const TITLE = 'Members';
+import { EmptyValue } from '../../shared/EmptyValue';
 
 const MemberTag = styled(Tag)`
     padding: 2px;
@@ -32,11 +31,12 @@ type Props = {
 
 export default function GroupMembersSideBarSection({ total, relationships, onSeeMore }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     return (
         <>
             <GroupSectionHeader>
-                <GroupSectionTitle>{TITLE}</GroupSectionTitle>
+                <GroupSectionTitle>{t('common.members')}</GroupSectionTitle>
                 <DisplayCount>{total}</DisplayCount>
             </GroupSectionHeader>
             <TagsSection>
@@ -64,9 +64,9 @@ export default function GroupMembersSideBarSection({ total, relationships, onSee
                     })}
                 {relationships.length > 15 && (
                     <div>
-                        <GroupsSeeMoreText onClick={onSeeMore}>{`+${
-                            relationships.length - 15
-                        } more`}</GroupsSeeMoreText>
+                        <GroupsSeeMoreText onClick={onSeeMore}>{`+${relationships.length - 15} ${t(
+                            'common.more',
+                        )}`}</GroupsSeeMoreText>
                     </div>
                 )}
             </TagsSection>

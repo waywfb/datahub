@@ -1,6 +1,7 @@
 import React from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { MenuIcon } from '../../entity/shared/EntityDropdown/EntityDropdown';
 import { useDeletePostMutation } from '../../../graphql/post.generated';
 
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export default function PostItemMenu({ title, urn, onDelete }: Props) {
+    const { t } = useTranslation();
     const [deletePostMutation] = useDeletePostMutation();
 
     const deletePost = () => {
@@ -21,25 +23,26 @@ export default function PostItemMenu({ title, urn, onDelete }: Props) {
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success('Deleted Post!');
+                    message.success(t('crud.success.deleteWithName', { name: t('common.post') }));
                     onDelete?.();
                 }
             })
             .catch(() => {
                 message.destroy();
-                message.error({ content: `Failed to delete Post!: An unknown error occurred.`, duration: 3 });
+                message.error({ content: t('crud.error.deleteWithName', { name: t('common.post') }), duration: 3 });
             });
     };
 
     const onConfirmDelete = () => {
         Modal.confirm({
-            title: `Delete Post '${title}'`,
-            content: `Are you sure you want to remove this Post?`,
+            title: `${t('crud.deleteWithName', { name: t('common.post') })} '${title}'`,
+            content: t('crud.doYouWantTo.removeContentWithThisName', { name: t('common.post') }),
             onOk() {
                 deletePost();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -51,7 +54,7 @@ export default function PostItemMenu({ title, urn, onDelete }: Props) {
             overlay={
                 <Menu>
                     <Menu.Item onClick={onConfirmDelete} key="delete">
-                        <DeleteOutlined /> &nbsp;Delete
+                        <DeleteOutlined /> &nbsp;{t('crud.delete')}
                     </Menu.Item>
                 </Menu>
             }

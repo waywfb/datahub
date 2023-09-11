@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Button, Form, message, Modal, Select } from 'antd';
 
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsLazyQuery } from '../../../../../../../graphql/search.generated';
 import { Entity, EntityType } from '../../../../../../../types.generated';
 import { useBatchSetDomainMutation } from '../../../../../../../graphql/mutations.generated';
@@ -27,6 +28,7 @@ type SelectedDomain = {
 };
 
 export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOkOverride, titleOverride }: Props) => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const [inputValue, setInputValue] = useState('');
     const [selectedDomain, setSelectedDomain] = useState<SelectedDomain | undefined>(
@@ -120,7 +122,10 @@ export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOk
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: 'Updated Domain!', duration: 2 });
+                    message.success({
+                        content: t('crud.success.updateWithName', { name: t('common.domain') }),
+                        duration: 2,
+                    });
                     refetch?.();
                     onModalClose();
                     setSelectedDomain(undefined);
@@ -129,10 +134,17 @@ export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOk
             .catch((e) => {
                 message.destroy();
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to add assets to Domain: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `${t('crud.error.updateWithName', { name: t('common.domain') })}: \n ${
+                                e.message || ''
+                            }`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             });
     };
@@ -150,16 +162,16 @@ export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOk
 
     return (
         <Modal
-            title={titleOverride || 'Set Domain'}
+            title={titleOverride || t('crud.setWithname', { name: t('common.domain') })}
             visible
             onCancel={onModalClose}
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="setDomainButton" disabled={selectedDomain === undefined} onClick={onOk}>
-                        Add
+                        {t('common.add')}
                     </Button>
                 </>
             }
@@ -173,7 +185,7 @@ export const SetDomainModal = ({ urns, onCloseModal, refetch, defaultValue, onOk
                         showSearch
                         mode="multiple"
                         defaultActiveFirstOption={false}
-                        placeholder="Search for Domains..."
+                        placeholder={t('search;searchForWithName', { name: t('common.domains') })}
                         onSelect={(domainUrn: any) => onSelectDomain(domainUrn)}
                         onDeselect={onDeselectDomain}
                         onSearch={(value: string) => {

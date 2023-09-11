@@ -2,6 +2,7 @@ import { message, Modal, Tag } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useRemoveOwnerMutation } from '../../../../../../graphql/mutations.generated';
 import { EntityType, Owner } from '../../../../../../types.generated';
 import { getNameFromType } from '../../../containers/profile/sidebar/Ownership/ownershipUtils';
@@ -28,6 +29,7 @@ type Props = {
 };
 
 export const ExpandedOwner = ({ entityUrn, owner, hidePopOver, refetch, readOnly, fontSize }: Props) => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const { entityType } = useEntityData();
     const [removeOwnerMutation] = useRemoveOwnerMutation();
@@ -42,7 +44,7 @@ export const ExpandedOwner = ({ entityUrn, owner, hidePopOver, refetch, readOnly
     if (owner.ownershipType && owner.ownershipType.info) {
         ownershipTypeName = owner.ownershipType.info.name;
     } else if (owner.type) {
-        ownershipTypeName = getNameFromType(owner.type);
+        ownershipTypeName = getNameFromType(t, owner.type);
     }
     const pictureLink =
         (owner.owner.__typename === 'CorpUser' && owner.owner.editableProperties?.pictureLink) || undefined;
@@ -84,7 +86,8 @@ export const ExpandedOwner = ({ entityUrn, owner, hidePopOver, refetch, readOnly
                 onDelete();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

@@ -3,6 +3,7 @@ import { Tag, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../shared/constants';
@@ -74,6 +75,7 @@ export const Preview = ({
     membersCount?: number;
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const url = entityRegistry.getEntityUrl(EntityType.CorpGroup, urn);
 
     return (
@@ -85,14 +87,19 @@ export const Preview = ({
                             <PreviewImage>
                                 {entityRegistry.getIcon(EntityType.CorpGroup, 20, IconStyleType.HIGHLIGHT)}
                             </PreviewImage>
-                            <PlatformText>{entityRegistry.getEntityName(EntityType.CorpGroup)}</PlatformText>
+                            <PlatformText>{entityRegistry.getEntityNameTrans(EntityType.CorpGroup, t)}</PlatformText>
                         </PlatformInfo>
                         <Link to={url}>
                             <EntityTitle>
                                 {name ? <SearchTextHighlighter field="name" text={name} enableFullHighlight /> : urn}
                             </EntityTitle>
                             <MemberCountContainer>
-                                <Tag>{membersCount} members</Tag>
+                                <Tag>
+                                    {t('common.memberWithCount_interval', {
+                                        postProcess: 'interval',
+                                        count: membersCount,
+                                    })}
+                                </Tag>
                             </MemberCountContainer>
                         </Link>
                     </TitleContainer>

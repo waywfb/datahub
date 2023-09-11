@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import EntityNode from './EntityNode';
 import { BrowseProvider } from './BrowseContext';
 import SidebarLoadingError from './SidebarLoadingError';
@@ -40,6 +41,7 @@ type Props = {
 };
 
 const BrowseSidebar = ({ visible, width }: Props) => {
+    const { t } = useTranslation();
     const { error, entityAggregations, retry } = useSidebarEntities({
         skip: !visible,
     });
@@ -47,10 +49,10 @@ const BrowseSidebar = ({ visible, width }: Props) => {
     return (
         <Sidebar visible={visible} width={width} id={SEARCH_RESULTS_BROWSE_SIDEBAR_ID} data-testid="browse-v2">
             <SidebarHeader>
-                <Typography.Text strong>Navigate</Typography.Text>
+                <Typography.Text strong>{t('common.navigate')}</Typography.Text>
             </SidebarHeader>
             <SidebarBody>
-                {entityAggregations && !entityAggregations.length && <div>No results found</div>}
+                {entityAggregations && !entityAggregations.length && <div>{t('common.noResultsFound')}</div>}
                 {entityAggregations?.map((entityAggregation) => (
                     <BrowseProvider key={entityAggregation.value} entityAggregation={entityAggregation}>
                         <EntityNode />

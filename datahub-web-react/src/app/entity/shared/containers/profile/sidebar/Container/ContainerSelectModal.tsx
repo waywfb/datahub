@@ -1,6 +1,7 @@
 import { Button, Form, Modal, Select, Tag, Tooltip } from 'antd';
 import React, { ReactNode, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsLazyQuery } from '../../../../../../../graphql/search.generated';
 import { Container, Entity, EntityType } from '../../../../../../../types.generated';
 import { useEnterKeyListener } from '../../../../../../shared/useEnterKeyListener';
@@ -19,7 +20,7 @@ type SelectedContainer = {
 };
 
 const StyleTag = styled(Tag)`
-    padding: 0px 7px;
+    padding: 0 7px;
     margin-right: 3px;
     display: flex;
     justify-content: start;
@@ -35,6 +36,7 @@ const PreviewImage = styled.img`
 `;
 
 export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride, titleOverride }: Props) => {
+    const { t } = useTranslation();
     const [containerSearch, { data: platforSearchData }] = useGetSearchResultsLazyQuery();
     const entityRegistry = useEntityRegistry();
 
@@ -139,16 +141,21 @@ export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride
 
     return (
         <Modal
-            title={titleOverride || 'Select Container'}
+            title={
+                titleOverride ||
+                t('search.selectWithName', {
+                    name: t('entity.subtype.CONTAINER_interval', { postProcess: 'interval', count: 1 }),
+                })
+            }
             visible
             onCancel={onModalClose}
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="setContainerButton" disabled={selectedContainers?.length === 0} onClick={onOk}>
-                        Add
+                        {t('common.add')}
                     </Button>
                 </>
             }
@@ -161,7 +168,9 @@ export const ContainerSelectModal = ({ onCloseModal, defaultValues, onOkOverride
                         showSearch
                         mode="multiple"
                         defaultActiveFirstOption={false}
-                        placeholder="Search for Containers..."
+                        placeholder={t('placeholder.searchForWithName', {
+                            name: t('entity.subtype.CONTAINER_interval', { postProcess: 'interval', count: 2 }),
+                        })}
                         onSelect={(containerUrn: any) => onSelectContainer(containerUrn)}
                         onDeselect={onDeselectContainer}
                         onSearch={(value: string) => {

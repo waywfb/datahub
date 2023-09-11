@@ -4,15 +4,36 @@ import { DateInterval } from '../../../../../../types.generated';
  * Change this to add or modify the lookback windows that are selectable via the UI.
  */
 export const LOOKBACK_WINDOWS = {
-    DAY: { text: '1 day', windowSize: { interval: DateInterval.Day, count: 1 } },
-    WEEK: { text: '1 week', windowSize: { interval: DateInterval.Week, count: 1 } },
-    MONTH: { text: '1 month', windowSize: { interval: DateInterval.Month, count: 1 } },
-    QUARTER: { text: '3 months', windowSize: { interval: DateInterval.Month, count: 3 } },
-    YEAR: { text: '1 year', windowSize: { interval: DateInterval.Year, count: 1 } },
+    DAY: {
+        translateKey: 'duration.day_interval',
+        value: '1 day',
+        windowSize: { interval: DateInterval.Day, count: 1 },
+    },
+    WEEK: {
+        translateKey: 'duration.week_interval',
+        value: '1 week',
+        windowSize: { interval: DateInterval.Week, count: 1 },
+    },
+    MONTH: {
+        translateKey: 'duration.month_interval',
+        value: '1 month',
+        windowSize: { interval: DateInterval.Month, count: 1 },
+    },
+    QUARTER: {
+        translateKey: 'duration.month_interval',
+        value: '3 months',
+        windowSize: { interval: DateInterval.Month, count: 3 },
+    },
+    YEAR: {
+        translateKey: 'duration.year_interval',
+        value: '1 year',
+        windowSize: { interval: DateInterval.Year, count: 1 },
+    },
 };
 
 export type LookbackWindow = {
-    text: string;
+    translateKey: string;
+    value: string;
     windowSize: {
         interval: DateInterval;
         count: number;

@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import moment from 'moment-timezone';
 import React from 'react';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Trans, useTranslation } from 'react-i18next';
 import { toLocalDateTimeString, toRelativeTimeString } from '../../../../../shared/time/timeUtils';
 import { ANTD_GRAY } from '../../../constants';
 import { useEntityData } from '../../../EntityContext';
@@ -87,13 +88,13 @@ function TooltipContent() {
     return (
         <div>
             <TooltipSection>
-                <StyledDot color={green[5]} /> Synchronized in the&nbsp;<b>past week</b>
+                <StyledDot color={green[5]} /> <Trans i18nKey="reporting.synchronizedInThePastWeek_component" />
             </TooltipSection>
             <TooltipSection>
-                <StyledDot color={orange[5]} /> Synchronized in the&nbsp;<b>past month</b>
+                <StyledDot color={orange[5]} /> <Trans i18nKey="reporting.synchronizedInThePastMonth_component" />
             </TooltipSection>
             <TooltipSection>
-                <StyledDot color={red[5]} /> Synchronized&nbsp;<b>more than a month ago</b>
+                <StyledDot color={red[5]} /> <Trans i18nKey="reporting.synchronizedMoreThanAMonthAgo_component" />
             </TooltipSection>
         </div>
     );
@@ -115,11 +116,13 @@ interface Props {
 }
 
 function LastIngested({ lastIngested }: Props) {
+    const { t } = useTranslation();
     const { entityData, entityType } = useEntityData();
     const entityRegistry = useEntityRegistry();
-    const displayedEntityType = getDisplayedEntityType(entityData, entityRegistry, entityType);
+    const displayedEntityType = getDisplayedEntityType(entityData, entityRegistry, entityType, t);
     const lastIngestedColor = getLastIngestedColor(lastIngested);
     const platformName = getPlatformName(entityData);
+    const { i18n } = useTranslation();
     const platformLogoUrl = entityData?.platform?.properties?.logoUrl;
 
     return (
@@ -130,38 +133,49 @@ function LastIngested({ lastIngested }: Props) {
                     <PopoverContentWrapper>
                         <Title>
                             <StyledDot color={lastIngestedColor} />
-                            Last Synchronized
+                            {t('reporting.lastSynchronized')}
                         </Title>
                         <RelativeDescription>
-                            This {displayedEntityType.toLocaleLowerCase()} was last synchronized&nbsp;
-                            <b>{toRelativeTimeString(lastIngested)}</b>
+                            <Trans
+                                i18nKey="reporting.lastSynchronizedWithNameAndTime_component"
+                                values={{
+                                    name: displayedEntityType.toLocaleLowerCase(),
+                                    time: toRelativeTimeString(lastIngested, i18n.language),
+                                }}
+                            />
                         </RelativeDescription>
-                        <SubText>Synchronized on {toLocalDateTimeString(lastIngested)}</SubText>
+                        <SubText>
+                            {t('reporting.reporting.synchronizedOnWithTime', {
+                                time: toLocalDateTimeString(lastIngested, i18n.language),
+                            })}
+                        </SubText>
                     </PopoverContentWrapper>
                 }
             >
                 <MainContent>
                     <StyledDot color={lastIngestedColor} />
-                    Last synchronized&nbsp;
-                    <b>{toRelativeTimeString(lastIngested)}</b>
+                    {t('reporting.lastSynchronized')}&nbsp;
+                    <b>{toRelativeTimeString(lastIngested, i18n.language)}</b>
                 </MainContent>
             </Popover>
             <Popover
                 title={
                     <HelpHeader>
-                        This represents the time that the entity was last synchronized with&nbsp;
                         {platformName ? (
-                            <strong>
-                                {platformLogoUrl && (
-                                    <>
-                                        <PreviewImage preview={false} src={platformLogoUrl} alt={platformName} />
-                                        &nbsp;
-                                    </>
-                                )}
-                                {platformName}
-                            </strong>
+                            <>
+                                {t('reporting.lastSynchronizedDescriptionWithPlatform')}
+                                <strong>
+                                    {platformLogoUrl && (
+                                        <>
+                                            <PreviewImage preview={false} src={platformLogoUrl} alt={platformName} />
+                                            &nbsp;
+                                        </>
+                                    )}
+                                    {platformName}
+                                </strong>
+                            </>
                         ) : (
-                            <>the source platform</>
+                            t('reporting.lastSynchronizedDescriptionNoPlatform')
                         )}
                     </HelpHeader>
                 }

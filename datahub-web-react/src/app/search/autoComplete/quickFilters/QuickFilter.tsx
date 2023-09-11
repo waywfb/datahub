@@ -1,6 +1,7 @@
 import { Button } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useQuickFiltersContext } from '../../../../providers/QuickFiltersContext';
 import { QuickFilter as QuickFilterType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
@@ -46,10 +47,11 @@ interface Props {
 
 export default function QuickFilter({ quickFilter }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const { selectedQuickFilter, setSelectedQuickFilter } = useQuickFiltersContext();
 
     const isSelected = selectedQuickFilter?.value === quickFilter.value;
-    const { label, icon } = getQuickFilterDetails(quickFilter, entityRegistry);
+    const { label, icon } = getQuickFilterDetails(quickFilter, entityRegistry, t);
 
     function emitTrackingEvent(isSelecting: boolean) {
         analytics.event({

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import * as QueryString from 'query-string';
 import { PlusOutlined } from '@ant-design/icons';
 import { AlignType } from 'rc-table/lib/interface';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../types.generated';
 import { useListDomainsQuery } from '../../graphql/domain.generated';
 import CreateDomainModal from './CreateDomainModal';
@@ -25,24 +26,24 @@ const DomainsContainer = styled.div``;
 
 export const DomainsPaginationContainer = styled.div`
     display: flex;
-    justify-content: center;
+    //justify-content: center;
+    justify-content: space-between;
     padding: 12px;
     padding-left: 16px;
     border-bottom: 1px solid;
     border-color: ${(props) => props.theme.styles['border-color-base']};
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 `;
 
 const PaginationInfo = styled(Typography.Text)`
-    padding: 0px;
+    padding: 0;
 `;
 
 const DEFAULT_PAGE_SIZE = 25;
 
 export const DomainsList = () => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const location = useLocation();
     const params = QueryString.parse(location.search, { arrayFormat: 'comma' });
     const paramsQuery = (params?.query as string) || undefined;
@@ -85,16 +86,16 @@ export const DomainsList = () => {
     const logoIcon = entityRegistry.getIcon(EntityType.Domain, 12, IconStyleType.ACCENT);
     const allColumns = [
         {
-            title: 'Name',
+            title: t('common.name'),
             dataIndex: '',
             key: 'name',
             sorter: (sourceA, sourceB) => {
                 return sourceA.name.localeCompare(sourceB.name);
             },
-            render: DomainNameColumn(logoIcon),
+            render: DomainNameColumn(logoIcon, t),
         },
         {
-            title: 'Owners',
+            title: t('common.owners'),
             dataIndex: 'ownership',
             width: '10%',
             key: 'ownership',
@@ -126,17 +127,26 @@ export const DomainsList = () => {
 
     return (
         <>
-            {!data && loading && <Message type="loading" content="Loading domains..." />}
-            {error && <Message type="error" content="Failed to load domains! An unexpected error occurred." />}
+            {!data && loading && <Message type="loading" content={`${t('common.loading')}...`} />}
+            {error && (
+                <Message
+                    type="error"
+                    content={t('crud.error.loadWithName', {
+                        name: entityRegistry.getCollectionNameTrans(EntityType.Domain, t),
+                    })}
+                />
+            )}
             <OnboardingTour stepIds={[DOMAINS_INTRO_ID, DOMAINS_CREATE_DOMAIN_ID]} />
             <DomainsContainer>
                 <TabToolbar>
                     <Button id={DOMAINS_CREATE_DOMAIN_ID} type="text" onClick={() => setIsCreatingDomain(true)}>
-                        <PlusOutlined /> New Domain
+                        <PlusOutlined /> {t('domain.newDomain')}
                     </Button>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText="Search domains..."
+                        placeholderText={t('placeholder.searchWithName', {
+                            name: entityRegistry.getCollectionNameTrans(EntityType.Domain, t),
+                        })}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,
@@ -157,7 +167,9 @@ export const DomainsList = () => {
                     dataSource={tableData}
                     rowKey="urn"
                     pagination={false}
-                    locale={{ emptyText: <Empty description="No Domains!" image={Empty.PRESENTED_IMAGE_SIMPLE} /> }}
+                    locale={{
+                        emptyText: <Empty description={t('domain.noDomain')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                    }}
                 />
                 <DomainsPaginationContainer>
                     <PaginationInfo>

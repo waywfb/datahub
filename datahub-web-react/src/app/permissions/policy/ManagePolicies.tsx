@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import * as QueryString from 'query-string';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import PolicyBuilderModal from './PolicyBuilderModal';
 import {
     Policy,
@@ -132,6 +133,7 @@ const toPolicyInput = (policy: Omit<Policy, 'urn'>): PolicyUpdateInput => {
 
 // TODO: Cleanup the styling.
 export const ManagePolicies = () => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const location = useLocation();
     const params = QueryString.parse(location.search, { arrayFormat: 'comma' });
@@ -248,8 +250,8 @@ export const ManagePolicies = () => {
     // On Delete Policy handler
     const onRemovePolicy = (policy: Policy) => {
         Modal.confirm({
-            title: `Delete ${policy?.name}`,
-            content: `Are you sure you want to remove policy?`,
+            title: t('crud.deleteWithName', { name: policy?.name }),
+            content: t('permissions.areYouSureRemovePolicy'),
             onOk() {
                 deletePolicy({ variables: { urn: policy?.urn as string } }); // There must be a focus policy urn.
                 analytics.event({
@@ -257,14 +259,15 @@ export const ManagePolicies = () => {
                     entityUrn: policy?.urn,
                     entityType: EntityType.DatahubPolicy,
                 });
-                message.success('Successfully removed policy.');
+                message.success(t('permissions.successfullyRemovedPolicy'));
                 setTimeout(() => {
                     policiesRefetch();
                 }, 3000);
                 onCancelViewPolicy();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -283,7 +286,11 @@ export const ManagePolicies = () => {
                 input: toPolicyInput(newPolicy),
             },
         });
-        message.success(`Successfully ${newState === PolicyState.Active ? 'activated' : 'deactivated'} policy.`);
+        message.success(
+            newState === PolicyState.Active
+                ? t('permissions.successfullyActivatedPolicy')
+                : t('permissions.successfullyDeactivatedPolicy'),
+        );
         setTimeout(() => {
             policiesRefetch();
         }, 3000);
@@ -306,7 +313,7 @@ export const ManagePolicies = () => {
                 type: EventType.CreatePolicyEvent,
             });
         }
-        message.success('Successfully saved policy.');
+        message.success(t('permissions.successfullySavedPolicy'));
         setTimeout(() => {
             policiesRefetch();
         }, 3000);
@@ -315,7 +322,7 @@ export const ManagePolicies = () => {
 
     const tableColumns = [
         {
-            title: 'Name',
+            title: t('common.name'),
             dataIndex: 'name',
             key: 'name',
             render: (_, record: any) => {
@@ -330,7 +337,7 @@ export const ManagePolicies = () => {
             },
         },
         {
-            title: 'Type',
+            title: t('common.type'),
             dataIndex: 'type',
             key: 'type',
             render: (type: string) => {
@@ -339,13 +346,13 @@ export const ManagePolicies = () => {
             },
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: 'description',
             key: 'description',
             render: (description: string) => description || '',
         },
         {
-            title: 'Actors',
+            title: t('common.actors'),
             dataIndex: 'actors',
             key: 'actors',
             render: (_, record: any) => {
@@ -358,15 +365,17 @@ export const ManagePolicies = () => {
                             maxCount={3}
                             size={28}
                         />
-                        {record?.allUsers ? <ActorTag>All Users</ActorTag> : null}
-                        {record?.allGroups ? <ActorTag>All Groups</ActorTag> : null}
-                        {record?.resourceOwners ? <ActorTag>All Owners</ActorTag> : null}
+                        {record?.allUsers ? <ActorTag>{`${t('common.all')} ${t('common.users')}`}</ActorTag> : null}
+                        {record?.allGroups ? <ActorTag>{`${t('common.all')} ${t('common.groups')}`}</ActorTag> : null}
+                        {record?.resourceOwners ? (
+                            <ActorTag>{`${t('common.all')} ${t('common.owners')}`}</ActorTag>
+                        ) : null}
                     </>
                 );
             },
         },
         {
-            title: 'State',
+            title: t('common.state'),
             dataIndex: 'state',
             key: 'state',
             render: (state: string) => {
@@ -381,7 +390,7 @@ export const ManagePolicies = () => {
             render: (_, record: any) => (
                 <ActionButtonContainer>
                     <EditPolicyButton disabled={!record?.editable} onClick={() => onEditPolicy(record?.policy)}>
-                        EDIT
+                        {t('common.edit').toUpperCase()}
                     </EditPolicyButton>
                     {record?.state === PolicyState.Active ? (
                         <Button
@@ -395,7 +404,7 @@ export const ManagePolicies = () => {
                             }}
                             style={{ color: record?.editable ? 'red' : ANTD_GRAY[6], width: 100 }}
                         >
-                            DEACTIVATE
+                            {t('common.deactivate').toUpperCase()}
                         </Button>
                     ) : (
                         <Button
@@ -409,7 +418,7 @@ export const ManagePolicies = () => {
                             }}
                             style={{ color: record?.editable ? 'green' : ANTD_GRAY[6], width: 100 }}
                         >
-                            ACTIVATE
+                            {t('common.activate').toUpperCase()}
                         </Button>
                     )}
                     <Button
@@ -447,10 +456,10 @@ export const ManagePolicies = () => {
         <PageContainer>
             <OnboardingTour stepIds={[POLICIES_INTRO_ID, POLICIES_CREATE_POLICY_ID]} />
             {policiesLoading && !policiesData && (
-                <Message type="loading" content="Loading policies..." style={{ marginTop: '10%' }} />
+                <Message type="loading" content={t('permissions.loadingPolicies')} style={{ marginTop: '10%' }} />
             )}
-            {policiesError && <Message type="error" content="Failed to load policies! An unexpected error occurred." />}
-            {updateError && message.error('Failed to update policies. An unexpected error occurred.')}
+            {policiesError && <Message type="error" content={t('permissions.failedToLoadPolicies')} />}
+            {updateError && message.error(t('permissions.failedToUpdatePolicies'))}
             <SourceContainer>
                 <TabToolbar>
                     <div>
@@ -460,12 +469,12 @@ export const ManagePolicies = () => {
                             onClick={onClickNewPolicy}
                             data-testid="add-policy-button"
                         >
-                            <PlusOutlined /> Create new policy
+                            <PlusOutlined /> {t('permissions.createNewPolicy')}
                         </Button>
                     </div>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText="Search policies..."
+                        placeholderText={t('permissions.searchPolicies')}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,
@@ -486,7 +495,9 @@ export const ManagePolicies = () => {
                     dataSource={tableData}
                     rowKey="urn"
                     locale={{
-                        emptyText: <Empty description="No Policies!" image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                        emptyText: (
+                            <Empty description={t('permissions.noPolicies')} image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                        ),
                     }}
                     pagination={false}
                 />

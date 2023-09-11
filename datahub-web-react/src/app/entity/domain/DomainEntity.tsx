@@ -74,16 +74,19 @@ export class DomainEntity implements Entity<Domain> {
             tabs={[
                 {
                     id: EntityProfileTab.DOMAIN_ENTITIES_TAB,
+                    titleKey: 'common.entities',
                     name: 'Entities',
                     component: DomainEntitiesTab,
                 },
                 {
                     id: EntityProfileTab.DOCUMENTATION_TAB,
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
                     id: EntityProfileTab.DATA_PRODUCTS_TAB,
+                    titleKey: 'common.common.dataProducts',
                     name: 'Data Products',
                     component: DataProductsTab,
                 },

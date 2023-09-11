@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Divider, Empty, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import {
     CorpUser,
     EntityType,
@@ -38,9 +39,9 @@ const RecommendationContainer = styled.div`
 `;
 
 const RecommendationTitle = styled(Typography.Title)`
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
 `;
 
 const ThinDivider = styled(Divider)`
@@ -100,6 +101,7 @@ const simpleViewEntityTypes = [
 export const HomePageRecommendations = ({ user }: Props) => {
     // Entity Types
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const browseEntityList = entityRegistry.getBrowseEntityTypes();
     const userUrn = user?.urn;
 
@@ -164,7 +166,9 @@ export const HomePageRecommendations = ({ user }: Props) => {
                     {domainRecommendationModule && (
                         <>
                             <DomainsRecomendationContainer id={HOME_PAGE_DOMAINS_ID}>
-                                <RecommendationTitle level={4}>{domainRecommendationModule.title}</RecommendationTitle>
+                                <RecommendationTitle level={4}>
+                                    {t(`home.module.${domainRecommendationModule.moduleId}`)}
+                                </RecommendationTitle>
                                 <ThinDivider />
                                 <RecommendationModule
                                     module={domainRecommendationModule as RecommendationModuleType}
@@ -174,7 +178,7 @@ export const HomePageRecommendations = ({ user }: Props) => {
                             </DomainsRecomendationContainer>
                         </>
                     )}
-                    <RecommendationTitle level={4}>Explore your data</RecommendationTitle>
+                    <RecommendationTitle level={4}>{t('home.exploreYourData')}</RecommendationTitle>
                     <ThinDivider />
                     {hasIngestedMetadata ? (
                         <BrowseCardContainer>
@@ -195,7 +199,7 @@ export const HomePageRecommendations = ({ user }: Props) => {
                         </BrowseCardContainer>
                     ) : (
                         <NoMetadataContainer>
-                            <NoMetadataEmpty description="No Metadata Found 😢" />
+                            <NoMetadataEmpty description={t('home.noMetadata')} />
                         </NoMetadataContainer>
                     )}
                 </RecommendationContainer>
@@ -205,7 +209,7 @@ export const HomePageRecommendations = ({ user }: Props) => {
                     .filter((module) => module.renderType !== RecommendationRenderType.DomainSearchList)
                     .map((module) => (
                         <RecommendationContainer id={getStepId(module.moduleId)} key={module.moduleId}>
-                            <RecommendationTitle level={4}>{module.title}</RecommendationTitle>
+                            <RecommendationTitle level={4}>{t(`home.module.${module.moduleId}`)}</RecommendationTitle>
                             <ThinDivider />
                             <RecommendationModule
                                 module={module as RecommendationModuleType}

@@ -2,9 +2,9 @@ import { EditOutlined } from '@ant-design/icons';
 import { Button, Modal, Typography, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { SidebarHeader } from '../SidebarHeader';
 import { useEntityData } from '../../../../EntityContext';
-import { EMPTY_MESSAGES } from '../../../../constants';
 import SetDataProductModal from './SetDataProductModal';
 import { DataProductLink } from '../../../../../../shared/tags/DataProductLink';
 import { useBatchSetDataProductMutation } from '../../../../../../../graphql/dataProduct.generated';
@@ -24,6 +24,7 @@ interface Props {
 export default function DataProductSection({ readOnly }: Props) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const { entityData, urn } = useEntityData();
+    const { t } = useTranslation(['empty-message']);
     const [batchSetDataProductMutation] = useBatchSetDataProductMutation();
     const [dataProduct, setDataProduct] = useState<DataProduct | null>(null);
     const dataProductRelationships = entityData?.dataProduct?.relationships;
@@ -38,14 +39,17 @@ export default function DataProductSection({ readOnly }: Props) {
     function removeDataProduct() {
         batchSetDataProductMutation({ variables: { input: { resourceUrns: [urn, ...siblingUrns] } } })
             .then(() => {
-                message.success({ content: 'Removed Data Product.', duration: 2 });
+                message.success({
+                    content: t('crud.success.removeWithName', { name: t('common.dataProduct') }),
+                    duration: 2,
+                });
                 setDataProduct(null);
             })
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
                     message.error({
-                        content: `Failed to remove data product. An unknown error occurred.`,
+                        content: t('crud.error.removeWithName', { name: t('common.dataProduct') }),
                         duration: 3,
                     });
                 }
@@ -54,13 +58,14 @@ export default function DataProductSection({ readOnly }: Props) {
 
     const onRemoveDataProduct = () => {
         Modal.confirm({
-            title: `Confirm Data Product Removal`,
-            content: `Are you sure you want to remove this data product?`,
+            title: t('crud.doYouWantTo.confirmRemovalWithName', { name: t('common.dataProduct') }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', { name: t('common.dataProduct') }),
             onOk() {
                 removeDataProduct();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });
@@ -68,7 +73,7 @@ export default function DataProductSection({ readOnly }: Props) {
 
     return (
         <>
-            <SidebarHeader title="Data Product" />
+            <SidebarHeader title={t('common.dataProduct')} />
             {dataProduct && (
                 <DataProductLink
                     dataProduct={dataProduct}
@@ -84,11 +89,12 @@ export default function DataProductSection({ readOnly }: Props) {
             {!dataProduct && (
                 <>
                     <EmptyText type="secondary">
-                        {EMPTY_MESSAGES.dataProduct.title}. {EMPTY_MESSAGES.dataProduct.description}
+                        {t('dataProduct.title', { ns: 'empty-message' })}.{' '}
+                        {t('dataProduct.description', { ns: 'empty-message' })}
                     </EmptyText>
                     {!readOnly && (
                         <Button type="default" onClick={() => setIsModalVisible(true)}>
-                            <EditOutlined /> Set Data Product
+                            <EditOutlined /> {t('crud.setWithName', { name: t('common.dataProduct') })}
                         </Button>
                     )}
                 </>

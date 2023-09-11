@@ -1,6 +1,7 @@
 import { Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useEntityData } from '../../shared/EntityContext';
 import GlossaryRelatedTermsResult, { RelatedTermTypes } from './GlossaryRelatedTermsResult';
 
@@ -21,6 +22,7 @@ const Content = styled.div`
 `;
 
 export default function GlossayRelatedTerms() {
+    const { t } = useTranslation();
     const { entityData } = useEntityData();
     const [selectedKey, setSelectedKey] = useState('');
     const menuOptionsArray = Object.keys(RelatedTermTypes);
@@ -49,7 +51,7 @@ export default function GlossayRelatedTerms() {
                 >
                     {menuOptionsArray.map((option) => (
                         <Menu.Item data-testid={option} key={option}>
-                            {RelatedTermTypes[option]}
+                            {t(`relatedTermType.${RelatedTermTypes[option]}`)}
                         </Menu.Item>
                     ))}
                 </Menu>

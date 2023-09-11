@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Typography } from 'antd';
 import { GlobalOutlined, LockOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { DataHubViewType } from '../../../types.generated';
 
 const StyledLockOutlined = styled(LockOutlined)<{ color }>`
@@ -31,14 +32,15 @@ type Props = {
  * @param param0 the color of the text and iconography
  */
 export const ViewTypeLabel = ({ type, color }: Props) => {
+    const { t } = useTranslation();
     const copy =
         type === DataHubViewType.Personal ? (
             <>
-                <b>Private</b> - only visible to you.
+                <b>{t('common.private')}</b> - {t('filter.view.onlyVisibleToYou')}
             </>
         ) : (
             <>
-                <b>Public</b> - visible to everyone.
+                <b>{t('common.public')}</b> - {t('filter.view.visibleToEveryone')}
             </>
         );
     const Icon = type === DataHubViewType.Global ? StyledGlobalOutlined : StyledLockOutlined;

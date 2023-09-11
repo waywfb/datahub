@@ -1,6 +1,7 @@
 import { Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     Container,
     EntityType,
@@ -70,8 +71,9 @@ export const Preview = ({
     degree?: number;
     paths?: EntityPath[];
 }): JSX.Element => {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
-    const typeName = capitalizeFirstLetterOnly(subTypes?.typeNames?.[0]) || 'Container';
+    const typeName = capitalizeFirstLetterOnly(subTypes?.typeNames?.[0]) || EntityType.Container;
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.Container, urn)}
@@ -97,7 +99,8 @@ export const Preview = ({
             subHeader={
                 (entityCount && [
                     <StatText>
-                        <b>{entityCount}</b> {entityCount === 1 ? 'entity' : 'entities'}
+                        <b>{entityCount}</b>{' '}
+                        {t('entity.subtype.entity_interval', { postProcess: 'interval', count: entityCount })}
                     </StatText>,
                 ]) ||
                 undefined

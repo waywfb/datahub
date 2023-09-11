@@ -3,6 +3,7 @@ import { ColumnsType } from 'antd/es/table';
 import { useVT } from 'virtualizedtableforantd4';
 import ResizeObserver from 'rc-resize-observer';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     EditableSchemaMetadata,
     ForeignKeyConstraint,
@@ -31,7 +32,7 @@ const TableContainer = styled.div`
 
     &&& .ant-table-tbody > tr > .ant-table-cell-with-append {
         border-right: none;
-        padding: 0px;
+        padding: 0;
     }
 
     &&& .ant-table-tbody > tr > .ant-table-cell {
@@ -69,6 +70,7 @@ export default function SchemaTable({
     expandedRowsFromFilter = EMPTY_SET,
     filterText = '',
 }: Props): JSX.Element {
+    const { t } = useTranslation();
     const hasUsageStats = useMemo(() => (usageStats?.aggregations?.fields?.length || 0) > 0, [usageStats]);
     const [tableHeight, setTableHeight] = useState(0);
     const [tagHoveredIndex, setTagHoveredIndex] = useState<string | undefined>(undefined);
@@ -76,7 +78,7 @@ export default function SchemaTable({
         useState<null | { fieldPath: string; constraint?: ForeignKeyConstraint | null }>(null);
 
     const descriptionRender = useDescriptionRenderer(editableSchemaMetadata);
-    const usageStatsRenderer = useUsageStatsRenderer(usageStats);
+    const usageStatsRenderer = useUsageStatsRenderer(t, usageStats);
     const tagRenderer = useTagsAndTermsRenderer(
         editableSchemaMetadata,
         tagHoveredIndex,
@@ -115,7 +117,7 @@ export default function SchemaTable({
 
     const fieldColumn = {
         width: '22%',
-        title: 'Field',
+        title: t('common.field'),
         dataIndex: 'fieldPath',
         key: 'fieldPath',
         render: schemaTitleRenderer,
@@ -127,7 +129,7 @@ export default function SchemaTable({
 
     const descriptionColumn = {
         width: '22%',
-        title: 'Description',
+        title: t('common.description'),
         dataIndex: 'description',
         key: 'description',
         render: descriptionRender,
@@ -135,7 +137,7 @@ export default function SchemaTable({
 
     const tagColumn = {
         width: '13%',
-        title: 'Tags',
+        title: t('entity.type.TAG_interval', { postProcess: 'interval', count: 2 }),
         dataIndex: 'globalTags',
         key: 'tag',
         render: tagRenderer,
@@ -144,7 +146,7 @@ export default function SchemaTable({
 
     const termColumn = {
         width: '13%',
-        title: 'Glossary Terms',
+        title: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 2 }),
         dataIndex: 'globalTags',
         key: 'tag',
         render: termRenderer,
@@ -177,7 +179,7 @@ export default function SchemaTable({
 
     const usageColumn = {
         width: '10%',
-        title: 'Usage',
+        title: t('common.usage'),
         dataIndex: 'fieldPath',
         key: 'usage',
         render: usageStatsRenderer,

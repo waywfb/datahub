@@ -1,6 +1,7 @@
 import React from 'react';
 import { Popover, Typography } from 'antd';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { Owner } from '../../../../../../types.generated';
 import { CustomAvatar } from '../../../../../shared/avatar';
 import { getDescriptionFromType, getNameFromType } from '../../../containers/profile/sidebar/Ownership/ownershipUtils';
@@ -67,9 +68,10 @@ interface Props {
 
 export default function OwnerContent({ name, owner, hidePopOver, pictureLink, fontSize }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const ownerEntity = owner.owner;
     const ownerEntityType = owner.owner.type;
-    const ownerEntityTypeDisplayName = entityRegistry.getEntityName(ownerEntityType);
+    const ownerEntityTypeDisplayName = entityRegistry.getEntityNameTrans(ownerEntityType, t);
     const ownerDisplayName = entityRegistry.getDisplayName(ownerEntityType, ownerEntity);
     let ownershipTypeName;
     let ownershipTypeDescription;
@@ -77,8 +79,8 @@ export default function OwnerContent({ name, owner, hidePopOver, pictureLink, fo
         ownershipTypeName = owner.ownershipType.info.name;
         ownershipTypeDescription = owner.ownershipType.info.description;
     } else if (owner.type) {
-        ownershipTypeName = getNameFromType(owner.type);
-        ownershipTypeDescription = getDescriptionFromType(owner.type);
+        ownershipTypeName = getNameFromType(t, owner.type);
+        ownershipTypeDescription = getDescriptionFromType(t, owner.type);
     }
 
     const avatar: React.ReactNode = (

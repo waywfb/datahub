@@ -2,6 +2,7 @@ import * as React from 'react';
 import { BookOutlined } from '@ant-design/icons';
 import { Tag, Tooltip } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     Domain,
     Container,
@@ -43,6 +44,7 @@ const PreviewImage = styled.img`
 // SearchFilterLabel renders custom labels for entity, tag, term & data platform filters. All other filters use the default behavior.
 export const SearchFilterLabel = ({ field, value, entity, count, hideCount }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const filterLabelOverride = useGetBrowseV2LabelOverride(field, value, entityRegistry);
     const countText = hideCount ? '' : ` (${count === MAX_COUNT_VAL ? '10k+' : formatNumber(count)})`;
 
@@ -50,7 +52,7 @@ export const SearchFilterLabel = ({ field, value, entity, count, hideCount }: Pr
         const entityType = value.toUpperCase() as EntityType;
         return (
             <span>
-                {entityType ? entityRegistry.getCollectionName(entityType) : value}
+                {entityType ? entityRegistry.getCollectionNameTrans(entityType, t) : value}
                 {countText}
             </span>
         );

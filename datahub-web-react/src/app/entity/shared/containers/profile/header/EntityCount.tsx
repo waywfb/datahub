@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../constants';
 
 export const EntityCountText = styled(Typography.Text)`
@@ -17,18 +18,17 @@ interface Props {
 }
 
 function EntityCount(props: Props) {
+    const { t } = useTranslation();
     const { entityCount, displayAssetsText } = props;
 
     if (!entityCount || entityCount <= 0) return null;
 
     return (
         <EntityCountText className="entityCount">
-            {entityCount.toLocaleString()}{' '}
-            {displayAssetsText ? (
-                <>{entityCount === 1 ? 'asset' : 'assets'}</>
-            ) : (
-                <>{entityCount === 1 ? 'entity' : 'entities'}</>
-            )}
+            {`${entityCount.toLocaleString()} ${t(
+                displayAssetsText ? 'entity.subtype.asset_interval' : 'entity.subtype.entity',
+                { postProcess: 'interval', count: entityCount },
+            )}`}
         </EntityCountText>
     );
 }

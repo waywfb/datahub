@@ -115,6 +115,11 @@ export enum Direction {
     Downstream = 'Downstream',
 }
 
+export enum DirectionTrans {
+    Upstream = 'common.upstream',
+    Downstream = 'common.downstream',
+}
+
 export type LineageExplorerParams = {
     type: string;
     urn: string;

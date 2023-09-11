@@ -1,9 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.less';
+import { ConfigProvider } from 'antd';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components/macro';
+import { BorderOutlined } from '@ant-design/icons';
+import moment from 'moment';
 import { THIRD_PARTY_LOGGING_KEY } from './app/analytics/analytics';
 import { checkAuthStatus } from './app/auth/checkAuthStatus';
 import { AppConfigContext, DEFAULT_APP_CONFIG } from './appConfigContext';
 import { useAppConfigQuery } from './graphql/app.generated';
+import { getTranslationForAntd } from './conf/locales/i18nUtils';
+
+const NoDataContainer = styled.div`
+    margin: auto;
+    text-align: center;
+`;
 
 function changeFavicon(src) {
     const links = document.querySelectorAll("link[rel~='icon']") as any;
@@ -19,6 +30,17 @@ function changeFavicon(src) {
 }
 
 const AppConfigProvider = ({ children }: { children: React.ReactNode }) => {
+    const { t, i18n } = useTranslation(['translation', 'form']);
+
+    // Change form alert language
+    const [validateMessages, setValidateMessages] = useState(
+        t('validateMessages', { ns: 'form', returnObjects: true }) as any,
+    );
+    i18n.on('languageChanged', (lng) => {
+        setValidateMessages(t('validateMessages', { ns: 'form', returnObjects: true }));
+        moment.locale(lng);
+    });
+
     const { data: appConfigData, refetch } = useAppConfigQuery({ fetchPolicy: 'no-cache' });
 
     const refreshAppConfig = () => {
@@ -29,7 +51,7 @@ const AppConfigProvider = ({ children }: { children: React.ReactNode }) => {
         if (appConfigData && appConfigData.appConfig) {
             if (appConfigData.appConfig.telemetryConfig.enableThirdPartyLogging) {
                 localStorage.setItem(THIRD_PARTY_LOGGING_KEY, 'true');
-                checkAuthStatus(); // identify in analyitcs once we receive config response
+                checkAuthStatus(); // identify in analytics once we receive config response
             } else {
                 localStorage.setItem(THIRD_PARTY_LOGGING_KEY, 'false');
             }
@@ -41,7 +63,17 @@ const AppConfigProvider = ({ children }: { children: React.ReactNode }) => {
         <AppConfigContext.Provider
             value={{ config: appConfigData?.appConfig || DEFAULT_APP_CONFIG, refreshContext: refreshAppConfig }}
         >
-            {children}
+            <ConfigProvider
+                locale={getTranslationForAntd(i18n.language)}
+                form={{ validateMessages }}
+                renderEmpty={() => (
+                    <NoDataContainer>
+                        <BorderOutlined /> {t('common.noData')}
+                    </NoDataContainer>
+                )}
+            >
+                {children}
+            </ConfigProvider>
         </AppConfigContext.Provider>
     );
 };

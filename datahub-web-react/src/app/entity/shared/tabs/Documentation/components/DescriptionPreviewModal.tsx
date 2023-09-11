@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import ClickOutside from '../../../../../shared/ClickOutside';
 import { DescriptionEditor } from './DescriptionEditor';
 import { DescriptionPreview } from './DescriptionPreview';
@@ -25,18 +26,20 @@ type DescriptionPreviewModalProps = {
 };
 
 export const DescriptionPreviewModal = ({ description, editMode, onClose }: DescriptionPreviewModalProps) => {
+    const { t } = useTranslation();
     const routeToTab = useRouteToTab();
 
     const onConfirmClose = () => {
         if (editMode) {
             Modal.confirm({
-                title: `Exit Editor`,
-                content: `Are you sure you want to exit the editor? Any unsaved changes will be lost.`,
+                title: t('entity.editor.exitEditor'),
+                content: t('entity.editor.sureToCloseDocumentationEditor'),
                 onOk() {
                     onClose();
                 },
                 onCancel() {},
-                okText: 'Yes',
+                okText: t('common.yes'),
+                cancelText: t('common.cancel'),
                 maskClosable: true,
                 closable: true,
             });

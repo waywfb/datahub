@@ -1,5 +1,6 @@
 import { Select, Tag, Tooltip } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsForMultipleLazyQuery } from '../../../../graphql/search.generated';
 import { EntityType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
@@ -23,6 +24,7 @@ export const EntitySearchInput = ({
     onChangeSelectedUrns,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const [searchResources, { data: resourcesSearchData }] = useGetSearchResultsForMultipleLazyQuery();
     const searchResults = resourcesSearchData?.searchAcrossEntities?.searchResults || [];
 
@@ -71,7 +73,12 @@ export const EntitySearchInput = ({
             mode="multiple"
             style={style}
             filterOption={false}
-            placeholder={placeholder || 'Search for entities...'}
+            placeholder={
+                placeholder ||
+                t('placeholder.searchForWithName', {
+                    name: t('entity.subtype.entity_interval', { postProcess: 'interval', count: 2 }),
+                })
+            }
             onSelect={onSelect}
             onDeselect={onDeselect}
             onSearch={onSearch}

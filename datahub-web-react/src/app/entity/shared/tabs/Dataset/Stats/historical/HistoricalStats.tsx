@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Divider, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import ProfilingRunsChart from './charts/ProfilingRunsChart';
 import StatChart from './charts/StatChart';
 import { DatasetProfile, DateInterval } from '../../../../../../../types.generated';
@@ -93,12 +94,15 @@ const computeChartTickInterval = (windowSize: TimeWindowSize): DateInterval => {
     }
 };
 
-const computeAllFieldPaths = (profiles: Array<DatasetProfile>): Set<string> => {
-    const uniqueFieldPaths = new Set<string>();
+const computeAllFieldPaths = (profiles: Array<DatasetProfile>): Set<{ value: string; label: string }> => {
+    const uniqueFieldPaths = new Set<{ value: string; label: string }>();
     profiles.forEach((profile) => {
         const fieldProfiles = profile.fieldProfiles || [];
         fieldProfiles.forEach((fieldProfile) => {
-            uniqueFieldPaths.add(fieldProfile.fieldPath);
+            uniqueFieldPaths.add({
+                label: fieldProfile.fieldPath,
+                value: fieldProfile.fieldPath,
+            });
         });
     });
     return uniqueFieldPaths;
@@ -114,6 +118,7 @@ export type Props = {
 };
 
 export default function HistoricalStats({ urn, lookbackWindow }: Props) {
+    const { t } = useTranslation();
     const [getDataProfiles, { data: profilesData, loading: profilesLoading }] = useGetDataProfilesLazyQuery();
 
     /**
@@ -151,7 +156,7 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
 
     if (selectedFieldPath === '' && allFieldPaths.length > 0) {
         // Set initially selected field path.
-        setSelectedFieldPath(allFieldPaths[0]);
+        setSelectedFieldPath(allFieldPaths[0].value);
     }
 
     const columnSelectView = (
@@ -214,23 +219,25 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
 
     return (
         <>
-            {profilesLoading && <Message type="loading" content="Loading..." style={{ marginTop: '10%' }} />}
+            {profilesLoading && (
+                <Message type="loading" content={`${t('common.loading')}...`} style={{ marginTop: '10%' }} />
+            )}
             <StatSection>
-                <Typography.Title level={5}>Profiling Runs</Typography.Title>
+                <Typography.Title level={5}>{t('reporting.profilingRuns')}</Typography.Title>
                 <ProfilingRunsChart profiles={profiles} />
             </StatSection>
             <StatSection>
-                <Typography.Title level={5}>Table Stats</Typography.Title>
+                <Typography.Title level={5}>{t('reporting.tableStats')}</Typography.Title>
                 <ChartRow>
                     <StatChart
-                        title="Row Count Over Time"
+                        title={t('reporting.rowCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={rowCountChartValues}
                     />
                     <ChartDivider type="vertical" height={360} width={1} />
                     <StatChart
-                        title="Column Count Over Time"
+                        title={t('reporting.columnCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={columnCountChartValues}
@@ -251,19 +258,19 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
             </StatSection>
             <StatSection>
                 <ColumnStatsHeader>
-                    <Typography.Title level={5}>Column Stats</Typography.Title>
+                    <Typography.Title level={5}>{t('reporting.columnStats')}</Typography.Title>
                     {columnSelectView}
                 </ColumnStatsHeader>
                 <ChartRow>
                     <StatChart
-                        title="Null Count Over Time"
+                        title={t('reporting.nullCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={nullCountChartValues}
                     />
                     <ChartDivider type="vertical" height={360} width={1} />
                     <StatChart
-                        title="Null Percentage Over Time"
+                        title={t('reporting.nullPercentageOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={nullPercentageChartValues}
@@ -272,14 +279,14 @@ export default function HistoricalStats({ urn, lookbackWindow }: Props) {
                 <ChartDivider type="horizontal" height={1} width={400} />
                 <ChartRow>
                     <StatChart
-                        title="Distinct Count Over Time"
+                        title={t('reporting.distinctCountOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={distinctCountChartValues}
                     />
                     <ChartDivider type="vertical" height={360} width={1} />
                     <StatChart
-                        title="Distinct Percentage Over Time"
+                        title={t('reporting.distinctPercentageOverTime')}
                         tickInterval={graphTickInterval}
                         dateRange={graphDateRange}
                         values={distinctPercentageChartValues}

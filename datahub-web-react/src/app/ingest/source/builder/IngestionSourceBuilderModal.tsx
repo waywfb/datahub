@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { isEqual } from 'lodash';
 import { ExpandAltOutlined, ShrinkOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { SourceBuilderState, StepProps } from './types';
 import { CreateScheduleStep } from './CreateScheduleStep';
 import { DefineRecipeStep } from './DefineRecipeStep';
@@ -31,10 +32,10 @@ const StepsContainer = styled.div`
  * Mapping from the step type to the title for the step
  */
 export enum IngestionSourceBuilderStepTitles {
-    SELECT_TEMPLATE = 'Choose Type',
-    DEFINE_RECIPE = 'Configure Recipe',
-    CREATE_SCHEDULE = 'Schedule Ingestion',
-    NAME_SOURCE = 'Finish up',
+    SELECT_TEMPLATE = 'chooseType',
+    DEFINE_RECIPE = 'configureRecipe',
+    CREATE_SCHEDULE = 'scheduleIngestion',
+    NAME_SOURCE = 'finishUp',
 }
 
 /**
@@ -65,6 +66,7 @@ type Props = {
 };
 
 export const IngestionSourceBuilderModal = ({ initialState, visible, onSubmit, onCancel }: Props) => {
+    const { t } = useTranslation();
     const isEditing = initialState !== undefined;
     const titleText = isEditing ? 'Edit Ingestion Source' : 'New Ingestion Source';
     const initialStep = isEditing
@@ -75,7 +77,9 @@ export const IngestionSourceBuilderModal = ({ initialState, visible, onSubmit, o
     const [modalExpanded, setModalExpanded] = useState(false);
     const [ingestionBuilderState, setIngestionBuilderState] = useState<SourceBuilderState>({});
 
-    const ingestionSources = JSON.parse(JSON.stringify(sourcesJson)); // TODO: replace with call to server once we have access to dynamic list of sources
+    // Since we can't apply modification on sourcesJSON, we replace other here with his translation.
+    const ingestionSourcesText = JSON.stringify(sourcesJson).replace('Other', t('common.other'));
+    const ingestionSources = JSON.parse(ingestionSourcesText); // TODO: replace with call to server once we have access to dynamic list of sources
 
     // Reset the ingestion builder modal state when the modal is re-opened.
     const prevInitialState = useRef(initialState);
@@ -140,7 +144,7 @@ export const IngestionSourceBuilderModal = ({ initialState, visible, onSubmit, o
             <StepsContainer>
                 <Steps current={currentStepIndex}>
                     {Object.keys(IngestionSourceBuilderStep).map((item) => (
-                        <Steps.Step key={item} title={IngestionSourceBuilderStepTitles[item]} />
+                        <Steps.Step key={item} title={t(`ingest.step.${IngestionSourceBuilderStepTitles[item]}`)} />
                     ))}
                 </Steps>
             </StepsContainer>

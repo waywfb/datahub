@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import { Button, message, Pagination } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import * as QueryString from 'query-string';
+import { useTranslation } from 'react-i18next';
 import { useListMyViewsQuery } from '../../../graphql/view.generated';
 import { SearchBar } from '../../search/SearchBar';
 import TabToolbar from '../shared/components/styled/TabToolbar';
@@ -43,6 +44,7 @@ export const ViewsList = () => {
      */
     const location = useLocation();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     /**
      * Query Params
@@ -104,7 +106,7 @@ export const ViewsList = () => {
             {error && message.error({ content: `Failed to load Views! An unexpected error occurred.`, duration: 3 })}
             <TabToolbar>
                 <Button type="text" onClick={onClickCreateView}>
-                    <PlusOutlined /> Create new View
+                    <PlusOutlined /> {t('crud.createWithName', { name: t('common.view') })}
                 </Button>
                 <SearchBar
                     initialQuery=""

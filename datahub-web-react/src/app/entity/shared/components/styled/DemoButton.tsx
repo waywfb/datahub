@@ -1,6 +1,7 @@
 import { Button } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const StyledButton = styled(Button)`
     padding: 8px;
@@ -9,6 +10,7 @@ const StyledButton = styled(Button)`
 `;
 
 export default function DemoButton() {
+    const { t } = useTranslation();
     return (
         <StyledButton
             type="primary"
@@ -16,7 +18,7 @@ export default function DemoButton() {
             target="_blank"
             rel="noopener noreferrer"
         >
-            Schedule a Demo
+            {t('Schedule a Demo')}
         </StyledButton>
     );
 }

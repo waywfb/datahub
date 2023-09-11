@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Typography } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
 
+import { useTranslation } from 'react-i18next';
 import {
     DataProduct,
     Deprecation,
@@ -61,13 +62,14 @@ export const Preview = ({
     paths?: EntityPath[];
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t, i18n } = useTranslation();
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.DataJob, urn)}
             name={name}
             urn={urn}
             description={description || ''}
-            type="Data Task"
+            type={EntityType.DataJob}
             typeIcon={entityRegistry.getIcon(EntityType.DataJob, 14, IconStyleType.ACCENT)}
             platform={platformName}
             logoUrl={platformLogo || ''}
@@ -85,7 +87,7 @@ export const Preview = ({
                 (lastRunTimeMs && [
                     <StatText>
                         <ClockCircleOutlined style={{ paddingRight: 8 }} />
-                        Last run {toRelativeTimeString(lastRunTimeMs)}
+                        {t('reporting.lastRunWithTime', { time: toRelativeTimeString(lastRunTimeMs, i18n.language) })}
                     </StatText>,
                 ]) ||
                 undefined

@@ -2,12 +2,11 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { EntityType, Ownership } from '../../../types.generated';
 import { ExpandedOwner } from '../shared/components/styled/ExpandedOwner/ExpandedOwner';
 import { EditOwnersModal } from '../shared/containers/profile/sidebar/Ownership/EditOwnersModal';
 import { DisplayCount, GroupSectionTitle, GroupSectionHeader } from '../shared/SidebarStyledComponents';
-
-const TITLE = 'Owners';
 
 const SectionWrapper = styled.div``;
 
@@ -20,13 +19,14 @@ type Props = {
 };
 
 export default function GroupOwnerSideBarSection({ urn, ownership, refetch }: Props) {
+    const { t } = useTranslation();
     const [showAddModal, setShowAddModal] = useState(false);
     const ownersEmpty = !ownership?.owners?.length;
 
     return (
         <>
             <GroupSectionHeader>
-                <GroupSectionTitle>{TITLE}</GroupSectionTitle>
+                <GroupSectionTitle>{t('common.owenrs')}</GroupSectionTitle>
                 <DisplayCount>{ownership?.owners?.length || ''}</DisplayCount>
             </GroupSectionHeader>
             <SectionWrapper>
@@ -35,18 +35,18 @@ export default function GroupOwnerSideBarSection({ urn, ownership, refetch }: Pr
                         <ExpandedOwner entityUrn={urn} owner={owner} refetch={refetch} />
                     ))}
                 {ownersEmpty && (
-                    <Typography.Paragraph type="secondary">No group owners added yet.</Typography.Paragraph>
+                    <Typography.Paragraph type="secondary">{t('group.noGroupOwnersAdded')}</Typography.Paragraph>
                 )}
                 {ownersEmpty && (
                     <AddOwnerButton onClick={() => setShowAddModal(true)}>
                         <PlusOutlined />
-                        Add Owners
+                        {t('crud.addWithName', { name: t('common.owners') })}
                     </AddOwnerButton>
                 )}
                 {!ownersEmpty && (
                     <AddOwnerButton type="text" style={{ padding: 0 }} onClick={() => setShowAddModal(true)}>
                         <PlusOutlined />
-                        Add Owners
+                        {t('crud.addWithName', { name: t('common.owners') })}
                     </AddOwnerButton>
                 )}
             </SectionWrapper>

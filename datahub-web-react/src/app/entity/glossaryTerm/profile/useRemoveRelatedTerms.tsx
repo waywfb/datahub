@@ -1,10 +1,12 @@
 import { message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { useEntityData, useRefetch } from '../../shared/EntityContext';
 import { useRemoveRelatedTermsMutation } from '../../../../graphql/glossaryTerm.generated';
 import { TermRelationshipType } from '../../../../types.generated';
 
 function useRemoveRelatedTerms(termUrn: string, relationshipType: TermRelationshipType, displayName: string) {
+    const { t } = useTranslation();
     const { urn, entityType } = useEntityData();
     const entityRegistry = useEntityRegistry();
     const refetch = useRefetch();
@@ -23,17 +25,24 @@ function useRemoveRelatedTerms(termUrn: string, relationshipType: TermRelationsh
         })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to remove: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('crud.error.removeWithName', {
+                        name: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 1 }),
+                    })}: \n ${e.message || ''}`,
+                    duration: 3,
+                });
             })
             .finally(() => {
                 message.loading({
-                    content: 'Removing...',
+                    content: `${t('crud.removing')}...`,
                     duration: 2,
                 });
                 setTimeout(() => {
                     refetch();
                     message.success({
-                        content: `Removed Glossary Term!`,
+                        content: t('crud.success.removeWithName', {
+                            name: t('entity.type.GLOSSARY_TERM_interval', { postProcess: 'interval', count: 1 }),
+                        }),
                         duration: 2,
                     });
                 }, 2000);
@@ -42,13 +51,16 @@ function useRemoveRelatedTerms(termUrn: string, relationshipType: TermRelationsh
 
     function onRemove() {
         Modal.confirm({
-            title: `Remove ${displayName}`,
-            content: `Are you sure you want to remove this ${entityRegistry.getEntityName(entityType)}?`,
+            title: t('crud.removeWithname', { name: displayName }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', {
+                name: entityRegistry.getEntityNameTrans(entityType, t),
+            }),
             onOk() {
                 handleRemoveRelatedTerms();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

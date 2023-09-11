@@ -2,6 +2,7 @@ import { CaretUpOutlined } from '@ant-design/icons';
 import { Button, Checkbox } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { FilterOptionType } from './types';
 import { EntityType, GlossaryNode, GlossaryTerm, Tag } from '../../../types.generated';
 import { generateColor } from '../../entity/shared/components/styled/StyledTag';
@@ -120,7 +121,8 @@ export default function FilterOption({
     const [areChildrenVisible, setAreChildrenVisible] = useState(true);
     const { field, value, count, entity } = filterOption;
     const entityRegistry = useEntityRegistry();
-    const { icon, label } = getFilterIconAndLabel(field, value, entityRegistry, entity || null, 14);
+    const { t } = useTranslation();
+    const { icon, label } = getFilterIconAndLabel(field, value, entityRegistry, t, entity || null, 14);
     const shouldShowIcon = field === PLATFORM_FILTER_NAME && icon !== null;
     const shouldShowTagColor = field === TAGS_FILTER_NAME && entity?.type === EntityType.Tag;
     const isSubTypeFilter = field === TYPE_NAMES_FILTER_NAME;

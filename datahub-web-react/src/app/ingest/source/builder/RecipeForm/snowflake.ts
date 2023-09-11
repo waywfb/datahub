@@ -2,9 +2,8 @@ import { FieldType, RecipeField } from './common';
 
 export const SNOWFLAKE_ACCOUNT_ID: RecipeField = {
     name: 'account_id',
-    label: 'Account ID',
-    tooltip:
-        'The Snowflake Account Identifier e.g. myorg-account123, account123-eu-central-1, account123.west-us-2.azure',
+    label: 'ingest.recipeForms.label.accountID',
+    tooltip: 'ingest.recipeForms.snowFlake.snowFlakeAccountIDToolTip',
     type: FieldType.TEXT,
     fieldPath: 'source.config.account_id',
     placeholder: 'xyz123',
@@ -14,8 +13,8 @@ export const SNOWFLAKE_ACCOUNT_ID: RecipeField = {
 
 export const SNOWFLAKE_WAREHOUSE: RecipeField = {
     name: 'warehouse',
-    label: 'Warehouse',
-    tooltip: 'The name of the Snowflake Warehouse to extract metadata from.',
+    label: 'ingest.recipeForms.snowFlake.label.warehouse',
+    tooltip: 'ingest.recipeForms.snowFlake.snowFlakeWarehouseToolTip',
     type: FieldType.TEXT,
     fieldPath: 'source.config.warehouse',
     placeholder: 'COMPUTE_WH',
@@ -25,8 +24,8 @@ export const SNOWFLAKE_WAREHOUSE: RecipeField = {
 
 export const SNOWFLAKE_USERNAME: RecipeField = {
     name: 'username',
-    label: 'Username',
-    tooltip: 'Snowflake username.',
+    label: 'ingest.recipeForms.label.username',
+    tooltip: 'ingest.recipeForms.snowFlake.snowFlakeUsernameToolTip',
     type: FieldType.TEXT,
     fieldPath: 'source.config.username',
     placeholder: 'snowflake',
@@ -36,8 +35,8 @@ export const SNOWFLAKE_USERNAME: RecipeField = {
 
 export const SNOWFLAKE_PASSWORD: RecipeField = {
     name: 'password',
-    label: 'Password',
-    tooltip: 'Snowflake password.',
+    label: 'ingest.recipeForms.label.password',
+    tooltip: 'ingest.recipeForms.snowFlake.snowFlakePasswordToolTip',
     type: FieldType.SECRET,
     fieldPath: 'source.config.password',
     placeholder: 'password',
@@ -47,8 +46,8 @@ export const SNOWFLAKE_PASSWORD: RecipeField = {
 
 export const SNOWFLAKE_ROLE: RecipeField = {
     name: 'role',
-    label: 'Role',
-    tooltip: 'The Role to use when extracting metadata from Snowflake.',
+    label: 'ingest.recipeForms.snowFlake.label.role',
+    tooltip: 'ingest.recipeForms.snowFlake.snowFlakeRoleToolTip',
     type: FieldType.TEXT,
     fieldPath: 'source.config.role',
     placeholder: 'datahub_role',

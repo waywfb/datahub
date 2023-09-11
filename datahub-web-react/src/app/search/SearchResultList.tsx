@@ -18,7 +18,7 @@ const ResultList = styled(List)`
         border-color: ${(props) => props.theme.styles['border-color-base']};
         margin-top: 8px;
         padding: 16px 32px;
-        border-radius: 0px;
+        border-radius: 0;
     }
 `;
 
@@ -34,7 +34,7 @@ const ThinDivider = styled(Divider)`
 const ResultWrapper = styled.div<{ showUpdatedStyles: boolean }>`
     ${(props) =>
         props.showUpdatedStyles &&
-        `    
+        `
         background-color: white;
         border-radius: 5px;
         margin: 0 auto 8px auto;
@@ -51,7 +51,7 @@ const SiblingResultContainer = styled.div`
 const ListItem = styled.div<{ isSelectMode: boolean }>`
     display: flex;
     align-items: center;
-    padding: 0px;
+    padding: 0;
 `;
 
 type Props = {

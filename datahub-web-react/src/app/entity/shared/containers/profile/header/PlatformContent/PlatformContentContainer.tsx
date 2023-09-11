@@ -1,4 +1,6 @@
 import React from 'react';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../../../../../useEntityRegistry';
 import { IconStyleType } from '../../../../../Entity';
 import { useEntityData } from '../../../../EntityContext';
@@ -14,11 +16,12 @@ export function getDisplayedEntityType(
     entityData: GenericEntityProperties | null,
     entityRegistry: EntityRegistry,
     entityType: EntityType,
+    t: TFunction,
 ) {
     return (
         entityData?.entityTypeOverride ||
         capitalizeFirstLetterOnly(entityData?.subTypes?.typeNames?.[0]) ||
-        entityRegistry.getEntityName(entityType) ||
+        entityRegistry.getEntityNameTrans(entityType, t) ||
         ''
     );
 }
@@ -26,11 +29,12 @@ export function getDisplayedEntityType(
 function PlatformContentContainer() {
     const { entityType, entityData } = useEntityData();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const platformName = getPlatformName(entityData);
     const platformLogoUrl = entityData?.platform?.properties?.logoUrl;
     const entityLogoComponent = entityRegistry.getIcon(entityType, 12, IconStyleType.ACCENT);
     const typeIcon = entityRegistry.getIcon(entityType, 12, IconStyleType.ACCENT);
-    const displayedEntityType = getDisplayedEntityType(entityData, entityRegistry, entityType);
+    const displayedEntityType = getDisplayedEntityType(entityData, entityRegistry, entityType, t);
     const instanceId = entityData?.dataPlatformInstance?.instanceId;
 
     const { contentRef, isContentTruncated } = useContentTruncation(entityData);

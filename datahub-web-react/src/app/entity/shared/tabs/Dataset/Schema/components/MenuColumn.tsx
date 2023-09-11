@@ -3,6 +3,7 @@ import { VscGraphLeft } from 'react-icons/vsc';
 import { CopyOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
 import { Dropdown, Menu } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { MenuIcon } from '../../../../EntityDropdown/EntityDropdown';
 import { useEntityData, useRouteToTab } from '../../../../EntityContext';
 import { SchemaField } from '../../../../../../../types.generated';
@@ -31,6 +32,7 @@ interface Props {
 }
 
 export default function MenuColumn({ field }: Props) {
+    const { t } = useTranslation();
     const routeToTab = useRouteToTab();
     const { urn } = useEntityData();
     const selectedColumnUrn = generateSchemaFieldUrn(field.fieldPath, urn);
@@ -43,7 +45,7 @@ export default function MenuColumn({ field }: Props) {
                         <MenuItem
                             onClick={() => routeToTab({ tabName: 'Lineage', tabParams: { column: field.fieldPath } })}
                         >
-                            <ImpactAnalysisIcon /> &nbsp; See Column Lineage
+                            <ImpactAnalysisIcon /> &nbsp; {t('lineage.seeColumnLineage')}
                         </MenuItem>
                     </Menu.Item>
                     {navigator.clipboard && (
@@ -53,7 +55,7 @@ export default function MenuColumn({ field }: Props) {
                                     navigator.clipboard.writeText(field.fieldPath);
                                 }}
                             >
-                                <CopyOutlinedIcon /> &nbsp; Copy Column Field Path
+                                <CopyOutlinedIcon /> &nbsp; {t('copy.copyColumnFieldPath')}
                             </MenuItem>
                         </Menu.Item>
                     )}
@@ -64,7 +66,7 @@ export default function MenuColumn({ field }: Props) {
                                     navigator.clipboard.writeText(selectedColumnUrn || '');
                                 }}
                             >
-                                <CopyOutlinedIcon /> &nbsp; Copy Column Urn
+                                <CopyOutlinedIcon /> &nbsp; {t('copy.copyColumnUrn')}
                             </MenuItem>
                         </Menu.Item>
                     )}

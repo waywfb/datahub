@@ -180,7 +180,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             VIEW_ALLOW,
             VIEW_DENY,
         ],
-        filterSectionTooltip: 'Include or exclude specific Databases, Schemas, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.recipeForms.snowFlake.snowFlakeFilterSectionTooltip',
     },
     [BIGQUERY]: {
         fields: [
@@ -209,7 +209,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             VIEW_ALLOW,
             VIEW_DENY,
         ],
-        filterSectionTooltip: 'Include or exclude specific Projects, Datasets, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.bigquery.bigqueryFilterSectionTooltip',
     },
     [BIGQUERY_BETA]: {
         fields: [
@@ -236,7 +236,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             VIEW_ALLOW,
             VIEW_DENY,
         ],
-        filterSectionTooltip: 'Include or exclude specific Projects, Datasets, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.bigqueryBeta.bigqueryFilterSectionTooltip',
     },
     [REDSHIFT]: {
         fields: [REDSHIFT_HOST_PORT, REDSHIFT_DATABASE, REDSHIFT_USERNAME, REDSHIFT_PASSWORD],
@@ -250,7 +250,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             STATEFUL_INGESTION_ENABLED,
         ],
         filterFields: [SCHEMA_ALLOW, SCHEMA_DENY, TABLE_ALLOW, TABLE_DENY, VIEW_ALLOW, VIEW_DENY],
-        filterSectionTooltip: 'Include or exclude specific Schemas, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.recipeForms.redshift.redshiftFilterSectionTooltip',
     },
     [TABLEAU]: {
         fields: [
@@ -270,7 +270,7 @@ export const RECIPE_FIELDS: RecipeFields = {
         fields: [LOOKER_BASE_URL, LOOKER_CLIENT_ID, LOOKER_CLIENT_SECRET],
         filterFields: [LOOKER_DASHBOARD_ALLOW, LOOKER_DASHBOARD_DENY, CHART_ALLOW, CHART_DENY],
         advancedFields: [EXTRACT_USAGE_HISTORY, EXTRACT_OWNERS, SKIP_PERSONAL_FOLDERS, STATEFUL_INGESTION_ENABLED],
-        filterSectionTooltip: 'Include or exclude specific Dashboard, Charts from Looker ingestion.',
+        filterSectionTooltip: 'ingest.looker.lookerFilterSectionTooltip',
     },
     [LOOKML]: {
         fields: [
@@ -283,8 +283,7 @@ export const RECIPE_FIELDS: RecipeFields = {
         ],
         filterFields: [],
         advancedFields: [PARSE_TABLE_NAMES_FROM_SQL, CONNECTION_TO_PLATFORM_MAP, STATEFUL_INGESTION_ENABLED],
-        advancedSectionTooltip:
-            'In order to ingest LookML data properly, you must either fill out Looker API client information (Base URL, Client ID, Client Secret) or an offline specification of the connection to platform mapping and the project name (Connection To Platform Map, Project Name).',
+        advancedSectionTooltip: 'ingest.lookml.lookmlAdvancedSectionTooltip',
         defaultOpenSections: [RecipeSections.Connection, RecipeSections.Advanced],
     },
     [KAFKA]: {
@@ -299,8 +298,7 @@ export const RECIPE_FIELDS: RecipeFields = {
         ],
         filterFields: [TOPIC_ALLOW, TOPIC_DENY],
         advancedFields: [STATEFUL_INGESTION_ENABLED],
-        filterSectionTooltip:
-            'Filter out data assets based on allow/deny regex patterns we match against. Deny patterns take precedence over allow patterns.',
+        filterSectionTooltip: 'ingest.kafka.kafkaFilterSectionTooltip',
     },
     [POSTGRES]: {
         fields: [POSTGRES_HOST_PORT, POSTGRES_USERNAME, POSTGRES_PASSWORD, POSTGRES_DATABASE],
@@ -312,7 +310,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             COLUMN_PROFILING_ENABLED,
             STATEFUL_INGESTION_ENABLED,
         ],
-        filterSectionTooltip: 'Include or exclude specific Schemas, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.postgres.postgresFilterSectionTooltip',
     },
     [MYSQL]: {
         fields: [MYSQL_HOST_PORT, MYSQL_USERNAME, MYSQL_PASSWORD],
@@ -333,13 +331,13 @@ export const RECIPE_FIELDS: RecipeFields = {
             COLUMN_PROFILING_ENABLED,
             STATEFUL_INGESTION_ENABLED,
         ],
-        filterSectionTooltip: 'Include or exclude specific Databases, Schemas, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.mysql.mysqlFilterSectionTooltip',
     },
     [HIVE]: {
         fields: [HIVE_HOST_PORT, HIVE_USERNAME, HIVE_PASSWORD, HIVE_DATABASE],
         filterFields: [SCHEMA_ALLOW, SCHEMA_DENY, TABLE_ALLOW, TABLE_DENY, VIEW_ALLOW, VIEW_DENY],
         advancedFields: [INCLUDE_TABLES, TABLE_PROFILING_ENABLED, COLUMN_PROFILING_ENABLED, STATEFUL_INGESTION_ENABLED],
-        filterSectionTooltip: 'Include or exclude specific Schemas, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.hive.hiveFilterSectionTooltip',
     },
     [PRESTO]: {
         fields: [PRESTO_HOST_PORT, PRESTO_USERNAME, PRESTO_PASSWORD, PRESTO_DATABASE],
@@ -351,7 +349,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             COLUMN_PROFILING_ENABLED,
             STATEFUL_INGESTION_ENABLED,
         ],
-        filterSectionTooltip: 'Include or exclude specific Schemas, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.recipeForms.presto.prestoFilterSectionTooltip',
     },
     [MSSQL]: {
         fields: [MSSQL_HOST_PORT, MSSQL_USERNAME, MSSQL_PASSWORD, MSSQL_DATABASE],
@@ -363,7 +361,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             COLUMN_PROFILING_ENABLED,
             STATEFUL_INGESTION_ENABLED,
         ],
-        filterSectionTooltip: 'Include or exclude specific Schemas, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.mssql.mssqlFilterSectionTooltip',
     },
     [TRINO]: {
         fields: [TRINO_HOST_PORT, TRINO_USERNAME, TRINO_PASSWORD, TRINO_DATABASE],
@@ -375,7 +373,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             COLUMN_PROFILING_ENABLED,
             STATEFUL_INGESTION_ENABLED,
         ],
-        filterSectionTooltip: 'Include or exclude specific Schemas, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.recipeForms.trino.trinoFilterSectionTooltip',
     },
     [MARIADB]: {
         fields: [MARIADB_HOST_PORT, MARIADB_USERNAME, MARIADB_PASSWORD, MARIADB_DATABASE],
@@ -387,7 +385,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             COLUMN_PROFILING_ENABLED,
             STATEFUL_INGESTION_ENABLED,
         ],
-        filterSectionTooltip: 'Include or exclude specific Schemas, Tables and Views from ingestion.',
+        filterSectionTooltip: 'ingest.mariaDB.mariaDBFilterSectionTooltip',
     },
     [UNITY_CATALOG]: {
         fields: [WORKSPACE_URL, TOKEN],
@@ -402,7 +400,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             UNITY_TABLE_DENY,
         ],
         advancedFields: [INCLUDE_TABLE_LINEAGE, INCLUDE_COLUMN_LINEAGE, STATEFUL_INGESTION_ENABLED],
-        filterSectionTooltip: 'Include or exclude specific Metastores, Catalogs, Schemas, and Tables from ingestion.',
+        filterSectionTooltip: 'ingest.recipeForms.unityCatalog.unityFilterSectionTooltip',
     },
     [DBT_CLOUD]: {
         fields: [
@@ -423,7 +421,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             DBT_EXTRACT_OWNERS,
             STATEFUL_INGESTION_ENABLED,
         ],
-        filterSectionTooltip: 'Include or exclude specific dbt Node (resources) from ingestion.',
+        filterSectionTooltip: 'ingest.dbtCloud.dbtCloudFilterSectionTooltip',
     },
     [POWER_BI]: {
         fields: [POWERBI_TENANT_ID, POWERBI_CLIENT_ID, POWERBI_CLIENT_SECRET],
@@ -437,7 +435,7 @@ export const RECIPE_FIELDS: RecipeFields = {
             ADMIN_APIS_ONLY,
             STATEFUL_INGESTION_ENABLED,
         ],
-        filterSectionTooltip: 'Include or exclude specific PowerBI Workspaces from ingestion.',
+        filterSectionTooltip: 'ingest.powerBI.powerBIFilterSectionTooltip',
     },
     [VERTICA]: {
         fields: [VERTICA_HOST_PORT, VERTICA_DATABASE, VERTICA_USERNAME, VERTICA_PASSWORD],

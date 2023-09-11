@@ -15,17 +15,17 @@ export const StyledList = styled(List)`
     box-shadow: ${(props) => props.theme.styles['box-shadow']};
     flex: 1;
     .ant-list-items > .ant-list-item {
-        padding-right: 0px;
-        padding-left: 0px;
+        padding-right: 0;
+        padding-left: 0;
     }
     > .ant-list-header {
-        padding-right: 0px;
-        padding-left: 0px;
+        padding-right: 0;
+        padding-left: 0;
         font-size: 14px;
         font-weight: 600;
         margin-left: -20px;
         border-bottom: none;
-        padding-bottom: 0px;
+        padding-bottom: 0;
         padding-top: 15px;
     }
     &::-webkit-scrollbar {
@@ -36,7 +36,7 @@ export const StyledList = styled(List)`
     &::-webkit-scrollbar-thumb {
         background: #cccccc;
         -webkit-border-radius: 1ex;
-        -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
     }
 ` as typeof List;
 
@@ -50,8 +50,8 @@ export const ListItem = styled.div<{ isSelectMode: boolean }>`
 `;
 
 export const ThinDivider = styled(Divider)`
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 `;
 
 type Props = {
@@ -69,7 +69,7 @@ export const EntityNameList = ({ entities, onClick }: Props) => {
                 const genericProps = entityRegistry.getGenericEntityProperties(entity.type, entity);
                 const platformLogoUrl = genericProps?.platform?.properties?.logoUrl;
                 const platformName = getPlatformName(genericProps);
-                const entityTypeName = entityRegistry.getEntityName(entity.type);
+                const entityTypeName = entity.type;
                 const displayName = entityRegistry.getDisplayName(entity.type, entity);
                 const url = entityRegistry.getEntityUrl(entity.type, entity.urn);
                 const fallbackIcon = entityRegistry.getIcon(entity.type, 18, IconStyleType.ACCENT);

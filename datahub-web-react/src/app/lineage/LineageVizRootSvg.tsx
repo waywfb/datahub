@@ -2,6 +2,7 @@ import { ProvidedZoom, TransformMatrix } from '@vx/zoom/lib/types';
 import React, { SVGProps, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components/macro';
 
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../useEntityRegistry';
 import LineageTree from './LineageTree';
 import { EntityAndType, FetchedEntity, EntitySelectParams, Direction, UpdatedLineages } from './types';
@@ -52,6 +53,7 @@ export default function LineageVizRootSvg({
     width,
     height,
 }: Props) {
+    const { t } = useTranslation();
     const [draggedNodes, setDraggedNodes] = useState<Record<string, { x: number; y: number }>>({});
     const [hoveredEntity, setHoveredEntity] = useState<EntitySelectParams | undefined>(undefined);
     const [isDraggingNode, setIsDraggingNode] = useState(false);
@@ -60,13 +62,13 @@ export default function LineageVizRootSvg({
     const entityRegistry = useEntityRegistry();
 
     const downstreamData = useMemo(
-        () => constructTree(entityAndType, fetchedEntities, Direction.Downstream, entityRegistry, updatedLineages),
-        [entityAndType, fetchedEntities, entityRegistry, updatedLineages],
+        () => constructTree(t, entityAndType, fetchedEntities, Direction.Downstream, entityRegistry, updatedLineages),
+        [t, entityAndType, fetchedEntities, entityRegistry, updatedLineages],
     );
 
     const upstreamData = useMemo(
-        () => constructTree(entityAndType, fetchedEntities, Direction.Upstream, entityRegistry, updatedLineages),
-        [entityAndType, fetchedEntities, entityRegistry, updatedLineages],
+        () => constructTree(t, entityAndType, fetchedEntities, Direction.Upstream, entityRegistry, updatedLineages),
+        [t, entityAndType, fetchedEntities, entityRegistry, updatedLineages],
     );
 
     // we want to clear all the dragged nodes after recentering

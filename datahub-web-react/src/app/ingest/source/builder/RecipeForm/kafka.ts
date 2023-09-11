@@ -6,10 +6,9 @@ import { RecipeField, FieldType, setListValuesOnRecipe } from './common';
 const saslUsernameFieldPath = ['source', 'config', 'connection', 'consumer_config', 'sasl.username'];
 export const KAFKA_SASL_USERNAME: RecipeField = {
     name: 'connection.consumer_config.sasl.username',
-    label: 'Username',
+    label: 'ingest.recipeForms.label.username',
     placeholder: 'datahub-client',
-    tooltip:
-        'The SASL username. Required if the Security Protocol is SASL based. In the Confluent Control Center, you can find this in Cluster > Data Integration > API Keys.',
+    tooltip: 'ingest.kafka.kafkaUsernameToolTip',
     type: FieldType.TEXT,
     fieldPath: saslUsernameFieldPath,
     rules: null,
@@ -18,10 +17,9 @@ export const KAFKA_SASL_USERNAME: RecipeField = {
 const saslPasswordFieldPath = ['source', 'config', 'connection', 'consumer_config', 'sasl.password'];
 export const KAFKA_SASL_PASSWORD: RecipeField = {
     name: 'connection.consumer_config.sasl.password',
-    label: 'Password',
+    label: 'ingest.recipeForms.label.password',
     placeholder: 'datahub-client-password',
-    tooltip:
-        'The SASL Password. Required if the Security Protocol is SASL based. In the Confluent Control Center, you can find this in Cluster > Data Integration > API Keys.',
+    tooltip: 'ingest.kafka.kafkaPasswordToolTip',
     type: FieldType.SECRET,
     fieldPath: saslPasswordFieldPath,
     rules: null,
@@ -29,10 +27,9 @@ export const KAFKA_SASL_PASSWORD: RecipeField = {
 
 export const KAFKA_BOOTSTRAP: RecipeField = {
     name: 'connection.bootstrap',
-    label: 'Bootstrap Servers',
+    label: 'ingest.kafka.label.bootstrapServers',
     required: true,
-    tooltip:
-        'The ‘host[:port]’ string (or list of ‘host[:port]’ strings) that we should contact to bootstrap initial cluster metadata.',
+    tooltip: 'ingest.kafka.kafkaBootstrapToolTip',
     placeholder: 'abc-defg.eu-west-1.aws.confluent.cloud:9092',
     type: FieldType.TEXT,
     fieldPath: 'source.config.connection.bootstrap',
@@ -41,9 +38,8 @@ export const KAFKA_BOOTSTRAP: RecipeField = {
 
 export const KAFKA_SCHEMA_REGISTRY_URL: RecipeField = {
     name: 'connection.schema_registry_url',
-    label: 'Schema Registry URL',
-    tooltip:
-        'The URL where the schema Schema Registry is hosted. If provided, DataHub will attempt to extract Avro and Protobuf topic schemas from the registry.',
+    label: 'ingest.kafka.label.schemaRegistryURL',
+    tooltip: 'ingest.kafka.schemaRegistryURLToolTip',
     placeholder: 'https://abc-defgh.us-east-2.aws.confluent.cloud',
     type: FieldType.TEXT,
     fieldPath: 'source.config.connection.schema_registry_url',
@@ -59,9 +55,8 @@ const registryCredentialsFieldPath = [
 ];
 export const KAFKA_SCHEMA_REGISTRY_USER_CREDENTIAL: RecipeField = {
     name: 'schema_registry_config.basic.auth.user.info',
-    label: 'Schema Registry Credentials',
-    tooltip:
-        'API credentials for the Schema Registry. In Confluent Control Center, you can find these under Schema Registry > API Credentials.',
+    label: 'ingest.kafka.label.schemaRegistryCredentials',
+    tooltip: 'ingest.kafka.schemaRegistryCredentialsToolTip',
     // eslint-disable-next-line no-template-curly-in-string
     placeholder: '${REGISTRY_API_KEY_ID}:${REGISTRY_API_KEY_SECRET}',
     type: FieldType.TEXT,
@@ -72,8 +67,8 @@ export const KAFKA_SCHEMA_REGISTRY_USER_CREDENTIAL: RecipeField = {
 const securityProtocolFieldPath = ['source', 'config', 'connection', 'consumer_config', 'security.protocol'];
 export const KAFKA_SECURITY_PROTOCOL: RecipeField = {
     name: 'security.protocol',
-    label: 'Security Protocol',
-    tooltip: 'The Security Protocol used for authentication.',
+    label: 'ingest.kafka.label.securityProtocol',
+    tooltip: 'ingest.kafka.securityProtocolToolTip',
     type: FieldType.SELECT,
     required: true,
     fieldPath: securityProtocolFieldPath,
@@ -89,9 +84,8 @@ export const KAFKA_SECURITY_PROTOCOL: RecipeField = {
 const saslMechanismFieldPath = ['source', 'config', 'connection', 'consumer_config', 'sasl.mechanism'];
 export const KAFKA_SASL_MECHANISM: RecipeField = {
     name: 'sasl.mechanism',
-    label: 'SASL Mechanism',
-    tooltip:
-        'The SASL mechanism used for authentication. This field is required if the selected Security Protocol is SASL based.',
+    label: 'ingest.kafka.label.saslMechanism',
+    tooltip: 'ingest.kafka.saslMechanismToolTip',
     type: FieldType.SELECT,
     fieldPath: saslMechanismFieldPath,
     placeholder: 'None',
@@ -106,13 +100,13 @@ export const KAFKA_SASL_MECHANISM: RecipeField = {
 const topicAllowFieldPath = 'source.config.topic_patterns.allow';
 export const TOPIC_ALLOW: RecipeField = {
     name: 'topic_patterns.allow',
-    label: 'Allow Patterns',
-    tooltip: 'Provide an optional Regular Expression (REGEX) to include specific Kafka Topic names in ingestion.',
+    label: 'ingest.recipeForms.label.allowPatterns',
+    tooltip: 'ingest.kafka.kafkaTopicAllowToolTip',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: topicAllowFieldPath,
     rules: null,
-    section: 'Filter by Topic',
+    section: 'ingest.kafka.section.filterByTopic',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, topicAllowFieldPath),
 };
@@ -120,13 +114,13 @@ export const TOPIC_ALLOW: RecipeField = {
 const topicDenyFieldPath = 'source.config.topic_patterns.deny';
 export const TOPIC_DENY: RecipeField = {
     name: 'topic_patterns.deny',
-    label: 'Deny Patterns',
-    tooltip: 'Provide an optional Regular Expression (REGEX) to exclude specific Kafka Topic names from ingestion.',
+    label: 'ingest.recipeForms.label.denyPatterns',
+    tooltip: 'ingest.kafka.kafkaTopicDenyToolTip',
     type: FieldType.LIST,
-    buttonLabel: 'Add pattern',
+    buttonLabel: 'ingest.recipeForms.buttonLabel.addPatterns',
     fieldPath: topicDenyFieldPath,
     rules: null,
-    section: 'Filter by Topic',
+    section: 'ingest.kafka.section.filterByTopic',
     setValueOnRecipeOverride: (recipe: any, values: string[]) =>
         setListValuesOnRecipe(recipe, values, topicDenyFieldPath),
 };

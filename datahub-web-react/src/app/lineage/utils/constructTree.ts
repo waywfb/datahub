@@ -1,3 +1,4 @@
+import { TFunction } from 'i18next';
 import { Entity } from '../../../types.generated';
 import EntityRegistry from '../../entity/EntityRegistry';
 import { Direction, EntityAndType, FetchedEntities, FetchedEntity, NodeData, UpdatedLineages } from '../types';
@@ -52,13 +53,14 @@ function updateFetchedEntity(fetchedEntity: FetchedEntity, updatedLineages: Upda
 }
 
 export default function constructTree(
+    t: TFunction,
     entityAndType: EntityAndType | null | undefined,
     fetchedEntities: FetchedEntities,
     direction: Direction,
     entityRegistry: EntityRegistry,
     updatedLineages: UpdatedLineages,
 ): NodeData {
-    if (!entityAndType?.entity) return { name: 'loading...', children: [] };
+    if (!entityAndType?.entity) return { name: `${t('common.loading').toLowerCase()}...`, children: [] };
     const constructedNodes = {};
 
     let updatedFetchedEntities = fetchedEntities;

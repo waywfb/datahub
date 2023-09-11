@@ -6,7 +6,7 @@ import { ANTD_GRAY } from '../../../constants';
 const Statement = styled.div<{ fullHeight?: boolean }>`
     background-color: ${ANTD_GRAY[2]};
     height: ${(props) => (props.fullHeight && '378px') || '240px'};
-    margin: 0px 0px 4px 0px;
+    margin: 0 0 4px 0;
     border-radius: 8px;
     :hover {
         cursor: pointer;
@@ -16,7 +16,7 @@ const Statement = styled.div<{ fullHeight?: boolean }>`
 const NestedSyntax = styled(SyntaxHighlighter)`
     background-color: transparent !important;
     border: none !important;
-    margin: 0px !important;
+    margin: 0 !important;
     height: 100% !important;
     overflow: auto !important;
     ::-webkit-scrollbar {

@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import { useHistory, useLocation } from 'react-router';
 import styled from 'styled-components';
 import { FileDoneOutlined, FileProtectOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { useEntityData } from '../../../EntityContext';
 import { TestResults } from './TestResults';
 import { Assertions } from './Assertions';
@@ -30,6 +31,7 @@ const DEFAULT_TAB = TabPaths.ASSERTIONS;
  * Component used for rendering the Entity Validations Tab.
  */
 export const ValidationsTab = () => {
+    const { t } = useTranslation();
     const { entityData } = useEntityData();
     const history = useHistory();
     const { pathname } = useLocation();
@@ -57,7 +59,9 @@ export const ValidationsTab = () => {
             title: (
                 <>
                     <FileProtectOutlined />
-                    <TabTitle>Assertions ({totalAssertions})</TabTitle>
+                    <TabTitle>
+                        {t('common.assertions')} ({totalAssertions})
+                    </TabTitle>
                 </>
             ),
             path: TabPaths.ASSERTIONS,
@@ -68,7 +72,9 @@ export const ValidationsTab = () => {
             title: (
                 <>
                     <FileDoneOutlined />
-                    <TabTitle>Tests ({totalTests})</TabTitle>
+                    <TabTitle>
+                        {t('common.tests')} ({totalTests})
+                    </TabTitle>
                 </>
             ),
             path: TabPaths.TESTS,

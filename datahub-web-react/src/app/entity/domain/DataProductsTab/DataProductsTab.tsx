@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import * as QueryString from 'query-string';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsForMultipleQuery } from '../../../../graphql/search.generated';
 import { DataProduct, Domain, EntityType } from '../../../../types.generated';
 import TabToolbar from '../../shared/components/styled/TabToolbar';
@@ -43,6 +44,7 @@ const DEFAULT_PAGE_SIZE = 10;
 export default function DataProductsTab() {
     const { entityData } = useEntityData();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const location = useLocation();
     const params = QueryString.parse(location.search, { arrayFormat: 'comma' });
     const paramsQuery = (params?.query as string) || undefined;
@@ -97,11 +99,11 @@ export default function DataProductsTab() {
         <>
             <TabToolbar>
                 <Button type="text" onClick={() => setIsCreateModalVisible(true)}>
-                    <PlusOutlined /> New Data Product
+                    <PlusOutlined /> {t('crud.addWIthName', { name: t('common.dataProduct') })}
                 </Button>
                 <SearchBar
                     initialQuery={query || ''}
-                    placeholderText="Search data products..."
+                    placeholderText={t('placeholder.searchWithName', { name: t('common.dataProducts').toLowerCase() })}
                     suggestions={[]}
                     style={{
                         maxWidth: 220,
@@ -120,7 +122,7 @@ export default function DataProductsTab() {
             <ResultsWrapper>
                 {!loading && !displayedDataProducts.length && (
                     <Empty
-                        description="No Data Products"
+                        description={t('entity.noDataProducts')}
                         image={Empty.PRESENTED_IMAGE_SIMPLE}
                         style={{ color: ANTD_GRAY[7] }}
                     />

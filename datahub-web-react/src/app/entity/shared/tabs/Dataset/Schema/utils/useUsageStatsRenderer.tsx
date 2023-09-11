@@ -2,6 +2,7 @@ import { geekblue } from '@ant-design/colors';
 import { Tooltip } from 'antd';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
+import { TFunction } from 'i18next';
 import { UsageQueryResult } from '../../../../../../../types.generated';
 import { pathMatchesNewPath } from '../../../../../dataset/profile/schema/utils/utils';
 
@@ -19,7 +20,7 @@ const UsageBarContainer = styled.div`
     height: 100%;
 `;
 
-export default function useUsageStatsRenderer(usageStats?: UsageQueryResult | null) {
+export default function useUsageStatsRenderer(t: TFunction, usageStats?: UsageQueryResult | null) {
     const maxFieldUsageCount = useMemo(
         () => Math.max(...(usageStats?.aggregations?.fields?.map((field) => field?.count || 0) || [])),
         [usageStats],
@@ -35,7 +36,13 @@ export default function useUsageStatsRenderer(usageStats?: UsageQueryResult | nu
         }
 
         return (
-            <Tooltip placement="topLeft" title={`${relevantUsageStats.count} queries / month`}>
+            <Tooltip
+                placement="topLeft"
+                title={t('reporting.queryByMonth_interval', {
+                    postProcess: 'interval',
+                    count: relevantUsageStats.count || 0,
+                })}
+            >
                 <UsageBarContainer>
                     <UsageBar width={((relevantUsageStats.count || 0) / maxFieldUsageCount) * USAGE_BAR_MAX_WIDTH} />
                 </UsageBarContainer>

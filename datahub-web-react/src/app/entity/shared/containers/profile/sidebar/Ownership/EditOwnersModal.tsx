@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Button, Form, message, Modal, Select, Tag, Typography } from 'antd';
 import styled from 'styled-components/macro';
 
+import { useTranslation } from 'react-i18next';
 import {
     CorpUser,
     Entity,
@@ -26,7 +27,7 @@ const SelectInput = styled(Select)`
 `;
 
 const StyleTag = styled(Tag)`
-    padding: 0px 7px 0px 0px;
+    padding: 0 7px 0 0;
     margin: 2px;
     display: flex;
     justify-content: start;
@@ -72,6 +73,7 @@ export const EditOwnersModal = ({
     defaultValues,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     // Renders a search result in the select dropdown.
     const renderSearchResult = (entity: Entity) => {
@@ -255,16 +257,23 @@ export const EditOwnersModal = ({
                     },
                 },
             });
-            message.success({ content: 'Owners Added', duration: 2 });
+            message.success({ content: t('crud.success.addWithName', { name: t('common.owners') }), duration: 2 });
             emitAnalytics();
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to add owners: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `${t('crud.error.addWithName', { name: t('common.owners') })}: \n ${
+                                e.message || ''
+                            }`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             }
         } finally {
@@ -283,16 +292,23 @@ export const EditOwnersModal = ({
                     },
                 },
             });
-            message.success({ content: 'Owners Removed', duration: 2 });
+            message.success({ content: t('crud.success.removeWithName', { name: t('common.owners') }), duration: 2 });
             emitAnalytics();
         } catch (e: unknown) {
             message.destroy();
             if (e instanceof Error) {
                 message.error(
-                    handleBatchError(urns, e, {
-                        content: `Failed to remove owners: \n ${e.message || ''}`,
-                        duration: 3,
-                    }),
+                    handleBatchError(
+                        urns,
+                        e,
+                        {
+                            content: `${t('crud.error.removeWithName', { name: t('common.owners') })}: \n ${
+                                e.message || ''
+                            }`,
+                            duration: 3,
+                        },
+                        t,
+                    ),
                 );
             }
         } finally {
@@ -334,24 +350,32 @@ export const EditOwnersModal = ({
 
     return (
         <Modal
-            title={title || `${operationType === OperationType.ADD ? 'Add' : 'Remove'} Owners`}
+            title={
+                title || operationType === OperationType.ADD
+                    ? t('crud.addWithName', { name: t('common.owners') })
+                    : t('crud.removeWithName', { name: t('common.owners') })
+            }
             visible
             onCancel={onModalClose}
             keyboard
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="addOwnerButton" disabled={selectedOwners.length === 0} onClick={onOk}>
-                        Done
+                        {t('common.done')}
                     </Button>
                 </>
             }
         >
             <Form layout="vertical" colon={false}>
-                <Form.Item key="owners" name="owners" label={<Typography.Text strong>Owner</Typography.Text>}>
-                    <Typography.Paragraph>Find a user or group</Typography.Paragraph>
+                <Form.Item
+                    key="owners"
+                    name="owners"
+                    label={<Typography.Text strong>{t('common.owner')}</Typography.Text>}
+                >
+                    <Typography.Paragraph>{t('search.userOrGroupLabel')}</Typography.Paragraph>
                     <Form.Item name="owner">
                         <SelectInput
                             labelInValue
@@ -359,7 +383,7 @@ export const EditOwnersModal = ({
                             defaultOpen
                             mode="multiple"
                             ref={inputEl}
-                            placeholder="Search for users or groups..."
+                            placeholder={t('placeholder.searchForUsersOrGroups')}
                             showSearch
                             filterOption={false}
                             defaultActiveFirstOption={false}
@@ -385,8 +409,8 @@ export const EditOwnersModal = ({
                     </Form.Item>
                 </Form.Item>
                 {!hideOwnerType && (
-                    <Form.Item label={<Typography.Text strong>Type</Typography.Text>}>
-                        <Typography.Paragraph>Choose an owner type</Typography.Paragraph>
+                    <Form.Item label={<Typography.Text strong>{t('common.type')}</Typography.Text>}>
+                        <Typography.Paragraph>{t('search.chooseAnOwnerType')}</Typography.Paragraph>
                         <Form.Item name="type">
                             {loading && <Select />}
                             {!loading && (

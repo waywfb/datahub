@@ -2,6 +2,7 @@ import React from 'react';
 import { CopyOutlined } from '@ant-design/icons';
 import { Button, Typography, Tooltip } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     getExecutionRequestStatusDisplayColor,
     getExecutionRequestStatusIcon,
@@ -25,9 +26,10 @@ const StatusButton = styled(Button)`
 `;
 
 export function TimeColumn(time: string) {
+    const { t } = useTranslation();
     const date = time && new Date(time);
     const localTime = date && `${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
-    return <Typography.Text>{localTime || 'None'}</Typography.Text>;
+    return <Typography.Text>{localTime || t('common.none')}</Typography.Text>;
 }
 
 interface StatusColumnProps {
@@ -37,6 +39,7 @@ interface StatusColumnProps {
 }
 
 export function StatusColumn({ status, record, setFocusExecutionUrn }: StatusColumnProps) {
+    const { t } = useTranslation();
     const Icon = getExecutionRequestStatusIcon(status);
     const text = getExecutionRequestStatusDisplayText(status);
     const color = getExecutionRequestStatusDisplayColor(status);
@@ -45,7 +48,7 @@ export function StatusColumn({ status, record, setFocusExecutionUrn }: StatusCol
             {Icon && <Icon style={{ color, fontSize: 14 }} />}
             <StatusButton type="link" onClick={() => setFocusExecutionUrn(record.urn)}>
                 <Typography.Text strong style={{ color, marginLeft: 8 }}>
-                    {text || 'Pending...'}
+                    {t(text) || `${t('common.pending')}...`}
                 </Typography.Text>
             </StatusButton>
         </StatusContainer>
@@ -53,11 +56,12 @@ export function StatusColumn({ status, record, setFocusExecutionUrn }: StatusCol
 }
 
 export function SourceColumn(source: string) {
+    const { t } = useTranslation();
     return (
-        (source === MANUAL_INGESTION_SOURCE && 'Manual Execution') ||
-        (source === SCHEDULED_INGESTION_SOURCE && 'Scheduled Execution') ||
-        (source === CLI_INGESTION_SOURCE && 'CLI Execution') ||
-        'N/A'
+        (source === MANUAL_INGESTION_SOURCE && t('ingest.manualExecution')) ||
+        (source === SCHEDULED_INGESTION_SOURCE && t('ingest.scheduledExecution')) ||
+        (source === CLI_INGESTION_SOURCE && t('ingest.cliExecution')) ||
+        t('common.na')
     );
 }
 
@@ -74,10 +78,11 @@ export function ButtonsColumn({
     handleCancelExecution,
     handleRollbackExecution,
 }: ButtonsColumnProps) {
+    const { t } = useTranslation();
     return (
         <div style={{ display: 'flex', justifyContent: 'right' }}>
             {record.urn && navigator.clipboard && (
-                <Tooltip title="Copy Execution Request URN">
+                <Tooltip title={t('ingest.copyExecutionRequestURN')}>
                     <Button
                         style={{ marginRight: 16 }}
                         icon={<CopyOutlined />}
@@ -89,17 +94,17 @@ export function ButtonsColumn({
             )}
             {record.duration && (
                 <Button style={{ marginRight: 16 }} onClick={() => handleViewDetails(record.urn)}>
-                    DETAILS
+                    {t('common.details').toUpperCase()}
                 </Button>
             )}
             {record.status === RUNNING && (
                 <Button style={{ marginRight: 16 }} onClick={() => handleCancelExecution(record.urn)}>
-                    CANCEL
+                    {t('common.cancel').toUpperCase()}
                 </Button>
             )}
             {record.status === SUCCESS && record.showRollback && (
                 <Button style={{ marginRight: 16 }} onClick={() => handleRollbackExecution(record.id)}>
-                    ROLLBACK
+                    {t('common.rollback').toUpperCase()}
                 </Button>
             )}
         </div>

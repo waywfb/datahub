@@ -75,14 +75,17 @@ export class DataProductEntity implements Entity<DataProduct> {
             isNameEditable
             tabs={[
                 {
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
+                    titleKey: 'common.assets',
                     name: 'Assets',
                     component: DataProductEntitiesTab,
                 },
                 {
+                    titleKey: 'common.properties',
                     name: 'Properties',
                     component: PropertiesTab,
                 },

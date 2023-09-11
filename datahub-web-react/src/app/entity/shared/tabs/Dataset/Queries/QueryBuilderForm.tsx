@@ -2,6 +2,7 @@ import React from 'react';
 import Editor from '@monaco-editor/react';
 import styled from 'styled-components';
 import { Form, Input, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../constants';
 import { QueryBuilderState } from './types';
 import { Editor as MarkdownEditor } from '../../Documentation/components/editor/Editor';
@@ -32,6 +33,7 @@ type Props = {
 };
 
 export default function QueryBuilderForm({ state, updateState }: Props) {
+    const { t } = useTranslation();
     const updateQuery = (query) => {
         updateState({
             ...state,
@@ -70,7 +72,7 @@ export default function QueryBuilderForm({ state, updateState }: Props) {
             <Form.Item
                 rules={[{ min: 1, max: 500 }]}
                 hasFeedback
-                label={<Typography.Text strong>Title</Typography.Text>}
+                label={<Typography.Text strong>{t('common.title')}</Typography.Text>}
             >
                 <Input
                     data-testid="query-builder-title-input"
@@ -80,7 +82,7 @@ export default function QueryBuilderForm({ state, updateState }: Props) {
                     placeholder="Join Transactions and Users Tables"
                 />
             </Form.Item>
-            <Form.Item label={<Typography.Text strong>Description</Typography.Text>}>
+            <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
                 <StyledEditor
                     data-testid="query-builder-description-input"
                     doNotFocus

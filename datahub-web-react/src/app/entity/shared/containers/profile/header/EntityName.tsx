@@ -1,6 +1,7 @@
 import { message, Typography } from 'antd';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useUpdateNameMutation } from '../../../../../../graphql/mutations.generated';
 import { getParentNodeToUpdate, updateGlossarySidebar } from '../../../../../glossary/utils';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
@@ -29,6 +30,7 @@ function EntityName(props: Props) {
     const { isNameEditable } = props;
     const refetch = useRefetch();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const { isInGlossaryContext, urnsToUpdate, setUrnsToUpdate } = useGlossaryEntityData();
     const { urn, entityType, entityData } = useEntityData();
     const entityName = entityData ? entityRegistry.getDisplayName(entityType, entityData) : '';
@@ -44,7 +46,7 @@ function EntityName(props: Props) {
         setUpdatedName(name);
         updateName({ variables: { input: { name, urn } } })
             .then(() => {
-                message.success({ content: 'Name Updated', duration: 2 });
+                message.success({ content: t('crud.success.updateWithName', { name: t('common.name') }), duration: 2 });
                 refetch();
                 if (isInGlossaryContext) {
                     const parentNodeToUpdate = getParentNodeToUpdate(entityData, entityType);
@@ -54,7 +56,10 @@ function EntityName(props: Props) {
             .catch((e: unknown) => {
                 message.destroy();
                 if (e instanceof Error) {
-                    message.error({ content: `Failed to update name: \n ${e.message || ''}`, duration: 3 });
+                    message.error({
+                        content: `${t('crud.error.updateWithName', { name: t('common.name') })}: \n ${e.message || ''}`,
+                        duration: 3,
+                    });
                 }
             });
     };

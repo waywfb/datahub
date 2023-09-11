@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Checkbox, Modal, Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../../constants';
 import { EntityAndType } from '../../../types';
 import { SearchSelectActions } from './SearchSelectActions';
@@ -19,14 +20,14 @@ const ActionsContainer = styled.div`
 const CancelButton = styled(Button)`
     && {
         margin-left: 8px;
-        padding: 0px;
+        padding: 0;
         color: ${ANTD_GRAY[7]};
     }
 `;
 
 const StyledCheckbox = styled(Checkbox)`
     margin-right: 12px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 `;
 
 type Props = {
@@ -53,17 +54,22 @@ export const SearchSelectBar = ({
     onCancel,
     refetch,
 }: Props) => {
+    const { t } = useTranslation();
     const selectedEntityCount = selectedEntities.length;
     const onClickCancel = () => {
         if (selectedEntityCount > 0) {
             Modal.confirm({
-                title: `Exit Selection`,
-                content: `Are you sure you want to exit? ${selectedEntityCount} selection(s) will be cleared.`,
+                title: t('search.modal.exitSelectionTitle'),
+                content: t('search.modal.exitSelectionContent_interval', {
+                    postProcess: 'interval',
+                    count: selectedEntityCount,
+                }),
                 onOk() {
                     onCancel?.();
                 },
                 onCancel() {},
-                okText: 'Yes',
+                okText: t('common.yes'),
+                cancelText: t('common.cancel'),
                 maskClosable: true,
                 closable: true,
             });
@@ -80,14 +86,14 @@ export const SearchSelectBar = ({
                     onChange={(e) => onChangeSelectAll(e.target.checked as boolean)}
                 />
                 <Typography.Text strong type="secondary">
-                    {selectedEntityCount} selected
+                    {t('common.selected_interval', { postProcess: 'interval', count: selectedEntityCount })}
                 </Typography.Text>
             </CheckboxContainer>
             <ActionsContainer>
                 {showActions && <SearchSelectActions selectedEntities={selectedEntities} refetch={refetch} />}
                 {showCancel && (
                     <CancelButton onClick={onClickCancel} type="link">
-                        Done
+                        {t('common.done')}
                     </CancelButton>
                 )}
             </ActionsContainer>

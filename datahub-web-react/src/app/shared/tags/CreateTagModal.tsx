@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { message, Button, Input, Modal, Space } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useBatchAddTagsMutation } from '../../../graphql/mutations.generated';
 import { useCreateTagMutation } from '../../../graphql/tag.generated';
-import { ResourceRefInput } from '../../../types.generated';
+import { EntityType, ResourceRefInput } from '../../../types.generated';
 import { useEnterKeyListener } from '../useEnterKeyListener';
 import { handleBatchError } from '../../entity/shared/utils';
+import { useEntityRegistry } from '../../useEntityRegistry';
 
 type CreateTagModalProps = {
     visible: boolean;
@@ -20,6 +22,9 @@ const FullWidthSpace = styled(Space)`
 `;
 
 export default function CreateTagModal({ onClose, onBack, visible, tagName, resources }: CreateTagModalProps) {
+    const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
+
     const [stagedDescription, setStagedDescription] = useState('');
     const [batchAddTagsMutation] = useBatchAddTagsMutation();
 
@@ -52,10 +57,17 @@ export default function CreateTagModal({ onClose, onBack, visible, tagName, reso
                     .catch((e) => {
                         message.destroy();
                         message.error(
-                            handleBatchError(resources, e, {
-                                content: `Failed to add tag: \n ${e.message || ''}`,
-                                duration: 3,
-                            }),
+                            handleBatchError(
+                                resources,
+                                e,
+                                {
+                                    content: `${t('crud.error.addWithName', {
+                                        name: entityRegistry.getEntityNameTrans(EntityType.Tag, t),
+                                    })}: \n ${e.message || ''}`,
+                                    duration: 3,
+                                },
+                                t,
+                            ),
                         );
                         onClose();
                     })
@@ -67,7 +79,12 @@ export default function CreateTagModal({ onClose, onBack, visible, tagName, reso
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to create tag: \n ${e.message || ''}`, duration: 3 });
+                message.error({
+                    content: `${t('crud.error.createWithName', {
+                        name: entityRegistry.getEntityNameTrans(EntityType.Tag, t),
+                    })}: \n ${e.message || ''}`,
+                    duration: 3,
+                });
                 onClose();
             });
     };
@@ -79,23 +96,23 @@ export default function CreateTagModal({ onClose, onBack, visible, tagName, reso
 
     return (
         <Modal
-            title={`Create ${tagName}`}
+            title={`${t('crud.createWithName', { name: tagName })}`}
             visible={visible}
             onCancel={onClose}
             footer={
                 <>
                     <Button onClick={onBack} type="text">
-                        Back
+                        {t('common.back')}
                     </Button>
                     <Button id="createTagButton" onClick={onOk} disabled={disableCreate}>
-                        Create
+                        {t('common.create')}
                     </Button>
                 </>
             }
         >
             <FullWidthSpace direction="vertical">
                 <Input.TextArea
-                    placeholder="Add a description for your new tag..."
+                    placeholder={t('placeholder.addDescriptionForNewTag')}
                     value={stagedDescription}
                     onChange={(e) => setStagedDescription(e.target.value)}
                 />

@@ -1,5 +1,6 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
 
+import { TFunction } from 'i18next';
 import { Entity, EntityType, EntityRelationshipsResult, DataProduct } from '../../../types.generated';
 import { capitalizeFirstLetterOnly } from '../../shared/textUtil';
 import { GenericEntityProperties } from './types';
@@ -31,10 +32,10 @@ export function decodeUrn(encodedUrn: string) {
     return decodeURIComponent(encodedUrn).replace(/{{encoded_percent}}/g, '%');
 }
 
-export function getNumberWithOrdinal(n) {
-    const suffixes = ['th', 'st', 'nd', 'rd'];
+export function getNumberWithOrdinal(n: number, suffixList: string[]) {
+    // Get suffixList from i18n > translation:lineage.ordinalSuffix
     const v = n % 100;
-    return n + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+    return n + (suffixList[(v - 20) % 10] || suffixList[v] || suffixList[0]);
 }
 
 export const encodeComma = (str: string) => {
@@ -95,11 +96,10 @@ function getGraphqlErrorCode(e) {
     return undefined;
 }
 
-export const handleBatchError = (urns, e, defaultMessage) => {
+export const handleBatchError = (urns, e, defaultMessage, t: TFunction) => {
     if (urns.length > 1 && getGraphqlErrorCode(e) === 403) {
         return {
-            content:
-                'Your bulk edit selection included entities that you are unauthorized to update. The bulk edit being performed will not be saved.',
+            content: t('error.bulkEditIncludeUnauthorizedEntity'),
             duration: 3,
         };
     }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router';
 import { Button, Input, Modal, Spin, notification } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { AndFilterInput } from '../../../../../../types.generated';
 import { getSearchCsvDownloadHeader, transformResultsToCsvRow } from './downloadAsCsvUtil';
 import { downloadRowsAsCsv } from '../../../../../search/utils/csvUtils';
@@ -33,6 +34,7 @@ export default function DownloadAsCsvModal({
     showDownloadAsCsvModal,
     setShowDownloadAsCsvModal,
 }: Props) {
+    const { t } = useTranslation();
     const { entityData: entitySearchIsEmbeddedWithin } = useEntityData();
     const location = useLocation();
 
@@ -42,10 +44,13 @@ export default function DownloadAsCsvModal({
     const entityRegistry = useEntityRegistry();
     const openNotification = () => {
         notification.info({
-            message: 'Preparing Download',
+            message: t('share.csv.preparing.message'),
             description: totalResults
-                ? `Creating CSV with ${totalResults} entities to download`
-                : 'Creating CSV to download',
+                ? t('share.csv.preparing.descriptionWithCount_interval', {
+                      postProcess: 'interval',
+                      count: totalResults,
+                  })
+                : t('share.csv.preparing.description'),
             placement: 'bottomRight',
             duration: null,
             icon: <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />,
@@ -61,8 +66,8 @@ export default function DownloadAsCsvModal({
     const showFailedDownloadNotification = () => {
         notification.destroy();
         notification.error({
-            message: 'Download Failed',
-            description: 'The CSV file could not be downloaded',
+            message: t('share.csv.error.message'),
+            description: t('share.csv.error.description'),
             placement: 'bottomRight',
             duration: 3,
         });
@@ -122,12 +127,12 @@ export default function DownloadAsCsvModal({
         <Modal
             centered
             onCancel={() => setShowDownloadAsCsvModal(false)}
-            title="Download as..."
+            title={t('share.downloadAs')}
             visible={showDownloadAsCsvModal}
             footer={
                 <>
                     <Button onClick={() => setShowDownloadAsCsvModal(false)} type="text">
-                        Close
+                        {t('common.close')}
                     </Button>
                     <Button
                         onClick={() => {
@@ -136,7 +141,7 @@ export default function DownloadAsCsvModal({
                         }}
                         disabled={saveAsTitle.length === 0}
                     >
-                        Download
+                        {t('common.download')}
                     </Button>
                 </>
             }

@@ -2,6 +2,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Typography } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { TermRelationshipType } from '../../../../types.generated';
 import { Message } from '../../../shared/Message';
 import { EmptyTab } from '../../shared/components/styled/EmptyTab';
@@ -10,10 +11,10 @@ import AddRelatedTermsModal from './AddRelatedTermsModal';
 import RelatedTerm from './RelatedTerm';
 
 export enum RelatedTermTypes {
-    hasRelatedTerms = 'Contains',
-    isRelatedTerms = 'Inherits',
-    containedBy = 'Contained by',
-    isAChildren = 'Inherited by',
+    hasRelatedTerms = 'contains',
+    isRelatedTerms = 'inherits',
+    containedBy = 'containedBy',
+    isAChildren = 'inheritedBy',
 }
 
 export type Props = {
@@ -37,6 +38,7 @@ const TitleContainer = styled.div`
 const messageStyle = { marginTop: '10%' };
 
 export default function GlossaryRelatedTermsResult({ glossaryRelatedTermType, glossaryRelatedTermResult }: Props) {
+    const { t } = useTranslation();
     const [isShowingAddModal, setIsShowingAddModal] = useState(false);
     const glossaryRelatedTermUrns: Array<string> = [];
     glossaryRelatedTermResult.forEach((item: any) => {
@@ -55,7 +57,7 @@ export default function GlossaryRelatedTermsResult({ glossaryRelatedTermType, gl
     return (
         <>
             {contentLoading ? (
-                <Message type="loading" content="Loading..." style={messageStyle} />
+                <Message type="loading" content={`${t('common.loading')}...`} style={messageStyle} />
             ) : (
                 <ListContainer>
                     <TitleContainer>
@@ -64,7 +66,13 @@ export default function GlossaryRelatedTermsResult({ glossaryRelatedTermType, gl
                         </Typography.Title>
                         {canEditRelatedTerms && (
                             <Button type="text" onClick={() => setIsShowingAddModal(true)}>
-                                <PlusOutlined /> Add Terms
+                                <PlusOutlined />{' '}
+                                {t('crud.addWithName', {
+                                    name: t('entity.type.GLOSSARY_TERM_interval', {
+                                        postProcess: 'interval',
+                                        count: 2,
+                                    }),
+                                })}
                             </Button>
                         )}
                     </TitleContainer>

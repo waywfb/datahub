@@ -90,6 +90,7 @@ export class DashboardEntity implements Entity<Dashboard> {
             }}
             tabs={[
                 {
+                    titleKey: 'common.charts',
                     name: 'Charts',
                     component: DashboardChartsTab,
                     display: {
@@ -100,6 +101,7 @@ export class DashboardEntity implements Entity<Dashboard> {
                     },
                 },
                 {
+                    titleKey: 'common.datasets',
                     name: 'Datasets',
                     component: DashboardDatasetsTab,
                     display: {
@@ -108,10 +110,12 @@ export class DashboardEntity implements Entity<Dashboard> {
                     },
                 },
                 {
+                    titleKey: 'common.documentation',
                     name: 'Documentation',
                     component: DocumentationTab,
                 },
                 {
+                    titleKey: 'common.preview',
                     name: 'Preview',
                     component: EmbedTab,
                     display: {
@@ -124,6 +128,7 @@ export class DashboardEntity implements Entity<Dashboard> {
                     },
                 },
                 {
+                    titleKey: 'common.lineage',
                     name: 'Lineage',
                     component: LineageTab,
                     properties: {
@@ -131,6 +136,7 @@ export class DashboardEntity implements Entity<Dashboard> {
                     },
                 },
                 {
+                    titleKey: 'common.properties',
                     name: 'Properties',
                     component: PropertiesTab,
                 },

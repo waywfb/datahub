@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata } from '../../../../types.generated';
 import { useAggregateAcrossEntitiesLazyQuery } from '../../../../graphql/search.generated';
 import useGetSearchQueryInputs from '../../useGetSearchQueryInputs';
@@ -22,6 +23,7 @@ interface Props {
 
 export default function EntityTypeFilter({ filter, activeFilters, onChangeFilters }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const [selectedFilterOptions, setSelectedFilterOptions] = useState<FilterOptionType[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,6 +69,7 @@ export default function EntityTypeFilter({ filter, activeFilters, onChangeFilter
     const filterOptions = getDisplayedFilterOptions(
         selectedFilterOptions,
         entityRegistry,
+        t,
         setSelectedFilterOptions,
         searchQuery,
         data,

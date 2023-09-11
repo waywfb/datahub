@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Typography } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import TabToolbar from '../TabToolbar';
 import { SearchBar } from '../../../../../search/SearchBar';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
@@ -62,6 +63,7 @@ export default function EmbeddedListSearchHeader({
     searchBarInputStyle,
 }: Props) {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     return (
         <>
@@ -69,13 +71,18 @@ export default function EmbeddedListSearchHeader({
                 <HeaderContainer>
                     <Button type="text" onClick={onToggleFilters}>
                         <FilterOutlined />
-                        <Typography.Text>Filters</Typography.Text>
+                        <Typography.Text>{t('common.filters')}</Typography.Text>
                     </Button>
                     <SearchAndDownloadContainer>
                         <SearchBar
                             data-testid="embedded-search-bar"
                             initialQuery=""
-                            placeholderText={placeholderText || 'Search entities...'}
+                            placeholderText={
+                                placeholderText ||
+                                t('placeholder.searchWithName', {
+                                    name: t('entity.subtype.entity_interval', { postProcess: 'interval', count: 2 }),
+                                })
+                            }
                             suggestions={[]}
                             style={
                                 searchBarStyle || {

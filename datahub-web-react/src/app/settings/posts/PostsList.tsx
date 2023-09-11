@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import * as QueryString from 'query-string';
 import { PlusOutlined } from '@ant-design/icons';
 import { AlignType } from 'rc-table/lib/interface';
+import { Trans, useTranslation } from 'react-i18next';
 import CreatePostModal from './CreatePostModal';
 import { PostColumn, PostEntry, PostListMenuColumn } from './PostsListColumns';
 import { useEntityRegistry } from '../../useEntityRegistry';
@@ -21,24 +22,23 @@ const PostsContainer = styled.div``;
 
 export const PostsPaginationContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 12px;
     padding-left: 16px;
     border-bottom: 1px solid;
     border-color: ${(props) => props.theme.styles['border-color-base']};
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 `;
 
 const PaginationInfo = styled(Typography.Text)`
-    padding: 0px;
+    padding: 0;
 `;
 
 const DEFAULT_PAGE_SIZE = 10;
 
 export const PostList = () => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const location = useLocation();
     const params = QueryString.parse(location.search, { arrayFormat: 'comma' });
     const paramsQuery = (params?.query as string) || undefined;
@@ -80,7 +80,7 @@ export const PostList = () => {
 
     const allColumns = [
         {
-            title: 'Title',
+            title: t('common.title'),
             dataIndex: '',
             key: 'title',
             sorter: (sourceA, sourceB) => {
@@ -90,13 +90,13 @@ export const PostList = () => {
             width: '20%',
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: '',
             key: 'description',
             render: (record: PostEntry) => PostColumn(record.description || ''),
         },
         {
-            title: 'Type',
+            title: t('common.type'),
             dataIndex: '',
             key: 'type',
             render: (record: PostEntry) => PostColumn(POST_TYPE_TO_DISPLAY_TEXT[record.contentType]),
@@ -124,16 +124,16 @@ export const PostList = () => {
 
     return (
         <>
-            {!data && loading && <Message type="loading" content="Loading posts..." />}
-            {error && <Message type="error" content="Failed to load Posts! An unexpected error occurred." />}
+            {!data && loading && <Message type="loading" content={`${t('common.loading')}...`} />}
+            {error && <Message type="error" content={t('crud.error.loadWithName', { name: t('common.posts') })} />}
             <PostsContainer>
                 <TabToolbar>
                     <Button id="posts-create-post" type="text" onClick={() => setIsCreatingPost(true)}>
-                        <PlusOutlined /> New Post
+                        <PlusOutlined /> {`${t('common.new')} ${t('common.post')}`}
                     </Button>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText="Search posts..."
+                        placeholderText={t('placeholder.searchWithName', { name: t('common.posts') })}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,
@@ -154,15 +154,24 @@ export const PostList = () => {
                     dataSource={tableData}
                     rowKey="urn"
                     pagination={false}
-                    locale={{ emptyText: <Empty description="No posts!" image={Empty.PRESENTED_IMAGE_SIMPLE} /> }}
+                    locale={{
+                        emptyText: <Empty description={t('common.noPost')} image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+                    }}
                 />
                 {totalPosts > pageSize && (
                     <PostsPaginationContainer>
                         <PaginationInfo>
-                            <b>
-                                {lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0} - {lastResultIndex}
-                            </b>{' '}
-                            of <b>{totalPosts}</b>
+                            <Trans
+                                {...{
+                                    i18nKey: 'search.showingIndexOfTotalPost',
+                                    values: {
+                                        startCount: lastResultIndex > 0 ? (page - 1) * pageSize + 1 : 0,
+                                        endCount: lastResultIndex,
+                                        totalCount: totalPosts,
+                                    },
+                                    components: { bold: <b /> },
+                                }}
+                            />
                         </PaginationInfo>
                         <Pagination
                             current={page}

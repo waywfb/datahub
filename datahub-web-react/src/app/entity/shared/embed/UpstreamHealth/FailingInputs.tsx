@@ -2,6 +2,7 @@ import { orange } from '@ant-design/colors';
 import { DownOutlined, WarningFilled } from '@ant-design/icons';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../../constants';
 import FailingAssertions from './FailingAssertions';
 import { UpstreamSummary } from './utils';
@@ -23,7 +24,7 @@ const FailingDetailsWrapper = styled.span`
     margin-left: 8px;
     &:hover {
         cursor: pointer;
-        color: $ ${(props) => props.theme.styles['primary-color']};
+        color: ${(props) => props.theme.styles['primary-color']};
     }
 `;
 
@@ -43,14 +44,15 @@ interface Props {
 }
 
 export default function FailingInputs({ upstreamSummary }: Props) {
+    const { t } = useTranslation();
     const [areFailingDetailsVisible, setAreFailingDetailsVisible] = useState(false);
 
     return (
         <div>
             <StyledWarning />
-            <TextWrapper>Some data inputs are not healthy</TextWrapper>
+            <TextWrapper>{t('entity.someDataInputsAreNotHealthy')}</TextWrapper>
             <FailingDetailsWrapper onClick={() => setAreFailingDetailsVisible(!areFailingDetailsVisible)}>
-                view details <StyledArrow isOpen={areFailingDetailsVisible} />
+                {t('common.viewDetails').toLowerCase()} <StyledArrow isOpen={areFailingDetailsVisible} />
             </FailingDetailsWrapper>
             {areFailingDetailsVisible && <FailingAssertions upstreamSummary={upstreamSummary} />}
         </div>

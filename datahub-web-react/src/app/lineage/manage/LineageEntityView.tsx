@@ -1,6 +1,7 @@
 import { Divider } from 'antd';
 import React from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { Entity } from '../../../types.generated';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { getPlatformName } from '../../entity/shared/utils';
@@ -40,6 +41,7 @@ interface Props {
 }
 
 export default function LineageEntityView({ entity, displaySearchResult }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
     const genericProps = entityRegistry.getGenericEntityProperties(entity.type, entity);
 
@@ -50,13 +52,17 @@ export default function LineageEntityView({ entity, displaySearchResult }: Props
         <EntityWrapper shrinkPadding={displaySearchResult}>
             <PlatformContent removeMargin={displaySearchResult}>
                 {platformLogoUrl && (
-                    <PlatformLogo src={platformLogoUrl} alt="platform logo" data-testid="platform-logo" />
+                    <PlatformLogo
+                        src={platformLogoUrl}
+                        alt={t('lineage.platformLogo').toLowerCase()}
+                        data-testid="platform-logo"
+                    />
                 )}
                 <span>{platformName}</span>
                 {platformName && <StyledDivider type="vertical" data-testid="divider" />}
                 <span>
                     {capitalizeFirstLetterOnly(genericProps?.subTypes?.typeNames?.[0]) ||
-                        entityRegistry.getEntityName(entity.type)}
+                        entityRegistry.getEntityNameTrans(entity.type, t)}
                 </span>
             </PlatformContent>
             <EntityName shrinkSize={displaySearchResult}>

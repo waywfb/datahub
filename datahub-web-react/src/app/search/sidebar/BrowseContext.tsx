@@ -1,4 +1,5 @@
 import React, { ReactNode, createContext, useContext, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     AggregationMetadata,
     BrowseResultGroupV2,
@@ -67,7 +68,14 @@ export const BrowseProvider = ({
 
 const useBrowseContext = () => {
     const context = useContext(BrowseContext);
-    if (context === null) throw new Error(`${useBrowseContext.name} must be used under a ${BrowseProvider.name}`);
+    const { t } = useTranslation();
+    if (context === null)
+        throw new Error(
+            t('error.contextUnderProvider', {
+                contextName: useBrowseContext.name,
+                providerName: BrowseProvider.name,
+            }),
+        );
     return context;
 };
 

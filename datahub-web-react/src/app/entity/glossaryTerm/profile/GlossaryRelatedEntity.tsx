@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import { UnionType } from '../../../search/utils/constants';
 import { EmbeddedListSearchSection } from '../../shared/components/styled/search/EmbeddedListSearchSection';
 
 import { useEntityData } from '../../shared/EntityContext';
 
 export default function GlossaryRelatedEntity() {
-    const { entityData } = useEntityData();
+    const { entityData }: any = useEntityData();
+    const { t } = useTranslation();
 
     const entityUrn = entityData?.urn;
 
@@ -45,7 +47,7 @@ export default function GlossaryRelatedEntity() {
                 filters: fixedOrFilters,
             }}
             emptySearchQuery="*"
-            placeholderText="Filter entities..."
+            placeholderText={t('placeholder.filterWithName', { name: t('common.entities') })}
             skipCache
             applyView
         />

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Select, Tag, Tooltip, Typography } from 'antd';
 import styled from 'styled-components/macro';
 
+import { Trans, useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { useAppConfig } from '../../useAppConfig';
 import {
@@ -54,6 +55,7 @@ export default function PolicyPrivilegeForm({
     privileges,
     setPrivileges,
 }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
 
     // Configuration used for displaying options
@@ -279,15 +281,22 @@ export default function PolicyPrivilegeForm({
     return (
         <PrivilegesForm layout="vertical">
             {showResourceFilterInput && (
-                <Form.Item label={<Typography.Text strong>Resource Type</Typography.Text>} labelAlign="right">
+                <Form.Item
+                    label={<Typography.Text strong>{t('common.resourceType')}</Typography.Text>}
+                    labelAlign="right"
+                >
                     <Typography.Paragraph>
-                        Select the types of resources this policy should apply to. If <b>none</b> is selected, policy is
-                        applied to <b>all</b> types of resources.
+                        <Trans
+                            {...{
+                                i18nKey: 'permissions.resourceTypeDescription',
+                                components: { bold: <b /> },
+                            }}
+                        />
                     </Typography.Paragraph>
                     <Select
                         value={resourceTypeSelectValue}
                         mode="multiple"
-                        placeholder="Apply to ALL resource types by default. Select types to apply to specific types of entities."
+                        placeholder={t('placeholder.resourceTypeDescriptionPlaceHolder')}
                         onSelect={onSelectResourceType}
                         onDeselect={onDeselectResourceType}
                         tagRender={(tagProps) => (
@@ -309,17 +318,21 @@ export default function PolicyPrivilegeForm({
                 </Form.Item>
             )}
             {showResourceFilterInput && (
-                <Form.Item label={<Typography.Text strong>Resource</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.resource')}</Typography.Text>}>
                     <Typography.Paragraph>
-                        Search for specific resources the policy should apply to. If <b>none</b> is selected, policy is
-                        applied to <b>all</b> resources of the given type.
+                        <Trans
+                            {...{
+                                i18nKey: 'permissions.resourceDescription',
+                                components: { bold: <b /> },
+                            }}
+                        />
                     </Typography.Paragraph>
                     <Select
-                        notFoundContent="No search results found"
+                        notFoundContent={t('permissions.noSearchResultsFound')}
                         value={resourceSelectValue}
                         mode="multiple"
                         filterOption={false}
-                        placeholder="Apply to ALL resources by default. Select specific resources to apply to."
+                        placeholder={t('placeholder.resourceDescriptionPlaceHolder')}
                         onSelect={onSelectResource}
                         onDeselect={onDeselectResource}
                         onSearch={handleResourceSearch}
@@ -342,17 +355,21 @@ export default function PolicyPrivilegeForm({
                 </Form.Item>
             )}
             {showResourceFilterInput && (
-                <Form.Item label={<Typography.Text strong>Domain</Typography.Text>}>
+                <Form.Item label={<Typography.Text strong>{t('common.domain')}</Typography.Text>}>
                     <Typography.Paragraph>
-                        Search for domains the policy should apply to. If <b>none</b> is selected, policy is applied to{' '}
-                        <b>all</b> resources in all domains.
+                        <Trans
+                            {...{
+                                i18nKey: 'permissions.domainDescription',
+                                components: { bold: <b /> },
+                            }}
+                        />
                     </Typography.Paragraph>
                     <Select
-                        notFoundContent="No search results found"
+                        notFoundContent={t('permissions.noSearchResultsFound')}
                         value={domainSelectValue}
                         mode="multiple"
                         filterOption={false}
-                        placeholder="Apply to ALL domains by default. Select domains to apply to specific domains."
+                        placeholder={t('placeholder.domainDescriptionPlaceHolder')}
                         onSelect={onSelectDomain}
                         onDeselect={onDeselectDomain}
                         onSearch={handleDomainSearch}
@@ -371,8 +388,8 @@ export default function PolicyPrivilegeForm({
                     </Select>
                 </Form.Item>
             )}
-            <Form.Item label={<Typography.Text strong>Privileges</Typography.Text>}>
-                <Typography.Paragraph>Select a set of privileges to permit.</Typography.Paragraph>
+            <Form.Item label={<Typography.Text strong>{t('common.privileges')}</Typography.Text>}>
+                <Typography.Paragraph>{t('permissions.privilegesLabel')}</Typography.Paragraph>
                 <Select
                     data-testid="privileges"
                     value={privilegesSelectValue}
@@ -388,7 +405,7 @@ export default function PolicyPrivilegeForm({
                     {privilegeOptions.map((priv) => (
                         <Select.Option value={priv.type}>{priv.displayName}</Select.Option>
                     ))}
-                    <Select.Option value="All">All Privileges</Select.Option>
+                    <Select.Option value="All">{`${t('common.all')} ${t('common.privileges')}`}</Select.Option>
                 </Select>
             </Form.Item>
         </PrivilegesForm>

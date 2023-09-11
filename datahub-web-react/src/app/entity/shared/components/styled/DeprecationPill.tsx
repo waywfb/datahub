@@ -4,6 +4,7 @@ import { Divider, message, Modal, Popover, Tooltip, Typography } from 'antd';
 import { blue } from '@ant-design/colors';
 import styled from 'styled-components';
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 import { Deprecation } from '../../../../../types.generated';
 import { getLocaleTimezone } from '../../../../shared/time/timeUtils';
 import { ANTD_GRAY } from '../../constants';
@@ -17,7 +18,7 @@ const DeprecatedContainer = styled.div`
     justify-content: center;
     align-items: center;
     color: #cd0d24;
-    margin-left: 0px;
+    margin-left: 0;
     margin-right: 8px;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -78,6 +79,7 @@ type Props = {
 };
 
 export const DeprecationPill = ({ deprecation, urn, refetch, showUndeprecate }: Props) => {
+    const { t } = useTranslation();
     const [batchUpdateDeprecationMutation] = useBatchUpdateDeprecationMutation();
     /**
      * Deprecation Decommission Timestamp
@@ -85,9 +87,10 @@ export const DeprecationPill = ({ deprecation, urn, refetch, showUndeprecate }: 
     const localeTimezone = getLocaleTimezone();
     const decommissionTimeLocal =
         (deprecation.decommissionTime &&
-            `Scheduled to be decommissioned on ${moment
-                .unix(deprecation.decommissionTime)
-                .format('DD/MMM/YYYY')} (${localeTimezone})`) ||
+            t('deprecation.scheduledToBeDecommissionedOnWithDate', {
+                date: moment.unix(deprecation.decommissionTime).format('DD/MMM/YYYY'),
+                timezone: localeTimezone,
+            })) ||
         undefined;
     const decommissionTimeGMT =
         deprecation.decommissionTime &&
@@ -107,14 +110,14 @@ export const DeprecationPill = ({ deprecation, urn, refetch, showUndeprecate }: 
         })
             .then(({ errors }) => {
                 if (!errors) {
-                    message.success({ content: 'Marked assets as un-deprecated!', duration: 2 });
+                    message.success({ content: t('deprecation.markAssetsAsUnDeprecatedSuccess'), duration: 2 });
                     refetch?.();
                 }
             })
             .catch((e) => {
                 message.destroy();
                 message.error({
-                    content: `Failed to mark assets as un-deprecated: \n ${e.message || ''}`,
+                    content: `${t('deprecation.markAssetsAsUnDeprecatedError')}: \n ${e.message || ''}`,
                     duration: 3,
                 });
             });
@@ -127,7 +130,9 @@ export const DeprecationPill = ({ deprecation, urn, refetch, showUndeprecate }: 
             content={
                 hasDetails ? (
                     <>
-                        {deprecation?.note !== '' && <DeprecatedTitle>Deprecation note</DeprecatedTitle>}
+                        {deprecation?.note !== '' && (
+                            <DeprecatedTitle>{t('deprecation.deprecationNote')}</DeprecatedTitle>
+                        )}
                         {isDividerNeeded && <ThinDivider />}
                         {deprecation?.note !== '' && <DeprecatedSubTitle>{deprecation.note}</DeprecatedSubTitle>}
                         {deprecation?.decommissionTime !== null && (
@@ -142,30 +147,31 @@ export const DeprecationPill = ({ deprecation, urn, refetch, showUndeprecate }: 
                             <IconGroup
                                 onClick={() =>
                                     Modal.confirm({
-                                        title: `Confirm Mark as un-deprecated`,
-                                        content: `Are you sure you want to mark this asset as un-deprecated?`,
+                                        title: t('deprecation.markAssetsAsUnDeprecatedTitle'),
+                                        content: t('deprecation.markAssetsAsUnDeprecatedContent'),
                                         onOk() {
                                             batchUndeprecate();
                                         },
                                         onCancel() {},
-                                        okText: 'Yes',
+                                        okText: t('common.yes'),
+                                        cancelText: t('common.cancel'),
                                         maskClosable: true,
                                         closable: true,
                                     })
                                 }
                             >
                                 <UndeprecatedIcon />
-                                Mark as un-deprecated
+                                {t('deprecation.markAsUnDeprecated')}
                             </IconGroup>
                         )}
                     </>
                 ) : (
-                    'No additional details'
+                    t('common.noAdditionalDetails')
                 )
             }
         >
             <DeprecatedContainer>
-                <DeprecatedText>DEPRECATED</DeprecatedText>
+                <DeprecatedText>{t('deprecation.deprecated').toUpperCase()}</DeprecatedText>
             </DeprecatedContainer>
         </Popover>
     );

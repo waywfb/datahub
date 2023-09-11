@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import React from 'react';
 import styled from 'styled-components';
+import { TFunction } from 'i18next';
 import {
     AggregationMetadata,
     DataPlatform,
@@ -111,7 +112,12 @@ export function getLastBrowseEntryFromFilterValue(filterValue: string) {
     return browseEntries[browseEntries.length - 1] || '';
 }
 
-function getEntitySubtypeFilterIconAndLabel(filterValue: string, entityRegistry: EntityRegistry, size?: number) {
+function getEntitySubtypeFilterIconAndLabel(
+    filterValue: string,
+    entityRegistry: EntityRegistry,
+    t: TFunction,
+    size?: number,
+) {
     let icon: React.ReactNode = null;
     let label: React.ReactNode = null;
 
@@ -121,7 +127,7 @@ function getEntitySubtypeFilterIconAndLabel(filterValue: string, entityRegistry:
         label = capitalizeFirstLetterOnly(subType);
     } else {
         icon = entityRegistry.getIcon(filterValue as EntityType, size || 12, IconStyleType.ACCENT, ANTD_GRAY[9]);
-        label = entityRegistry.getCollectionName(filterValue.toUpperCase() as EntityType);
+        label = entityRegistry.getCollectionNameTrans(filterValue.toUpperCase() as EntityType, t);
     }
 
     return { icon, label };
@@ -158,6 +164,7 @@ export function getFilterIconAndLabel(
     filterField: string,
     filterValue: string,
     entityRegistry: EntityRegistry,
+    t: TFunction,
     filterEntity: Entity | null,
     size?: number,
     filterLabelOverride?: string | null,
@@ -167,11 +174,12 @@ export function getFilterIconAndLabel(
 
     if (filterField === ENTITY_FILTER_NAME || filterField === LEGACY_ENTITY_FILTER_NAME) {
         icon = entityRegistry.getIcon(filterValue as EntityType, size || 12, IconStyleType.ACCENT, ANTD_GRAY[9]);
-        label = entityRegistry.getCollectionName(filterValue.toUpperCase() as EntityType);
+        label = entityRegistry.getCollectionNameTrans(filterValue.toUpperCase() as EntityType, t);
     } else if (filterField === ENTITY_SUB_TYPE_FILTER_NAME) {
         const { icon: newIcon, label: newLabel } = getEntitySubtypeFilterIconAndLabel(
             filterValue,
             entityRegistry,
+            t,
             size,
         );
         icon = newIcon;
@@ -308,7 +316,7 @@ export function getFilterOptions(
 }
 
 export function filterOptionsWithSearch(searchQuery: string, name: string, nestedOptions: FilterOptionType[] = []) {
-    if (searchQuery) {
+    if (searchQuery && name) {
         return (
             name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()) ||
             !!nestedOptions.find((option) => option.value.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()))

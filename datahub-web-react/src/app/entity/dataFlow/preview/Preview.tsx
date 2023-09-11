@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
     DataProduct,
     Deprecation,
@@ -58,6 +59,7 @@ export const Preview = ({
     paths?: EntityPath[];
 }): JSX.Element => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.DataFlow, urn)}
@@ -65,7 +67,7 @@ export const Preview = ({
             urn={urn}
             description={description || ''}
             platformInstanceId={platformInstanceId}
-            type="Data Pipeline"
+            type={EntityType.DataFlow}
             typeIcon={entityRegistry.getIcon(EntityType.DataFlow, 14, IconStyleType.ACCENT)}
             platform={platformName}
             logoUrl={platformLogo || ''}
@@ -80,7 +82,7 @@ export const Preview = ({
             subHeader={
                 (jobCount && [
                     <StatText>
-                        <b>{jobCount}</b> {entityRegistry.getCollectionName(EntityType.DataJob)}
+                        <b>{jobCount}</b> {entityRegistry.getCollectionNameTrans(EntityType.DataJob, t)}
                     </StatText>,
                 ]) ||
                 undefined

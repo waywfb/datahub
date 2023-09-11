@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useTranslation } from 'react-i18next';
 import { useDataNotCombinedWithSiblings, useEntityData } from '../../../EntityContext';
 import { SidebarHeader } from './SidebarHeader';
 import { CompactEntityNameList } from '../../../../../recommendations/renderer/component/CompactEntityNameList';
@@ -14,6 +15,7 @@ const EntityListContainer = styled.div`
 
 export const SidebarSiblingsSection = () => {
     const { entityData } = useEntityData();
+    const { t } = useTranslation();
     const dataNotCombinedWithSiblings = useDataNotCombinedWithSiblings<GetDatasetQuery>();
 
     const isHideSiblingMode = useIsSeparateSiblingsMode();
@@ -25,7 +27,7 @@ export const SidebarSiblingsSection = () => {
     if (isHideSiblingMode) {
         return (
             <div>
-                <SidebarHeader title="Part Of" />
+                <SidebarHeader title={t('common.partOf')} />
                 <EntityListContainer>
                     <CompactEntityNameList entities={[entityData as Entity]} showTooltips />
                 </EntityListContainer>
@@ -48,7 +50,7 @@ export const SidebarSiblingsSection = () => {
 
     return (
         <div>
-            <SidebarHeader title="Composed Of" />
+            <SidebarHeader title={t('common.composedOf')} />
             <EntityListContainer>
                 <CompactEntityNameList
                     entities={allSiblingsInGroupThatExist}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Divider, Typography } from 'antd';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useListPostsQuery } from '../../graphql/post.generated';
 import { Post, PostContentType } from '../../types.generated';
 import { PostTextCard } from '../search/PostTextCard';
@@ -17,9 +18,9 @@ const ContentContainer = styled.div`
 `;
 
 const RecommendationTitle = styled(Typography.Title)`
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
 `;
 
 const ThinDivider = styled(Divider)`
@@ -42,6 +43,7 @@ const LinkPostsContainer = styled.div`
 `;
 
 export const HomePagePosts = () => {
+    const { t } = useTranslation();
     const { data: postsData } = useListPostsQuery({
         variables: {
             input: {
@@ -59,7 +61,7 @@ export const HomePagePosts = () => {
     const hasPosts = textPosts.length > 0 || linkPosts.length > 0;
     return hasPosts ? (
         <RecommendationContainer>
-            <RecommendationTitle level={4}>Pinned</RecommendationTitle>
+            <RecommendationTitle level={4}>{t('common.pinned')}</RecommendationTitle>
             <ThinDivider />
             <ContentContainer>
                 <TextPostsContainer>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { message, Button, Modal, Typography, Form } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useEntityData, useRefetch } from '../EntityContext';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { useUpdateParentNodeMutation } from '../../../../graphql/glossary.generated';
@@ -26,6 +27,7 @@ function MoveGlossaryEntityModal(props: Props) {
     const { isInGlossaryContext, urnsToUpdate, setUrnsToUpdate } = useGlossaryEntityData();
     const [form] = Form.useForm();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const [selectedParentUrn, setSelectedParentUrn] = useState('');
     const refetch = useRefetch();
 
@@ -41,10 +43,12 @@ function MoveGlossaryEntityModal(props: Props) {
             },
         })
             .then(() => {
-                message.loading({ content: 'Updating...', duration: 2 });
+                message.loading({ content: `${t('common.updating')}...`, duration: 2 });
                 setTimeout(() => {
                     message.success({
-                        content: `Moved ${entityRegistry.getEntityName(entityType)}!`,
+                        content: t('crud.success.moveWithName', {
+                            name: entityRegistry.getEntityNameTrans(entityType, t),
+                        }),
                         duration: 2,
                     });
                     refetch();
@@ -57,22 +61,22 @@ function MoveGlossaryEntityModal(props: Props) {
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to move: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.move')}: \n ${e.message || ''}`, duration: 3 });
             });
         onClose();
     }
 
     return (
         <Modal
-            title="Move"
+            title={t('common.move')}
             visible
             onCancel={onClose}
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
-                    <Button onClick={moveGlossaryEntity}>Move</Button>
+                    <Button onClick={moveGlossaryEntity}>{t('common.move')}</Button>
                 </>
             }
         >
@@ -80,7 +84,8 @@ function MoveGlossaryEntityModal(props: Props) {
                 <Form.Item
                     label={
                         <Typography.Text strong>
-                            Move To <OptionalWrapper>(optional)</OptionalWrapper>
+                            {t('common.moveTo')}{' '}
+                            <OptionalWrapper>({t('common.optional').toLowerCase()})</OptionalWrapper>
                         </Typography.Text>
                     }
                 >

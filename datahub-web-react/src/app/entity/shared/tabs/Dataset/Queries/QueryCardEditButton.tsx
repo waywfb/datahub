@@ -5,8 +5,8 @@ import { Button } from 'antd';
 
 const EditQueryActionButton = styled(Button)`
     && {
-        margin: 0px;
-        padding: 0px 4px 0px 4px;
+        margin: 0;
+        padding: 0 4px 0 4px;
     }
 `;
 

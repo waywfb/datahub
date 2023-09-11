@@ -1,6 +1,7 @@
 import { Button, Form, Modal, Select, Tag, Tooltip } from 'antd';
 import React, { ReactNode, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useGetSearchResultsLazyQuery } from '../../../../../../../graphql/search.generated';
 import { DataPlatform, Entity, EntityType } from '../../../../../../../types.generated';
 import { useEnterKeyListener } from '../../../../../../shared/useEnterKeyListener';
@@ -18,7 +19,7 @@ type SelectedPlatform = {
 };
 
 const StyleTag = styled(Tag)`
-    padding: 0px 7px;
+    padding: 0 7px;
     margin-right: 3px;
     display: flex;
     justify-content: start;
@@ -34,6 +35,7 @@ const PreviewImage = styled.img`
 `;
 
 export const SelectPlatformModal = ({ onCloseModal, defaultValues, onOk, titleOverride }: Props) => {
+    const { t } = useTranslation();
     const [platformSearch, { data: platforSearchData }] = useGetSearchResultsLazyQuery();
     const platformSearchResults =
         platforSearchData?.search?.searchResults?.map((searchResult) => searchResult.entity) || [];
@@ -136,16 +138,16 @@ export const SelectPlatformModal = ({ onCloseModal, defaultValues, onOk, titleOv
 
     return (
         <Modal
-            title={titleOverride || 'Select Platform'}
+            title={titleOverride || t('search.selectWithName', { name: t('common.platform') })}
             visible
             onCancel={onModalClose}
             footer={
                 <>
                     <Button onClick={onModalClose} type="text">
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button id="setPlatformButton" disabled={selectedPlatforms?.length === 0} onClick={handleOk}>
-                        Add
+                        {t('common.add')}
                     </Button>
                 </>
             }
@@ -158,7 +160,7 @@ export const SelectPlatformModal = ({ onCloseModal, defaultValues, onOk, titleOv
                         showSearch
                         mode="multiple"
                         defaultActiveFirstOption={false}
-                        placeholder="Search for Platforms..."
+                        placeholder={t('placeholder.searchForWithName', { name: t('common.platforms') })}
                         onSelect={(platformUrn: any) => onSelectPlatform(platformUrn)}
                         onDeselect={onDeselectPlatform}
                         onSearch={(value: string) => {

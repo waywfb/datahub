@@ -1,4 +1,5 @@
 import React from 'react';
+import { TFunction } from 'i18next';
 import { Entity as EntityInterface, EntityType, SearchResult } from '../../types.generated';
 import { FetchedEntity } from '../lineage/types';
 import { SearchResultProvider } from '../search/context/SearchResultContext';
@@ -74,14 +75,14 @@ export default class EntityRegistry {
         return entity.icon(fontSize, styleType, color);
     }
 
-    getCollectionName(type: EntityType): string {
+    getCollectionNameTrans(type: EntityType, t: TFunction): string {
         const entity = validatedGet(type, this.entityTypeToEntity);
-        return entity.getCollectionName();
+        return this.getEntityNameTrans(entity.type, t, 2);
     }
 
-    getEntityName(type: EntityType): string | undefined {
+    getEntityNameTrans(type: EntityType, t: TFunction, count = 1): string {
         const entity = validatedGet(type, this.entityTypeToEntity);
-        return entity.getEntityName?.();
+        return t(`entity.type.${entity.type}_interval`, { postProcess: 'interval', count });
     }
 
     getTypeFromCollectionName(name: string): EntityType {

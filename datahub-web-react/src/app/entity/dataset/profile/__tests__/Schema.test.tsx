@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
+import { I18nextProvider } from 'react-i18next';
 import TestPageContainer from '../../../../../utils/test-utils/TestPageContainer';
 import {
     sampleSchema,
@@ -13,6 +14,7 @@ import { mocks } from '../../../../../Mocks';
 import { SchemaTab } from '../../../shared/tabs/Dataset/Schema/SchemaTab';
 import EntityContext from '../../../shared/EntityContext';
 import { EntityType, SchemaMetadata } from '../../../../../types.generated';
+import i18n from '../../../../../i18n-test';
 
 jest.mock('virtualizedtableforantd4', () => {
     /* eslint-disable-next-line */
@@ -27,24 +29,26 @@ describe('Schema', () => {
     it('renders', () => {
         const { getByText } = render(
             <MockedProvider mocks={mocks} addTypename={false}>
-                <TestPageContainer>
-                    <EntityContext.Provider
-                        value={{
-                            urn: 'urn:li:dataset:123',
-                            entityType: EntityType.Dataset,
-                            entityData: {
-                                description: 'This is a description',
-                                schemaMetadata: sampleSchema as SchemaMetadata,
-                            },
-                            baseEntity: {},
-                            updateEntity: jest.fn(),
-                            routeToTab: jest.fn(),
-                            refetch: jest.fn(),
-                        }}
-                    >
-                        <SchemaTab />
-                    </EntityContext.Provider>
-                </TestPageContainer>
+                <I18nextProvider i18n={i18n}>
+                    <TestPageContainer>
+                        <EntityContext.Provider
+                            value={{
+                                urn: 'urn:li:dataset:123',
+                                entityType: EntityType.Dataset,
+                                entityData: {
+                                    description: 'This is a description',
+                                    schemaMetadata: sampleSchema as SchemaMetadata,
+                                },
+                                baseEntity: {},
+                                updateEntity: jest.fn(),
+                                routeToTab: jest.fn(),
+                                refetch: jest.fn(),
+                            }}
+                        >
+                            <SchemaTab />
+                        </EntityContext.Provider>
+                    </TestPageContainer>
+                </I18nextProvider>
             </MockedProvider>,
         );
         expect(getByText('name')).toBeInTheDocument();
@@ -252,6 +256,8 @@ describe('Schema', () => {
         );
         expect(getByText('Key')).toBeInTheDocument();
         expect(getByText('Value')).toBeInTheDocument();
+        // TODO dtnls This one is not present inside antd Table, to decide if to remove that expect or fix it
+        // expect(getByText('Usage')).toBeInTheDocument();
         expect(getByText('count')).toBeInTheDocument();
         expect(getByText('cost')).toBeInTheDocument();
         expect(queryByText('id')).not.toBeInTheDocument();

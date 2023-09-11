@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import { Breadcrumb } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { BreadcrumbItem, BrowseRow } from './ProfileNavBrowsePath';
 import { useEntityData } from '../../../EntityContext';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
@@ -29,6 +30,7 @@ interface Props {
 export default function ProfileNavBrowsePathV2({ urn, type }: Props) {
     const history = useHistory();
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const { entityData } = useEntityData();
     const isBrowsable = entityRegistry.getBrowseEntityTypes().includes(type);
     const hasEnvironment = !!entityData?.origin;
@@ -64,7 +66,7 @@ export default function ProfileNavBrowsePathV2({ urn, type }: Props) {
                     disabled={!isBrowsable}
                     onClick={() => handlePathClick([{ field: ENTITY_SUB_TYPE_FILTER_NAME, values: [type] }])}
                 >
-                    {entityRegistry.getCollectionName(type)}
+                    {entityRegistry.getCollectionNameTrans(type, t)}
                 </BreadcrumbItem>
                 {hasMultipleEnvironments && hasEnvironment && (
                     <BreadcrumbItem

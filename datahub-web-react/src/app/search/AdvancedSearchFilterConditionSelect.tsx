@@ -1,6 +1,8 @@
 import { Select } from 'antd';
 import React from 'react';
 import styled from 'styled-components/macro';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput } from '../../types.generated';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import {
@@ -33,24 +35,24 @@ const filtersOnNonCollectionFields = [
     ORIGIN_FILTER_NAME,
 ];
 
-function getLabelsForField(field: string) {
+function getLabelsForField(field: string, t: TFunction) {
     if (FIELDS_THAT_USE_CONTAINS_OPERATOR.includes(field)) {
         return {
-            default: 'contains',
-            negated: 'does not contain',
+            default: t('filter.contains.true'),
+            negated: t('filter.contains.false'),
         };
     }
     if (filtersOnNonCollectionFields.includes(field)) {
         return {
-            default: 'equals',
-            negated: 'not equal',
+            default: t('filter.equals.true'),
+            negated: t('filter.equals.false'),
         };
     }
 
     // collection field
     return {
-        default: 'is any of',
-        negated: 'is not',
+        default: t('filter.isOf.true'),
+        negated: t('filter.isOf.false'),
     };
 }
 
@@ -65,7 +67,8 @@ const StyledSelect = styled(Select)`
 `;
 
 export const AdvancedSearchFilterConditionSelect = ({ filter, onUpdate }: Props) => {
-    const labelsForField = getLabelsForField(filter.field);
+    const { t } = useTranslation();
+    const labelsForField = getLabelsForField(filter.field, t);
 
     const selectedValue = filter.negated ? 'negated' : 'default';
 

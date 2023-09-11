@@ -3,6 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Button, Tooltip, Typography } from 'antd';
 import { ScanOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { SchemaField, SchemaFieldBlame } from '../../../../../../../types.generated';
 import { pathMatchesNewPath } from '../../../../../dataset/profile/schema/utils/utils';
 import { toRelativeTimeString } from '../../../../../../shared/time/timeUtils';
@@ -22,7 +23,7 @@ const SubheadingDiv = styled.div`
 `;
 
 const SchemaBlameText = styled(Typography.Text)`
-    font-size: 14x;
+    font-size: 14px;
     line-height: 22px;
     font-family: 'Roboto Mono', monospace;
     font-weight: 500;
@@ -43,6 +44,7 @@ const SchemaBlameBlameButton = styled(Button)`
 export default function useSchemaBlameRenderer(schemaBlameList?: Array<SchemaFieldBlame> | null) {
     const history = useHistory();
     const location = useLocation();
+    const { t, i18n } = useTranslation();
     const schemaBlameRenderer = (record: SchemaField) => {
         const relevantSchemaFieldBlame = schemaBlameList?.find((candidateSchemaBlame) =>
             pathMatchesNewPath(candidateSchemaBlame.fieldPath, String(record)),
@@ -61,13 +63,16 @@ export default function useSchemaBlameRenderer(schemaBlameList?: Array<SchemaFie
                     <SubheadingDiv>
                         {relevantSchemaFieldBlame?.schemaFieldChange?.timestampMillis ? (
                             <SchemaBlameTimestampText>
-                                {toRelativeTimeString(relevantSchemaFieldBlame?.schemaFieldChange?.timestampMillis)}
+                                {toRelativeTimeString(
+                                    relevantSchemaFieldBlame?.schemaFieldChange?.timestampMillis,
+                                    i18n.language,
+                                )}
                             </SchemaBlameTimestampText>
                         ) : (
-                            'unknown'
+                            t('common.unknown')
                         )}
                         <span>
-                            <Tooltip title="View blame prior to this version">
+                            <Tooltip title={t('reporting.viewBlamePriorToThisVersion')}>
                                 <SchemaBlameBlameButton
                                     data-testid={`${relevantSchemaFieldBlame.fieldPath}-view-prior-blame-button`}
                                     onClick={() => {

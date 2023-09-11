@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Col, Divider, List, Pagination, Row, Empty } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
+import { useTranslation } from 'react-i18next';
 import { BrowseResultGroup, EntityType, Entity } from '../../types.generated';
 import BrowseResultCard from './BrowseResultCard';
 import { useEntityRegistry } from '../useEntityRegistry';
@@ -44,6 +45,7 @@ export const BrowseResults = ({
     onChangePage,
 }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
 
     const onGroupClick = (group: BrowseResultGroup) => {
         analytics.event({
@@ -77,7 +79,7 @@ export const BrowseResults = ({
                                 name={group.name}
                                 count={group.count}
                                 url={`${rootPath}/${group.name}`}
-                                type={entityRegistry.getCollectionName(type)}
+                                type={entityRegistry.getCollectionNameTrans(type, t)}
                             />
                         </Col>
                     ))}

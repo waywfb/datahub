@@ -3,6 +3,7 @@ import { Typography } from 'antd';
 import styled from 'styled-components';
 import { useDebounce } from 'react-use';
 import { useCommands } from '@remirror/react';
+import { useTranslation } from 'react-i18next';
 import { AutoCompleteResultForEntity, Entity, EntityType } from '../../../../../../../../../types.generated';
 import { useEntityRegistry } from '../../../../../../../../useEntityRegistry';
 import { ANTD_GRAY } from '../../../../../../constants';
@@ -61,6 +62,7 @@ const flattenOptions = (suggestions: AutoCompleteResultForEntity[]): Option[] =>
 
 export const MentionsDropdown = ({ suggestions }: Props) => {
     const entityRegistry = useEntityRegistry();
+    const { t } = useTranslation();
     const [options, setOptions] = useState<Option[]>([]);
     const { createDataHubMention } = useCommands();
 
@@ -88,7 +90,7 @@ export const MentionsDropdown = ({ suggestions }: Props) => {
             {options.map((option) => {
                 const { header, type, entity, index = 0 } = option;
                 if (header) {
-                    const label = entityRegistry.getCollectionName(type);
+                    const label = entityRegistry.getCollectionNameTrans(type, t);
                     return (
                         <HeaderItem key={`Header_${label}`} type="secondary">
                             {label}

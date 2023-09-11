@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata } from '../../types.generated';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import { AdvancedSearchFilter } from './AdvancedSearchFilter';
@@ -55,6 +56,7 @@ export const AdvancedSearchFilters = ({
     const { filterField, setFilterField, onFilterFieldSelect, onSelectValueFromModal } = useAdvancedSearchSelectFilters(
         { selectedFilters, onFilterSelect },
     );
+    const { t } = useTranslation();
 
     return (
         <>
@@ -98,7 +100,7 @@ export const AdvancedSearchFilters = ({
             )}
             {selectedFilters?.length >= 2 && (
                 <AnyAllSection>
-                    Show results that match{' '}
+                    {`${t('filter.showResultsThatMatch')} `}
                     <AdvancedSearchFilterOverallUnionTypeSelect
                         unionType={unionType}
                         onUpdate={(newValue) => onChangeUnionType(newValue)}
@@ -107,7 +109,7 @@ export const AdvancedSearchFilters = ({
                 </AnyAllSection>
             )}
             {selectedFilters?.length === 0 && direction === LayoutDirection.Vertical && (
-                <EmptyStateSection>No filters applied.</EmptyStateSection>
+                <EmptyStateSection>{t('filter.noFilterApplied')}</EmptyStateSection>
             )}
         </>
     );

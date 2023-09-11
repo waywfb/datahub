@@ -11,6 +11,7 @@ import {
 } from '@ant-design/icons';
 import { Redirect, Route, useHistory, useLocation, useRouteMatch, Switch } from 'react-router';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import { ManageIdentities } from '../identity/ManageIdentities';
 import { ManagePermissions } from '../permissions/ManagePermissions';
@@ -46,8 +47,8 @@ const PageTitle = styled(Typography.Title)`
 `;
 
 const ThinDivider = styled(Divider)`
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 `;
 
 const ItemTitle = styled.span`
@@ -73,6 +74,7 @@ const PATHS = [
 const DEFAULT_PATH = PATHS[0];
 
 export const SettingsPage = () => {
+    const { t } = useTranslation();
     const { path, url } = useRouteMatch();
     const { pathname } = useLocation();
     const history = useHistory();
@@ -100,8 +102,8 @@ export const SettingsPage = () => {
         <PageContainer>
             <SettingsBarContainer>
                 <SettingsBarHeader>
-                    <PageTitle level={3}>Settings</PageTitle>
-                    <Typography.Paragraph type="secondary">Manage your DataHub settings.</Typography.Paragraph>
+                    <PageTitle level={3}>{t('common.settings')}</PageTitle>
+                    <Typography.Paragraph type="secondary">{t('settings.manageYourSettings')}</Typography.Paragraph>
                 </SettingsBarHeader>
                 <ThinDivider />
                 <Menu
@@ -113,51 +115,51 @@ export const SettingsPage = () => {
                         history.replace(`${url}/${newPath.key}`);
                     }}
                 >
-                    <Menu.ItemGroup title="Developer">
+                    <Menu.ItemGroup title={t('common.developer')}>
                         <Menu.Item key="tokens">
                             <SafetyCertificateOutlined />
-                            <ItemTitle>Access Tokens</ItemTitle>
+                            <ItemTitle>{t('token.accessToken')}</ItemTitle>
                         </Menu.Item>
                     </Menu.ItemGroup>
                     {(showPolicies || showUsersGroups) && (
-                        <Menu.ItemGroup title="Access">
+                        <Menu.ItemGroup title={t('common.access')}>
                             {showUsersGroups && (
                                 <Menu.Item key="identities">
                                     <UsergroupAddOutlined />
-                                    <ItemTitle>Users & Groups</ItemTitle>
+                                    <ItemTitle>{t('settings.usersAndGroups')}</ItemTitle>
                                 </Menu.Item>
                             )}
                             {showPolicies && (
                                 <Menu.Item key="permissions">
                                     <BankOutlined />
-                                    <ItemTitle>Permissions</ItemTitle>
+                                    <ItemTitle>{t('common.permissions')}</ItemTitle>
                                 </Menu.Item>
                             )}
                         </Menu.ItemGroup>
                     )}
 
-                    <Menu.ItemGroup title="Manage">
+                    <Menu.ItemGroup title={t('common.manage')}>
                         {showViews && (
                             <Menu.Item key="views">
-                                <FilterOutlined /> <ItemTitle>My Views</ItemTitle>
+                                <FilterOutlined /> <ItemTitle>{t('settings.myViews')}</ItemTitle>
                             </Menu.Item>
                         )}
                         {showOwnershipTypes && (
                             <Menu.Item key="ownership">
-                                <TeamOutlined /> <ItemTitle>Ownership Types</ItemTitle>
+                                <TeamOutlined /> <ItemTitle>{t('settings.ownershipTypes')}</ItemTitle>
                             </Menu.Item>
                         )}
                         {showHomePagePosts && (
                             <Menu.Item key="posts">
-                                <PushpinOutlined /> <ItemTitle>Home Page Posts</ItemTitle>
+                                <PushpinOutlined /> <ItemTitle>{t('settings.homePagePosts')}</ItemTitle>
                             </Menu.Item>
                         )}
                     </Menu.ItemGroup>
 
-                    <Menu.ItemGroup title="Preferences">
+                    <Menu.ItemGroup title={t('common.preferences')}>
                         <Menu.Item key="preferences">
                             <ToolOutlined />
-                            <ItemTitle>Appearance</ItemTitle>
+                            <ItemTitle>{t('common.appearance')}</ItemTitle>
                         </Menu.Item>
                     </Menu.ItemGroup>
                 </Menu>

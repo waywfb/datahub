@@ -1,6 +1,7 @@
 import { Image, Typography } from 'antd';
 import React from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
+import { Trans, useTranslation } from 'react-i18next';
 import dataHubLogo from '../../../images/datahublogo.png';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 
@@ -40,46 +41,51 @@ const ResourceListItem = styled.li`
 
 const resources = [
     {
-        label: 'DataHub Project',
+        key: 'error.errorSection.ressourcesLabel.project',
         path: 'https://datahubproject.io',
         shouldOpenInNewTab: true,
     },
     {
-        label: 'DataHub Docs',
+        key: 'error.errorSection.ressourcesLabel.docs',
         path: 'https://datahubproject.io/docs',
         shouldOpenInNewTab: true,
     },
     {
-        label: 'DataHub GitHub',
+        key: 'error.errorSection.ressourcesLabel.github',
         path: 'https://github.com/datahub-project/datahub',
         shouldOpenInNewTab: true,
     },
 ];
 
 export const ErrorSection = (): JSX.Element => {
-    const themeConfig = useTheme();
+    const { t } = useTranslation(['translation', 'theme']);
 
     return (
         <Section>
             <div>
                 <TitleSection>
                     <Image src={dataHubLogo} preview={false} style={{ width: 40 }} />
-                    <TitleText strong>{themeConfig.content.title}</TitleText>
+                    <TitleText strong>{t('title', { ns: 'theme' })}</TitleText>
                 </TitleSection>
                 <MessageSection>
-                    <Typography.Title level={2}>Something went wrong.</Typography.Title>
+                    <Typography.Title level={2}>{t('error.errorSection.somethingWentWrong')}</Typography.Title>
                     <DetailParagraph type="secondary">
-                        An unexpected error occurred. Please try again later, or reach out to your administrator
+                        {t('error.errorSection.anUnexpectedErrorOccurred')}
                     </DetailParagraph>
                 </MessageSection>
                 <div>
                     <DetailParagraph type="secondary">
-                        <b>Need support?</b> Check out these resources:
+                        <Trans
+                            {...{
+                                i18nKey: 'error.errorSection.needSupport_component',
+                                components: { bold: <b /> },
+                            }}
+                        />
                     </DetailParagraph>
                     <ResourceList>
                         {resources.map((resource) => (
                             <ResourceListItem key={resource.path}>
-                                <a href={resource.path}>{resource.label}</a>
+                                <a href={resource.path}>{t(resource.key)}</a>
                             </ResourceListItem>
                         ))}
                     </ResourceList>

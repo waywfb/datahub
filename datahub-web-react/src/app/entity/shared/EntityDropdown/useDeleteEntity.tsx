@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { EntityType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { getDeleteEntityMutation } from '../../../shared/deleteUtils';
@@ -22,6 +23,7 @@ function useDeleteEntity(
     hideMessage?: boolean,
     skipWait?: boolean,
 ) {
+    const { t } = useTranslation();
     const [hasBeenDeleted, setHasBeenDeleted] = useState(false);
     const entityRegistry = useEntityRegistry();
     const { isInGlossaryContext, urnsToUpdate, setUrnsToUpdate } = useGlossaryEntityData();
@@ -43,7 +45,7 @@ function useDeleteEntity(
                 });
                 if (!hideMessage && !skipWait) {
                     message.loading({
-                        content: 'Deleting...',
+                        content: `${t('crud.deleting')}...`,
                         duration: 2,
                     });
                 }
@@ -57,7 +59,9 @@ function useDeleteEntity(
                         }
                         if (!hideMessage) {
                             message.success({
-                                content: `Deleted ${entityRegistry.getEntityName(type)}!`,
+                                content: t('crud.success.deleteWithName', {
+                                    name: entityRegistry.getEntityNameTrans(type, t),
+                                }),
                                 duration: 2,
                             });
                         }
@@ -67,21 +71,26 @@ function useDeleteEntity(
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to delete: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.delete')}: \n ${e.message || ''}`, duration: 3 });
             });
     }
 
     function onDeleteEntity() {
         Modal.confirm({
-            title: `Delete ${
-                (entityData && entityRegistry.getDisplayName(type, entityData)) || entityRegistry.getEntityName(type)
-            }`,
-            content: `Are you sure you want to remove this ${entityRegistry.getEntityName(type)}?`,
+            title: t('crud.deleteWithName', {
+                name:
+                    (entityData && entityRegistry.getDisplayName(type, entityData)) ||
+                    entityRegistry.getEntityNameTrans(type, t),
+            }),
+            content: t('crud.doYouWantTo.removeContentWithThisName', {
+                name: entityRegistry.getEntityNameTrans(type, t),
+            }),
             onOk() {
                 handleDeleteEntity();
             },
             onCancel() {},
-            okText: 'Yes',
+            okText: t('common.yes'),
+            cancelText: t('common.cancel'),
             maskClosable: true,
             closable: true,
         });

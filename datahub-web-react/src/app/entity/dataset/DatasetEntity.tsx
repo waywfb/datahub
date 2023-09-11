@@ -191,6 +191,7 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
+                    titleKey: 'entity.accessManagement',
                     name: 'Access Management',
                     component: AccessManagement,
                     display: {

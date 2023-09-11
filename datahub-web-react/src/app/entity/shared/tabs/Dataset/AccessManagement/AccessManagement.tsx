@@ -6,6 +6,7 @@ import { GetDatasetQuery, useGetExternalRolesQuery } from '../../../../../../gra
 import { useGetMeQuery } from '../../../../../../graphql/me.generated';
 import { handleAccessRoles } from './utils';
 import AccessManagerDescription from './AccessManagerDescription';
+import { useTranslation } from 'react-i18next';
 
 const StyledTable = styled(Table)`
     overflow: inherit;
@@ -57,6 +58,7 @@ const AccessButton = styled(Button)`
 `;
 
 export default function AccessManagement() {
+    const { t } = useTranslation();
     const { data: loggedInUser } = useGetMeQuery({ fetchPolicy: 'cache-first' });
     const baseEntity = useBaseEntity<GetDatasetQuery>();
     const { data: externalRoles } = useGetExternalRolesQuery({
@@ -66,12 +68,12 @@ export default function AccessManagement() {
 
     const columns = [
         {
-            title: 'Role Name',
+            title: t('common.roleName'),
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Description',
+            title: t('common.description'),
             dataIndex: 'description',
             key: 'description',
             render: (roleDescription) => {
@@ -79,17 +81,17 @@ export default function AccessManagement() {
             },
         },
         {
-            title: 'Access Type',
+            title: t('common.accessType'),
             dataIndex: 'accessType',
             key: 'accessType',
         },
         {
-            title: 'Access',
+            title: t('common.access'),
             dataIndex: 'hasAccess',
             key: 'hasAccess',
             render: (hasAccess, record) => {
                 if (hasAccess) {
-                    return <StyledSection>Provisioned</StyledSection>;
+                    return <StyledSection>{t('common.provisioned')}</StyledSection>;
                 }
                 if (record?.url) {
                     return (
@@ -99,7 +101,7 @@ export default function AccessManagement() {
                                 window.open(record.url);
                             }}
                         >
-                            Request
+                            {t('common.request')}
                         </AccessButton>
                     );
                 }

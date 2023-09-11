@@ -59,7 +59,7 @@ export class RoleEntity implements Entity<Role> {
             urn={data.urn}
             url={`/${this.getPathName()}/${urlEncodeUrn(data.urn)}`}
             logoComponent={<PreviewTagIcon />}
-            type="Role"
+            type={EntityType.Role}
             typeIcon={this.icon(14, IconStyleType.ACCENT)}
         />
     );

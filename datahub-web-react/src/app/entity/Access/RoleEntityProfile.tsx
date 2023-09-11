@@ -48,21 +48,22 @@ const TitleText = styled(Typography.Text)`
         font-size: 20px;
         line-height: 28px;
         display: inline-block;
-        margin: 0px 7px;
+        margin: 0 7px;
     }
 `;
 
 const { Paragraph } = Typography;
 
 export default function RoleEntityProfile() {
+    const { t } = useTranslation();
     const { urn: encodedUrn } = useParams<RolePageParams>();
     const urn = decodeUrn(encodedUrn);
     const { data, loading } = useGetExternalRoleQuery({ variables: { urn } });
 
     return (
         <PageContainer>
-            {loading && <LoadingMessage type="loading" content="Loading..." />}
-            <TitleLabel>Role</TitleLabel>
+            {loading && <LoadingMessage type="loading" content={`${t('common.loading')}...`} />}
+            <TitleLabel>{t('common.role')}</TitleLabel>
             <TitleText>{data?.role?.properties?.name}</TitleText>
             <Divider />
             {/* Role Description */}

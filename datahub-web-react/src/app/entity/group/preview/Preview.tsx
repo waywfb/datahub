@@ -90,9 +90,7 @@ export const Preview = ({
                             <PlatformText>{entityRegistry.getEntityNameTrans(EntityType.CorpGroup, t)}</PlatformText>
                         </PlatformInfo>
                         <Link to={url}>
-                            <EntityTitle>
-                                {name ? <SearchTextHighlighter field="name" text={name} enableFullHighlight /> : urn}
-                            </EntityTitle>
+                            <EntityTitle>{name ? <SearchTextHighlighter field="name" text={name} /> : urn}</EntityTitle>
                             <MemberCountContainer>
                                 <Tag>
                                     {t('common.memberWithCount_interval', {

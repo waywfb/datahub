@@ -92,6 +92,7 @@
   "common": {
     "about": "About",
     "access": "Access",
+    "accessType": "Access Type",
     "actionNotSupportedMessage": "This action is not supported for the selected types.",
     "activate": "ACTIVATE",
     "actors": "Actors",
@@ -264,6 +265,7 @@
     "private": "Private",
     "privileges": "Privileges",
     "properties": "Properties",
+    "provisioned": "Provisioned",
     "public": "Public",
     "queries": "Queries",
     "query": "Query",
@@ -279,12 +281,14 @@
     "relatedTerms": "Related Terms",
     "relevance": "Relevance",
     "remove": "Remove",
+    "request": "Request",
     "resource": "Resource",
     "resourceType": "Resource Type",
     "retry": "Retry",
     "return": "Return",
     "revoke": "Revoke",
     "role": "Role",
+    "roleName": "Role Name",
     "roles": "Roles",
     "rollback": "Rollback",
     "row": "Row",
@@ -483,6 +487,7 @@
     "year_interval": "(0-1)[{{count}} year];(2-inf)[{{count}} years];"
   },
   "entity": {
+    "accessManagement": "Access Management",
     "addAHighlightedQuery": "Add a highlighted query",
     "allDataInputsAreHealthy": "All data inputs are healthy",
     "authorNameWithLink_component": "Added {{timestamp}} by <linkComponent>{{authorName}}</linkComponent>",
@@ -550,6 +555,7 @@
       "MLMODEL_GROUP_interval": "(0-1)[Mlmodel Group];(2-inf)[Mlmodel Groups];",
       "MLMODEL_interval": "(0-1)[Mlmodel];(2-inf)[Mlmodels];",
       "MLPRIMARY_KEY_interval": "(0-1)[Mlprimary Key];(2-inf)[Mlprimary Keys];",
+      "ROLE_interval": "(0-1)[Role];(2-inf)[Roles];",
       "TAG_interval": "(0-1)[Tag];(2-inf)[Tags];"
     },
     "unknownDataInputHealth": "Unknown data input health",

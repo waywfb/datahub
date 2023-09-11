@@ -13,7 +13,6 @@ const StyledDivider = styled(Divider)`
     margin: 0;
 `;
 
-// TODO ndespouy tester le <EyeInvisibleOutlined />
 export const StyledFormItem = styled(Form.Item)<{
     alignLeft?: boolean;
     removeMargin?: boolean;

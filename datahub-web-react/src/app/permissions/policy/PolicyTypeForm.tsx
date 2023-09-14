@@ -45,7 +45,7 @@ export default function PolicyTypeForm({
                 labelAlign="right"
                 label={<Typography.Text strong>{t('common.name')}</Typography.Text>}
             >
-                <Typography.Paragraph>{t('nameForNewPolicy')}</Typography.Paragraph>
+                <Typography.Paragraph>{t('permissions.nameForNewPolicy')}</Typography.Paragraph>
                 <Input
                     placeholder={t('placeholder.yourPolicyNamePlaceholder')}
                     data-testid="policy-name"

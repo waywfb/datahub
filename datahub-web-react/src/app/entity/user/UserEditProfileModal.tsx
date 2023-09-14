@@ -66,7 +66,7 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
         })
             .then(() => {
                 message.success({
-                    content: `Changes saved.`,
+                    content: t('crud.success.changesSaved'),
                     duration: 3,
                 });
                 onSave(); // call the refetch function once save
@@ -84,7 +84,7 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
             })
             .catch((e) => {
                 message.destroy();
-                message.error({ content: `Failed to Save changes!: \n ${e.message || ''}`, duration: 3 });
+                message.error({ content: `${t('crud.error.changesSaved')}: \n ${e.message || ''}`, duration: 3 });
             });
         onClose();
     };
@@ -96,7 +96,7 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
 
     return (
         <Modal
-            title="Edit Profile"
+            title={t('user.editProfile')}
             visible={visible}
             onCancel={onClose}
             footer={
@@ -125,7 +125,7 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
                     rules={[
                         {
                             required: true,
-                            message: 'Enter a display name.',
+                            message: t('common.required'),
                         },
                         { whitespace: true },
                         { min: 2, max: 50 },
@@ -155,14 +155,14 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
                     />
                 </Form.Item>
                 <Tooltip
-                    title="Editing image URL has been disabled."
+                    title={t('user.editingImageUrlHasBeenDisabled')}
                     overlayStyle={readOnlyModeEnabled ? {} : { display: 'none' }}
                     placement="bottom"
                 >
                     <Form.Item
                         name="image"
                         label={<Typography.Text strong>Image URL</Typography.Text>}
-                        rules={[{ whitespace: true }, { type: 'url', message: 'not valid url' }]}
+                        rules={[{ whitespace: true }, { type: 'url', message: t('form.validUrlRequired') }]}
                         hasFeedback
                     >
                         <Input
@@ -175,7 +175,7 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
                 </Tooltip>
                 <Form.Item
                     name="team"
-                    label={<Typography.Text strong>Team</Typography.Text>}
+                    label={<Typography.Text strong>{t('common.team')}</Typography.Text>}
                     rules={[{ whitespace: true }, { min: 2, max: 50 }]}
                 >
                     <Input
@@ -186,15 +186,15 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
                 </Form.Item>
                 <Form.Item
                     name="email"
-                    label={<Typography.Text strong>Email</Typography.Text>}
+                    label={<Typography.Text strong>{t('common.email')}</Typography.Text>}
                     rules={[
                         {
                             required: true,
-                            message: 'Enter your email',
+                            message: t('user.enterYourEmail'),
                         },
                         {
                             type: 'email',
-                            message: 'Please enter valid email',
+                            message: t('form.validEmailRequired'),
                         },
                         { whitespace: true },
                         { min: 2, max: 50 },
@@ -221,11 +221,11 @@ export default function UserEditProfileModal({ visible, onClose, onSave, editMod
                 </Form.Item>
                 <Form.Item
                     name="phone"
-                    label={<Typography.Text strong>Phone</Typography.Text>}
+                    label={<Typography.Text strong>{t('common.phone')}</Typography.Text>}
                     rules={[
                         {
                             pattern: new RegExp('^(?=.*[0-9])[- +()0-9]+$'),
-                            message: 'not valid phone number',
+                            message: t('form.validPhoneNumberRequired'),
                         },
                         {
                             min: 5,

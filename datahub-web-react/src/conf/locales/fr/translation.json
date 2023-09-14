@@ -90,6 +90,8 @@
     "onAContainedChart": "sur un graphique contenu"
   },
   "common": {
+    "phone": "Phone",
+    "team": "Equipe",
     "about": "A propos",
     "access": "Accès",
     "actionNotSupportedMessage": "Cette action n'est pas prise en charge pour le(s) type(s) sélectionné(s).",
@@ -645,6 +647,7 @@
     }
   },
   "form": {
+    "required": "Obligatoire",
     "altText": "Texte alternatif",
     "confirmYourPassword": "Veuillez confirmer votre mot de passe.",
     "enterAGroupName": "Entrez un nom de Groupe.",
@@ -666,7 +669,8 @@
     "urlRequired": "Une URL est requise.",
     "validEmailRequired": "Veuillez entrer une adresse e-mail valide.",
     "validUrlRequired": "Ce champ doit être une URL valide.",
-    "viewNameRequired": "Veuillez entrer un nom pour votre Vue."
+    "viewNameRequired": "Veuillez entrer un nom pour votre Vue.",
+    "validPhoneNumberRequired": "Veuillez entrer un numéro de téléphone valide."
   },
   "glossary": {
     "emptyGlossary": "Glossaire vide",
@@ -1599,6 +1603,8 @@
     "validateTokenRevokeDescription": "Quiconque utilisant ce Tken ne pourr plus se connecter à l'API DataHub. Vous ne pourrez pas annuler cette action."
   },
   "user": {
+    "enterYourEmail": "Entrez votre mail",
+    "editProfile": "Modifier le profil",
     "assignRoleError": "Échec de l'attribution du rôle {{roleName}} à l'utilisateur {{username}}",
     "assignRoleSuccess": "Rôle {{roleName}} attribué à l'utilisateur {{username}} !",
     "assignRoleTitle": "Souhaitez-vous attribuer le rôle {{roleName}} à l'utilisateur {{username}}",

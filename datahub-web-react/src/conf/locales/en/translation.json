@@ -90,6 +90,8 @@
     "onAContainedChart": "on a contained Chart"
   },
   "common": {
+    "phone": "Phone",
+    "team": "Team",
     "about": "About",
     "access": "Access",
     "accessType": "Access Type",
@@ -647,6 +649,7 @@
     }
   },
   "form": {
+    "required": "Required",
     "altText": "Alt Text",
     "confirmYourPassword": "Please confirm your password",
     "enterAGroupName": "Enter a Group name",
@@ -666,9 +669,10 @@
     "pleaseConfirmYourPassword": "Please confirm your password",
     "provideAValidLdap": "Please provide a valid LDAP!",
     "urlRequired": "A URL is required.",
-    "validEmailRequired": "Please enter valid email",
+    "validEmailRequired": "Please enter valid email.",
     "validUrlRequired": "This field must be a valid url.",
-    "viewNameRequired": "Please enter a name for your View."
+    "viewNameRequired": "Please enter a name for your View.",
+    "validPhoneNumberRequired": "Please enter a valid phone number."
   },
   "glossary": {
     "emptyGlossary": "Empty Glossary",
@@ -1601,6 +1605,9 @@
     "validateTokenRevokeDescription": "Anyone using this token will no longer be able to access the DataHub API. You cannot undo this action."
   },
   "user": {
+    "enterYourEmail": "Enter your email",
+    "editingImageUrlHasBeenDisabled": "Editing image URL has been disabled",
+    "editProfile": "Edit profile",
     "assignRoleError": "Failed to assign role {{roleName}} to user {{username}}",
     "assignRoleSuccess": "Assigned role {{roleName}} to user {{username}}!",
     "assignRoleTitle": "Would you like to assign the role {{roleName}} to user {{username}}",

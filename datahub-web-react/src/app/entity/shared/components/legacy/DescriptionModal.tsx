@@ -39,7 +39,7 @@ export default function UpdateDescriptionModal({ title, description, original, o
             visible
             width={900}
             onCancel={onClose}
-            okText={isAddDesc ? t('common.submit') : t('common.update')}
+            okText={isAddDesc ? t('common.submit') : t('crud.update')}
             footer={
                 <>
                     <Button onClick={onClose}>{t('common.cancel')}</Button>

@@ -355,7 +355,7 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
             <Paragraph
                 style={{ fontSize: '12px', lineHeight: '15px', padding: '5px 0px' }}
                 editable={{ onChange: handleSaveDescription }}
-                ellipsis={{ rows: 2, expandable: true, symbol: 'Read more' }}
+                ellipsis={{ rows: 2, expandable: true, symbol: t('common.readMore') }}
             >
                 {updatedDescription || <EmptyValue />}
             </Paragraph>

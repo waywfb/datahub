@@ -94,6 +94,7 @@
     "team": "Equipe",
     "about": "A propos",
     "access": "Accès",
+    "accessType": "Type d'Accès",
     "actionNotSupportedMessage": "Cette action n'est pas prise en charge pour le(s) type(s) sélectionné(s).",
     "activate": "ACTIVER",
     "actors": "Acteurs",
@@ -488,6 +489,7 @@
     "year_interval": "(0-1)[{{count}} an];(2-inf)[{{count}} ans];"
   },
   "entity": {
+    "accessManagement": "Gestion des Accès",
     "addAHighlightedQuery": "Ajouter une requête",
     "allDataInputsAreHealthy": "Tout les inputs de donnée sont sains",
     "authorNameWithLink_component": "Ajouté le {{timestamp}} par <linkComponent>{{authorName}}</linkComponent>",
@@ -1367,6 +1369,7 @@
     "newPolicyDescription": "Une description (facultative) pour votre nouveau Droit.",
     "noAssignedUsers": "Aucun utilisateur assigné",
     "noPolicies": "Aucun Droits !",
+    "noRole": "Aucun Rôle",
     "noRoles": "Aucun Rôles",
     "noSearchResultsFound": "Aucun résultats pour la recherche",
     "permissionsTabTypes": {
@@ -1604,6 +1607,7 @@
   },
   "user": {
     "enterYourEmail": "Entrez votre mail",
+    "editingImageUrlHasBeenDisabled": "L'édition d'URl d'image a été désactivée",
     "editProfile": "Modifier le profil",
     "assignRoleError": "Échec de l'attribution du rôle {{roleName}} à l'utilisateur {{username}}",
     "assignRoleSuccess": "Rôle {{roleName}} attribué à l'utilisateur {{username}} !",

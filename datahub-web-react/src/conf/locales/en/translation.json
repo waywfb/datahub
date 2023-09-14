@@ -1369,6 +1369,7 @@
     "newPolicyDescription": "An optional description for your new policy.",
     "noAssignedUsers": "No assigned users",
     "noPolicies": "No Policies!",
+    "noRole": "No Role",
     "noRoles": "No Roles",
     "noSearchResultsFound": "No search results found",
     "permissionsTabTypes": {

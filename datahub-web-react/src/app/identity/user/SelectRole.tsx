@@ -8,8 +8,9 @@ import AssignRoleConfirmation from './AssignRoleConfirmation';
 import { mapRoleIcon } from './UserUtils';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { clearRoleListCache } from '../../permissions/roles/cacheUtils';
+import { useTranslation } from 'react-i18next';
 
-const NO_ROLE_TEXT = 'No Role';
+const NO_ROLE_TRANS_KEY = 'permissions.noRole';
 const NO_ROLE_URN = 'urn:li:dataHubRole:NoRole';
 
 type Props = {
@@ -31,11 +32,12 @@ const RoleIcon = styled.span`
 
 export default function SelectRole({ user, userRoleUrn, selectRoleOptions, refetch }: Props) {
     const client = useApolloClient();
+    const { t } = useTranslation();
     const rolesMap: Map<string, DataHubRole> = new Map();
     selectRoleOptions.forEach((role) => {
         rolesMap.set(role.urn, role);
     });
-    const allSelectRoleOptions = [{ urn: NO_ROLE_URN, name: NO_ROLE_TEXT }, ...selectRoleOptions];
+    const allSelectRoleOptions = [{ urn: NO_ROLE_URN, name: t(NO_ROLE_TRANS_KEY) }, ...selectRoleOptions];
     const selectOptions = allSelectRoleOptions.map((role) => {
         return (
             <Select.Option key={role.urn} value={role.urn}>
@@ -76,7 +78,7 @@ export default function SelectRole({ user, userRoleUrn, selectRoleOptions, refet
                 placeholder={
                     <>
                         <UserOutlined style={{ marginRight: 6, fontSize: 12 }} />
-                        {NO_ROLE_TEXT}
+                        {t(NO_ROLE_TRANS_KEY)}
                     </>
                 }
                 value={currentRoleUrn}

@@ -7,6 +7,7 @@ import { Message } from '../../shared/Message';
 import { decodeUrn } from '../shared/utils';
 import TagStyleEntity from '../../shared/TagStyleEntity';
 import { useGetTagQuery } from '../../../graphql/tag.generated';
+import { useTranslation } from 'react-i18next';
 
 const PageContainer = styled.div`
     padding: 32px 100px;
@@ -24,13 +25,14 @@ type TagPageParams = {
  * Responsible for displaying metadata about a tag
  */
 export default function TagProfile() {
+    const { t } = useTranslation();
     const { urn: encodedUrn } = useParams<TagPageParams>();
     const urn = decodeUrn(encodedUrn);
     const { loading } = useGetTagQuery({ variables: { urn } });
 
     return (
         <PageContainer>
-            {loading && <LoadingMessage type="loading" content="Loading..." />}
+            {loading && <LoadingMessage type="loading" content={`${t('common.loading')}...`} />}
             <TagStyleEntity urn={urn} />
         </PageContainer>
     );

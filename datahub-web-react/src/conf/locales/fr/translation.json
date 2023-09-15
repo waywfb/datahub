@@ -1381,9 +1381,9 @@
     "policyAppliesToLabel": "Choisissez les Utilisateurs et Groupes auxquel ce Droit s'appliquera.",
     "policyAppliesToUserDescription": "Cherchz des Utilisateurs spécifiques auxquels ce Droit doit s'appliquer ou sélectionnez <bold>TouT Utilisateurs</bold> pour l'appliquer à tous les utilisateurs.",
     "policyBuilderSteps": {
-      "assignUserAndGroups": "Assigners des Utilisateurs et des Groupes",
-      "choosePolicyType": "Choisir un Type de Droit",
-      "configurePrivileges": "Configurer les Privilèges"
+      "assignUserAndGroups": "Assigner Utilisateurs et Groupes",
+      "choosePolicyType": "Choisir Type de Droit",
+      "configurePrivileges": "Configurer Privilèges"
     },
     "privilegesLabel": "Choisissez un ensemble de privilèges à accorder.",
     "resourceDescription": "Cherchez des ressources spécifiques auxquelles appliquer ce Droit. Si vous sélectionnez <bold>Aucun</bold>, le droit s'appliquera à <bold>toute</bold> les ressources du type sélectionné.",

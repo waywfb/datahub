@@ -33,7 +33,9 @@ export default function AccessManagerDescription({ description }: Props) {
                     toggleExpanded();
                 }}
             >
-                {(shouldTruncateDescription && (expanded ? ` ${t('common.readLess')}` : `...${t('common.readMore')}`)) || undefined}
+                {(shouldTruncateDescription &&
+                    (expanded ? ` ${t('common.readLess')}` : `...${t('common.readMore')}`)) ||
+                    undefined}
             </Typography.Link>
         </DescriptionContainer>
     );

@@ -69,16 +69,16 @@ export default function PolicyTypeForm({
                 </Select>
                 <TypeDescriptionParagraph type="secondary">
                     <Trans
-                      {...{
-                          i18nKey: 'permissions.typeOfPolicyDescriptionPlatform_component',
-                          components: { bold: <b /> },
-                      }}
+                        {...{
+                            i18nKey: 'permissions.typeOfPolicyDescriptionPlatform_component',
+                            components: { bold: <b /> },
+                        }}
                     />
                     <Trans
-                      {...{
-                          i18nKey: 'permissions.typeOfPolicyDescriptionMetadata_component',
-                          components: { bold: <b /> },
-                      }}
+                        {...{
+                            i18nKey: 'permissions.typeOfPolicyDescriptionMetadata_component',
+                            components: { bold: <b /> },
+                        }}
                     />
                 </TypeDescriptionParagraph>
             </Form.Item>

@@ -1393,7 +1393,8 @@
     "successfullyDeactivatedPolicy": "Droit désactivé.",
     "successfullyRemovedPolicy": "Droit supprimé.",
     "successfullySavedPolicy": "Droit enregistré.",
-    "typeOfPolicyDescription_component": "Le Droit <bold>Plateforme</bold> vous permet d'attribuer des privilèges de niveau supérieur à la plateforme DataHub aux utilisateurs. Cela inclut la gestion des utilisateurs et des groupes, la création de politiques, la consultation des tableaux de bord d'analyse, et bien plus encore.<br /><br />Le type de politique <bold>MetaData</bold> vous permet d'attribuer des privilèges de metadatas aux utilisateurs. Cela inclut la possibilité de manipuler des métadonnées telles que la propriété, les balises, la documentation associée aux jeux de données, aux graphiques, aux tableaux de bord, et bien plus encore.",
+    "typeOfPolicyDescriptionPlatform_component": "Le Droit <bold>Plateforme</bold> vous permet d'attribuer des privilèges de niveau supérieur à la plateforme DataHub aux utilisateurs. Cela inclut la gestion des utilisateurs et des groupes, la création de politiques, la consultation des tableaux de bord d'analyse, et bien plus encore.<br /><br />",
+    "typeOfPolicyDescriptionMetadata_component": "Le Droit <bold>MetaData</bold> vous permet d'attribuer des privilèges de metadatas aux utilisateurs. Cela inclut la possibilité de manipuler des métadonnées telles que la propriété, les balises, la documentation associée aux jeux de données, aux graphiques, aux tableaux de bord, et bien plus encore.",
     "typeOfPolicyToCreate": "Le type de droit que vous voulez créer."
   },
   "placeholder": {
@@ -1418,7 +1419,7 @@
     "searchWithName": "Rechercher {{name}}...",
     "selectAColumn": "Sélectionner une colonne",
     "shortLabelForLink": "Un libellé court pour ce lien",
-    "viewUsefulForDataAnalysts": "Cette Vue est utile pour les Data Analyste",
+    "viewUsefulForDataAnalysts": "Cette Vue est utile pour les Data Analystes",
     "yourPolicyNamePlaceholder": "Le nom de votre Droit"
   },
   "post": {

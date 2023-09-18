@@ -708,6 +708,7 @@
     "welcomeBack": "Welcome back"
   },
   "ingest": {
+    "ingestionSource": "Ingestion Source",
     "aConnectionWasNotAbleToBeEstablishedWithSourceName": "A connection was not able to be established with {{sourceName}}.",
     "aConnectionWasSuccessfullyEstablishedWithSourceName": "A connection was successfully established with {{sourceName}}.",
     "advancedProvideCustomCLIVersionToUseForIngestion": "Advanced: Provide a custom CLI version to use for ingestion.",
@@ -1381,6 +1382,7 @@
     "policyAppliesToLabel": "Select the users & groups that this policy should apply to.",
     "policyAppliesToUserDescription": "Search for specific users that this policy should apply to, or select `All Users` to apply it to all users.",
     "policyBuilderSteps": {
+
       "assignUserAndGroups": "Assign Users & Groups",
       "choosePolicyType": "Choose Policy Type",
       "configurePrivileges": "Configure Privileges"

@@ -64,7 +64,7 @@ function IngestionSourceTable({
             title: t('common.schedule'),
             dataIndex: 'schedule',
             key: 'schedule',
-            render: ScheduleColumn,
+            render: (schedule: any, record: any) => ScheduleColumn(schedule, record, t),
         },
         {
             title: t('ingest.executionCount'),
@@ -77,7 +77,7 @@ function IngestionSourceTable({
             title: t('ingest.lastExecution'),
             dataIndex: 'lastExecTime',
             key: 'lastExecTime',
-            render: LastExecutionColumn,
+            render: (schedule: any) => LastExecutionColumn(schedule, t),
             sorter: (sourceA, sourceB) => sourceA.lastExecTime - sourceB.lastExecTime,
         },
         {

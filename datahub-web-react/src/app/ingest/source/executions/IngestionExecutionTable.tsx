@@ -27,16 +27,16 @@ export default function IngestionExecutionTable({
             title: t('ingest.requestedAt'),
             dataIndex: 'requestedAt',
             key: 'requestedAt',
-            render: TimeColumn,
+            render: (time: string) => TimeColumn(time, t),
         },
         {
             title: t('ingest.startedAt'),
             dataIndex: 'executedAt',
             key: 'executedAt',
-            render: TimeColumn,
+            render: (time: string) => TimeColumn(time, t),
         },
         {
-            title: `${t('ingest.duration')} (s)`,
+            title: t('ingest.duration'),
             dataIndex: 'duration',
             key: 'duration',
             render: (durationMs: number) => {
@@ -56,7 +56,7 @@ export default function IngestionExecutionTable({
             title: t('common.source'),
             dataIndex: 'source',
             key: 'source',
-            render: SourceColumn,
+            render: (source: string) => SourceColumn(source, t),
         },
         {
             title: '',

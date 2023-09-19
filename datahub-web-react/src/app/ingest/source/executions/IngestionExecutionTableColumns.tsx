@@ -3,6 +3,7 @@ import { CopyOutlined } from '@ant-design/icons';
 import { Button, Typography, Tooltip } from 'antd';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import {
     getExecutionRequestStatusDisplayColor,
     getExecutionRequestStatusIcon,
@@ -21,12 +22,11 @@ const StatusContainer = styled.div`
 `;
 
 const StatusButton = styled(Button)`
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 `;
 
-export function TimeColumn(time: string) {
-    const { t } = useTranslation();
+export function TimeColumn(time: string, t: TFunction) {
     const date = time && new Date(time);
     const localTime = date && `${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
     return <Typography.Text>{localTime || t('common.none')}</Typography.Text>;
@@ -55,8 +55,7 @@ export function StatusColumn({ status, record, setFocusExecutionUrn }: StatusCol
     );
 }
 
-export function SourceColumn(source: string) {
-    const { t } = useTranslation();
+export function SourceColumn(source: string, t: TFunction) {
     return (
         (source === MANUAL_INGESTION_SOURCE && t('ingest.manualExecution')) ||
         (source === SCHEDULED_INGESTION_SOURCE && t('ingest.scheduledExecution')) ||

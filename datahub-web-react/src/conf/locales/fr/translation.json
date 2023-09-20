@@ -708,6 +708,7 @@
     "welcomeBack": "Bienvenue"
   },
   "ingest": {
+    "viewIngestedAssets": "Voir les Assets ingérés",
     "ingestionSource": "Source d'Ingestion",
     "aConnectionWasNotAbleToBeEstablishedWithSourceName": "Impossible d'établir une connexion avec {{sourceName}}.",
     "aConnectionWasSuccessfullyEstablishedWithSourceName": "Une connexion a été établie avec succès avec {{sourceName}}.",

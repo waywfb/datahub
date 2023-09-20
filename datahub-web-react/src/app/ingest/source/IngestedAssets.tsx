@@ -139,7 +139,7 @@ export default function IngestedAssets({ id }: Props) {
             </ViewAllButton>
             {showAssetSearch && (
                 <EmbeddedListSearchModal
-                    title="View Ingested Assets"
+                    title={t('ingest.viewIngestedAssets')}
                     searchBarStyle={{ width: 600, marginRight: 40 }}
                     fixedFilters={{
                         unionType: UnionType.AND,

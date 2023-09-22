@@ -107,7 +107,7 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
                             )}
                             {!readOnly && (
                                 <StyledButton type="default" onClick={() => setShowModal(true)}>
-                                    <EditOutlined /> {t('crud.setWithname', { name: t('common.domain') })}
+                                    <EditOutlined /> {t('crud.setWithName', { name: t('common.domain') })}
                                 </StyledButton>
                             )}
                         </>

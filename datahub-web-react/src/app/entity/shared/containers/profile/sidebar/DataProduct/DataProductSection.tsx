@@ -24,7 +24,7 @@ interface Props {
 export default function DataProductSection({ readOnly }: Props) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const { entityData, urn } = useEntityData();
-    const { t } = useTranslation(['empty-message']);
+    const { t } = useTranslation(['translation', 'empty-message']);
     const [batchSetDataProductMutation] = useBatchSetDataProductMutation();
     const [dataProduct, setDataProduct] = useState<DataProduct | null>(null);
     const dataProductRelationships = entityData?.dataProduct?.relationships;

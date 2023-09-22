@@ -23,14 +23,14 @@ import * as frTheme from './conf/locales/fr/theme.json';
 const resources = {
     en: {
         translation: enTranslation.default,
-        'empty-Message': enEmptyMessage.default,
+        'empty-message': enEmptyMessage.default,
         form: enForm.default,
         'react-cron': enReactCron.default,
         theme: enTheme.default,
     },
     fr: {
         translation: frTranslation.default,
-        'empty-Message': frEmptyMessage.default,
+        'empty-message': frEmptyMessage.default,
         form: frForm.default,
         'react-cron': frReactCron.default,
         theme: frTheme.default,
@@ -54,11 +54,6 @@ i18n
     .init({
         fallbackLng: 'en',
         debug: true,
-        // ns: ['translation', 'empty-message', 'form', 'react-cron', 'theme'],
-        // backend: {
-        //     loadPath: '/conf/locales/{{lng}}/{{ns}}.json',
-        //     allowMultiLoading: true,
-        // },
         resources,
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default

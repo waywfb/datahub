@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Table } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useBaseEntity } from '../../../EntityContext';
 import { GetDatasetQuery, useGetExternalRolesQuery } from '../../../../../../graphql/dataset.generated';
 import { useGetMeQuery } from '../../../../../../graphql/me.generated';
 import { handleAccessRoles } from './utils';
 import AccessManagerDescription from './AccessManagerDescription';
-import { useTranslation } from 'react-i18next';
 
 const StyledTable = styled(Table)`
     overflow: inherit;

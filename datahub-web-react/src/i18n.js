@@ -54,11 +54,6 @@ i18n
     .init({
         fallbackLng: 'en',
         debug: true,
-        // ns: ['translation', 'empty-message', 'form', 'react-cron', 'theme'],
-        // backend: {
-        //     loadPath: '/conf/locales/{{lng}}/{{ns}}.json',
-        //     allowMultiLoading: true,
-        // },
         resources,
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default

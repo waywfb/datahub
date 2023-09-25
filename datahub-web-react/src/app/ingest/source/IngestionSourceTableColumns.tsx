@@ -5,6 +5,7 @@ import cronstrue from 'cronstrue';
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { ANTD_GRAY } from '../../entity/shared/constants';
 import { capitalizeFirstLetter } from '../../shared/textUtil';
 import useGetSourceLogoUrl from './builder/useGetSourceLogoUrl';
@@ -19,7 +20,7 @@ const PreviewImage = styled(Image)`
     max-height: 28px;
     width: auto;
     object-fit: contain;
-    margin: 0px;
+    margin: 0;
     background-color: transparent;
 `;
 
@@ -30,8 +31,8 @@ const StatusContainer = styled.div`
 `;
 
 const StatusButton = styled(Button)`
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 `;
 
 const ActionButtonContainer = styled.div`
@@ -49,8 +50,6 @@ const CliBadge = styled.span`
     border-radius: 15px;
     border: 1px solid ${ANTD_GRAY[8]};
     padding: 1px 4px;
-    font-size: 10px;
-
     font-size: 8px;
     font-weight: bold;
     letter-spacing: 0.5px;
@@ -93,15 +92,13 @@ export function TypeColumn({ type, record }: TypeColumnProps) {
     );
 }
 
-export function LastExecutionColumn(time: any) {
-    const { t } = useTranslation();
+export function LastExecutionColumn(time: any, t: TFunction) {
     const executionDate = time && new Date(time);
     const localTime = executionDate && `${executionDate.toLocaleDateString()} at ${executionDate.toLocaleTimeString()}`;
     return <Typography.Text>{localTime || t('common.none')}</Typography.Text>;
 }
 
-export function ScheduleColumn(schedule: any, record: any) {
-    const { t } = useTranslation();
+export function ScheduleColumn(schedule: any, record: any, t: TFunction) {
     const tooltip =
         schedule && `${t('common.runs')} ${cronstrue.toString(schedule).toLowerCase()} (${record.timezone})`;
     return (

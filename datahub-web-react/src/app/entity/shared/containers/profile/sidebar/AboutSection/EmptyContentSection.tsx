@@ -27,7 +27,7 @@ interface Props {
 export default function EmptyContentSection({ hideLinksButton, readOnly }: Props) {
     const routeToTab = useRouteToTab();
     const refetch = useRefetch();
-    const { t } = useTranslation(['empty-message']);
+    const { t } = useTranslation(['translation', 'empty-message']);
 
     return (
         <EmptyContentWrapper>
@@ -38,7 +38,7 @@ export default function EmptyContentSection({ hideLinksButton, readOnly }: Props
                 </EmptyContentMessage>
                 {!readOnly && (
                     <Button onClick={() => routeToTab({ tabName: 'Documentation', tabParams: { editing: true } })}>
-                        <EditOutlined /> Add Documentation
+                        <EditOutlined /> {t('crud.addWithName', { name: t('common.documentation') })}
                     </Button>
                 )}
                 {!readOnly && !hideLinksButton && (

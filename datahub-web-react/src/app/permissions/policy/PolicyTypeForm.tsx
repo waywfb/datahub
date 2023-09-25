@@ -45,7 +45,7 @@ export default function PolicyTypeForm({
                 labelAlign="right"
                 label={<Typography.Text strong>{t('common.name')}</Typography.Text>}
             >
-                <Typography.Paragraph>{t('nameForNewPolicy')}</Typography.Paragraph>
+                <Typography.Paragraph>{t('permissions.nameForNewPolicy')}</Typography.Paragraph>
                 <Input
                     placeholder={t('placeholder.yourPolicyNamePlaceholder')}
                     data-testid="policy-name"
@@ -70,7 +70,13 @@ export default function PolicyTypeForm({
                 <TypeDescriptionParagraph type="secondary">
                     <Trans
                         {...{
-                            i18nKey: 'permissions.typeOfPolicyDescription_component',
+                            i18nKey: 'permissions.typeOfPolicyDescriptionPlatform_component',
+                            components: { bold: <b /> },
+                        }}
+                    />
+                    <Trans
+                        {...{
+                            i18nKey: 'permissions.typeOfPolicyDescriptionMetadata_component',
                             components: { bold: <b /> },
                         }}
                     />

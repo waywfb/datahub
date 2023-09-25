@@ -708,6 +708,8 @@
     "welcomeBack": "Welcome back"
   },
   "ingest": {
+    "viewIngestedAssets": "View Ingested Assets",
+    "ingestionSource": "Ingestion Source",
     "aConnectionWasNotAbleToBeEstablishedWithSourceName": "A connection was not able to be established with {{sourceName}}.",
     "aConnectionWasSuccessfullyEstablishedWithSourceName": "A connection was successfully established with {{sourceName}}.",
     "advancedProvideCustomCLIVersionToUseForIngestion": "Advanced: Provide a custom CLI version to use for ingestion.",
@@ -1381,6 +1383,7 @@
     "policyAppliesToLabel": "Select the users & groups that this policy should apply to.",
     "policyAppliesToUserDescription": "Search for specific users that this policy should apply to, or select `All Users` to apply it to all users.",
     "policyBuilderSteps": {
+
       "assignUserAndGroups": "Assign Users & Groups",
       "choosePolicyType": "Choose Policy Type",
       "configurePrivileges": "Configure Privileges"
@@ -1393,7 +1396,8 @@
     "successfullyDeactivatedPolicy": "Successfully deactivated policy.",
     "successfullyRemovedPolicy": "Successfully removed policy.",
     "successfullySavedPolicy": "Successfully saved policy.",
-    "typeOfPolicyDescription_component": "The <bold>Platform</bold> policy type allows you to assign top-level DataHub Platform privileges to users.These include managing users and groups, creating policies, viewing analytics dashboards and more.<br /><br />The <bold>Metadata</bold> policy type allows you to assign metadata privileges to users. These include the ability to manipulate metadata like ownership, tags, documentation associated with Datasets, Charts, Dashboards, & more.",
+    "typeOfPolicyDescriptionPlatform_component": "The <bold>Platform</bold> policy type allows you to assign top-level DataHub Platform privileges to users.These include managing users and groups, creating policies, viewing analytics dashboards and more.<br /><br />",
+    "typeOfPolicyDescriptionMetadata_component": "The <bold>Metadata</bold> policy type allows you to assign metadata privileges to users. These include the ability to manipulate metadata like ownership, tags, documentation associated with Datasets, Charts, Dashboards, & more.",
     "typeOfPolicyToCreate": "The type of policy you would like to create."
   },
   "placeholder": {

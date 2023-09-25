@@ -69,7 +69,7 @@ function GlossarySearch() {
             <ClickOutside onClickOutside={() => setIsSearchBarFocused(false)}>
                 <SearchBar
                     initialQuery={query || ''}
-                    placeholderText={t('placeholder.searchWithName', { name: t('common.common.glossary') })}
+                    placeholderText={t('placeholder.searchWithName', { name: t('common.glossary') })}
                     suggestions={[]}
                     hideRecommendations
                     style={{

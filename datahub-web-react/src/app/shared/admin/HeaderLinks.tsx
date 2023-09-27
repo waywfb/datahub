@@ -5,7 +5,6 @@ import {
     BarChartOutlined,
     BookOutlined,
     SettingOutlined,
-    FolderOutlined,
     SolutionOutlined,
     DownOutlined,
 } from '@ant-design/icons';
@@ -17,9 +16,10 @@ import { ANTD_GRAY } from '../../entity/shared/constants';
 import { HOME_PAGE_INGESTION_ID } from '../../onboarding/config/HomePageOnboardingConfig';
 import { useUpdateEducationStepIdsAllowlist } from '../../onboarding/useUpdateEducationStepIdsAllowlist';
 import { useUserContext } from '../../context/useUserContext';
+import DomainIcon from '../../domain/DomainIcon';
 
 const LinkWrapper = styled.span`
-    margin-right: 0px;
+    margin-right: 0;
 `;
 
 const LinksWrapper = styled.div<{ areLinksHidden?: boolean }>`
@@ -126,7 +126,12 @@ export function HeaderLinks(props: Props) {
                             <MenuItem key="1">
                                 <Link to="/domains">
                                     <NavTitleContainer>
-                                        <FolderOutlined style={{ fontSize: '14px', fontWeight: 'bold' }} />
+                                        <DomainIcon
+                                            style={{
+                                                fontSize: 14,
+                                                fontWeight: 'bold',
+                                            }}
+                                        />
                                         <NavTitleText>{t('adminHeader.domainsText')}</NavTitleText>
                                     </NavTitleContainer>
                                     <NavTitleDescription>{t('adminHeader.domainsDescription')}</NavTitleDescription>

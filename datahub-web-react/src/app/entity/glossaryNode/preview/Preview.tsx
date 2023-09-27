@@ -28,7 +28,7 @@ export const Preview = ({
             owners={owners}
             logoComponent={<FolderOutlined style={{ fontSize: '20px' }} />}
             type={EntityType.GlossaryNode}
-            parentNodes={parentNodes}
+            parentEntities={parentNodes?.nodes}
         />
     );
 };

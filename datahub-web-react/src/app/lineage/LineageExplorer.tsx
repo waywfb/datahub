@@ -18,6 +18,7 @@ import { SHOW_COLUMNS_URL_PARAMS, useIsShowColumnsMode } from './utils/useIsShow
 import { ErrorSection } from '../shared/error/ErrorSection';
 import usePrevious from '../shared/usePrevious';
 import { useGetLineageTimeParams } from './utils/useGetLineageTimeParams';
+import analytics, { EventType } from '../analytics';
 
 const DEFAULT_DISTANCE_FROM_TOP = 106;
 
@@ -87,7 +88,13 @@ export default function LineageExplorer({ urn, type }: Props) {
     // they should be added to the dependency array below.
     useEffect(() => {
         setAsyncEntities({});
-    }, [isHideSiblingMode, startTimeMillis, endTimeMillis]);
+        // this can also be our hook for emitting the tracking event
+
+        analytics.event({
+            type: EventType.VisualLineageViewEvent,
+            entityType: entityData?.type,
+        });
+    }, [isHideSiblingMode, startTimeMillis, endTimeMillis, entityData?.type]);
 
     useEffect(() => {
         if (showColumns) {
@@ -185,6 +192,10 @@ export default function LineageExplorer({ urn, type }: Props) {
                         onLineageExpand={(asyncData: EntityAndType) => {
                             resetAsyncEntity(asyncData.entity.urn);
                             maybeAddAsyncLoadedEntity(asyncData);
+                            analytics.event({
+                                type: EventType.VisualLineageExpandGraphEvent,
+                                targetEntityType: asyncData?.type,
+                            });
                         }}
                         refetchCenterNode={() => {
                             refetch().then(() => {

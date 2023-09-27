@@ -8,9 +8,12 @@ import { useEnterKeyListener } from '../shared/useEnterKeyListener';
 import { validateCustomUrnId } from '../shared/textUtil';
 import analytics, { EventType } from '../analytics';
 import { useEntityRegistry } from '../useEntityRegistry';
+import DomainParentSelect from '../entity/shared/EntityDropdown/DomainParentSelect';
+import { useIsNestedDomainsEnabled } from '../useAppConfig';
+import { useDomainsContext } from './DomainsContext';
 
 const SuggestedNamesGroup = styled.div`
-    margin-top: 12px;
+    margin-top: 8px;
 `;
 
 const ClickableTag = styled(Tag)`
@@ -19,9 +22,38 @@ const ClickableTag = styled(Tag)`
     }
 `;
 
+const FormItem = styled(Form.Item)`
+    .ant-form-item-label {
+        padding-bottom: 2px;
+    }
+`;
+
+const FormItemWithMargin = styled(FormItem)`
+    margin-bottom: 16px;
+`;
+
+const FormItemNoMargin = styled(FormItem)`
+    margin-bottom: 0;
+`;
+
+const FormItemLabel = styled(Typography.Text)`
+    font-weight: 600;
+    color: #373d44;
+`;
+
+const AdvancedLabel = styled(Typography.Text)`
+    color: #373d44;
+`;
+
 type Props = {
     onClose: () => void;
-    onCreate: (urn: string, id: string | undefined, name: string, description: string | undefined) => void;
+    onCreate: (
+        urn: string,
+        id: string | undefined,
+        name: string,
+        description: string | undefined,
+        parentDomain?: string,
+    ) => void;
 };
 
 const SUGGESTED_DOMAIN_NAMES = ['Engineering', 'Marketing', 'Sales', 'Product'];
@@ -31,9 +63,14 @@ const NAME_FIELD_NAME = 'name';
 const DESCRIPTION_FIELD_NAME = 'description';
 
 export default function CreateDomainModal({ onClose, onCreate }: Props) {
+    const isNestedDomainsEnabled = useIsNestedDomainsEnabled();
     const entityRegistry = useEntityRegistry();
     const { t } = useTranslation();
     const [createDomainMutation] = useCreateDomainMutation();
+    const { entityData } = useDomainsContext();
+    const [selectedParentUrn, setSelectedParentUrn] = useState<string>(
+        (isNestedDomainsEnabled && entityData?.urn) || '',
+    );
     const [createButtonEnabled, setCreateButtonEnabled] = useState(false);
     const [form] = Form.useForm();
 
@@ -44,6 +81,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                     id: form.getFieldValue(ID_FIELD_NAME),
                     name: form.getFieldValue(NAME_FIELD_NAME),
                     description: form.getFieldValue(DESCRIPTION_FIELD_NAME),
+                    parentDomain: selectedParentUrn || undefined,
                 },
             },
         })
@@ -51,6 +89,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                 if (!errors) {
                     analytics.event({
                         type: EventType.CreateDomainEvent,
+                        parentDomainUrn: selectedParentUrn || undefined,
                     });
                     message.success({
                         content: t('crud.success.createWithName', {
@@ -63,6 +102,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                         form.getFieldValue(ID_FIELD_NAME),
                         form.getFieldValue(NAME_FIELD_NAME),
                         form.getFieldValue(DESCRIPTION_FIELD_NAME),
+                        selectedParentUrn || undefined,
                     );
                     form.resetFields();
                 }
@@ -113,9 +153,16 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                     setCreateButtonEnabled(!form.getFieldsError().some((field) => field.errors.length > 0));
                 }}
             >
-                <Form.Item label={<Typography.Text strong>{t('common.name')}</Typography.Text>}>
-                    <Typography.Paragraph>{t('form.giveYourNewDomainAName')}</Typography.Paragraph>
-                    <Form.Item
+                {isNestedDomainsEnabled && (
+                    <FormItemWithMargin label={<FormItemLabel>{t('common.parent')} ({t('common.optional')})</FormItemLabel>}>
+                        <DomainParentSelect
+                            selectedParentUrn={selectedParentUrn}
+                            setSelectedParentUrn={setSelectedParentUrn}
+                        />
+                    </FormItemWithMargin>
+                )}
+                <FormItemWithMargin label={<FormItemLabel>{t('common.name')}</FormItemLabel>}>
+                    <FormItemNoMargin
                         name={NAME_FIELD_NAME}
                         rules={[
                             {
@@ -130,7 +177,7 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                         hasFeedback
                     >
                         <Input data-testid="create-domain-name" placeholder={t('placeholder.domainName')} />
-                    </Form.Item>
+                    </FormItemNoMargin>
                     <SuggestedNamesGroup>
                         {SUGGESTED_DOMAIN_NAMES.map((name) => {
                             return (
@@ -148,31 +195,28 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                             );
                         })}
                     </SuggestedNamesGroup>
-                </Form.Item>
-                <Form.Item label={<Typography.Text strong>{t('common.description')}</Typography.Text>}>
-                    <Typography.Paragraph>{t('domain.domainDescriptionDescription')}</Typography.Paragraph>
-                    <Form.Item
+                </FormItemWithMargin>
+                <FormItemWithMargin
+                    label={<FormItemLabel>{t('common.description')}</FormItemLabel>}
+                    help={t('domain.domainDescriptionDescription')}
+                >
+                    <FormItemNoMargin
                         name={DESCRIPTION_FIELD_NAME}
                         rules={[{ whitespace: true }, { min: 1, max: 500 }]}
                         hasFeedback
                     >
                         <Input.TextArea placeholder={t('placeholder.domainDescription')} />
-                    </Form.Item>
-                </Form.Item>
+                    </FormItemNoMargin>
+                </FormItemWithMargin>
                 <Collapse ghost>
-                    <Collapse.Panel
-                        header={<Typography.Text type="secondary">{t('common.advanced')}</Typography.Text>}
-                        key="1"
-                    >
-                        <Form.Item
-                            label={
-                                <Typography.Text strong>
-                                    {entityRegistry.getEntityNameTrans(EntityType.Domain, t)} {t('common.id')}
-                                </Typography.Text>
-                            }
+                    <Collapse.Panel header={<AdvancedLabel>{t('common.advancedOptions')}</AdvancedLabel>} key="1">
+                        <FormItemWithMargin
+                            label={<Typography.Text strong>
+                                {entityRegistry.getEntityNameTrans(EntityType.Domain, t)} {t('common.id')}
+                            </Typography.Text>}
+                            help={t('domain.domainIdDescription')}
                         >
-                            <Typography.Paragraph>{t('domain.domainIdDescription')}</Typography.Paragraph>
-                            <Form.Item
+                            <FormItemNoMargin
                                 name={ID_FIELD_NAME}
                                 rules={[
                                     () => ({
@@ -186,8 +230,8 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                                 ]}
                             >
                                 <Input data-testid="create-domain-id" placeholder="engineering" />
-                            </Form.Item>
-                        </Form.Item>
+                            </FormItemNoMargin>
+                        </FormItemWithMargin>
                     </Collapse.Panel>
                 </Collapse>
             </Form>

@@ -54,6 +54,7 @@ function PlatformContentContainer() {
             parentContainers={entityData?.parentContainers?.containers}
             parentContainersRef={contentRef}
             areContainersTruncated={isContentTruncated}
+            parentEntities={entityData?.parentDomains?.domains}
         />
     );
 }

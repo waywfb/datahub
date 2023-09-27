@@ -21,7 +21,10 @@ import { ANTD_GRAY } from '../constants';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import useDeleteEntity from './useDeleteEntity';
 import { getEntityProfileDeleteRedirectPath } from '../../../shared/deleteUtils';
-import { isDeleteDisabled } from './utils';
+import { shouldDisplayChildDeletionWarning, isDeleteDisabled, isMoveDisabled } from './utils';
+import { useUserContext } from '../../../context/useUserContext';
+import MoveDomainModal from './MoveDomainModal';
+import { useIsNestedDomainsEnabled } from '../../../useAppConfig';
 
 export enum EntityMenuItems {
     COPY_URL,
@@ -91,8 +94,10 @@ function EntityDropdown(props: Props) {
         options,
     } = props;
 
+    const me = useUserContext();
     const entityRegistry = useEntityRegistry();
     const [updateDeprecation] = useUpdateDeprecationMutation();
+    const isNestedDomainsEnabled = useIsNestedDomainsEnabled();
     const { onDeleteEntity, hasBeenDeleted } = useDeleteEntity(
         urn,
         entityType,
@@ -141,9 +146,9 @@ function EntityDropdown(props: Props) {
 
     const pageUrl = window.location.href;
     const isGlossaryEntity = entityType === EntityType.GlossaryNode || entityType === EntityType.GlossaryTerm;
-    const entityHasChildren = !!entityData?.children?.total;
-    const canManageGlossaryEntity = !!entityData?.privileges?.canManageEntity;
+    const isDomainEntity = entityType === EntityType.Domain;
     const canCreateGlossaryEntity = !!entityData?.privileges?.canManageChildren;
+    const isDomainMoveHidden = !isNestedDomainsEnabled && isDomainEntity;
 
     /**
      * A default path to redirect to if the entity is deleted.
@@ -214,10 +219,10 @@ function EntityDropdown(props: Props) {
                                 </MenuItem>
                             </StyledMenuItem>
                         )}
-                        {menuItems.has(EntityMenuItems.MOVE) && (
+                        {!isDomainMoveHidden && menuItems.has(EntityMenuItems.MOVE) && (
                             <StyledMenuItem
                                 key="4"
-                                disabled={!canManageGlossaryEntity}
+                                disabled={isMoveDisabled(entityType, entityData, me.platformPrivileges)}
                                 onClick={() => setIsMoveModalVisible(true)}
                             >
                                 <MenuItem>
@@ -228,17 +233,18 @@ function EntityDropdown(props: Props) {
                         {menuItems.has(EntityMenuItems.DELETE) && (
                             <StyledMenuItem
                                 key="5"
-                                disabled={isDeleteDisabled(entityType, entityData)}
+                                disabled={isDeleteDisabled(entityType, entityData, me.platformPrivileges)}
                                 onClick={onDeleteEntity}
                             >
                                 <Tooltip
-                                    title={t('entity.cantDeleteWithChildEntityWithName', {
-                                        name: entityRegistry.getEntityNameTrans(entityType, t),
-                                    })}
-                                    overlayStyle={
-                                        isGlossaryEntity && canManageGlossaryEntity && entityHasChildren
-                                            ? {}
-                                            : { display: t('common.none') }
+                                    title={
+                                        shouldDisplayChildDeletionWarning(entityType, entityData, me.platformPrivileges)
+                                            ? isDomainEntity ? t('entity.cantDeleteWithSubDomainEntityWithName', {
+                                                      name: entityRegistry.getEntityNameTrans(entityType, t),
+                                                  }) : t('entity.cantDeleteWithChildEntityWithName', {
+                                                      name: entityRegistry.getEntityNameTrans(entityType, t),
+                                                  })
+                                            : undefined
                                     }
                                 >
                                     <MenuItem>
@@ -274,7 +280,10 @@ function EntityDropdown(props: Props) {
                     refetch={refetchForEntity}
                 />
             )}
-            {isMoveModalVisible && <MoveGlossaryEntityModal onClose={() => setIsMoveModalVisible(false)} />}
+            {isMoveModalVisible && isGlossaryEntity && (
+                <MoveGlossaryEntityModal onClose={() => setIsMoveModalVisible(false)} />
+            )}
+            {isMoveModalVisible && isDomainEntity && <MoveDomainModal onClose={() => setIsMoveModalVisible(false)} />}
             {hasBeenDeleted && !onDelete && deleteRedirectPath && <Redirect to={deleteRedirectPath} />}
         </>
     );

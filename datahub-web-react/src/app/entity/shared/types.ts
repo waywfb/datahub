@@ -37,6 +37,7 @@ import {
     FabricType,
     BrowsePathV2,
     DataJobInputOutput,
+    ParentDomainsResult,
 } from '../../../types.generated';
 import { FetchedEntity } from '../../lineage/types';
 
@@ -66,6 +67,7 @@ export type EntitySubHeaderSection = {
 
 export type GenericEntityProperties = {
     urn?: string;
+    type?: EntityType;
     name?: Maybe<string>;
     properties?: Maybe<{
         description?: Maybe<string>;
@@ -99,6 +101,7 @@ export type GenericEntityProperties = {
     status?: Maybe<Status>;
     deprecation?: Maybe<Deprecation>;
     parentContainers?: Maybe<ParentContainersResult>;
+    parentDomains?: Maybe<ParentDomainsResult>;
     children?: Maybe<EntityRelationshipsResult>;
     parentNodes?: Maybe<ParentNodesResult>;
     isAChildren?: Maybe<EntityRelationshipsResult>;

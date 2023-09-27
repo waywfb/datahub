@@ -46,6 +46,7 @@ import {
     LINEAGE_GRAPH_TIME_FILTER_ID,
 } from '../../../../onboarding/config/LineageGraphOnboardingConfig';
 import { useAppConfig } from '../../../../useAppConfig';
+import { useUpdateDomainEntityDataOnChange } from '../../../../domain/utils';
 
 type Props<T, U> = {
     urn: string;
@@ -214,6 +215,7 @@ export const EntityProfile = <T, U>({
         useGetDataForProfile({ urn, entityType, useEntityQuery, getOverrideProperties });
 
     useUpdateGlossaryEntityDataOnChange(entityData, entityType);
+    useUpdateDomainEntityDataOnChange(entityData, entityType);
 
     const maybeUpdateEntity = useUpdateQuery?.({
         onCompleted: () => refetch(),

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
-import { EntityType, GlossaryNode, SearchResult } from '../../../../types.generated';
 import { useTranslation } from 'react-i18next';
-import { useGetSearchResultsLazyQuery } from '../../../../graphql/search.generated';
-import { EntityType, GlossaryNode } from '../../../../types.generated';
+import { EntityType, GlossaryNode, SearchResult } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { useEntityData } from '../EntityContext';
 import ClickOutside from '../../../shared/ClickOutside';

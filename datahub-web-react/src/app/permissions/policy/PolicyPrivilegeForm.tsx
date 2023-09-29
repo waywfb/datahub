@@ -377,13 +377,19 @@ export default function PolicyPrivilegeForm({
                 </Form.Item>
             )}
             {showResourceFilterInput && (
-                <Form.Item label={<Typography.Text strong>{t('crud.selectWithName', { name: t('common.domain') })}</Typography.Text>}>
+                <Form.Item
+                    label={
+                        <Typography.Text strong>
+                            {t('crud.selectWithName', { name: t('common.domain') })}
+                        </Typography.Text>
+                    }
+                >
                     <Typography.Paragraph>
                         <Trans
-                          {...{
-                              i18nKey: 'permissions.domainDescription',
-                              components: { bold: <b /> },
-                          }}
+                            {...{
+                                i18nKey: 'permissions.domainDescription',
+                                components: { bold: <b /> },
+                            }}
                         />
                     </Typography.Paragraph>
                     <ClickOutside onClickOutside={handleCLickOutside}>

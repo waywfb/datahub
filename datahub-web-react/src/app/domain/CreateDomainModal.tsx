@@ -154,7 +154,13 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                 }}
             >
                 {isNestedDomainsEnabled && (
-                    <FormItemWithMargin label={<FormItemLabel>{t('common.parent')} ({t('common.optional')})</FormItemLabel>}>
+                    <FormItemWithMargin
+                        label={
+                            <FormItemLabel>
+                                {t('common.parent')} ({t('common.optional')})
+                            </FormItemLabel>
+                        }
+                    >
                         <DomainParentSelect
                             selectedParentUrn={selectedParentUrn}
                             setSelectedParentUrn={setSelectedParentUrn}
@@ -211,9 +217,11 @@ export default function CreateDomainModal({ onClose, onCreate }: Props) {
                 <Collapse ghost>
                     <Collapse.Panel header={<AdvancedLabel>{t('common.advancedOptions')}</AdvancedLabel>} key="1">
                         <FormItemWithMargin
-                            label={<Typography.Text strong>
-                                {entityRegistry.getEntityNameTrans(EntityType.Domain, t)} {t('common.id')}
-                            </Typography.Text>}
+                            label={
+                                <Typography.Text strong>
+                                    {entityRegistry.getEntityNameTrans(EntityType.Domain, t)} {t('common.id')}
+                                </Typography.Text>
+                            }
                             help={t('domain.domainIdDescription')}
                         >
                             <FormItemNoMargin

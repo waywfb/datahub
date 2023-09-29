@@ -69,8 +69,8 @@ export const IngestionSourceBuilderModal = ({ initialState, visible, onSubmit, o
     const { t } = useTranslation();
     const isEditing = initialState !== undefined;
     const titleText = isEditing
-      ? t('crud.editWithName', { name: t('ingest.ingestionSource') })
-      : t('crud.createWithName', { name: t('ingest.ingestionSource') });
+        ? t('crud.editWithName', { name: t('ingest.ingestionSource') })
+        : t('crud.createWithName', { name: t('ingest.ingestionSource') });
     const initialStep = isEditing
         ? IngestionSourceBuilderStep.DEFINE_RECIPE
         : IngestionSourceBuilderStep.SELECT_TEMPLATE;

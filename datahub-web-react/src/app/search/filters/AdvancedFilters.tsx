@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata } from '../../../types.generated';
 import { useUserContext } from '../../context/useUserContext';
 import { ANTD_GRAY } from '../../entity/shared/constants';
@@ -45,6 +46,7 @@ export default function AdvancedFilters({
     const { filterField, setFilterField, onFilterFieldSelect, onSelectValueFromModal } = useAdvancedSearchSelectFilters(
         { selectedFilters: activeFilters, onFilterSelect: onChangeFilters },
     );
+    const { t } = useTranslation();
     const userContext = useUserContext();
     const selectedViewUrn = userContext?.localState?.selectedViewUrn;
     const showSaveViewButton = activeFilters?.length > 0 && selectedViewUrn === undefined;
@@ -54,7 +56,7 @@ export default function AdvancedFilters({
         <>
             {activeFilters?.length >= 2 && (
                 <AnyAllToggle>
-                    Show results that match{' '}
+                    {`${t('filter.showResultsThatMatch')} `}
                     <AdvancedSearchFilterOverallUnionTypeSelect
                         unionType={unionType}
                         onUpdate={(newValue) => onChangeUnionType(newValue)}
@@ -97,7 +99,7 @@ export default function AdvancedFilters({
                 <FilterButtonsWrapper>
                     {showSaveViewButton && <SaveViewButton activeFilters={activeFilters} unionType={unionType} />}
                     <TextButton disabled={onlyShowAdvancedFilters} type="text" onClick={showBasicFilters} marginTop={0}>
-                        Basic Filters
+                        {t('filter.basicFilters')}
                     </TextButton>
                 </FilterButtonsWrapper>
             </FlexSpacer>

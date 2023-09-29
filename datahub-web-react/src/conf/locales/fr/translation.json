@@ -90,6 +90,7 @@
     "onAContainedChart": "sur un graphique contenu"
   },
   "common": {
+    "clearAll": "Enlever Tout",
     "phone": "Téléphone",
     "team": "Equipe",
     "about": "A propos",
@@ -101,6 +102,7 @@
     "actual": "Actuel",
     "add": "Ajouter",
     "advanced": "Avancé",
+    "advancedOptions": "Options Avancées",
     "all": "Tout",
     "analytics": "Analytique",
     "announcement": "Annonce",
@@ -494,6 +496,7 @@
     "allDataInputsAreHealthy": "Tout les inputs de donnée sont sains",
     "authorNameWithLink_component": "Ajouté le {{timestamp}} par <linkComponent>{{authorName}}</linkComponent>",
     "cantDeleteWithChildEntityWithName": "Impossible de supprimer {{name}} qui a des entités enfants.",
+    "cantDeleteWithSubDomainEntityWithName": "Impossible de supprimer {{name}} qui a des entités sous-domaine.",
     "cantFindEntityPageContent": "Désolé, impossible de trouver cette entité dans le DataHub",
     "deleteAssetMessageConfirmation": "Etes-vous sûr(e) de vouloir marquer ces assets comme supprimées ? Elles seront cachées dans les futures recherches sur DataHub. Si l'asset est ingéré de nouveau depuis une plateforme extérieure, elle sera restorée.",
     "editor": {
@@ -590,6 +593,8 @@
     "unsupportedTestResultType": "Type de résultat de test {{result}} inconnu."
   },
   "filter": {
+    "basicFilters": "Basic Filters",
+    "advancedFilters": "Filtres Avancés",
     "allFilters": "Tous les filtres",
     "anyFilter": "N'importe quel filtre",
     "contains": {
@@ -661,7 +666,6 @@
     "fillInYourName": "Veuillez remplir votre nom.",
     "fillInYourPassword": "Veuillez remplir votre mot de passe.",
     "fillInYourTitle": "Veuillez remplir votre titre.",
-    "giveYourNewDomainAName": "Donnez un nom à votre nouveau Domaine.",
     "labelRequired": "Un libellé est requis.",
     "ownershipTypeNameRequired": "Veuillez saisir un nom pour le type de propriété.",
     "passwordIsFewerThan8Characters": "Votre mot de passe comporte moins de 8 caractères.",

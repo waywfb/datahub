@@ -593,7 +593,7 @@
     "unsupportedTestResultType": "Type de résultat de test {{result}} inconnu."
   },
   "filter": {
-    "basicFilters": "Basic Filters",
+    "basicFilters": "Filtres Basiques",
     "advancedFilters": "Filtres Avancés",
     "allFilters": "Tous les filtres",
     "anyFilter": "N'importe quel filtre",

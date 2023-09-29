@@ -94,7 +94,7 @@ export default function AdvancedFilters({
                             isCompact
                         />
                     ))}
-                    {!activeFilters.length && <EmptyStateSection>No filters applied.</EmptyStateSection>}
+                    {!activeFilters.length && <EmptyStateSection>{t('filter.noFilterApplied')}</EmptyStateSection>}
                 </FlexWrapper>
                 <FilterButtonsWrapper>
                     {showSaveViewButton && <SaveViewButton activeFilters={activeFilters} unionType={unionType} />}

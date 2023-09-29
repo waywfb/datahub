@@ -105,7 +105,7 @@ export default function OptionsDropdownMenu({
                 )}
             </ScrollableContent>
             <StyledButton id="updateFiltersButton" type="text" onClick={updateFilters} data-testid="update-filters">
-                Update
+                {t('common.update')}
             </StyledButton>
         </DropdownMenu>
     );

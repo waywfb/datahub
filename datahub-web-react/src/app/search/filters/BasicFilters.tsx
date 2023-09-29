@@ -123,7 +123,7 @@ export default function BasicFilters({
                         onClick={showAdvancedFilters}
                         marginTop={0}
                     >
-                        {t('common.advancedFilters')}
+                        {t('filter.advancedFilters')}
                     </TextButton>
                 </FilterButtonsWrapper>
             </FlexSpacer>

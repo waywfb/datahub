@@ -1,6 +1,7 @@
 import { Divider } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata } from '../../../types.generated';
 import { useUserContext } from '../../context/useUserContext';
 import {
@@ -70,6 +71,7 @@ export default function BasicFilters({
     onClearFilters,
     showAdvancedFilters,
 }: Props) {
+    const { t } = useTranslation();
     const userContext = useUserContext();
     const selectedViewUrn = userContext?.localState?.selectedViewUrn;
     const showSaveViewButton = activeFilters?.length > 0 && selectedViewUrn === undefined;
@@ -121,7 +123,7 @@ export default function BasicFilters({
                         onClick={showAdvancedFilters}
                         marginTop={0}
                     >
-                        Advanced Filters
+                        {t('filter.advancedFilters')}
                     </TextButton>
                 </FilterButtonsWrapper>
             </FlexSpacer>
@@ -141,7 +143,7 @@ export default function BasicFilters({
                             ))}
                         </FlexWrapper>
                         <TextButton type="text" onClick={onClearFilters} height={14} data-testid="clear-all-filters">
-                            clear all
+                            {t('common.clearAll')}
                         </TextButton>
                     </FlexSpacer>
                 </>

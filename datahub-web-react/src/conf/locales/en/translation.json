@@ -90,6 +90,7 @@
     "onAContainedChart": "on a contained Chart"
   },
   "common": {
+    "clearAll": "Clear All",
     "phone": "Phone",
     "team": "Team",
     "about": "About",
@@ -101,6 +102,7 @@
     "actual": "Actual",
     "add": "Add",
     "advanced": "Advanced",
+    "advancedOptions": "Advanced Options",
     "all": "All",
     "analytics": "Analytics",
     "announcement": "Announcement",
@@ -494,6 +496,7 @@
     "allDataInputsAreHealthy": "All data inputs are healthy",
     "authorNameWithLink_component": "Added {{timestamp}} by <linkComponent>{{authorName}}</linkComponent>",
     "cantDeleteWithChildEntityWithName": "Can't delete {{name}} with child entities.",
+    "cantDeleteWithSubDomainEntityWithName": "Can't delete {{name}} with sub-domain entities.",
     "cantFindEntityPageContent": "Sorry, we are unable to find this entity in DataHub",
     "deleteAssetMessageConfirmation": "Are you sure you want to mark these assets as deleted? This will hide the assets from future DataHub searches. If the assets are re-ingested from an external data platform, they will be restored.",
     "editor": {
@@ -590,6 +593,8 @@
     "unsupportedTestResultType": "Unsupported Test Result Type {{result}} provided."
   },
   "filter": {
+    "basicFilters": "Basic Filters",
+    "advancedFilters": "Advanced Filters",
     "allFilters": "All filters",
     "anyFilter": "Any filter",
     "contains": {
@@ -661,7 +666,6 @@
     "fillInYourName": "Please fill in your name",
     "fillInYourPassword": "Please fill in your password",
     "fillInYourTitle": "Please fill in your title",
-    "giveYourNewDomainAName": "Give your new Domain a name",
     "labelRequired": "A URL is required.",
     "ownershipTypeNameRequired": "Please input a name for the ownership type",
     "passwordIsFewerThan8Characters": "Your password is fewer than 8 characters",

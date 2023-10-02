@@ -165,7 +165,7 @@ function EntityDropdown(props: Props) {
                                 <MenuItem
                                     onClick={() => {
                                         navigator.clipboard.writeText(pageUrl);
-                                        message.info(`${t('copy.copiedUrl')}!`, 1.2);
+                                        message.info(t('copy.copiedUrl'), 1.2);
                                     }}
                                 >
                                     <LinkOutlined /> &nbsp; {t('common.copy')} URL
@@ -238,12 +238,14 @@ function EntityDropdown(props: Props) {
                             >
                                 <Tooltip
                                     title={
+                                        // entity.cantDeleteWithSubDomainEntityWithName & entity.cantDeleteWithChildEntityWithName
                                         shouldDisplayChildDeletionWarning(entityType, entityData, me.platformPrivileges)
-                                            ? isDomainEntity ? t('entity.cantDeleteWithSubDomainEntityWithName', {
-                                                      name: entityRegistry.getEntityNameTrans(entityType, t),
-                                                  }) : t('entity.cantDeleteWithChildEntityWithName', {
-                                                      name: entityRegistry.getEntityNameTrans(entityType, t),
-                                                  })
+                                            ? t(
+                                                  `entity.cantDeleteWith${
+                                                      isDomainEntity ? 'SubDomain' : 'Child'
+                                                  }EntityWithName'`,
+                                                  { name: entityRegistry.getEntityNameTrans(entityType, t) },
+                                              )
                                             : undefined
                                     }
                                 >

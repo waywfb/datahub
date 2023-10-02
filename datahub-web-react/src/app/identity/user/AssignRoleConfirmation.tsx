@@ -74,12 +74,14 @@ export default function AssignRoleConfirmation({
           })
         : t('user.removeRoleTitle', { username });
 
-    return <Popconfirm
-        title={assignRoleText}
-        visible={visible}
-        onConfirm={batchAssignRole}
-        onCancel={onClose}
-        okText={t('common.ok')}
-        cancelText={t('common.cancel')}
-    />;
+    return (
+        <Popconfirm
+            title={assignRoleText}
+            visible={visible}
+            onConfirm={batchAssignRole}
+            onCancel={onClose}
+            okText={t('common.ok')}
+            cancelText={t('common.cancel')}
+        />
+    );
 }

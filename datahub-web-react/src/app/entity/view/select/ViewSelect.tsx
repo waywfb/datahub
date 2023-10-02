@@ -203,7 +203,7 @@ export const ViewSelect = ({ dropdownStyle = {} }: Props) => {
                 data-testid="view-select"
                 onChange={() => (selectRef?.current as any)?.blur()}
                 value={(foundSelectedUrn && selectedUrn) || undefined}
-                placeholder={t('common.viewAll')}
+                placeholder={t('common.all')}
                 onSelect={onSelectView}
                 onClear={onClear}
                 ref={selectRef}

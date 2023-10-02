@@ -2,6 +2,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import React from 'react';
 import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../useEntityRegistry';
 import { SearchBar } from '../SearchBar';
 import { useEnterKeyListener } from '../../shared/useEnterKeyListener';
@@ -72,6 +73,7 @@ export default function OptionsDropdownMenu({
     alignRight,
     searchPlaceholder,
 }: Props) {
+    const { t } = useTranslation();
     const entityRegistry = useEntityRegistry();
 
     useEnterKeyListener({ querySelectorToExecuteClick: '#updateFiltersButton' });
@@ -105,7 +107,7 @@ export default function OptionsDropdownMenu({
                 )}
             </ScrollableContent>
             <StyledButton id="updateFiltersButton" type="text" onClick={updateFilters} data-testid="update-filters">
-                Update
+                {t('crud.update')}
             </StyledButton>
         </DropdownMenu>
     );

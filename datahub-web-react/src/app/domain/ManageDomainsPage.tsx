@@ -33,8 +33,10 @@ export const ManageDomainsPage = () => {
         <DomainsContext.Provider value={{ entityData, setEntityData, parentDomainsToUpdate, setParentDomainsToUpdate }}>
             <PageContainer>
                 <PageHeaderContainer>
-                <PageTitle level={3}>{t('common.domains')}</PageTitle>
-                <Typography.Paragraph type="secondary">{t('domain.domainManagementDescription')}</Typography.Paragraph>
+                    <PageTitle level={3}>{t('common.domains')}</PageTitle>
+                    <Typography.Paragraph type="secondary">
+                        {t('domain.domainManagementDescription')}
+                    </Typography.Paragraph>
                 </PageHeaderContainer>
                 <ListContainer>
                     <DomainsList />

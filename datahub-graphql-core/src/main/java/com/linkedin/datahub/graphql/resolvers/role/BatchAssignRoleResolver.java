@@ -38,6 +38,13 @@ public class BatchAssignRoleResolver implements DataFetcher<CompletableFuture<Bo
     return CompletableFuture.supplyAsync(() -> {
       try {
         final Urn roleUrn = roleUrnStr == null ? null : Urn.createFromString(roleUrnStr);
+        // TODO ndespouy A SUPPRIMER
+        System.out.println("roleUrnStr : " + roleUrnStr);
+        System.out.println("actors : ");
+        for (int i = 0; i < actors.size(); i++) {
+          System.out.println("===> " + actors.get(i));
+        }
+        System.out.println("=====> NDESPOUY <======");
         _roleService.batchAssignRoleToActors(actors, roleUrn, authentication);
         return true;
       } catch (Exception e) {
